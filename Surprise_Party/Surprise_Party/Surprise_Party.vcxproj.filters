@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SourceCode">
+      <UniqueIdentifier>{d08b1847-ecfb-4e7c-9f3b-14407a936600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing">
+      <UniqueIdentifier>{d6ccb84a-0bf2-4ef2-bed7-c4dedca10277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Object">
+      <UniqueIdentifier>{c2426e50-55e9-49ea-a7fd-27e7a422b328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Sprite">
+      <UniqueIdentifier>{3118be69-6ef3-4854-b759-9c800766c2dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Object\CDX9Mesh">
+      <UniqueIdentifier>{89d4e4ff-b366-4820-8ea7-ab768b947fdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Object\CDX9SkinMesh">
+      <UniqueIdentifier>{9ea86969-ddbe-4112-8ec5-551c183a8b09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Sprite\Sprite">
+      <UniqueIdentifier>{f311aa1c-24c3-49de-82de-9558aedba70c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Sprite\SpriteUI">
+      <UniqueIdentifier>{c8becb51-0f11-4e5c-8cbe-ab18a94fb80c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Sprite\DebugText">
+      <UniqueIdentifier>{e3b2e150-2546-4e8a-ae8b-9615cfd06f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Resource">
+      <UniqueIdentifier>{69b75cac-90a9-484e-892a-86670f3f9fa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Resource\SpriteResource">
+      <UniqueIdentifier>{877d5112-4480-41cc-9f0e-3aab6793ee15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Resource\ObjectResource">
+      <UniqueIdentifier>{af2fcaa9-c77d-45f5-a17e-2daf7a365a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Effect">
+      <UniqueIdentifier>{49ec7c4b-32ad-4b45-9e78-7a123ecb2a2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Resource\EffectResource">
+      <UniqueIdentifier>{ae23f1cf-1d83-4abc-a495-1399d465bcaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Font">
+      <UniqueIdentifier>{2b84d207-5be8-4778-84d4-64609b861657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{37936598-22ff-418e-b9f8-b909acb1e9f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Resource\FontResource">
+      <UniqueIdentifier>{00abbac7-0ef5-4dee-9eec-32ce42bb0336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\FileLoad">
+      <UniqueIdentifier>{ebf46477-096e-4136-95f3-5553f00d45f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\FileLoad\FileLoadBase">
+      <UniqueIdentifier>{66d1f2cb-165b-48bd-9520-cba135924db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject">
+      <UniqueIdentifier>{48d7118d-d464-4c5c-b254-72df64480258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object">
+      <UniqueIdentifier>{11b92207-01e4-4f51-9beb-5b01a17126fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject">
+      <UniqueIdentifier>{60268bff-67d5-40f7-a3fe-b83f22c51f1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\Wall">
+      <UniqueIdentifier>{9b69acc0-a614-4a1f-9039-e647cdb79e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\FileLoad\FileNumber">
+      <UniqueIdentifier>{2b3ea970-0b0f-4392-bac8-296efd32ff08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\Floor">
+      <UniqueIdentifier>{087410a6-4d28-4025-a120-e359e9d38fdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\Painting">
+      <UniqueIdentifier>{2f2cc69c-0eea-4f52-989c-83c947750ed7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\FileLoad\FileResource">
+      <UniqueIdentifier>{5f160e65-9eec-40f5-8b7a-1c08190de833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager">
+      <UniqueIdentifier>{a84a30df-ee54-409b-8f59-178ca157cefe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\MoveObject">
+      <UniqueIdentifier>{eafc0d7f-9acf-49e9-9d2f-bc391bf647df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\MoveObject\MoveObjectManager">
+      <UniqueIdentifier>{c4b0bded-ee86-4dfd-a286-630778ea1f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\BookShelf">
+      <UniqueIdentifier>{70dc2368-171d-4d94-bed6-5fbe032cea1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\MoveObject\GhostDispPainting">
+      <UniqueIdentifier>{06c59a8f-2cda-4dac-b77e-a179ce53940d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\MoveObject\Switch">
+      <UniqueIdentifier>{8a248164-d1cc-440c-8f8c-e0f9700edfd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\MoveObject\Switch\ObjectMoveSwitch">
+      <UniqueIdentifier>{18774a5b-df22-40bb-8525-9ce19b43e93c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\MoveObject\Switch\PlaySoundSwitch">
+      <UniqueIdentifier>{9368240e-77fe-497c-a684-4da6d97421d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara">
+      <UniqueIdentifier>{9373b7b8-7063-4098-877c-1b52d33e5e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost">
+      <UniqueIdentifier>{f382da55-8098-42f9-a307-ade30ff192fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost">
+      <UniqueIdentifier>{f63c6c7f-a3dc-44a4-8dc6-b98f87392d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost">
+      <UniqueIdentifier>{2e59853b-1a49-4104-8dd5-674baba2b625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost">
+      <UniqueIdentifier>{4c6455c6-6354-4320-b0ff-612d6d16e53d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\People">
+      <UniqueIdentifier>{cb377dd6-cb6f-4b5f-9aa8-ed0a9772268c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\People\Girl">
+      <UniqueIdentifier>{ccf6ba19-c7b5-4560-95cd-bd0f7feb76dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\People\Boy">
+      <UniqueIdentifier>{3801fd23-41cd-4ee6-b1e6-d8caadd510e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\People\PeopleManager">
+      <UniqueIdentifier>{ac22ff62-0167-4b71-836d-64e7a3cb0849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Drawing\Object\AlphaBlend">
+      <UniqueIdentifier>{7d4f7adb-bafc-49b7-9c6d-241e9bd8358c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene">
+      <UniqueIdentifier>{0dbc1003-ea15-4026-926d-850eac870f7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\SceneManager">
+      <UniqueIdentifier>{b07db715-eb63-4f35-bb52-d9694310f317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\Title">
+      <UniqueIdentifier>{0e697814-a7df-4baf-94f7-1981ec8da3bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\GameMain">
+      <UniqueIdentifier>{4f640000-ed9a-4b4a-ae34-d86860284108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\Ending">
+      <UniqueIdentifier>{4d5f5216-ba6b-4bfe-a552-4951cfe5d072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\GameMain\StageManager">
+      <UniqueIdentifier>{448cb956-38e2-4c60-a4b7-b3de9e2e266b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\Tutorial">
+      <UniqueIdentifier>{3177b2b1-fd3b-44eb-9d04-09026cdf4f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\SceneBase">
+      <UniqueIdentifier>{d2e944cf-78c6-4fe5-8fd8-7e1bcfc40595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\GameMain\MainStage">
+      <UniqueIdentifier>{2640f773-e8e0-401a-bc37-6d2f71d59938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\GameMain\GhostSpeakStage">
+      <UniqueIdentifier>{69fe9b91-fbb4-40c5-8089-345a5bed067e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\GameMain\StageBase">
+      <UniqueIdentifier>{f0242a5b-d9ce-4f94-974a-3fa2669eba98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI">
+      <UniqueIdentifier>{7e3358a4-cf39-48fe-b4c0-f21c64c94ead}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI">
+      <UniqueIdentifier>{e602f998-789f-4fc4-9dc3-0bbdff26845d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\StageMap">
+      <UniqueIdentifier>{7d771752-3e30-4438-9311-098ce47ebfa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI">
+      <UniqueIdentifier>{faab0384-843d-49f4-b303-eb9e521aa5d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\Icon">
+      <UniqueIdentifier>{c5a01733-936e-43f9-a168-05df99bceda2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon">
+      <UniqueIdentifier>{f1fd1fad-5aef-4b06-a5aa-2c4e7872a902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\GirlIcon">
+      <UniqueIdentifier>{5b8a9d3c-1568-45cc-9704-3e3497aaf295}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\BoyIcon">
+      <UniqueIdentifier>{0d1b1b21-9ea9-4e94-963f-d44f5dce9ace}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\Icon\GhostIcon">
+      <UniqueIdentifier>{9d072fcf-5360-4283-a020-55628d08df74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\Icon\GimmickIcon">
+      <UniqueIdentifier>{6572b30c-7c9b-420e-b1be-d52d8dea1f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\MapCursor">
+      <UniqueIdentifier>{8e72dbda-8106-413c-86f4-971722889d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGhostCursor">
+      <UniqueIdentifier>{cce56606-b1b2-492a-9af1-5c07b7a6300d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor">
+      <UniqueIdentifier>{8434df67-c534-4276-af97-2b66a45c81d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\GameWorldUI">
+      <UniqueIdentifier>{d3f47d84-66ab-4d78-b6d2-8951b49f10d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\GameWorldUI\GameWorldCursor">
+      <UniqueIdentifier>{6e75ec9a-85ae-4030-9891-5f5e875fa812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGhostCursor">
+      <UniqueIdentifier>{70538f21-24de-4f4b-ab52-4b96feb8066c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\GameWorldUI\Act_Selection">
+      <UniqueIdentifier>{d432a010-0726-42b4-a091-f044f7f7e2e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor">
+      <UniqueIdentifier>{7d16e39f-28c7-4c69-9235-53e5b9f59ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\GameWorldUI\GhostStrengthIcon">
+      <UniqueIdentifier>{d502db57-cdc1-4507-b904-5d429caa4d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\PlayUI">
+      <UniqueIdentifier>{e6a0943d-4fa5-4637-b460-ce0eb19b4bc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\PlayUI\SurpriseGage">
+      <UniqueIdentifier>{dd1da299-a411-4a19-9226-34655579a6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\PlayUI\ClosedTime">
+      <UniqueIdentifier>{422b6daa-1086-45a3-a7e1-f4e93edb6ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\Fade">
+      <UniqueIdentifier>{8fda4747-1294-4fd9-a126-3709542ad915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\Fade\SceneFade">
+      <UniqueIdentifier>{92378840-eed1-41f9-a25c-5abf543fb814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\Fade\StageFade">
+      <UniqueIdentifier>{24b59903-eb80-4bf9-bdee-97ebcc598b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\BigGhost">
+      <UniqueIdentifier>{f6b23a6f-b866-4ef9-8bd3-6d66f093a3e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SourceCode\Main.h">
+      <Filter>SourceCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Global.h">
+      <Filter>SourceCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\MyMacro.h">
+      <Filter>SourceCode</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Sprite\DebugText\CDebugText.h">
+      <Filter>SourceCode\Drawing\Sprite\DebugText</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Sprite\SpriteUI\CSpriteUI.h">
+      <Filter>SourceCode\Drawing\Sprite\SpriteUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Sprite\Sprite\CSprite.h">
+      <Filter>SourceCode\Drawing\Sprite\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Sprite\CDepth_Stencil.h">
+      <Filter>SourceCode\Drawing\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9Mesh\CDX9Mesh.h">
+      <Filter>SourceCode\Drawing\Object\CDX9Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMesh.h">
+      <Filter>SourceCode\Drawing\Object\CDX9SkinMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMeshParser.h">
+      <Filter>SourceCode\Drawing\Object\CDX9SkinMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\SpriteResource\CSpriteResource.h">
+      <Filter>SourceCode\Drawing\Resource\SpriteResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\SpriteResource\SpriteResourceInfo.h">
+      <Filter>SourceCode\Drawing\Resource\SpriteResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\CCommon.h">
+      <Filter>SourceCode\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\CResourceBase.h">
+      <Filter>SourceCode\Drawing\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\CResourceManager.h">
+      <Filter>SourceCode\Drawing\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\ObjectResource\CObjectResource.h">
+      <Filter>SourceCode\Drawing\Resource\ObjectResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\ObjectResource\CObjectResourceInfo.h">
+      <Filter>SourceCode\Drawing\Resource\ObjectResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Effect\CEffect.h">
+      <Filter>SourceCode\Drawing\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\EffectResource\CResourceEffect.h">
+      <Filter>SourceCode\Drawing\Resource\EffectResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Font\CFont.h">
+      <Filter>SourceCode\Drawing\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Resource\FontResource\CFontResource.h">
+      <Filter>SourceCode\Drawing\Resource\FontResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\FileLoad\FileLoadBase\CFileLoad.h">
+      <Filter>SourceCode\FileLoad\FileLoadBase</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\CObjectBase.h">
+      <Filter>SourceCode\GameObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\CGameObject.h">
+      <Filter>SourceCode\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\FileLoad\FileNumber\CFileNumber.h">
+      <Filter>SourceCode\FileLoad\FileNumber</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Painting</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\FileLoad\FileResource\CFileResource.h">
+      <Filter>SourceCode\FileLoad\FileResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\StaticObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\CMoveObjectBase.h">
+      <Filter>SourceCode\GameObject\Object\MoveObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\MoveObjectManager\CMoveObjectManager.h">
+      <Filter>SourceCode\GameObject\Object\MoveObject\MoveObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\BookShelf</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\GhostDispPainting\CGhostDispPainting.h">
+      <Filter>SourceCode\GameObject\Object\MoveObject\GhostDispPainting</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\Switch\CSwitchBase.h">
+      <Filter>SourceCode\GameObject\Object\MoveObject\Switch</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\Switch\ObjectMoveSwitch\CObjectMoveSwitch.h">
+      <Filter>SourceCode\GameObject\Object\MoveObject\Switch\ObjectMoveSwitch</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\Switch\PlaySoundSwitch\CPlaySoundSwitch.h">
+      <Filter>SourceCode\GameObject\Object\MoveObject\Switch\PlaySoundSwitch</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\CCharaBase.h">
+      <Filter>SourceCode\GameObject\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\CGhostBase.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\People\CPeopleBase.h">
+      <Filter>SourceCode\GameObject\Chara\People</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\People\Girl\CGirl.h">
+      <Filter>SourceCode\GameObject\Chara\People\Girl</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\People\Boy\CBoy.h">
+      <Filter>SourceCode\GameObject\Chara\People\Boy</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\People\PeopleManager\CPeopleManager.h">
+      <Filter>SourceCode\GameObject\Chara\People\PeopleManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Object\ObjectAlphaBlend\CObjectAlphaBlend.h">
+      <Filter>SourceCode\Drawing\Object\AlphaBlend</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Title\CTitle.h">
+      <Filter>SourceCode\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Tutorial\CTutorial.h">
+      <Filter>SourceCode\Scene\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Ending\CEnding.h">
+      <Filter>SourceCode\Scene\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\GameMain\CGameMain.h">
+      <Filter>SourceCode\Scene\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\SceneBase\CSceneBase.h">
+      <Filter>SourceCode\Scene\SceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\GameMain\StageManager\CStageManager.h">
+      <Filter>SourceCode\Scene\GameMain\StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\SceneManager\CSceneManager.h">
+      <Filter>SourceCode\Scene\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\GameMain\MainStage\CMainStage.h">
+      <Filter>SourceCode\Scene\GameMain\MainStage</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.h">
+      <Filter>SourceCode\Scene\GameMain\GhostSpeakStage</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\GameMain\StageBase\CStageBase.h">
+      <Filter>SourceCode\Scene\GameMain\StageBase</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\CUI.h">
+      <Filter>SourceCode\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CMapUI.h">
+      <Filter>SourceCode\UI\MapUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\StageMap\CStageMap.h">
+      <Filter>SourceCode\UI\MapUI\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\CCharaUI.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\CIcon.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\CPeopleIcon.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\GirlIcon\CGirlIcon.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\GirlIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\BoyIcon\CBoyIcon.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\BoyIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\GhostIcon\CGhostIcon.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\GhostIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\GimmickIcon\CGimmickIcon.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\GimmickIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\MapCursor\CMapCursor.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\MapCursor</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGhostCursor\CMapGhostCursor.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\MapCursor\MapGhostCursor</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor\CMapGimmickCursor.h">
+      <Filter>SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\GameWorldUI\CGameWorldUI.h">
+      <Filter>SourceCode\UI\GameWorldUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GameWorldCursor\CGameWorldCursor.h">
+      <Filter>SourceCode\UI\GameWorldUI\GameWorldCursor</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGhostCursor\CGameGhostCursor.h">
+      <Filter>SourceCode\UI\GameWorldUI\GameWorldCursor\GameGhostCursor</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\GameWorldUI\Act_Selection\CAct_Selection.h">
+      <Filter>SourceCode\UI\GameWorldUI\Act_Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor\CGameGimmickCursor.h">
+      <Filter>SourceCode\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GhostStrengthIcon\CGhostStrengthIcon.h">
+      <Filter>SourceCode\UI\GameWorldUI\GhostStrengthIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\PlayUI\CPlayUI.h">
+      <Filter>SourceCode\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.h">
+      <Filter>SourceCode\UI\PlayUI\SurpriseGage</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.h">
+      <Filter>SourceCode\UI\PlayUI\ClosedTime</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\Fade\CFade.h">
+      <Filter>SourceCode\UI\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\Fade\SceneFade\CSceneFade.h">
+      <Filter>SourceCode\UI\Fade\SceneFade</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\Fade\StageFade\CStageFade.h">
+      <Filter>SourceCode\UI\Fade\StageFade</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SourceCode\Main.cpp">
+      <Filter>SourceCode</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Sprite\DebugText\CDebugText.cpp">
+      <Filter>SourceCode\Drawing\Sprite\DebugText</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Sprite\SpriteUI\CSpriteUI.cpp">
+      <Filter>SourceCode\Drawing\Sprite\SpriteUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Sprite\Sprite\CSprite.cpp">
+      <Filter>SourceCode\Drawing\Sprite\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Sprite\CDepth_Stencil.cpp">
+      <Filter>SourceCode\Drawing\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9Mesh\CDX9Mesh.cpp">
+      <Filter>SourceCode\Drawing\Object\CDX9Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMesh.cpp">
+      <Filter>SourceCode\Drawing\Object\CDX9SkinMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMeshParser.cpp">
+      <Filter>SourceCode\Drawing\Object\CDX9SkinMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Resource\SpriteResource\CSpriteResource.cpp">
+      <Filter>SourceCode\Drawing\Resource\SpriteResource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\CCommon.cpp">
+      <Filter>SourceCode\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Resource\CResourceBase.cpp">
+      <Filter>SourceCode\Drawing\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Resource\CResourceManager.cpp">
+      <Filter>SourceCode\Drawing\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Resource\ObjectResource\CObjectResource.cpp">
+      <Filter>SourceCode\Drawing\Resource\ObjectResource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Effect\CEffect.cpp">
+      <Filter>SourceCode\Drawing\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Resource\EffectResource\CResourceEffect.cpp">
+      <Filter>SourceCode\Drawing\Resource\EffectResource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Font\CFont.cpp">
+      <Filter>SourceCode\Drawing\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Resource\FontResource\CFontResource.cpp">
+      <Filter>SourceCode\Drawing\Resource\FontResource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\FileLoad\FileLoadBase\CFileLoad.cpp">
+      <Filter>SourceCode\FileLoad\FileLoadBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\CObjectBase.cpp">
+      <Filter>SourceCode\GameObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\CGameObject.cpp">
+      <Filter>SourceCode\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\FileLoad\FileNumber\CFileNumber.cpp">
+      <Filter>SourceCode\FileLoad\FileNumber</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Painting</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\FileLoad\FileResource\CFileResource.cpp">
+      <Filter>SourceCode\FileLoad\FileResource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\StaticObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\CMoveObjectBase.cpp">
+      <Filter>SourceCode\GameObject\Object\MoveObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\MoveObjectManager\CMoveObjectManager.cpp">
+      <Filter>SourceCode\GameObject\Object\MoveObject\MoveObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\BookShelf</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\GhostDispPainting\CGhostDispPainting.cpp">
+      <Filter>SourceCode\GameObject\Object\MoveObject\GhostDispPainting</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\Switch\CSwitchBase.cpp">
+      <Filter>SourceCode\GameObject\Object\MoveObject\Switch</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\Switch\ObjectMoveSwitch\CObjectMoveSwitch.cpp">
+      <Filter>SourceCode\GameObject\Object\MoveObject\Switch\ObjectMoveSwitch</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\Switch\PlaySoundSwitch\CPlaySoundSwitch.cpp">
+      <Filter>SourceCode\GameObject\Object\MoveObject\Switch\PlaySoundSwitch</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\CCharaBase.cpp">
+      <Filter>SourceCode\GameObject\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\CGhostBase.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\People\CPeopleBase.cpp">
+      <Filter>SourceCode\GameObject\Chara\People</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\People\Girl\CGirl.cpp">
+      <Filter>SourceCode\GameObject\Chara\People\Girl</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\People\Boy\CBoy.cpp">
+      <Filter>SourceCode\GameObject\Chara\People\Boy</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\People\PeopleManager\CPeopleManager.cpp">
+      <Filter>SourceCode\GameObject\Chara\People\PeopleManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Object\ObjectAlphaBlend\CObjectAlphaBlend.cpp">
+      <Filter>SourceCode\Drawing\Object\AlphaBlend</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Title\CTitle.cpp">
+      <Filter>SourceCode\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Tutorial\CTutorial.cpp">
+      <Filter>SourceCode\Scene\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Ending\CEnding.cpp">
+      <Filter>SourceCode\Scene\Ending</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\GameMain\CGameMain.cpp">
+      <Filter>SourceCode\Scene\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\SceneBase\CSceneBase.cpp">
+      <Filter>SourceCode\Scene\SceneBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\GameMain\StageManager\CStageManager.cpp">
+      <Filter>SourceCode\Scene\GameMain\StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\SceneManager\CSceneManager.cpp">
+      <Filter>SourceCode\Scene\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\GameMain\MainStage\CMainStage.cpp">
+      <Filter>SourceCode\Scene\GameMain\MainStage</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.cpp">
+      <Filter>SourceCode\Scene\GameMain\GhostSpeakStage</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\GameMain\StageBase\CStageBase.cpp">
+      <Filter>SourceCode\Scene\GameMain\StageBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CMapUI.cpp">
+      <Filter>SourceCode\UI\MapUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\CUI.cpp">
+      <Filter>SourceCode\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\StageMap\CStageMap.cpp">
+      <Filter>SourceCode\UI\MapUI\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\CCharaUI.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\CIcon.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\CPeopleIcon.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\GirlIcon\CGirlIcon.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\GirlIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\BoyIcon\CBoyIcon.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\BoyIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\GhostIcon\CGhostIcon.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\GhostIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\GimmickIcon\CGimmickIcon.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\Icon\GimmickIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\MapCursor\CMapCursor.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\MapCursor</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGhostCursor\CMapGhostCursor.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\MapCursor\MapGhostCursor</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor\CMapGimmickCursor.cpp">
+      <Filter>SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\GameWorldUI\CGameWorldUI.cpp">
+      <Filter>SourceCode\UI\GameWorldUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GameWorldCursor\CGameWorldCursor.cpp">
+      <Filter>SourceCode\UI\GameWorldUI\GameWorldCursor</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGhostCursor\CGameGhostCursor.cpp">
+      <Filter>SourceCode\UI\GameWorldUI\GameWorldCursor\GameGhostCursor</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\GameWorldUI\Act_Selection\CAct_Selection.cpp">
+      <Filter>SourceCode\UI\GameWorldUI\Act_Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor\CGameGimmickCursor.cpp">
+      <Filter>SourceCode\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GhostStrengthIcon\CGhostStrengthIcon.cpp">
+      <Filter>SourceCode\UI\GameWorldUI\GhostStrengthIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\PlayUI\CPlayUI.cpp">
+      <Filter>SourceCode\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.cpp">
+      <Filter>SourceCode\UI\PlayUI\SurpriseGage</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.cpp">
+      <Filter>SourceCode\UI\PlayUI\ClosedTime</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\Fade\CFade.cpp">
+      <Filter>SourceCode\UI\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\Fade\SceneFade\CSceneFade.cpp">
+      <Filter>SourceCode\UI\Fade\SceneFade</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\Fade\StageFade\CStageFade.cpp">
+      <Filter>SourceCode\UI\Fade\StageFade</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\BigGhost</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Data\Shader\DebugText.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shader\Mesh.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shader\SkinMesh.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Data\Shader\SpriteUI.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

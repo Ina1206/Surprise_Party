@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SourceCode\Drawing\CCommon.h" />
+    <ClInclude Include="SourceCode\Drawing\Effect\CEffect.h" />
+    <ClInclude Include="SourceCode\Drawing\Font\CFont.h" />
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9Mesh\CDX9Mesh.h" />
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMesh.h" />
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMeshParser.h" />
+    <ClInclude Include="SourceCode\Drawing\Object\ObjectAlphaBlend\CObjectAlphaBlend.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\CResourceBase.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\CResourceManager.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\EffectResource\CResourceEffect.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\FontResource\CFontResource.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\ObjectResource\CObjectResource.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\ObjectResource\CObjectResourceInfo.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\SpriteResource\CSpriteResource.h" />
+    <ClInclude Include="SourceCode\Drawing\Resource\SpriteResource\SpriteResourceInfo.h" />
+    <ClInclude Include="SourceCode\Drawing\Sprite\CDepth_Stencil.h" />
+    <ClInclude Include="SourceCode\Drawing\Sprite\DebugText\CDebugText.h" />
+    <ClInclude Include="SourceCode\Drawing\Sprite\SpriteUI\CSpriteUI.h" />
+    <ClInclude Include="SourceCode\Drawing\Sprite\Sprite\CSprite.h" />
+    <ClInclude Include="SourceCode\FileLoad\FileLoadBase\CFileLoad.h" />
+    <ClInclude Include="SourceCode\FileLoad\FileNumber\CFileNumber.h" />
+    <ClInclude Include="SourceCode\FileLoad\FileResource\CFileResource.h" />
+    <ClInclude Include="SourceCode\GameObject\CGameObject.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\CCharaBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\CGhostBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\People\Boy\CBoy.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\People\CPeopleBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\People\Girl\CGirl.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\People\PeopleManager\CPeopleManager.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\CObjectBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\CMoveObjectBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\GhostDispPainting\CGhostDispPainting.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\MoveObjectManager\CMoveObjectManager.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\Switch\CSwitchBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\Switch\ObjectMoveSwitch\CObjectMoveSwitch.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\MoveObject\Switch\PlaySoundSwitch\CPlaySoundSwitch.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.h" />
+    <ClInclude Include="SourceCode\Global.h" />
+    <ClInclude Include="SourceCode\Main.h" />
+    <ClInclude Include="SourceCode\MyMacro.h" />
+    <ClInclude Include="SourceCode\Scene\Ending\CEnding.h" />
+    <ClInclude Include="SourceCode\Scene\GameMain\CGameMain.h" />
+    <ClInclude Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.h" />
+    <ClInclude Include="SourceCode\Scene\GameMain\MainStage\CMainStage.h" />
+    <ClInclude Include="SourceCode\Scene\GameMain\StageBase\CStageBase.h" />
+    <ClInclude Include="SourceCode\Scene\GameMain\StageManager\CStageManager.h" />
+    <ClInclude Include="SourceCode\Scene\SceneBase\CSceneBase.h" />
+    <ClInclude Include="SourceCode\Scene\SceneManager\CSceneManager.h" />
+    <ClInclude Include="SourceCode\Scene\Title\CTitle.h" />
+    <ClInclude Include="SourceCode\Scene\Tutorial\CTutorial.h" />
+    <ClInclude Include="SourceCode\UI\CUI.h" />
+    <ClInclude Include="SourceCode\UI\Fade\CFade.h" />
+    <ClInclude Include="SourceCode\UI\Fade\SceneFade\CSceneFade.h" />
+    <ClInclude Include="SourceCode\UI\Fade\StageFade\CStageFade.h" />
+    <ClInclude Include="SourceCode\UI\GameWorldUI\Act_Selection\CAct_Selection.h" />
+    <ClInclude Include="SourceCode\UI\GameWorldUI\CGameWorldUI.h" />
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GameWorldCursor\CGameWorldCursor.h" />
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGhostCursor\CGameGhostCursor.h" />
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor\CGameGimmickCursor.h" />
+    <ClInclude Include="SourceCode\UI\GameWorldUI\GhostStrengthIcon\CGhostStrengthIcon.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\CCharaUI.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\CIcon.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\GhostIcon\CGhostIcon.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\GimmickIcon\CGimmickIcon.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\BoyIcon\CBoyIcon.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\CPeopleIcon.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\GirlIcon\CGirlIcon.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\MapCursor\CMapCursor.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGhostCursor\CMapGhostCursor.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor\CMapGimmickCursor.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\CMapUI.h" />
+    <ClInclude Include="SourceCode\UI\MapUI\StageMap\CStageMap.h" />
+    <ClInclude Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.h" />
+    <ClInclude Include="SourceCode\UI\PlayUI\CPlayUI.h" />
+    <ClInclude Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SourceCode\Drawing\CCommon.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Effect\CEffect.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Font\CFont.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9Mesh\CDX9Mesh.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMesh.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMeshParser.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Object\ObjectAlphaBlend\CObjectAlphaBlend.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Resource\CResourceBase.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Resource\CResourceManager.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Resource\EffectResource\CResourceEffect.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Resource\FontResource\CFontResource.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Resource\ObjectResource\CObjectResource.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Resource\SpriteResource\CSpriteResource.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Sprite\CDepth_Stencil.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Sprite\DebugText\CDebugText.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Sprite\SpriteUI\CSpriteUI.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Sprite\Sprite\CSprite.cpp" />
+    <ClCompile Include="SourceCode\FileLoad\FileLoadBase\CFileLoad.cpp" />
+    <ClCompile Include="SourceCode\FileLoad\FileNumber\CFileNumber.cpp" />
+    <ClCompile Include="SourceCode\FileLoad\FileResource\CFileResource.cpp" />
+    <ClCompile Include="SourceCode\GameObject\CGameObject.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\CCharaBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\CGhostBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\People\Boy\CBoy.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\People\CPeopleBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\People\Girl\CGirl.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\People\PeopleManager\CPeopleManager.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\CObjectBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\CMoveObjectBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\GhostDispPainting\CGhostDispPainting.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\MoveObjectManager\CMoveObjectManager.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\Switch\CSwitchBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\Switch\ObjectMoveSwitch\CObjectMoveSwitch.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\MoveObject\Switch\PlaySoundSwitch\CPlaySoundSwitch.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.cpp" />
+    <ClCompile Include="SourceCode\Main.cpp" />
+    <ClCompile Include="SourceCode\Scene\Ending\CEnding.cpp" />
+    <ClCompile Include="SourceCode\Scene\GameMain\CGameMain.cpp" />
+    <ClCompile Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.cpp" />
+    <ClCompile Include="SourceCode\Scene\GameMain\MainStage\CMainStage.cpp" />
+    <ClCompile Include="SourceCode\Scene\GameMain\StageBase\CStageBase.cpp" />
+    <ClCompile Include="SourceCode\Scene\GameMain\StageManager\CStageManager.cpp" />
+    <ClCompile Include="SourceCode\Scene\SceneBase\CSceneBase.cpp" />
+    <ClCompile Include="SourceCode\Scene\SceneManager\CSceneManager.cpp" />
+    <ClCompile Include="SourceCode\Scene\Title\CTitle.cpp" />
+    <ClCompile Include="SourceCode\Scene\Tutorial\CTutorial.cpp" />
+    <ClCompile Include="SourceCode\UI\Fade\CFade.cpp" />
+    <ClCompile Include="SourceCode\UI\Fade\SceneFade\CSceneFade.cpp" />
+    <ClCompile Include="SourceCode\UI\Fade\StageFade\CStageFade.cpp" />
+    <ClCompile Include="SourceCode\UI\GameWorldUI\Act_Selection\CAct_Selection.cpp" />
+    <ClCompile Include="SourceCode\UI\GameWorldUI\CGameWorldUI.cpp" />
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GameWorldCursor\CGameWorldCursor.cpp" />
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGhostCursor\CGameGhostCursor.cpp" />
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor\CGameGimmickCursor.cpp" />
+    <ClCompile Include="SourceCode\UI\GameWorldUI\GhostStrengthIcon\CGhostStrengthIcon.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\CCharaUI.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\CIcon.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\GhostIcon\CGhostIcon.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\GimmickIcon\CGimmickIcon.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\BoyIcon\CBoyIcon.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\CPeopleIcon.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\Icon\PeopleIcon\GirlIcon\CGirlIcon.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\MapCursor\CMapCursor.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGhostCursor\CMapGhostCursor.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor\CMapGimmickCursor.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\CMapUI.cpp" />
+    <ClCompile Include="SourceCode\UI\CUI.cpp" />
+    <ClCompile Include="SourceCode\UI\MapUI\StageMap\CStageMap.cpp" />
+    <ClCompile Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.cpp" />
+    <ClCompile Include="SourceCode\UI\PlayUI\CPlayUI.cpp" />
+    <ClCompile Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Data\Shader\DebugText.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS_Main</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS_Main</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Data\Shader\Mesh.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS_Main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.1</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS_Main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.1</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Data\Shader\SkinMesh.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS_Main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS_Main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Data\Shader\SpriteUI.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS_Main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS_Main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+    </FxCompile>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{1588637A-95ED-44CF-98C7-3B4B443C9895}</ProjectGuid>
+    <RootNamespace>SurpriseParty</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>SourceCode\Effekseer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>SourceCode\Effekseer\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>SourceCode\Effekseer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>SourceCode\Effekseer\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
