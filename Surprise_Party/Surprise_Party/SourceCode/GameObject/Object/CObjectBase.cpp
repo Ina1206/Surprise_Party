@@ -28,6 +28,6 @@ void CObjectBase::Render()
 	m_pCMesh->SetAlpha(m_fAlpha);
 	//•`‰æˆ—ŠÖ”.
 	m_pCMesh->SetAlphaDepth(true);
-	m_pCMesh->Render(m_mView, m_mProj, m_vLightPos, m_vCameraPos);
+	m_pCMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 	m_pCMesh->SetAlphaDepth(false);
 }

@@ -112,7 +112,7 @@ void CMoveObjectManager::UpDate()
 //======================================.
 //		描画処理関数.
 //======================================.
-void CMoveObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos)
+void CMoveObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight)
 {
 	m_mView = mView;
 	m_mProj = mProj;
@@ -120,7 +120,7 @@ void CMoveObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj
 	for (int stage = 0; stage < static_cast<int>(enMoveObjectType::Max); stage++) {
 		//描画初期設定処理関数.
 		m_pCMoveObjectBase[stage]->SetCameraPos(m_vCameraPos);
-		m_pCMoveObjectBase[stage]->RenderInitSetting(mView, mProj, vLightPos);
+		m_pCMoveObjectBase[stage]->RenderInitSetting(mView, mProj, stLight);
 		//描画処理関数.
 		m_pCMoveObjectBase[stage]->Render();
 		//付属オブジェクトの描画処理関数.

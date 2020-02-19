@@ -77,12 +77,12 @@ void CStaticObjectManager::UpData()
 //====================================.
 //		ï`âÊèàóùä÷êî.
 //====================================.
-void CStaticObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos)
+void CStaticObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight)
 {
 	m_mView = mView;
 	m_mProj = mProj;
 	m_vCameraPos = vCameraPos;
-	m_vLightPos = vLightPos;
+	m_stLight = stLight;
 
 	//ï«Ç∆è∞ÇÃï`âÊ.
 	ObjectRender(m_pCObjectBase, m_pCObjectBase.size());
@@ -222,7 +222,7 @@ void CStaticObjectManager::ObjectRender(std::vector<CObjectBase*> obj, int max)
 {
 	for (int stage = 0; stage < max; stage++) {
 		obj[stage]->SetCameraPos(m_vCameraPos);
-		obj[stage]->RenderInitSetting(m_mView, m_mProj, m_vLightPos);
+		obj[stage]->RenderInitSetting(m_mView, m_mProj, m_stLight);
 		obj[stage]->Render();
 	}
 }

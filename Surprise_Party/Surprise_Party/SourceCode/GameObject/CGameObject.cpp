@@ -3,7 +3,7 @@
 CGameObject::CGameObject()
 	: m_mView		()
 	, m_mProj		()
-	, m_vLightPos	(0.0f, 0.0f, 0.0f)
+	, m_stLight		()
 	, m_vCameraPos	(0.0f, 0.0f, 0.0f)
 	, m_vPos		(STANDERD_POS)
 	, m_vRot		(0.0f, 0.0f, 0.0f)
@@ -22,9 +22,9 @@ CGameObject::~CGameObject()
 //==========================================.
 //		ï`âÊèâä˙ê›íËèàóùä÷êî.
 //==========================================.
-void CGameObject::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos)
+void CGameObject::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight)
 {
 	m_mView = mView;
 	m_mProj = mProj;
-	m_vLightPos = vLightPos;
+	m_stLight = stLight;
 }

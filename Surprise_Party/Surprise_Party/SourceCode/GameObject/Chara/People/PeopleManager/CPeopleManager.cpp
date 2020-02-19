@@ -93,14 +93,14 @@ void CPeopleManager::UpDate()
 //=======================================.
 //		•`‰æˆ—ŠÖ”.
 //=======================================.
-void CPeopleManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos)
+void CPeopleManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight)
 {
 	//l‚Ì•`‰æˆ—.
 	for (unsigned int human = 0; human < m_CreateHumanMax; human++) {
 		if (m_bDispFlag[human] == true) {
 			//•`‰æ‚É•K—v‚È’læ“¾.
 			m_pCPeopleBase[human]->SetCameraPos(vCameraPos);
-			m_pCPeopleBase[human]->RenderInitSetting(mView, mProj, vLightPos);
+			m_pCPeopleBase[human]->RenderInitSetting(mView, mProj, stLight);
 			//•`‰æˆ—ŠÖ”.
 			m_pCPeopleBase[human]->Render();
 		}

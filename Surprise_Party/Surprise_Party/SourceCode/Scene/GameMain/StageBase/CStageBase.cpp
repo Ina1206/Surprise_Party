@@ -3,7 +3,7 @@
 CStageBase::CStageBase()
 	: m_mView			()
 	, m_mProj			()
-	, m_vLightPos		(0.0f, 0.0f, 0.0f)
+	, m_stLight			()
 	, m_vCameraPos		(0.0f, 0.0f, 0.0f)
 	, m_Camera			()
 	, m_bChangeStageFlag(false)
@@ -21,11 +21,10 @@ CStageBase::~CStageBase()
 //==========================================.
 //		ï`âÊèâä˙ê›íËèàóùä÷êî.
 //==========================================.
-void CStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos)
+void CStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos)
 {
 	m_mView			= mView;
 	m_mProj			= mProj;
-	m_vLightPos		= vLightPos;
 	m_vCameraPos	= vCameraPos;
 
 	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//è„ï˚(ÉxÉNÉgÉã).

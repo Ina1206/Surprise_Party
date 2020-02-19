@@ -193,18 +193,18 @@ void CMainStage::Render()
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
 		//お化け本体の描画処理関数.
 		m_pCWorkGhost[ghost]->SetCameraPos(m_Camera.vPos);
-		m_pCWorkGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_vLightPos);
+		m_pCWorkGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_stLight);
 		m_pCWorkGhost[ghost]->Render();
 	}
 
 
 	//動くオブジェクトの描画.
-	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_vLightPos);
+	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_stLight);
 
 	//静的オブジェクトの描画.
 	m_pCStaticObjectManager->SetCameraPos(m_Camera.vPos);
 	m_pCStaticObjectManager->UpData();
-	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_vLightPos, m_Camera.vPos);
+	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
 
 	//お化け体力アイコン描画処理関数.
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
@@ -212,7 +212,7 @@ void CMainStage::Render()
 	}
 
 	//人の描画処理関数.
-	m_pCPeopleManager->Render(m_mView, m_mProj, m_vLightPos, m_Camera.vPos);
+	//m_pCPeopleManager->Render(m_mView, m_mProj, m_vLightPos, m_Camera.vPos);
 
 	//動くオブジェクトのエフェクト描画.
 	m_pCMoveObjectManager->EffectRender();
@@ -311,6 +311,13 @@ void CMainStage::Init()
 	//カメラ初期設置.
 	m_Camera.vPos = CAMERA_START_POS;
 	m_Camera.vLook = CAMERA_START_LOOK;
+
+	//ライト情報初期設定.
+	m_stLight.vPos = D3DXVECTOR3(1.0f, 1.0f, 0.0f);
+	m_stLight.vDir = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_stLight.fIntensity = 7.0f;
+	D3DXMatrixIdentity(&m_stLight.mRot);
+	m_stLight.m_fLightWidth = 1.0f;
 
 }
 

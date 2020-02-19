@@ -68,7 +68,7 @@ void CMoveObjectBase::AttachedObjRender()
 			m_pCAttachedObjMesh[attached]->SetRotation(m_vAttachedObjRot[attached]);
 			m_pCAttachedObjMesh[attached]->SetScale(0.1f);
 			m_pCAttachedObjMesh[attached]->SetPosition(m_vAttachedObjPos[attached]);
-			m_pCAttachedObjMesh[attached]->Render(m_mView, m_mProj, m_vLightPos, m_vCameraPos);
+			m_pCAttachedObjMesh[attached]->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 		}
 	}
 }

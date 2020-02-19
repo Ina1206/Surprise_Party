@@ -24,7 +24,7 @@ public:
 
 
 	//=====================関数=========================//.
-	void RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos);	//描画初期設定処理関数.
+	void RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画初期設定処理関数.
 	void DebugStageChange();																												//デバッグ用ステージ変更処理関数.
 
 	virtual void UpDate(const bool& ControlFlag)	= 0;	//更新処理関数.
@@ -45,7 +45,7 @@ protected:
 	//=====================変数=========================//.
 	D3DXMATRIX					m_mView;					//ビュー行列.
 	D3DXMATRIX					m_mProj;					//プロジェクション行列.
-	D3DXVECTOR3					m_vLightPos;				//ライト座標.
+	LIGHT						m_stLight;					//ライト情報.
 	D3DXVECTOR3					m_vCameraPos;				//カメラ座標.
 	CAMERA						m_Camera;					//カメラ構造体.
 

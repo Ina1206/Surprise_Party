@@ -41,8 +41,8 @@ public:
 	const D3DXVECTOR3	STANDERD_PAINTING_POS	= D3DXVECTOR3(0.0f, 5.0f, 1.0f);		//基本の絵画の座標.
 
 	//=================関数====================//.
-	void UpData();																						//更新処理関数.
-	void Render(const D3DXMATRIX& mView,const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos);		//描画処理関数.
+	void UpData();																										//更新処理関数.
+	void Render(const D3DXMATRIX& mView,const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight);	//描画処理関数.
 
 	//===========情報置換処理関数==============//.
 	//カメラ座標.
@@ -62,9 +62,9 @@ private:
 
 
 	//=================変数====================//.
-	D3DXMATRIX					m_mView;
-	D3DXMATRIX					m_mProj;
-	D3DXVECTOR3					m_vLightPos;
+	D3DXMATRIX					m_mView;			//ビュー行列.
+	D3DXMATRIX					m_mProj;			//プロジェクション行列.
+	LIGHT						m_stLight;			//ライト情報.
 
 	CFileResource*				m_pCFileResource;	//ファイル読み込み.
 	std::vector<CObjectBase*>	m_pCObjectBase;		//壁と床のオブジェクトクラス.

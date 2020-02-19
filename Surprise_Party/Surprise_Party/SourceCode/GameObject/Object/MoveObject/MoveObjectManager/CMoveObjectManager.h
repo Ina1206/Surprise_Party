@@ -63,8 +63,8 @@ public:
 
 
 	//=================関数===================//.
-	void UpDate();																					//更新処理関数.
-	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos);	//描画処理関数.
+	void UpDate();																			//更新処理関数.
+	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight);	//描画処理関数.
 	void EffectRender();
 
 	//===========情報置換処理関数=============//.

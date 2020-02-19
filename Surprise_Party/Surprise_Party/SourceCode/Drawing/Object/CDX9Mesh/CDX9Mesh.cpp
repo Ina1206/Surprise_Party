@@ -1,7 +1,7 @@
 #include "CDX9Mesh.h"
 #include <crtdbg.h>	
 
-const char SHADER_NAME[] = "Data\\Shader\\Mesh.hlsl";
+const char SHADER_NAME[] = "Data\\Shader\\SpotLight.hlsl";
 
 //コンストラクタ.
 CDX9Mesh::CDX9Mesh()
@@ -32,7 +32,6 @@ CDX9Mesh::CDX9Mesh()
 	, m_vRot				(0.0f, 0.0f, 0.0f)
 	, m_vPos				(0.0f, 0.0f, 0.0f)
 	, m_vPrePos				(0.0f, 0.0f, 0.0f)
-	, m_pstShadow			(nullptr)
 	, m_fAlpha				(1.0f)
 	, m_vUV					(0.0f, 0.0f)
 	, m_bvRotNotUse			(false)
@@ -577,8 +576,8 @@ HRESULT CDX9Mesh::InitShader()
 }
 
 //レンダリング用.
-void CDX9Mesh::Render(D3DXMATRIX& mView, D3DXMATRIX& mProj,
-	D3DXVECTOR3& vLight, D3DXVECTOR3& vCamPos)
+void CDX9Mesh::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
+					const D3DXVECTOR3& vCamPos, const LIGHT& stLight)
 {
 	D3DXMATRIX PreTran;
 	//ワールド行列、スケール行列、回転行列、平行移動行列.
@@ -632,30 +631,17 @@ void CDX9Mesh::Render(D3DXMATRIX& mView, D3DXMATRIX& mProj,
 
 		//カメラ位置.
 		cb.vCamPos = D3DXVECTOR4(vCamPos.x, vCamPos.y, vCamPos.z, 0.0f);
-		cb.vLightDir = D3DXVECTOR4(0.0f, 1.0f, 0.0f, 0.0f);
-		//ライト方向の正規化(ノーマライズ).
+
+		//ライト情報.
+		cb.vLightPos = D3DXVECTOR4(stLight.vPos.x, stLight.vPos.y, stLight.vPos.z, 0.0f);
+		cb.vLightDir = D3DXVECTOR4(stLight.vDir.x, stLight.vDir.y, stLight.vDir.z, 0.0f);
+		cb.vLightRot = stLight.mRot;
+		cb.fIntensity = stLight.fIntensity;
+		//ライト方向の正規化.
 		D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
 
 		cb.vAlpha = m_fAlpha;
-		//影.
-		cb.vCasterToLight = cb.vLightDir;
-		//for (int shadow = 0; shadow < SHADOW_MAX; shadow++) {
-		//	cb.vCasterPos[shadow] = D3DXVECTOR4(0.0f, -100.0f, 0.0f, 0.0f);
-
-		//	//外部設定されている数のほうが少ない場合は、それ以降をスキップ.
-		//	if (shadow >= /*m_ShadowMax*/10) {
-		//		continue;
-		//	}
-
-		//	//影情報が入っていれば処理.
-		//	if (m_pstShadow != nullptr) {
-		//		if (m_pstShadow[shadow].bDispFlag == true) {
-		//			cb.vCasterPos[shadow] = static_cast<D3DXVECTOR4>(m_pstShadow[shadow].vCasterPos);
-		//			//cb.vCasterPos[shadow] = D3DXVECTOR4(0.0f, 0.8f, 4.0f + (shadow * 0.1f), 1.0f);
-		//			cb.vCasterPos[shadow].w = 1.0f;
-		//		}
-		//	}
-		//}
+		
 
 		cb.vUV = m_vUV;
 
@@ -681,7 +667,7 @@ void CDX9Mesh::Render(D3DXMATRIX& mView, D3DXMATRIX& mProj,
 
 //レンダリング関数(クラス内でのみ使用する).
 void CDX9Mesh::RenderMesh(
-	D3DXMATRIX& mWorld, D3DXMATRIX& mView, D3DXMATRIX& mProj)
+	const D3DXMATRIX& mWorld, const D3DXMATRIX& mView, const D3DXMATRIX& mProj)
 {
 	//シェーダのコンスタントバッファに各種データを渡す.
 	D3D11_MAPPED_SUBRESOURCE	pData;

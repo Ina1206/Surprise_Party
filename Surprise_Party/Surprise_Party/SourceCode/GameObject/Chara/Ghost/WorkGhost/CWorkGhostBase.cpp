@@ -467,7 +467,7 @@ void CWorkGhostBase::DebugHitSphereRender()
 		for (unsigned int sphere = 0; sphere < m_pCHitSphere.size(); sphere++) {
 			m_pCHitSphere[sphere]->SetScale(SphereScale[sphere]);
 			m_pCHitSphere[sphere]->SetPosition(SpherePos[sphere]);
-			m_pCHitSphere[sphere]->Render(m_mView, m_mProj, m_vLightPos, m_vCameraPos);
+			m_pCHitSphere[sphere]->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 		}
 	}
 #endif	//#ifdef _DEBUG.

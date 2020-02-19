@@ -45,20 +45,15 @@ struct CAMERA
 	D3DXMATRIX	mRot;	//回転行列.
 };
 
-//影情報.
-struct SHADOW
+//ﾗｲﾄ情報.
+struct LIGHT
 {
-	D3DXVECTOR3 vCasterPos;	//キャスター位置.
-	bool		bDispFlag;	//表示切替フラグ.
+	D3DXVECTOR3	vPos;			//位置.
+	D3DXVECTOR3	vDir;			//方向.
+	D3DXMATRIX	mRot;			//回転行列.
+	float		fIntensity;		//強度(明るさ).
+	float		m_fLightWidth;	//光の広さ.
 
-	SHADOW(const D3DXVECTOR3& vPos, bool bDisp)
-		: vCasterPos	(vPos)
-		, bDispFlag		(bDisp)
-	{}
-
-	SHADOW()
-		: SHADOW(D3DXVECTOR3(0.0f, 0.0f, 0.0f), false)
-	{}
 };
 
 //メッシュデータをファイルから取り出す為だけにDirectX9を使用する.
@@ -81,8 +76,8 @@ public:
 	HRESULT InitShader();
 
 	//レンダリング用.
-	void Render(D3DXMATRIX& mView, D3DXMATRIX& mProj,
-		D3DXVECTOR3& vLight, D3DXVECTOR3& vCamPos);
+	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
+				const D3DXVECTOR3& vCamPos, const LIGHT& stLight);
 
 	//位置情報を設定.
 	//inline void のinlineは関数自体を直接展開するため速度が上がる.
@@ -162,12 +157,14 @@ private:
 	//フレーム単位で渡す情報.
 	struct CBUFFER_PER_FRAME
 	{
-		D3DXVECTOR4			vCamPos;				//カメラ位置(視点位置).
-		D3DXVECTOR4			vLightDir;				//ライト方向.
-		ALIGN16 D3DXVECTOR4 vCasterToLight;			//影を落とすモデルとライトを結ぶベクトル.
-		//ALIGN16	D3DXVECTOR4 vCasterPos[SHADOW_MAX];	//影を落とすキャスターの位置.
-		ALIGN16 float		vAlpha;					//色.
-		ALIGN16 D3DXVECTOR2 vUV;					
+		D3DXVECTOR4			vCamPos;		//カメラ位置(視点位置).
+		D3DXVECTOR4			vLightPos;		//ライト方向.
+		D3DXVECTOR4			vLightDir;		//ﾗｲﾄ方向.
+		D3DXMATRIX			vLightRot;		//ライト角度.
+		ALIGN16 float		fIntensity;		//ﾗｲﾄ強度(明るさ).
+		ALIGN16 float		fLightWidth;	//ライトの広さ.
+		ALIGN16 float		vAlpha;			//色.
+		ALIGN16 D3DXVECTOR2 vUV;			//UV.			
 	};
 	//頂点の構造体.
 	struct VERTEX
@@ -234,7 +231,6 @@ private:
 	D3DXVECTOR3				m_vPos;					//位置(x,y,z).
 	D3DXVECTOR3				m_vPrePos;
 
-	SHADOW*					m_pstShadow;			//影の情報.
 	int						m_ShadowMax;			//影の最大数.
 	float					m_fAlpha;				//透過値.
 
@@ -244,14 +240,8 @@ private:
 	
 
 	//レンダリング関数(クラス内でのみ使用).
-	void RenderMesh(D3DXMATRIX& mWorld, D3DXMATRIX& mView, D3DXMATRIX& mProj);
+	void RenderMesh(const D3DXMATRIX& mWorld, const D3DXMATRIX& mView, const D3DXMATRIX& mProj);
 
-public:
-	//影関係の情報を設定処理関数.
-	void SetShadow(SHADOW* shadow, int shadowMax) {
-		m_pstShadow = shadow;
-		m_ShadowMax = shadowMax;
-	}
 };
 
 

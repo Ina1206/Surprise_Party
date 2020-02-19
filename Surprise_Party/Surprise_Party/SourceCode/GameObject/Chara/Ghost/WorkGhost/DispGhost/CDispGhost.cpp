@@ -92,7 +92,7 @@ void CDispGhost::Render()
 			//Šp“x.
 			m_pCSkinMesh->SetRotation(m_vRot);
 			//•`‰æ.
-			m_pCSkinMesh->Render(m_mView, m_mProj, m_vLightPos, m_vCameraPos, m_pAnimCtrl);
+			m_pCSkinMesh->Render(m_mView, m_mProj, m_stLight.vPos, m_vCameraPos, m_pAnimCtrl);
 		}
 	}
 

@@ -105,7 +105,7 @@ void CSwitchGhost::Render()
 	m_pCMesh->SetPosition(m_vMovePos);
 	m_pCMesh->SetScale(m_fScale);
 	m_pCMesh->SetPrePos(D3DXVECTOR3(0.0f, -23.0f, 0.0f));
-	m_pCMesh->Render(m_mView, m_mProj, m_vLightPos, m_vCameraPos);
+	m_pCMesh->Render(m_mView, m_mProj,m_vCameraPos, m_stLight);
 
 	//‚¨‰»‚¯ƒAƒCƒRƒ“•`‰æ.
 	m_pCGhostIcon->Render();
