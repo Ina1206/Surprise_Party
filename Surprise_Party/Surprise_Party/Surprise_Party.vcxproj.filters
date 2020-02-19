@@ -758,5 +758,8 @@
     <FxCompile Include="Data\Shader\SpriteUI.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
+    <FxCompile Include="Data\Shader\SpotLight.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
