@@ -212,7 +212,7 @@ void CMainStage::Render()
 	}
 
 	//人の描画処理関数.
-	//m_pCPeopleManager->Render(m_mView, m_mProj, m_vLightPos, m_Camera.vPos);
+	m_pCPeopleManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
 
 	//動くオブジェクトのエフェクト描画.
 	m_pCMoveObjectManager->EffectRender();
