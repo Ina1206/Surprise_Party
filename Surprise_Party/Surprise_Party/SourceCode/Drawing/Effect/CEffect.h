@@ -26,8 +26,8 @@
 #endif//#ifdef ENABLE_XAUDIO2
 
 #if _DEBUG
-	#pragma comment(lib,"VS2017\\Debug\\Effekseer.lib")
-	#pragma comment(lib,"VS2017\\Debug\\EffekseerRendererDX11.lib")
+	#pragma comment(lib,"VS2017\\_Debug\\Effekseer.lib")
+	#pragma comment(lib,"VS2017\\_Debug\\EffekseerRendererDX11.lib")
 #ifdef ENABLE_XAUDIO2
 	#pragma comment(lib,"VS2017\\Debug\\EffekseerSoundXAudio2.lib")
 #endif//#ifdef ENABLE_XAUDIO2

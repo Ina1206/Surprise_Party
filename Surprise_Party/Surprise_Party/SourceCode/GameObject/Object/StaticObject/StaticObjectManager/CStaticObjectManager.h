@@ -1,7 +1,7 @@
 #ifndef COBJECT_MANAGER_H
 #define COBJECT_MANAGER_H
 
-#include "..\..\..\FileLoad\FileResource\CFileResource.h"
+#include "..\..\FileLoad\FileResource\CFileResource.h"
 #include "..\Floor\CFloor.h"
 #include "..\Wall\CWall.h"
 #include "..\Painting\CPainting.h"
