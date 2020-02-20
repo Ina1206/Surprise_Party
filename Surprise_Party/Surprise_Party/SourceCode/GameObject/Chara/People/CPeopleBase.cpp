@@ -32,12 +32,6 @@ CPeopleBase::~CPeopleBase()
 //======================================.
 void CPeopleBase::Render()
 {
-	SkinLIGHT m_SkinLight;
-	m_SkinLight.vPos = m_stLight.vPos;
-	m_SkinLight.vDir = m_stLight.vDir;
-	m_SkinLight.mRot = m_stLight.mRot;
-	m_SkinLight.fIntensity = m_stLight.fIntensity;
-
 	//À•W.
 	m_pCSkinMesh->SetPosition(m_vPos);
 	//Šp“x.
@@ -52,7 +46,7 @@ void CPeopleBase::Render()
 		m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
 	}
 	//•`‰æ.
-	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_SkinLight, m_pAnimCtrl);
+	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
 }
 
 //======================================.

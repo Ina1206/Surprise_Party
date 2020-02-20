@@ -5,17 +5,17 @@ const char SHADER_NAME[] = "Data\\Shader\\SpotLight.hlsl";
 
 //コンストラクタ.
 CDX9Mesh::CDX9Mesh()
-	: m_hWnd				(nullptr)
-	, m_pD3d9				(nullptr)
-	, m_pDevice9			(nullptr)
-	, m_pDevice11			(nullptr)
-	, m_pContext11			(nullptr)
-	, m_pVertexShader		(nullptr)
-	, m_pVertexLayout		(nullptr)
-	, m_pPixelShader		(nullptr)
-	, m_pCBufferPerMesh		(nullptr)
-	, m_pCBufferPerMaterial	(nullptr)
-	, m_pCBufferPerFrame	(nullptr)
+	//: m_hWnd				(nullptr)
+	: m_pD3d9				(nullptr)
+	//, m_pDevice9			(nullptr)
+	//, m_pDevice11			(nullptr)
+	//, m_pContext11			(nullptr)
+	//, m_pVertexShader		(nullptr)
+	//, m_pVertexLayout		(nullptr)
+	//, m_pPixelShader		(nullptr)
+	//, m_pCBufferPerMesh		(nullptr)
+	//, m_pCBufferPerMaterial	(nullptr)
+	//, m_pCBufferPerFrame	(nullptr)
 	, m_pVertexBuffer		(nullptr)
 	, m_ppIndexBuffer		(nullptr)
 	, m_pSampleLinear		(nullptr)
@@ -28,14 +28,14 @@ CDX9Mesh::CDX9Mesh()
 	, m_Sphere				()
 	, m_BBox				()
 	, m_pMeshForRay			(nullptr)
-	, m_fScale				(1.0f)
-	, m_vRot				(0.0f, 0.0f, 0.0f)
-	, m_vPos				(0.0f, 0.0f, 0.0f)
-	, m_vPrePos				(0.0f, 0.0f, 0.0f)
-	, m_fAlpha				(1.0f)
-	, m_vUV					(0.0f, 0.0f)
-	, m_bvRotNotUse			(false)
-	, m_mRot				()
+	//, m_fScale				(1.0f)
+	//, m_vRot				(0.0f, 0.0f, 0.0f)
+	//, m_vPos				(0.0f, 0.0f, 0.0f)
+	//, m_vPrePos				(0.0f, 0.0f, 0.0f)
+	//, m_fAlpha				(1.0f)
+	//, m_vUV					(0.0f, 0.0f)
+	//, m_bvRotNotUse			(false)
+	//, m_mRot				()
 {
 
 }
@@ -62,7 +62,7 @@ HRESULT CDX9Mesh::Init(
 	if (FAILED(InitShader())) {
 		return S_OK;
 	}
-	if (FAILED(InitAlpha(m_pDevice11, m_pContext11))) {
+	if (FAILED(m_pCObjectAlphaBlend->InitAlpha(m_pDevice11, m_pContext11))) {
 		return E_FAIL;
 	}
 
@@ -541,7 +541,7 @@ HRESULT CDX9Mesh::InitShader()
 
 	//コンスタントバッファ マテリアル用.
 	cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;		//コンスタントバッファを指定.
-	cb.ByteWidth = sizeof(CBUFFER_PRE_MATERIAL);	//コンスタントバッファのサイズ.
+	cb.ByteWidth = sizeof(CBUFFER_PER_MATERIAL);	//コンスタントバッファのサイズ.
 	cb.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;		//書き込みでアクセス.
 	cb.MiscFlags = 0;								//その他のフラグ(未使用).
 	cb.StructureByteStride = 0;						//構造体のサイズ().
@@ -635,7 +635,7 @@ void CDX9Mesh::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		//ライト情報.
 		cb.vLightPos = D3DXVECTOR4(stLight.vPos.x, stLight.vPos.y, stLight.vPos.z, 0.0f);
 		cb.vLightDir = D3DXVECTOR4(stLight.vDir.x, stLight.vDir.y, stLight.vDir.z, 0.0f);
-		cb.vLightRot = stLight.mRot;
+		cb.mLightRot = stLight.mRot;
 		cb.fIntensity = stLight.fIntensity;
 		//ライト方向の正規化.
 		//D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
@@ -733,7 +733,7 @@ void CDX9Mesh::RenderMesh(
 			m_pContext11->Map(m_pCBufferPerMaterial,
 				0, D3D11_MAP_WRITE_DISCARD, 0, &pDataMat)))
 		{
-			CBUFFER_PRE_MATERIAL cb;
+			CBUFFER_PER_MATERIAL cb;
 			//アンビエント,ディフューズ,スペキュラをシェーダに渡す.
 			cb.vAmbient = m_pMaterials[m_AttrID[No]].Ambient;
 			cb.vDiffuse = m_pMaterials[m_AttrID[No]].Diffuse;

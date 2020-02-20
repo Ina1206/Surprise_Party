@@ -16,27 +16,28 @@ const char SHADER_NAME[] = "Data\\Shader\\SkinMesh.hlsl";
 **/
 //コンストラクタ.
 CDX9SkinMesh::CDX9SkinMesh()
-	: m_hWnd(nullptr)
-	, m_pDevice9(nullptr)
-	, m_pDevice11(nullptr)
-	, m_pContext11(nullptr)
-	, m_pSampleLinear(nullptr)
-	, m_pVertexShader(nullptr)
-	, m_pPixelShader(nullptr)
-	, m_pVertexLayout(nullptr)
-	, m_pCBufferPerMesh(nullptr)
-	, m_pCBufferPerMaterial(nullptr)
-	, m_pCBufferPerFrame(nullptr)
-	, m_pCBufferPerBone(nullptr)
-	, m_vPos()
-	, m_vRot()
-	, m_vScale(D3DXVECTOR3(1.0f, 1.0f, 1.0f))
-	, m_vPrePos(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
+	//: m_hWnd(nullptr)
+	//, m_pDevice9(nullptr)
+	//, m_pDevice11(nullptr)
+	//, m_pContext11(nullptr)
+	//, m_pSampleLinear(nullptr)
+	//, m_pVertexShader(nullptr)
+	//, m_pPixelShader(nullptr)
+	//, m_pVertexLayout(nullptr)
+	//, m_pCBufferPerMesh(nullptr)
+	//, m_pCBufferPerMaterial(nullptr)
+	//, m_pCBufferPerFrame(nullptr)
+	: m_pCBufferPerBone(nullptr)
+	//, m_vPos()
+	//, m_vRot()
+	//, m_vScale(D3DXVECTOR3(1.0f, 1.0f, 1.0f))
+	//, m_fScale(1.0f)
+	//, m_vPrePos(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
 	, m_mWorld()
 	, m_mRotation()
 	, m_mView()
 	, m_mProj()
-	, m_stSkinLight()
+	//, m_stSkinLight()
 	, m_vEye()
 	, m_dAnimSpeed(0.0001f)	//一先ず、この値.
 	, m_dAnimTime()
@@ -98,6 +99,10 @@ HRESULT CDX9SkinMesh::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9,ID3D11Device* p
 	//モデル読み込み.
 	if (FAILED(LoadXMesh(fileName)))
 	{
+		return E_FAIL;
+	}
+
+	if (FAILED(m_pCObjectAlphaBlend->InitAlpha(m_pDevice11, m_pContext11))) {
 		return E_FAIL;
 	}
 
@@ -341,13 +346,12 @@ HRESULT CDX9SkinMesh::CreateIndexBuffer( DWORD dwSize, int* pIndex, ID3D11Buffer
 //レンダリング.
 void CDX9SkinMesh::Render(
 	const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
-	const D3DXVECTOR3& vEye, const SkinLIGHT& stSkinLight,
+	const D3DXVECTOR3& vEye, const LIGHT& stSkinLight,
 	LPD3DXANIMATIONCONTROLLER pAC )
 {
 	m_mView		= mView;
 	m_mProj		= mProj;
-	//m_vLight	= vLight;
-	m_stSkinLight = stSkinLight;
+	m_stLight = stSkinLight;
 	m_vEye		= vEye;
 
 	if (pAC == nullptr)
@@ -654,7 +658,8 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 
 	D3DXMATRIX	mScale, mYaw, mPitch, mRoll, mTran, mPreTran;
 	//拡縮.
-	D3DXMatrixScaling( &mScale, m_vScale.x, m_vScale.y, m_vScale.z );
+	//D3DXMatrixScaling( &mScale, m_vScale.x, m_vScale.y, m_vScale.z );
+	D3DXMatrixScaling( &mScale, m_fScale, m_fScale, m_fScale );
 	D3DXMatrixRotationY( &mYaw, m_vRot.y );		//Y軸回転.
 	D3DXMatrixRotationX( &mPitch, m_vRot.x );	//X軸回転.
 	D3DXMatrixRotationZ( &mRoll, m_vRot.z );		//Z軸回転.
@@ -720,11 +725,11 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 	{
 		CBUFFER_PER_FRAME	cb;
 		D3DXMATRIX			mRot;
-		cb.vLightPos = D3DXVECTOR4(m_stSkinLight.vPos.x ,m_stSkinLight.vPos.y ,m_stSkinLight.vPos.z, 0.0f );
-		cb.vLightDir = D3DXVECTOR4(m_stSkinLight.vDir.x, m_stSkinLight.vDir.y, m_stSkinLight.vDir.z, 0.0f);
-		cb.mLightRot = m_stSkinLight.mRot;
-		cb.m_fIntensity = D3DXVECTOR4(m_stSkinLight.fIntensity, 0.0f, 0.0f, 0.0f);
-		cb.vEye		= D3DXVECTOR4( m_vEye.x, m_vEye.y, m_vEye.z, 0 );
+		cb.vLightPos = D3DXVECTOR4(m_stLight.vPos.x, m_stLight.vPos.y, m_stLight.vPos.z, 0.0f);
+		cb.vLightDir = D3DXVECTOR4(m_stLight.vDir.x, m_stLight.vDir.y, m_stLight.vDir.z, 0.0f);
+		cb.mLightRot = m_stLight.mRot;
+		cb.fIntensity = m_stLight.fIntensity;
+		cb.vCamPos	= D3DXVECTOR4( m_vEye.x, m_vEye.y, m_vEye.z, 0 );
 
 		D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
 
@@ -795,10 +800,6 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 		//テクスチャをシェーダに渡す.
 		if (pMesh->pMaterial[i].TextureName != nullptr)
 		{
-			//m_pContext11->PSSetSamplers( 0, 1, &m_pSampleLinear );
-			//m_pContext11->PSSetShaderResources( 0, 1, &pMesh->pMaterial[i].pTexture );
-
-			//==========================変更=================================.
 			m_pContext11->PSSetSamplers(0, 1, &m_pSampleLinear);
 			if (m_IsEnabelChangeTextureSystem == true) {
 				int str_lenght = lstrlen(pMesh->pMaterial[i].TextureName);
@@ -830,7 +831,6 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 				m_pContext11->PSSetShaderResources(0, 1, &pMesh->pMaterial[i].pTexture);
 			}
 
-			//==========================ここまで=================================.
 		}
 		else
 		{
@@ -1119,7 +1119,8 @@ bool CDX9SkinMesh::GetPosFromBone(const char* sBoneName, D3DXVECTOR3* pOutPos)
 		if( m_pD3dxMesh->GetPosFromBone( sBoneName, &tmpPos ) ){
 			D3DXMATRIX mWorld, mScale, mTran;
 			D3DXMATRIX mRot, mYaw, mPitch, mRoll;
-			D3DXMatrixScaling( &mScale, m_vScale.x, m_vScale.y, m_vScale.z );
+			//D3DXMatrixScaling( &mScale, m_vScale.x, m_vScale.y, m_vScale.z );
+			D3DXMatrixScaling( &mScale, m_fScale, m_fScale, m_fScale);
 			D3DXMatrixRotationY( &mYaw, m_vRot.y);
 			D3DXMatrixRotationX( &mPitch, m_vRot.x);
 			D3DXMatrixRotationZ( &mRoll, m_vRot.z);
@@ -1150,7 +1151,8 @@ bool CDX9SkinMesh::GetDeviaPosFromBone(const char* sBoneName, D3DXVECTOR3* pOutP
 			D3DXMatrixMultiply(&mtmp, &mDevia, &mtmp);//ボーン位置行列とずらしたい方向行列を掛け合わせる.
 			D3DXVECTOR3 tmpPos = D3DXVECTOR3(mtmp._41, mtmp._42, mtmp._43);//位置のみ取得.
 
-			D3DXMatrixScaling(&mScale, m_vScale.x, m_vScale.y, m_vScale.z);
+			//D3DXMatrixScaling(&mScale, m_vScale.x, m_vScale.y, m_vScale.z);
+			D3DXMatrixScaling(&mScale, m_fScale, m_fScale, m_fScale);
 			D3DXMatrixRotationY(&mYaw, m_vRot.y);
 			D3DXMatrixRotationX(&mPitch, m_vRot.x);
 			D3DXMatrixRotationZ(&mRoll, m_vRot.z);
