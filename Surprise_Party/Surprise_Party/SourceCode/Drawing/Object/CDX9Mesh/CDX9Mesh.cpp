@@ -638,7 +638,7 @@ void CDX9Mesh::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		cb.vLightRot = stLight.mRot;
 		cb.fIntensity = stLight.fIntensity;
 		//ÉâÉCÉgï˚å¸ÇÃê≥ãKâª.
-		D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
+		//D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
 
 		cb.vAlpha = m_fAlpha;
 		

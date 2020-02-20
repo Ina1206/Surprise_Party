@@ -61,7 +61,7 @@ struct PSSkinIn
 {
 	float4 Pos		: SV_Position;	//位置.
 	float3 Norm		: NORMAL;		//頂点法線.
-	float2 Tex		: TEXCOORD0;		//テクスチャー座標.
+	float2 Tex		: TEXCOORD0;	//テクスチャー座標.
 	float3 Normal	: TEXCOORD1;
 	float4 PosWorld	: TEXCOORD2;		
 	float4 Color	: COLOR0;		//最終カラー（頂点シェーダーにおいての）.

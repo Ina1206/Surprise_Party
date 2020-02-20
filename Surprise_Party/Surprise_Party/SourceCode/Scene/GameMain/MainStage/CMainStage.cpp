@@ -35,6 +35,38 @@ CMainStage::~CMainStage()
 //===================================.
 void CMainStage::UpDate(const bool& ControlFlag)
 {
+	static D3DXVECTOR3 m_vLightRot = D3DXVECTOR3(3.5f, 3.0f, 4.0f);
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		m_stLight.vPos.y += 0.1f;
+	}
+
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		m_stLight.vPos.y -= 0.1f;
+	}
+
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		m_stLight.vPos.x -= 0.1f;
+	}
+
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		m_stLight.vPos.x += 0.1f;
+	}
+
+	if (GetAsyncKeyState('1') & 0x8000) {
+		m_stLight.vPos.z -= 0.1f;
+	}
+
+	if (GetAsyncKeyState('2') & 0x8000) {
+		m_stLight.vPos.z += 0.1f;
+	}
+
+	D3DXMATRIX mYaw, mPich, mRoll;
+	D3DXMatrixRotationX(&mYaw, m_vLightRot.x);
+	D3DXMatrixRotationY(&mPich, m_vLightRot.y);
+	D3DXMatrixRotationZ(&mRoll, m_vLightRot.z);
+	m_stLight.mRot = mYaw * mPich * mRoll;
+
+
 	//人の更新処理関数.
 	m_pCPeopleManager->UpDate();
 
@@ -313,16 +345,9 @@ void CMainStage::Init()
 	m_Camera.vLook = CAMERA_START_LOOK;
 
 	//ライト情報初期設定.
-	m_stLight.vPos = D3DXVECTOR3(1.0f, 3.0f, -2.0f);
-	m_stLight.vDir = D3DXVECTOR3(0.0f, -90.0f, 5.0f);
-	m_stLight.fIntensity = 50.0f;
-	D3DXVECTOR3 m_vLightRot = D3DXVECTOR3(3.5f, 3.0f, 4.0f);
-	D3DXMATRIX mYaw, mPich, mRoll;
-	D3DXMatrixRotationX(&mYaw, m_vLightRot.x);
-	D3DXMatrixRotationY(&mPich, m_vLightRot.y);
-	D3DXMatrixRotationZ(&mRoll, m_vLightRot.z);
-	m_stLight.mRot = mYaw * mPich * mRoll;
-	D3DXMatrixIdentity(&m_stLight.mRot);
+	m_stLight.vPos = D3DXVECTOR3(1.0f, 3.0f, -3.0f);
+	m_stLight.vDir = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_stLight.fIntensity = 65.0f;
 	m_stLight.m_fLightWidth = 50.0f;
 
 }

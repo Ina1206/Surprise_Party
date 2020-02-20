@@ -725,6 +725,9 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 		cb.mLightRot = m_stSkinLight.mRot;
 		cb.m_fIntensity = D3DXVECTOR4(m_stSkinLight.fIntensity, 0.0f, 0.0f, 0.0f);
 		cb.vEye		= D3DXVECTOR4( m_vEye.x, m_vEye.y, m_vEye.z, 0 );
+
+		D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
+
 		memcpy_s( pData.pData, pData.RowPitch, (void*)&cb, sizeof(cb) );
 		m_pContext11->Unmap(m_pCBufferPerFrame, 0 );
 	}
