@@ -36,7 +36,7 @@ CDX9SkinMesh::CDX9SkinMesh()
 	, m_mRotation()
 	, m_mView()
 	, m_mProj()
-	, m_vLight()
+	, m_stSkinLight()
 	, m_vEye()
 	, m_dAnimSpeed(0.0001f)	//一先ず、この値.
 	, m_dAnimTime()
@@ -341,12 +341,13 @@ HRESULT CDX9SkinMesh::CreateIndexBuffer( DWORD dwSize, int* pIndex, ID3D11Buffer
 //レンダリング.
 void CDX9SkinMesh::Render(
 	const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
-	const D3DXVECTOR3& vLight, const D3DXVECTOR3& vEye,
+	const D3DXVECTOR3& vEye, const SkinLIGHT& stSkinLight,
 	LPD3DXANIMATIONCONTROLLER pAC )
 {
 	m_mView		= mView;
 	m_mProj		= mProj;
-	m_vLight	= vLight;
+	//m_vLight	= vLight;
+	m_stSkinLight = stSkinLight;
 	m_vEye		= vEye;
 
 	if (pAC == nullptr)
@@ -717,8 +718,12 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 			m_pCBufferPerFrame, 0,
 			D3D11_MAP_WRITE_DISCARD, 0, &pData ) ) )
 	{
-		CBUFFER_PER_FRAME cb;
-		cb.vLightDir= D3DXVECTOR4( m_vLight.x, m_vLight.y, m_vLight.z, 0 );
+		CBUFFER_PER_FRAME	cb;
+		D3DXMATRIX			mRot;
+		cb.vLightPos = D3DXVECTOR4(m_stSkinLight.vPos.x ,m_stSkinLight.vPos.y ,m_stSkinLight.vPos.z, 0.0f );
+		cb.vLightDir = D3DXVECTOR4(m_stSkinLight.vDir.x, m_stSkinLight.vDir.y, m_stSkinLight.vDir.z, 0.0f);
+		cb.mLightRot = m_stSkinLight.mRot;
+		cb.m_fIntensity = D3DXVECTOR4(m_stSkinLight.fIntensity, 0.0f, 0.0f, 0.0f);
 		cb.vEye		= D3DXVECTOR4( m_vEye.x, m_vEye.y, m_vEye.z, 0 );
 		memcpy_s( pData.pData, pData.RowPitch, (void*)&cb, sizeof(cb) );
 		m_pContext11->Unmap(m_pCBufferPerFrame, 0 );

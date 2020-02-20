@@ -9,6 +9,16 @@
 
 #include "CDX9SkinMeshParser.h"
 
+
+	//ﾗｲﾄ情報.
+	struct SkinLIGHT
+	{
+		D3DXVECTOR3	vPos;		//位置.
+		D3DXVECTOR3	vDir;		//方向.
+		D3DXMATRIX	mRot;		//回転行列.
+		float		fIntensity;	//強度(明るさ).
+	};
+
 //==================================================================================================
 //
 //	スキンメッシュクラス.
@@ -35,8 +45,12 @@ public:
 	//シェーダーに渡す値.
 	struct CBUFFER_PER_FRAME
 	{
-		D3DXVECTOR4 vLightDir;	//ライト方向.
-		D3DXVECTOR4 vEye;		//カメラ位置.
+		D3DXVECTOR4 vEye;			//カメラ位置.
+		D3DXVECTOR4 vColor;			//色.
+		D3DXVECTOR4 vLightPos;		//ライト座標.
+		D3DXVECTOR4 vLightDir;		//ライト方向.
+		D3DXMATRIX	mLightRot;		//ライト角度.
+		D3DXVECTOR4 m_fIntensity;	//ライト強度.
 	};
 
 	//ボーン単位.
@@ -76,7 +90,6 @@ public:
 		return m_pD3dxMesh->m_pAnimController;
 	}
 
-	//========================追加===========================.
 
 	//テクスチャ切り替え用.
 	struct CHANGE_TEXTURE
@@ -113,8 +126,6 @@ public:
 	}
 
 	ID3D11Device* GetDevice() { return m_pDevice11; }
-	//========================ここまで===========================.
-
 
 
 	//メソッド.
@@ -128,8 +139,8 @@ public:
 	//描画関数.
 	void Render(const D3DXMATRIX& mView, 
 		const D3DXMATRIX& mProj, 
-		const D3DXVECTOR3& vLight, 
 		const D3DXVECTOR3& vEye, 
+		const SkinLIGHT& stSkinLight, 
 		const LPD3DXANIMATIONCONTROLLER pAC=NULL );
 	//解放関数.
 	HRESULT Release();
@@ -224,7 +235,7 @@ private:
 	D3DXMATRIX		m_mView;
 	D3DXMATRIX		m_mProj;
 
-	D3DXVECTOR3		m_vLight;
+	SkinLIGHT		m_stSkinLight;	
 	D3DXVECTOR3		m_vEye;
 
 	//アニメーション速度.

@@ -100,6 +100,10 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	//×²Ä‹­“x‚ğ”½‰f.
 	Color *= g_fIntensity.x;
 
+	Color.r *= 0.5f;
+	Color.g *= 0.5f;
+	Color.b *= 1.0f;
+
 	//½Îß¯Ä×²Ä‚Ì”ÍˆÍ“à‚Æ”ÍˆÍŠO‚Ì‹«ŠE‚ğŠŠ‚ç‚©‚É•Ï‰»‚³‚¹‚é.
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//º°İŠp“x:‚Æ‚è‚ ‚¦‚¸ 0.9f.
@@ -121,6 +125,8 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	// fatt :Œ¸Š.
 	// a,b,c:’è”.
 	// d    :‹——£.
+
+	Color.a *= 0.5f;
 
 	return Color;
 }
@@ -188,7 +194,7 @@ float4 PS_NoTex(VS_OUT In) : SV_Target
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//º°İŠp“x:‚Æ‚è‚ ‚¦‚¸ 0.9f.
 	if (cos < 0.9f) {
-		Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
+		//Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
 
 	//Œ¸Š.

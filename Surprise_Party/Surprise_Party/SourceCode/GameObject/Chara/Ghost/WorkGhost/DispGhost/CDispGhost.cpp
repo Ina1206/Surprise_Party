@@ -76,6 +76,12 @@ void CDispGhost::UpDate()
 //=================================.
 void CDispGhost::Render()
 {
+	SkinLIGHT m_SkinLight;
+	m_SkinLight.vPos = m_stLight.vPos;
+	m_SkinLight.vDir = m_stLight.vDir;
+	m_SkinLight.mRot = m_stLight.mRot;
+	m_SkinLight.fIntensity = m_stLight.fIntensity;
+
 	if (fabsf(m_vCameraPos.x - m_vPos.x) < CAMERA_DISP_RANGE) {
 		if (!(m_RestFlag & IN_REST_FLAG)) {
 			//À•W.
@@ -92,7 +98,7 @@ void CDispGhost::Render()
 			//Šp“x.
 			m_pCSkinMesh->SetRotation(m_vRot);
 			//•`‰æ.
-			m_pCSkinMesh->Render(m_mView, m_mProj, m_stLight.vPos, m_vCameraPos, m_pAnimCtrl);
+			m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_SkinLight, m_pAnimCtrl);
 		}
 	}
 
