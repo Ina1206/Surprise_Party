@@ -27,12 +27,14 @@ cbuffer per_material	: register( b1 )
 //コンスタントバッファ(フレームごと).
 cbuffer per_frame		: register( b2 )
 {
-	float4	g_vEye;			//カメラ位置.
-	float4	g_vColor;		//色.
+	float4	g_vCamPos;		//カメラ位置.
 	float4	g_vLightPos;	//ﾗｲﾄ位置.
 	float4	g_vLightDir;	//ﾗｲﾄ方向.
 	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
 	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
+	float4	g_fLightWidth;	//ライトの広さ.
+	float4	g_vAlpha;		//透過値.
+	float4	vUV;			//UV.
 };
 //ボーンのポーズ行列が入る.
 cbuffer per_bones		: register( b3 )
@@ -154,7 +156,7 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 		//ﾗｲﾄ位置.
 	float4 vLightPos = g_vLightPos;
 	//視線ﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙから視点座標に向かうﾍﾞｸﾄﾙ.
-	float4 vEyeVector = normalize(g_vEye - input.PosWorld);
+	float4 vEyeVector = normalize(g_vCamPos - input.PosWorld);
 	//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
 	float4 vLightVector = normalize(vLightPos - input.PosWorld);
 	//ﾗｲﾄの基準ﾍﾞｸﾄﾙ.
@@ -187,7 +189,7 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 	//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//ｺｰﾝ角度:とりあえず 0.9f.
-	if (cos < 65.0f) {
+	if (cos < g_fLightWidth.x) {
 		Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
 	Color.r *= 0.5f;

@@ -729,6 +729,7 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 		cb.vLightDir = D3DXVECTOR4(m_stLight.vDir.x, m_stLight.vDir.y, m_stLight.vDir.z, 0.0f);
 		cb.mLightRot = m_stLight.mRot;
 		cb.fIntensity = m_stLight.fIntensity;
+		cb.fLightWidth = m_stLight.m_fLightWidth;
 		cb.vCamPos	= D3DXVECTOR4( m_vEye.x, m_vEye.y, m_vEye.z, 0 );
 
 		D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
