@@ -502,6 +502,9 @@
     <ClInclude Include="SourceCode\UI\Fade\StageFade\CStageFade.h">
       <Filter>SourceCode\UI\Fade\StageFade</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9Base.h">
+      <Filter>SourceCode\Drawing\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -743,6 +746,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\BigGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9Base.cpp">
+      <Filter>SourceCode\Drawing\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -22,6 +22,7 @@
     <ClInclude Include="SourceCode\Drawing\CCommon.h" />
     <ClInclude Include="SourceCode\Drawing\Effect\CEffect.h" />
     <ClInclude Include="SourceCode\Drawing\Font\CFont.h" />
+    <ClInclude Include="SourceCode\Drawing\Object\CDX9Base.h" />
     <ClInclude Include="SourceCode\Drawing\Object\CDX9Mesh\CDX9Mesh.h" />
     <ClInclude Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMesh.h" />
     <ClInclude Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMeshParser.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="SourceCode\Drawing\CCommon.cpp" />
     <ClCompile Include="SourceCode\Drawing\Effect\CEffect.cpp" />
     <ClCompile Include="SourceCode\Drawing\Font\CFont.cpp" />
+    <ClCompile Include="SourceCode\Drawing\Object\CDX9Base.cpp" />
     <ClCompile Include="SourceCode\Drawing\Object\CDX9Mesh\CDX9Mesh.cpp" />
     <ClCompile Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMesh.cpp" />
     <ClCompile Include="SourceCode\Drawing\Object\CDX9SkinMesh\CDX9SkinMeshParser.cpp" />

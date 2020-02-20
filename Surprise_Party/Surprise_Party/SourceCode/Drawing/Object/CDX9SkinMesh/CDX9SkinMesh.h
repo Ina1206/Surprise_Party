@@ -140,7 +140,7 @@ public:
 	void Render(const D3DXMATRIX& mView, 
 		const D3DXMATRIX& mProj, 
 		const D3DXVECTOR3& vEye, 
-		const SkinLIGHT& stSkinLight, 
+		const SkinLIGHT& Light, 
 		const LPD3DXANIMATIONCONTROLLER pAC=NULL );
 	//âï˙ä÷êî.
 	HRESULT Release();
