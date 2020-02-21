@@ -8,7 +8,6 @@
 struct LIGHT
 {
 	D3DXVECTOR3	vPos;			//位置.
-	D3DXVECTOR3	vDir;			//方向.
 	D3DXMATRIX	mRot;			//回転行列.
 	float		fIntensity;		//強度(明るさ).
 	float		m_fLightWidth;	//光の広さ.
@@ -94,7 +93,6 @@ protected:
 	{
 		D3DXVECTOR4			vCamPos;		//カメラ位置(視点位置).
 		D3DXVECTOR4			vLightPos;		//ライト方向.
-		D3DXVECTOR4			vLightDir;		//ﾗｲﾄ方向.
 		D3DXMATRIX			mLightRot;		//ライト角度.
 		ALIGN16 float		fIntensity;		//ﾗｲﾄ強度(明るさ).
 		ALIGN16 float		fLightWidth;	//ライトの広さ.

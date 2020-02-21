@@ -634,16 +634,16 @@ void CDX9Mesh::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 
 		//ライト情報.
 		cb.vLightPos = D3DXVECTOR4(stLight.vPos.x, stLight.vPos.y, stLight.vPos.z, 0.0f);
-		cb.vLightDir = D3DXVECTOR4(stLight.vDir.x, stLight.vDir.y, stLight.vDir.z, 0.0f);
-		cb.mLightRot = stLight.mRot;
+		D3DXMATRIX m_LightRot = stLight.mRot;
+		cb.mLightRot = m_LightRot;
 		cb.fIntensity = stLight.fIntensity;
-		//ライト方向の正規化.
-		//D3DXVec4Normalize(&cb.vLightDir, &cb.vLightDir);
+		cb.fLightWidth = stLight.m_fLightWidth;
+		//cb.fIntensity = D3DXVECTOR4(stLight.fIntensity, 0.0f, 0.0f, 0.0f);
+		//cb.fLightWidth = D3DXVECTOR4(stLight.m_fLightWidth, 0.0f, 0.0f, 0.0f);
 
 		cb.vAlpha = m_fAlpha;
-		
 
-		cb.vUV = m_vUV;
+		cb.vUV = D3DXVECTOR2(m_vUV.x, m_vUV.y);
 
 		memcpy_s(
 			pData.pData,		//コピー先のバッファ.

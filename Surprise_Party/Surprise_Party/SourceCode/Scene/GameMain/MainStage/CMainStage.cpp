@@ -35,34 +35,34 @@ CMainStage::~CMainStage()
 //===================================.
 void CMainStage::UpDate(const bool& ControlFlag)
 {
-	static D3DXVECTOR3 m_vLightRot = D3DXVECTOR3(3.5f, 3.0f, 4.0f);
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		m_stLight.vPos.y += 0.1f;
+	static D3DXVECTOR3 m_vLightRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	if (GetAsyncKeyState('S') & 0x8000) {
+		m_vLightRot.y += 0.1f;
 	}
 
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		m_stLight.vPos.y -= 0.1f;
+	if (GetAsyncKeyState('X') & 0x8000) {
+		m_vLightRot.y -= 0.1f;
 	}
 
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		m_stLight.vPos.x -= 0.1f;
+	if (GetAsyncKeyState('Z') & 0x8000) {
+		m_vLightRot.x -= 0.1f;
 	}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		m_stLight.vPos.x += 0.1f;
+	if (GetAsyncKeyState('C') & 0x8000) {
+		m_vLightRot.x += 0.1f;
 	}
 
 	if (GetAsyncKeyState('1') & 0x8000) {
-		m_stLight.vPos.z -= 0.1f;
+		m_vLightRot.z -= 0.1f;
 	}
 
 	if (GetAsyncKeyState('2') & 0x8000) {
-		m_stLight.vPos.z += 0.1f;
+		m_vLightRot.z += 0.1f;
 	}
 
 	D3DXMATRIX mYaw, mPich, mRoll;
-	D3DXMatrixRotationX(&mYaw, m_vLightRot.x);
-	D3DXMatrixRotationY(&mPich, m_vLightRot.y);
+	D3DXMatrixRotationY(&mYaw, m_vLightRot.y);
+	D3DXMatrixRotationX(&mPich, m_vLightRot.x);
 	D3DXMatrixRotationZ(&mRoll, m_vLightRot.z);
 	m_stLight.mRot = mYaw * mPich * mRoll;
 
@@ -346,8 +346,7 @@ void CMainStage::Init()
 
 	//ÉâÉCÉgèÓïÒèâä˙ê›íË.
 	m_stLight.vPos = D3DXVECTOR3(1.0f, 3.0f, -3.0f);
-	m_stLight.vDir = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_stLight.fIntensity = 65.0f;
+	m_stLight.fIntensity = 10.0f;
 	m_stLight.m_fLightWidth = 50.0f;
 
 }

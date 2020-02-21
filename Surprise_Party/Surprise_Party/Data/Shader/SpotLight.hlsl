@@ -21,14 +21,13 @@ cbuffer per_material: register(b1)
 //ﾌﾚｰﾑ単位.
 cbuffer per_frame	: register(b2)
 {
-	float4	g_vCamPos;		//ｶﾒﾗ位置.
+	float4	g_vCamPos;		//カメラ位置.
 	float4	g_vLightPos;	//ﾗｲﾄ位置.
-	float4	g_vLightDir;	//ﾗｲﾄ方向.
 	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
-	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
-	float4	g_fLightWidth;	//ライトの広さ.
-	float4	g_vAlpha;		//透過値.
-	float4	vUV;			//UV.
+	float	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
+	float	g_fLightWidth;	//ライトの広さ.
+	float	g_vAlpha;		//透過値.
+	float2	vUV;			//UV.
 };
 
 //頂点ｼｪｰﾀﾞの出力ﾊﾟﾗﾒｰﾀ.
@@ -100,7 +99,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	float4 Color = ambient + diffuse + specular;
 
 	//ﾗｲﾄ強度を反映.
-	Color *= g_fIntensity.x;
+	Color *= g_fIntensity;
 
 	Color.r *= 0.5f;
 	Color.g *= 0.5f;
@@ -109,7 +108,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//ｺｰﾝ角度:とりあえず 0.9f.
-	if (cos < g_fLightWidth.x){
+	if (cos < g_fLightWidth){
 		Color *= pow(cos/3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
 
