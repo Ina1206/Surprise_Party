@@ -21,13 +21,13 @@ cbuffer per_material: register(b1)
 //ﾌﾚｰﾑ単位.
 cbuffer per_frame	: register(b2)
 {
-	float4	g_vCamPos;		//ｶﾒﾗ位置.
+	float4	g_vCamPos;		//カメラ位置.
 	float4	g_vLightPos;	//ﾗｲﾄ位置.
 	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
 	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
 	float4	g_fLightWidth;	//ライトの広さ.
-	float4	g_vAlpha;
-	float4	g_vUv;
+	float4	g_vAlpha;		//透過値.
+	float4	vUV;			//UV.
 };
 
 //頂点ｼｪｰﾀﾞの出力ﾊﾟﾗﾒｰﾀ.
@@ -88,7 +88,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	//拡散反射光 ②.
 	float NL = saturate(dot(In.Normal, vLightVector));
 	float4 diffuse =
-		(g_Diffuse / 2 + g_Texture.Sample(g_SamLinear, In.Tex) / 2)/**NL*/;
+		(g_Diffuse / 2 + g_Texture.Sample(g_SamLinear, In.Tex) / 2)*NL;
 
 	//鏡面反射光 ③.
 	float3 reflect = normalize(2.0f * NL * In.Normal - vLightVector);
@@ -99,15 +99,16 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	float4 Color = ambient + diffuse + specular;
 
 	//ﾗｲﾄ強度を反映.
+	Color *= g_fIntensity.x;
+
 	Color.r *= 0.5f;
 	Color.g *= 0.5f;
 	Color.b *= 1.0f;
-	Color *= g_fIntensity.x;
 
 	//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//ｺｰﾝ角度:とりあえず 0.9f.
-	if (cos < g_fLightWidth.x){
+	if (cos > g_fLightWidth.x){
 		Color *= pow(cos/3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
 
@@ -119,14 +120,14 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	Color *=
 		1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
 	
-	Color.a *= g_vAlpha;
-
 	//                 1
 	// fatt = -------------------
 	//        a + b * d + c * d^2
 	// fatt :減衰.
 	// a,b,c:定数.
 	// d    :距離.
+
+	Color.a *= g_vAlpha.x;
 
 	return Color;
 }
@@ -194,7 +195,7 @@ float4 PS_NoTex(VS_OUT In) : SV_Target
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//ｺｰﾝ角度:とりあえず 0.9f.
 	if (cos < 0.9f) {
-		Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
+		//Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
 
 	//減衰.

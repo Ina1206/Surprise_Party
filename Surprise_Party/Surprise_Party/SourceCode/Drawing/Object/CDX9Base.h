@@ -94,10 +94,10 @@ protected:
 		D3DXVECTOR4			vCamPos;		//カメラ位置(視点位置).
 		D3DXVECTOR4			vLightPos;		//ライト方向.
 		D3DXMATRIX			mLightRot;		//ライト角度.
-		ALIGN16 float		fIntensity;		//ﾗｲﾄ強度(明るさ).
-		ALIGN16 float		fLightWidth;	//ライトの広さ.
-		ALIGN16 float		vAlpha;			//色.
-		ALIGN16 D3DXVECTOR2 vUV;			//UV.			
+		D3DXVECTOR4			fIntensity;		//ﾗｲﾄ強度(明るさ).
+		D3DXVECTOR4			fLightWidth;	//ライトの広さ.
+		D3DXVECTOR4			vAlpha;			//色.
+		D3DXVECTOR4			vUV;			//UV.			
 	};
 
 	HWND								m_hWnd;					//ウィンドウハンドル.

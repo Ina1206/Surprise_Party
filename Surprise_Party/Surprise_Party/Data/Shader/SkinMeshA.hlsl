@@ -27,15 +27,13 @@ cbuffer per_material	: register( b1 )
 //コンスタントバッファ(フレームごと).
 cbuffer per_frame		: register( b2 )
 {
-	float4	g_vEye;			//カメラ位置.
-	//float4	g_vColor;		//色.
+	float4	g_vCamPos;		//ｶﾒﾗ位置.
 	float4	g_vLightPos;	//ﾗｲﾄ位置.
-	float4	g_vLightDir;	//ﾗｲﾄ方向.
 	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
 	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
-	float4	g_fLightWidth;	//ライト広さ.
-	float4	g_fAlpha;
-	float4	g_vUV;
+	float4	g_fLightWidth;	//ライトの広さ.
+	float4	g_vAlpha;		//透過値.
+	float4	vUV;			//UV.
 };
 //ボーンのポーズ行列が入る.
 cbuffer per_bones		: register( b3 )
@@ -64,7 +62,7 @@ struct PSSkinIn
 {
 	float4 Pos		: SV_Position;	//位置.
 	float3 Norm		: NORMAL;		//頂点法線.
-	float2 Tex		: TEXCOORD0;		//テクスチャー座標.
+	float2 Tex		: TEXCOORD0;	//テクスチャー座標.
 	float3 Normal	: TEXCOORD1;
 	float4 PosWorld	: TEXCOORD2;		
 	float4 Color	: COLOR0;		//最終カラー（頂点シェーダーにおいての）.
@@ -124,17 +122,17 @@ PSSkinIn VS_Main( VSSkinIn input )
 	output.Pos	= mul( vSkinned.Pos, g_mWVP );
 	output.Norm	= normalize( mul( vSkinned.Norm, (float3x3)g_mW ) );
 	output.Tex	= input.Tex;
-	//float3 LightDir	= normalize( g_vLight );
-	//float3 PosWorld	= mul( vSkinned.Pos, g_mW );
-	//float3 ViewDir	= normalize( g_vEye - PosWorld );
-	//float3 Normal	= normalize( output.Norm );
-	//float4 NL		= saturate( dot( Normal, LightDir ) );
+	////float3 LightDir	= normalize( g_vLight );
+	////float3 PosWorld	= mul( vSkinned.Pos, g_mW );
+	////float3 ViewDir	= normalize( g_vEye - PosWorld );
+	////float3 Normal	= normalize( output.Norm );
+	////float4 NL		= saturate( dot( Normal, LightDir ) );
 
-	//float3 Reflect	= normalize( 2 * NL * Normal - LightDir );
-	//float4 specular = pow( saturate( dot( Reflect, ViewDir ) ), 4.0f ); 
+	////float3 Reflect	= normalize( 2 * NL * Normal - LightDir );
+	////float4 specular = pow( saturate( dot( Reflect, ViewDir ) ), 4.0f ); 
 
-	output.Color	= g_Ambient;
-	//output.Color	= g_Diffuse * NL + specular * g_Specular;
+	//output.Color	= g_Ambient;
+	////output.Color	= g_Diffuse * NL + specular * g_Specular;
 
 	output.Normal = mul(vSkinned.Norm, (float3x3)g_mW);
 	output.PosWorld = mul(vSkinned.Pos, g_mW);
@@ -157,7 +155,7 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 		//ﾗｲﾄ位置.
 	float4 vLightPos = g_vLightPos;
 	//視線ﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙから視点座標に向かうﾍﾞｸﾄﾙ.
-	float4 vEyeVector = normalize(g_vEye - input.PosWorld);
+	float4 vEyeVector = normalize(g_vCamPos - input.PosWorld);
 	//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
 	float4 vLightVector = normalize(vLightPos - input.PosWorld);
 	//ﾗｲﾄの基準ﾍﾞｸﾄﾙ.
@@ -165,7 +163,6 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 
 	//ﾗｲﾄの基準ﾍﾞｸﾄﾙに現在のﾗｲﾄの回転を反映.
 	vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
-
 
 	//環境光　①.
 	float4 ambient = g_Ambient;
@@ -176,24 +173,23 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 		(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
 
 	//鏡面反射光 ③.
-	float3 reflect = normalize(3.0f * NL * input.Normal - vLightVector);
+	float3 reflect = normalize(2.0f * NL * input.Normal - vLightVector);
 	float4 specular =
 		pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
 
 	//ﾌｫﾝﾓﾃﾞﾙ最終色　①②③の合計.
 	float4 Color = ambient + diffuse + specular;
-	//float4 Color = ambient + diffuse + specular;
 
 	//ﾗｲﾄ強度を反映.
+	Color *= g_fIntensity.x;
 	Color.r *= 0.5f;
 	Color.g *= 0.5f;
 	Color.b *= 1.0f;
-	Color *= g_fIntensity.x;
 
 	//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//ｺｰﾝ角度:とりあえず 0.9f.
-	if (cos < g_fLightWidth.x) {
+	if (cos > g_fLightWidth.x) {
 		Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
 
@@ -211,12 +207,15 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
    // fatt :減衰.
    // a,b,c:定数.
    // d    :距離.
-	
+
+	//float4 RetColor = Color;
+	//
 	//RetColor.r *= g_vColor.r;
 	//RetColor.g *= g_vColor.g;
 	//RetColor.b *= g_vColor.b;
-	//RetColor.a *= 0.0f;
-    
+	////RetColor.a *= 0.0f;
+
+	Color.a *= 1.0f;
 
 	return Color;
 }

@@ -35,36 +35,6 @@ CMainStage::~CMainStage()
 //===================================.
 void CMainStage::UpDate(const bool& ControlFlag)
 {
-	static D3DXVECTOR3 m_vLightRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	if (GetAsyncKeyState('S') & 0x8000) {
-		m_vLightRot.y += 0.1f;
-	}
-
-	if (GetAsyncKeyState('X') & 0x8000) {
-		m_vLightRot.y -= 0.1f;
-	}
-
-	if (GetAsyncKeyState('Z') & 0x8000) {
-		m_vLightRot.x -= 0.1f;
-	}
-
-	if (GetAsyncKeyState('C') & 0x8000) {
-		m_vLightRot.x += 0.1f;
-	}
-
-	if (GetAsyncKeyState('1') & 0x8000) {
-		m_vLightRot.z -= 0.1f;
-	}
-
-	if (GetAsyncKeyState('2') & 0x8000) {
-		m_vLightRot.z += 0.1f;
-	}
-
-	D3DXMATRIX mYaw, mPich, mRoll;
-	D3DXMatrixRotationY(&mYaw, m_vLightRot.y);
-	D3DXMatrixRotationX(&mPich, m_vLightRot.x);
-	D3DXMatrixRotationZ(&mRoll, m_vLightRot.z);
-	m_stLight.mRot = mYaw * mPich * mRoll;
 
 
 	//人の更新処理関数.
@@ -214,6 +184,36 @@ void CMainStage::UpDate(const bool& ControlFlag)
 //===================================.
 void CMainStage::Render()
 {
+	static bool	m_ControlFlag = true;
+	if (m_ControlFlag == true) {
+		if (GetAsyncKeyState('1') & 0x8000) {
+			m_stLight.fIntensity -= 0.1f;
+		}
+
+		if (GetAsyncKeyState('2') & 0x8000) {
+			m_stLight.fIntensity += 0.1f;
+		}
+	}
+	else {
+		if (GetAsyncKeyState('1') & 0x8000) {
+			m_stLight.m_fLightWidth -= 0.1f;
+		}
+
+		if (GetAsyncKeyState('2') & 0x8000) {
+			m_stLight.m_fLightWidth += 0.1f;
+		}
+
+	}
+
+	if (GetAsyncKeyState(VK_F1) & 0x8000) {
+		if (m_ControlFlag == true) {
+			m_ControlFlag = false;
+		}
+		else {
+			m_ControlFlag = true;
+		}
+	}
+
 	//ステージマップの描画.
 	m_pCStageMap->Render();
 
@@ -345,9 +345,16 @@ void CMainStage::Init()
 	m_Camera.vLook = CAMERA_START_LOOK;
 
 	//ライト情報初期設定.
-	m_stLight.vPos = D3DXVECTOR3(1.0f, 3.0f, -3.0f);
-	m_stLight.fIntensity = 10.0f;
-	m_stLight.m_fLightWidth = 50.0f;
+	m_stLight.vPos = D3DXVECTOR3(17.1f, -3.7f, -0.3f);
+	m_stLight.fIntensity = 15.0f;
+	m_stLight.m_fLightWidth = 10.0f;
+	D3DXMatrixIdentity(&m_stLight.mRot);
+	
+	D3DXMATRIX mYaw, mPich, mRoll;
+	D3DXMatrixRotationY(&mYaw, 0.0f);
+	D3DXMatrixRotationX(&mPich, 2.8f);
+	D3DXMatrixRotationZ(&mRoll, 0.0f);
+	m_stLight.mRot = mYaw * mPich * mRoll;
 
 }
 

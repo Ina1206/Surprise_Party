@@ -62,51 +62,6 @@ public:
 	//解放関数.
 	void Release();
 
-	////位置情報を設定.
-	////inline void のinlineは関数自体を直接展開するため速度が上がる.
-	//void SetPosition(float x, float y, float z) {
-	//	m_vPos.x = x;
-	//	m_vPos.y = y;
-	//	m_vPos.z = z;
-	//}
-	//void SetPosition(const D3DXVECTOR3& vPos) {
-	//	m_vPos = vPos;
-	//}
-	////位置情報を取得.
-	//D3DXVECTOR3 GetPosition()
-	//{
-	//	return m_vPos;
-	//}
-	////回転情報を設定.
-	//void SetRotation(const D3DXVECTOR3& vRot) {
-	//	m_vRot = vRot;
-	//}
-	////回転情報を取得.
-	//D3DXVECTOR3 GetRotation() {
-	//	return m_vRot;
-	//}
-	////拡縮情報を設定.
-	//void SetScale(float Scale)	{ m_fScale = Scale; }
-	////拡縮情報を取得.
-	//float GetScale()			{ return m_fScale; }
-
-	////透過値を設定.
-	//void SetAlpha(const float& Alpha) { m_fAlpha = Alpha; }
-
-	////初期位置をずらす.
-	//void SetPrePos(D3DXVECTOR3 vPrePos) { m_vPrePos = vPrePos; }
-
-	////回転行列作成.
-	//void SetRot(const D3DXMATRIX& mRot){
-	//	m_bvRotNotUse = true;
-	//	m_mRot = mRot;
-	//}
-
-	////回転角度反映.
-	//void SetRotAngleApplication() {
-	//	m_bvRotNotUse = false;
-	//}
-
 	//メッシュを取得.
 	LPD3DXMESH GetMesh() {
 		return m_pMesh;
