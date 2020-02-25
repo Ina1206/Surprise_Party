@@ -34,6 +34,7 @@ cbuffer per_frame	: register(b2)
 struct VS_OUT
 {
 	float4	Pos		: SV_Position;
+	float4	Color	: COLOR;
 	float3	Normal	: TEXCOORD0;
 	float2	Tex		: TEXCOORD1;
 	float4	PosWorld: TEXCOORD2;
@@ -95,8 +96,10 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	float4 specular =
 		pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
 
+	float4 BaseColor = g_Texture.Sample(g_SamLinear, In.Tex) / 1.0f + In.Color / 1.0f;
+
 	//Ì«İÓÃŞÙÅIF@‡@‡A‡B‚Ì‡Œv.
-	float4 Color = ambient + diffuse + specular;
+	float4 Color = ambient + diffuse + specular ;
 
 	//×²Ä‹­“x‚ğ”½‰f.
 	Color.r *= 0.5f;
@@ -110,7 +113,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	if (cos < g_fLightWidth.x){
 		Color *= pow(cos/3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
-
+	
 	//Œ¸Š.
 	float Distance = length(g_vLightPos - In.PosWorld);
 	 //att = 1 € 0 € ( a + b * d + c * d^2 )
