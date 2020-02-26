@@ -176,7 +176,7 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 		(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
 
 	//‹¾–Ê”½ŽËŒõ ‡B.
-	float3 reflect = normalize(3.0f * NL * input.Normal - vLightVector);
+	float3 reflect = normalize(2.0f * NL * input.Normal - vLightVector);
 	float4 specular =
 		pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
 

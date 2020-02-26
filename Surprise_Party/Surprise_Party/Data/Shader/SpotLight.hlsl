@@ -84,6 +84,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 
 
 	//ŠÂ‹«Œõ@‡@.
+	//float4 ambient = g_Texture.Sample(g_SamLinear, In.Tex) / 1.0f + In.Color / 1.0f;
 	float4 ambient = g_Ambient;
 
 	//ŠgU”½ËŒõ ‡A.

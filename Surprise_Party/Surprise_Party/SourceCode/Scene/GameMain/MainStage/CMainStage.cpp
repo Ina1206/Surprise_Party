@@ -205,6 +205,19 @@ void CMainStage::Render()
 
 	}
 
+	if (GetAsyncKeyState('S') & 0x8000) {
+		m_stLight.vPos.y += 0.1f;
+	}
+	if (GetAsyncKeyState('X') & 0x8000) {
+		m_stLight.vPos.y -= 0.1f;
+	}
+	if (GetAsyncKeyState('Z') & 0x8000) {
+		m_stLight.vPos.z += 0.1f;
+	}
+	if (GetAsyncKeyState('C') & 0x8000) {
+		m_stLight.vPos.z -= 0.1f;
+	}
+
 	if (GetAsyncKeyState(VK_F1) & 0x8000) {
 		if (m_ControlFlag == true) {
 			m_ControlFlag = false;
@@ -345,15 +358,16 @@ void CMainStage::Init()
 	m_Camera.vLook = CAMERA_START_LOOK;
 
 	//ÉâÉCÉgèÓïÒèâä˙ê›íË.
-	m_stLight.vPos = D3DXVECTOR3(17.1f, -3.7f, -0.3f);
-	m_stLight.fIntensity = 15.0f;
-	m_stLight.m_fLightWidth = 10.0f;
-	m_stLight.m_fLightWidth = 0.9f;
+	//m_stLight.vPos = D3DXVECTOR3(17.1f, -3.7f, -0.3f);
+	m_stLight.vPos = D3DXVECTOR3(17.1f, 21.7f, -0.5f);
+	m_stLight.fIntensity = 10.4f;
+	m_stLight.m_fLightWidth = 10.9f;
 	D3DXMatrixIdentity(&m_stLight.mRot);
 	
 	D3DXMATRIX mYaw, mPich, mRoll;
 	D3DXMatrixRotationY(&mYaw, 0.0f);
-	D3DXMatrixRotationX(&mPich, 2.8f);
+	//D3DXMatrixRotationX(&mPich, 2.8f);
+	D3DXMatrixRotationX(&mPich, 0.0f);
 	D3DXMatrixRotationZ(&mRoll, 0.0f);
 	m_stLight.mRot = mYaw * mPich * mRoll;
 
