@@ -28,9 +28,7 @@ cbuffer per_material	: register( b1 )
 cbuffer per_frame		: register( b2 )
 {
 	float4	g_vEye;			//カメラ位置.
-	//float4	g_vColor;		//色.
 	float4	g_vLightPos;	//ﾗｲﾄ位置.
-	float4	g_vLightDir;	//ﾗｲﾄ方向.
 	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
 	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
 	float4	g_fLightWidth;	//ライト広さ.
