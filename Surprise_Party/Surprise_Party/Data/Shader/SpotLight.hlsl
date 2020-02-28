@@ -175,6 +175,8 @@ float4 PS_NoTex(VS_OUT In) : SV_Target
 	//×²Ä‚ÌŠî€ÍŞ¸ÄÙ‚ÉŒ»İ‚Ì×²Ä‚Ì‰ñ“]‚ğ”½‰f.
 	vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
 
+	//Šî–{F.
+	float4 BaseColor = g_Texture.Sample(g_SamLinear, In.Tex) / 1.0f + In.Color / 1.0f;
 
 	//ŠÂ‹«Œõ@‡@.
 	float4 ambient = g_Ambient;
@@ -197,7 +199,7 @@ float4 PS_NoTex(VS_OUT In) : SV_Target
 	//½Îß¯Ä×²Ä‚Ì”ÍˆÍ“à‚Æ”ÍˆÍŠO‚Ì‹«ŠE‚ğŠŠ‚ç‚©‚É•Ï‰»‚³‚¹‚é.
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
 	//º°İŠp“x:‚Æ‚è‚ ‚¦‚¸ 0.9f.
-	if (cos < 0.9f) {
+	if (cos < g_fLightWidth.x) {
 		Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
 	}
 
@@ -215,6 +217,8 @@ float4 PS_NoTex(VS_OUT In) : SV_Target
 	// fatt :Œ¸Š.
 	// a,b,c:’è”.
 	// d    :‹——£.
+
+	Color.a *= g_vAlpha.x;
 
 
 	return Color;

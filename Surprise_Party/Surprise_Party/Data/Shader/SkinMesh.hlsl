@@ -62,7 +62,7 @@ struct PSSkinIn
 {
 	float4 Pos		: SV_Position;	//位置.
 	float3 Norm		: NORMAL;		//頂点法線.
-	float2 Tex		: TEXCOORD0;		//テクスチャー座標.
+	float2 Tex		: TEXCOORD0;	//テクスチャー座標.
 	float3 Normal	: TEXCOORD1;
 	float4 PosWorld	: TEXCOORD2;		
 	float4 Color	: COLOR0;		//最終カラー（頂点シェーダーにおいての）.
@@ -122,17 +122,7 @@ PSSkinIn VS_Main( VSSkinIn input )
 	output.Pos	= mul( vSkinned.Pos, g_mWVP );
 	output.Norm	= normalize( mul( vSkinned.Norm, (float3x3)g_mW ) );
 	output.Tex	= input.Tex;
-	//float3 LightDir	= normalize( g_vLight );
-	//float3 PosWorld	= mul( vSkinned.Pos, g_mW );
-	//float3 ViewDir	= normalize( g_vEye - PosWorld );
-	//float3 Normal	= normalize( output.Norm );
-	//float4 NL		= saturate( dot( Normal, LightDir ) );
-
-	//float3 Reflect	= normalize( 2 * NL * Normal - LightDir );
-	//float4 specular = pow( saturate( dot( Reflect, ViewDir ) ), 4.0f ); 
-
 	output.Color	= g_Ambient;
-	//output.Color	= g_Diffuse * NL + specular * g_Specular;
 
 	output.Normal = mul(vSkinned.Norm, (float3x3)g_mW);
 	output.PosWorld = mul(vSkinned.Pos, g_mW);
@@ -144,15 +134,8 @@ PSSkinIn VS_Main( VSSkinIn input )
 // ピクセルシェーダ.
 float4 PS_Main( PSSkinIn input ) : SV_Target
 {
-	//// テクスチャからピクセル色を取り出す.
-	//float4 TexDiffuse = g_Texture.Sample( g_Sampler, input.Tex );
-	//// 出力用を作成.
-	//float4 RetColor = input.Color/2.0f + TexDiffuse/*/2.0f*/;
 
-	//// テクスチャのα値をそのまま使用。
-	//RetColor.a = TexDiffuse.a;
-
-		//ﾗｲﾄ位置.
+	//ﾗｲﾄ位置.
 	float4 vLightPos = g_vLightPos;
 	//視線ﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙから視点座標に向かうﾍﾞｸﾄﾙ.
 	float4 vEyeVector = normalize(g_vEye - input.PosWorld);
@@ -210,11 +193,5 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
    // a,b,c:定数.
    // d    :距離.
 	
-	//RetColor.r *= g_vColor.r;
-	//RetColor.g *= g_vColor.g;
-	//RetColor.b *= g_vColor.b;
-	//RetColor.a *= 0.0f;
-    
-
 	return Color;
 }
