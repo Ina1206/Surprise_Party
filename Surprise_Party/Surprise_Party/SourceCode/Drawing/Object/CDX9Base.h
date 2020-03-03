@@ -11,6 +11,7 @@ struct LIGHT
 	D3DXMATRIX	mRot;			//回転行列.
 	float		fIntensity;		//強度(明るさ).
 	float		m_fLightWidth;	//光の広さ.
+	D3DXVECTOR3 vLightColor;	//ライトの色.
 };
 
 /***************************************
@@ -96,6 +97,7 @@ protected:
 		D3DXMATRIX			mLightRot;		//ライト角度.
 		D3DXVECTOR4			fIntensity;		//ﾗｲﾄ強度(明るさ).
 		D3DXVECTOR4			fLightWidth;	//ライトの広さ.
+		D3DXVECTOR4			vLightColor;	//ライト色.
 		D3DXVECTOR4			vAlpha;			//色.
 		D3DXVECTOR4			vUV;			//UV.			
 	};

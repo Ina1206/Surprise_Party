@@ -26,6 +26,7 @@ cbuffer per_frame	: register(b2)
 	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
 	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
 	float4	g_fLightWidth;	//ライトの広さ.
+	float4	g_vLightColor;	//ライト色.
 	float4	g_vAlpha;
 	float4	g_vUv;
 };
