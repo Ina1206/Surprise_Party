@@ -151,42 +151,44 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 	float4 diffuse =
 		(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
 
-	//ﾗｲﾄ位置.
-	float4 vLightPos = g_vLightPos;
-	//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
-	float4 vLightVector = normalize(vLightPos - input.PosWorld);
+	float4 Color[2];
+	for (int light = 0; light < 2; light++) {
+		//ﾗｲﾄ位置.
+		float4 vLightPos = g_vLightPos;
+		vLightPos.x += 15.0f * light;
+		//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
+		float4 vLightVector = normalize(vLightPos - input.PosWorld);
 
-	//鏡面反射光 ③.
-	float NL = saturate(dot(input.Norm, vLightVector));
-	float3 reflect = normalize(2.0f * NL * input.Normal - vLightVector);
-	float4 specular =
-		pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
+		//鏡面反射光 ③.
+		float NL = saturate(dot(input.Norm, vLightVector));
+		float3 reflect = normalize(2.0f * NL * input.Normal - vLightVector);
+		float4 specular =
+			pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
 
-	//ﾌｫﾝﾓﾃﾞﾙ最終色　①②③の合計.
-	float4 Color = ambient + diffuse + specular;
-	Color.r *= 0.5f;
-	Color.g *= 0.5f;
-	Color.b *= 1.0f;
-	//float4 Color = ambient + diffuse + specular;
+		//ﾌｫﾝﾓﾃﾞﾙ最終色　①②③の合計.
+		Color[light] = ambient + diffuse + specular;
+		Color[light].r *= 0.5f;
+		Color[light].g *= 0.5f;
+		Color[light].b *= 1.0f;
 
+		//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
+		float cos = saturate(dot(vLightBaseVector, vLightVector));
+		//ｺｰﾝ角度:とりあえず 0.9f.
+		if (cos < g_fLightWidth.x) {
+			Color[light] *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color[light];
+		}
 
-	//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
-	float cos = saturate(dot(vLightBaseVector, vLightVector));
-	//ｺｰﾝ角度:とりあえず 0.9f.
-	if (cos < g_fLightWidth.x) {
-		Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
+		//減衰.
+		float Distance = length(g_vLightPos - input.PosWorld);
+		//att = 1 ÷ 0 ÷ ( a + b * d + c * d^2 )
+		//d:距離
+		//a,b,c:定数.
+		Color[light] *=
+			1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
+
+		//ﾗｲﾄ強度を反映.
+		Color[light] *= g_fIntensity.x;
 	}
-
-	//減衰.
-	float Distance = length(g_vLightPos - input.PosWorld);
-	//att = 1 ÷ 0 ÷ ( a + b * d + c * d^2 )
-	//d:距離
-	//a,b,c:定数.
-   Color *=
-	   1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
-
-	//ﾗｲﾄ強度を反映.
-	Color *= g_fIntensity.x;
    //                 1
    // fatt = -------------------
    //        a + b * d + c * d^2
@@ -194,5 +196,5 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
    // a,b,c:定数.
    // d    :距離.
 	
-	return Color;
+	return Color[0] + Color[1];
 }
