@@ -135,12 +135,8 @@ PSSkinIn VS_Main( VSSkinIn input )
 float4 PS_Main( PSSkinIn input ) : SV_Target
 {
 
-	//ﾗｲﾄ位置.
-	float4 vLightPos = g_vLightPos;
 	//視線ﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙから視点座標に向かうﾍﾞｸﾄﾙ.
 	float4 vEyeVector = normalize(g_vEye - input.PosWorld);
-	//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
-	float4 vLightVector = normalize(vLightPos - input.PosWorld);
 	//ﾗｲﾄの基準ﾍﾞｸﾄﾙ.
 	float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
 
@@ -152,24 +148,27 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 	float4 ambient = g_Ambient;
 
 	//拡散反射光 ②.
-	float NL = saturate(dot(input.Norm, vLightVector));
 	float4 diffuse =
 		(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
 
+	//ﾗｲﾄ位置.
+	float4 vLightPos = g_vLightPos;
+	//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
+	float4 vLightVector = normalize(vLightPos - input.PosWorld);
+
 	//鏡面反射光 ③.
+	float NL = saturate(dot(input.Norm, vLightVector));
 	float3 reflect = normalize(2.0f * NL * input.Normal - vLightVector);
 	float4 specular =
 		pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
 
 	//ﾌｫﾝﾓﾃﾞﾙ最終色　①②③の合計.
 	float4 Color = ambient + diffuse + specular;
-	//float4 Color = ambient + diffuse + specular;
-
-	//ﾗｲﾄ強度を反映.
 	Color.r *= 0.5f;
 	Color.g *= 0.5f;
 	Color.b *= 1.0f;
-	Color *= g_fIntensity.x;
+	//float4 Color = ambient + diffuse + specular;
+
 
 	//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
 	float cos = saturate(dot(vLightBaseVector, vLightVector));
@@ -186,6 +185,8 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
    Color *=
 	   1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
 
+	//ﾗｲﾄ強度を反映.
+	Color *= g_fIntensity.x;
    //                 1
    // fatt = -------------------
    //        a + b * d + c * d^2

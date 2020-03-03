@@ -358,7 +358,6 @@ void CMainStage::Init()
 	m_Camera.vLook = CAMERA_START_LOOK;
 
 	//ÉâÉCÉgèÓïÒèâä˙ê›íË.
-	//m_stLight.vPos = D3DXVECTOR3(17.1f, -3.7f, -0.3f);
 	m_stLight.vPos = D3DXVECTOR3(17.1f, 21.7f, -0.5f);
 	m_stLight.fIntensity = 10.4f;
 	m_stLight.m_fLightWidth = 10.9f;
@@ -366,7 +365,6 @@ void CMainStage::Init()
 	
 	D3DXMATRIX mYaw, mPich, mRoll;
 	D3DXMatrixRotationY(&mYaw, 0.0f);
-	//D3DXMatrixRotationX(&mPich, 2.8f);
 	D3DXMatrixRotationX(&mPich, 0.0f);
 	D3DXMatrixRotationZ(&mRoll, 0.0f);
 	m_stLight.mRot = mYaw * mPich * mRoll;
