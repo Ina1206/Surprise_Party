@@ -4,7 +4,7 @@ CStageBase::CStageBase()
 	: m_mView			()
 	, m_mProj			()
 	, m_stLight			()
-	, m_vCameraPos		(0.0f, 0.0f, 0.0f)
+	//, m_vCameraPos		(0.0f, 0.0f, 0.0f)
 	, m_Camera			()
 	, m_bChangeStageFlag(false)
 	, m_StageNum		(0)
@@ -25,7 +25,7 @@ void CStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mP
 {
 	m_mView			= mView;
 	m_mProj			= mProj;
-	m_vCameraPos	= vCameraPos;
+	//m_vCameraPos	= vCameraPos;
 
 	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//è„ï˚(ÉxÉNÉgÉã).
 	D3DXMatrixLookAtLH(

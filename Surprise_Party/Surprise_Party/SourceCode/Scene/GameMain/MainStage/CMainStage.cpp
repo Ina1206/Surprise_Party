@@ -17,6 +17,8 @@ CMainStage::CMainStage(int stageNum, enBeforeStageEndigneType enType)
 	, m_ObjectSelectFlag		(0)
 	, m_pCGameGhostCursor		(nullptr)
 	, m_pCClosedTime			(nullptr)
+	, m_pCSurpriseGage			()
+	, m_vLightPos				()
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -35,6 +37,12 @@ CMainStage::~CMainStage()
 //===================================.
 void CMainStage::UpDate(const bool& ControlFlag)
 {
+	//スポットライト更新処理関数.
+	SpotLightUpdate();
+
+	//静的オブジェクト更新処理関数.
+	m_pCStaticObjectManager->SetCameraPos(m_Camera.vPos);
+	m_pCStaticObjectManager->UpData();
 
 
 	//人の更新処理関数.
@@ -247,8 +255,6 @@ void CMainStage::Render()
 	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_stLight);
 
 	//静的オブジェクトの描画.
-	m_pCStaticObjectManager->SetCameraPos(m_Camera.vPos);
-	m_pCStaticObjectManager->UpData();
 	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
 
 	//お化け体力アイコン描画処理関数.
@@ -295,6 +301,9 @@ void CMainStage::Init()
 	//静的オブジェクトインスタンス化.
 	m_pCStaticObjectManager.reset(new CStaticObjectManager());
 
+	//ステージの長さ最大数.
+	float m_fStageDistanceMax = m_pCStaticObjectManager->GetStageDistanceMax();
+
 	//お化け設定.
 	int GhostFilenum = (static_cast<int>(CFileResource::enStageType::GhostPos_OneDay) * 3) + FileNum;
 	for (int stage = 0; stage < m_pCFileResource->GetStageMax(GhostFilenum); stage++) {
@@ -321,14 +330,14 @@ void CMainStage::Init()
 	//人管理クラス設定.
 	m_pCPeopleManager.reset(new CPeopleManager());
 	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleOder) + FileNum, 12, m_pCFileResource->GetStageMax(GhostFilenum) * m_pCMoveObjectManager->OBJECT_WIDTH);
-	m_pCPeopleManager->SetStageDistanceMax(m_pCStaticObjectManager->GetStageDistanceMax());
+	m_pCPeopleManager->SetStageDistanceMax(m_fStageDistanceMax);
 
 	//====UI系のインスタンス化====.
 	//ステージ.
 	m_pCStageMap.reset(new CStageMap());
 	//マップ上のお化けのカーソル.
 	m_pCMapGhostCursor.reset(new CMapGhostCursor());
-	m_pCMapGhostCursor->SetStageMax(m_pCStaticObjectManager->GetStageDistanceMax());
+	m_pCMapGhostCursor->SetStageMax(m_fStageDistanceMax);
 	//ゲーム内お化けのカーソル.
 	m_pCGameGhostCursor.reset(new CGameGhostCursor());
 	//閉店までの時間.
@@ -358,13 +367,21 @@ void CMainStage::Init()
 	m_Camera.vLook = CAMERA_START_LOOK;
 
 	//ライト情報初期設定.
-	m_stLight.vPos = D3DXVECTOR3(17.1f, 21.7f, -0.5f);
+	m_stLight.vPos = D3DXVECTOR3(0.0f , 21.7f, -0.5f);
 	m_stLight.fIntensity = 10.4f;
 	m_stLight.m_fLightWidth = 10.9f;
 	m_stLight.fLightPosWidth = 20.0f;
 	m_stLight.vLightColor = D3DXVECTOR3(0.5f, 0.5f, 1.0f);
 	m_stLight.m_fLightMax = 3.0f;
 	D3DXMatrixIdentity(&m_stLight.mRot);
+
+	//ライトの配置横幅.
+	float m_LightWidth = m_stLight.fLightPosWidth;
+	for (int Light = 0; m_LightWidth * Light <= m_fStageDistanceMax; Light++) {
+		D3DXVECTOR3 vLightPos = m_stLight.vPos;
+		vLightPos.x = m_LightWidth * Light;
+		m_vLightPos.push_back(vLightPos);
+	}
 	
 	D3DXMATRIX mYaw, mPich, mRoll;
 	D3DXMatrixRotationY(&mYaw, 0.0f);
@@ -542,4 +559,17 @@ void CMainStage::CameraMove()
 	
 }
 
-//template void CMainStage::GhostElementSort<std::unique_ptr<CWorkGhostBase>>(CWorkGhostBase, int);
+//=========================================.
+//		スポットライト更新処理関数.
+//=========================================.
+void CMainStage::SpotLightUpdate()
+{
+	for (unsigned int light = 0; light < m_vLightPos.size(); light++) {
+		if (m_Camera.vPos.x + 10.0f > m_vLightPos[light].x &&
+			m_Camera.vPos.x - 10.0f < m_vLightPos[light].x) {
+			m_stLight.vPos = m_vLightPos[light];
+			break;
+		}
+	}
+	//m_vCameraPos
+}

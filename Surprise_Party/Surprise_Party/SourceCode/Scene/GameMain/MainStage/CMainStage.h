@@ -62,6 +62,7 @@ private:
 	template <typename T>
 	void GhostElementSort(T pClass, int array);		//お化け要素数変換処理関数.
 	void CameraMove();								//カメラ移動処理.
+	void SpotLightUpdate();							//スポットライト更新処理関数.
 
 	//===================変数=======================//.
 	std::unique_ptr<CStaticObjectManager>			m_pCStaticObjectManager;	//静的オブジェクト管理クラス.
@@ -79,6 +80,8 @@ private:
 
 	std::unique_ptr<CClosedTime>					m_pCClosedTime;				//閉店までの時間クラス.
 	std::unique_ptr<CSurpriseGage>					m_pCSurpriseGage;			//驚きゲージクラス.
+	
+	std::vector<D3DXVECTOR3>						m_vLightPos;				//ライト座標.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

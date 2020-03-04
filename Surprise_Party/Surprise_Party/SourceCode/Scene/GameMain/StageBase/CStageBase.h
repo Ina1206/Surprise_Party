@@ -46,7 +46,7 @@ protected:
 	D3DXMATRIX					m_mView;					//ビュー行列.
 	D3DXMATRIX					m_mProj;					//プロジェクション行列.
 	LIGHT						m_stLight;					//ライト情報.
-	D3DXVECTOR3					m_vCameraPos;				//カメラ座標.
+	//D3DXVECTOR3					m_vCameraPos;				//カメラ座標.
 	CAMERA						m_Camera;					//カメラ構造体.
 
 	bool						m_bChangeStageFlag;			//ステージ変更フラグ.
