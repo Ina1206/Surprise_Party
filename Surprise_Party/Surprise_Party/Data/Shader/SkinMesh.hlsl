@@ -152,11 +152,11 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 	float4 diffuse =
 		(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
 
-	float4 Color[2];
-	for (int light = 0; light < 2; light++) {
+	float4 Color[3];
+	for (int light = 0; light < 3; light++) {
 		//×²ÄˆÊ’u.
 		float4 vLightPos = g_vLightPos;
-		vLightPos.x += 15.0f * light;
+		vLightPos.x += 20.0f * light;
 		//×²ÄÍÞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç×²ÄŒ»ÝÀ•W‚ÉŒü‚©‚¤ÍÞ¸ÄÙ.
 		float4 vLightVector = normalize(vLightPos - input.PosWorld);
 
@@ -180,7 +180,7 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 		}
 
 		//Œ¸Š.
-		float Distance = length(g_vLightPos - input.PosWorld);
+		float Distance = length(vLightPos - input.PosWorld);
 		//att = 1 € 0 € ( a + b * d + c * d^2 )
 		//d:‹——£
 		//a,b,c:’è”.
@@ -197,5 +197,5 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
    // a,b,c:’è”.
    // d    :‹——£.
 	
-	return Color[0] + Color[1];
+	return Color[0] + Color[1] + Color[2];
 }

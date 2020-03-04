@@ -71,33 +71,31 @@ VS_OUT VS_Main(float4 Pos	: POSITION,
 //---------------------------------------
 float4 PS_Main(VS_OUT In) : SV_Target
 {
-	//‹üÍŞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç‹“_À•W‚ÉŒü‚©‚¤ÍŞ¸ÄÙ.
-	float4 vEyeVector = normalize(g_vCamPos - In.PosWorld);
-	//×²Ä‚ÌŠî€ÍŞ¸ÄÙ.
-	float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
-
-	//×²Ä‚ÌŠî€ÍŞ¸ÄÙ‚ÉŒ»İ‚Ì×²Ä‚Ì‰ñ“]‚ğ”½‰f.
-	vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
-
-	//ŠÂ‹«Œõ@‡@.
-	float4 ambient = g_Ambient;
-
-	//ŠgU”½ËŒõ ‡A.
-	float4 diffuse =
-		(g_Diffuse / 2 + g_Texture.Sample(g_SamLinear, In.Tex) / 2)/**NL*/;
-
-	float4 Color[2];
-	for (int light = 0; light < 2; light++) {
+	float4 Color[3];
+	for (int light = 0; light < 3; light++) {
 		//×²ÄˆÊ’u.
 		float4 vLightPos = g_vLightPos;
-		vLightPos.x += 15.0f * light;
+		vLightPos.x += 20.0f * light;
 		//×²ÄÍŞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç×²ÄŒ»İÀ•W‚ÉŒü‚©‚¤ÍŞ¸ÄÙ.
 		float4 vLightVector = normalize(vLightPos - In.PosWorld);
 
+		//‹üÍŞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç‹“_À•W‚ÉŒü‚©‚¤ÍŞ¸ÄÙ.
+		float4 vEyeVector = normalize(g_vCamPos - In.PosWorld);
+		//×²Ä‚ÌŠî€ÍŞ¸ÄÙ.
+		float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
 
+		//×²Ä‚ÌŠî€ÍŞ¸ÄÙ‚ÉŒ»İ‚Ì×²Ä‚Ì‰ñ“]‚ğ”½‰f.
+		vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
+
+		//ŠÂ‹«Œõ@‡@.
+		float4 ambient = g_Ambient;
+
+		//ŠgU”½ËŒõ ‡A.
+		float NL = saturate(dot(In.Normal, vLightVector));
+		float4 diffuse =
+			(g_Diffuse / 2 + g_Texture.Sample(g_SamLinear, In.Tex) / 2)/**NL*/;
 
 		//‹¾–Ê”½ËŒõ ‡B.
-		float NL = saturate(dot(In.Normal, vLightVector));
 		float3 reflect = normalize(2.0f * NL * In.Normal - vLightVector);
 		float4 specular =
 			pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
@@ -114,19 +112,19 @@ float4 PS_Main(VS_OUT In) : SV_Target
 		}
 
 		//Œ¸Š.
-		float Distance = length(g_vLightPos - In.PosWorld);
+		float Distance = length(vLightPos - In.PosWorld);
 		//att = 1 € 0 € ( a + b * d + c * d^2 )
 		//d:‹——£
 		//a,b,c:’è”.
 		Color[light] *=
 			1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
 		//×²Ä‹­“x‚ğ”½‰f.
-		Color[light] *= g_fIntensity.x;
-		Color[light].a = 1.0f;
-		Color[light].a *= g_vAlpha.x;
-		Color[light].a /= 2.0f;
+		Color[light] *= g_fIntensity.x /** (light + 1 + light)*/;
+		Color[light].a = 0.0f;
 	}
 
+	Color[1].a = 1.0f;
+	Color[1].a *= g_vAlpha.x;
 
 
 	//                 1
@@ -136,7 +134,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	// a,b,c:’è”.
 	// d    :‹——£.
 
-	return Color[0] + Color[1];
+	return Color[0] + Color[1] + Color[2];
 }
 
 
