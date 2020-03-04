@@ -138,47 +138,47 @@ PSSkinIn VS_Main( VSSkinIn input )
 float4 PS_Main( PSSkinIn input ) : SV_Target
 {
 
-	//‹üÍŞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç‹“_À•W‚ÉŒü‚©‚¤ÍŞ¸ÄÙ.
-	float4 vEyeVector = normalize(g_vEye - input.PosWorld);
-	//×²Ä‚ÌŠî€ÍŞ¸ÄÙ.
-	float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
-
-	//×²Ä‚ÌŠî€ÍŞ¸ÄÙ‚ÉŒ»İ‚Ì×²Ä‚Ì‰ñ“]‚ğ”½‰f.
-	vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
-
-
-	//ŠÂ‹«Œõ@‡@.
-	float4 ambient = g_Ambient;
-
-	//ŠgU”½ËŒõ ‡A.
-	float4 diffuse =
-		(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
-
-	float4 Color[3];
+	float4 AllColor = float4(0.0f, 0.0f, 0.0f, 0.0f);
 	for (int light = 0; light < g_vLightMax.x; light++) {
 		//×²ÄˆÊ’u.
 		float4 vLightPos = g_vLightPos;
-		vLightPos.x += 20.0f * light;
+		vLightPos.x += g_vLightPosWidth.x * light;
 		//×²ÄÍŞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç×²ÄŒ»İÀ•W‚ÉŒü‚©‚¤ÍŞ¸ÄÙ.
 		float4 vLightVector = normalize(vLightPos - input.PosWorld);
+		//‹üÍŞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç‹“_À•W‚ÉŒü‚©‚¤ÍŞ¸ÄÙ.
+		float4 vEyeVector = normalize(g_vEye - input.PosWorld);
+		//×²Ä‚ÌŠî€ÍŞ¸ÄÙ.
+		float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
+
+		//×²Ä‚ÌŠî€ÍŞ¸ÄÙ‚ÉŒ»İ‚Ì×²Ä‚Ì‰ñ“]‚ğ”½‰f.
+		vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
+
+
+		//ŠÂ‹«Œõ@‡@.
+		float4 ambient = g_Ambient;
+
+		//ŠgU”½ËŒõ ‡A.
+		float NL = saturate(dot(input.Norm, vLightVector));
+		float4 diffuse =
+			(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
+
 
 		//‹¾–Ê”½ËŒõ ‡B.
-		float NL = saturate(dot(input.Norm, vLightVector));
 		float3 reflect = normalize(2.0f * NL * input.Normal - vLightVector);
 		float4 specular =
 			pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
 
 		//Ì«İÓÃŞÙÅIF@‡@‡A‡B‚Ì‡Œv.
-		Color[light] = ambient + diffuse + specular;
-		Color[light].r *= 0.5f;
-		Color[light].g *= 0.5f;
-		Color[light].b *= 1.0f;
+		float4 Color = ambient + diffuse + specular;
+		Color.r *= g_vLightColor.x;
+		Color.g *= g_vLightColor.y;
+		Color.b *= g_vLightColor.z;
 
 		//½Îß¯Ä×²Ä‚Ì”ÍˆÍ“à‚Æ”ÍˆÍŠO‚Ì‹«ŠE‚ğŠŠ‚ç‚©‚É•Ï‰»‚³‚¹‚é.
 		float cos = saturate(dot(vLightBaseVector, vLightVector));
 		//º°İŠp“x:‚Æ‚è‚ ‚¦‚¸ 0.9f.
 		if (cos < g_fLightWidth.x) {
-			Color[light] *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color[light];
+			Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
 		}
 
 		//Œ¸Š.
@@ -186,11 +186,13 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 		//att = 1 € 0 € ( a + b * d + c * d^2 )
 		//d:‹——£
 		//a,b,c:’è”.
-		Color[light] *=
+		Color *=
 			1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
 
 		//×²Ä‹­“x‚ğ”½‰f.
-		Color[light] *= g_fIntensity.x;
+		Color *= g_fIntensity.x;
+
+		AllColor += Color;
 	}
    //                 1
    // fatt = -------------------
@@ -199,5 +201,5 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
    // a,b,c:’è”.
    // d    :‹——£.
 	
-	return Color[0] + Color[1] + Color[2];
+	return AllColor;
 }

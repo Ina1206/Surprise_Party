@@ -73,11 +73,11 @@ VS_OUT VS_Main(float4 Pos	: POSITION,
 //---------------------------------------
 float4 PS_Main(VS_OUT In) : SV_Target
 {
-	float4 Color[3];
+	float4 AllColor = float4(0.0f, 0.0f, 0.0f, 0.0f);
 	for (int light = 0; light < g_vLightMax.x; light++) {
 		//×²ÄˆÊ’u.
 		float4 vLightPos = g_vLightPos;
-		vLightPos.x += 20.0f * light;
+		vLightPos.x += g_vLightPosWidth.x * light;
 		//×²ÄÍÞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç×²ÄŒ»ÝÀ•W‚ÉŒü‚©‚¤ÍÞ¸ÄÙ.
 		float4 vLightVector = normalize(vLightPos - In.PosWorld);
 
@@ -102,15 +102,15 @@ float4 PS_Main(VS_OUT In) : SV_Target
 		float4 specular =
 			pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
 		//Ì«ÝÓÃÞÙÅIF@‡@‡A‡B‚Ì‡Œv.
-		Color[light] = ambient + diffuse + specular;
-		Color[light].r *= 0.5f;
-		Color[light].g *= 0.5f;
-		Color[light].b *= 1.0f;
+		float4 Color = ambient + diffuse + specular;
+		Color.r *= g_vLightColor.x;
+		Color.g *= g_vLightColor.y;
+		Color.b *= g_vLightColor.z;
 		//½Îß¯Ä×²Ä‚Ì”ÍˆÍ“à‚Æ”ÍˆÍŠO‚Ì‹«ŠE‚ðŠŠ‚ç‚©‚É•Ï‰»‚³‚¹‚é.
 		float cos = saturate(dot(vLightBaseVector, vLightVector));
 		//º°ÝŠp“x:‚Æ‚è‚ ‚¦‚¸ 0.9f.
 		if (cos < g_fLightWidth.x) {
-			Color[light] *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color[light];
+			Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
 		}
 
 		//Œ¸Š.
@@ -118,15 +118,15 @@ float4 PS_Main(VS_OUT In) : SV_Target
 		//att = 1 € 0 € ( a + b * d + c * d^2 )
 		//d:‹——£
 		//a,b,c:’è”.
-		Color[light] *=
-			1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
+		Color *= 1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
 		//×²Ä‹­“x‚ð”½‰f.
-		Color[light] *= g_fIntensity.x /** (light + 1 + light)*/;
-		Color[light].a = 0.0f;
+		Color *= g_fIntensity.x;
+
+		AllColor += Color;
 	}
 
-	Color[0].a = 1.0f;
-	Color[0].a *= g_vAlpha.x;
+	AllColor.a = 1.0f;
+	AllColor.a *= g_vAlpha.x;
 
 
 	//                 1
@@ -136,7 +136,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	// a,b,c:’è”.
 	// d    :‹——£.
 
-	return Color[0] + Color[1] + Color[2];
+	return AllColor;
 }
 
 
