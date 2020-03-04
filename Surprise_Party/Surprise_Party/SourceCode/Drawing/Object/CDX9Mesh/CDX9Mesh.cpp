@@ -637,6 +637,9 @@ void CDX9Mesh::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		cb.mLightRot = stLight.mRot;
 		cb.fIntensity = D3DXVECTOR4( stLight.fIntensity, 0.0f, 0.0f, 0.0f);
 		cb.fLightWidth = D3DXVECTOR4( stLight.m_fLightWidth, 0.0f, 0.0f, 0.0f);
+		cb.vLightColor = D3DXVECTOR4(stLight.vLightColor.x, stLight.vLightColor.y, stLight.vLightColor.z, 0.0f);
+		cb.vLightPosWidth = D3DXVECTOR4(stLight.fLightPosWidth, 0.0f, 0.0f, 0.0f);
+		cb.vLightMax = D3DXVECTOR4(stLight.m_fLightMax, 0.0f, 0.0f, 0.0f);
 		//cb.fIntensity = D3DXVECTOR4(stLight.fIntensity, 0.0f, 0.0f, 0.0f);
 		//cb.fLightWidth = D3DXVECTOR4(stLight.m_fLightWidth, 0.0f, 0.0f, 0.0f);
 

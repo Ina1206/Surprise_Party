@@ -361,6 +361,9 @@ void CMainStage::Init()
 	m_stLight.vPos = D3DXVECTOR3(17.1f, 21.7f, -0.5f);
 	m_stLight.fIntensity = 10.4f;
 	m_stLight.m_fLightWidth = 10.9f;
+	m_stLight.fLightPosWidth = 20.0f;
+	m_stLight.vLightColor = D3DXVECTOR3(0.5f, 0.5f, 1.0f);
+	m_stLight.m_fLightMax = 3.0f;
 	D3DXMatrixIdentity(&m_stLight.mRot);
 	
 	D3DXMATRIX mYaw, mPich, mRoll;

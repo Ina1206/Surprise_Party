@@ -12,6 +12,7 @@ struct LIGHT
 	float		fIntensity;		//強度(明るさ).
 	float		m_fLightWidth;	//光の広さ.
 	D3DXVECTOR3 vLightColor;	//ライトの色.
+	float		fLightPosWidth;	//ライト配置幅.
 	float		m_fLightMax;	//ライトの最大値.
 };
 
