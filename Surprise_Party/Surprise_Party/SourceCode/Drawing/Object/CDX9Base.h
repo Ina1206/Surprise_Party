@@ -12,6 +12,7 @@ struct LIGHT
 	float		fIntensity;		//強度(明るさ).
 	float		m_fLightWidth;	//光の広さ.
 	D3DXVECTOR3 vLightColor;	//ライトの色.
+	float		m_fLightMax;	//ライトの最大値.
 };
 
 /***************************************
@@ -100,6 +101,8 @@ protected:
 		D3DXVECTOR4			vLightColor;	//ライト色.
 		D3DXVECTOR4			vAlpha;			//色.
 		D3DXVECTOR4			vUV;			//UV.			
+		D3DXVECTOR4			vLightPosWidth;	//ライト配置幅.
+		D3DXVECTOR4			vLightMax;		//ライト最大数.
 	};
 
 	HWND								m_hWnd;					//ウィンドウハンドル.

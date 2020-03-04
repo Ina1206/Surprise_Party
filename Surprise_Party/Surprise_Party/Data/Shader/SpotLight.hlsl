@@ -21,14 +21,16 @@ cbuffer per_material: register(b1)
 //ﾌﾚｰﾑ単位.
 cbuffer per_frame	: register(b2)
 {
-	float4	g_vCamPos;		//ｶﾒﾗ位置.
-	float4	g_vLightPos;	//ﾗｲﾄ位置.
-	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
-	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
-	float4	g_fLightWidth;	//ライトの広さ.
-	float4	g_vLightColor;	//ライト色.
-	float4	g_vAlpha;
-	float4	g_vUv;
+	float4	g_vCamPos;			//ｶﾒﾗ位置.
+	float4	g_vLightPos;		//ﾗｲﾄ位置.
+	matrix	g_mLightRot;		//ﾗｲﾄ回転行列.
+	float4	g_fIntensity;		//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
+	float4	g_fLightWidth;		//ライトの広さ.
+	float4	g_vLightColor;		//ライト色.
+	float4	g_vAlpha;			//透過値.
+	float4	g_vUv;				//UV.
+	float4	g_vLightPosWidth;	//ライト配置幅.
+	float4	g_vLightMax;		//ライト最大値.
 };
 
 //頂点ｼｪｰﾀﾞの出力ﾊﾟﾗﾒｰﾀ.
@@ -72,7 +74,7 @@ VS_OUT VS_Main(float4 Pos	: POSITION,
 float4 PS_Main(VS_OUT In) : SV_Target
 {
 	float4 Color[3];
-	for (int light = 0; light < 3; light++) {
+	for (int light = 0; light < g_vLightMax.x; light++) {
 		//ﾗｲﾄ位置.
 		float4 vLightPos = g_vLightPos;
 		vLightPos.x += 20.0f * light;
@@ -123,8 +125,8 @@ float4 PS_Main(VS_OUT In) : SV_Target
 		Color[light].a = 0.0f;
 	}
 
-	Color[1].a = 1.0f;
-	Color[1].a *= g_vAlpha.x;
+	Color[0].a = 1.0f;
+	Color[0].a *= g_vAlpha.x;
 
 
 	//                 1

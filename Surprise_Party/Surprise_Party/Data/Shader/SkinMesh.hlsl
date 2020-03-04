@@ -27,14 +27,16 @@ cbuffer per_material	: register( b1 )
 //コンスタントバッファ(フレームごと).
 cbuffer per_frame		: register( b2 )
 {
-	float4	g_vEye;			//カメラ位置.
-	float4	g_vLightPos;	//ﾗｲﾄ位置.
-	matrix	g_mLightRot;	//ﾗｲﾄ回転行列.
-	float4	g_fIntensity;	//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
-	float4	g_fLightWidth;	//ライト広さ.
-	float4	g_vLightColor;	//ライト色.
-	float4	g_fAlpha;
-	float4	g_vUV;
+	float4	g_vEye;				//カメラ位置.
+	float4	g_vLightPos;		//ﾗｲﾄ位置.
+	matrix	g_mLightRot;		//ﾗｲﾄ回転行列.
+	float4	g_fIntensity;		//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
+	float4	g_fLightWidth;		//ライト広さ.
+	float4	g_vLightColor;		//ライト色.
+	float4	g_fAlpha;			//透過値.
+	float4	g_vUV;				//UV.
+	float4	g_vLightPosWidth;	//ライトの配置幅.
+	float4	g_vLightMax;		//ライト最大値.
 };
 //ボーンのポーズ行列が入る.
 cbuffer per_bones		: register( b3 )
@@ -153,7 +155,7 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 		(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
 
 	float4 Color[3];
-	for (int light = 0; light < 3; light++) {
+	for (int light = 0; light < g_vLightMax.x; light++) {
 		//ﾗｲﾄ位置.
 		float4 vLightPos = g_vLightPos;
 		vLightPos.x += 20.0f * light;

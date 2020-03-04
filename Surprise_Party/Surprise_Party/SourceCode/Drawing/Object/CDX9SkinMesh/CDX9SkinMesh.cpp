@@ -729,6 +729,8 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 		cb.mLightRot = m_stLight.mRot;
 		cb.fIntensity = D3DXVECTOR4( m_stLight.fIntensity * 2.0f, 0.0f, 0.0f, 0.0f);
 		cb.fLightWidth = D3DXVECTOR4( m_stLight.m_fLightWidth, 0.0f, 0.0f, 0.0f);
+		cb.vLightColor = D3DXVECTOR4(m_stLight.vLightColor.x, m_stLight.vLightColor.y, m_stLight.vLightColor.z, 0.0f);
+	
 		cb.vUV = D3DXVECTOR4(m_vUV.x, m_vUV.y, 0.0f, 0.0f);
 		cb.vAlpha = D3DXVECTOR4(m_fAlpha, 0.0f, 0.0f, 0.0f);
 		//cb.fIntensity = D3DXVECTOR4(m_stLight.fIntensity, 0.0f, 0.0f, 0.0f);
