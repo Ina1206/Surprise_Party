@@ -1,12 +1,12 @@
 #include "CMoveObjectManager.h"
 
 CMoveObjectManager::CMoveObjectManager() 
-	: CMoveObjectManager	(0)
+	: CMoveObjectManager	(0, 0)
 {
 
 }
 
-CMoveObjectManager::CMoveObjectManager(int FileNum)
+CMoveObjectManager::CMoveObjectManager(const int& FileNum, const int& StageNum)
 	: m_mView				()
 	, m_mProj				()
 	, m_pCMoveObjectBase	()
@@ -27,7 +27,7 @@ CMoveObjectManager::CMoveObjectManager(int FileNum)
 	, m_FlowerSwingCnt		(0)
 {
 	//初期化処理関数.
-	Init(FileNum);
+	Init(FileNum, StageNum);
 }
 
 CMoveObjectManager::~CMoveObjectManager()
@@ -156,7 +156,7 @@ void CMoveObjectManager::EffectRender()
 //======================================.
 //		初期化処理関数.
 //======================================.
-void CMoveObjectManager::Init(int FileNum)
+void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 {
 	//ファイル.
 	m_pCFileResource = CFileResource::GetResourceInstance();
@@ -171,7 +171,7 @@ void CMoveObjectManager::Init(int FileNum)
 		//各オブジェクト区切りのステージマップ数.
 		int stagenum = stage - (stageMax - m_pCFileResource->GetStageMax(FileNum));
 		//オブジェクト番号.
-		objNum = m_pCFileResource->GetStageNum(0, 0, stagenum) - MOVEOBJECT_START_NUM;
+		objNum = m_pCFileResource->GetStageNum(FileNum, StageNum, stagenum) - MOVEOBJECT_START_NUM;
 		if (obj == objNum) {
 			//オブジェクトごとの座標設定.
 			switch (static_cast<enMoveObjectType>(objNum)) {

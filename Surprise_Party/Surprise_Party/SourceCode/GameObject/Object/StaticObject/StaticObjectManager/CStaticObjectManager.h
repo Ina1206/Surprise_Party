@@ -14,6 +14,7 @@ class CStaticObjectManager
 {
 public:
 	CStaticObjectManager();
+	CStaticObjectManager(const int& filenum, const int& stagenum);
 	~CStaticObjectManager();
 
 	//================列挙体===================//.
@@ -65,6 +66,9 @@ private:
 	D3DXMATRIX					m_mView;			//ビュー行列.
 	D3DXMATRIX					m_mProj;			//プロジェクション行列.
 	LIGHT						m_stLight;			//ライト情報.
+
+	int							m_Filenum;			//ファイル番号.
+	int							m_Stagenum;			//ステージ番号.
 
 	CFileResource*				m_pCFileResource;	//ファイル読み込み.
 	std::vector<CObjectBase*>	m_pCObjectBase;		//壁と床のオブジェクトクラス.

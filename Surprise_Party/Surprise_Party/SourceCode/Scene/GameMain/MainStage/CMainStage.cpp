@@ -1,4 +1,5 @@
 #include "CMainStage.h"
+#include <random>
 
 CMainStage::CMainStage()
 	: CMainStage	(0, enBeforeStageEndigneType::Nothing)
@@ -192,46 +193,48 @@ void CMainStage::UpDate(const bool& ControlFlag)
 //===================================.
 void CMainStage::Render()
 {
-	static bool	m_ControlFlag = true;
-	if (m_ControlFlag == true) {
-		if (GetAsyncKeyState('1') & 0x8000) {
-			m_stLight.fIntensity -= 0.1f;
-		}
-
-		if (GetAsyncKeyState('2') & 0x8000) {
-			m_stLight.fIntensity += 0.1f;
-		}
-	}
-	else {
-		if (GetAsyncKeyState('1') & 0x8000) {
-			m_stLight.m_fLightWidth -= 0.1f;
-		}
-
-		if (GetAsyncKeyState('2') & 0x8000) {
-			m_stLight.m_fLightWidth += 0.1f;
-		}
-
-	}
-
-	if (GetAsyncKeyState('S') & 0x8000) {
-		m_stLight.vPos.y += 0.1f;
-	}
-	if (GetAsyncKeyState('X') & 0x8000) {
-		m_stLight.vPos.y -= 0.1f;
-	}
-	if (GetAsyncKeyState('Z') & 0x8000) {
-		m_stLight.vPos.z += 0.1f;
-	}
-	if (GetAsyncKeyState('C') & 0x8000) {
-		m_stLight.vPos.z -= 0.1f;
-	}
-
-	if (GetAsyncKeyState(VK_F1) & 0x8000) {
+	{
+		static bool	m_ControlFlag = true;
 		if (m_ControlFlag == true) {
-			m_ControlFlag = false;
+			if (GetAsyncKeyState('1') & 0x8000) {
+				m_stLight.fIntensity -= 0.1f;
+			}
+
+			if (GetAsyncKeyState('2') & 0x8000) {
+				m_stLight.fIntensity += 0.1f;
+			}
 		}
 		else {
-			m_ControlFlag = true;
+			if (GetAsyncKeyState('1') & 0x8000) {
+				m_stLight.m_fLightWidth -= 0.1f;
+			}
+
+			if (GetAsyncKeyState('2') & 0x8000) {
+				m_stLight.m_fLightWidth += 0.1f;
+			}
+
+		}
+
+		if (GetAsyncKeyState('S') & 0x8000) {
+			m_stLight.vPos.y += 0.1f;
+		}
+		if (GetAsyncKeyState('X') & 0x8000) {
+			m_stLight.vPos.y -= 0.1f;
+		}
+		if (GetAsyncKeyState('Z') & 0x8000) {
+			m_stLight.vPos.z += 0.1f;
+		}
+		if (GetAsyncKeyState('C') & 0x8000) {
+			m_stLight.vPos.z -= 0.1f;
+		}
+
+		if (GetAsyncKeyState(VK_F1) & 0x8000) {
+			if (m_ControlFlag == true) {
+				m_ControlFlag = false;
+			}
+			else {
+				m_ControlFlag = true;
+			}
 		}
 	}
 
@@ -293,21 +296,31 @@ void CMainStage::Init()
 	int FileNum = 0;
 
 	//オブジェクトファイル番号.
-	int ObjFileNum = m_StageNum + FileNum;
+	int ObjFileNum = static_cast<int>(CFileResource::enStageType::OneDay) + m_StageNum;
 
 	//読み込みクラスアドレス取得.
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
 
 	//静的オブジェクトインスタンス化.
-	m_pCStaticObjectManager.reset(new CStaticObjectManager());
+	std::random_device rnda;
+	std::mt19937 mta(rnda());
+	std::uniform_int_distribution<> IntervalRand4(0, 2);
+	int m_columna = IntervalRand4(mta);
+	
+	m_pCStaticObjectManager.reset(new CStaticObjectManager(ObjFileNum, m_columna));
 
 	//ステージの長さ最大数.
 	float m_fStageDistanceMax = m_pCStaticObjectManager->GetStageDistanceMax();
 
 	//お化け設定.
-	int GhostFilenum = (static_cast<int>(CFileResource::enStageType::GhostPos_OneDay) * 3) + FileNum;
+	std::random_device rnd;
+	std::mt19937 mt(rnd());
+	std::uniform_int_distribution<> IntervalRand(0, 2);
+	int m_column = IntervalRand(mt);
+
+	int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos_OneDay) * 3;
 	for (int stage = 0; stage < m_pCFileResource->GetStageMax(GhostFilenum); stage++) {
-		switch (m_pCFileResource->GetStageNum(GhostFilenum, 0, stage) - 1) {
+		switch (m_pCFileResource->GetStageNum(GhostFilenum, m_column, stage) - 1) {
 		case 0:
 			m_pCWorkGhost.push_back(nullptr);
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CDispGhost());
@@ -324,7 +337,7 @@ void CMainStage::Init()
 	}
 
 	//動的オブジェクトインスタンス化.
-	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum));
+	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum, m_column));
 	m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkGhost.size());
 	
 	//人管理クラス設定.

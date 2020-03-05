@@ -16,7 +16,7 @@ class CMoveObjectManager
 {
 public:
 	CMoveObjectManager();
-	CMoveObjectManager(int FileNum);
+	CMoveObjectManager(const int& FileNum, const int& StageNum);
 	~CMoveObjectManager();
 
 	//================列挙体==================//.
@@ -97,7 +97,7 @@ public:
 
 private:
 	//=================関数===================//.
-	void Init(int FileNum);																	//初期化処理関数.
+	void Init(const int& FileNum, const int& StageNum);																	//初期化処理関数.
 	void Release();																	//解放処理関数.
 	void GimmickSort();																//ギミック要素数並べ替え処理関数.
 	void PaintingUpDown(int objNum);												//絵画を落としたり上げる処理関数..

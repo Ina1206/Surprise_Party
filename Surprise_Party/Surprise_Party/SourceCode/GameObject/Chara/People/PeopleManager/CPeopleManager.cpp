@@ -1,4 +1,5 @@
 #include "CPeopleManager.h"
+#include <random>
 
 CPeopleManager::CPeopleManager()
 	: m_pCFileResource		(nullptr)
@@ -33,10 +34,16 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 	m_pCFileResource = CFileResource::GetResourceInstance();
 	//人のクラスをインスタンス化する最大数.
 	m_CreateHumanMax = max;
+	
+	std::random_device rnd;
+	std::mt19937 mt(rnd());
+	std::uniform_int_distribution<> IntervalRand(0, 2);
+	int m_column = IntervalRand(mt);
+	m_column = 0;
 
 	//人の種類番号取得.
 	for (int people = 0; people < m_pCFileResource->GetStageMax(FileNum); people++) {
-		m_HumanAppOrder.push_back(m_pCFileResource->GetStageNum(FileNum, 0, people) - 1);
+		m_HumanAppOrder.push_back(m_pCFileResource->GetStageNum(FileNum, m_column, people) - 1);
 	}
 
 	//人と人のアイコンのインスタンス化.
@@ -46,7 +53,8 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 		m_pCPeopleIcon.push_back(nullptr);
 
 		//偶数：女の子、奇数：男の子.
-		if (people % 2 == 0) {
+		if (m_HumanAppOrder[people] % 2 == 0) {
+		//if (people % 2 == 0) {
 			m_pCPeopleBase[m_pCPeopleBase.size() - 1] = new CGirl();
 			m_pCPeopleBase[m_pCPeopleBase.size() - 1]->SetStageMax(StageMax);
 

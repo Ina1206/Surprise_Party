@@ -68,27 +68,35 @@ void CFileResource::StageLoad()
 {
 	//ファイルパス.
 	std::vector<std::string> m_FileName = {
-		"Data\\File\\StageFile\\ObjectMap\\First_Day\\TestNum_Part1.csv",
-		"Data\\File\\StageFile\\ObjectMap\\First_Day\\TestNum_Part2.csv",
-		"Data\\File\\StageFile\\ObjectMap\\First_Day\\TestNum_Part3.csv",
-		"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part1.csv",
-		"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part2.csv",
-		"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part3.csv",
-		"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part1.csv",
-		"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part2.csv",
-		"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part3.csv",
+		//オブジェクトマップ.
+		"Data\\File\\StageFile\\ObjectMap\\TestNum_Part1.csv",
+		"Data\\File\\StageFile\\ObjectMap\\TestNum_Part2.csv",
+		"Data\\File\\StageFile\\ObjectMap\\TestNum_Part3.csv",
+
+		//"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part1.csv",
+		//"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part2.csv",
+		//"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part3.csv",
+
+		//"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part1.csv",
+		//"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part2.csv",
+		//"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part3.csv",
+
+		//人.
 		"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_FirstDay.csv",
 		"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_SecondDay.csv",
 		"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_ThirdDay.csv",
-		"Data\\File\\StageFile\\GhostMap\\First_Day\\TestGhostNum_Part1.csv",
-		"Data\\File\\StageFile\\GhostMap\\First_Day\\TestGhostNum_Part2.csv",
-		"Data\\File\\StageFile\\GhostMap\\First_Day\\TestGhostNum_Part3.csv",
-		"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part1.csv",
-		"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part2.csv",
-		"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part3.csv",
-		"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part1.csv",
-		"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part2.csv",
-		"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part3.csv",
+		//お化けマップ.
+		"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part1.csv",
+		"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part2.csv",
+		"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part3.csv",
+
+		//"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part1.csv",
+		//"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part2.csv",
+		//"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part3.csv",
+		//
+		//"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part1.csv",
+		//"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part2.csv",
+		//"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part3.csv",
 	};
 
 	//ステージのファイルの読み込み処理.
