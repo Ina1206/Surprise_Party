@@ -19,32 +19,6 @@ class CDX9SkinMesh
 	: public CDX9Base
 {
 public:
-	////メッシュ単位.
-	//struct CBUFFER_PER_MESH
-	//{
-	//	D3DXMATRIX	mW;			//ワールド行列.
-	//	D3DXMATRIX	mWVP;		//ワールドから射影までの変換行列.
-	//};
-
-	////マテリアル単位.
-	//struct CBUFFER_PER_MATERIAL
-	//{
-	//	D3DXVECTOR4 vAmbient;	//アンビエント光.
-	//	D3DXVECTOR4 vDiffuse;	//ディフューズ色.
-	//	D3DXVECTOR4 vSpecular;	//鏡面反射.
-	//};
-
-	////シェーダーに渡す値.
-	//struct CBUFFER_PER_FRAME
-	//{
-	//	D3DXVECTOR4 vEye;			//カメラ位置.
-	//	D3DXVECTOR4 vColor;			//色.
-	//	D3DXVECTOR4 vLightPos;		//ライト座標.
-	//	D3DXVECTOR4 vLightDir;		//ライト方向.
-	//	D3DXMATRIX	mLightRot;		//ライト角度.
-	//	D3DXVECTOR4 m_fIntensity;	//ライト強度.
-	//};
-
 	//ボーン単位.
 	struct CBUFFER_PER_BONES
 	{
@@ -160,67 +134,12 @@ public:
 	bool GetDeviaPosFromBone(const char* sBoneName, D3DXVECTOR3* pOutPos, D3DXVECTOR3 vSpecifiedPos = { 0.0f, 0.0f, 0.0f });
 
 
-	////位置情報を設定.
-	//void SetPosition(float x, float y, float z) {
-	//	m_vPos.x = x;
-	//	m_vPos.y = y;
-	//	m_vPos.z = z;
-	//}
-	//void SetPosition(const D3DXVECTOR3& vPos) {
-	//	m_vPos = vPos;
-	//}
-	////位置情報を取得.
-	//D3DXVECTOR3 GetPosition() {
-	//	return m_vPos;
-	//}
-	////回転情報を設定.
-	//void SetRotation(const D3DXVECTOR3& vRot) {
-	//	m_vRot = vRot;
-	//}
-	////回転情報を取得.
-	//D3DXVECTOR3 GetRotation() {
-	//	return m_vRot;
-	//}
-	////拡縮情報を設定・取得.
-	//void SetScale(float Scale) {
-	//	m_vScale.x = Scale;
-	//	m_vScale.y = Scale;
-	//	m_vScale.z = Scale;
-	//}
-	//D3DXVECTOR3 GetScale() {
-	//	return m_vScale;
-	//}
-
-	////中心軸のズレを取得.
-	//void SetPrePos(D3DXVECTOR3 PrePos) {
-	//	m_vPrePos = PrePos;
-	//}
-
 private:
 	//Xファイルからスキンメッシュを作成する.
 	HRESULT LoadXMesh( const char* fileName );
 
-	//HWND m_hWnd;
-
-	//Dx9.
-	//LPDIRECT3DDEVICE9		m_pDevice9;
-
-	//Dx11.
-	//ID3D11Device*			m_pDevice11;
-	//ID3D11DeviceContext*	m_pContext11;
 	ID3D11SamplerState*		m_pSampleLinear;
-	//ID3D11VertexShader*		m_pVertexShader;
-	//ID3D11InputLayout*		m_pVertexLayout;
-	//ID3D11PixelShader*		m_pPixelShader;
-	//ID3D11Buffer*			m_pCBufferPerMesh;		//コンスタントバッファ(メッシュ毎).
-	//ID3D11Buffer*			m_pCBufferPerMaterial;	//コンスタントバッファ(マテリアル毎).
-	//ID3D11Buffer*			m_pCBufferPerFrame;		//コンスタントバッファ(フレーム毎).
 	ID3D11Buffer*			m_pCBufferPerBone;		//コンスタントバッファ(ボーン毎).
-
-	//D3DXVECTOR3		m_vPos;		//位置.
-	//D3DXVECTOR3		m_vRot;		//角度.
-	//float			m_fScale;	//大きさ.
-	//D3DXVECTOR3		m_vPrePos;	//読み込み時のオブジェクトの中心軸差分.
 
 	D3DXMATRIX		m_mWorld;
 	D3DXMATRIX		m_mRotation;

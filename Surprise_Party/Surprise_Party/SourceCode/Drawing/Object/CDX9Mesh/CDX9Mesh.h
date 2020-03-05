@@ -71,7 +71,6 @@ public:
 	BBOX   m_BBox;				//Bボックス構造体.
 
 
-	//void SetUV(const D3DXVECTOR2& vUV) { m_vUV = vUV; }
 
 	LPD3DXMESH	m_pMeshForRay;	//レイとメッシュ用.
 
@@ -82,35 +81,6 @@ private:
 
 	//シェーダ作成.
 	HRESULT InitShader();
-
-	////======================================.
-	////	構造体.
-	////======================================.
-	////コンスタントバッファのアプリ側の定義.
-	////※シェーダ内のコンスタントバッファと一致している必要あり.
-	//struct CBUFFER_PER_MESH
-	//{
-	//	D3DXMATRIX	mW;			//ワールド行列.
-	//	D3DXMATRIX	mWVP;		//ワールド,ビュー,プロジェクションの合成変換行列.
-	//};
-	//struct CBUFFER_PRE_MATERIAL
-	//{
-	//	D3DXVECTOR4 vAmbient;	//アンビエント色(環境色).
-	//	D3DXVECTOR4	vDiffuse;	//ディフューズ色(拡散反射色).
-	//	D3DXVECTOR4 vSpecular;	//スペキュラ色(鏡面反射色).
-	//};
-	////フレーム単位で渡す情報.
-	//struct CBUFFER_PER_FRAME
-	//{
-	//	D3DXVECTOR4			vCamPos;		//カメラ位置(視点位置).
-	//	D3DXVECTOR4			vLightPos;		//ライト方向.
-	//	D3DXVECTOR4			vLightDir;		//ﾗｲﾄ方向.
-	//	D3DXMATRIX			vLightRot;		//ライト角度.
-	//	ALIGN16 float		fIntensity;		//ﾗｲﾄ強度(明るさ).
-	//	ALIGN16 float		fLightWidth;	//ライトの広さ.
-	//	ALIGN16 float		vAlpha;			//色.
-	//	ALIGN16 D3DXVECTOR2 vUV;			//UV.			
-	//};
 
 	//頂点の構造体.
 	struct VERTEX
@@ -141,22 +111,8 @@ private:
 	};
 
 
-	//HWND					m_hWnd;					//ウィンドウハンドル.
-
 	//Dx9.
 	LPDIRECT3D9				m_pD3d9;				//Dx9オブジェクト.
-	//LPDIRECT3DDEVICE9		m_pDevice9;				//Dx9デバイスオブジェクト.
-
-	//Dx11.
-	//ID3D11Device*			m_pDevice11;			//デバイスオブジェクト.
-	//ID3D11DeviceContext*	m_pContext11;			//デバイスコンテキスト.
-
-	//ID3D11VertexShader*		m_pVertexShader;		//頂点シェーダ.
-	//ID3D11InputLayout*		m_pVertexLayout;		//頂点レイアウト.
-	//ID3D11PixelShader*		m_pPixelShader;			//ピクセルシェーダ.
-	//ID3D11Buffer*			m_pCBufferPerMesh;		//コンスタントバッファ(メッシュ毎).
-	//ID3D11Buffer*			m_pCBufferPerMaterial;	//コンスタントバッファ(マテリアル毎).
-	//ID3D11Buffer*			m_pCBufferPerFrame;		//コンスタントバッファ(フレーム毎)
 
 	ID3D11Buffer*			m_pVertexBuffer;		//頂点バッファ.
 	ID3D11Buffer**			m_ppIndexBuffer;		//インデックスバッファ.
@@ -170,20 +126,6 @@ private:
 	DWORD					m_AttrID[300];			//属性ID　※300属性まで.
 
 	bool					m_EnableTexture;		//テクスチャあり.
-
-	//float					m_fScale;				//拡大縮小値(x,y,z等倍).
-	//D3DXVECTOR3				m_vRot;					//回転値(x,y,z).
-	//												//※x = Pitch, y = Yaw, z = Roll.
-	//D3DXVECTOR3				m_vPos;					//位置(x,y,z).
-	//D3DXVECTOR3				m_vPrePos;
-
-	//int						m_ShadowMax;			//影の最大数.
-	//float					m_fAlpha;				//透過値.
-
-	//D3DXVECTOR2				m_vUV;					//UV.
-	//bool					m_bvRotNotUse;			//角度使わないフラグ.
-	//D3DXMATRIX				m_mRot;					//回転行列.
-	
 
 	//レンダリング関数(クラス内でのみ使用).
 	void RenderMesh(const D3DXMATRIX& mWorld, const D3DXMATRIX& mView, const D3DXMATRIX& mProj);

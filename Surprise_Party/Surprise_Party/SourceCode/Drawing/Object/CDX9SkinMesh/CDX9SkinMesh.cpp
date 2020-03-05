@@ -16,28 +16,11 @@ const char SHADER_NAME[] = "Data\\Shader\\SkinMesh.hlsl";
 **/
 //コンストラクタ.
 CDX9SkinMesh::CDX9SkinMesh()
-	//: m_hWnd(nullptr)
-	//, m_pDevice9(nullptr)
-	//, m_pDevice11(nullptr)
-	//, m_pContext11(nullptr)
-	//, m_pSampleLinear(nullptr)
-	//, m_pVertexShader(nullptr)
-	//, m_pPixelShader(nullptr)
-	//, m_pVertexLayout(nullptr)
-	//, m_pCBufferPerMesh(nullptr)
-	//, m_pCBufferPerMaterial(nullptr)
-	//, m_pCBufferPerFrame(nullptr)
 	: m_pCBufferPerBone(nullptr)
-	//, m_vPos()
-	//, m_vRot()
-	//, m_vScale(D3DXVECTOR3(1.0f, 1.0f, 1.0f))
-	//, m_fScale(1.0f)
-	//, m_vPrePos(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
 	, m_mWorld()
 	, m_mRotation()
 	, m_mView()
 	, m_mProj()
-	//, m_stSkinLight()
 	, m_vEye()
 	, m_dAnimSpeed(0.0001f)	//一先ず、この値.
 	, m_dAnimTime()
@@ -658,14 +641,12 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 
 	D3DXMATRIX	mScale, mYaw, mPitch, mRoll, mTran, mPreTran;
 	//拡縮.
-	//D3DXMatrixScaling( &mScale, m_vScale.x, m_vScale.y, m_vScale.z );
 	D3DXMatrixScaling( &mScale, m_fScale, m_fScale, m_fScale );
 	D3DXMatrixRotationY( &mYaw, m_vRot.y );		//Y軸回転.
 	D3DXMatrixRotationX( &mPitch, m_vRot.x );	//X軸回転.
 	D3DXMatrixRotationZ( &mRoll, m_vRot.z );		//Z軸回転.
 	//中心軸をずらす.
 	D3DXMatrixTranslation(&mPreTran, m_vPrePos.x, m_vPrePos.y, m_vPrePos.z);
-	//=================================================================//
 
 	//回転行列(合成)
 	m_mRotation = mYaw * mPitch * mRoll;
