@@ -565,11 +565,10 @@ void CMainStage::CameraMove()
 void CMainStage::SpotLightUpdate()
 {
 	for (unsigned int light = 0; light < m_vLightPos.size(); light++) {
-		if (m_Camera.vPos.x + 10.0f > m_vLightPos[light].x &&
-			m_Camera.vPos.x - 10.0f < m_vLightPos[light].x) {
+		if (m_Camera.vPos.x + 16.0f > m_vLightPos[light].x &&
+			m_Camera.vPos.x - 16.0f < m_vLightPos[light].x) {
 			m_stLight.vPos = m_vLightPos[light];
 			break;
 		}
 	}
-	//m_vCameraPos
 }

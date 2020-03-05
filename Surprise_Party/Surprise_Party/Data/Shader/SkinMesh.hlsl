@@ -142,7 +142,7 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 	for (int light = 0; light < g_vLightMax.x; light++) {
 		//ﾗｲﾄ位置.
 		float4 vLightPos = g_vLightPos;
-		vLightPos.x += g_vLightPosWidth.x * light;
+		vLightPos.x += (g_vLightPosWidth.x * light) - g_vLightPosWidth.x;
 		//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
 		float4 vLightVector = normalize(vLightPos - input.PosWorld);
 		//視線ﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙから視点座標に向かうﾍﾞｸﾄﾙ.

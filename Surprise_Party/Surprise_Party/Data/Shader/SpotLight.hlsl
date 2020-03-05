@@ -77,7 +77,7 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	for (int light = 0; light < g_vLightMax.x; light++) {
 		//×²ÄˆÊ’u.
 		float4 vLightPos = g_vLightPos;
-		vLightPos.x += g_vLightPosWidth.x * (light/* - 1*/);
+		vLightPos.x += (g_vLightPosWidth.x * light) - g_vLightPosWidth.x;
 		//×²ÄÍÞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç×²ÄŒ»ÝÀ•W‚ÉŒü‚©‚¤ÍÞ¸ÄÙ.
 		float4 vLightVector = normalize(vLightPos - In.PosWorld);
 
