@@ -342,7 +342,7 @@ void CMainStage::Init()
 	
 	//人管理クラス設定.
 	m_pCPeopleManager.reset(new CPeopleManager());
-	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleOder) + FileNum, 12, m_pCFileResource->GetStageMax(GhostFilenum) * m_pCMoveObjectManager->OBJECT_WIDTH);
+	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleOder) /*+ FileNum*/ * 3, 12, m_pCFileResource->GetStageMax(GhostFilenum) * m_pCMoveObjectManager->OBJECT_WIDTH);
 	m_pCPeopleManager->SetStageDistanceMax(m_fStageDistanceMax);
 
 	//====UI系のインスタンス化====.

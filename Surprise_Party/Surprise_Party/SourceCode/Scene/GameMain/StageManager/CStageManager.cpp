@@ -97,12 +97,12 @@ void CStageManager::ChangeStage()
 	switch (static_cast<enStageType>(m_StageType)) {
 	case enStageType::GhostSpeakStage:
 		//次のステージへ.
-		m_StageNum++;
 		m_pCStageBase.reset(new CMainStage(m_StageNum, m_enBeforeEndingType));
 		break;
 	case enStageType::MainStage:
 		m_enBeforeEndingType = m_pCStageBase->GetBeforeStageEndingType();
 		m_pCStageBase.reset(new CGhostSpeakStage(m_StageNum));
+		m_StageNum++;
 		break;
 	}
 
