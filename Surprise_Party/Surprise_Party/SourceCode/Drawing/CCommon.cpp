@@ -19,8 +19,11 @@ CCommon::~CCommon()
 //===================================.
 //	Blend‚Ì‰Šú‰».
 //===================================.
-HRESULT CCommon::InitBlend()
+HRESULT CCommon::InitBlend(ID3D11Device* pDevice11, ID3D11DeviceContext* pContext11)
 {
+	m_pDevice11 = pDevice11;
+	m_pContext11 = pContext11;
+
 	//±ÙÌ§ÌÞÚÝÄÞ—pÌÞÚÝÄÞ½Ã°Ä\‘¢‘Ì.
 	//pngÌ§²Ù“à‚É±ÙÌ§î•ñ‚ª‚ ‚é‚Ì‚ÅA“§‰ß‚·‚é‚æ‚¤‚ÉÌÞÚÝÄÞ½Ã°Ä‚ÅÝ’è‚·‚é.
 	D3D11_BLEND_DESC BlendDesc;

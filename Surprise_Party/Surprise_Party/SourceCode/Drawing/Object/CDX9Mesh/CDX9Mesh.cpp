@@ -38,6 +38,9 @@ HRESULT CDX9Mesh::Init(
 	m_pDevice11		= pDevice11;
 	m_pContext11	= pContext11;
 
+	if (FAILED(InitBlend(m_pDevice11, m_pContext11))) {
+		return E_FAIL;
+	}
 	if (FAILED(LoadXMesh(fileName))) {
 		return E_FAIL;
 	}
@@ -47,6 +50,7 @@ HRESULT CDX9Mesh::Init(
 	if (FAILED(m_pCObjectAlphaBlend->InitAlpha(m_pDevice11, m_pContext11))) {
 		return E_FAIL;
 	}
+
 
 	return S_OK;
 }

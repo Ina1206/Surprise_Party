@@ -13,8 +13,8 @@ public:
 	CCommon();
 	virtual ~CCommon();		
 
-	HRESULT InitBlend();				//Blend‰Šú‰».
-	void SetBlend(bool EnableAlpha);	//“§‰ßİ’èØ‚è‘Ö‚¦.
+	HRESULT InitBlend(ID3D11Device* pDevice11, ID3D11DeviceContext* pContext11);	//Blend‰Šú‰».
+	void SetBlend(bool EnableAlpha);												//“§‰ßİ’èØ‚è‘Ö‚¦.
 
 protected:
 	//«ƒAƒvƒŠ‚É‚Ğ‚Æ‚Â.

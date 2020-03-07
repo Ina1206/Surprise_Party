@@ -38,7 +38,7 @@ HRESULT CFont::Init(ID3D11Device* pDevice11,
 	m_pContext11 = pContex11;
 
 	//ブレンドステート.
-	if (FAILED(InitBlend()))
+	if (FAILED(InitBlend(m_pDevice11, m_pContext11)))
 	{
 		return E_FAIL;
 	}

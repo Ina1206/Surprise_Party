@@ -1,6 +1,8 @@
 #ifndef _CDX9BASE_H
 #define _CDX9BASE_H
 
+#include "..\CCommon.h"
+
 #include "ObjectAlphaBlend\CObjectAlphaBlend.h"
 #define ALIGN16 _declspec(align(16))
 
@@ -20,6 +22,7 @@ struct LIGHT
 *	DirectX9DrawŠî’êƒNƒ‰ƒX.
 ***************/
 class CDX9Base
+	: public CCommon
 {
 public:
 	CDX9Base();

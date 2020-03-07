@@ -44,7 +44,7 @@ HRESULT CSpriteUI::Init(ID3D11Device* pDevice11,
 	m_SState = *pSs;
 
 	//ブレンドステート.
-	if (FAILED(InitBlend()))
+	if (FAILED(InitBlend(m_pDevice11, m_pContext11)))
 	{
 		return E_FAIL;
 	}

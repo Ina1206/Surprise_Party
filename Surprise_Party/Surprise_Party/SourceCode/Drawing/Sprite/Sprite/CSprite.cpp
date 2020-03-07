@@ -40,7 +40,7 @@ HRESULT CSprite::Init(ID3D11Device* pDevice11, ID3D11DeviceContext* pContex11, c
 
 
 	//ブレンドステート.
-	if (FAILED(InitBlend()))
+	if (FAILED(InitBlend(m_pDevice11, m_pContext11)))
 	{
 		return E_FAIL;
 	}

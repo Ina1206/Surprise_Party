@@ -166,9 +166,11 @@ void CPeopleManager::HumanApp()
 	//èoåªÇ≥ÇπÇÈèàóù.
 	if (m_DispCnt == DISP_TIME) {
 		for (unsigned int human = m_HumanAppOrder[m_AppHumanNum]; human < m_CreateHumanMax; human += 2) {
+			//êlÇ™Ç¢Ç»Ç¢Ç∆Ç´ÇÕèIóπ.
 			if (m_HumanAppOrder[m_AppHumanNum] < 0) {
 				break;
 			}
+
 			if (m_bDispFlag[human] == false) {
 				m_pCPeopleBase[human]->SetPos(INIT_POS);
 				m_bDispFlag[human] = true;
@@ -189,7 +191,6 @@ void CPeopleManager::HumanApp()
 //=======================================.
 void CPeopleManager::HumanMove()
 {
-
 	for (unsigned int human = 0; human < m_CreateHumanMax; human++) {
 		if (m_bDispFlag[human] == true) {
 
