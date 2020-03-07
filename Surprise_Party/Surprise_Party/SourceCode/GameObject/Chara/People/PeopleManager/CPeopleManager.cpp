@@ -39,7 +39,6 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 	std::mt19937 mt(rnd());
 	std::uniform_int_distribution<> IntervalRand(0, 2);
 	int m_column = IntervalRand(mt);
-	m_column = 0;
 
 	//人の種類番号取得.
 	for (int people = 0; people < m_pCFileResource->GetStageMax(FileNum); people++) {
@@ -53,8 +52,7 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 		m_pCPeopleIcon.push_back(nullptr);
 
 		//偶数：女の子、奇数：男の子.
-		if (m_HumanAppOrder[people] % 2 == 0) {
-		//if (people % 2 == 0) {
+		if (people % 2 == 0) {
 			m_pCPeopleBase[m_pCPeopleBase.size() - 1] = new CGirl();
 			m_pCPeopleBase[m_pCPeopleBase.size() - 1]->SetStageMax(StageMax);
 
@@ -168,6 +166,9 @@ void CPeopleManager::HumanApp()
 	//出現させる処理.
 	if (m_DispCnt == DISP_TIME) {
 		for (unsigned int human = m_HumanAppOrder[m_AppHumanNum]; human < m_CreateHumanMax; human += 2) {
+			if (m_HumanAppOrder[m_AppHumanNum] < 0) {
+				break;
+			}
 			if (m_bDispFlag[human] == false) {
 				m_pCPeopleBase[human]->SetPos(INIT_POS);
 				m_bDispFlag[human] = true;
