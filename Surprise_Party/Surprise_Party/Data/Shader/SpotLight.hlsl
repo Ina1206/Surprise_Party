@@ -128,7 +128,6 @@ float4 PS_Main(VS_OUT In) : SV_Target
 	AllColor.a = 1.0f;
 	AllColor.a *= g_vAlpha.x;
 
-
 	//                 1
 	// fatt = -------------------
 	//        a + b * d + c * d^2
