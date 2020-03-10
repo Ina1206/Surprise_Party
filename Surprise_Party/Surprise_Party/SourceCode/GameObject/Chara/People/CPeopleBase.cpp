@@ -46,7 +46,9 @@ void CPeopleBase::Render()
 		m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
 	}
 	//•`‰æ.
+	m_pCSkinMesh->SetBlend(true);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
+	m_pCSkinMesh->SetBlend(false);
 }
 
 //======================================.

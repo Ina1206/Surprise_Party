@@ -194,6 +194,12 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 
 		AllColor += Color;
 	}
+	// テクスチャからピクセル色を取り出す.
+	float4 TexDiffuse = g_Texture.Sample(g_Sampler, input.Tex);
+	AllColor.a = TexDiffuse.a;
+
+	
+
    //                 1
    // fatt = -------------------
    //        a + b * d + c * d^2

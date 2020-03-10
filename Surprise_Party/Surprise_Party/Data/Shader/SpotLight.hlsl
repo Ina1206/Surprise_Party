@@ -124,8 +124,9 @@ float4 PS_Main(VS_OUT In) : SV_Target
 
 		AllColor += Color;
 	}
-
-	AllColor.a = 1.0f;
+	//ベースの色.
+	float4 BaseColor = g_Texture.Sample(g_SamLinear, In.Tex) / 1.0f + In.Color / 1.0f;
+	AllColor.a = BaseColor.a;
 	AllColor.a *= g_vAlpha.x;
 
 	//                 1

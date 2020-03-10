@@ -69,9 +69,7 @@ void CMoveObjectBase::AttachedObjRender()
 			m_pCAttachedObjMesh[attached]->SetScale(0.1f);
 			m_pCAttachedObjMesh[attached]->SetPosition(m_vAttachedObjPos[attached]);
 			m_pCAttachedObjMesh[attached]->SetBlend(true);
-			//m_pCAttachedObjMesh[attached]->SetAlphaDepth(true);
 			m_pCAttachedObjMesh[attached]->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
-			//m_pCAttachedObjMesh[attached]->SetAlphaDepth(false);
 			m_pCAttachedObjMesh[attached]->SetBlend(false);
 		}
 	}

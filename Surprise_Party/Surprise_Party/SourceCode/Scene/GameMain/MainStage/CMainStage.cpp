@@ -254,11 +254,11 @@ void CMainStage::Render()
 	}
 
 
-	//動くオブジェクトの描画.
-	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_stLight);
 
 	//静的オブジェクトの描画.
 	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
+	//動くオブジェクトの描画.
+	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_stLight);
 
 	//お化け体力アイコン描画処理関数.
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
@@ -266,7 +266,10 @@ void CMainStage::Render()
 	}
 
 	//人の描画処理関数.
+	CSprite*	m_pCSprite = CResourceManager::GetResourceManagerInstance()->GetSprite(enSprite::ActMoveString);
+	m_pCSprite->SetBlend(true);
 	m_pCPeopleManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
+	m_pCSprite->SetBlend(false);
 
 	//動くオブジェクトのエフェクト描画.
 	m_pCMoveObjectManager->EffectRender();

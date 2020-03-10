@@ -89,6 +89,10 @@ HRESULT CDX9SkinMesh::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9,ID3D11Device* p
 		return E_FAIL;
 	}
 
+	if (FAILED(InitBlend(m_pDevice11, m_pContext11))) {
+		return E_FAIL;
+	}
+
 	return S_OK;
 }
 
