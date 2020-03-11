@@ -19,9 +19,12 @@ public:
 
 private:
 	//=================ŠÖ”====================//.
-	void Init();		//‰Šú‰»ˆ—ŠÖ”.
-	void Release();		//‰Šú‰»ˆ—ŠÖ”.
-
+	void Init();				//‰Šú‰»ˆ—ŠÖ”.
+	void Release();				//‰ğ•úˆ—ŠÖ”.
+	void WakeUp();				//‹N°ˆ—ŠÖ”.
+	void HaveTroubleEmotion();	//¢‚éŠ´îˆ—ŠÖ”.
+	void RejoiceEmotion();		//Šì‚ÔŠ´îˆ—ŠÖ”.
+	void Sleep();				//Q‚éˆ—ŠÖ”.
 
 };
 
