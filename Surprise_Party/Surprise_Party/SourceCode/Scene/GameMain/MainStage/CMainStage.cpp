@@ -255,9 +255,11 @@ void CMainStage::Render()
 
 
 
+	//動くオブジェクトスイッチの描画.
+	m_pCMoveObjectManager->RenderSwitch(m_mView, m_mProj, m_stLight);
 	//静的オブジェクトの描画.
 	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
-	//動くオブジェクトの描画.
+	//動くオブジェクト描画処理.
 	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_stLight);
 
 	//お化け体力アイコン描画処理関数.

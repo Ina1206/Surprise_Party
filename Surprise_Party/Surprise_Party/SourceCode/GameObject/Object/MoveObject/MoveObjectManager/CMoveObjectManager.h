@@ -21,12 +21,13 @@ public:
 
 	//================列挙体==================//.
 	enum class enMoveObjectType {
-		GhostDispPainting = 0,		//お化けの現れる絵画.
-		ObjectMoveSwitch,			//オブジェクト移動スイッチ.
-		PlaySoundSwitch,			//音を鳴らすスイッチ.
+		GhostDispPainting = 0,					//お化けの現れる絵画.
+		ObjectMoveSwitch,						//オブジェクト移動スイッチ.
+		PlaySoundSwitch,						//音を鳴らすスイッチ.
 
-		Max,
+		Max,									//最大数.
 		Start = GhostDispPainting,
+		UseAttachObjectMax = PlaySoundSwitch	//付属オブジェクトを使うオブジェクト最大数.
 	};
 
 	//=================定数===================//.
@@ -63,9 +64,10 @@ public:
 
 
 	//=================関数===================//.
-	void UpDate();																			//更新処理関数.
-	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight);	//描画処理関数.
-	void EffectRender();
+	void UpDate();																				//更新処理関数.
+	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight);		//描画処理関数.
+	void RenderSwitch(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight);	//スイッチの描画処理関数.
+	void EffectRender();																		//エフェクトの描画処理関数.
 
 	//===========情報置換処理関数=============//.
 	//カメラの位置.

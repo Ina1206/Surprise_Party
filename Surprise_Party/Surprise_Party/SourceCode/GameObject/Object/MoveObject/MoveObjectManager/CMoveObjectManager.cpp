@@ -114,15 +114,10 @@ void CMoveObjectManager::UpDate()
 //======================================.
 void CMoveObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight)
 {
-	m_mView = mView;
-	m_mProj = mProj;
-
-	for (int stage = 0; stage < static_cast<int>(enMoveObjectType::Max); stage++) {
+	for (int stage = 0; stage < static_cast<int>(enMoveObjectType::UseAttachObjectMax); stage++) {
 		//描画初期設定処理関数.
 		m_pCMoveObjectBase[stage]->SetCameraPos(m_vCameraPos);
 		m_pCMoveObjectBase[stage]->RenderInitSetting(mView, mProj, stLight);
-		//描画処理関数.
-		m_pCMoveObjectBase[stage]->Render();
 		//付属オブジェクトの描画処理関数.
 		m_pCMoveObjectBase[stage]->AttachedObjRender();
 	}
@@ -134,6 +129,18 @@ void CMoveObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj
 	//ギミックアイコン描画処理関数.
 	for (unsigned int icon = 0; icon < m_pCGimmickIcon.size(); icon++) {
 		m_pCGimmickIcon[icon]->Render();
+	}
+}
+
+//======================================.
+//		スイッチの描画処理関数.
+//======================================.
+void CMoveObjectManager::RenderSwitch(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight)
+{
+	for (int obj = 0; obj < static_cast<int>(enMoveObjectType::Max); obj++) {
+		//描画処理.
+		m_pCMoveObjectBase[obj]->RenderInitSetting(mView, mProj, stLight);
+		m_pCMoveObjectBase[obj]->Render();
 	}
 }
 
