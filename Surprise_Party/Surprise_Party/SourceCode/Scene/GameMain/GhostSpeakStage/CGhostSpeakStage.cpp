@@ -9,6 +9,7 @@ CGhostSpeakStage::CGhostSpeakStage(int stageNum)
 	: m_pCFontResource	(nullptr)
 	, changestr			()
 	, m_pCFloor			(nullptr)
+	, m_pCBigGhost		(nullptr)
 {
 	m_StageNum = stageNum;
 	//èâä˙âªèàóùä÷êî.
@@ -31,6 +32,8 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		Control();
 	}
 
+	//ëÂÇ´Ç¢Ç®âªÇØçXêVèàóùä÷êî.
+	m_pCBigGhost->Update();
 
 	static int num = 0;
 	if (GetAsyncKeyState(VK_F3) & 0x0001) {
@@ -73,12 +76,13 @@ void CGhostSpeakStage::Render()
 	//è∞ÇÃï`âÊ.
 	m_pCFloor->SetCameraPos(m_Camera.vPos);
 	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_stLight);
-	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -10.0f, 0.0f));
+	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -6.0f, 0.0f));
 	m_pCFloor->Render();
-	m_pCWall->SetCameraPos(m_Camera.vPos);
-	m_pCWall->RenderInitSetting(m_mView, m_mProj, m_stLight);
-	m_pCWall->SetPos(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	m_pCWall->Render();
+
+	//ëÂÇ´Ç¢Ç®âªÇØï`âÊ.
+	m_pCBigGhost->SetCameraPos(m_Camera.vPos);
+	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_stLight);
+	m_pCBigGhost->Render();
 
 	//ï∂éöÇÃï`âÊ.
 	if (m_pCFontResource != nullptr) {
@@ -98,7 +102,8 @@ void CGhostSpeakStage::Init()
 	m_pCFloor.reset(new CFloor());
 	m_pCFloor->SetScale(0.5f);
 
-	m_pCWall.reset(new CWall());
+	//ëÂÇ´Ç¢Ç®âªÇØ.
+	m_pCBigGhost.reset(new CBigGhost());
 
 	//ï∂èÕì«Ç›çûÇ›èàóùä÷êî.
 	LoadString();
@@ -108,13 +113,14 @@ void CGhostSpeakStage::Init()
 	m_stLight.m_fLightWidth = 10.0f;
 	m_stLight.m_fLightMax = 1.0f;
 	m_stLight.vLightColor = D3DXVECTOR3(1.0f, 201.0f /255.0f, 14.0f / 255.0f);
-	m_stLight.vPos = D3DXVECTOR3(26.2f, 3.6f, 6.7f);
+	m_stLight.vLightColor = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	m_stLight.vPos = D3DXVECTOR3(26.2f, 13.6f, 6.7f);
 	D3DXMatrixRotationYawPitchRoll(&m_stLight.mRot, 0.0f, 0.0f, 0.0f);
 	m_stLight.fIntensity = 119.0f;
 	m_stLight.m_fLightWidth = 6.2f;
 
-	m_Camera.vPos = D3DXVECTOR3(5.0f, 2.0f, -3.5f);
-	m_Camera.vLook = D3DXVECTOR3(5.0f, 0.0f, 2.0f);
+	m_Camera.vPos = D3DXVECTOR3(5.0f, 3.5f, -3.5f);
+	m_Camera.vLook = D3DXVECTOR3(5.0f, 0.0f, 5.0f);
 }
 
 //=========================================.

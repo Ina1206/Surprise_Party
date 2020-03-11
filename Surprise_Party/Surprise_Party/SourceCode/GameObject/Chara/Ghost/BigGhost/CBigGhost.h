@@ -26,6 +26,9 @@ private:
 	void RejoiceEmotion();		//喜ぶ感情処理関数.
 	void Sleep();				//寝る処理関数.
 
+	//==================変数====================//.
+	CDX9SkinMesh*	m_pCSkinMesh;	//スキンメッシュ.
+	
 };
 
 

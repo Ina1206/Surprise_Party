@@ -24,6 +24,7 @@ enum class enSkinMeshType {
 	Girl,				//女の子.
 	Boy,				//男の子.
 	DispGhost,			//現れるお化け.
+	BigGhost,			//大きいお化け.
 	Max,				//最大値.
 };
 

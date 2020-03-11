@@ -145,6 +145,7 @@ void CResourceManager::SkinMeshFileNameSetting()
 		"Data\\Object\\SkinMesh\\People\\Sayaka\\Sayaka_s.X",	//—‚Ìq.
 		"Data\\Object\\SkinMesh\\People\\Towa\\Towa_s.X",		//’j‚Ìq.
 		"Data\\Object\\SkinMesh\\Ghost\\GhostB\\GhostB_s.X",	//Œ»‚ê‚é‚¨‰»‚¯.
+		"Data\\Object\\SkinMesh\\Ghost\\BigGhost\\BigGhost_s.X",//‘å‚«‚¢‚¨‰»‚¯.
 	};
 }
 
