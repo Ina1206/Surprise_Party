@@ -15,7 +15,7 @@ CWall::~CWall()
 //====================================.
 //		çXêVèàóùä÷êî.
 //====================================.
-void CWall::UpDate()
+void CWall::Update()
 {
 	m_fAlpha = fabsf(m_vPos.x - m_vCameraPos.x) / ALPHA_DIVISOR;
 	m_fAlpha += WALL_ALPHA_MIN;

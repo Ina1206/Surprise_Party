@@ -20,16 +20,16 @@ CDispGhost::~CDispGhost()
 //=================================.
 //		更新処理関数.
 //=================================.
-void CDispGhost::UpDate()
+void CDispGhost::Update()
 {
 	//選択更新処理関数.
-	SelectUpDate();
+	SelectUpdate();
 
 	//お化けアイコン更新処理関数.
-	GhostIconUpDate();
+	GhostIconUpdate();
 
 	//お化け体力アイコン更新処理関数.
-	StrengthIconUpDate();
+	StrengthIconUpdate();
 
 	//移動速度変更処理関数.
 	MoveSpeedChange();

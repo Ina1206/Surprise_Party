@@ -42,7 +42,7 @@ public:
 	const D3DXVECTOR3	STANDERD_PAINTING_POS	= D3DXVECTOR3(0.0f, 5.0f, 1.0f);		//基本の絵画の座標.
 
 	//=================関数====================//.
-	void UpData();																										//更新処理関数.
+	void Updata();																										//更新処理関数.
 	void Render(const D3DXMATRIX& mView,const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight);	//描画処理関数.
 
 	//===========情報置換処理関数==============//.

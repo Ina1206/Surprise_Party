@@ -15,10 +15,10 @@ CGhostDispPainting::~CGhostDispPainting()
 //=================================.
 //		更新処理関数.
 //=================================.
-void CGhostDispPainting::UpDate()
+void CGhostDispPainting::Update()
 {
 	//エフェクト更新処理関数.
-	EffectUpDate();
+	EffectUpdate();
 
 	//オブジェクト透過処理関数.
 	ObjAlpha();

@@ -79,7 +79,7 @@ void CWorkGhostBase::StrengthIconRender()
 //=========================================.
 //		選択更新処理関数.
 //=========================================.
-void CWorkGhostBase::SelectUpDate()
+void CWorkGhostBase::SelectUpdate()
 {
 	//体力無いときに自動休憩処理.
 	if (m_fStrength <= 0.0f) {
@@ -314,7 +314,7 @@ void CWorkGhostBase::SelectAfterActivity()
 //===========================================.
 //		お化けアイコン更新処理関数.
 //===========================================.
-void CWorkGhostBase::GhostIconUpDate()
+void CWorkGhostBase::GhostIconUpdate()
 {
 	//休憩時の顔の変更用.
 	if (m_MoveFlag & REST_FLAG) {
@@ -342,7 +342,7 @@ void CWorkGhostBase::GhostIconUpDate()
 //===========================================.
 //		体力アイコン更新処理関数.
 //===========================================.
-void CWorkGhostBase::StrengthIconUpDate()
+void CWorkGhostBase::StrengthIconUpdate()
 {
 	//座標.
 	m_pCGhostStrengthIcon->SetCharacterPos(m_vStrengthIconPos);

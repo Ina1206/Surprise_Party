@@ -81,7 +81,7 @@ void CMoveObjectManager::UpDate()
 		
 
 		//XVˆ—ŠÖ”.
-		m_pCMoveObjectBase[obj]->UpDate();
+		m_pCMoveObjectBase[obj]->Update();
 	}
 
 	//Š÷‚Æ‰Ô•r‚ÌˆÚ“®ˆ—ŠÖ”.
@@ -137,6 +137,8 @@ void CMoveObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj
 //======================================.
 void CMoveObjectManager::RenderSwitch(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight)
 {
+	m_mView = mView;
+	m_mProj = mProj;
 	for (int obj = 0; obj < static_cast<int>(enMoveObjectType::Max); obj++) {
 		//•`‰æˆ—.
 		m_pCMoveObjectBase[obj]->RenderInitSetting(mView, mProj, stLight);

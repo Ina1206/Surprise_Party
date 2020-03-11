@@ -29,7 +29,7 @@ public:
 
 
 	//===============関数===================//.
-	void UpDate();									//更新処理関数.
+	void Update();									//更新処理関数.
 	void Render();									//描画処理関数.
 
 private:

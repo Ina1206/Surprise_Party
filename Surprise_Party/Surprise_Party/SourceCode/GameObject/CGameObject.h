@@ -25,7 +25,7 @@ public:
 
 	//================関数===================//.
 	void RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& vLightPos);	//描画初期設定処理関数.
-	virtual void UpDate() = 0;		//更新処理関数.
+	virtual void Update() = 0;		//更新処理関数.
 	virtual void Render() = 0;		//描画処理関数.
 
 	//===========情報置換処理関数============//.

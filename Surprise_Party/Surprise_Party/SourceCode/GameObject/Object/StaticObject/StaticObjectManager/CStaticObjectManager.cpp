@@ -39,7 +39,7 @@ CStaticObjectManager::~CStaticObjectManager()
 //====================================.
 //		更新処理関数.
 //====================================.
-void CStaticObjectManager::UpData()
+void CStaticObjectManager::Updata()
 {
 	//オブジェクト設定用番号.
 	int num = 0;
@@ -56,7 +56,7 @@ void CStaticObjectManager::UpData()
 			//オブジェクト座標設定.
 			m_pCObjectBase[num]->SetPos(m_vObjectPos[stage]);
 			//オブジェクト更新処理関数.
-			m_pCObjectBase[num]->UpDate();
+			m_pCObjectBase[num]->Update();
 			num++;
 		}
 
@@ -80,7 +80,7 @@ void CStaticObjectManager::UpData()
 			if (m_vCameraPos.x + DISP_CAMERA_WIDHT > m_vOtherObjectPos[stage + m_BeforeObjMax[obj]].x &&
 				m_vCameraPos.x - DISP_CAMERA_WIDHT < m_vOtherObjectPos[stage + m_BeforeObjMax[obj]].x) {
 				m_pCOtherObjectBase[m_ObjDispCnt[obj] + (obj * OTHER_CREATION_MAX)]->SetPos(m_vOtherObjectPos[stage + m_BeforeObjMax[obj]]);
-				m_pCOtherObjectBase[m_ObjDispCnt[obj] + (obj * OTHER_CREATION_MAX)]->UpDate();
+				m_pCOtherObjectBase[m_ObjDispCnt[obj] + (obj * OTHER_CREATION_MAX)]->Update();
 				m_ObjDispCnt[obj]++;
 			}
 

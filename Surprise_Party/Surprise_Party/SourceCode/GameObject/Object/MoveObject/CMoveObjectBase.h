@@ -31,7 +31,7 @@ public:
 protected:
 	//==============関数===============//.
 	void Hit();											//当たり判定処理関数.
-	void EffectUpDate();								//エフェクト更新処理関数.
+	void EffectUpdate();								//エフェクト更新処理関数.
 
 	//==============変数===============//.
 	CEffect*					m_pCEffect;				//エフェクト.

@@ -16,13 +16,13 @@ CPlaySoundSwitch::~CPlaySoundSwitch()
 //=======================================.
 //		更新処理関数.
 //=======================================.
-void CPlaySoundSwitch::UpDate()
+void CPlaySoundSwitch::Update()
 {
 	//スイッチの奥行座標設定.
 	m_vPos.z = SWITCH_DEPTH_POS;
 
 	//エフェクト更新処理関数.
-	EffectUpDate();
+	EffectUpdate();
 }
 
 //=======================================.

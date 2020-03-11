@@ -16,13 +16,13 @@ CObjectMoveSwitch::~CObjectMoveSwitch()
 //===============================.
 //		更新処理関数.
 //===============================.
-void CObjectMoveSwitch::UpDate()
+void CObjectMoveSwitch::Update()
 {
 	//スイッチの奥行座標.
 	m_vPos.z = SWITCH_DEPTH_POS;
 
 	//エフェクト更新処理関数.
-	EffectUpDate();
+	EffectUpdate();
 
 	//机の座標設定.
 	if (m_vAttachedObjPos[FLOWER_NUM].x != m_vAttachedObjPos[TABLE_NUM].x) {

@@ -15,7 +15,7 @@ CPainting::~CPainting()
 //==============================.
 //		更新処理関数.
 //==============================.
-void CPainting::UpDate()
+void CPainting::Update()
 {
 	//オブジェクト透過値変更処理関数.
 	ObjectAlpha();

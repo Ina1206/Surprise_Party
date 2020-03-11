@@ -41,7 +41,7 @@ void CMoveObjectBase::Hit()
 //===================================.
 //		エフェクト更新処理関数.
 //===================================.
-void CMoveObjectBase::EffectUpDate()
+void CMoveObjectBase::EffectUpdate()
 {
 	//エフェクトの座標設定.
 	m_vEffectPos.x = m_vPos.x;

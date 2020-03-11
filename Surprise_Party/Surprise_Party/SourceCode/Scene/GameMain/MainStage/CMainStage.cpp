@@ -43,11 +43,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	//静的オブジェクト更新処理関数.
 	m_pCStaticObjectManager->SetCameraPos(m_Camera.vPos);
-	m_pCStaticObjectManager->UpData();
+	m_pCStaticObjectManager->Updata();
 
 
 	//人の更新処理関数.
-	m_pCPeopleManager->UpDate();
+	m_pCPeopleManager->Update();
 
 	//お化け.
 	std::vector<D3DXVECTOR3> m_vGhostPos(m_pCWorkGhost.size());							//お化け座標.
@@ -60,7 +60,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		m_pCWorkGhost[ghost]->SetSurprisePosInfo(m_vGimmickPos, m_pCPeopleManager->GetHumanPos());
 
 		//お化け更新処理関数.
-		m_pCWorkGhost[ghost]->UpDate();
+		m_pCWorkGhost[ghost]->Update();
 
 		//お化けの座標取得.
 		m_vGhostPos[ghost] = m_pCWorkGhost[ghost]->GetPos();

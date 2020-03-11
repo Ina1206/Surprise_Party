@@ -15,7 +15,7 @@ CBookShelf::~CBookShelf()
 //===================================.
 //		更新処理関数.
 //===================================.
-void CBookShelf::UpDate()
+void CBookShelf::Update()
 {
 	//オブジェクト透過値変更処理関数.
 	ObjectAlpha();

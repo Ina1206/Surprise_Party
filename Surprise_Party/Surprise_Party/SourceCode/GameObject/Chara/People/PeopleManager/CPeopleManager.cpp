@@ -75,7 +75,7 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 //=======================================.
 //		更新処理関数.
 //=======================================.
-void CPeopleManager::UpDate()
+void CPeopleManager::Update()
 {
 	//現れる人間の番号の最大値処理.
 	if (m_AppHumanNum >= m_HumanAppOrder.size()) {
@@ -195,7 +195,7 @@ void CPeopleManager::HumanMove()
 		if (m_bDispFlag[human] == true) {
 
 			//更新処理関数.
-			m_pCPeopleBase[human]->UpDate();
+			m_pCPeopleBase[human]->Update();
 			//表示フラグ取得処理.
 			m_bDispFlag[human] = m_pCPeopleBase[human]->GetDispFlag();
 			//人の座標取得.
