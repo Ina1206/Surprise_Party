@@ -453,7 +453,7 @@ void CFont::Render()
 		//アルファ値を渡す.
 		//フェードインフェードアウトで使うことができる.
 		//ブレイクポイントの時変数の数値を変更することができる.
-		D3DXVECTOR4 vColor = D3DXVECTOR4(0.0f, 0.0f, 0.0f, m_Alpha);
+		D3DXVECTOR4 vColor = D3DXVECTOR4(1.0f, 1.0f, 1.0f, m_Alpha);
 		cb.vColor = vColor;
 
 

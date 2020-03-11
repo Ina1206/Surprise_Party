@@ -29,7 +29,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 
 
 	static int num = 0;
-	if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
+	if (GetAsyncKeyState(VK_F3) & 0x0001) {
 		//íœˆ—ŠÖ”.
 		if (m_pCFontResource->GetFont() != nullptr) {
 			m_pCFontResource->Destroy();
@@ -68,7 +68,7 @@ void CGhostSpeakStage::Init()
 {
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
 	//ˆÊ’uİ’èˆ—ŠÖ”
-	m_pCFontResource->SetStartPos(D3DXVECTOR3(50.0f, 250.0f, 0.0f));
+	m_pCFontResource->SetStartPos(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
 	std::string str = "–°‚¢";
 	//“Ç‚İ‚İˆ—ŠÖ”.
 	m_pCFontResource->Load(str);

@@ -99,7 +99,6 @@ void CFontResource::String_Render()
 
 	for (int size = 0; size < m_StrLength; size++) {
 		CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
-		m_pCDepthStencil->SetDepth(false);
 		//‰üs.
 		if (widh * (BASIC_WIDTH * m_fFontScale) > WND_W - 150.0f) {
 			widh = 0;
@@ -113,6 +112,7 @@ void CFontResource::String_Render()
 		//•¶Žš‚Ì‘å‚«‚³Ý’èˆ—ŠÖ”.
 		m_pCFont[size]->SetScale(m_fFontScale);
 		//•`‰æˆ—ŠÖ”.
+		m_pCDepthStencil->SetDepth(false);
 		m_pCFont[size]->Render();
 		m_pCDepthStencil->SetDepth(true);
 
