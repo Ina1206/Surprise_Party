@@ -198,8 +198,6 @@ float4 PS_Main( PSSkinIn input ) : SV_Target
 	float4 TexDiffuse = g_Texture.Sample(g_Sampler, input.Tex);
 	AllColor.a = TexDiffuse.a;
 
-	
-
    //                 1
    // fatt = -------------------
    //        a + b * d + c * d^2
