@@ -113,7 +113,7 @@ void CGhostSpeakStage::Init()
 	m_stLight.m_fLightWidth = 10.0f;
 	m_stLight.m_fLightMax = 1.0f;
 	m_stLight.vLightColor = D3DXVECTOR3(1.0f, 201.0f /255.0f, 14.0f / 255.0f);
-	m_stLight.vLightColor = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	m_stLight.vLightColor = D3DXVECTOR3(243.0f / 255.0f, 232.0f / 255.0f, 12.0f / 255.0f);
 	m_stLight.vPos = D3DXVECTOR3(26.2f, 13.6f, 6.7f);
 	D3DXMatrixRotationYawPitchRoll(&m_stLight.mRot, 0.0f, 0.0f, 0.0f);
 	m_stLight.fIntensity = 119.0f;
