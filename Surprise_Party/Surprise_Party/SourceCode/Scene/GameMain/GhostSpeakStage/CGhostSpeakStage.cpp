@@ -48,24 +48,24 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		}
 	}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		m_stLight.m_fLightWidth += 0.1f;
-	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		m_stLight.m_fLightWidth -= 0.1f;
-	}
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		m_stLight.fIntensity += 0.1f;
-	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		m_stLight.fIntensity -= 0.1f;
-	}
-	if (GetAsyncKeyState('Z') & 0x8000) {
-		m_stLight.vPos.y += 0.1f;
-	}
-	if (GetAsyncKeyState('X') & 0x8000) {
-		m_stLight.vPos.y -= 0.1f;
-	}
+	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+	//	m_stLight.m_fLightWidth += 0.1f;
+	//}
+	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+	//	m_stLight.m_fLightWidth -= 0.1f;
+	//}
+	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
+	//	m_stLight.fIntensity += 0.1f;
+	//}
+	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	//	m_stLight.fIntensity -= 0.1f;
+	//}
+	//if (GetAsyncKeyState('Z') & 0x8000) {
+	//	m_stLight.vPos.y += 0.1f;
+	//}
+	//if (GetAsyncKeyState('X') & 0x8000) {
+	//	m_stLight.vPos.y -= 0.1f;
+	//}
 }
 
 //=========================================.
