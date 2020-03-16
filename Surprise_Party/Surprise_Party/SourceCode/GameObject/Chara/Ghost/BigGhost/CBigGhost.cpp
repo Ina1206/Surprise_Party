@@ -6,7 +6,8 @@ CBigGhost::CBigGhost()
 	, m_fAnimSpeed			(0.0f)
 	, m_AnimNum				(0)
 	, m_WakeUpCnt			(0)
-	, m_SwingDirect			(1)
+	, m_LeanDirect			(1)
+	, m_UpDownDirect		(1)
 	, m_HaveTroubleActFlag	(0)
 {
 	//èâä˙âªèàóùä÷êî.
@@ -69,10 +70,10 @@ void CBigGhost::Update()
 	}
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-		m_HaveTroubleActFlag = 0;
+		m_ChangeEmotionFlag = true;
 	}
 
-
+	RejoiceEmotion();
 }
 
 //==========================================.
@@ -159,6 +160,12 @@ void CBigGhost::WakeUp()
 //==========================================.
 void CBigGhost::HaveTroubleEmotion()
 {
+	//ä¥èÓïœçXèàóù.
+	if (m_ChangeEmotionFlag == true) {
+		m_HaveTroubleActFlag = 0;
+		m_ChangeEmotionFlag = false;
+	}
+
 	if (m_HaveTroubleActFlag & (MOVING_ROT_FLAG | MOVING_POS_FLAG)) {
 		//éŒÇﬂÇ…Ç»ÇÈèàóù.
 		Lean(FALL_DOWN_DIRECTION);
@@ -167,10 +174,10 @@ void CBigGhost::HaveTroubleEmotion()
 
 	if (m_HaveTroubleActFlag & SWING_FLAG) {
 		//óhÇÍÇÈèàóù.
-		m_vRot.y += HAVE_TROUBLE_SPEED * m_SwingDirect;
-		m_vRot.z += HAVE_TROUBLE_SPEED * m_SwingDirect;
+		m_vRot.y += HAVE_TROUBLE_SPEED * m_LeanDirect;
+		m_vRot.z += HAVE_TROUBLE_SPEED * m_LeanDirect;
 		if (fabsf(m_vRot.y) > HAVE_TROUBLE_ROT_MAX) {
-			m_SwingDirect *= CHANGE_DIRECTION;
+			m_LeanDirect *= CHANGE_DIRECTION;
 
 		}
 		return;
@@ -187,7 +194,30 @@ void CBigGhost::HaveTroubleEmotion()
 //==========================================.
 void CBigGhost::RejoiceEmotion()
 {
+	//å≥ÇÃèÍèäÇ…ñﬂÇÈ.
+	if (m_ChangeEmotionFlag == true) {
+		m_vPos = WAKE_UP_POS;
+		m_vRot = WAKE_UP_ROT;
+		return;
+	}
 
+	//äÏÇ—ä¥èÓï\åªèàóù.
+	m_vPos.y += REJOICE_MOVE_SPEED * m_UpDownDirect;
+	m_vPos.x += REJOICE_MOVE_SPEED * m_LeanDirect;
+
+	if (m_vPos.y <= WAKE_UP_POS.y) {
+		m_UpDownDirect *= CHANGE_DIRECTION;
+		m_vPos.y = WAKE_UP_POS.y;
+	}
+
+	//äpìx.
+	m_vRot.y += 0.01f * m_LeanDirect;
+	if (fabsf(m_vRot.y) > REJOICE_ROT_MAX) {
+		m_LeanDirect *= CHANGE_DIRECTION;
+		m_UpDownDirect *= CHANGE_DIRECTION;
+	}
+
+	
 }
 
 //==========================================.
@@ -208,8 +238,8 @@ void CBigGhost::Lean(const int& Direction)
 	const float			fRotLength	= D3DXVec3Length(&(HAVE_TROUBLE_ROT - WAKE_UP_ROT));
 	const D3DXVECTOR3	vRotUnit	= (HAVE_TROUBLE_ROT - WAKE_UP_ROT) / fRotLength;
 
-	m_vRot += 0.05f * vRotUnit * static_cast<float>(Direction);
-	m_vPos += 0.05f * vPosUnit * static_cast<float>(Direction);
+	m_vRot += LEAN_SPEED * vRotUnit * static_cast<float>(Direction);
+	m_vPos += LEAN_SPEED * vPosUnit * static_cast<float>(Direction);
 
 	if (Direction >= 1) {
 		if (m_vRot.x <= HAVE_TROUBLE_ROT.x) {
@@ -232,4 +262,12 @@ void CBigGhost::Lean(const int& Direction)
 	if (m_vPos.y <= WAKE_UP_POS.y) {
 		m_vPos = WAKE_UP_POS;
 	}
+}
+
+//=============================================.
+//		ãNÇ´ÇÈêQÇÈà⁄ìÆèàóùä÷êî.
+//=============================================.
+void CBigGhost::WakeUpSleepMove(const int& Direction)
+{
+
 }

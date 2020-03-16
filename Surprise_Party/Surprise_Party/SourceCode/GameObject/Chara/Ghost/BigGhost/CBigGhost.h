@@ -19,7 +19,7 @@ public:
 	const D3DXVECTOR3	WAKE_UP_POS			= D3DXVECTOR3(6.0f, 0.7f, 11.2f);	//起きる場所.
 	const D3DXVECTOR3	WAKE_UP_ROT			= D3DXVECTOR3(-1.35f, 0.0f, 0.0f);	//起きる角度.
 	const D3DXVECTOR3	HAVE_TROUBLE_POS	= D3DXVECTOR3(6.0f, 1.5f, 11.2f);	//困る感情時の座標.
-	const D3DXVECTOR3	HAVE_TROUBLE_ROT	= D3DXVECTOR3(-2.4f, -0.0f, 0.0f);	//困る感情の角度.
+	const D3DXVECTOR3	HAVE_TROUBLE_ROT	= D3DXVECTOR3(-2.4f, 0.0f, 0.0f);	//困る感情の角度.
 	const float			SLEEP_ANIM_SPEED	= 0.02f;							//寝てる時のアニメーション速度.
 	const float			WAKE_UP_ANIM_SPEED	= 0.0f;								//起きる時のアニメーション速度.
 	const float			WAKE_UPING_SPEED	= 0.03f;							//起きる速度.
@@ -31,6 +31,10 @@ public:
 	const int			FALL_DOWN_DIRECTION = 1;								//倒れる方向.
 	const int			UP_DIRECTION		= -1;								//上がる方向.
 
+	const float			LEAN_SPEED			= 0.05f;							//傾く速度.
+	const float			REJOICE_MOVE_SPEED	= 0.02f;							//喜び移動速度.
+	const float			REJOICE_ROT_MAX		= 0.4f;								//喜び角度最大数.
+
 	const unsigned int	MOVING_ROT_FLAG		= (1 << 0);							//角度移動フラグ.
 	const unsigned int	MOVING_POS_FLAG		= (1 << 1);							//座標移動フラグ.
 	const unsigned int	SWING_FLAG			= (1 << 2);							//揺れるフラグ.
@@ -41,13 +45,14 @@ public:
 
 private:
 	//=================関数====================//.
-	void Init();							//初期化処理関数.
-	void Release();							//解放処理関数.
-	void WakeUp();							//起床処理関数.
-	void HaveTroubleEmotion();				//困る感情処理関数.
-	void RejoiceEmotion();					//喜ぶ感情処理関数.
-	void Sleep();							//寝る処理関数.
-	void Lean(const int& Direction);		//倒れる処理関数.
+	void Init();								//初期化処理関数.
+	void Release();								//解放処理関数.
+	void WakeUp();								//起床処理関数.
+	void HaveTroubleEmotion();					//困る感情処理関数.
+	void RejoiceEmotion();						//喜ぶ感情処理関数.
+	void Sleep();								//寝る処理関数.
+	void Lean(const int& Direction);			//倒れる処理関数.
+	void WakeUpSleepMove(const int& Direction);	//起きる寝る移動処理関数.
 
 	//==================変数====================//.
 	CDX9SkinMesh*	m_pCSkinMesh;			//スキンメッシュ.
@@ -56,8 +61,10 @@ private:
 	int				m_AnimNum;				//アニメーション番号.
 
 	int				m_WakeUpCnt;			//起きるカウント.
-	int				m_SwingDirect;			//揺れる方向.
+	int				m_LeanDirect;			//傾く方向.
+	int				m_UpDownDirect;			//上下方向.
 	unsigned int	m_HaveTroubleActFlag;	//困る感情行動フラグ.
+	bool			m_ChangeEmotionFlag;	//感情変更フラグ.
 };
 
 
