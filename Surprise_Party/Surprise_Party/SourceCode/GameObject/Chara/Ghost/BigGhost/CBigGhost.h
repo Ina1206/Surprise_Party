@@ -47,7 +47,7 @@ private:
 	void HaveTroubleEmotion();				//困る感情処理関数.
 	void RejoiceEmotion();					//喜ぶ感情処理関数.
 	void Sleep();							//寝る処理関数.
-	void Falldown(const int& Direction);	//倒れる処理関数.
+	void Lean(const int& Direction);		//倒れる処理関数.
 
 	//==================変数====================//.
 	CDX9SkinMesh*	m_pCSkinMesh;			//スキンメッシュ.

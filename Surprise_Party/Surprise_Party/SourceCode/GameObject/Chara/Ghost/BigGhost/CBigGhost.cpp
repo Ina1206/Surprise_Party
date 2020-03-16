@@ -161,7 +161,7 @@ void CBigGhost::HaveTroubleEmotion()
 {
 	if (m_HaveTroubleActFlag & (MOVING_ROT_FLAG | MOVING_POS_FLAG)) {
 		//éŒÇﬂÇ…Ç»ÇÈèàóù.
-		Falldown(FALL_DOWN_DIRECTION);
+		Lean(FALL_DOWN_DIRECTION);
 		return;
 	}
 
@@ -178,7 +178,7 @@ void CBigGhost::HaveTroubleEmotion()
 	
 	if (m_HaveTroubleActFlag == 0) {
 		//å≥ÇÃëÃê®Ç…ñﬂÇÈèàóù.
-		Falldown(UP_DIRECTION);
+		Lean(UP_DIRECTION);
 	}
 }
 
@@ -201,7 +201,7 @@ void CBigGhost::Sleep()
 //==========================================.
 //		ì|ÇÍÇÈèàóùä÷êî.
 //==========================================.
-void CBigGhost::Falldown(const int& Direction)
+void CBigGhost::Lean(const int& Direction)
 {
 	const float			fPosLength	= D3DXVec3Length(&(HAVE_TROUBLE_POS - WAKE_UP_POS));
 	const D3DXVECTOR3	vPosUnit	= (HAVE_TROUBLE_POS - WAKE_UP_POS) / fPosLength;
