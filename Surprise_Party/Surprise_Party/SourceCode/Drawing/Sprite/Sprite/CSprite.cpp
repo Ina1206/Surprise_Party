@@ -320,7 +320,7 @@ void CSprite::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3D
 
 	//Šg‘åk¬s—ñì¬.
 	D3DXMatrixScaling(
-		&mScale,						//(out)ŒvZŒ‹‰Ê.
+		&mScale,								//(out)ŒvZŒ‹‰Ê.
 		m_vScale.x, m_vScale.y, m_vScale.z);	//x,y,z‚»‚ê‚¼‚ê‚ÌŠgk’l.
 
 		//‰ñ“]s—ñ‚ğì¬.

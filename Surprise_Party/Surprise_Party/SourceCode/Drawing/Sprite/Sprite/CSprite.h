@@ -21,29 +21,6 @@ public:
 	const D3DXVECTOR3	STANDERD_SCALE	= D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//初期の大きさ.
 	const float			ALPHA_MAX		= 1.0f;
 
-	//	//幅高さ構造体(float型).
-	//struct WHSIZE_FLOAT
-	//{
-	//	float w;
-	//	float h;
-	//	float z;
-
-	//	WHSIZE_FLOAT()
-	//		: w(0.0f)
-	//		, h(0.0f)
-	//		, z(0.0f)
-	//	{}
-	//};
-
-	////ｽﾌﾟﾗｲﾄ構造体.
-	//struct SPRITE_STATE
-	//{
-	//	WHSIZE_FLOAT	Disp;	//表示幅高さ.
-	//	WHSIZE_FLOAT	Base;	//元画像幅高さ.
-	//	WHSIZE_FLOAT	Stride;	//１コマ当たりの幅高さ.
-	//};
-
-
 	//初期化.
 	HRESULT Init( ID3D11Device* pDevice11, ID3D11DeviceContext* pContex11, const char* fileName, SPRITE_STATE* pSs);
 
