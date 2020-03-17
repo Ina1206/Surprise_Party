@@ -22,10 +22,24 @@ void CSleepEffect::Update()
 {
 	m_DispCnt++;
 
+	static float m[7];
 	for(unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++){
 		if (m_bDispFlag[sprite] == true) {
-			m_vPos[sprite].y += 0.05f;
-			m_vPos[sprite].x -= 0.05f;
+			m[sprite] += 5;
+			m_vPos[sprite].y += sin((60.0f - ((sprite % 2) * 40)) / 180.0f * PI) * 0.01f;
+			m_vPos[sprite].x -= cos((60.0f - ((sprite % 2) * 40)) / 180.0f * PI) * 0.01f;
+			m_vPos[sprite].x -= cos(m[sprite] / 180.0f * PI) * 0.01f;
+
+			m_fAlpha[sprite] += 0.005f * m_ChangeAddSub;
+			m_fScale[sprite] += 0.005f * m_ChangeAddSub;
+			
+			if (m_fAlpha[sprite] >= 1.0f) {
+				m_ChangeAddSub *= CHANGE_ADD_SUB;
+			}
+
+			if (m_fAlpha[sprite] <= ALPHA_MIN) {
+				m_bDispFlag[sprite] = false;
+			}
 			continue;
 		}
 
@@ -44,18 +58,18 @@ void CSleepEffect::Init()
 	//—v‘f”Ý’è.
 	m_pCSprite.resize(ALL_SPRITE_MAX);
 	m_vPos.resize(m_pCSprite.size());
-	m_vScale.resize(m_pCSprite.size());
+	m_fScale.resize(m_pCSprite.size());
 	m_vRot.resize(m_pCSprite.size());
 	m_fAlpha.resize(m_pCSprite.size());
 	m_bDispFlag.resize(m_pCSprite.size());
 
 	//‰Šú’lÝ’è.
 	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {
-		//m_vScale[sprite] = SCALE_MIN;
-		//m_fAlpha[sprite] = ALPHA_MIN;
+		m_fScale[sprite] = SCALE_MIN;
+		m_fAlpha[sprite] = ALPHA_MIN;
 		m_bDispFlag[sprite] = false;
-		m_vScale[sprite] = SCALE_MAX;
-		m_fAlpha[sprite] = ALPHA_MAX;
+		//m_vScale[sprite] = SCALE_MAX;
+		//m_fAlpha[sprite] = ALPHA_MAX;
 		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 		//–A.

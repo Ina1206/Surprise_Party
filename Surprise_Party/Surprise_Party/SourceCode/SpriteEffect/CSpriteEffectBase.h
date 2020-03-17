@@ -14,8 +14,8 @@ public:
 	virtual ~CSpriteEffectBase();
 
 	//================定数====================//.
-	const D3DXVECTOR3	SCALE_MAX		= D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//大きさ最大値.
-	const D3DXVECTOR3	SCALE_MIN		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//大きさ最小値.
+	const float			SCALE_MAX		= 1.0f;								//大きさ最大値.
+	const float			SCALE_MIN		= 0.0f;								//大きさ最小値.
 	const float			ALPHA_MAX		= 1.0f;								//透過値最大値.
 	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
 
@@ -23,7 +23,11 @@ public:
 	const int			Z_MAX			= 3;								//Z最大数.
 	const int			ALL_SPRITE_MAX	= BUBBLE_MAX + Z_MAX;				//全てのスプライト最大数.
 
-	const D3DXVECTOR3	INIT_LOCAL_POS	= D3DXVECTOR3(-2.7f, 2.3f, 0.0f);	//初期のローカル座標.
+	const D3DXVECTOR3	INIT_LOCAL_POS	= D3DXVECTOR3(-2.3f, 2.0f, 0.0f);	//初期のローカル座標.
+
+	const int			CHANGE_ADD_SUB	= -1;								//加算減算変更数値.
+
+	const float			PI				= 3.14159265358979323846264338f;	//円周率.
 
 	//================関数====================//.
 	virtual void Update() = 0;																				//更新処理関数.
@@ -41,7 +45,7 @@ protected:
 	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
 	std::vector<D3DXVECTOR3>	m_vPos;				//座標.
 	std::vector<D3DXVECTOR3>	m_vRot;				//角度.
-	std::vector<D3DXVECTOR3>	m_vScale;			//大きさ.
+	std::vector<float>			m_fScale;			//大きさ.
 	std::vector<float>			m_fAlpha;			//透過値.
 	D3DXVECTOR3					m_vCenterPos;		//中央座標.
 	CResourceManager*			m_pCResourceManager;//読み込み管理クラス.
@@ -49,6 +53,7 @@ protected:
 	
 	std::vector<bool>			m_bDispFlag;		//表示フラグ.
 	int							m_DispCnt;			//表示カウント.
+	int							m_ChangeAddSub;		//加算減算変更.
 
 private:
 
