@@ -80,6 +80,7 @@
     <ClInclude Include="SourceCode\Scene\Title\CTitle.h" />
     <ClInclude Include="SourceCode\Scene\Tutorial\CTutorial.h" />
     <ClInclude Include="SourceCode\SpriteEffect\CSpriteEffectBase.h" />
+    <ClInclude Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.h" />
     <ClInclude Include="SourceCode\UI\CUI.h" />
     <ClInclude Include="SourceCode\UI\Fade\CFade.h" />
     <ClInclude Include="SourceCode\UI\Fade\SceneFade\CSceneFade.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="SourceCode\Scene\Title\CTitle.cpp" />
     <ClCompile Include="SourceCode\Scene\Tutorial\CTutorial.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\CSpriteEffectBase.cpp" />
+    <ClCompile Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\CFade.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\SceneFade\CSceneFade.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\StageFade\CStageFade.cpp" />
