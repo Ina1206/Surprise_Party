@@ -52,3 +52,23 @@ void CSpriteEffectBase::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		m_pCDepthStencil->SetDepth(true);
 	}
 }
+
+//=============================================.
+//		óvëfêîê›íËèàóùä÷êî.
+//=============================================.
+void CSpriteEffectBase::SettingElementsCount()
+{
+	//âΩÇ‡Ç»ÇØÇÍÇŒèIóπ.
+	if (m_pCSprite.size() == 0) {
+		_ASSERT_EXPR(nullptr, L"m_pCSprite.size() == 0");
+		return;
+	}
+
+	m_vPos.resize(m_pCSprite.size());
+	m_fScale.resize(m_pCSprite.size());
+	m_vRot.resize(m_pCSprite.size());
+	m_fAlpha.resize(m_pCSprite.size());
+	m_fAngle.resize(m_pCSprite.size());
+	m_bDispFlag.resize(m_pCSprite.size());
+	m_ChangeAddSub.resize(m_pCSprite.size());
+}

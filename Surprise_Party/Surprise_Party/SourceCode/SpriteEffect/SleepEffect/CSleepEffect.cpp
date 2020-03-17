@@ -53,15 +53,9 @@ void CSleepEffect::Update()
 //===================================.
 void CSleepEffect::Init()
 {
-	//—v‘f”İ’è.
+	//—v‘f”İ’èˆ—.
 	m_pCSprite.resize(ALL_SPRITE_MAX);
-	m_vPos.resize(m_pCSprite.size());
-	m_fScale.resize(m_pCSprite.size());
-	m_vRot.resize(m_pCSprite.size());
-	m_fAlpha.resize(m_pCSprite.size());
-	m_fAngle.resize(m_pCSprite.size());
-	m_bDispFlag.resize(m_pCSprite.size());
-	m_ChangeAddSub.resize(m_pCSprite.size());
+	SettingElementsCount();
 
 	//‰Šú’lİ’è.
 	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {

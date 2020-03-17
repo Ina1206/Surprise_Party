@@ -72,10 +72,10 @@ void CBigGhost::Update()
 	//	m_vRot = vChange;
 	//}
 
-	//if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-	//	m_ChangeEmotionFlag = true;
-	//}
-
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+		m_ChangeEmotionFlag = true;
+	}
+	HaveTroubleEmotion();
 
 	//エフェクト更新処理関数.
 	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(m_vPos);
@@ -112,6 +112,10 @@ void CBigGhost::Init()
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect);
+
+	m_vPos = WAKE_UP_POS;
+	m_vRot = WAKE_UP_ROT;
+	m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
 }
 
 //==========================================.

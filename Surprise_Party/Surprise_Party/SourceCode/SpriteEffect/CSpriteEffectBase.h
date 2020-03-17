@@ -35,6 +35,7 @@ protected:
 	//================関数====================//.
 	virtual void Init() = 0;		//初期化処理関数.
 	virtual void Release() = 0;		//解放処理関数.
+	void SettingElementsCount();	//要素数設定処理関数.
 
 	//================変数====================//.
 	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
