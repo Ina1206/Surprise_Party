@@ -13,6 +13,10 @@ public:
 	CHaveTroubleEffect();
 	~CHaveTroubleEffect();
 
+	//=================定数===================//.
+	const int			SPRITE_MAX		= 6;								//スプライト最大数.
+	const D3DXVECTOR3	INT_LOCAL_POS	= D3DXVECTOR3(2.0f, 1.6f, 0.0f);	//初期のローカル座標.
+
 	//=================関数===================//.
 	void Update();		//更新処理関数.
 	

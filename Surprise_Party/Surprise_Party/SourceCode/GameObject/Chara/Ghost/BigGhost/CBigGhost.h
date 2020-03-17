@@ -3,6 +3,7 @@
 
 #include "..\CGhostBase.h"
 #include "..\..\SpriteEffect\SleepEffect\CSleepEffect.h"
+#include "..\..\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h"
 
 /******************************************
 *		‘å‚«‚¢‚¨‰»‚¯ƒNƒ‰ƒX.

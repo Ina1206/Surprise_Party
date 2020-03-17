@@ -11,7 +11,7 @@ CBigGhost::CBigGhost()
 	, m_HaveTroubleActFlag	(0)
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
-	, m_UsingEffectNum		(0)
+	, m_UsingEffectNum		(1)
 {
 	//初期化処理関数.
 	Init();
@@ -111,7 +111,8 @@ void CBigGhost::Init()
 
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
-	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect);
+	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect());
+	m_pCSpriteEffect[static_cast<int>(enEmotionType::HaveTrounble)].reset(new CHaveTroubleEffect());
 
 	m_vPos = WAKE_UP_POS;
 	m_vRot = WAKE_UP_ROT;
