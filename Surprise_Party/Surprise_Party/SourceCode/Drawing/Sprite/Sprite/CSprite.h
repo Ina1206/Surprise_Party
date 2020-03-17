@@ -57,7 +57,7 @@ public:
 	HRESULT InitModel(const char* fileName);
 
 	//レンダリング用.
-	void Render(D3DXMATRIX& mView, D3DXMATRIX& mProj, D3DXVECTOR3& vCamPos);
+	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCamPos);
 
 	//位置情報を設定.
 	void SetPosition(float x, float y, float z) {

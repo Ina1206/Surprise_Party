@@ -251,6 +251,9 @@
     <Filter Include="SourceCode\GameObject\Chara\Ghost\BigGhost">
       <UniqueIdentifier>{f6b23a6f-b866-4ef9-8bd3-6d66f093a3e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\SpriteEffect">
+      <UniqueIdentifier>{c0fe31e7-b104-4914-a18f-4920347964db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -508,6 +511,9 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\BigGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\SpriteEffect\CSpriteEffectBase.h">
+      <Filter>SourceCode\SpriteEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -752,6 +758,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Drawing\Object\CDX9Base.cpp">
       <Filter>SourceCode\Drawing\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\SpriteEffect\CSpriteEffectBase.cpp">
+      <Filter>SourceCode\SpriteEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

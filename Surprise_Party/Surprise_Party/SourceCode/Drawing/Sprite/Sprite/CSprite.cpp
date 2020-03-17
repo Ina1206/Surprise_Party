@@ -305,7 +305,7 @@ HRESULT CSprite::InitModel(const char* fileName)
 }
 
 //レンダリング用.
-void CSprite::Render(D3DXMATRIX& mView, D3DXMATRIX& mProj, D3DXVECTOR3& vCamPos)
+void CSprite::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCamPos)
 {
 	//ワールド行列.
 	D3DXMATRIX mWorld, mScale, mRot;

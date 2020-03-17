@@ -51,7 +51,7 @@ protected:
 	D3DXVECTOR3 m_vRot;			//角度.
 	float		m_fScale;		//大きさ.
 	bool		m_bDisp;		//表示フラグ.
-
+	
 	CResourceManager*	m_pCResourceManager;//読み込み管理クラス.
 private:
 
