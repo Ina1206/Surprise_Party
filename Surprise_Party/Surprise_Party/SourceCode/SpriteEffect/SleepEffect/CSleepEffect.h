@@ -1,0 +1,2 @@
+
+#define CSLEEP_EFFECT_H
