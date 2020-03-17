@@ -28,53 +28,53 @@ CBigGhost::~CBigGhost()
 //==========================================.
 void CBigGhost::Update()
 {
-	static bool flag = false;
-	if (GetAsyncKeyState(VK_F1) & 0x0001) {
-		if (flag == false) {
-			flag = true;
-		}
-		else {
-			flag = false;
-		}
-	}
+	//static bool flag = false;
+	//if (GetAsyncKeyState(VK_F1) & 0x0001) {
+	//	if (flag == false) {
+	//		flag = true;
+	//	}
+	//	else {
+	//		flag = false;
+	//	}
+	//}
 
-	D3DXVECTOR3 vChange;
-	if (flag == false) {
-		vChange = m_vPos;
-	}
-	else {
-		vChange = m_vRot;
-	}
+	//D3DXVECTOR3 vChange;
+	//if (flag == false) {
+	//	vChange = m_vPos;
+	//}
+	//else {
+	//	vChange = m_vRot;
+	//}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		vChange.x += 0.01f;
-	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		vChange.x -= 0.01f;
-	}
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		vChange.y += 0.01f;
-	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		vChange.y -= 0.01f;
-	}
-	if (GetAsyncKeyState('Z') & 0x8000) {
-		vChange.z += 0.01f;
-	}
-	if (GetAsyncKeyState('X') & 0x8000) {
-		vChange.z -= 0.01f;
-	}
+	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+	//	vChange.x += 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+	//	vChange.x -= 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
+	//	vChange.y += 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	//	vChange.y -= 0.01f;
+	//}
+	//if (GetAsyncKeyState('Z') & 0x8000) {
+	//	vChange.z += 0.01f;
+	//}
+	//if (GetAsyncKeyState('X') & 0x8000) {
+	//	vChange.z -= 0.01f;
+	//}
 
-	if (flag == false) {
-		m_vPos = vChange;
-	}
-	else {
-		m_vRot = vChange;
-	}
+	//if (flag == false) {
+	//	m_vPos = vChange;
+	//}
+	//else {
+	//	m_vRot = vChange;
+	//}
 
-	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-		m_ChangeEmotionFlag = true;
-	}
+	//if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+	//	m_ChangeEmotionFlag = true;
+	//}
 
 
 	//エフェクト更新処理関数.

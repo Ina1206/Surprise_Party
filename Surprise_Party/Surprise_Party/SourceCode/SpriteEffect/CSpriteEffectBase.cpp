@@ -12,6 +12,7 @@ CSpriteEffectBase::CSpriteEffectBase()
 	, m_vCenterPos			(0.0f, 0.0f, 0.0f)
 	, m_pCResourceManager	(nullptr)
 	, m_pCDepthStencil		(nullptr)
+	, m_bDispFlag			()
 {
 	m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
 	m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();

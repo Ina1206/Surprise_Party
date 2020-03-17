@@ -13,6 +13,18 @@ public:
 	CSpriteEffectBase();
 	virtual ~CSpriteEffectBase();
 
+	//================定数====================//.
+	const D3DXVECTOR3	SCALE_MAX		= D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//大きさ最大値.
+	const D3DXVECTOR3	SCALE_MIN		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//大きさ最小値.
+	const float			ALPHA_MAX		= 1.0f;								//透過値最大値.
+	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
+
+	const int			BUBBLE_MAX		= 4;								//泡最大数.
+	const int			Z_MAX			= 3;								//Z最大数.
+	const int			ALL_SPRITE_MAX	= BUBBLE_MAX + Z_MAX;				//全てのスプライト最大数.
+
+	const D3DXVECTOR3	INIT_LOCAL_POS	= D3DXVECTOR3(-2.7f, 2.3f, 0.0f);	//初期のローカル座標.
+
 	//================関数====================//.
 	virtual void Update() = 0;																				//更新処理関数.
 	void	Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画処理関数.
@@ -34,6 +46,8 @@ protected:
 	D3DXVECTOR3					m_vCenterPos;		//中央座標.
 	CResourceManager*			m_pCResourceManager;//読み込み管理クラス.
 	CDepth_Stencil*				m_pCDepthStencil;	//デプスステンシル.
+	
+	std::vector<bool>			m_bDispFlag;		//表示フラグ.
 
 private:
 
