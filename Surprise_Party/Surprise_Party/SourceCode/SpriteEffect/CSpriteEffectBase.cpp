@@ -4,18 +4,22 @@
 *		スプライトのエフェクト基底クラス.
 ********/
 CSpriteEffectBase::CSpriteEffectBase()
-	: m_pCSprite	()
-	, m_vPos		()
-	, m_vRot		()
-	, m_vScale		()
-	, m_vCenterPos	(0.0f, 0.0f, 0.0f)
+	: m_pCSprite			()
+	, m_vPos				()
+	, m_vRot				()
+	, m_vScale				()
+	, m_vCenterPos			(0.0f, 0.0f, 0.0f)
+	, m_pCResourceManager	(nullptr)
+	, m_pCDepthStencil		(nullptr)
 {
-
+	m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
+	m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
 }
 
 CSpriteEffectBase::~CSpriteEffectBase()
 {
-
+	m_pCDepthStencil = nullptr;
+	m_pCResourceManager = nullptr;
 }
 
 //============================================.
@@ -31,6 +35,7 @@ void CSpriteEffectBase::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 
 	//描画処理.
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+		
 		_ASSERT_EXPR(m_pCSprite[sprite] != nullptr, L"CSpriteEffectのm_pCSprite == nullptr");
 
 		m_pCSprite[sprite]->SetScale(m_vScale[sprite]);

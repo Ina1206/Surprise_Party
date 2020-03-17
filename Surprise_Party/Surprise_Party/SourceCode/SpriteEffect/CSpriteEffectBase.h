@@ -26,11 +26,13 @@ protected:
 	virtual void Release() = 0;		//解放処理関数.
 
 	//================変数====================//.
-	std::vector<CSprite*>		m_pCSprite;		//スプライトクラス.
-	std::vector<D3DXVECTOR3>	m_vPos;			//座標.
-	std::vector<D3DXVECTOR3>	m_vRot;			//角度.
-	std::vector<D3DXVECTOR3>	m_vScale;		//大きさ.
-	D3DXVECTOR3					m_vCenterPos;	//中央座標.
+	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
+	std::vector<D3DXVECTOR3>	m_vPos;				//座標.
+	std::vector<D3DXVECTOR3>	m_vRot;				//角度.
+	std::vector<D3DXVECTOR3>	m_vScale;			//大きさ.
+	D3DXVECTOR3					m_vCenterPos;		//中央座標.
+	CResourceManager*			m_pCResourceManager;//読み込み管理クラス.
+	CDepth_Stencil*				m_pCDepthStencil;	//デプスステンシル.
 
 private:
 
