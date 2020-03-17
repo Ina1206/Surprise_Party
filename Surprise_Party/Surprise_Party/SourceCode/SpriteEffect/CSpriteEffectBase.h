@@ -19,12 +19,6 @@ public:
 	const float			ALPHA_MAX		= 1.0f;								//透過値最大値.
 	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
 
-	const int			BUBBLE_MAX		= 4;								//泡最大数.
-	const int			Z_MAX			= 2;								//Z最大数.
-	const int			ALL_SPRITE_MAX	= BUBBLE_MAX + Z_MAX;				//全てのスプライト最大数.
-
-	const D3DXVECTOR3	INIT_LOCAL_POS	= D3DXVECTOR3(-2.3f, 2.0f, 0.0f);	//初期のローカル座標.
-
 	const int			ADDITION_NUM	= 1;								//加算番号.
 	const int			CHANGE_ADD_SUB	= -1;								//加算減算変更数値.
 
