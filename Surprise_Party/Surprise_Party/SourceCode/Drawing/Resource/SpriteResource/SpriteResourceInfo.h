@@ -30,9 +30,14 @@ enum class enSprite
 	ActSelection,					//行動選択.
 	ActMoveString,					//移動文字.
 	ActRestString,					//休憩文字.
+	Bubble,							//泡.
+	SleepZ,							//睡眠のz
+	Swet,							//汗.
 
 	Strenght_Icon,					//体力アイコン.
-	
+	eight_part_note,				//8分音符.
+	sixteen_part_note,				//16分音符.
+
 	Max,
 	Start,
 	SingleSpriteMax = Strenght_Icon,//単体スプライト最大数.

@@ -155,11 +155,16 @@ void CResourceManager::SkinMeshFileNameSetting()
 void CResourceManager::SpriteFileNameSetting()
 {
 	m_vSpriteFileName = {
-		"Data\\Texture\\UI\\Game\\CursorUp.png",		//カーソル.
-		"Data\\Texture\\UI\\Game\\Select.png",			//行動選択.
-		"Data\\Texture\\UI\\Game\\ActMoveString.png",	//移動文字.
-		"Data\\Texture\\UI\\Game\\ActRestString.png",	//休憩文字.
-		"Data\\Texture\\UI\\Game\\HelthIcon.png",		//体力アイコン.
+		"Data\\Texture\\UI\\Game\\CursorUp.png",			//カーソル.
+		"Data\\Texture\\UI\\Game\\Select.png",				//行動選択.
+		"Data\\Texture\\UI\\Game\\ActMoveString.png",		//移動文字.
+		"Data\\Texture\\UI\\Game\\ActRestString.png",		//休憩文字.
+		"Data\\Texture\\UI\\Game\\bubble.png",				//泡.
+		"Data\\Texture\\UI\\Game\\Z.png",					//睡眠のｚ.
+		"Data\\Texture\\UI\\Game\\Swet.png",				//汗.
+		"Data\\Texture\\UI\\Game\\HelthIcon.png",			//体力アイコン.
+		"Data\\Texture\\UI\\Game\\eight_part_note.png",		//8分音符.
+		"Data\\Texture\\UI\\Game\\sixteen_part_note.png",	//16分音符.
 	};
 }
 
@@ -201,8 +206,6 @@ void CResourceManager::SpriteStateSetting()
 	int CursorNum = static_cast<int>(enSprite::Cursol);
 	m_pstSpriteState[CursorNum].Base.w = 74.0f;
 	m_pstSpriteState[CursorNum].Base.h = 73.0f;
-	m_pstSpriteState[CursorNum].Stride.w = m_pstSpriteState[CursorNum].Base.w;
-	m_pstSpriteState[CursorNum].Stride.h = m_pstSpriteState[CursorNum].Base.h;
 	m_pstSpriteState[CursorNum].Disp.w = 1.0f;
 	m_pstSpriteState[CursorNum].Disp.h = 1.0f;
 
@@ -210,8 +213,6 @@ void CResourceManager::SpriteStateSetting()
 	int SelectionNum = static_cast<int>(enSprite::ActSelection);
 	m_pstSpriteState[SelectionNum].Base.w = 256.0f;
 	m_pstSpriteState[SelectionNum].Base.h = 256.0;
-	//m_pstSpriteState[SelectionNum].Stride.w = m_pstSpriteState[SelectionNum].Base.w / 3;
-	//m_pstSpriteState[SelectionNum].Stride.h = m_pstSpriteState[SelectionNum].Base.h / 3;
 	m_pstSpriteState[SelectionNum].Disp.w = 5.0f;
 	m_pstSpriteState[SelectionNum].Disp.h = 5.0f;
 
@@ -220,11 +221,30 @@ void CResourceManager::SpriteStateSetting()
 	for (int stringNum = MoveStringNum; stringNum <= static_cast<int>(enSprite::ActRestString); stringNum++) {
 		m_pstSpriteState[stringNum].Base.w = 80.0f;
 		m_pstSpriteState[stringNum].Base.h = 180.0f;
-		m_pstSpriteState[stringNum].Stride.w = m_pstSpriteState[stringNum].Base.w;
-		m_pstSpriteState[stringNum].Stride.h = m_pstSpriteState[stringNum].Base.h;
 		m_pstSpriteState[stringNum].Disp.w = 1.6f;
 		m_pstSpriteState[stringNum].Disp.h = 3.6f;
 	}
+
+	//泡.
+	int BubbleNum = static_cast<int>(enSprite::Bubble);
+	m_pstSpriteState[BubbleNum].Base.w = 350.0f;
+	m_pstSpriteState[BubbleNum].Base.h = 350.0f;
+	m_pstSpriteState[BubbleNum].Disp.w = 1.0f;
+	m_pstSpriteState[BubbleNum].Disp.h = 1.0f;
+
+	//睡眠のz.
+	int SleepZNum = static_cast<int>(enSprite::SleepZ);
+	m_pstSpriteState[SleepZNum].Base.w = 70.0f;
+	m_pstSpriteState[SleepZNum].Base.h = 70.0f;
+	m_pstSpriteState[SleepZNum].Disp.w = 2.0f;
+	m_pstSpriteState[SleepZNum].Disp.h = 2.0f;
+
+	//汗.
+	int SwetNum = static_cast<int>(enSprite::Swet);
+	m_pstSpriteState[SwetNum].Base.w = 300.0f;
+	m_pstSpriteState[SwetNum].Base.h = 300.0f;
+	m_pstSpriteState[SwetNum].Disp.w = 1.0f;
+	m_pstSpriteState[SwetNum].Disp.h = 1.0f;
 
 	//まとめて一コマ当たりのサイズ指定.
 	for (int sprite = 0; sprite < static_cast<int>(enSprite::SingleSpriteMax); sprite++) {
@@ -241,7 +261,16 @@ void CResourceManager::SpriteStateSetting()
 	m_pstSpriteState[StrengthIconNum].Disp.w = 1.0f;
 	m_pstSpriteState[StrengthIconNum].Disp.h = 1.0f;
 
-
+	//音符.
+	int NoteNum = static_cast<int>(enSprite::eight_part_note);
+	for (int note = NoteNum; note <= static_cast<int>(enSprite::sixteen_part_note); note++) {
+		m_pstSpriteState[note].Base.w = 1321.0f;
+		m_pstSpriteState[note].Base.h = 1321.0f;
+		m_pstSpriteState[note].Stride.w = m_pstSpriteState[note].Base.w / 3.0f;
+		m_pstSpriteState[note].Stride.h = m_pstSpriteState[note].Base.h / 3.0f;
+		m_pstSpriteState[note].Disp.w = 2.0f;
+		m_pstSpriteState[note].Disp.h = 2.0f;
+	}
 }
 
 //================================================.
