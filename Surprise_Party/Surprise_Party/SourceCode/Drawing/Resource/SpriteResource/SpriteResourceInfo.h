@@ -63,6 +63,8 @@ enum class enSpriteUI
 	OpenString,						//Open文字.
 	CloseString,					//Close文字.
 	ExtendedNotification,			//延長通知.
+	TextBox,						//テキストボックス.
+	TextBoxSmall,					//テキストボックス小.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.

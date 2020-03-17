@@ -17,6 +17,7 @@ ThankYouStamp.png
 CloseString.png
 OpneString.png
 extended_notification.png
+Z.png
 
 古いシャッター（テクスチャー）のフリー素材 URL:https://www.pakutaso.com/20150254049post-5191.html
 Shutter.jpg
@@ -26,7 +27,7 @@ BlackCurtain.jpg
 
 
 ぴよたそ	URL:https://hiyokoyarou.com/
-Z.png
+Z_2.png
 
 pngtree		URL:<a href='https://pngtree.com/so/漫画イラスト'>漫画イラスト png from pngtree.com</a>
 bubble.png
@@ -36,4 +37,6 @@ eight_part_note.png
 six_teen_note.png
 
 NUREYON		URL:https://nureyon.com/
+Swet.png
 
+びたちー素材館	URL:http://www.vita-chi.net/sozai1.htm

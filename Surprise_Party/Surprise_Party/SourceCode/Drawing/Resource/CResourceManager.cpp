@@ -191,6 +191,8 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\OpenString.png",				//Open文字.
 		"Data\\Texture\\UI\\Game\\CloseString.png",				//Close文字.
 		"Data\\Texture\\UI\\Game\\extended_notification.png",	//延長通知.
+		"Data\\Texture\\UI\\Game\\TextBox.png",					//テキストボックス.
+		"Data\\Texture\\UI\\Game\\TextBoxSmall.png",			//テキストボックス小.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
@@ -380,6 +382,20 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[NotificationNum].Base.h = 270.0f;
 	m_pstSpriteUIState[NotificationNum].Disp.w = 200.0f;
 	m_pstSpriteUIState[NotificationNum].Disp.h = 82.5f;
+
+	//テキストボックス.
+	int TextBoxNum = static_cast<int>(enSpriteUI::TextBox);
+	m_pstSpriteUIState[TextBoxNum].Base.w = 774.0f;
+	m_pstSpriteUIState[TextBoxNum].Base.h = 187.0f;
+	m_pstSpriteUIState[TextBoxNum].Disp.w = m_pstSpriteUIState[TextBoxNum].Base.w;
+	m_pstSpriteUIState[TextBoxNum].Disp.h = m_pstSpriteUIState[TextBoxNum].Base.h;
+
+	//テキストボックス小.
+	int TextBoxSmallNum = static_cast<int>(enSpriteUI::TextBoxSmall);
+	m_pstSpriteUIState[TextBoxSmallNum].Base.w = 209.0f;
+	m_pstSpriteUIState[TextBoxSmallNum].Base.h = 57.0f;
+	m_pstSpriteUIState[TextBoxSmallNum].Disp.w = m_pstSpriteUIState[TextBoxSmallNum].Base.w;
+	m_pstSpriteUIState[TextBoxSmallNum].Disp.h = m_pstSpriteUIState[TextBoxSmallNum].Base.h;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
