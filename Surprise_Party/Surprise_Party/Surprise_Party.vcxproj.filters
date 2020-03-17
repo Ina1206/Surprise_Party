@@ -257,6 +257,9 @@
     <Filter Include="SourceCode\SpriteEffect\SleepEffect">
       <UniqueIdentifier>{9186a55c-7a91-4e88-80f4-c6fa774b2fb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\SpriteEffect\HaveTroubleEffect">
+      <UniqueIdentifier>{eb42069e-4aa2-40b2-b4d7-6d5ddb8b8ce5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -520,6 +523,9 @@
     <ClInclude Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.h">
       <Filter>SourceCode\SpriteEffect\SleepEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h">
+      <Filter>SourceCode\SpriteEffect\HaveTroubleEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -770,6 +776,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.cpp">
       <Filter>SourceCode\SpriteEffect\SleepEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.cpp">
+      <Filter>SourceCode\SpriteEffect\HaveTroubleEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
