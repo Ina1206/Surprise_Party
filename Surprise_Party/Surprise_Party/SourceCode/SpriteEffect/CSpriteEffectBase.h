@@ -48,6 +48,7 @@ protected:
 	CDepth_Stencil*				m_pCDepthStencil;	//デプスステンシル.
 	
 	std::vector<bool>			m_bDispFlag;		//表示フラグ.
+	int							m_DispCnt;			//表示カウント.
 
 private:
 

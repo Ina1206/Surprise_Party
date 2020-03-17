@@ -18,8 +18,9 @@ public:
 
 private:
 	//===============ŠÖ”=================//.
-	void Init();		//‰Šú‰»ˆ—ŠÖ”.
-	void Release();		//‰ğ•úˆ—ŠÖ”.
+	void Init();							//‰Šú‰»ˆ—ŠÖ”.
+	void Release();							//‰ğ•úˆ—ŠÖ”.
+	void AppeartJudgement(const int& num);	//•\¦”»’fˆ—ŠÖ”.
 
 
 };

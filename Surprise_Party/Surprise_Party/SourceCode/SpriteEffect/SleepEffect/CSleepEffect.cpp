@@ -20,54 +20,18 @@ CSleepEffect::~CSleepEffect()
 //===================================.
 void CSleepEffect::Update()
 {
+	m_DispCnt++;
+
 	for(unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++){
-
-		static bool flag = false;
-		if (GetAsyncKeyState(VK_F1) & 0x0001) {
-			if (flag == false) {
-				flag = true;
-			}
-			else {
-				flag = false;
-			}
+		if (m_bDispFlag[sprite] == true) {
+			m_vPos[sprite].y += 0.05f;
+			m_vPos[sprite].x -= 0.05f;
+			continue;
 		}
 
-		D3DXVECTOR3 vChange;
-		if (flag == false) {
-			vChange = m_vPos[sprite];
-		}
-		else {
-			vChange = m_vRot[sprite];
-		}
-
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-			vChange.x += 0.01f;
-		}
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-			vChange.x -= 0.01f;
-		}
-		if (GetAsyncKeyState(VK_UP) & 0x8000) {
-			vChange.y += 0.01f;
-		}
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-			vChange.y -= 0.01f;
-		}
-		if (GetAsyncKeyState('Z') & 0x8000) {
-			vChange.z += 0.01f;
-		}
-		if (GetAsyncKeyState('X') & 0x8000) {
-			vChange.z -= 0.01f;
-		}
-
-		if (flag == false) {
-			m_vPos[sprite] = vChange;
-		}
-		else {
-			m_vRot[sprite] = vChange;
-		}
-
-		if (m_bDispFlag[sprite] == false) {
-			m_vPos[sprite] = m_vCenterPos + INIT_LOCAL_POS;
+		if (m_DispCnt >= 30) {
+			AppeartJudgement(sprite);
+			m_DispCnt = 0;
 		}
 	}
 }
@@ -117,4 +81,16 @@ void CSleepEffect::Release()
 			break;
 		}
 	}
+}
+
+//======================================.
+//		ï\é¶îªífèàóùä÷êî.
+//======================================.
+void CSleepEffect::AppeartJudgement(const int& num)
+{
+	if (m_bDispFlag[num] == false) {
+		m_vPos[num] = m_vCenterPos + INIT_LOCAL_POS;
+	}
+
+	m_bDispFlag[num] = true;
 }
