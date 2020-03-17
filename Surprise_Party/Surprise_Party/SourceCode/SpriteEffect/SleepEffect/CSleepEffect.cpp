@@ -22,28 +22,33 @@ void CSleepEffect::Update()
 {
 	m_DispCnt++;
 
-	static float m[7];
 	for(unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++){
 		if (m_bDispFlag[sprite] == true) {
-			m[sprite] += 5;
-			m_vPos[sprite].y += sin((60.0f - ((sprite % 2) * 40)) / 180.0f * PI) * 0.01f;
-			m_vPos[sprite].x -= cos((60.0f - ((sprite % 2) * 40)) / 180.0f * PI) * 0.01f;
-			m_vPos[sprite].x -= cos(m[sprite] / 180.0f * PI) * 0.01f;
-
-			m_fAlpha[sprite] += 0.005f * m_ChangeAddSub;
-			m_fScale[sprite] += 0.005f * m_ChangeAddSub;
+			//透過値と大きさ.
+			m_fAlpha[sprite] += ALPHA_SPEED * m_ChangeAddSub[sprite];
+			m_fScale[sprite] += SCALE_SPEED * m_ChangeAddSub[sprite];
 			
-			if (m_fAlpha[sprite] >= 1.0f) {
-				m_ChangeAddSub *= CHANGE_ADD_SUB;
+			if (m_fAlpha[sprite] >= ALPHA_MAX) {
+				m_ChangeAddSub[sprite] *= CHANGE_ADD_SUB;
 			}
 
 			if (m_fAlpha[sprite] <= ALPHA_MIN) {
 				m_bDispFlag[sprite] = false;
+				//初期化処理
+				m_vPos[sprite] = m_vCenterPos + INIT_LOCAL_POS;
+				m_fAlpha[sprite] = ALPHA_MIN;
+				m_fScale[sprite] = SCALE_MIN;
+				m_ChangeAddSub[sprite] *= CHANGE_ADD_SUB;
+				m_fAngle[sprite] = 0.0f;
 			}
+
+			//移動処理.
+			Move(sprite);
 			continue;
 		}
 
-		if (m_DispCnt >= 30) {
+		if (m_DispCnt >= APPEAR_TIME) {
+			//表示判断処理関数.
 			AppeartJudgement(sprite);
 			m_DispCnt = 0;
 		}
@@ -61,24 +66,25 @@ void CSleepEffect::Init()
 	m_fScale.resize(m_pCSprite.size());
 	m_vRot.resize(m_pCSprite.size());
 	m_fAlpha.resize(m_pCSprite.size());
+	m_fAngle.resize(m_pCSprite.size());
 	m_bDispFlag.resize(m_pCSprite.size());
+	m_ChangeAddSub.resize(m_pCSprite.size());
 
 	//初期値設定.
 	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {
+		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		m_fScale[sprite] = SCALE_MIN;
 		m_fAlpha[sprite] = ALPHA_MIN;
 		m_bDispFlag[sprite] = false;
-		//m_vScale[sprite] = SCALE_MAX;
-		//m_fAlpha[sprite] = ALPHA_MAX;
-		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_ChangeAddSub[sprite] = 1;
 
-		//泡.
-		if (sprite < BUBBLE_MAX) {
-			m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Bubble);
+		//眠りの睡眠マーク.
+		if (sprite % 3 == 1) {
+			m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::SleepZ);
 			continue;
 		}
-		//眠りの睡眠マーク.
-		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::SleepZ);
+		//泡.
+		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Bubble);
 	}
 }
 
@@ -107,4 +113,26 @@ void CSleepEffect::AppeartJudgement(const int& num)
 	}
 
 	m_bDispFlag[num] = true;
+}
+
+//=======================================.
+//		移動処理関数.
+//=======================================.
+void CSleepEffect::Move(const int& num)
+{
+	const float angle = START_ANGLE - ((num % LINE_MAX) * ANGLE_WIDTH);	//角度.
+	const float rad = (angle) / CIRCLE_HALF_ANGLE * PI;					//ラジアン.
+	//移動.
+	m_vPos[num].y += sin(rad) * MOVE_SPEED;
+	m_vPos[num].x -= cos(rad) * MOVE_SPEED;
+
+	//眠りマークは終了.
+	if (num % LINE_MAX == SLEEP_Z_NUM) {
+		return;
+	}
+
+	//泡のみ揺れる.
+	m_fAngle[num] += ANGLE_MOVE_SPEED;
+	m_vPos[num].x -= cos(m_fAngle[num] / CIRCLE_HALF_ANGLE * PI) * MOVE_SPEED;
+
 }

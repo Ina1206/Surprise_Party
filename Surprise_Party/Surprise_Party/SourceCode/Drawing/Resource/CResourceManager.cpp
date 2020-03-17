@@ -238,8 +238,8 @@ void CResourceManager::SpriteStateSetting()
 	int SleepZNum = static_cast<int>(enSprite::SleepZ);
 	m_pstSpriteState[SleepZNum].Base.w = 70.0f;
 	m_pstSpriteState[SleepZNum].Base.h = 70.0f;
-	m_pstSpriteState[SleepZNum].Disp.w = 2.0f;
-	m_pstSpriteState[SleepZNum].Disp.h = 2.0f;
+	m_pstSpriteState[SleepZNum].Disp.w = 1.0f;
+	m_pstSpriteState[SleepZNum].Disp.h = 1.0f;
 
 	//Š¾.
 	int SwetNum = static_cast<int>(enSprite::Swet);
