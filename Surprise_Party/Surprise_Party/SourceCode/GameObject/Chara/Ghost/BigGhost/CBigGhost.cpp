@@ -9,6 +9,9 @@ CBigGhost::CBigGhost()
 	, m_LeanDirect			(1)
 	, m_UpDownDirect		(1)
 	, m_HaveTroubleActFlag	(0)
+	, m_ChangeEmotionFlag	(false)
+	, m_pCSpriteEffect		()
+	, m_UsingEffectNum		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -74,6 +77,10 @@ void CBigGhost::Update()
 	}
 
 	RejoiceEmotion();
+
+	//エフェクト更新処理関数.
+	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(m_vPos);
+	m_pCSpriteEffect[m_UsingEffectNum]->Update();
 }
 
 //==========================================.
@@ -81,11 +88,15 @@ void CBigGhost::Update()
 //==========================================.
 void CBigGhost::Render()
 {
+	//ビッグゴーストの描画.
 	m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
 	m_pCSkinMesh->SetScale(0.1f);
 	m_pCSkinMesh->SetPosition(m_vPos);
 	m_pCSkinMesh->SetRotation(m_vRot);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
+
+	//エフェクト描画.
+	m_pCSpriteEffect[m_UsingEffectNum]->Render(m_mView, m_mProj, m_vCameraPos);
 }
 
 //==========================================.
@@ -103,6 +114,10 @@ void CBigGhost::Init()
 	m_vRot = WAKE_UP_ROT;
 	
 	m_HaveTroubleActFlag = MOVING_POS_FLAG | MOVING_ROT_FLAG;
+
+	//エフェクト初期化処理.
+	m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
+	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect);
 }
 
 //==========================================.

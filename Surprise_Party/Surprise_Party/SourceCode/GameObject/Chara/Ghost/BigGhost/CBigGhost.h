@@ -2,6 +2,7 @@
 #define CBIG_GHOST_H
 
 #include "..\CGhostBase.h"
+#include "..\..\SpriteEffect\SleepEffect\CSleepEffect.h"
 
 /******************************************
 *		大きいお化けクラス.
@@ -12,6 +13,15 @@ class CBigGhost
 public:
 	CBigGhost();
 	~CBigGhost();
+
+	//================列挙隊===================//.
+	enum class enEmotionType {
+		Sleep = 0,		//寝る.
+		HaveTrounble,	//困る.
+		Rejoice,		//喜ぶ.
+
+		Max,			//最大値.
+	};
 
 	//=================関数====================//.
 	const D3DXVECTOR3	SLEEP_POS			= D3DXVECTOR3(6.0f, -0.8f, 10.5f);	//寝てる場所.
@@ -55,16 +65,19 @@ private:
 	void WakeUpSleepMove(const int& Direction);	//起きる寝る移動処理関数.
 
 	//==================変数====================//.
-	CDX9SkinMesh*	m_pCSkinMesh;			//スキンメッシュ.
-	double			m_dCntAnimSpeed;		//アニメーション速度カウント.
-	float			m_fAnimSpeed;			//アニメーション速度.
-	int				m_AnimNum;				//アニメーション番号.
+	CDX9SkinMesh*									m_pCSkinMesh;			//スキンメッシュ.
+	double											m_dCntAnimSpeed;		//アニメーション速度カウント.
+	float											m_fAnimSpeed;			//アニメーション速度.
+	int												m_AnimNum;				//アニメーション番号.
 
-	int				m_WakeUpCnt;			//起きるカウント.
-	int				m_LeanDirect;			//傾く方向.
-	int				m_UpDownDirect;			//上下方向.
-	unsigned int	m_HaveTroubleActFlag;	//困る感情行動フラグ.
-	bool			m_ChangeEmotionFlag;	//感情変更フラグ.
+	int												m_WakeUpCnt;			//起きるカウント.
+	int												m_LeanDirect;			//傾く方向.
+	int												m_UpDownDirect;			//上下方向.
+	unsigned int									m_HaveTroubleActFlag;	//困る感情行動フラグ.
+	bool											m_ChangeEmotionFlag;	//感情変更フラグ.
+
+	std::vector<std::unique_ptr<CSpriteEffectBase>>	m_pCSpriteEffect;		//スプライトエフェクト.
+	int												m_UsingEffectNum;		//使っているエフェクト番号.
 };
 
 
