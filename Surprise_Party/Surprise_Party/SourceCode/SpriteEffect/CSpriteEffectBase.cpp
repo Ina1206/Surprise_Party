@@ -8,6 +8,7 @@ CSpriteEffectBase::CSpriteEffectBase()
 	, m_vPos				()
 	, m_vRot				()
 	, m_vScale				()
+	, m_fAlpha				()
 	, m_vCenterPos			(0.0f, 0.0f, 0.0f)
 	, m_pCResourceManager	(nullptr)
 	, m_pCDepthStencil		(nullptr)
@@ -41,6 +42,9 @@ void CSpriteEffectBase::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		m_pCSprite[sprite]->SetScale(m_vScale[sprite]);
 		m_pCSprite[sprite]->SetRotation(m_vRot[sprite]);
 		m_pCSprite[sprite]->SetPosition(m_vPos[sprite]);
+		m_pCSprite[sprite]->SetAlpha(m_fAlpha[sprite]);
+		m_pCDepthStencil->SetDepth(false);
 		m_pCSprite[sprite]->Render(mView, mProj, vCameraPos);
+		m_pCDepthStencil->SetDepth(true);
 	}
 }

@@ -30,6 +30,7 @@ protected:
 	std::vector<D3DXVECTOR3>	m_vPos;				//座標.
 	std::vector<D3DXVECTOR3>	m_vRot;				//角度.
 	std::vector<D3DXVECTOR3>	m_vScale;			//大きさ.
+	std::vector<float>			m_fAlpha;			//透過値.
 	D3DXVECTOR3					m_vCenterPos;		//中央座標.
 	CResourceManager*			m_pCResourceManager;//読み込み管理クラス.
 	CDepth_Stencil*				m_pCDepthStencil;	//デプスステンシル.
