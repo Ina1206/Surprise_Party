@@ -24,22 +24,15 @@ void CSleepEffect::Update()
 
 	for(unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++){
 		if (m_bDispFlag[sprite] == true) {
-			//透過値と大きさ.
-			m_fAlpha[sprite] += ALPHA_SPEED * m_ChangeAddSub[sprite];
+			//拡縮処理.
 			m_fScale[sprite] += SCALE_SPEED * m_ChangeAddSub[sprite];
 			
-			if (m_fAlpha[sprite] >= ALPHA_MAX) {
-				m_ChangeAddSub[sprite] *= CHANGE_ADD_SUB;
-			}
-
-			if (m_fAlpha[sprite] <= ALPHA_MIN) {
+			//透過処理.
+			if (Transparent(sprite) == true) {
+				//表示終了処理.
 				m_bDispFlag[sprite] = false;
-				//初期化処理
-				m_vPos[sprite] = m_vCenterPos + INIT_LOCAL_POS;
-				m_fAlpha[sprite] = ALPHA_MIN;
-				m_fScale[sprite] = SCALE_MIN;
-				m_ChangeAddSub[sprite] *= CHANGE_ADD_SUB;
-				m_fAngle[sprite] = 0.0f;
+				//初期値設定処理関数.
+				SettingDefaultValue(sprite);
 			}
 
 			//移動処理.
@@ -72,14 +65,10 @@ void CSleepEffect::Init()
 
 	//初期値設定.
 	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {
-		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		m_fScale[sprite] = SCALE_MIN;
-		m_fAlpha[sprite] = ALPHA_MIN;
-		m_bDispFlag[sprite] = false;
-		m_ChangeAddSub[sprite] = 1;
+		SettingDefaultValue(sprite);
 
 		//眠りの睡眠マーク.
-		if (sprite % 3 == 1) {
+		if (sprite % LINE_MAX == SLEEP_Z_NUM) {
 			m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::SleepZ);
 			continue;
 		}
@@ -108,6 +97,7 @@ void CSleepEffect::Release()
 //======================================.
 void CSleepEffect::AppeartJudgement(const int& num)
 {
+	//表示開始位置に設定.
 	if (m_bDispFlag[num] == false) {
 		m_vPos[num] = m_vCenterPos + INIT_LOCAL_POS;
 	}
@@ -135,4 +125,37 @@ void CSleepEffect::Move(const int& num)
 	m_fAngle[num] += ANGLE_MOVE_SPEED;
 	m_vPos[num].x -= cos(m_fAngle[num] / CIRCLE_HALF_ANGLE * PI) * MOVE_SPEED;
 
+}
+
+//==========================================.
+//		透過処理関数.
+//==========================================.
+bool CSleepEffect::Transparent(const int& num) 
+{
+	//透過値と大きさ.
+	m_fAlpha[num] += ALPHA_SPEED * m_ChangeAddSub[num];
+
+	//加算減少変更処理.
+	if (m_fAlpha[num] >= ALPHA_MAX) {
+		m_ChangeAddSub[num] *= CHANGE_ADD_SUB;
+		return false;
+	}
+
+	//表示終了.
+	if (m_fAlpha[num] <= ALPHA_MIN) {
+		return true;
+	}
+	return false;
+}
+
+//===========================================.
+//		初期値設定処理関数.
+//===========================================.
+void CSleepEffect::SettingDefaultValue(const int& num)
+{
+	m_bDispFlag[num]	= false;
+	m_vPos[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_fScale[num]		= SCALE_MIN;
+	m_fAlpha[num]		= ALPHA_MIN;
+	m_ChangeAddSub[num] = ADDITION_NUM;
 }

@@ -25,6 +25,7 @@ public:
 
 	const D3DXVECTOR3	INIT_LOCAL_POS	= D3DXVECTOR3(-2.3f, 2.0f, 0.0f);	//初期のローカル座標.
 
+	const int			ADDITION_NUM	= 1;								//加算番号.
 	const int			CHANGE_ADD_SUB	= -1;								//加算減算変更数値.
 
 	const float			PI				= 3.14159265358979323846264338f;	//円周率.

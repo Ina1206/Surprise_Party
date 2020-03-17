@@ -30,10 +30,12 @@ public:
 
 private:
 	//===============ŠÖ”=================//.
-	void Init();							//‰Šú‰»ˆ—ŠÖ”.
-	void Release();							//‰ğ•úˆ—ŠÖ”.
-	void AppeartJudgement(const int& num);	//•\¦”»’fˆ—ŠÖ”.
-	void Move(const int& num);				//ˆÚ“®ˆ—ŠÖ”.
+	void Init();								//‰Šú‰»ˆ—ŠÖ”.
+	void Release();								//‰ğ•úˆ—ŠÖ”.
+	void AppeartJudgement(const int& num);		//•\¦”»’fˆ—ŠÖ”.
+	void Move(const int& num);					//ˆÚ“®ˆ—ŠÖ”.
+	bool Transparent(const int& num);			//“§‰ßˆ—ŠÖ”.
+	void SettingDefaultValue(const int& num);	//‰Šú’lİ’èˆ—ŠÖ”.
 
 };
 
