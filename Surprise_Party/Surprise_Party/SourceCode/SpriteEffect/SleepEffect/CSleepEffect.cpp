@@ -32,8 +32,10 @@ void CSleepEffect::Init()
 	m_vPos.resize(m_pCSprite.size());
 	m_vScale.resize(m_pCSprite.size());
 	m_vRot.resize(m_pCSprite.size());
+	m_fAlpha.resize(m_pCSprite.size());
 	m_pCSprite[0] = CResourceManager::GetResourceManagerInstance()->GetSprite(enSprite::Bubble);
 	m_vScale[0] = D3DXVECTOR3(3.0f, 3.0f, 3.0f);
+	m_fAlpha[0] = 1.0f;
 }
 
 //====================================.
