@@ -40,6 +40,11 @@ void CSpriteEffectBase::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		
 		_ASSERT_EXPR(m_pCSprite[sprite] != nullptr, L"CSpriteEffectのm_pCSprite == nullptr");
 
+		//テスト用.
+		if (m_pCSprite[sprite] == m_pCResourceManager->GetSprite(enSprite::SleepZ)) {
+			continue;
+		}
+
 		m_pCSprite[sprite]->SetScale(m_vScale[sprite]);
 		m_pCSprite[sprite]->SetRotation(m_vRot[sprite]);
 		m_pCSprite[sprite]->SetPosition(m_vPos[sprite]);
