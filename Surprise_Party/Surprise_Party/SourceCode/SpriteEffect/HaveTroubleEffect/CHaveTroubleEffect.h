@@ -22,10 +22,13 @@ public:
 	
 private:
 	//=================関数===================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
+	void Init();							//初期化処理関数.
+	void Release();							//解放処理関数.
+	void AppeartJudgement(const int& num);	//表示判定処理関数.
+	void Move(const int& num);				//移動処理関数.	
 
-
+	//=================変数===================//.
+	int	m_DispCnt;							//表示カウント.
 };
 
 #endif	//#ifndef CHAVE_TROUBLE_EFFECT_H.

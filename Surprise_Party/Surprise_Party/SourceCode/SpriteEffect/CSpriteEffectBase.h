@@ -36,11 +36,13 @@ public:
 
 protected:
 	//================関数====================//.
-	virtual void Init() = 0;					//初期化処理関数.
-	virtual void Release() = 0;					//解放処理関数.
-	void SettingElementsCount();				//要素数設定処理関数.
-	bool ScalingTransparent(const int& num);	//透過処理関数.
-	void SettingDefaultValue(const int& num);	//初期値設定処理関数.
+	virtual void Init() = 0;							//初期化処理関数.
+	virtual void Release() = 0;							//解放処理関数.
+	virtual void AppeartJudgement(const int& num) = 0;	//表示判定処理関数.
+	virtual void Move(const int& num) = 0;				//移動処理関数.
+	void SettingElementsCount();						//要素数設定処理関数.
+	bool ScalingTransparent(const int& num);			//透過処理関数.
+	void SettingDefaultValue(const int& num);			//初期値設定処理関数.
 
 	//================変数====================//.
 	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
@@ -54,7 +56,7 @@ protected:
 	CDepth_Stencil*				m_pCDepthStencil;	//デプスステンシル.
 	
 	std::vector<bool>			m_bDispFlag;		//表示フラグ.
-	int							m_DispCnt;			//表示カウント.
+	int							m_DispTime;			//表示区切り時間.
 	std::vector<int>			m_ChangeAddSub;		//加算減算変更.
 
 private:

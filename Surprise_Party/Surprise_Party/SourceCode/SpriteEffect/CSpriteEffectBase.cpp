@@ -14,7 +14,7 @@ CSpriteEffectBase::CSpriteEffectBase()
 	, m_pCResourceManager	(nullptr)
 	, m_pCDepthStencil		(nullptr)
 	, m_bDispFlag			()
-	, m_DispCnt				(0)
+	, m_DispTime			(0)
 	, m_ChangeAddSub		()
 {
 	m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
@@ -44,7 +44,7 @@ void CSpriteEffectBase::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		_ASSERT_EXPR(m_pCSprite[sprite] != nullptr, L"CSpriteEffect‚Ìm_pCSprite == nullptr");
 
 		m_pCSprite[sprite]->SetScale(D3DXVECTOR3(m_fScale[sprite], m_fScale[sprite], m_fScale[sprite]));
-		m_pCSprite[sprite]->SetRotation(m_vRot[sprite]);
+		//m_pCSprite[sprite]->SetRotation(m_vRot[sprite]);
 		m_pCSprite[sprite]->SetPosition(m_vPos[sprite]);
 		m_pCSprite[sprite]->SetAlpha(m_fAlpha[sprite]);
 		m_pCDepthStencil->SetDepth(false);

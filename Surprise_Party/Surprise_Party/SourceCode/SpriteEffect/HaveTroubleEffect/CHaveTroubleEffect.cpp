@@ -20,53 +20,18 @@ CHaveTroubleEffect::~CHaveTroubleEffect()
 //===========================================.
 void CHaveTroubleEffect::Update()
 {
+	m_DispCnt++;
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
-		static bool flag = false;
-		if (GetAsyncKeyState(VK_F1) & 0x0001) {
-			if (flag == false) {
-				flag = true;
-			}
-			else {
-				flag = false;
-			}
+		if (m_bDispFlag[sprite] == true) {
+
+			//ˆÚ“®ˆ—ŠÖ”.
+			Move(sprite);
+			continue;
 		}
 
-		D3DXVECTOR3 vChange;
-		if (flag == false) {
-			vChange = m_vPos[sprite];
-		}
-		else {
-			vChange = m_vRot[sprite];
-		}
-
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-			vChange.x += 0.01f;
-		}
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-			vChange.x -= 0.01f;
-		}
-		if (GetAsyncKeyState(VK_UP) & 0x8000) {
-			vChange.y += 0.01f;
-		}
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-			vChange.y -= 0.01f;
-		}
-		if (GetAsyncKeyState('Z') & 0x8000) {
-			vChange.z += 0.01f;
-		}
-		if (GetAsyncKeyState('X') & 0x8000) {
-			vChange.z -= 0.01f;
-		}
-
-		if (flag == false) {
-			m_vPos[sprite] = vChange;
-		}
-		else {
-			m_vRot[sprite] = vChange;
-		}
-
-		if (m_vPos[sprite] == D3DXVECTOR3(0.0f, 0.0f, 0.0f)) {
-			m_vPos[sprite] = m_vCenterPos + INT_LOCAL_POS;
+		if (m_DispCnt <= 50) {
+			AppeartJudgement(sprite);
+			m_DispCnt = 0;
 		}
 	}
 }
@@ -84,6 +49,7 @@ void CHaveTroubleEffect::Init()
 		m_fAlpha[sprite] = ALPHA_MAX;
 		m_fScale[sprite] = SCALE_MAX;
 		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_bDispFlag[sprite] = false;
 		
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);
 	}
@@ -95,4 +61,22 @@ void CHaveTroubleEffect::Init()
 void CHaveTroubleEffect::Release()
 {
 
+}
+
+//============================================.
+//		•\¦”»’èˆ—ŠÖ”.
+//============================================.
+void CHaveTroubleEffect::AppeartJudgement(const int& num)
+{
+	m_vPos[num] = m_vCenterPos + INT_LOCAL_POS;
+	m_bDispFlag[num] = true;
+}
+
+//============================================.
+//		ˆÚ“®ˆ—ŠÖ”.
+//============================================.
+void CHaveTroubleEffect::Move(const int& num)
+{
+	m_vPos[num].x += cos(60 / 180.0f * PI) * 0.01f;
+	m_vPos[num].y += cos(60 / 180.0f * PI) * 0.01f;
 }

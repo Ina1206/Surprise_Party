@@ -20,7 +20,7 @@ CSleepEffect::~CSleepEffect()
 //===================================.
 void CSleepEffect::Update()
 {
-	m_DispCnt++;
+	m_DispTime++;
 
 	for(unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++){
 		if (m_bDispFlag[sprite] == true) {
@@ -38,10 +38,10 @@ void CSleepEffect::Update()
 			continue;
 		}
 
-		if (m_DispCnt >= APPEAR_TIME) {
+		if (m_DispTime >= APPEAR_TIME) {
 			//ï\é¶îªífèàóùä÷êî.
 			AppeartJudgement(sprite);
-			m_DispCnt = 0;
+			m_DispTime = 0;
 		}
 	}
 }
