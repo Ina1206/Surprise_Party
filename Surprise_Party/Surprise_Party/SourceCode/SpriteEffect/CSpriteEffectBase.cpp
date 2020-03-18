@@ -11,6 +11,8 @@ CSpriteEffectBase::CSpriteEffectBase()
 	, m_fAlpha				()
 	, m_fAngle()
 	, m_vCenterPos			(0.0f, 0.0f, 0.0f)
+	, m_fAlphaSpeed			(0.0f)
+	, m_fScalingSpeed		(0.0f)
 	, m_pCResourceManager	(nullptr)
 	, m_pCDepthStencil		(nullptr)
 	, m_bDispFlag			()
@@ -44,7 +46,7 @@ void CSpriteEffectBase::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		_ASSERT_EXPR(m_pCSprite[sprite] != nullptr, L"CSpriteEffectÇÃm_pCSprite == nullptr");
 
 		m_pCSprite[sprite]->SetScale(D3DXVECTOR3(m_fScale[sprite], m_fScale[sprite], m_fScale[sprite]));
-		//m_pCSprite[sprite]->SetRotation(m_vRot[sprite]);
+		m_pCSprite[sprite]->SetRotation(m_vRot[sprite]);
 		m_pCSprite[sprite]->SetPosition(m_vPos[sprite]);
 		m_pCSprite[sprite]->SetAlpha(m_fAlpha[sprite]);
 		m_pCDepthStencil->SetDepth(false);
@@ -79,9 +81,9 @@ void CSpriteEffectBase::SettingElementsCount()
 bool CSpriteEffectBase::ScalingTransparent(const int& num)
 {
 	//ìßâﬂèàóù.
-	m_fAlpha[num] += ALPHA_SPEED * m_ChangeAddSub[num];
+	m_fAlpha[num] += m_fAlphaSpeed * m_ChangeAddSub[num];
 	//ägèkèàóù.
-	m_fScale[num] += SCALE_SPEED * m_ChangeAddSub[num];
+	m_fScale[num] += m_fScalingSpeed * m_ChangeAddSub[num];
 
 
 	//â¡éZå∏è≠ïœçXèàóù.
@@ -102,9 +104,9 @@ bool CSpriteEffectBase::ScalingTransparent(const int& num)
 //===========================================.
 void CSpriteEffectBase::SettingDefaultValue(const int& num)
 {
-	m_bDispFlag[num] = false;
-	m_vPos[num] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_fScale[num] = SCALE_MIN;
-	m_fAlpha[num] = ALPHA_MIN;
+	m_bDispFlag[num]	= false;
+	m_vPos[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_fScale[num]		= SCALE_MIN;
+	m_fAlpha[num]		= ALPHA_MIN;
 	m_ChangeAddSub[num] = ADDITION_NUM;
 }

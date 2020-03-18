@@ -24,14 +24,18 @@ void CHaveTroubleEffect::Update()
 	m_DispTime++;
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		if (m_bDispFlag[sprite] == true) {
-			ScalingTransparent(sprite);
+			if (ScalingTransparent(sprite) == true) {
+				//表示終了.
+				//初期値設定.
+				SettingDefaultValue(sprite);
+			}
 
 			//移動処理関数.
 			Move(sprite);
 			continue;
 		}
 
-		if (m_DispTime >= 50) {
+		if (m_DispTime >= 20) {
 			AppeartJudgement(sprite);
 			if (m_DispCnt >= 3) {
 				m_DispCnt = 0;
@@ -51,14 +55,13 @@ void CHaveTroubleEffect::Init()
 	SettingElementsCount();
 
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
-		//m_fAlpha[sprite] = ALPHA_MAX;
-		//m_fScale[sprite] = SCALE_MAX;
-		//m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		//m_bDispFlag[sprite] = false;
+		//初期値設定.
 		SettingDefaultValue(sprite);
 
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);
 	}
+	m_fAlphaSpeed = 0.04f;
+	m_fScalingSpeed = 0.04f;
 }
 
 //===========================================.
@@ -84,6 +87,7 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 //============================================.
 void CHaveTroubleEffect::Move(const int& num)
 {
-	m_vPos[num].x += cos(120 + ( 20 * (num % 3)) / 180.0f * PI) * 0.03f;
-	m_vPos[num].y += sin(120 + ( 20 * (num % 3)) / 180.0f * PI) * 0.03f;
+	const float radian = 120 + (30 * (num % 3)) / 180.0f * PI;
+	m_vPos[num].x += cos(radian) * 0.03f;
+	m_vPos[num].y += sin(radian) * 0.03f;
 }

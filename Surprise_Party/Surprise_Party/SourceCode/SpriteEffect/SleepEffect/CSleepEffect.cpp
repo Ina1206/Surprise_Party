@@ -67,6 +67,9 @@ void CSleepEffect::Init()
 		//–A.
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Bubble);
 	}
+
+	m_fAlphaSpeed = ALPHA_SPEED;
+	m_fScalingSpeed = SCALE_SPEED;
 }
 
 //====================================.

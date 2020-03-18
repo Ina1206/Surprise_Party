@@ -28,6 +28,8 @@ public:
 	const float			ANGLE_MOVE_SPEED	= 5.0f;								//角度移動速度.
 	const float			APPEAR_TIME			= 30;								//表示時間.
 
+	const float			ALPHA_SPEED			= 0.005f;							//透過速度.
+	const float			SCALE_SPEED			= 0.005f;							//拡縮速度.
 
 
 	//===============関数=================//.

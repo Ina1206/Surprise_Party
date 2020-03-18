@@ -24,9 +24,6 @@ public:
 
 	const float			PI				= 3.14159265358979323846264338f;	//円周率.
 
-	const float			ALPHA_SPEED		= 0.005f;							//透過速度.
-	const float			SCALE_SPEED		= 0.005f;							//拡縮速度.
-
 	//================関数====================//.
 	virtual void Update() = 0;																				//更新処理関数.
 	void	Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画処理関数.
@@ -52,6 +49,8 @@ protected:
 	std::vector<float>			m_fAlpha;			//透過値.
 	std::vector<float>			m_fAngle;			//角度.
 	D3DXVECTOR3					m_vCenterPos;		//中央座標.
+	float						m_fAlphaSpeed;		//透過速度.
+	float						m_fScalingSpeed;	//大きさ速度.
 	CResourceManager*			m_pCResourceManager;//読み込み管理クラス.
 	CDepth_Stencil*				m_pCDepthStencil;	//デプスステンシル.
 	
