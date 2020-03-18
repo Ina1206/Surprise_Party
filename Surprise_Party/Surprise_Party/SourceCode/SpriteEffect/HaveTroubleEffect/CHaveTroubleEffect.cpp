@@ -4,6 +4,7 @@
 *		困りエフェクトクラス.
 ************/
 CHaveTroubleEffect::CHaveTroubleEffect()
+	: m_DispCnt	(0)
 {
 	//初期化処理関数.
 	Init();
@@ -20,18 +21,22 @@ CHaveTroubleEffect::~CHaveTroubleEffect()
 //===========================================.
 void CHaveTroubleEffect::Update()
 {
-	m_DispCnt++;
+	m_DispTime++;
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		if (m_bDispFlag[sprite] == true) {
+			ScalingTransparent(sprite);
 
 			//移動処理関数.
 			Move(sprite);
 			continue;
 		}
 
-		if (m_DispCnt <= 50) {
+		if (m_DispTime >= 50) {
 			AppeartJudgement(sprite);
-			m_DispCnt = 0;
+			if (m_DispCnt >= 3) {
+				m_DispCnt = 0;
+				m_DispTime = 0;
+			}
 		}
 	}
 }
@@ -46,11 +51,12 @@ void CHaveTroubleEffect::Init()
 	SettingElementsCount();
 
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
-		m_fAlpha[sprite] = ALPHA_MAX;
-		m_fScale[sprite] = SCALE_MAX;
-		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		m_bDispFlag[sprite] = false;
-		
+		//m_fAlpha[sprite] = ALPHA_MAX;
+		//m_fScale[sprite] = SCALE_MAX;
+		//m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		//m_bDispFlag[sprite] = false;
+		SettingDefaultValue(sprite);
+
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);
 	}
 }
@@ -69,6 +75,7 @@ void CHaveTroubleEffect::Release()
 void CHaveTroubleEffect::AppeartJudgement(const int& num)
 {
 	m_vPos[num] = m_vCenterPos + INT_LOCAL_POS;
+	m_DispCnt++;
 	m_bDispFlag[num] = true;
 }
 
@@ -77,6 +84,6 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 //============================================.
 void CHaveTroubleEffect::Move(const int& num)
 {
-	m_vPos[num].x += cos(60 / 180.0f * PI) * 0.01f;
-	m_vPos[num].y += cos(60 / 180.0f * PI) * 0.01f;
+	m_vPos[num].x += cos(120 + ( 20 * (num % 3)) / 180.0f * PI) * 0.03f;
+	m_vPos[num].y += sin(120 + ( 20 * (num % 3)) / 180.0f * PI) * 0.03f;
 }
