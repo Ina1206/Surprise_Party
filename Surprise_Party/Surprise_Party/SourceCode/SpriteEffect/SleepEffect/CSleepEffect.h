@@ -21,7 +21,6 @@ public:
 
 	const float			START_ANGLE			= 60.0f;							//開始角度.
 	const float			ANGLE_WIDTH			= 20.0f;							//角度幅.
-	const float			CIRCLE_HALF_ANGLE	= 180.0f;							//半円の角度.
 	const float			MOVE_SPEED			= 0.01f;							//移動速度.
 	const int			LINE_MAX			= 3;								//横の行最大数.
 	const float			SLEEP_Z_NUM			= 1;								//眠りマークの番号.

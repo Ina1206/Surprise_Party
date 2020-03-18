@@ -14,15 +14,16 @@ public:
 	virtual ~CSpriteEffectBase();
 
 	//================定数====================//.
-	const float			SCALE_MAX		= 1.0f;								//大きさ最大値.
-	const float			SCALE_MIN		= 0.0f;								//大きさ最小値.
-	const float			ALPHA_MAX		= 1.0f;								//透過値最大値.
-	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
+	const float			SCALE_MAX			= 1.0f;								//大きさ最大値.
+	const float			SCALE_MIN			= 0.0f;								//大きさ最小値.
+	const float			ALPHA_MAX			= 1.0f;								//透過値最大値.
+	const float			ALPHA_MIN			= 0.0f;								//透過値最小値.
 
-	const int			ADDITION_NUM	= 1;								//加算番号.
-	const int			CHANGE_ADD_SUB	= -1;								//加算減算変更数値.
+	const int			ADDITION_NUM		= 1;								//加算番号.
+	const int			CHANGE_ADD_SUB		= -1;								//加算減算変更数値.
 
-	const float			PI				= 3.14159265358979323846264338f;	//円周率.
+	const float			CIRCLE_HALF_ANGLE	= 180.0f;							//半円の角度.
+	const float			PI					= 3.14159265358979323846264338f;	//円周率.
 
 	//================関数====================//.
 	virtual void Update() = 0;																				//更新処理関数.

@@ -16,6 +16,14 @@ public:
 	//=================定数===================//.
 	const int			SPRITE_MAX		= 6;								//スプライト最大数.
 	const D3DXVECTOR3	INT_LOCAL_POS	= D3DXVECTOR3(1.5f, 1.5f, 0.0f);	//初期のローカル座標.
+	const int			LINE_MAX		= 3;								//横の行最大数.
+	const int			DISP_TIME_MAX	= 20;								//表示時間最大数.
+	const float			ALPHA_SPEED		= 0.04f;							//透過速度.
+	const float			SCALING_SPEED	= 0.04f;							//拡縮速度.
+	const float			START_ANGLE		= 30.0f;							//開始角度.
+	const float			ANGLE_WIDTH		= 30.0f;							//角度幅.
+
+	const float			MOVE_SPEED		= 0.03f;							//移動速度.
 
 	//=================関数===================//.
 	void Update();		//更新処理関数.

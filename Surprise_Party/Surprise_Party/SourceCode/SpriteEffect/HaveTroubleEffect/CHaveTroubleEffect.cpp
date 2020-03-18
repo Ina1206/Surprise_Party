@@ -35,9 +35,10 @@ void CHaveTroubleEffect::Update()
 			continue;
 		}
 
-		if (m_DispTime >= 20) {
+		//表示判定処理
+		if (m_DispTime >= DISP_TIME_MAX) {
 			AppeartJudgement(sprite);
-			if (m_DispCnt >= 3) {
+			if (m_DispCnt >= LINE_MAX) {
 				m_DispCnt = 0;
 				m_DispTime = 0;
 			}
@@ -57,11 +58,11 @@ void CHaveTroubleEffect::Init()
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		//初期値設定.
 		SettingDefaultValue(sprite);
-
+		//汗画像.
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);
 	}
-	m_fAlphaSpeed = 0.04f;
-	m_fScalingSpeed = 0.04f;
+	m_fAlphaSpeed	= ALPHA_SPEED;
+	m_fScalingSpeed = SCALING_SPEED;
 }
 
 //===========================================.
@@ -87,7 +88,9 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 //============================================.
 void CHaveTroubleEffect::Move(const int& num)
 {
-	const float radian = 120 + (30 * (num % 3)) / 180.0f * PI;
-	m_vPos[num].x += cos(radian) * 0.03f;
-	m_vPos[num].y += sin(radian) * 0.03f;
+	//ラジアン.
+	const float angle = START_ANGLE + (ANGLE_WIDTH * (num % LINE_MAX));
+	const float radian = angle / CIRCLE_HALF_ANGLE * PI;
+	m_vPos[num].x += cos(radian) * MOVE_SPEED;
+	m_vPos[num].y += sin(radian) * MOVE_SPEED;
 }
