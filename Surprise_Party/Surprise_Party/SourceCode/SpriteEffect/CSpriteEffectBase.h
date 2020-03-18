@@ -24,6 +24,9 @@ public:
 
 	const float			PI				= 3.14159265358979323846264338f;	//円周率.
 
+	const float			ALPHA_SPEED		= 0.005f;							//透過速度.
+	const float			SCALE_SPEED		= 0.005f;							//拡縮速度.
+
 	//================関数====================//.
 	virtual void Update() = 0;																				//更新処理関数.
 	void	Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画処理関数.
@@ -33,9 +36,11 @@ public:
 
 protected:
 	//================関数====================//.
-	virtual void Init() = 0;		//初期化処理関数.
-	virtual void Release() = 0;		//解放処理関数.
-	void SettingElementsCount();	//要素数設定処理関数.
+	virtual void Init() = 0;					//初期化処理関数.
+	virtual void Release() = 0;					//解放処理関数.
+	void SettingElementsCount();				//要素数設定処理関数.
+	bool ScalingTransparent(const int& num);	//透過処理関数.
+	void SettingDefaultValue(const int& num);	//初期値設定処理関数.
 
 	//================変数====================//.
 	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.

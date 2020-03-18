@@ -72,3 +72,39 @@ void CSpriteEffectBase::SettingElementsCount()
 	m_bDispFlag.resize(m_pCSprite.size());
 	m_ChangeAddSub.resize(m_pCSprite.size());
 }
+
+//==========================================.
+//		ìßâﬂèàóùä÷êî.
+//==========================================.
+bool CSpriteEffectBase::ScalingTransparent(const int& num)
+{
+	//ìßâﬂèàóù.
+	m_fAlpha[num] += ALPHA_SPEED * m_ChangeAddSub[num];
+	//ägèkèàóù.
+	m_fScale[num] += SCALE_SPEED * m_ChangeAddSub[num];
+
+
+	//â¡éZå∏è≠ïœçXèàóù.
+	if (m_fAlpha[num] >= ALPHA_MAX) {
+		m_ChangeAddSub[num] *= CHANGE_ADD_SUB;
+		return false;
+	}
+
+	//ï\é¶èIóπ.
+	if (m_fAlpha[num] <= ALPHA_MIN) {
+		return true;
+	}
+	return false;
+}
+
+//===========================================.
+//		èâä˙ílê›íËèàóùä÷êî.
+//===========================================.
+void CSpriteEffectBase::SettingDefaultValue(const int& num)
+{
+	m_bDispFlag[num] = false;
+	m_vPos[num] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_fScale[num] = SCALE_MIN;
+	m_fAlpha[num] = ALPHA_MIN;
+	m_ChangeAddSub[num] = ADDITION_NUM;
+}

@@ -24,11 +24,9 @@ void CSleepEffect::Update()
 
 	for(unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++){
 		if (m_bDispFlag[sprite] == true) {
-			//ägèkèàóù.
-			m_fScale[sprite] += SCALE_SPEED * m_ChangeAddSub[sprite];
-			
-			//ìßâﬂèàóù.
-			if (Transparent(sprite) == true) {
+
+			//ägèkìßâﬂèàóù.
+			if (ScalingTransparent(sprite) == true) {
 				//ï\é¶èIóπèàóù.
 				m_bDispFlag[sprite] = false;
 				//èâä˙ílê›íËèàóùä÷êî.
@@ -121,35 +119,3 @@ void CSleepEffect::Move(const int& num)
 
 }
 
-//==========================================.
-//		ìßâﬂèàóùä÷êî.
-//==========================================.
-bool CSleepEffect::Transparent(const int& num) 
-{
-	//ìßâﬂílÇ∆ëÂÇ´Ç≥.
-	m_fAlpha[num] += ALPHA_SPEED * m_ChangeAddSub[num];
-
-	//â¡éZå∏è≠ïœçXèàóù.
-	if (m_fAlpha[num] >= ALPHA_MAX) {
-		m_ChangeAddSub[num] *= CHANGE_ADD_SUB;
-		return false;
-	}
-
-	//ï\é¶èIóπ.
-	if (m_fAlpha[num] <= ALPHA_MIN) {
-		return true;
-	}
-	return false;
-}
-
-//===========================================.
-//		èâä˙ílê›íËèàóùä÷êî.
-//===========================================.
-void CSleepEffect::SettingDefaultValue(const int& num)
-{
-	m_bDispFlag[num]	= false;
-	m_vPos[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_fScale[num]		= SCALE_MIN;
-	m_fAlpha[num]		= ALPHA_MIN;
-	m_ChangeAddSub[num] = ADDITION_NUM;
-}

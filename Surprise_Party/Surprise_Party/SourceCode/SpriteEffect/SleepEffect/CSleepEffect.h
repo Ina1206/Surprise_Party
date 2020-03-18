@@ -19,8 +19,6 @@ public:
 	const int			ALL_SPRITE_MAX		= BUBBLE_MAX + Z_MAX;				//全てのスプライト最大数.
 	const D3DXVECTOR3	INIT_LOCAL_POS		= D3DXVECTOR3(-2.3f, 2.0f, 0.0f);	//初期のローカル座標.
 
-	const float			ALPHA_SPEED			= 0.005f;							//透過速度.
-	const float			SCALE_SPEED			= 0.005f;							//拡縮速度.
 	const float			START_ANGLE			= 60.0f;							//開始角度.
 	const float			ANGLE_WIDTH			= 20.0f;							//角度幅.
 	const float			CIRCLE_HALF_ANGLE	= 180.0f;							//半円の角度.
@@ -41,8 +39,6 @@ private:
 	void Release();								//解放処理関数.
 	void AppeartJudgement(const int& num);		//表示判断処理関数.
 	void Move(const int& num);					//移動処理関数.
-	bool Transparent(const int& num);			//透過処理関数.
-	void SettingDefaultValue(const int& num);	//初期値設定処理関数.
 
 };
 
