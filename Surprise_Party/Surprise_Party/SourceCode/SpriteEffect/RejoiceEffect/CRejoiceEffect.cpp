@@ -4,6 +4,7 @@
 *		喜びエフェクト.
 *********/
 CRejoiceEffect::CRejoiceEffect()
+	: m_fDistance	()
 {
 	//初期化処理関数.
 	Init();
@@ -79,6 +80,7 @@ void CRejoiceEffect::Init()
 	//要素数設定処理.
 	m_pCSprite.resize(SPRITE_MAX);
 	SettingElementsCount();
+	m_fDistance.resize(m_pCSprite.size());
 
 	//初期化処理関数.
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
@@ -88,6 +90,8 @@ void CRejoiceEffect::Init()
 		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		m_fAlpha[sprite] = ALPHA_MAX;
 		m_fScale[sprite] = SCALE_MAX;
+
+		m_fDistance[sprite] = 0.0f;
 	}
 }
 
@@ -112,8 +116,11 @@ void CRejoiceEffect::AppeartJudgement(const int& num)
 //=========================================.
 void CRejoiceEffect::Move(const int& num)
 {
-	m_vPos[num].x += cos((10.0f + (num * 20.0f) / CIRCLE_HALF_ANGLE * PI)) * 0.02f;
-	m_vPos[num].y += sin((10.0f + (num * 20.0f) / CIRCLE_HALF_ANGLE * PI)) * 0.02f;
+
+	m_fDistance[num] += 0.02f;
+
+	m_vPos[num].x = cos((10.0f + (num * 20.0f) / CIRCLE_HALF_ANGLE * PI)) + m_fDistance[num] + m_vCenterPos.x;
+	m_vPos[num].y = sin((10.0f + (num * 20.0f) / CIRCLE_HALF_ANGLE * PI)) + m_fDistance[num] + m_vCenterPos.y;
 }
 
 //=========================================.

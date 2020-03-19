@@ -41,7 +41,8 @@ private:
 	void Move(const int& num);				//移動処理関数.
 	void LinkSprite(const int& num);		//スプライト紐づけ処理関数.
 
-
+	//====================変数=========================//.
+	std::vector<float>	m_fDistance;		//距離.
 };
 
 #endif	//#ifndef CREJICE_EFFECT_H.
