@@ -4,7 +4,9 @@
 *		喜びエフェクト.
 *********/
 CRejoiceEffect::CRejoiceEffect()
-	: m_fDistance	()
+	: m_DispCnt		(0)
+	, m_PopCnt		(0)
+	, m_fDistance	()
 {
 	//初期化処理関数.
 	Init();
@@ -21,55 +23,43 @@ CRejoiceEffect::~CRejoiceEffect()
 //=========================================.
 void CRejoiceEffect::Update()
 {
+	m_DispTime++;
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
-		static bool flag = false;
-		if (GetAsyncKeyState(VK_F1) & 0x0001) {
-			if (flag == false) {
-				flag = true;
+		if (m_bDispFlag[sprite] == true) {
+			if (ScalingTransparent(sprite) == true) {
+				//表示終了.
+				//初期値設定.
+				SettingDefaultValue(sprite);
+				//スプライトの紐づけ.
+				LinkSprite(sprite);
 			}
-			else {
-				flag = false;
+
+			//移動処理関数.
+			Move(sprite);
+			continue;
+		}
+
+		//表示判定処理
+		if (m_DispTime >= DISP_TIME_DELIMITER) {
+			//番号外のスプライトは飛ばす.
+			if (sprite % DISP_DELIMITER_MAX != m_PopCnt) {
+				continue;
+			}
+
+			AppeartJudgement(sprite);
+			
+			if (m_DispCnt >= POP_MAX) {
+				m_DispTime = 0;
+				m_DispCnt = 0;
+				m_PopCnt++;
+
+				if (m_PopCnt >= DISP_DELIMITER_MAX) {
+					m_PopCnt = 0;
+				}
 			}
 		}
-
-		D3DXVECTOR3 vChange;
-		if (flag == false) {
-			vChange = m_vPos[sprite];
-		}
-		else {
-			vChange = m_vRot[sprite];
-		}
-
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-			vChange.x += 0.01f;
-		}
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-			vChange.x -= 0.01f;
-		}
-		if (GetAsyncKeyState(VK_UP) & 0x8000) {
-			vChange.y += 0.01f;
-		}
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-			vChange.y -= 0.01f;
-		}
-		if (GetAsyncKeyState('Z') & 0x8000) {
-			vChange.z += 0.01f;
-		}
-		if (GetAsyncKeyState('X') & 0x8000) {
-			vChange.z -= 0.01f;
-		}
-
-		if (flag == false) {
-			m_vPos[sprite] = vChange;
-		}
-		else {
-			m_vRot[sprite] = vChange;
-		}
-
-		//if (m_vPos[sprite] == D3DXVECTOR3(0.0f, 0.0f, 0.0f)) {
-			m_vPos[sprite] = m_vCenterPos;
-		//}
 	}
+
 }
 
 //=========================================.
@@ -84,15 +74,15 @@ void CRejoiceEffect::Init()
 
 	//初期化処理関数.
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
-		//スプライト紐づけ処理関数.
-		LinkSprite(sprite);
-
-		m_vPos[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		m_fAlpha[sprite] = ALPHA_MAX;
-		m_fScale[sprite] = SCALE_MAX;
+		SettingDefaultValue(sprite);
 
 		m_fDistance[sprite] = 0.0f;
+		//スプライト紐づけ処理関数.
+		LinkSprite(sprite);
 	}
+
+	m_fAlphaSpeed	= ALPHA_SPEED;
+	m_fScalingSpeed = SCALING_SPEED;
 }
 
 //=========================================.
@@ -108,7 +98,10 @@ void CRejoiceEffect::Release()
 //=========================================.
 void CRejoiceEffect::AppeartJudgement(const int& num)
 {
+	m_fDistance[num] = 0.0f;
 
+	m_bDispFlag[num] = true;
+	m_DispCnt++;
 }
 
 //=========================================.
@@ -117,10 +110,15 @@ void CRejoiceEffect::AppeartJudgement(const int& num)
 void CRejoiceEffect::Move(const int& num)
 {
 
-	m_fDistance[num] += 0.02f;
+	m_fDistance[num] += MOVE_SPEED;
 
-	m_vPos[num].x = cos((10.0f + (num * 20.0f) / CIRCLE_HALF_ANGLE * PI)) + m_fDistance[num] + m_vCenterPos.x;
-	m_vPos[num].y = sin((10.0f + (num * 20.0f) / CIRCLE_HALF_ANGLE * PI)) + m_fDistance[num] + m_vCenterPos.y;
+	//角度.
+	const float ANGLE	= START_ANGLE + (num * ANGLE_WIDTH);
+	const float RADIAN	= ANGLE / (CIRCLE_HALF_ANGLE * PI);
+
+	m_vPos[num] = m_vCenterPos;
+	m_vPos[num].x += cos(RADIAN) * m_fDistance[num];
+	m_vPos[num].y += sin(RADIAN) * m_fDistance[num];
 }
 
 //=========================================.
@@ -132,19 +130,19 @@ void CRejoiceEffect::LinkSprite(const int& num)
 	switch (static_cast<enRejoiceSpriteType>(num % SPRITE_TYPE_MAX)) {
 	case enRejoiceSpriteType::YellowEightPartNote:
 		m_pCSprite[num] = m_pCResourceManager->GetSprite(enSprite::eight_part_note);
-		m_vPart[num] = D3DXVECTOR2(0.0f, 2.0f);
+		m_vPart[num] = YELLOW_NOTE;
 		break;
 	case enRejoiceSpriteType::BlueEightPartNote:
 		m_pCSprite[num] = m_pCResourceManager->GetSprite(enSprite::eight_part_note);
-		m_vPart[num] = D3DXVECTOR2(2.0f, 0.0f);
+		m_vPart[num] = BLUE_NOTE;
 		break;
 	case enRejoiceSpriteType::PinkFlower:
 		m_pCSprite[num] = m_pCResourceManager->GetSprite(enSprite::Flower);
-		m_vPart[num] = D3DXVECTOR2(0.0f, 0.0f);
+		m_vPart[num] = PINK_FLOWER;
 		break;
 	case enRejoiceSpriteType::RedFlower:
 		m_pCSprite[num] = m_pCResourceManager->GetSprite(enSprite::Flower);
-		m_vPart[num] = D3DXVECTOR2(1.0f, 1.0f);
+		m_vPart[num] = RED_FLOWER;
 		break;
 	}
 }

@@ -26,9 +26,24 @@ public:
 	};
 
 	//====================定数========================//.
-	const int	SPRITE_MAX		= 10;											//スプライト最大数.
-	const int	SPRITE_TYPE_MAX = static_cast<int>(enRejoiceSpriteType::Max);	//スプライトの種類最大数.
+	const int	SPRITE_MAX			= 8;											//スプライト最大数.
+	const int	SPRITE_TYPE_MAX		= static_cast<int>(enRejoiceSpriteType::Max);	//スプライトの種類最大数.
+	const int	POP_MAX				= SPRITE_MAX / 2;								//出現最大数.
 
+	const int	DISP_TIME_DELIMITER	= 30;											//表示区切り時間.
+	const int	DISP_DELIMITER_MAX	= 2;											//表示区切り最大数.
+	
+	const float	MOVE_SPEED			= 0.04f;										//移動速度.
+	const float	START_ANGLE			= 30.0f;										//開始角度.
+	const float	ANGLE_WIDTH			= 250.0f;										//角度幅.
+
+	const float	ALPHA_SPEED			= 0.02f;										//透過速度.
+	const float	SCALING_SPEED		= 0.02f;										//拡縮速度.
+
+	const D3DXVECTOR2	YELLOW_NOTE = D3DXVECTOR2(0.0f, 2.0f);						//黄色の音符位置.
+	const D3DXVECTOR2	BLUE_NOTE	= D3DXVECTOR2(2.0f, 0.0f);						//青色の音符位置.
+	const D3DXVECTOR2	PINK_FLOWER = D3DXVECTOR2(0.0f, 0.0f);						//ピンク色の花位置.
+	const D3DXVECTOR2	RED_FLOWER	= D3DXVECTOR2(1.0f, 1.0f);						//赤色の花位置.
 
 	//====================関数========================//.
 	void Update();							//更新処理関数.
@@ -42,6 +57,8 @@ private:
 	void LinkSprite(const int& num);		//スプライト紐づけ処理関数.
 
 	//====================変数=========================//.
+	int					m_DispCnt;			//表示カウント.
+	int					m_PopCnt;			//出現カウント.
 	std::vector<float>	m_fDistance;		//距離.
 };
 

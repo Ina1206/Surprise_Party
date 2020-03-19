@@ -112,6 +112,6 @@ void CSpriteEffectBase::SettingDefaultValue(const int& num)
 	m_vRot[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_fScale[num]		= SCALE_MIN;
 	m_fAlpha[num]		= ALPHA_MIN;
-	m_vPart[num]		= D3DXVECTOR2(0.0f, 0.0f);
 	m_ChangeAddSub[num] = ADDITION_NUM;
+	m_vPart[num]		= D3DXVECTOR2(0.0f, 0.0f);
 }
