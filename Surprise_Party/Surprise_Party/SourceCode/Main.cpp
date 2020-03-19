@@ -119,13 +119,30 @@ HRESULT CMain::InitWindow(
 		return E_FAIL;
 	}
 
+	RECT rect;
+	DWORD dwstyle;
+	rect.top = 0;
+	rect.left = 0;
+	rect.right = WND_W;
+	rect.bottom = WND_H;
+	dwstyle = WS_OVERLAPPEDWINDOW;
+
+	if (AdjustWindowRect(
+		&rect,
+		dwstyle,
+		FALSE) == 0) {
+		MessageBox(nullptr, "ウィンドウ領域の調整に失敗", "エラーメッセージ", MB_OK);
+		return 0;
+	}
+
 	//ウィンドウの作成.
 	m_hWnd = CreateWindow(
 		APP_NAME,			//アプリ名.
 		WindowName,			//ウィンドウタイトル.
-		WS_OVERLAPPEDWINDOW,//ウィンドウ種別(普通).
+		dwstyle,//ウィンドウ種別(普通).
 		x, y,				//表示位置x,y座標.
-		width, height,		//ウィンドウ幅,高さ.
+		rect.right - rect.left, 
+		rect.bottom - rect.top,		//ウィンドウ幅,高さ.
 		nullptr,			//親ウィンドウハンドル.
 		nullptr,			//メニュー設定.
 		hInstance,			//インスタンス番号.
