@@ -53,11 +53,14 @@ void CHaveTroubleEffect::Init()
 {
 	//要素数設定.
 	m_pCSprite.resize(SPRITE_MAX);
+	m_fDistance.resize(m_pCSprite.size());
 	SettingElementsCount();
 
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		//初期値設定.
 		SettingDefaultValue(sprite);
+		m_fDistance[sprite] = 0.0f;
+
 		//汗画像.
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);
 	}
@@ -79,9 +82,11 @@ void CHaveTroubleEffect::Release()
 void CHaveTroubleEffect::AppeartJudgement(const int& num)
 {
 	//初期位置.
-	m_vPos[num] = m_vCenterPos + INT_LOCAL_POS;
+	m_vPos[num] = m_vCenterPos;
 	//角度.
 	m_vRot[num].z = -ROT_WIDTH + ((num % LINE_MAX)* ROT_WIDTH);
+
+	m_fDistance[num] = 0.0f;
 
 	m_DispCnt++;
 	m_bDispFlag[num] = true;
@@ -96,6 +101,9 @@ void CHaveTroubleEffect::Move(const int& num)
 	const float angle = START_ANGLE + (ANGLE_WIDTH * (num % LINE_MAX));
 	//ラジアン.
 	const float radian = angle / CIRCLE_HALF_ANGLE * PI;
-	m_vPos[num].x += cos(radian) * MOVE_SPEED;
-	m_vPos[num].y += sin(radian) * MOVE_SPEED;
+
+	m_fDistance[num] += MOVE_SPEED;
+
+	m_vPos[num].x = cos(radian) + m_fDistance[num] + m_vCenterPos.x;
+	m_vPos[num].y = sin(radian) + m_fDistance[num] + m_vCenterPos.y;
 }

@@ -11,7 +11,7 @@ CBigGhost::CBigGhost()
 	, m_HaveTroubleActFlag	(0)
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
-	, m_UsingEffectNum		(2)
+	, m_UsingEffectNum		(1)
 {
 	//初期化処理関数.
 	Init();
@@ -75,7 +75,8 @@ void CBigGhost::Update()
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 		m_ChangeEmotionFlag = true;
 	}
-	RejoiceEmotion();
+
+	HaveTroubleEmotion();
 
 	//エフェクト更新処理関数.
 	D3DXVECTOR3 vCenterPos;
@@ -119,7 +120,7 @@ void CBigGhost::Init()
 
 	m_vPos = WAKE_UP_POS;
 	m_vRot = WAKE_UP_ROT;
-	//m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
+	m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
 }
 
 //==========================================.
