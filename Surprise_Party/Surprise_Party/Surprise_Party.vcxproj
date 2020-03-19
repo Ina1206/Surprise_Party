@@ -109,6 +109,7 @@
     <ClInclude Include="SourceCode\UI\PlayUI\CPlayUI.h" />
     <ClInclude Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\CSpeakUI.h" />
+    <ClInclude Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Drawing\CCommon.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="SourceCode\UI\PlayUI\CPlayUI.cpp" />
     <ClCompile Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\CSpeakUI.cpp" />
+    <ClCompile Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Data\Shader\DebugText.hlsl">
