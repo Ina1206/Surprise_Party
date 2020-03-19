@@ -31,12 +31,13 @@ enum class enSprite
 	ActMoveString,					//ˆÚ“®•¶š.
 	ActRestString,					//‹xŒe•¶š.
 	Bubble,							//–A.
-	SleepZ,							//‡–°‚Ìz
+	SleepZ,							//‡–°‚Ìz.
 	Swet,							//Š¾.
 
 	Strenght_Icon,					//‘Ì—ÍƒAƒCƒRƒ“.
 	eight_part_note,				//8•ª‰¹•„.
 	sixteen_part_note,				//16•ª‰¹•„.
+	Flower,							//‰Ô.
 
 	Max,
 	Start,

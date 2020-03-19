@@ -165,6 +165,7 @@ void CResourceManager::SpriteFileNameSetting()
 		"Data\\Texture\\UI\\Game\\HelthIcon.png",			//‘Ì—ÍƒAƒCƒRƒ“.
 		"Data\\Texture\\UI\\Game\\eight_part_note.png",		//8•ª‰¹•„.
 		"Data\\Texture\\UI\\Game\\sixteen_part_note.png",	//16•ª‰¹•„.
+		"Data\\Texture\\UI\\Game\\flower.png",				//‰Ô.
 	};
 }
 
@@ -273,6 +274,15 @@ void CResourceManager::SpriteStateSetting()
 		m_pstSpriteState[note].Disp.w = 2.0f;
 		m_pstSpriteState[note].Disp.h = 2.0f;
 	}
+
+	//‰Ô.
+	int FlowerNum = static_cast<int>(enSprite::Flower);
+	m_pstSpriteState[FlowerNum].Base.w = 960.0f;
+	m_pstSpriteState[FlowerNum].Base.h = 960.0f;
+	m_pstSpriteState[FlowerNum].Stride.w = m_pstSpriteState[FlowerNum].Base.w / 2.0f;
+	m_pstSpriteState[FlowerNum].Stride.h = m_pstSpriteState[FlowerNum].Base.h / 2.0f;
+	m_pstSpriteState[FlowerNum].Disp.w = 1.0f;
+	m_pstSpriteState[FlowerNum].Disp.h = 1.0f;
 }
 
 //================================================.
