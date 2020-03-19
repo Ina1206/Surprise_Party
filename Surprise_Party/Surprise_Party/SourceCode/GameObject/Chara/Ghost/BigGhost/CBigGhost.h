@@ -84,6 +84,8 @@ private:
 	std::vector<std::unique_ptr<CSpriteEffectBase>>	m_pCSpriteEffect;		//スプライトエフェクト.
 	int												m_UsingEffectNum;		//使っているエフェクト番号.
 	int												m_EmotionNum;			//感情番号.
+
+	bool											m_bSleepFlag;			//眠りフラグ.
 };
 
 

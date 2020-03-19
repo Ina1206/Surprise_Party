@@ -13,6 +13,7 @@ CBigGhost::CBigGhost()
 	, m_pCSpriteEffect		()
 	, m_UsingEffectNum		(0)
 	, m_EmotionNum			(0)
+	, m_bSleepFlag			(true)
 {
 	//初期化処理関数.
 	Init();
@@ -301,6 +302,7 @@ void CBigGhost::FallDown(const int& Direction)
 			m_vRot = WAKE_UP_ROT;
 			m_WakeUpCnt = 0;
 			m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
+			m_bSleepFlag = false;
 		}
 		return;
 	}
@@ -353,18 +355,20 @@ void CBigGhost::ChangeEffect()
 //============================================.
 void CBigGhost::EmotionMove()
 {
-	//困りエフェクトは"joint1".
-	//喜びエフェクトは"joint12"の座標で.
 	D3DXVECTOR3 vCenterPos;
 
 	switch (static_cast<enEmotionType>(m_UsingEffectNum)) {
 	case enEmotionType::Sleep:
 		vCenterPos = m_vPos;
-		WakeUp();
+		if (m_bSleepFlag == true) {
+			WakeUp();
+			break;
+		}
+		Sleep();
 		break;
 	case enEmotionType::HaveTrounble:
 		HaveTroubleEmotion();
-		m_pCSkinMesh->GetPosFromBone("joint1", &vCenterPos);
+		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::Rejoice:
 		RejoiceEmotion();
