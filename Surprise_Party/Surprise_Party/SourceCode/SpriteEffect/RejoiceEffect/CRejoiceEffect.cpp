@@ -119,6 +119,16 @@ void CRejoiceEffect::Move(const int& num)
 	m_vPos[num] = m_vCenterPos;
 	m_vPos[num].x += cos(RADIAN) * m_fDistance[num];
 	m_vPos[num].y += sin(RADIAN) * m_fDistance[num];
+
+	//‰¹•„‚Ìˆ—.
+	if (num % SPRITE_TYPE_MAX < SPRITE_ATTRIBUTE_MAX) {
+		m_fAngle[num] += SWING_SPEED;
+		m_vPos[num].x += cos(m_fAngle[num] / (CIRCLE_HALF_ANGLE * PI)) * SWING_WIDHT;
+		return;
+	}
+
+	//‰Ô‚Ìˆ—.
+	m_vRot[num].z += ROT_SPEED;
 }
 
 //=========================================.

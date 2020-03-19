@@ -11,7 +11,7 @@ CBigGhost::CBigGhost()
 	, m_HaveTroubleActFlag	(0)
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
-	, m_UsingEffectNum		(0)
+	, m_UsingEffectNum		(2)
 {
 	//初期化処理関数.
 	Init();
@@ -77,7 +77,7 @@ void CBigGhost::Update()
 	}
 
 	//HaveTroubleEmotion();
-	//RejoiceEmotion();
+	RejoiceEmotion();
 	//WakeUp();
 	//Sleep();
 
@@ -87,7 +87,7 @@ void CBigGhost::Update()
 	//喜びエフェクトは"joint12"の座標で.
 	D3DXVECTOR3 vCenterPos;
 	m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
-	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(m_vPos);
+	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(vCenterPos);
 	if (m_pCSpriteEffect[m_UsingEffectNum] != nullptr) {
 		m_pCSpriteEffect[m_UsingEffectNum]->Update();
 	}
