@@ -4,6 +4,7 @@
 #include "..\CGhostBase.h"
 #include "..\..\SpriteEffect\SleepEffect\CSleepEffect.h"
 #include "..\..\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h"
+#include "..\..\SpriteEffect\RejoiceEffect\CRejoiceEffect.h"
 
 /******************************************
 *		‘å‚«‚¢‚¨‰»‚¯ƒNƒ‰ƒX.

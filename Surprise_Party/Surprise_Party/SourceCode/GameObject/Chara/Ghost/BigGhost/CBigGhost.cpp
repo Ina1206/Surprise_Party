@@ -11,7 +11,7 @@ CBigGhost::CBigGhost()
 	, m_HaveTroubleActFlag	(0)
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
-	, m_UsingEffectNum		(0)
+	, m_UsingEffectNum		(2)
 {
 	//初期化処理関数.
 	Init();
@@ -75,7 +75,7 @@ void CBigGhost::Update()
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 		m_ChangeEmotionFlag = true;
 	}
-	HaveTroubleEmotion();
+	RejoiceEmotion();
 
 	//エフェクト更新処理関数.
 	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(m_vPos);
@@ -113,9 +113,10 @@ void CBigGhost::Init()
 	m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect());
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::HaveTrounble)].reset(new CHaveTroubleEffect());
+	m_pCSpriteEffect[static_cast<int>(enEmotionType::Rejoice)].reset(new CRejoiceEffect());
 
-	//m_vPos = WAKE_UP_POS;
-	//m_vRot = WAKE_UP_ROT;
+	m_vPos = WAKE_UP_POS;
+	m_vRot = WAKE_UP_ROT;
 	//m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
 }
 
