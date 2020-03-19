@@ -322,3 +322,21 @@ void CBigGhost::FallDown(const int& Direction)
 		m_vRot = SLEEP_ROT;
 	}
 }
+
+//============================================.
+//		エフェクト変更処理関数.
+//============================================.
+void CBigGhost::ChangeEffect(const int& EffectNum)
+{
+	switch (static_cast<enEmotionType>(EffectNum)) {
+	case enEmotionType::Sleep:
+
+		break;
+	case enEmotionType::HaveTrounble:
+
+		break;
+	case enEmotionType::Rejoice:
+
+		break;
+	}
+}

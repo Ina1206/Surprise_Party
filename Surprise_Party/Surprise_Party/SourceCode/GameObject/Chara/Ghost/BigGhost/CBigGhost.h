@@ -67,6 +67,7 @@ private:
 	void Lean(const int& Direction);			//傾く処理関数.
 	void WakeUpSleepMove(const int& Direction);	//起きる寝る移動処理関数.
 	void FallDown(const int& Direction);		//倒れる処理関数.
+	void ChangeEffect(const int& EffectNum);	//エフェクト変更処理関数.
 
 	//==================変数====================//.
 	CDX9SkinMesh*									m_pCSkinMesh;			//スキンメッシュ.
