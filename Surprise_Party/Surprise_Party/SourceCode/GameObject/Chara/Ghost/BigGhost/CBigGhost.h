@@ -58,16 +58,16 @@ public:
 
 private:
 	//=================関数====================//.
-	void Init();								//初期化処理関数.
-	void Release();								//解放処理関数.
-	void WakeUp();								//起床処理関数.
-	void HaveTroubleEmotion();					//困る感情処理関数.
-	void RejoiceEmotion();						//喜ぶ感情処理関数.
-	void Sleep();								//寝る処理関数.
-	void Lean(const int& Direction);			//傾く処理関数.
-	void WakeUpSleepMove(const int& Direction);	//起きる寝る移動処理関数.
-	void FallDown(const int& Direction);		//倒れる処理関数.
-	void ChangeEffect(const int& EffectNum);	//エフェクト変更処理関数.
+	void Init();							//初期化処理関数.
+	void Release();							//解放処理関数.
+	void WakeUp();							//起床処理関数.
+	void HaveTroubleEmotion();				//困る感情処理関数.
+	void RejoiceEmotion();					//喜ぶ感情処理関数.
+	void Sleep();							//寝る処理関数.
+	void Lean(const int& Direction);		//傾く処理関数.
+	void FallDown(const int& Direction);	//倒れる処理関数.
+	void ChangeEffect();					//エフェクト変更処理関数.
+	void EmotionMove();						//感情移動処理関数.
 
 	//==================変数====================//.
 	CDX9SkinMesh*									m_pCSkinMesh;			//スキンメッシュ.
@@ -83,6 +83,7 @@ private:
 
 	std::vector<std::unique_ptr<CSpriteEffectBase>>	m_pCSpriteEffect;		//スプライトエフェクト.
 	int												m_UsingEffectNum;		//使っているエフェクト番号.
+	int												m_EmotionNum;			//感情番号.
 };
 
 

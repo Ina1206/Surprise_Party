@@ -26,12 +26,15 @@ public:
 	const float			PI					= 3.14159265358979323846264338f;	//円周率.
 
 	//================関数====================//.
-	virtual void Update() = 0;																				//更新処理関数.
+	virtual void Update() = 0;																			//更新処理関数.
+	virtual void PlayStartInit(const int& num) = 0;														//エフェクト開始初期化処理関数.
 	void	Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画処理関数.
-	void SettingDefaultValue(const int& num);															//初期値設定処理関数.
 
 	//==========情報置換処理関数==============//.
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }		//中央座標.
+
+	//==========情報取得処理関数==============//.
+	int GetSpriteMax() { return m_pCSprite.size(); }						//スプライト最大数.
 
 protected:
 	//================関数====================//.
@@ -39,6 +42,7 @@ protected:
 	virtual void Release() = 0;							//解放処理関数.
 	virtual void AppeartJudgement(const int& num) = 0;	//表示判定処理関数.
 	virtual void Move(const int& num) = 0;				//移動処理関数.
+	void SettingDefaultValue(const int& num);			//初期値設定処理関数.
 	void SettingElementsCount();						//要素数設定処理関数.
 	bool ScalingTransparent(const int& num);			//透過処理関数.
 

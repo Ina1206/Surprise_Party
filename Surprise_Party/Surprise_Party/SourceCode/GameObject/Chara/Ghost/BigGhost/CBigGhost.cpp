@@ -11,7 +11,8 @@ CBigGhost::CBigGhost()
 	, m_HaveTroubleActFlag	(0)
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
-	, m_UsingEffectNum		(2)
+	, m_UsingEffectNum		(0)
+	, m_EmotionNum			(0)
 {
 	//初期化処理関数.
 	Init();
@@ -77,18 +78,15 @@ void CBigGhost::Update()
 	}
 
 	//HaveTroubleEmotion();
-	RejoiceEmotion();
+	//RejoiceEmotion();
 	//WakeUp();
 	//Sleep();
 
+	ChangeEffect();
+	EmotionMove();
 
 	//エフェクト更新処理関数.
-	//困りエフェクトは"joint1".
-	//喜びエフェクトは"joint12"の座標で.
-	D3DXVECTOR3 vCenterPos;
-	m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
-	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(vCenterPos);
-	if (m_pCSpriteEffect[m_UsingEffectNum] != nullptr) {
+	if (m_UsingEffectNum != static_cast<int>(enEmotionType::Nothing)) {
 		m_pCSpriteEffect[m_UsingEffectNum]->Update();
 	}
 }
@@ -106,7 +104,7 @@ void CBigGhost::Render()
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	//エフェクト描画.
-	if (m_pCSpriteEffect[m_UsingEffectNum] != nullptr) {
+	if (m_UsingEffectNum != static_cast<int>(enEmotionType::Nothing)) {
 		m_pCSpriteEffect[m_UsingEffectNum]->Render(m_mView, m_mProj, m_vCameraPos);
 	}
 }
@@ -122,9 +120,9 @@ void CBigGhost::Init()
 
 	m_fAnimSpeed = SLEEP_ANIM_SPEED;
 
-	m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
-	m_vPos = WAKE_UP_POS;
-	m_vRot = WAKE_UP_ROT;
+	//m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
+	//m_vPos = WAKE_UP_POS;
+	//m_vRot = WAKE_UP_ROT;
 
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
@@ -132,7 +130,6 @@ void CBigGhost::Init()
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::HaveTrounble)].reset(new CHaveTroubleEffect());
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::Rejoice)].reset(new CRejoiceEffect());
 
-	m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
 }
 
 //==========================================.
@@ -282,14 +279,6 @@ void CBigGhost::Lean(const int& Direction)
 }
 
 //=============================================.
-//		起きる寝る移動処理関数.
-//=============================================.
-void CBigGhost::WakeUpSleepMove(const int& Direction)
-{
-
-}
-
-//=============================================.
 //		倒れる処理関数.
 //=============================================.
 void CBigGhost::FallDown(const int& Direction)
@@ -304,13 +293,14 @@ void CBigGhost::FallDown(const int& Direction)
 	m_vPos += WAKE_UPING_SPEED * vPosUnit * static_cast<float>(Direction);
 	m_vRot += WAKE_UPING_SPEED * vRotUnit * static_cast<float>(Direction);
 
-	if (Direction > 1) {
+	if (Direction >= 1) {
 		if (m_vPos.y >= WAKE_UP_POS.y) {
 			m_vPos = WAKE_UP_POS;
 		}
 		if (m_vRot.y > WAKE_UP_ROT.y) {
 			m_vRot = WAKE_UP_ROT;
 			m_WakeUpCnt = 0;
+			m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
 		}
 		return;
 	}
@@ -326,17 +316,67 @@ void CBigGhost::FallDown(const int& Direction)
 //============================================.
 //		エフェクト変更処理関数.
 //============================================.
-void CBigGhost::ChangeEffect(const int& EffectNum)
+void CBigGhost::ChangeEffect()
 {
-	switch (static_cast<enEmotionType>(EffectNum)) {
-	case enEmotionType::Sleep:
+	bool m_bChangeFlag = false;
+	if (GetAsyncKeyState('1') & 0x8000) {
+		m_UsingEffectNum = static_cast<int>(enEmotionType::HaveTrounble);
+		m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
+		m_bChangeFlag = true;
+	}
 
+	if (GetAsyncKeyState('2') & 0x8000) {
+		m_UsingEffectNum = static_cast<int>(enEmotionType::Rejoice);
+		m_bChangeFlag = true;
+	}
+
+	if (GetAsyncKeyState('3') & 0x8000) {
+		m_UsingEffectNum = static_cast<int>(enEmotionType::Sleep);
+		m_bChangeFlag = true;
+	}
+
+	if (GetAsyncKeyState('4') & 0x8000) {
+		m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
+	}
+
+	if (m_bChangeFlag == true) {
+		m_vPos = WAKE_UP_POS;
+		m_vRot = WAKE_UP_ROT;
+		for (int sprite = 0; sprite < m_pCSpriteEffect[m_UsingEffectNum]->GetSpriteMax(); sprite++) {
+			m_pCSpriteEffect[m_UsingEffectNum]->PlayStartInit(sprite);
+		}
+	}
+}
+
+//============================================.
+//		感情移動処理関数.
+//============================================.
+void CBigGhost::EmotionMove()
+{
+	//困りエフェクトは"joint1".
+	//喜びエフェクトは"joint12"の座標で.
+	D3DXVECTOR3 vCenterPos;
+
+	switch (static_cast<enEmotionType>(m_UsingEffectNum)) {
+	case enEmotionType::Sleep:
+		vCenterPos = m_vPos;
+		WakeUp();
 		break;
 	case enEmotionType::HaveTrounble:
-
+		HaveTroubleEmotion();
+		m_pCSkinMesh->GetPosFromBone("joint1", &vCenterPos);
 		break;
 	case enEmotionType::Rejoice:
-
+		RejoiceEmotion();
+		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
+	case enEmotionType::Nothing:
+		m_vPos = WAKE_UP_POS;
+		m_vRot = WAKE_UP_ROT;
+		break;
+	}
+
+	if (m_UsingEffectNum != static_cast<int>(enEmotionType::Nothing)) {
+		m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(vCenterPos);
 	}
 }

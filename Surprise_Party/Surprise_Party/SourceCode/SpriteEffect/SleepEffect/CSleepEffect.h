@@ -32,7 +32,8 @@ public:
 
 
 	//===============関数=================//.
-	void Update();		//更新処理関数.
+	void Update();								//更新処理関数.
+	void PlayStartInit(const int& num);			//エフェクト開始処理関数.
 
 private:
 	//===============関数=================//.
