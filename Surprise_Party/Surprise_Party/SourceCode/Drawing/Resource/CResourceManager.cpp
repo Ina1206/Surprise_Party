@@ -271,8 +271,8 @@ void CResourceManager::SpriteStateSetting()
 		m_pstSpriteState[note].Base.h = 1321.0f;
 		m_pstSpriteState[note].Stride.w = m_pstSpriteState[note].Base.w / 3.0f;
 		m_pstSpriteState[note].Stride.h = m_pstSpriteState[note].Base.h / 3.0f;
-		m_pstSpriteState[note].Disp.w = 2.0f;
-		m_pstSpriteState[note].Disp.h = 2.0f;
+		m_pstSpriteState[note].Disp.w = 1.5f;
+		m_pstSpriteState[note].Disp.h = 1.5f;
 	}
 
 	//‰Ô.
@@ -281,8 +281,8 @@ void CResourceManager::SpriteStateSetting()
 	m_pstSpriteState[FlowerNum].Base.h = 960.0f;
 	m_pstSpriteState[FlowerNum].Stride.w = m_pstSpriteState[FlowerNum].Base.w / 2.0f;
 	m_pstSpriteState[FlowerNum].Stride.h = m_pstSpriteState[FlowerNum].Base.h / 2.0f;
-	m_pstSpriteState[FlowerNum].Disp.w = 1.0f;
-	m_pstSpriteState[FlowerNum].Disp.h = 1.0f;
+	m_pstSpriteState[FlowerNum].Disp.w = 1.5f;
+	m_pstSpriteState[FlowerNum].Disp.h = 1.5f;
 }
 
 //================================================.
