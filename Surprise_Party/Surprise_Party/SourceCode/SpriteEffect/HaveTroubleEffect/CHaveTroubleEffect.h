@@ -23,6 +23,8 @@ public:
 	const float			START_ANGLE		= 30.0f;							//開始角度.
 	const float			ANGLE_WIDTH		= 30.0f;							//角度幅.
 
+	const float			ROT_WIDTH		= 0.3f;								//スプライト角度幅.
+
 	const float			MOVE_SPEED		= 0.03f;							//移動速度.
 
 	//=================関数===================//.
