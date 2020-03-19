@@ -263,6 +263,9 @@
     <Filter Include="SourceCode\SpriteEffect\RejoiceEffect">
       <UniqueIdentifier>{1f7255f9-b0b3-4e48-a4d1-f410c0723f34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SpeakUI">
+      <UniqueIdentifier>{51e1eaf5-b79f-4f12-80f9-efbb2983d06c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -532,6 +535,9 @@
     <ClInclude Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.h">
       <Filter>SourceCode\SpriteEffect\RejoiceEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SpeakUI\CSpeakUI.h">
+      <Filter>SourceCode\UI\SpeakUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -788,6 +794,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.cpp">
       <Filter>SourceCode\SpriteEffect\RejoiceEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SpeakUI\CSpeakUI.cpp">
+      <Filter>SourceCode\UI\SpeakUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
