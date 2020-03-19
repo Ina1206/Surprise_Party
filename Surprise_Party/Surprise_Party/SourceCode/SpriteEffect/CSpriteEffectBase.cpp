@@ -9,7 +9,8 @@ CSpriteEffectBase::CSpriteEffectBase()
 	, m_vRot				()
 	, m_fScale				()
 	, m_fAlpha				()
-	, m_fAngle()
+	, m_fAngle				()
+	, m_vPart				()
 	, m_vCenterPos			(0.0f, 0.0f, 0.0f)
 	, m_fAlphaSpeed			(0.0f)
 	, m_fScalingSpeed		(0.0f)
@@ -49,6 +50,7 @@ void CSpriteEffectBase::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		m_pCSprite[sprite]->SetRotation(m_vRot[sprite]);
 		m_pCSprite[sprite]->SetPosition(m_vPos[sprite]);
 		m_pCSprite[sprite]->SetAlpha(m_fAlpha[sprite]);
+		m_pCSprite[sprite]->SetPatternNo(m_vPart[sprite]);
 		m_pCDepthStencil->SetDepth(false);
 		m_pCSprite[sprite]->Render(mView, mProj, vCameraPos);
 		m_pCDepthStencil->SetDepth(true);
@@ -71,6 +73,7 @@ void CSpriteEffectBase::SettingElementsCount()
 	m_vRot.resize(m_pCSprite.size());
 	m_fAlpha.resize(m_pCSprite.size());
 	m_fAngle.resize(m_pCSprite.size());
+	m_vPart.resize(m_pCSprite.size());
 	m_bDispFlag.resize(m_pCSprite.size());
 	m_ChangeAddSub.resize(m_pCSprite.size());
 }
@@ -109,5 +112,6 @@ void CSpriteEffectBase::SettingDefaultValue(const int& num)
 	m_vRot[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_fScale[num]		= SCALE_MIN;
 	m_fAlpha[num]		= ALPHA_MIN;
+	m_vPart[num]		= D3DXVECTOR2(0.0f, 0.0f);
 	m_ChangeAddSub[num] = ADDITION_NUM;
 }

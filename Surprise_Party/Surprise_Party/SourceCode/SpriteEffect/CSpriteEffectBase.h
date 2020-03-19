@@ -49,6 +49,7 @@ protected:
 	std::vector<float>			m_fScale;			//大きさ.
 	std::vector<float>			m_fAlpha;			//透過値.
 	std::vector<float>			m_fAngle;			//角度.
+	std::vector<D3DXVECTOR2>	m_vPart;			//元画像の場所.
 	D3DXVECTOR3					m_vCenterPos;		//中央座標.
 	float						m_fAlphaSpeed;		//透過速度.
 	float						m_fScalingSpeed;	//大きさ速度.

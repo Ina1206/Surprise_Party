@@ -11,7 +11,7 @@ CBigGhost::CBigGhost()
 	, m_HaveTroubleActFlag	(0)
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
-	, m_UsingEffectNum		(1)
+	, m_UsingEffectNum		(0)
 {
 	//èâä˙âªèàóùä÷êî.
 	Init();
@@ -114,9 +114,9 @@ void CBigGhost::Init()
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect());
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::HaveTrounble)].reset(new CHaveTroubleEffect());
 
-	m_vPos = WAKE_UP_POS;
-	m_vRot = WAKE_UP_ROT;
-	m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
+	//m_vPos = WAKE_UP_POS;
+	//m_vRot = WAKE_UP_ROT;
+	//m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
 }
 
 //==========================================.
