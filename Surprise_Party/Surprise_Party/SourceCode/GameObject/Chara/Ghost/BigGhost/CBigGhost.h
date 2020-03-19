@@ -23,6 +23,7 @@ public:
 		Rejoice,		//喜ぶ.
 
 		Max,			//最大値.
+		Nothing,		//無し.
 	};
 
 	//=================関数====================//.
@@ -35,7 +36,7 @@ public:
 	const float			SLEEP_ANIM_SPEED	= 0.02f;							//寝てる時のアニメーション速度.
 	const float			WAKE_UP_ANIM_SPEED	= 0.0f;								//起きる時のアニメーション速度.
 	const float			WAKE_UPING_SPEED	= 0.03f;							//起きる速度.
-	const int			WAKE_UP_TIMING		= 300;								//起きるタイミング.
+	const int			WAKE_UP_TIMING		= 600;								//起きるタイミング.
 	const float			HAVE_TROUBLE_SPEED	= 0.025f;							//困る感情行動速度.
 	const float			HAVE_TROUBLE_ROT_MAX= 0.7f;								//困る感情行動角度最大値.
 	const int			CHANGE_DIRECTION	= -1;								//方向変更.
@@ -63,8 +64,9 @@ private:
 	void HaveTroubleEmotion();					//困る感情処理関数.
 	void RejoiceEmotion();						//喜ぶ感情処理関数.
 	void Sleep();								//寝る処理関数.
-	void Lean(const int& Direction);			//倒れる処理関数.
+	void Lean(const int& Direction);			//傾く処理関数.
 	void WakeUpSleepMove(const int& Direction);	//起きる寝る移動処理関数.
+	void FallDown(const int& Direction);		//倒れる処理関数.
 
 	//==================変数====================//.
 	CDX9SkinMesh*									m_pCSkinMesh;			//スキンメッシュ.

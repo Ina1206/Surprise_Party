@@ -11,7 +11,7 @@ CBigGhost::CBigGhost()
 	, m_HaveTroubleActFlag	(0)
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
-	, m_UsingEffectNum		(2)
+	, m_UsingEffectNum		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -77,15 +77,20 @@ void CBigGhost::Update()
 	}
 
 	//HaveTroubleEmotion();
-	RejoiceEmotion();
+	//RejoiceEmotion();
+	//WakeUp();
+	//Sleep();
+
 
 	//エフェクト更新処理関数.
 	//困りエフェクトは"joint1".
 	//喜びエフェクトは"joint12"の座標で.
 	D3DXVECTOR3 vCenterPos;
 	m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
-	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(vCenterPos);
-	m_pCSpriteEffect[m_UsingEffectNum]->Update();
+	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(m_vPos);
+	if (m_pCSpriteEffect[m_UsingEffectNum] != nullptr) {
+		m_pCSpriteEffect[m_UsingEffectNum]->Update();
+	}
 }
 
 //==========================================.
@@ -101,7 +106,9 @@ void CBigGhost::Render()
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	//エフェクト描画.
-	m_pCSpriteEffect[m_UsingEffectNum]->Render(m_mView, m_mProj, m_vCameraPos);
+	if (m_pCSpriteEffect[m_UsingEffectNum] != nullptr) {
+		m_pCSpriteEffect[m_UsingEffectNum]->Render(m_mView, m_mProj, m_vCameraPos);
+	}
 }
 
 //==========================================.
@@ -115,14 +122,16 @@ void CBigGhost::Init()
 
 	m_fAnimSpeed = SLEEP_ANIM_SPEED;
 
+	m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
+	m_vPos = WAKE_UP_POS;
+	m_vRot = WAKE_UP_ROT;
+
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect());
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::HaveTrounble)].reset(new CHaveTroubleEffect());
 	m_pCSpriteEffect[static_cast<int>(enEmotionType::Rejoice)].reset(new CRejoiceEffect());
 
-	m_vPos = WAKE_UP_POS;
-	m_vRot = WAKE_UP_ROT;
 	m_HaveTroubleActFlag = MOVING_ROT_FLAG | MOVING_POS_FLAG;
 }
 
@@ -154,23 +163,9 @@ void CBigGhost::WakeUp()
 		return;
 	}
 
-	//座標単位ベクトル計算.
-	const float m_fPosLength = D3DXVec3Length(&(WAKE_UP_POS - SLEEP_POS));
-	const D3DXVECTOR3 vPosUnit = (WAKE_UP_POS - SLEEP_POS) / m_fPosLength;
-	//角度単位ベクトル計算.
-	const float m_fRotLength = D3DXVec3Length(&(WAKE_UP_ROT - SLEEP_ROT));
-	const D3DXVECTOR3 vRotUnit = (WAKE_UP_ROT - SLEEP_ROT) / m_fRotLength;
+	//倒れる処理関数.
+	FallDown(1);
 
-	m_vPos += WAKE_UPING_SPEED * vPosUnit;
-	m_vRot += WAKE_UPING_SPEED * vRotUnit;
-
-	if (m_vPos.y >= WAKE_UP_POS.y) {
-		m_vPos = WAKE_UP_POS;
-	}
-	if (m_vRot.y > WAKE_UP_ROT.y) {
-		m_vRot = WAKE_UP_ROT;
-		m_WakeUpCnt = 0;
-	}
 	//鼻提灯最小の時のアニメーション.
 	m_pCSkinMesh->ChangeAnimSet_StartPos(m_AnimNum, 1.1);
 
@@ -246,11 +241,12 @@ void CBigGhost::RejoiceEmotion()
 //==========================================.
 void CBigGhost::Sleep()
 {
-
+	m_fAnimSpeed = SLEEP_ANIM_SPEED;
+	FallDown(-1);
 }
 
 //==========================================.
-//		倒れる処理関数.
+//		傾く処理関数.
 //==========================================.
 void CBigGhost::Lean(const int& Direction)
 {
@@ -291,4 +287,38 @@ void CBigGhost::Lean(const int& Direction)
 void CBigGhost::WakeUpSleepMove(const int& Direction)
 {
 
+}
+
+//=============================================.
+//		倒れる処理関数.
+//=============================================.
+void CBigGhost::FallDown(const int& Direction)
+{
+	//座標単位ベクトル計算.
+	const float m_fPosLength = D3DXVec3Length(&(WAKE_UP_POS - SLEEP_POS));
+	const D3DXVECTOR3 vPosUnit = (WAKE_UP_POS - SLEEP_POS) / m_fPosLength;
+	//角度単位ベクトル計算.
+	const float m_fRotLength = D3DXVec3Length(&(WAKE_UP_ROT - SLEEP_ROT));
+	const D3DXVECTOR3 vRotUnit = (WAKE_UP_ROT - SLEEP_ROT) / m_fRotLength;
+
+	m_vPos += WAKE_UPING_SPEED * vPosUnit * static_cast<float>(Direction);
+	m_vRot += WAKE_UPING_SPEED * vRotUnit * static_cast<float>(Direction);
+
+	if (Direction > 1) {
+		if (m_vPos.y >= WAKE_UP_POS.y) {
+			m_vPos = WAKE_UP_POS;
+		}
+		if (m_vRot.y > WAKE_UP_ROT.y) {
+			m_vRot = WAKE_UP_ROT;
+			m_WakeUpCnt = 0;
+		}
+		return;
+	}
+
+	if (m_vPos.y <= SLEEP_POS.y) {
+		m_vPos = SLEEP_POS;
+	}
+	if (m_vRot.y < SLEEP_ROT.y) {
+		m_vRot = SLEEP_ROT;
+	}
 }

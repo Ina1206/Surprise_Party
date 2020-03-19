@@ -58,7 +58,7 @@ void CSleepEffect::Init()
 	//初期値設定.
 	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {
 		SettingDefaultValue(sprite);
-
+		m_DispTime = APPEAR_TIME;
 		//眠りの睡眠マーク.
 		if (sprite % LINE_MAX == SLEEP_Z_NUM) {
 			m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::SleepZ);
