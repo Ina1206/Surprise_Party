@@ -106,6 +106,7 @@ void CSpriteEffectBase::SettingDefaultValue(const int& num)
 {
 	m_bDispFlag[num]	= false;
 	m_vPos[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vRot[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_fScale[num]		= SCALE_MIN;
 	m_fAlpha[num]		= ALPHA_MIN;
 	m_ChangeAddSub[num] = ADDITION_NUM;
