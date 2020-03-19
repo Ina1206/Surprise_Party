@@ -78,7 +78,9 @@ void CBigGhost::Update()
 	RejoiceEmotion();
 
 	//エフェクト更新処理関数.
-	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(m_vPos);
+	D3DXVECTOR3 vCenterPos;
+	m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
+	m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(vCenterPos);
 	m_pCSpriteEffect[m_UsingEffectNum]->Update();
 }
 

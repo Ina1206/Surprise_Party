@@ -65,9 +65,9 @@ void CRejoiceEffect::Update()
 			m_vRot[sprite] = vChange;
 		}
 
-		if (m_vPos[sprite] == D3DXVECTOR3(0.0f, 0.0f, 0.0f)) {
+		//if (m_vPos[sprite] == D3DXVECTOR3(0.0f, 0.0f, 0.0f)) {
 			m_vPos[sprite] = m_vCenterPos;
-		}
+		//}
 	}
 }
 
