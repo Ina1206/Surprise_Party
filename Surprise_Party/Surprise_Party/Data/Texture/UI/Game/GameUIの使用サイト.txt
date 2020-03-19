@@ -40,3 +40,9 @@ NUREYON		URL:https://nureyon.com/
 Swet.png
 
 びたちー素材館	URL:http://www.vita-chi.net/sozai1.htm
+TextBox.png
+TextBoxSmall.png
+
+illust image	URL:https://illustimage.com/
+flower.png
+
