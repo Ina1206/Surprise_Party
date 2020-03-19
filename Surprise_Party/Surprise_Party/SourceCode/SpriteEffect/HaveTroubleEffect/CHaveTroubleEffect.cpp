@@ -78,8 +78,9 @@ void CHaveTroubleEffect::Release()
 //============================================.
 void CHaveTroubleEffect::AppeartJudgement(const int& num)
 {
+	//初期位置.
 	m_vPos[num] = m_vCenterPos + INT_LOCAL_POS;
-
+	//角度.
 	m_vRot[num].z = -ROT_WIDTH + ((num % LINE_MAX)* ROT_WIDTH);
 
 	m_DispCnt++;
@@ -91,8 +92,9 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 //============================================.
 void CHaveTroubleEffect::Move(const int& num)
 {
-	//ラジアン.
+	//角度.
 	const float angle = START_ANGLE + (ANGLE_WIDTH * (num % LINE_MAX));
+	//ラジアン.
 	const float radian = angle / CIRCLE_HALF_ANGLE * PI;
 	m_vPos[num].x += cos(radian) * MOVE_SPEED;
 	m_vPos[num].y += sin(radian) * MOVE_SPEED;
