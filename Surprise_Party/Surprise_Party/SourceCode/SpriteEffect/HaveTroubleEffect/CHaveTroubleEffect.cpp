@@ -80,8 +80,7 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 {
 	m_vPos[num] = m_vCenterPos + INT_LOCAL_POS;
 
-	//m_vRot[num].z = 0.05f + ((num % LINE_MAX)* 0.05f);
-	m_vRot[num].z = 0.0f;
+	m_vRot[num].z = -0.3f + ((num % LINE_MAX)* 0.3f);
 
 	m_DispCnt++;
 	m_bDispFlag[num] = true;
