@@ -123,9 +123,9 @@ void CRejoiceEffect::LinkSprite(const int& num)
 {
 	//î‘çÜÇ≤Ç∆ÇÃïRÇ√ÇØ.
 	switch (static_cast<enRejoiceSpriteType>(num % SPRITE_TYPE_MAX)) {
-	case enRejoiceSpriteType::PinkEightPartNote:
+	case enRejoiceSpriteType::YellowEightPartNote:
 		m_pCSprite[num] = m_pCResourceManager->GetSprite(enSprite::eight_part_note);
-		m_vPart[num] = D3DXVECTOR2(0.0f, 0.0f);
+		m_vPart[num] = D3DXVECTOR2(0.0f, 2.0f);
 		break;
 	case enRejoiceSpriteType::BlueEightPartNote:
 		m_pCSprite[num] = m_pCResourceManager->GetSprite(enSprite::eight_part_note);
@@ -137,10 +137,7 @@ void CRejoiceEffect::LinkSprite(const int& num)
 		break;
 	case enRejoiceSpriteType::RedFlower:
 		m_pCSprite[num] = m_pCResourceManager->GetSprite(enSprite::Flower);
-		m_vPart[num] = D3DXVECTOR2(0.0f, 1.0f);
-		break;
-	default:
-		_ASSERT_EXPR(false, L"âΩÇ‡Ç»Ç¢ÇÊ!!");
+		m_vPart[num] = D3DXVECTOR2(1.0f, 1.0f);
 		break;
 	}
 }

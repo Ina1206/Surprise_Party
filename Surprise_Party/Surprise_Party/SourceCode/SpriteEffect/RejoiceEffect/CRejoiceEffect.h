@@ -16,13 +16,13 @@ public:
 	//===================列挙体=======================//.
 	//スプライトの種類.
 	enum class enRejoiceSpriteType {
-		PinkEightPartNote = 0,		//ピンク8部音符.
+		YellowEightPartNote = 0,	//黄色8部音符.
 		BlueEightPartNote,			//青8部音符.
 		PinkFlower,					//ピンクの花.
 		RedFlower,					//青の花.
 
 		Max,						//最大数.
-		Start = PinkEightPartNote,	//開始.
+		Start = YellowEightPartNote,//開始.
 	};
 
 	//====================定数========================//.
