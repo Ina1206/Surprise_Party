@@ -260,6 +260,9 @@
     <Filter Include="SourceCode\SpriteEffect\HaveTroubleEffect">
       <UniqueIdentifier>{eb42069e-4aa2-40b2-b4d7-6d5ddb8b8ce5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\SpriteEffect\RejoiceEffect">
+      <UniqueIdentifier>{1f7255f9-b0b3-4e48-a4d1-f410c0723f34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -526,6 +529,9 @@
     <ClInclude Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h">
       <Filter>SourceCode\SpriteEffect\HaveTroubleEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.h">
+      <Filter>SourceCode\SpriteEffect\RejoiceEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -779,6 +785,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.cpp">
       <Filter>SourceCode\SpriteEffect\HaveTroubleEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.cpp">
+      <Filter>SourceCode\SpriteEffect\RejoiceEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
