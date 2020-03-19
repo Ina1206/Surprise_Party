@@ -14,7 +14,7 @@ public:
 	//===================関数======================//.
 	virtual void Update() = 0;	//更新処理関数.
 	
-private:
+protected:
 	//===================変数======================//.
 	CFontResource*	m_pCFontResource;	//フォント読み込みクラス.
 };
