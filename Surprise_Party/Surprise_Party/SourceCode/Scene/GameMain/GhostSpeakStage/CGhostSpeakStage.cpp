@@ -10,6 +10,7 @@ CGhostSpeakStage::CGhostSpeakStage(int stageNum)
 	, changestr			()
 	, m_pCFloor			(nullptr)
 	, m_pCBigGhost		(nullptr)
+	, m_pCSpeakBigGhost	(nullptr)
 {
 	m_StageNum = stageNum;
 	//初期化処理関数.
@@ -48,6 +49,9 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		}
 	}
 
+	//大きいお化け会話更新処理クラス.
+	m_pCSpeakBigGhost->Update();
+
 	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
 	//	m_stLight.m_fLightWidth += 0.1f;
 	//}
@@ -84,6 +88,9 @@ void CGhostSpeakStage::Render()
 	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_stLight);
 	m_pCBigGhost->Render();
 
+	//大きいお化け会話クラス.
+	m_pCSpeakBigGhost->Render();
+
 	//文字の描画.
 	if (m_pCFontResource != nullptr) {
 		m_pCFontResource->String_Render();
@@ -105,8 +112,11 @@ void CGhostSpeakStage::Init()
 	//大きいお化け.
 	m_pCBigGhost.reset(new CBigGhost());
 
+	//大きいお化け会話クラス.
+	m_pCSpeakBigGhost.reset(new CSpeakBigGhost());
+
 	//文章読み込み処理関数.
-	LoadString();
+	LoadSpeakString();
 
 	m_stLight.fIntensity = 10.0f;
 	m_stLight.fLightPosWidth = 20.0f;
@@ -142,7 +152,7 @@ void CGhostSpeakStage::Control()
 //=========================================.
 //		文章読み込み処理関数.
 //=========================================.
-void CGhostSpeakStage::LoadString()
+void CGhostSpeakStage::LoadSpeakString()
 {
 	//ファイル読み込み.
 	CFile* m_pCFile = new CFile();

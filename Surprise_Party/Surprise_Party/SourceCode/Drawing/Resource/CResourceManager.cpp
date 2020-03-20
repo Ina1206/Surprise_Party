@@ -397,8 +397,8 @@ void CResourceManager::SpriteUIStateSetting()
 	int TextBoxNum = static_cast<int>(enSpriteUI::TextBox);
 	m_pstSpriteUIState[TextBoxNum].Base.w = 774.0f;
 	m_pstSpriteUIState[TextBoxNum].Base.h = 187.0f;
-	m_pstSpriteUIState[TextBoxNum].Disp.w = m_pstSpriteUIState[TextBoxNum].Base.w;
-	m_pstSpriteUIState[TextBoxNum].Disp.h = m_pstSpriteUIState[TextBoxNum].Base.h;
+	m_pstSpriteUIState[TextBoxNum].Disp.w = m_pstSpriteUIState[TextBoxNum].Base.w * 1.5f;
+	m_pstSpriteUIState[TextBoxNum].Disp.h = m_pstSpriteUIState[TextBoxNum].Base.h * 1.5f;
 
 	//テキストボックス小.
 	int TextBoxSmallNum = static_cast<int>(enSpriteUI::TextBoxSmall);

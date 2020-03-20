@@ -41,8 +41,8 @@ void CSpeakBigGhost::Render()
 	}
 
 	//•¶Žš‚Ì•`‰æ.
-	m_pCFontResource->SetFontScale(m_fFontScale);
-	m_pCFontResource->SetStartPos(m_vPos)
+	//m_pCFontResource->SetFontScale(m_fFontScale);
+	//m_pCFontResource->SetStartPos(m_vPos)
 }
 
 //====================================.
@@ -57,10 +57,16 @@ void CSpeakBigGhost::Init()
 	m_fScale.resize(m_pCSpriteUI.size());
 
 	m_pCSpriteUI[0] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBox);
-	for (int ui = 1; ui < m_pCSpriteUI.size(); ui++) {
+	for (unsigned int ui = 1; ui < m_pCSpriteUI.size(); ui++) {
 		m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBoxSmall);
 	}
 
+	m_vPos[0] = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
+	
+	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
+		m_fScale[ui] = 1.0f;
+		m_fAlpha[ui] = 1.0f;
+	}
 }
 
 //====================================.
