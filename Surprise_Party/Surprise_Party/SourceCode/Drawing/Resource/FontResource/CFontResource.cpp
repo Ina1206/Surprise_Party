@@ -76,6 +76,9 @@ void CFontResource::Load(std::string str)
 
 	//文字のテクスチャ作成.
 	for (int size = 0; size < m_StrLength; size++) {
+		if (m_pCFont[size] != nullptr) {
+			SAFE_DELETE(m_pCFont[size]);
+		}
 		m_pCFont[size] = new CFont();
 		//文字列を１文字に分解.
 		std::string cda = str.substr(size * 2, 2);

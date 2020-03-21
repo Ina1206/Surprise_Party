@@ -2,6 +2,7 @@
 #define CSPEAK_BIG_GHOST_H
 
 #include "..\CSpeakUI.h"
+#include "..\..\FileLoad\FileResource\CFileResource.h"
 
 /**********************************************
 *		ビッグゴーストがしゃべるクラス.
@@ -19,8 +20,9 @@ public:
 
 private:
 	//======================関数========================//.
-	void Init();	//初期化処理関数.
-	void Release();	//解放処理関数.
+	void Init();			//初期化処理関数.
+	void Release();			//解放処理関数.
+	void LoadSpeakString();	//会話文章読み込み処理関数.
 
 	//======================変数========================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;	//スプライトUI.
@@ -29,9 +31,10 @@ private:
 	std::vector<float>			m_fAlpha;		//透過値.
 	std::vector<float>			m_fScale;		//大きさ.
 
-	float						m_fFontScale;	//大きさ
-
 	bool						m_bSelectFlag;	//選択フラグ.
+
+	std::vector<std::string>	m_stSpeakString;//会話文章.
+	int							m_SpeakNum;		//会話番号.
 };
 
 

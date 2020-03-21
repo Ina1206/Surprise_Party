@@ -1,12 +1,14 @@
 #include "CSpeakBigGhost.h"
 
 CSpeakBigGhost::CSpeakBigGhost()
-	: m_pCSpriteUI	()
-	, m_vPos		()
-	, m_vRot		()
-	, m_fAlpha		()
-	, m_fScale		()
-	, m_bSelectFlag	(false)
+	: m_pCSpriteUI		()
+	, m_vPos			()
+	, m_vRot			()
+	, m_fAlpha			()
+	, m_fScale			()
+	, m_bSelectFlag		(false)
+	, m_stSpeakString	()
+	, m_SpeakNum		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -23,6 +25,14 @@ CSpeakBigGhost::~CSpeakBigGhost()
 //====================================.
 void CSpeakBigGhost::Update()
 {
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+		//読み込み処理関数.
+		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+		m_SpeakNum++;
+		if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
+			m_SpeakNum = 0;
+		}
+	}
 
 }
 
@@ -41,8 +51,7 @@ void CSpeakBigGhost::Render()
 	}
 
 	//文字の描画.
-	//m_pCFontResource->SetFontScale(m_fFontScale);
-	//m_pCFontResource->SetStartPos(m_vPos)
+	m_pCFontResource->String_Render();
 }
 
 //====================================.
@@ -67,6 +76,9 @@ void CSpeakBigGhost::Init()
 		m_fScale[ui] = 1.0f;
 		m_fAlpha[ui] = 1.0f;
 	}
+
+	//会話文章読み込み処理関数.
+	LoadSpeakString();
 }
 
 //====================================.
@@ -74,5 +86,32 @@ void CSpeakBigGhost::Init()
 //====================================.
 void CSpeakBigGhost::Release()
 {
+	//削除処理関数.
+	m_pCFontResource->Destroy();
+}
 
+//=====================================.
+//		会話文章読み込み処理関数.
+//=====================================.
+void CSpeakBigGhost::LoadSpeakString()
+{
+	//ファイル読み込み.
+	CFile* m_pCFile = new CFile();
+	m_pCFile->FileInput("Data\\File\\Test.csv");
+
+	//ファイルの中の全文章設定.
+	for (int splite = 0; splite < m_pCFile->GetColumnMax(); splite++) {
+		m_stSpeakString.push_back(m_pCFile->GetLineData(splite));
+	}
+	m_pCFile->Close();
+	SAFE_DELETE(m_pCFile);
+
+
+	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
+	//読み込み処理関数.
+	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+	//位置設定処理関数
+	m_pCFontResource->SetStartPos(D3DXVECTOR3(90.0f, 480.0f, 0.0f));
+
+	m_pCFontResource->SetFontScale(50.0f);
 }
