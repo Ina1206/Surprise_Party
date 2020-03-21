@@ -312,6 +312,7 @@ void CBigGhost::FallDown(const int& Direction)
 	}
 	if (m_vRot.y < SLEEP_ROT.y) {
 		m_vRot = SLEEP_ROT;
+		m_bSleepFlag = true;
 	}
 }
 

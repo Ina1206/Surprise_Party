@@ -27,7 +27,7 @@ public:
 	const D3DXVECTOR3	CAMERA_LOOK_DISTANCE		= SPEAK_START_LOOK - INIT_CAMERA_LOOK;	//カメラの注視点距離.
 	const int			GET_CLOSER_CAMERA_DIRECT	= 1;									//カメラが接近する方向.
 	const int			FAR_AWAY_CAMERA_DIRECT		= -1;									//カメラが遠のく方向.
-	const float			CAMER_MOVE_SPEED			= 0.04f;								//カメラ移動速度.
+	const float			CAMER_MOVE_SPEED			= 0.02f;								//カメラ移動速度.
 
 	//========================関数=============================//.
 	void UpDate(const bool& ControlFlag);		//更新処理関数.
