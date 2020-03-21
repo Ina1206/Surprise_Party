@@ -56,6 +56,9 @@ public:
 	void Update();		//更新処理関数.
 	void Render();		//描画処理科数.
 
+	//===========情報取得処理関数==============//.
+	bool GetSleepFlag() { return m_bSleepFlag; }	//眠りフラグ.
+
 private:
 	//=================関数====================//.
 	void Init();							//初期化処理関数.

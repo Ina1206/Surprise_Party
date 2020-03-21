@@ -11,7 +11,6 @@ CGhostSpeakStage::CGhostSpeakStage(int stageNum)
 	, m_pCFloor				(nullptr)
 	, m_pCBigGhost			(nullptr)
 	, m_pCSpeakBigGhost		(nullptr)
-	, m_bSpeakFlag			(false)
 	, m_MoveCameraDirection	(GET_CLOSER_CAMERA_DIRECT)
 {
 	m_StageNum = stageNum;
@@ -35,7 +34,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	//大きいお化け更新処理関数.
 	m_pCBigGhost->Update();
 
-	if (m_bSpeakFlag == false) {
+	if (m_pCBigGhost->GetDispFlag() == true) {
 		//カメラ移動処理関数.
 		CameraMove();
 		return;
@@ -57,7 +56,6 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		if (num >= static_cast<int>(changestr.size())) {
 			num = 0;
 		}
-		m_bSpeakFlag = false;
 	}
 
 	//大きいお化け会話更新処理クラス.
@@ -81,6 +79,10 @@ void CGhostSpeakStage::Render()
 	m_pCBigGhost->SetCameraPos(m_Camera.vPos);
 	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_stLight);
 	m_pCBigGhost->Render();
+
+	if (m_pCBigGhost->GetSleepFlag() == true) {
+		return;
+	}
 
 	//大きいお化け会話クラス.
 	m_pCSpeakBigGhost->Render();
@@ -189,7 +191,6 @@ void CGhostSpeakStage::CameraMove()
 		if (m_Camera.vPos.x > SPEAK_START_POS.x) {
 			m_Camera.vPos = SPEAK_START_POS;
 			m_MoveCameraDirection = FAR_AWAY_CAMERA_DIRECT;
-			m_bSpeakFlag = true;
 		}
 
 		if (m_Camera.vLook.x > SPEAK_START_LOOK.x) {

@@ -48,7 +48,6 @@ private:
 	std::unique_ptr<CBigGhost>		m_pCBigGhost;			//大きいお化け.
 	std::unique_ptr<CSpeakBigGhost>	m_pCSpeakBigGhost;		//大きいお化け会話クラス.
 
-	bool							m_bSpeakFlag;			//会話フラグ.
 	int								m_MoveCameraDirection;	//カメラ移動方向.
 	
 };
