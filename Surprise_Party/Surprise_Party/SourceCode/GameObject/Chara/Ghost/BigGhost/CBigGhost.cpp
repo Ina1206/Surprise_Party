@@ -368,7 +368,7 @@ void CBigGhost::EmotionMove()
 		break;
 	case enEmotionType::HaveTrounble:
 		HaveTroubleEmotion();
-		m_pCSkinMesh->GetPosFromBone("joint1", &vCenterPos);
+		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::Rejoice:
 		RejoiceEmotion();

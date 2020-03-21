@@ -11,6 +11,7 @@ CGhostSpeakStage::CGhostSpeakStage(int stageNum)
 	, m_pCFloor			(nullptr)
 	, m_pCBigGhost		(nullptr)
 	, m_pCSpeakBigGhost	(nullptr)
+	, m_bSpeakFlag		(false)
 {
 	m_StageNum = stageNum;
 	//初期化処理関数.
@@ -52,24 +53,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	//大きいお化け会話更新処理クラス.
 	m_pCSpeakBigGhost->Update();
 
-	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-	//	m_stLight.m_fLightWidth += 0.1f;
-	//}
-	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-	//	m_stLight.m_fLightWidth -= 0.1f;
-	//}
-	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
-	//	m_stLight.fIntensity += 0.1f;
-	//}
-	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-	//	m_stLight.fIntensity -= 0.1f;
-	//}
-	//if (GetAsyncKeyState('Z') & 0x8000) {
-	//	m_stLight.vPos.y += 0.1f;
-	//}
-	//if (GetAsyncKeyState('X') & 0x8000) {
-	//	m_stLight.vPos.y -= 0.1f;
-	//}
+
 }
 
 //=========================================.
@@ -132,8 +116,8 @@ void CGhostSpeakStage::Init()
 	m_Camera.vPos = D3DXVECTOR3(5.0f, 2.5f, -3.5f);
 	m_Camera.vLook = D3DXVECTOR3(5.0f, 2.5f, 5.0f);
 
-	m_Camera.vPos = D3DXVECTOR3(6.0f, 2.5f, 0.0f);
-	m_Camera.vLook = D3DXVECTOR3(6.0f, 3.0f, 5.0f);
+	m_Camera.vPos = D3DXVECTOR3(6.0f, 2.7f, 1.3f);
+	m_Camera.vLook = D3DXVECTOR3(6.0f, 2.2f, 5.0f);
 }
 
 //=========================================.
@@ -174,4 +158,21 @@ void CGhostSpeakStage::LoadSpeakString()
 	m_pCFontResource->Load(changestr[0]);
 	//位置設定処理関数
 	m_pCFontResource->SetStartPos(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
+}
+
+//===========================================.
+//		カメラ移動処理関数.
+//===========================================.
+void CGhostSpeakStage::CameraMove(const int& Direction)
+{
+
+	//カメラの移動処理.
+	const float CAMERA_POS_LENGTH = D3DXVec3Length(&CAMERA_POS_DISTANCE);			//ベクトルの長さ.
+	const D3DXVECTOR3	CAMERA_POS_UNIT = CAMERA_POS_DISTANCE / CAMERA_POS_LENGTH;	//単位ベクトル.
+	m_Camera.vPos += 0.02f * CAMERA_POS_UNIT * Direction;
+
+	//カメラの注視点移動処理.
+	const float CAMERA_LOOK_LENGTH = D3DXVec3Length(&CAMERA_LOOK_DISTANCE);				//ベクトルの長さ.
+	const D3DXVECTOR3	CAMERA_LOOK_UNIT = CAMERA_LOOK_DISTANCE / CAMERA_LOOK_LENGTH;	//単位ベクトル.
+	m_Camera.vLook += 0.02f * CAMERA_LOOK_UNIT * Direction;
 }
