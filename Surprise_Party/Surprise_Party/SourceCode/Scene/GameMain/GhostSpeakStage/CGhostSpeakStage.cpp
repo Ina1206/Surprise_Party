@@ -6,12 +6,13 @@ CGhostSpeakStage::CGhostSpeakStage()
 }
 
 CGhostSpeakStage::CGhostSpeakStage(int stageNum)	
-	: m_pCFontResource	(nullptr)
-	, changestr			()
-	, m_pCFloor			(nullptr)
-	, m_pCBigGhost		(nullptr)
-	, m_pCSpeakBigGhost	(nullptr)
-	, m_bSpeakFlag		(false)
+	: m_pCFontResource		(nullptr)
+	, changestr				()
+	, m_pCFloor				(nullptr)
+	, m_pCBigGhost			(nullptr)
+	, m_pCSpeakBigGhost		(nullptr)
+	, m_bSpeakFlag			(false)
+	, m_MoveCameraDirection	(GET_CLOSER_CAMERA_DIRECT)
 {
 	m_StageNum = stageNum;
 	//初期化処理関数.
@@ -29,13 +30,21 @@ CGhostSpeakStage::~CGhostSpeakStage()
 //=========================================.
 void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 {
+
+
+	//大きいお化け更新処理関数.
+	m_pCBigGhost->Update();
+
+	if (m_bSpeakFlag == false) {
+		//カメラ移動処理関数.
+		CameraMove();
+		return;
+	}
+
 	//操作処理関数.
 	if (ControlFlag == true) {
 		Control();
 	}
-
-	//大きいお化け更新処理関数.
-	m_pCBigGhost->Update();
 
 	static int num = 0;
 	if (GetAsyncKeyState(VK_F3) & 0x0001) {
@@ -48,6 +57,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		if (num >= static_cast<int>(changestr.size())) {
 			num = 0;
 		}
+		m_bSpeakFlag = false;
 	}
 
 	//大きいお化け会話更新処理クラス.
@@ -115,9 +125,6 @@ void CGhostSpeakStage::Init()
 
 	m_Camera.vPos = D3DXVECTOR3(5.0f, 2.5f, -3.5f);
 	m_Camera.vLook = D3DXVECTOR3(5.0f, 2.5f, 5.0f);
-
-	m_Camera.vPos = D3DXVECTOR3(6.0f, 2.7f, 1.3f);
-	m_Camera.vLook = D3DXVECTOR3(6.0f, 2.2f, 5.0f);
 }
 
 //=========================================.
@@ -163,16 +170,40 @@ void CGhostSpeakStage::LoadSpeakString()
 //===========================================.
 //		カメラ移動処理関数.
 //===========================================.
-void CGhostSpeakStage::CameraMove(const int& Direction)
+void CGhostSpeakStage::CameraMove()
 {
 
 	//カメラの移動処理.
 	const float CAMERA_POS_LENGTH = D3DXVec3Length(&CAMERA_POS_DISTANCE);			//ベクトルの長さ.
 	const D3DXVECTOR3	CAMERA_POS_UNIT = CAMERA_POS_DISTANCE / CAMERA_POS_LENGTH;	//単位ベクトル.
-	m_Camera.vPos += 0.02f * CAMERA_POS_UNIT * Direction;
+	m_Camera.vPos += CAMER_MOVE_SPEED * CAMERA_POS_UNIT * static_cast<float>(m_MoveCameraDirection);
 
 	//カメラの注視点移動処理.
 	const float CAMERA_LOOK_LENGTH = D3DXVec3Length(&CAMERA_LOOK_DISTANCE);				//ベクトルの長さ.
 	const D3DXVECTOR3	CAMERA_LOOK_UNIT = CAMERA_LOOK_DISTANCE / CAMERA_LOOK_LENGTH;	//単位ベクトル.
-	m_Camera.vLook += 0.02f * CAMERA_LOOK_UNIT * Direction;
+	const float	CAMERA_LENGTH_RATIO = CAMERA_LOOK_LENGTH / CAMERA_POS_LENGTH;			//長さの比率.
+	m_Camera.vLook += CAMER_MOVE_SPEED * CAMERA_LOOK_UNIT * static_cast<float>(m_MoveCameraDirection) * CAMERA_LENGTH_RATIO;
+
+	//カメラの接近する上限処理.
+	if (m_MoveCameraDirection == GET_CLOSER_CAMERA_DIRECT) {
+		if (m_Camera.vPos.x > SPEAK_START_POS.x) {
+			m_Camera.vPos = SPEAK_START_POS;
+			m_MoveCameraDirection = FAR_AWAY_CAMERA_DIRECT;
+			m_bSpeakFlag = true;
+		}
+
+		if (m_Camera.vLook.x > SPEAK_START_LOOK.x) {
+			m_Camera.vLook = SPEAK_START_LOOK;
+		}
+		return;
+	}
+
+	//カメラが遠のく上限処理.
+	if (m_Camera.vPos.x < INIT_CAMERA_POS.x) {
+		m_Camera.vPos = INIT_CAMERA_POS;
+	}
+
+	if (m_Camera.vLook.x < INIT_CAMERA_LOOK.x) {
+		m_Camera.vLook = INIT_CAMERA_LOOK;
+	}
 }
