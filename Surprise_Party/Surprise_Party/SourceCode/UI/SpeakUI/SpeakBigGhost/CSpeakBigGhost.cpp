@@ -6,12 +6,13 @@ CSpeakBigGhost::CSpeakBigGhost()
 	, m_vRot				()
 	, m_fAlpha				()
 	, m_fScale				()
-	, m_bSelectFlag			(false)
 	, m_stSpeakString		()
 	, m_SpeakNum			(0)
 	, m_fFontAlpha			(0.0f)
 	, m_ChangingFontNum		(0)
-	, m_bChangeStringFlag	(false)
+	, m_StringFlag			(0)
+	, m_SelectNum			(0)
+	, m_SelectCnt			(0)
 {
 	//初期化処理関数.
 	Init();
@@ -31,21 +32,28 @@ void CSpeakBigGhost::Update()
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 			//読み込み処理関数.
-			m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 			m_SpeakNum++;
 			if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
 				m_SpeakNum = 0;
+				m_SelectCnt = 0;
 			}
+			//選択文章判定処理.
+			DecisionSelectString();
+			
 			m_ChangingFontNum = 0;
 			m_fFontAlpha = 0.0f;
-			m_bChangeStringFlag = false;
+			m_StringFlag &= ~TRANSPARENTING_FLAG;
 		}
 		else {
-			m_bChangeStringFlag = true;
+			m_StringFlag |= TRANSPARENTING_FLAG;
 		}
 	}
-
+	//文字透過処理関数.
 	TransparentFont();
+
+	if (m_StringFlag & SELECT_FLAG) {
+		SelectingMove();
+	}
 }
 
 //====================================.
@@ -54,6 +62,9 @@ void CSpeakBigGhost::Update()
 void CSpeakBigGhost::Render()
 {
 	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
+		if (!(m_StringFlag & SELECT_FLAG)) {
+			ui = m_pCSpriteUI.size() - 1;
+		}
 		m_pCSpriteUI[ui]->SetAlpha(m_fAlpha[ui]);
 		m_pCSpriteUI[ui]->SetScale(m_fScale[ui]);
 		m_pCSpriteUI[ui]->SetPosition(m_vPos[ui]);
@@ -160,7 +171,7 @@ void CSpeakBigGhost::TransparentFont()
 	}
 	
 	//一気に透過値最大値へ.
-	if (m_bChangeStringFlag == true) {
+	if (m_StringFlag & TRANSPARENTING_FLAG) {
 		m_fFontAlpha = ALPHA_MAX;
 	}
 
@@ -177,7 +188,86 @@ void CSpeakBigGhost::TransparentFont()
 //======================================.
 //		選択文章処理関数.
 //======================================.
-void CSpeakBigGhost::SelectString()
+void CSpeakBigGhost::DecisionSelectString()
 {
+	//一文字目の文章.
+	const int FIRST_CHARACTER_NUM = 0;
+	//次の文字番号.
+	const int NEXT_CHARACTER_NUM = m_SpeakNum + 1;
+	//メイン文章.
+	if (IsDBCSLeadByte(m_stSpeakString[m_SpeakNum][FIRST_CHARACTER_NUM]) != 0) {
+		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+		//最後の文章例外処理.
+		if (m_SpeakNum >= static_cast<int>(m_stSpeakString.size()) - 1) {
+			return;
+		}
+		//次の文章が数字の時選択.
+		if (IsDBCSLeadByte(m_stSpeakString[NEXT_CHARACTER_NUM][FIRST_CHARACTER_NUM]) == 0) {
+			m_StringFlag |= SELECT_FLAG;
+		}
+		return;
+	}
 
+	//選択したもの文章.
+	if (m_StringFlag & SELECT_FLAG) {
+		m_SelectCnt++;
+		for (unsigned int str = m_SpeakNum; str < m_stSpeakString.size(); str++) {
+			if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) == 0) {
+				//同じ文字列を見つける.
+				if (std::to_string(m_SelectNum) == m_stSpeakString[str]) {
+					m_SpeakNum = str;
+					break;
+				}
+				continue;
+			}
+			break;
+		}
+	}
+
+	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
+	m_StringFlag &= ~SELECT_FLAG;
+	if (IsDBCSLeadByte(m_stSpeakString[NEXT_CHARACTER_NUM][FIRST_CHARACTER_NUM]) == 0) {
+		if (std::to_string(m_SelectNum) == m_stSpeakString[NEXT_CHARACTER_NUM]) {
+			return;
+		}
+		for (unsigned int str = NEXT_CHARACTER_NUM; str < m_stSpeakString.size(); str++) {
+			if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {
+				m_SpeakNum = str;
+			}
+		}
+	}
+
+}
+
+//========================================.
+//		選択中移動処理関数.
+//========================================.
+void CSpeakBigGhost::SelectingMove()
+{
+	int SelectNum = m_SelectNum % SELECT_MAX;
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		SelectNum--;
+
+		if (SelectNum < 0) {
+			SelectNum = 0;
+			//SE入れる.
+		}
+	}
+
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		SelectNum++;
+
+		if (SelectNum >= SELECT_MAX) {
+			SelectNum = 1;
+			//SE入れる.
+		}
+	}
+	m_SelectNum = SelectNum + (m_SelectCnt * SELECT_MAX);
+
+	for (unsigned int select = 0; select < m_pCSpriteUI.size() - 1; select++ ) {
+		m_fScale[select] = 0.5f;
+		if (select % SELECT_MAX == m_SelectNum % SELECT_MAX) {
+			m_fScale[select] = 1.5f;
+		}
+	}
 }

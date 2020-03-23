@@ -21,6 +21,12 @@ public:
 	const float		ALPHA_SPEED			= 0.1f;			//透過値速度.
 	const float		FONT_SCALE			= 50.0f;		//文字の大きさ.
 
+	const int		SELECT_MAX			= 2;			//選択最大数.
+
+	const unsigned int TRANSPARENTING_FLAG	= (1 << 0);	//透過処理中フラグ.
+	const unsigned int SELECT_FLAG			= (1 << 1);	//選択フラグ.
+	const unsigned int SELECTED_STRING_FLAG = (1 << 2);	//選択した文章フラグ.
+
 	//======================関数=======================//.
 	void Update();			//更新処理関数.
 	void Render();			//描画処理関数.
@@ -31,7 +37,8 @@ private:
 	void Release();					//解放処理関数.
 	void LoadSpeakString();			//会話文章読み込み処理関数.
 	void TransparentFont();			//文字透過処理関数.
-	void SelectString();			//選択文章処理関数.
+	void DecisionSelectString();	//選択文章処理関数.
+	void SelectingMove();			//選択中移動処理関数.
 
 	//======================変数========================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;		//スプライトUI.
@@ -40,14 +47,15 @@ private:
 	std::vector<float>			m_fAlpha;			//透過値.
 	std::vector<float>			m_fScale;			//大きさ.
 
-	bool						m_bSelectFlag;		//選択フラグ.
-
 	std::vector<std::string>	m_stSpeakString;	//会話文章.
 	std::vector<std::string>	m_stSelectString;	//選択文章.
 	int							m_SpeakNum;			//会話番号.
 	float						m_fFontAlpha;		//文字透過値.
 	int							m_ChangingFontNum;	//変更中のフォント番号.
-	bool						m_bChangeStringFlag;//文章変更フラグ.
+	unsigned int				m_StringFlag;		//文章フラグ.
+	int							m_SelectNum;		//選択番号.
+	int							m_SelectCnt;		//選択カウント.
+
 };
 
 
