@@ -116,7 +116,8 @@ void CSpeakBigGhost::LoadSpeakString()
 
 	//ファイルの中の全文章設定.
 	for (int splite = 0; splite < m_pCFileReosource->GetSringMax(0); splite++) {
-		m_stSpeakString.push_back(m_pCFileReosource->GetSpeakString(0, splite, 0));
+		m_stSpeakString.push_back(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::MainString));
+		m_stSelectString.push_back(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::SelectString));
 	}
 
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();

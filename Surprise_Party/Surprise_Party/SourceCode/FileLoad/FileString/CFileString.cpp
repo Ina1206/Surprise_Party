@@ -52,10 +52,7 @@ HRESULT CFileString::DataSplita(const std::string& input, const char& delimiter)
 
 	//ƒRƒ“ƒ}‚Å‹æØ‚é.
 	while (std::getline(str, filed, delimiter)) {
-		//‹ó”’‚Í—áŠO.
-		if (filed != "") {
-			m_strvec.push_back(filed);
-		}
+		m_strvec.push_back(filed);
 	}
 
 	return S_OK;

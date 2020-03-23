@@ -13,11 +13,18 @@ public:
 	CFileString();
 	~CFileString();
 
+	//===================—ñ‹“‘Ì=======================//.
+	enum class enStringType {
+		MainString = 0,	//ƒƒCƒ“•¶Í.
+		SelectString,	//‘I‘ğ•¶Í.
+		EmotionNum,		//Š´î”Ô†.
+	};
+
 	//====================ŠÖ”========================//.
 	HRESULT Init(const char*	pFileName);										//‰Šú‰»ˆ—ŠÖ”.
 
 	//================î•ñŠl“¾ˆ—ŠÖ”================//.
-	std::string GetData(const int& column, const int& line) const { return m_veclineData[column][line]; }
+	std::string GetData(const int& column, const enStringType& line) const { return m_veclineData[column][static_cast<int>(line)]; }
 
 private:
 	//====================ŠÖ”========================//.

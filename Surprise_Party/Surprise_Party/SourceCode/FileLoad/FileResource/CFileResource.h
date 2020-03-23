@@ -57,7 +57,7 @@ public:
 	//ステージの最大.
 	int GetStageMax(int fileNum) { return m_pCStageFileNumber[fileNum]->GetLineMax(); }
 	//会話文章.
-	std::string GetSpeakString(const int& fileNum, const int& column, const int& line) { return m_pCSpeakFileString[fileNum]->GetData(column, line); }
+	std::string GetSpeakString(const int& fileNum, const int& column, const CFileString::enStringType& line) { return m_pCSpeakFileString[fileNum]->GetData(column, line); }
 	int	GetSringMax(const int& fileNum) const { return m_pCSpeakFileString[fileNum]->GetColumnMax(); }
 
 private:
