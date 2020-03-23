@@ -24,6 +24,9 @@ void CFileResource::Load()
 
 	//ステータス読み込み処理関数.
 	StatusLoad();
+
+	//会話文読み込み処理関数.
+	SpeakLoad();
 }
 
 //=====================================.
@@ -122,4 +125,23 @@ void CFileResource::StatusLoad()
 		m_pCStatusFileNumber[file]->Init(m_FileName[file].c_str());
 	}
 
+}
+
+//===================================.
+//	会話文章読み込み処理関数.
+//===================================.
+void CFileResource::SpeakLoad()
+{
+	//ファイルパス.
+	std::vector<std::string> m_FileName = {
+		"Data\\File\\Test.csv"
+	};
+
+
+	//初期化処理関数.
+	m_pCSpeakFileString.resize(m_FileName.size());
+	for (unsigned int file = 0; file < m_FileName.size(); file++) {
+		m_pCSpeakFileString[file].reset(new CFileString());
+		m_pCSpeakFileString[file]->Init(m_FileName[file].c_str());
+	}
 }

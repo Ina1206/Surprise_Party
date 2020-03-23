@@ -42,6 +42,7 @@
     <ClInclude Include="SourceCode\FileLoad\FileLoadBase\CFileLoad.h" />
     <ClInclude Include="SourceCode\FileLoad\FileNumber\CFileNumber.h" />
     <ClInclude Include="SourceCode\FileLoad\FileResource\CFileResource.h" />
+    <ClInclude Include="SourceCode\FileLoad\FileString\CFileString.h" />
     <ClInclude Include="SourceCode\GameObject\CGameObject.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\CCharaBase.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="SourceCode\FileLoad\FileLoadBase\CFileLoad.cpp" />
     <ClCompile Include="SourceCode\FileLoad\FileNumber\CFileNumber.cpp" />
     <ClCompile Include="SourceCode\FileLoad\FileResource\CFileResource.cpp" />
+    <ClCompile Include="SourceCode\FileLoad\FileString\CFileString.cpp" />
     <ClCompile Include="SourceCode\GameObject\CGameObject.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\CCharaBase.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.cpp" />

@@ -269,6 +269,9 @@
     <Filter Include="SourceCode\UI\SpeakUI\SpeakBigGhost">
       <UniqueIdentifier>{f758f88a-2f08-4278-8141-5c89402aa39d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\FileLoad\FileString">
+      <UniqueIdentifier>{d4cc7486-a729-47fe-a781-ede9dcb42296}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -544,6 +547,9 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.h">
       <Filter>SourceCode\UI\SpeakUI\SpeakBigGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\FileLoad\FileString\CFileString.h">
+      <Filter>SourceCode\FileLoad\FileString</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -806,6 +812,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.cpp">
       <Filter>SourceCode\UI\SpeakUI\SpeakBigGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\FileLoad\FileString\CFileString.cpp">
+      <Filter>SourceCode\FileLoad\FileString</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

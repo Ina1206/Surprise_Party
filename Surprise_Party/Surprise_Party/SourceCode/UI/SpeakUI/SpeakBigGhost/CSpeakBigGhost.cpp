@@ -112,17 +112,12 @@ void CSpeakBigGhost::Release()
 //=====================================.
 void CSpeakBigGhost::LoadSpeakString()
 {
-	//ファイル読み込み.
-	CFile* m_pCFile = new CFile();
-	m_pCFile->FileInput("Data\\File\\Test.csv");
+	CFileResource*	m_pCFileReosource = CFileResource::GetResourceInstance();
 
 	//ファイルの中の全文章設定.
-	for (int splite = 0; splite < m_pCFile->GetColumnMax(); splite++) {
-		m_stSpeakString.push_back(m_pCFile->GetLineData(splite));
+	for (int splite = 0; splite < m_pCFileReosource->GetSringMax(0); splite++) {
+		m_stSpeakString.push_back(m_pCFileReosource->GetSpeakString(0, splite, 0));
 	}
-	m_pCFile->Close();
-	SAFE_DELETE(m_pCFile);
-
 
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
 	//読み込み処理関数.

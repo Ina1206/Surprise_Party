@@ -1,7 +1,8 @@
 #ifndef CFILE_RESOURCE_H
 #define CFILE_RESOURCE_H
  
-#include "..\..\FileLoad\FileNumber\CFileNumber.h"
+#include "..\FileNumber\CFileNumber.h"
+#include "..\FileString\CFileString.h"
 
 /*****************************************
 *		ファイル読み込みクラス.
@@ -55,16 +56,22 @@ public:
 	float GetStatusNum(int fileNum, int column, int line) { return m_pCStatusFileNumber[fileNum]->GetDataNum(column, line); }
 	//ステージの最大.
 	int GetStageMax(int fileNum) { return m_pCStageFileNumber[fileNum]->GetLineMax(); }
+	//会話文章.
+	std::string GetSpeakString(const int& fileNum, const int& column, const int& line) { return m_pCSpeakFileString[fileNum]->GetData(column, line); }
+	int	GetSringMax(const int& fileNum) const { return m_pCSpeakFileString[fileNum]->GetColumnMax(); }
+
 private:
 	//===================関数=======================//.
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
 	void StageLoad();	//ステージ読み込み処理関数.
 	void StatusLoad();	//ステータス読み込み処理関数.
+	void SpeakLoad();	//会話文章読み込み処理関数.
 
 	//===================変数=======================//.
-	std::vector<CFileNumber*>	m_pCStageFileNumber;	//マップチップのファイル読み込み.
-	std::vector<CFileNumber*>	m_pCStatusFileNumber;	//ステータスのファイル読み込み.
+	std::vector<CFileNumber*>					m_pCStageFileNumber;	//マップチップのファイル読み込み.
+	std::vector<CFileNumber*>					m_pCStatusFileNumber;	//ステータスのファイル読み込み.
+	std::vector<std::unique_ptr<CFileString>>	m_pCSpeakFileString;	//会話文章読み込み.
 };
 
 #endif	//#ifndef CFILE_RESOURCE_H.
