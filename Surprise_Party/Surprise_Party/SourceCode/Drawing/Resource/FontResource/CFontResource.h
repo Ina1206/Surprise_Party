@@ -30,20 +30,20 @@ public:
 	void SetFontScale(const float& fScale) { m_fFontScale = fScale; }
 
 	//==========情報獲得処理関数===============//.
-	CFont* GetFont() { return m_pCFont[0]; }
+	CFont* GetFont() { return m_pCFont[0].get(); }
 private:
 	//=================関数====================//.
 	void Release();														//解放処理関数.
 
 	//=================変数====================//.
-	ID3D11Device*			m_pDevice11;	//デバイスオブジェクト.
-	ID3D11DeviceContext*	m_pContext11;	//コンテキスト.
-	std::vector<CFont*>		m_pCFont;		//フォントクラス.
-	int						m_StrLength;	//文字列の長さ.
-	D3DXVECTOR3				m_vStartPos;	//一文字目の位置.
-	HFONT					m_hFont;		//フォント.
-	HDC						m_hdc;			//デバイスコンテキスト.
-	float					m_fFontScale;	//文字の大きさ.
+	ID3D11Device*							m_pDevice11;	//デバイスオブジェクト.
+	ID3D11DeviceContext*					m_pContext11;	//コンテキスト.
+	std::vector<std::unique_ptr<CFont>>		m_pCFont;		//フォントクラス.
+	int										m_StrLength;	//文字列の長さ.
+	D3DXVECTOR3								m_vStartPos;	//一文字目の位置.
+	HFONT									m_hFont;		//フォント.
+	HDC										m_hdc;			//デバイスコンテキスト.
+	float									m_fFontScale;	//文字の大きさ.
 
 };
 

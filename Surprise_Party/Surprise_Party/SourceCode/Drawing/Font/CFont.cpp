@@ -83,6 +83,7 @@ void CFont::Release()
 
 	m_pContext11 = nullptr;
 	m_pDevice11 = nullptr;
+
 }
 
 //==================================================================.

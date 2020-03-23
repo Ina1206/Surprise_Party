@@ -76,10 +76,7 @@ void CFontResource::Load(std::string str)
 
 	//文字のテクスチャ作成.
 	for (int size = 0; size < m_StrLength; size++) {
-		if (m_pCFont[size] != nullptr) {
-			SAFE_DELETE(m_pCFont[size]);
-		}
-		m_pCFont[size] = new CFont();
+		m_pCFont[size].reset(new CFont());
 		//文字列を１文字に分解.
 		std::string cda = str.substr(size * 2, 2);
 		const char* c = cda.c_str();
@@ -128,9 +125,9 @@ void CFontResource::String_Render()
 void CFontResource::Destroy()
 {
 	//フォントクラスの解放処理関数.
-	for (int size = m_StrLength - 1; size >= 0; size--) {
-		SAFE_DELETE(m_pCFont[size]);
-	}
+	//for (int size = m_StrLength - 1; size >= 0; size--) {
+	//	SAFE_DELETE(m_pCFont[size]);
+	//}
 	//要素数の初期化.
 	m_pCFont.clear();
 	m_pCFont.shrink_to_fit();
