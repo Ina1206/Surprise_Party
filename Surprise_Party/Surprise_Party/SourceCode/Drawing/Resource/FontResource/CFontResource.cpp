@@ -124,10 +124,6 @@ void CFontResource::String_Render()
 //===================================.
 void CFontResource::Destroy()
 {
-	//フォントクラスの解放処理関数.
-	//for (int size = m_StrLength - 1; size >= 0; size--) {
-	//	SAFE_DELETE(m_pCFont[size]);
-	//}
 	//要素数の初期化.
 	m_pCFont.clear();
 	m_pCFont.shrink_to_fit();

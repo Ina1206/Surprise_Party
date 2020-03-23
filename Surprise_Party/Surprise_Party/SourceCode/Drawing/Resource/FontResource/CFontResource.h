@@ -16,8 +16,7 @@ public:
 
 	//=================定数====================//.
 	const int		FONT_SIZE		= 500;			//フォントの大きさ.
-	const float		BASIC_WIDTH		= 1.0f;		//基本の幅.
-	//const float		BASIC_WIDTH		= 250.0f;		//基本の幅.
+	const float		BASIC_WIDTH		= 1.0f;			//基本の幅.
 
 	//=================関数====================//.
 	void Init(ID3D11Device* pDevice11, ID3D11DeviceContext* pContext11);//初期化処理関数.
