@@ -82,22 +82,28 @@ void CSpeakBigGhost::Init()
 	m_fAlpha.resize(m_pCSpriteUI.size());
 	m_fScale.resize(m_pCSpriteUI.size());
 
-
+	//テキストボックス番号.
 	const int TextBoxNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
 	m_pCSpriteUI[TextBoxNum] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBox);
+	m_vPos[TextBoxNum] = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
+	//選択肢関連の画像初期設定.
 	for (unsigned int ui = 0; ui < m_pCSpriteUI.size() - 1; ui++) {
+		//初期位置.
 		m_vPos[ui] = D3DXVECTOR3(500.0f, 150.0f + (150.0f * (ui % 2)), 0.0f);
+
+		//小さいテキストボックス.
 		if (ui < 2) {
 			m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBoxSmall);
 			continue;
 		}
+		//回答文字.
 		const int SpriteNum = static_cast<int>(enSpriteUI::AnswerYes) + (ui - 2);
 		m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum));
+		//微調整文字.
 		m_vPos[ui].x += 90.0f - (ui * 10.0f);
 		m_vPos[ui].y += 15.0f;
 	}
 
-	m_vPos[TextBoxNum] = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
 	
 	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
 		m_fScale[ui] = 1.0f;
