@@ -9,6 +9,8 @@ CSpeakBigGhost::CSpeakBigGhost()
 	, m_bSelectFlag		(false)
 	, m_stSpeakString	()
 	, m_SpeakNum		(0)
+	, m_fFontAlpha		(0.0f)
+	, m_fFontScale		(0.0f)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -51,6 +53,14 @@ void CSpeakBigGhost::Render()
 	}
 
 	//•¶Žš‚Ì•`‰æ.
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		m_fFontScale += 0.1f;
+	}
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		m_fFontScale -= 0.1f;
+	}
+	m_fFontAlpha = 1.0f;
+	m_pCFontResource->SetFontScale(m_fFontScale);
 	m_pCFontResource->SetAlpha(m_fFontAlpha);
 	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
 	m_pCFontResource->String_Render();

@@ -39,6 +39,7 @@ private:
 	std::vector<std::string>	m_stSpeakString;//‰ï˜b•¶Í.
 	int							m_SpeakNum;		//‰ï˜b”Ô†.
 	float						m_fFontAlpha;	//•¶š“§‰ß’l.
+	float						m_fFontScale;	//•¶š‚Ì‘å‚«‚³.
 };
 
 
