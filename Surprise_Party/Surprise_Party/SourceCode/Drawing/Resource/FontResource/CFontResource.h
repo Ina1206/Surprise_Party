@@ -27,6 +27,7 @@ public:
 	//==========情報置換処理関数===============//.
 	void SetStartPos(const D3DXVECTOR3& vPos) { m_vStartPos = vPos; }
 	void SetFontScale(const float& fScale) { m_fFontScale = fScale; }
+	void SetWidthMax(const float& fWidthMax) { m_fWidthMax = fWidthMax; }
 
 	//==========情報獲得処理関数===============//.
 	CFont* GetFont() { return m_pCFont[0].get(); }
@@ -43,7 +44,7 @@ private:
 	HFONT									m_hFont;		//フォント.
 	HDC										m_hdc;			//デバイスコンテキスト.
 	float									m_fFontScale;	//文字の大きさ.
-
+	float									m_fWidthMax;	//文章幅の最大数.
 };
 
 #endif	//#ifndef CFONT_RESOURCE_H.

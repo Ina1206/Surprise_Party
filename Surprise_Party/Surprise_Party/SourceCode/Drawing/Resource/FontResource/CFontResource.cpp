@@ -9,6 +9,7 @@ CFontResource::CFontResource()
 	, m_hFont		(nullptr)
 	, m_hdc			(nullptr)
 	, m_fFontScale	(1.0f)
+	, m_fWidthMax	(0.0f)
 {
 
 }
@@ -96,11 +97,13 @@ void CFontResource::String_Render()
 	//ïùÅAçÇÇ≥.
 	int widh, hight;
 	widh = hight = 0;
+	const float	WIDTH_MAX = WND_W - 150.0f;
 
 	for (int size = 0; size < m_StrLength; size++) {
 		CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
 		//â¸çs.
-		if (widh * (BASIC_WIDTH * m_fFontScale) > WND_W - 150.0f) {
+		const float FONT_WIDTH = widh * (BASIC_WIDTH * m_fFontScale);
+		if (FONT_WIDTH > m_fWidthMax) {
 			widh = 0;
 			hight++;
 		}

@@ -51,6 +51,7 @@ void CSpeakBigGhost::Render()
 	}
 
 	//•¶Žš‚Ì•`‰æ.
+	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
 	m_pCFontResource->String_Render();
 }
 
