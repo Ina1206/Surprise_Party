@@ -101,8 +101,21 @@ void CFontResource::String_Render()
 
 	for (int size = 0; size < m_StrLength; size++) {
 		CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
-		//改行.
+		//文字の座標.
 		const float FONT_WIDTH = widh * (BASIC_WIDTH * m_fFontScale);
+		const float	FONT_HEIGHT = hight * (BASIC_WIDTH * m_fFontScale);
+		//位置設定処理関数.
+		m_pCFont[size]->SetPosition(D3DXVECTOR3(m_vStartPos.x + FONT_WIDTH, m_vStartPos.y + FONT_HEIGHT, m_vStartPos.z));
+		//文字の大きさ設定処理関数.
+		m_pCFont[size]->SetScale(m_fFontScale);
+		//文字の透過値.
+		m_pCFont[size]->SetAlpha(0.5f);
+		//描画処理関数.
+		m_pCDepthStencil->SetDepth(false);
+		m_pCFont[size]->Render();
+		m_pCDepthStencil->SetDepth(true);
+
+		//改行.
 		if (FONT_WIDTH > m_fWidthMax) {
 			widh = 0;
 			hight++;
@@ -110,15 +123,6 @@ void CFontResource::String_Render()
 		else {
 			widh++;
 		}
-		//位置設定処理関数.
-		m_pCFont[size]->SetPosition(D3DXVECTOR3(m_vStartPos.x + (widh * (BASIC_WIDTH * m_fFontScale)), m_vStartPos.y + (hight * (BASIC_WIDTH * m_fFontScale)), m_vStartPos.z));
-		//文字の大きさ設定処理関数.
-		m_pCFont[size]->SetScale(m_fFontScale);
-		//描画処理関数.
-		m_pCDepthStencil->SetDepth(false);
-		m_pCFont[size]->Render();
-		m_pCDepthStencil->SetDepth(true);
-
 	}
 }
 
