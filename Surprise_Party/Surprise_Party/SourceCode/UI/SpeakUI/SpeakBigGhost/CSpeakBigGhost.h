@@ -30,7 +30,7 @@ private:
 	void Init();					//初期化処理関数.
 	void Release();					//解放処理関数.
 	void LoadSpeakString();			//会話文章読み込み処理関数.
-	void TransparentScalingFont();	//文字透過拡縮処理関数.
+	void TransparentFont();			//文字透過処理関数.
 
 	//======================変数========================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;		//スプライトUI.

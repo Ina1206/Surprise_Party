@@ -45,7 +45,7 @@ void CSpeakBigGhost::Update()
 		}
 	}
 
-	TransparentScalingFont();
+	TransparentFont();
 }
 
 //====================================.
@@ -132,9 +132,9 @@ void CSpeakBigGhost::LoadSpeakString()
 }
 
 //======================================.
-//		•¶Žš“§‰ßŠgkˆ—ŠÖ”.
+//		•¶Žš“§‰ßˆ—ŠÖ”.
 //======================================.
-void CSpeakBigGhost::TransparentScalingFont()
+void CSpeakBigGhost::TransparentFont()
 {
 	//—áŠOˆ—.
 	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
