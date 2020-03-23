@@ -134,8 +134,6 @@ void CFontResource::Destroy()
 //===================================.
 void CFontResource::Release()
 {
-	////íœˆ—ŠÖ”.
-	//Destroy();
 
 	//ƒtƒHƒ“ƒg‰ğ•ú.
 	DeleteObject(m_hFont);
