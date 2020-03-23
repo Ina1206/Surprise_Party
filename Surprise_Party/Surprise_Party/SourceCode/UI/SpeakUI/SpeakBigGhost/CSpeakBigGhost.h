@@ -31,6 +31,7 @@ private:
 	void Release();					//解放処理関数.
 	void LoadSpeakString();			//会話文章読み込み処理関数.
 	void TransparentFont();			//文字透過処理関数.
+	void SelectString();			//選択文章処理関数.
 
 	//======================変数========================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;		//スプライトUI.

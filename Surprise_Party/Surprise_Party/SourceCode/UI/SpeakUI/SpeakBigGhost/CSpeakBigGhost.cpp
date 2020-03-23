@@ -76,18 +76,28 @@ void CSpeakBigGhost::Render()
 //====================================.
 void CSpeakBigGhost::Init()
 {
-	m_pCSpriteUI.resize(3);
+	m_pCSpriteUI.resize(5);
 	m_vPos.resize(m_pCSpriteUI.size());
 	m_vRot.resize(m_pCSpriteUI.size());
 	m_fAlpha.resize(m_pCSpriteUI.size());
 	m_fScale.resize(m_pCSpriteUI.size());
 
-	m_pCSpriteUI[0] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBox);
-	for (unsigned int ui = 1; ui < m_pCSpriteUI.size(); ui++) {
-		m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBoxSmall);
+
+	const int TextBoxNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
+	m_pCSpriteUI[TextBoxNum] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBox);
+	for (unsigned int ui = 0; ui < m_pCSpriteUI.size() - 1; ui++) {
+		m_vPos[ui] = D3DXVECTOR3(500.0f, 150.0f + (150.0f * (ui % 2)), 0.0f);
+		if (ui < 2) {
+			m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBoxSmall);
+			continue;
+		}
+		const int SpriteNum = static_cast<int>(enSpriteUI::AnswerYes) + (ui - 2);
+		m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum));
+		m_vPos[ui].x += 90.0f - (ui * 10.0f);
+		m_vPos[ui].y += 15.0f;
 	}
 
-	m_vPos[0] = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
+	m_vPos[TextBoxNum] = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
 	
 	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
 		m_fScale[ui] = 1.0f;
@@ -156,4 +166,12 @@ void CSpeakBigGhost::TransparentFont()
 
 		//‚±‚±‚ÉSE“ü‚ê‚éH.
 	}
+}
+
+//======================================.
+//		‘I‘ð•¶Íˆ—ŠÖ”.
+//======================================.
+void CSpeakBigGhost::SelectString()
+{
+
 }

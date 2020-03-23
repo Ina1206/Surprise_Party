@@ -66,6 +66,8 @@ enum class enSpriteUI
 	ExtendedNotification,			//延長通知.
 	TextBox,						//テキストボックス.
 	TextBoxSmall,					//テキストボックス小.
+	AnswerYes,						//「はい」の回答.
+	AnswerNo,						//「いいえ」の回答.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
