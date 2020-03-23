@@ -75,6 +75,12 @@ void CFontResource::Load(std::string str)
 			m_pCFont.push_back(nullptr);
 		}
 	}
+	else {
+		//使われない物は解放.
+		for (unsigned int size = m_StrLength; size < m_pCFont.size(); size++) {
+			m_pCFont[size].reset();
+		}
+	}
 
 	//文字のテクスチャ作成.
 	for (int size = 0; size < m_StrLength; size++) {
@@ -84,7 +90,6 @@ void CFontResource::Load(std::string str)
 		const char* c = cda.c_str();
 		//初期化処理関数.
 		m_pCFont[size]->Init(m_pDevice11, m_pContext11, c, m_hFont, m_hdc);
-
 	}
 
 
