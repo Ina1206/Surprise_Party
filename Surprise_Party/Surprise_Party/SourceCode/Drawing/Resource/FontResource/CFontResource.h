@@ -27,11 +27,13 @@ public:
 	//==========情報置換処理関数===============//.
 	void SetStartPos(const D3DXVECTOR3& vPos) { m_vStartPos = vPos; }
 	void SetFontScale(const float& fScale) { m_fFontScale = fScale; }
+	void SetAlpha(const float& fAlpha, const int& FontNum) { m_fAlpha[FontNum] = fAlpha; }
 	void SetWidthMax(const float& fWidthMax) { m_fWidthMax = fWidthMax; }
-	void SetAlpha(const float& fAlpha) { m_fAlpha = fAlpha; }
 
 	//==========情報獲得処理関数===============//.
-	CFont* GetFont() { return m_pCFont[0].get(); }
+	CFont*	GetFont() const { return m_pCFont[0].get(); }
+	int		GetStrLength() const { return m_StrLength; }
+
 private:
 	//=================関数====================//.
 	void Release();														//解放処理関数.
@@ -45,8 +47,8 @@ private:
 	HFONT									m_hFont;		//フォント.
 	HDC										m_hdc;			//デバイスコンテキスト.
 	float									m_fFontScale;	//文字の大きさ.
+	std::vector<float>						m_fAlpha;		//文字の透過値.
 	float									m_fWidthMax;	//文章幅の最大数.
-	float									m_fAlpha;		//文字の透過値.
 };
 
 #endif	//#ifndef CFONT_RESOURCE_H.

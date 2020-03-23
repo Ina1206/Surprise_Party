@@ -8,9 +8,9 @@ CFontResource::CFontResource()
 	, m_vStartPos	(0.0f, 0.0f, 0.0f)
 	, m_hFont		(nullptr)
 	, m_hdc			(nullptr)
-	, m_fFontScale	(1.0f)
+	, m_fFontScale	(0.0f)
+	, m_fAlpha		()
 	, m_fWidthMax	(0.0f)
-	, m_fAlpha		(1.0f)
 {
 
 }
@@ -81,6 +81,8 @@ void CFontResource::Load(std::string str)
 			m_pCFont[size].reset();
 		}
 	}
+	//透過値サイズ設定.
+	m_fAlpha.resize(m_pCFont.size());
 
 	//文字のテクスチャ作成.
 	for (int size = 0; size < m_StrLength; size++) {
@@ -90,6 +92,7 @@ void CFontResource::Load(std::string str)
 		const char* c = cda.c_str();
 		//初期化処理関数.
 		m_pCFont[size]->Init(m_pDevice11, m_pContext11, c, m_hFont, m_hdc);
+		m_fAlpha[size] = 0.0f;
 	}
 
 
@@ -115,7 +118,7 @@ void CFontResource::String_Render()
 		//文字の大きさ設定処理関数.
 		m_pCFont[size]->SetScale(m_fFontScale);
 		//文字の透過値.
-		m_pCFont[size]->SetAlpha(m_fAlpha);
+		m_pCFont[size]->SetAlpha(m_fAlpha[size]);
 		//描画処理関数.
 		m_pCDepthStencil->SetDepth(false);
 		m_pCFont[size]->Render();

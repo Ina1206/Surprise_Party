@@ -1,16 +1,17 @@
 #include "CSpeakBigGhost.h"
 
 CSpeakBigGhost::CSpeakBigGhost()
-	: m_pCSpriteUI		()
-	, m_vPos			()
-	, m_vRot			()
-	, m_fAlpha			()
-	, m_fScale			()
-	, m_bSelectFlag		(false)
-	, m_stSpeakString	()
-	, m_SpeakNum		(0)
-	, m_fFontAlpha		(0.0f)
-	, m_fFontScale		(0.0f)
+	: m_pCSpriteUI			()
+	, m_vPos				()
+	, m_vRot				()
+	, m_fAlpha				()
+	, m_fScale				()
+	, m_bSelectFlag			(false)
+	, m_stSpeakString		()
+	, m_SpeakNum			(0)
+	, m_fFontAlpha			(0.0f)
+	, m_ChangingFontNum		(0)
+	, m_bChangeStringFlag	(false)
 {
 	//初期化処理関数.
 	Init();
@@ -28,14 +29,23 @@ CSpeakBigGhost::~CSpeakBigGhost()
 void CSpeakBigGhost::Update()
 {
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-		//読み込み処理関数.
-		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
-		m_SpeakNum++;
-		if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
-			m_SpeakNum = 0;
+		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+			//読み込み処理関数.
+			m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+			m_SpeakNum++;
+			if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
+				m_SpeakNum = 0;
+			}
+			m_ChangingFontNum = 0;
+			m_fFontAlpha = 0.0f;
+			m_bChangeStringFlag = false;
+		}
+		else {
+			m_bChangeStringFlag = true;
 		}
 	}
 
+	TransparentScalingFont();
 }
 
 //====================================.
@@ -53,15 +63,10 @@ void CSpeakBigGhost::Render()
 	}
 
 	//文字の描画.
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		m_fFontScale += 0.1f;
+	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
+		m_pCFontResource->SetAlpha(m_fFontAlpha, m_ChangingFontNum);
 	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		m_fFontScale -= 0.1f;
-	}
-	m_fFontAlpha = 1.0f;
-	m_pCFontResource->SetFontScale(m_fFontScale);
-	m_pCFontResource->SetAlpha(m_fFontAlpha);
+	m_pCFontResource->SetFontScale(FONT_SCALE);
 	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
 	m_pCFontResource->String_Render();
 }
@@ -124,6 +129,35 @@ void CSpeakBigGhost::LoadSpeakString()
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	//位置設定処理関数
 	m_pCFontResource->SetStartPos(D3DXVECTOR3(90.0f, 480.0f, 0.0f));
+}
 
-	m_pCFontResource->SetFontScale(50.0f);
+//======================================.
+//		文字透過拡縮処理関数.
+//======================================.
+void CSpeakBigGhost::TransparentScalingFont()
+{
+	//例外処理.
+	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+		return;
+	}
+
+	//次の文字に変更.
+	if (m_fFontAlpha == ALPHA_MAX) {
+		m_ChangingFontNum++;
+		m_fFontAlpha = ALPHA_MIN;
+	}
+	
+	//一気に透過値最大値へ.
+	if (m_bChangeStringFlag == true) {
+		m_fFontAlpha = ALPHA_MAX;
+	}
+
+	m_fFontAlpha += ALPHA_SPEED;
+
+	//上限処理.
+	if (m_fFontAlpha > ALPHA_MAX) {
+		m_fFontAlpha = ALPHA_MAX;
+
+		//ここにSE入れる？.
+	}
 }
