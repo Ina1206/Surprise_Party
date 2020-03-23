@@ -10,6 +10,7 @@ CFontResource::CFontResource()
 	, m_hdc			(nullptr)
 	, m_fFontScale	(1.0f)
 	, m_fWidthMax	(0.0f)
+	, m_fAlpha		(1.0f)
 {
 
 }
@@ -109,7 +110,7 @@ void CFontResource::String_Render()
 		//•¶š‚Ì‘å‚«‚³İ’èˆ—ŠÖ”.
 		m_pCFont[size]->SetScale(m_fFontScale);
 		//•¶š‚Ì“§‰ß’l.
-		m_pCFont[size]->SetAlpha(0.5f);
+		m_pCFont[size]->SetAlpha(m_fAlpha);
 		//•`‰æˆ—ŠÖ”.
 		m_pCDepthStencil->SetDepth(false);
 		m_pCFont[size]->Render();
