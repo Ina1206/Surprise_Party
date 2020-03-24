@@ -193,7 +193,7 @@ void CSpeakBigGhost::DecisionSelectString()
 	//ˆê•¶Žš–Ú‚Ì•¶Í.
 	const int FIRST_CHARACTER_NUM = 0;
 	//ŽŸ‚Ì•¶Žš”Ô†.
-	const int NEXT_CHARACTER_NUM = m_SpeakNum + 1;
+	int NextCharacterNum = m_SpeakNum + 1;
 	//ƒƒCƒ“•¶Í.
 	if (IsDBCSLeadByte(m_stSpeakString[m_SpeakNum][FIRST_CHARACTER_NUM]) != 0) {
 		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
@@ -202,7 +202,7 @@ void CSpeakBigGhost::DecisionSelectString()
 			return;
 		}
 		//ŽŸ‚Ì•¶Í‚ª”Žš‚ÌŽž‘I‘ð.
-		if (IsDBCSLeadByte(m_stSpeakString[NEXT_CHARACTER_NUM][FIRST_CHARACTER_NUM]) == 0) {
+		if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
 			m_StringFlag |= SELECT_FLAG;
 		}
 		return;
@@ -226,13 +226,24 @@ void CSpeakBigGhost::DecisionSelectString()
 
 	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
 	m_StringFlag &= ~SELECT_FLAG;
-	if (IsDBCSLeadByte(m_stSpeakString[NEXT_CHARACTER_NUM][FIRST_CHARACTER_NUM]) == 0) {
-		if (std::to_string(m_SelectNum) == m_stSpeakString[NEXT_CHARACTER_NUM]) {
+
+	NextCharacterNum = m_SpeakNum + 1;
+	if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
+		if (std::to_string(m_SelectNum) == m_stSpeakString[NextCharacterNum]) {
 			return;
 		}
-		for (unsigned int str = NEXT_CHARACTER_NUM; str < m_stSpeakString.size(); str++) {
+		if (m_stSpeakString[NextCharacterNum] == "finish") {
+			return;
+		}
+
+		for (unsigned int str = NextCharacterNum; str < m_stSpeakString.size(); str++) {
+			if (m_stSpeakString[str] == "finish") {
+				continue;
+			}
+
 			if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {
-				m_SpeakNum = str;
+				m_SpeakNum = str - 1;
+				break;
 			}
 		}
 	}
