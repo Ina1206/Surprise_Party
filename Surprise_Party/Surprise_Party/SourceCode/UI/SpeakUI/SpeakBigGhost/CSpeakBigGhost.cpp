@@ -36,18 +36,19 @@ CSpeakBigGhost::~CSpeakBigGhost()
 //====================================.
 void CSpeakBigGhost::Update()
 {
-	const unsigned int FINISH_FLAG = FINISH_NEXT_TITLE | FINISH_NEXT_GAME;
-	if (m_FinishFlag & FINISH_FLAG) {
-		return;
-	}
-
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+			//I—¹ˆ—.
+			if (m_stSpeakString[m_SpeakNum] == "finish") {
+				m_FinishFlag = FINISH_NEXT_TITLE;
+				return;
+			}
 			//“Ç‚İ‚İˆ—ŠÖ”.
 			m_SpeakNum++;
 			//I—¹ˆ—.
 			if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
 				m_FinishFlag = FINISH_NEXT_GAME;
+				m_SpeakNum = m_stSpeakString.size() - 1;
 				return;
 			}
 			//‘I‘ğ•¶Í”»’èˆ—.
@@ -69,10 +70,6 @@ void CSpeakBigGhost::Update()
 	}
 
 	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
-		if (m_stSpeakString[m_SpeakNum] == "finish") {
-			m_FinishFlag = FINISH_NEXT_TITLE;
-			return;
-		}
 	}
 }
 
