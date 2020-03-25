@@ -48,6 +48,7 @@ void CSpeakBigGhost::Update()
 	//•¶š“§‰ßˆ—ŠÖ”.
 	TransparentFont();
 
+	//‘I‘ğ’†ˆÚ“®ˆ—ŠÖ”.
 	if (m_StringFlag & SELECT_FLAG) {
 		SelectingMove();
 	}
