@@ -26,6 +26,7 @@ public:
 	CDX9SkinMesh*	GetSkinMesh(enSkinMeshType enSkinMesh) { return m_pCSkinMesh->GetMeshObject(enSkinMesh); }				//スキンメッシュクラス.
 	CEffect*		GetEffect(CResourceEffect::enEffect enEffect) { return m_pCEffect->GetEffect(enEffect); }
 	CFontResource*	GetFont() { return m_pCFont.get(); }
+	SPRITE_STATE	GetSpriteUIState(const enSpriteUI& enSpriteUIType) { return m_pstSpriteUIState[static_cast<int>(enSpriteUIType)]; }
 
 	//===================シングルトン====================//.
 	static CResourceManager* GetResourceManagerInstance()

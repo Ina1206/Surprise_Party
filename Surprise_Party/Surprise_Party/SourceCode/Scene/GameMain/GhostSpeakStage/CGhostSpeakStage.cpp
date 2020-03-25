@@ -85,6 +85,7 @@ void CGhostSpeakStage::Render()
 	}
 
 	//‘å‚«‚¢‚¨‰»‚¯‰ï˜bƒNƒ‰ƒX.
+	m_pCSpeakBigGhost->RenderInit(m_mView, m_mProj, m_Camera.vPos);
 	m_pCSpeakBigGhost->Render();
 
 	////•¶Žš‚Ì•`‰æ.

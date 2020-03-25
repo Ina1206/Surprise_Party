@@ -162,6 +162,9 @@ void CResourceManager::SpriteFileNameSetting()
 		"Data\\Texture\\UI\\Game\\bubble.png",				//泡.
 		"Data\\Texture\\UI\\Game\\Z.png",					//睡眠のｚ.
 		"Data\\Texture\\UI\\Game\\Swet.png",				//汗.
+		"Data\\Texture\\UI\\Game\\TextBoxSmall.png",		//テキストボックス小.
+		"Data\\Texture\\UI\\Game\\AnswerNo.png",			//「いいえ」の回答.
+		"Data\\Texture\\UI\\Game\\AnswerYes.png",			//「はい」の回答.
 		"Data\\Texture\\UI\\Game\\HelthIcon.png",			//体力アイコン.
 		"Data\\Texture\\UI\\Game\\eight_part_note.png",		//8分音符.
 		"Data\\Texture\\UI\\Game\\sixteen_part_note.png",	//16分音符.
@@ -193,9 +196,6 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\CloseString.png",				//Close文字.
 		"Data\\Texture\\UI\\Game\\extended_notification.png",	//延長通知.
 		"Data\\Texture\\UI\\Game\\TextBox.png",					//テキストボックス.
-		"Data\\Texture\\UI\\Game\\TextBoxSmall.png",			//テキストボックス小.
-		"Data\\Texture\\UI\\Game\\AnswerYes.png",				//「はい」の回答.
-		"Data\\Texture\\UI\\Game\\AnswerNo.png",				//「いいえ」の回答.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
@@ -250,6 +250,27 @@ void CResourceManager::SpriteStateSetting()
 	m_pstSpriteState[SwetNum].Base.h = 300.0f;
 	m_pstSpriteState[SwetNum].Disp.w = 1.0f;
 	m_pstSpriteState[SwetNum].Disp.h = 1.0f;
+
+	//テキストボックス小.
+	int TextBoxSmallNum = static_cast<int>(enSprite::TextBoxSmall);
+	m_pstSpriteState[TextBoxSmallNum].Base.w = 209.0f;
+	m_pstSpriteState[TextBoxSmallNum].Base.h = 57.0f;
+	m_pstSpriteState[TextBoxSmallNum].Disp.w = 4.0f;
+	m_pstSpriteState[TextBoxSmallNum].Disp.h = 1.0f;
+
+	//「いいえ」の回答.
+	int AnswerNoNum = static_cast<int>(enSprite::AnswerNo);
+	m_pstSpriteState[AnswerNoNum].Base.w = 220.0f;
+	m_pstSpriteState[AnswerNoNum].Base.h = 70.0f;
+	m_pstSpriteState[AnswerNoNum].Disp.w = 3.0f;
+	m_pstSpriteState[AnswerNoNum].Disp.h = 1.0f;
+
+	//「はい」の回答.
+	int AnswerYesNum = static_cast<int>(enSprite::AnswerYes);
+	m_pstSpriteState[AnswerYesNum].Base.w = 150.0f;
+	m_pstSpriteState[AnswerYesNum].Base.h = 70.0f;
+	m_pstSpriteState[AnswerYesNum].Disp.w = 2.0f;
+	m_pstSpriteState[AnswerYesNum].Disp.h = 1.0f;
 
 	//まとめて一コマ当たりのサイズ指定.
 	for (int sprite = 0; sprite < static_cast<int>(enSprite::SingleSpriteMax); sprite++) {
@@ -401,27 +422,6 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[TextBoxNum].Base.h = 187.0f;
 	m_pstSpriteUIState[TextBoxNum].Disp.w = m_pstSpriteUIState[TextBoxNum].Base.w * 1.5f;
 	m_pstSpriteUIState[TextBoxNum].Disp.h = m_pstSpriteUIState[TextBoxNum].Base.h * 1.5f;
-
-	//テキストボックス小.
-	int TextBoxSmallNum = static_cast<int>(enSpriteUI::TextBoxSmall);
-	m_pstSpriteUIState[TextBoxSmallNum].Base.w = 209.0f;
-	m_pstSpriteUIState[TextBoxSmallNum].Base.h = 57.0f;
-	m_pstSpriteUIState[TextBoxSmallNum].Disp.w = m_pstSpriteUIState[TextBoxSmallNum].Base.w * 1.5f;
-	m_pstSpriteUIState[TextBoxSmallNum].Disp.h = m_pstSpriteUIState[TextBoxSmallNum].Base.h * 1.5f;
-
-	//「はい」の回答.
-	int AnswerYesNum = static_cast<int>(enSpriteUI::AnswerYes);
-	m_pstSpriteUIState[AnswerYesNum].Base.w = 150.0f;
-	m_pstSpriteUIState[AnswerYesNum].Base.h = 70.0f;
-	m_pstSpriteUIState[AnswerYesNum].Disp.w = m_pstSpriteUIState[AnswerYesNum].Base.w;
-	m_pstSpriteUIState[AnswerYesNum].Disp.h = m_pstSpriteUIState[AnswerYesNum].Base.h;
-
-	//「いいえ」の回答.
-	int AnswerNoNum = static_cast<int>(enSpriteUI::AnswerNo);
-	m_pstSpriteUIState[AnswerNoNum].Base.w = 220.0f;
-	m_pstSpriteUIState[AnswerNoNum].Base.h = 70.0f;
-	m_pstSpriteUIState[AnswerNoNum].Disp.w = m_pstSpriteUIState[AnswerNoNum].Base.w;
-	m_pstSpriteUIState[AnswerNoNum].Disp.h = m_pstSpriteUIState[AnswerNoNum].Base.h;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);

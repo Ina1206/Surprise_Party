@@ -1,11 +1,15 @@
 #include "CSpeakBigGhost.h"
 
 CSpeakBigGhost::CSpeakBigGhost()
-	: m_pCSpriteUI			()
-	, m_vPos				()
-	, m_vRot				()
-	, m_fAlpha				()
-	, m_fScale				()
+	: m_mView				()
+	, m_mProj				()
+	, m_vCameraPos			()
+	, m_pCSpriteUI			(nullptr)
+	, m_pCSprite			()
+	, m_vSelectPos			()
+	, m_vSelectRot			()
+	, m_fSelectAlpha		()
+	, m_fSelectScale		()
 	, m_stSpeakString		()
 	, m_SpeakNum			(0)
 	, m_fFontAlpha			(0.0f)
@@ -61,17 +65,8 @@ void CSpeakBigGhost::Update()
 //====================================.
 void CSpeakBigGhost::Render()
 {
-	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
-		if (!(m_StringFlag & SELECT_FLAG)) {
-			ui = m_pCSpriteUI.size() - 1;
-		}
-		m_pCSpriteUI[ui]->SetAlpha(m_fAlpha[ui]);
-		m_pCSpriteUI[ui]->SetScale(m_fScale[ui]);
-		m_pCSpriteUI[ui]->SetPosition(m_vPos[ui]);
-		m_pCDepthStencil->SetDepth(false);
-		m_pCSpriteUI[ui]->Render();
-		m_pCDepthStencil->SetDepth(true);
-	}
+	m_pCSpriteUI->SetPosition(m_vPos);
+	m_pCSpriteUI->Render();
 
 	//文字の描画.
 	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
@@ -80,6 +75,29 @@ void CSpeakBigGhost::Render()
 	m_pCFontResource->SetFontScale(FONT_SCALE);
 	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
 	m_pCFontResource->String_Render();
+
+	//選択しているとき以外処理しない.
+	if (!(m_StringFlag & SELECT_FLAG)) {
+		return;
+	}
+	for (unsigned int ui = 0; ui < m_pCSprite.size(); ui++) {
+		m_pCSprite[ui]->SetAlpha(m_fSelectAlpha[ui]);
+		m_pCSprite[ui]->SetScale(D3DXVECTOR3(m_fSelectScale[ui], m_fSelectScale[ui], m_fSelectScale[ui]));
+		m_pCSprite[ui]->SetPosition(m_vSelectPos[ui]);
+		m_pCDepthStencil->SetDepth(false);
+		m_pCSprite[ui]->Render(m_mView, m_mProj, m_vCameraPos);
+		m_pCDepthStencil->SetDepth(true);
+	}
+}
+
+//====================================.
+//		描画初期設定処理関数.
+//====================================.
+void CSpeakBigGhost::RenderInit(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos)
+{
+	m_mView = mView;
+	m_mProj = mProj;
+	m_vCameraPos = vCameraPos;
 }
 
 //====================================.
@@ -87,38 +105,36 @@ void CSpeakBigGhost::Render()
 //====================================.
 void CSpeakBigGhost::Init()
 {
-	m_pCSpriteUI.resize(5);
-	m_vPos.resize(m_pCSpriteUI.size());
-	m_vRot.resize(m_pCSpriteUI.size());
-	m_fAlpha.resize(m_pCSpriteUI.size());
-	m_fScale.resize(m_pCSpriteUI.size());
+	//テキストボックス初期設定.
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBox);
+	m_vPos = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
 
-	//テキストボックス番号.
-	const int TextBoxNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
-	m_pCSpriteUI[TextBoxNum] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBox);
-	m_vPos[TextBoxNum] = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
+	//選択スプライト初期設定.
+	m_pCSprite.resize(4);
+	m_vSelectPos.resize(m_pCSprite.size());
+	m_vSelectRot.resize(m_pCSprite.size());
+	m_fSelectAlpha.resize(m_pCSprite.size());
+	m_fSelectScale.resize(m_pCSprite.size());
+
 	//選択肢関連の画像初期設定.
-	for (unsigned int ui = 0; ui < m_pCSpriteUI.size() - 1; ui++) {
+	for (unsigned int ui = 0; ui < m_pCSprite.size(); ui++) {
 		//初期位置.
-		m_vPos[ui] = D3DXVECTOR3(500.0f, 150.0f + (150.0f * (ui % 2)), 0.0f);
+		m_vSelectPos[ui] = D3DXVECTOR3(6.0f, 2.0f + (1.5f * (ui % 2)), 10.0f);
 
 		//小さいテキストボックス.
 		if (ui < 2) {
-			m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBoxSmall);
+			m_pCSprite[ui] = m_pCResourceManager->GetSprite(enSprite::TextBoxSmall);
 			continue;
 		}
 		//回答文字.
-		const int SpriteNum = static_cast<int>(enSpriteUI::AnswerYes) + (ui - 2);
-		m_pCSpriteUI[ui] = m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum));
-		//微調整文字.
-		m_vPos[ui].x += 90.0f - (ui * 10.0f);
-		m_vPos[ui].y += 15.0f;
+		const int SpriteNum = static_cast<int>(enSprite::AnswerNo) + (ui - 2);
+		m_pCSprite[ui] = m_pCResourceManager->GetSprite(static_cast<enSprite>(SpriteNum));
 	}
 
 	
-	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
-		m_fScale[ui] = 1.0f;
-		m_fAlpha[ui] = 1.0f;
+	for (unsigned int ui = 0; ui < m_pCSprite.size(); ui++) {
+		m_fSelectScale[ui] = 1.0f;
+		m_fSelectAlpha[ui] = 1.0f;
 	}
 
 	//会話文章読み込み処理関数.
@@ -269,15 +285,6 @@ void CSpeakBigGhost::SelectingMove()
 {
 	int SelectNum = m_SelectNum % SELECT_MAX;
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		SelectNum--;
-
-		if (SelectNum < 0) {
-			SelectNum = 0;
-			//SE入れる.
-		}
-	}
-
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
 		SelectNum++;
 
 		if (SelectNum >= SELECT_MAX) {
@@ -285,12 +292,23 @@ void CSpeakBigGhost::SelectingMove()
 			//SE入れる.
 		}
 	}
+
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		SelectNum--;
+
+		if (SelectNum < 0) {
+			SelectNum = 0;
+			//SE入れる.
+		}
+	}
 	m_SelectNum = SelectNum + (m_SelectCnt * SELECT_MAX);
 
-	for (unsigned int select = 0; select < m_pCSpriteUI.size() - 1; select++ ) {
-		m_fScale[select] = 0.5f;
+	for (unsigned int select = 0; select < m_pCSprite.size(); select++ ) {
+		m_fSelectScale[select] = 1.0f;
+		m_fSelectAlpha[select] = 0.5f;
 		if (select % SELECT_MAX == m_SelectNum % SELECT_MAX) {
-			m_fScale[select] = 1.5f;
+			m_fSelectScale[select] = 1.2f;
+			m_fSelectAlpha[select] = 1.0f;
 		}
 	}
 }

@@ -32,6 +32,7 @@ public:
 	//======================関数=======================//.
 	void Update();			//更新処理関数.
 	void Render();			//描画処理関数.
+	void RenderInit(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画初期設定処理関数.
 
 private:
 	//======================関数========================//.
@@ -44,11 +45,16 @@ private:
 	void SelectingMove();							//選択中移動処理関数.
 
 	//======================変数========================//.
-	std::vector<CSpriteUI*>		m_pCSpriteUI;		//スプライトUI.
-	std::vector<D3DXVECTOR3>	m_vPos;				//座標.
-	std::vector<D3DXVECTOR3>	m_vRot;				//角度.
-	std::vector<float>			m_fAlpha;			//透過値.
-	std::vector<float>			m_fScale;			//大きさ.
+	D3DXMATRIX					m_mView;			//ビュー行列.
+	D3DXMATRIX					m_mProj;			//プロジェクション行列.
+	D3DXVECTOR3					m_vCameraPos;		//カメラ座標.
+
+	CSpriteUI*					m_pCSpriteUI;		//スプライトUI.
+	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
+	std::vector<D3DXVECTOR3>	m_vSelectPos;		//座標.
+	std::vector<D3DXVECTOR3>	m_vSelectRot;		//角度.
+	std::vector<float>			m_fSelectAlpha;		//透過値.
+	std::vector<float>			m_fSelectScale;		//大きさ.
 
 	std::vector<std::string>	m_stSpeakString;	//会話文章.
 	std::vector<std::string>	m_stSelectString;	//選択文章.

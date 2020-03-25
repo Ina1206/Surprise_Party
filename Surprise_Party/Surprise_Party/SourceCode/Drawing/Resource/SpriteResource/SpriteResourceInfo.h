@@ -33,6 +33,9 @@ enum class enSprite
 	Bubble,							//泡.
 	SleepZ,							//睡眠のz.
 	Swet,							//汗.
+	TextBoxSmall,					//テキストボックス小.
+	AnswerNo,						//「いいえ」の回答.
+	AnswerYes,						//「はい」の回答.
 
 	Strenght_Icon,					//体力アイコン.
 	eight_part_note,				//8分音符.
@@ -65,9 +68,6 @@ enum class enSpriteUI
 	CloseString,					//Close文字.
 	ExtendedNotification,			//延長通知.
 	TextBox,						//テキストボックス.
-	TextBoxSmall,					//テキストボックス小.
-	AnswerYes,						//「はい」の回答.
-	AnswerNo,						//「いいえ」の回答.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
