@@ -51,7 +51,7 @@ private:
 	CMainStage::enBeforeStageEndigneType		m_enBeforeEndingType;	//前回のステージエンディングタイプ.
 	std::unique_ptr<CStageFade>					m_pCStageFade;			//ステージフェード.
 	unsigned int								m_FinishFlag;			//終了フラグ.
-	bool										m_bOldTutorialFlag;		//チュートリアルフラグ.
+	unsigned int								m_bOldTutorialFlag;		//チュートリアルフラグ.
 };
 
 #endif	//#ifndef CSTAGE_MANAGER_H.

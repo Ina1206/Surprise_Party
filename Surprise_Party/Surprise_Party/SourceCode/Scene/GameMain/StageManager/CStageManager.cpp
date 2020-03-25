@@ -36,7 +36,6 @@ void CStageManager::Init()
 //====================================.
 void CStageManager::UpDate()
 {
-	const int STAGE_TYPE_NUM = m_pCStageBase.size() - 1;
 
 	//ステージフェード更新処理関数.
 	m_pCStageFade->UpDate();
@@ -45,6 +44,7 @@ void CStageManager::UpDate()
 		//ステージ変更処理関数.
 		ChangeStage();
 	}
+	const int STAGE_TYPE_NUM = m_pCStageBase.size() - 1;
 
 	bool m_bControlFlag = true;
 	//フェード中はステージ系処理をしない.
@@ -61,10 +61,10 @@ void CStageManager::UpDate()
 #endif	//#ifdef _DEBUG.
 
 	if (m_pCStageBase[STAGE_TYPE_NUM]->GetChangeStageFlag() == true ||
-		m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() == true) {
+		m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() != m_bOldTutorialFlag) {
 		//
 		if (m_StageType == static_cast<int>(enStageType::GhostSpeakStage)){
-			if (m_bOldTutorialFlag == false) {
+			if (m_bOldTutorialFlag == 0) {
 				m_pCStageFade->SetCurtainMoveFlag(m_pCStageFade->OPENING_FLAG | m_pCStageFade->CLOSE_CURTAIN_FLAG);
 				return;
 			}
@@ -110,9 +110,18 @@ void CStageManager::ChangeStage()
 {
 	const int STAGE_TYPE_NUM = m_pCStageBase.size() - 1;
 
-	if (m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() == true) {
+	if (m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() == m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_START) {
 		m_pCStageBase.emplace_back(new CTutorial());
 		m_StageType = static_cast<int>(enStageType::Tutorial);
+		m_bOldTutorialFlag = m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_START;
+		return;
+	}
+
+	if (m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() == m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_FINISH) {
+		m_pCStageBase.pop_back();
+		m_bOldTutorialFlag = m_pCStageBase[0]->TUTORIAL_FINISH;
+		m_StageType = static_cast<int>(enStageType::GhostSpeakStage);
+		m_pCStageBase[0]->SetTutorialFlag(m_pCStageBase[0]->TUTORIAL_FINISH);
 		return;
 	}
 

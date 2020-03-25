@@ -237,9 +237,9 @@ void CSpeakBigGhost::DecisionSelectString()
 	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
 	m_StringFlag &= ~SELECT_FLAG;
 
-	if (std::any_of(m_stSpeakString[m_SpeakNum].cbegin(), m_stSpeakString[m_SpeakNum].cend(), isalpha)) {
-		return;
-	}
+	//if (std::any_of(m_stSpeakString[m_SpeakNum].cbegin(), m_stSpeakString[m_SpeakNum].cend(), isalpha)) {
+	//	return;
+	//}
 
 	//次の文字番号.
 	NextCharacterNum = m_SpeakNum + 1;
@@ -271,7 +271,7 @@ void CSpeakBigGhost::FindNextString(const int& NextStringNum)
 		}
 
 		if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {
-			m_SpeakNum = str - 1;
+			m_SpeakNum = str /*- 1*/;
 			break;
 		}
 	}
@@ -318,6 +318,9 @@ void CSpeakBigGhost::SelectingMove()
 //=========================================.
 void CSpeakBigGhost::ChangeString()
 {
+	//読み込み処理関数.
+	m_SpeakNum++;
+
 	//終了処理.
 	if (m_stSpeakString[m_SpeakNum] == "finish") {
 		m_FinishFlag = FINISH_NEXT_TITLE;
@@ -326,12 +329,14 @@ void CSpeakBigGhost::ChangeString()
 
 	//チュートリアル.
 	if (m_stSpeakString[m_SpeakNum] == "tutorial") {
-		m_bTutorialFlag = true;
-		return;
+		if (m_bTutorialFlag == false) {
+			m_bTutorialFlag = true;
+		}
 	}
 
-	//読み込み処理関数.
-	m_SpeakNum++;
+	//選択文章判定処理.
+	DecisionSelectString();
+
 
 	//終了処理.
 	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
@@ -339,9 +344,6 @@ void CSpeakBigGhost::ChangeString()
 		m_SpeakNum = m_stSpeakString.size() - 1;
 		return;
 	}
-
-	//選択文章判定処理.
-	DecisionSelectString();
 
 	m_ChangingFontNum = 0;
 	m_fFontAlpha = 0.0f;

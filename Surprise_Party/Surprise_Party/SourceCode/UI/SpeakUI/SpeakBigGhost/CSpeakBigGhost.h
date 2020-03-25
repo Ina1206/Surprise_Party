@@ -42,6 +42,8 @@ public:
 	unsigned int GetFinishFlag() const { return m_FinishFlag; }
 	bool GetTutorialFlag() const { return m_bTutorialFlag; }
 
+	//================î•ñ’uŠ·ˆ—ŠÖ”==================//.
+
 private:
 	//======================ŠÖ”========================//.
 	void Init();									//‰Šú‰»ˆ—ŠÖ”.

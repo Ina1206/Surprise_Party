@@ -10,7 +10,7 @@ CStageBase::CStageBase()
 	, m_StageNum		(0)
 	, m_enBeforeStageEndingType()
 	, m_FinishFlag		(0)
-	, m_bTutorialFlag	(false)
+	, m_TutorialFlag	(false)
 {
 
 }

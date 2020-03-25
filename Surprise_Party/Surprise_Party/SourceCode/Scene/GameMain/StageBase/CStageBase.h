@@ -26,6 +26,9 @@ public:
 	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.
 	const unsigned int	FINISH_NEXT_GAME	= (1 << 1);		//次がゲームでの終了.
 
+	const unsigned int TUTORIAL_START		= (1 << 0);
+	const unsigned int TUTORIAL_FINISH		= (1 << 1);
+
 
 	//=====================関数=========================//.
 	void RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画初期設定処理関数.
@@ -42,7 +45,12 @@ public:
 	//終了フラグ.
 	unsigned int GetFinishFlag() const { return m_FinishFlag; }
 	//チュートリアルフラグ.
-	bool GetTutorialFlag() const { return m_bTutorialFlag; }
+	unsigned int GetTutorialFlag() const { return m_TutorialFlag; }
+
+	//===============情報置換処理関数====================//.
+	//チュートリアルフラグ.
+	void SetTutorialFlag(const unsigned int& flag) { m_TutorialFlag = flag; }
+
 protected:
 	//=====================関数=========================//.
 	virtual void Init() = 0;		//初期化処理関数.
@@ -61,7 +69,7 @@ protected:
 
 	enBeforeStageEndigneType	m_enBeforeStageEndingType;	//前回のステージのエンディングタイプ.
 	unsigned int				m_FinishFlag;				//終了フラグ.
-	bool						m_bTutorialFlag;			//チュートリアルフラグ.
+	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
 };
 
 #endif	//#ifndef CSTAGE_BASE_H.

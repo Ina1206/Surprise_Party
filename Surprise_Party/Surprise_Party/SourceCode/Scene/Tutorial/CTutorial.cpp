@@ -17,6 +17,9 @@ CTutorial::~CTutorial()
 //===========================================.
 void CTutorial::UpDate(const bool& ControlFlag)
 {
+	if (GetAsyncKeyState('Q') & 0x8000) {
+		m_TutorialFlag = TUTORIAL_FINISH;
+	}
 }
 
 //===========================================.
@@ -33,7 +36,7 @@ void CTutorial::Render()
 void CTutorial::Init()
 {
 	//m_vBackColor = D3DXVECTOR4(1.0f, 0.0f, 0.0f, 1.0f);
-
+	m_TutorialFlag = TUTORIAL_START;
 }
 
 //===========================================.
