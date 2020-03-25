@@ -176,15 +176,14 @@ void CGhostSpeakStage::CameraMove()
 //===========================================.
 void CGhostSpeakStage::DecisionFinishSpeak()
 {
+	//I—¹ƒtƒ‰ƒO.
 	const unsigned int FINISH_FLAG = m_pCSpeakBigGhost->FINISH_NEXT_GAME | m_pCSpeakBigGhost->FINISH_NEXT_TITLE;
 	if (m_pCSpeakBigGhost->GetFinishFlag() & FINISH_FLAG) {
-		if (m_pCBigGhost->GetSleepFlag() == true) {
-			m_bChangeStageFlag = true;
-		}
-
+		//‡–°.
 		m_pCBigGhost->SetEmotionNum(static_cast<int>(CBigGhost::enEmotionType::Sleep));
 		return;
 	}
 
+	//Š´î”Ô†Žæ“¾ˆ—.
 	m_pCBigGhost->SetEmotionNum(m_pCSpeakBigGhost->GetEmotionNum());
 }
