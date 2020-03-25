@@ -190,8 +190,6 @@ void CSpeakBigGhost::TransparentFont()
 //======================================.
 void CSpeakBigGhost::DecisionSelectString()
 {
-	//一文字目の文章.
-	const int FIRST_CHARACTER_NUM = 0;
 	//次の文字番号.
 	int NextCharacterNum = m_SpeakNum + 1;
 	//メイン文章.
@@ -227,24 +225,38 @@ void CSpeakBigGhost::DecisionSelectString()
 	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
 	m_StringFlag &= ~SELECT_FLAG;
 
+	//次の文字番号.
 	NextCharacterNum = m_SpeakNum + 1;
 	if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
-		if (std::to_string(m_SelectNum) == m_stSpeakString[NextCharacterNum]) {
-			return;
-		}
-		if (m_stSpeakString[NextCharacterNum] == "finish") {
-			return;
+		//次の文章を見つける処理関数.
+		FindNextString(NextCharacterNum);
+	}
+
+}
+
+//========================================.
+//		次の文章を見つける処理関数.
+//========================================.
+void CSpeakBigGhost::FindNextString(const int& NextStringNum)
+{
+	if (std::to_string(m_SelectNum) == m_stSpeakString[NextStringNum]) {
+		return;
+	}
+	//例外処理(半角アルファベット).
+	if (std::any_of(m_stSpeakString[NextStringNum].cbegin(), m_stSpeakString[NextStringNum].cend(), isalpha)) {
+		return;
+	}
+
+	//分岐結合時の開始文章設定処理.
+	for (unsigned int str = NextStringNum; str < m_stSpeakString.size(); str++) {
+		//例外処理(半角アルファベット).
+		if (std::any_of(m_stSpeakString[NextStringNum].cbegin(), m_stSpeakString[NextStringNum].cend(), isalpha)) {
+			continue;
 		}
 
-		for (unsigned int str = NextCharacterNum; str < m_stSpeakString.size(); str++) {
-			if (m_stSpeakString[str] == "finish") {
-				continue;
-			}
-
-			if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {
-				m_SpeakNum = str - 1;
-				break;
-			}
+		if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {
+			m_SpeakNum = str - 1;
+			break;
 		}
 	}
 
