@@ -50,6 +50,7 @@ private:
 	void DecisionSelectString();					//選択文章処理関数.
 	void FindNextString(const int& NextStringNum);	//次の文章を見つける処理関数.
 	void SelectingMove();							//選択中移動処理関数.
+	void ChangeString();							//文章変更処理関数.
 
 	//======================変数========================//.
 	D3DXMATRIX					m_mView;			//ビュー行列.

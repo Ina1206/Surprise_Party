@@ -38,25 +38,8 @@ void CSpeakBigGhost::Update()
 {
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
-			//終了処理.
-			if (m_stSpeakString[m_SpeakNum] == "finish") {
-				m_FinishFlag = FINISH_NEXT_TITLE;
-				return;
-			}
-			//読み込み処理関数.
-			m_SpeakNum++;
-			//終了処理.
-			if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
-				m_FinishFlag = FINISH_NEXT_GAME;
-				m_SpeakNum = m_stSpeakString.size() - 1;
-				return;
-			}
-			//選択文章判定処理.
-			DecisionSelectString();
-			
-			m_ChangingFontNum = 0;
-			m_fFontAlpha = 0.0f;
-			m_StringFlag &= ~TRANSPARENTING_FLAG;
+			//文章変更処理関数.
+			ChangeString();
 		}
 		else {
 			m_StringFlag |= TRANSPARENTING_FLAG;
@@ -67,9 +50,6 @@ void CSpeakBigGhost::Update()
 
 	if (m_StringFlag & SELECT_FLAG) {
 		SelectingMove();
-	}
-
-	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 	}
 }
 
@@ -329,4 +309,33 @@ void CSpeakBigGhost::SelectingMove()
 			m_fSelectAlpha[select] = 1.0f;
 		}
 	}
+}
+
+//=========================================.
+//		文章変更処理関数.
+//=========================================.
+void CSpeakBigGhost::ChangeString()
+{
+	//終了処理.
+	if (m_stSpeakString[m_SpeakNum] == "finish") {
+		m_FinishFlag = FINISH_NEXT_TITLE;
+		return;
+	}
+
+	//読み込み処理関数.
+	m_SpeakNum++;
+
+	//終了処理.
+	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
+		m_FinishFlag = FINISH_NEXT_GAME;
+		m_SpeakNum = m_stSpeakString.size() - 1;
+		return;
+	}
+
+	//選択文章判定処理.
+	DecisionSelectString();
+
+	m_ChangingFontNum = 0;
+	m_fFontAlpha = 0.0f;
+	m_StringFlag &= ~TRANSPARENTING_FLAG;
 }
