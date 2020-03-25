@@ -38,7 +38,6 @@ private:
 	//========================ŠÖ”=============================//.
 	void Init();								//‰Šú‰»ˆ—ŠÖ”.
 	void Release();								//‰ğ•úˆ—ŠÖ”.
-	void LoadSpeakString();						//•¶Í“Ç‚İ‚İˆ—ŠÖ”.
 	void CameraMove();							//ƒJƒƒ‰ˆÚ“®ˆ—ŠÖ”.
 	void DecisionFinishSpeak();					//‰ï˜bI—¹”»’èˆ—ŠÖ”.
 

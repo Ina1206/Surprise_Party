@@ -47,18 +47,9 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		Control();
 	}
 
-	//static int num = 0;
-	//if (GetAsyncKeyState(VK_F3) & 0x0001) {
-	//	//読み込み処理関数.
-	//	m_pCFontResource->Load(changestr[num]);
-	//	num++;
-	//	//大きさ設定処理関数.
-	//	float Scale = num * 10.0f;
-	//	m_pCFontResource->SetFontScale(Scale);
-	//	if (num >= static_cast<int>(changestr.size())) {
-	//		num = 0;
-	//	}
-	//}
+	if (m_pCBigGhost->GetSleepFlag() == true) {
+		return;
+	}
 
 	//大きいお化け会話更新処理クラス.
 	m_pCSpeakBigGhost->Update();
@@ -90,12 +81,6 @@ void CGhostSpeakStage::Render()
 	m_pCSpeakBigGhost->RenderInit(m_mView, m_mProj, m_Camera.vPos);
 	m_pCSpeakBigGhost->Render();
 
-	////文字の描画.
-	//if (m_pCFontResource != nullptr) {
-	//	m_pCFontResource->String_Render();
-	//}
-
-
 }
 
 //=========================================.
@@ -113,9 +98,6 @@ void CGhostSpeakStage::Init()
 
 	//大きいお化け会話クラス.
 	m_pCSpeakBigGhost.reset(new CSpeakBigGhost());
-
-	//文章読み込み処理関数.
-	LoadSpeakString();
 
 	m_stLight.fIntensity = 10.0f;
 	m_stLight.fLightPosWidth = 20.0f;
@@ -146,30 +128,6 @@ void CGhostSpeakStage::Release()
 void CGhostSpeakStage::Control()
 {
 
-}
-
-//=========================================.
-//		文章読み込み処理関数.
-//=========================================.
-void CGhostSpeakStage::LoadSpeakString()
-{
-	//ファイル読み込み.
-	//CFile* m_pCFile = new CFile();
-	//m_pCFile->FileInput("Data\\File\\Test.csv");
-
-	////ファイルの中の全文章設定.
-	//for (int splite = 0; splite < m_pCFile->GetColumnMax(); splite++) {
-	//	changestr.push_back(m_pCFile->GetLineData(splite));
-	//}
-	//m_pCFile->Close();
-	//SAFE_DELETE(m_pCFile);
-
-
-	//m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
-	////読み込み処理関数.
-	//m_pCFontResource->Load(changestr[0]);
-	////位置設定処理関数
-	//m_pCFontResource->SetStartPos(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
 }
 
 //===========================================.
