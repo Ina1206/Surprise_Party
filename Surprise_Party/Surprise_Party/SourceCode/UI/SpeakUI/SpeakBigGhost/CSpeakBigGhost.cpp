@@ -19,6 +19,7 @@ CSpeakBigGhost::CSpeakBigGhost()
 	, m_StringFlag			(0)
 	, m_SelectNum			(0)
 	, m_SelectCnt			(0)
+	, m_FinishFlag			(0)
 {
 	//初期化処理関数.
 	Init();
@@ -35,13 +36,19 @@ CSpeakBigGhost::~CSpeakBigGhost()
 //====================================.
 void CSpeakBigGhost::Update()
 {
+	const unsigned int FINISH_FLAG = FINISH_NEXT_TITLE | FINISH_NEXT_GAME;
+	if (m_FinishFlag & FINISH_FLAG) {
+		return;
+	}
+
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 			//読み込み処理関数.
 			m_SpeakNum++;
+			//終了処理.
 			if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
-				m_SpeakNum = 0;
-				m_SelectCnt = 0;
+				m_FinishFlag = FINISH_NEXT_GAME;
+				return;
 			}
 			//選択文章判定処理.
 			DecisionSelectString();
@@ -59,6 +66,13 @@ void CSpeakBigGhost::Update()
 
 	if (m_StringFlag & SELECT_FLAG) {
 		SelectingMove();
+	}
+
+	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+		if (m_stSpeakString[m_SpeakNum] == "finish") {
+			m_FinishFlag = FINISH_NEXT_TITLE;
+			return;
+		}
 	}
 }
 
@@ -244,6 +258,10 @@ void CSpeakBigGhost::DecisionSelectString()
 	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
 	m_StringFlag &= ~SELECT_FLAG;
 
+	if (std::any_of(m_stSpeakString[m_SpeakNum].cbegin(), m_stSpeakString[m_SpeakNum].cend(), isalpha)) {
+		return;
+	}
+
 	//次の文字番号.
 	NextCharacterNum = m_SpeakNum + 1;
 	if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
@@ -270,7 +288,7 @@ void CSpeakBigGhost::FindNextString(const int& NextStringNum)
 	for (unsigned int str = NextStringNum; str < m_stSpeakString.size(); str++) {
 		//例外処理(半角アルファベット).
 		if (std::any_of(m_stSpeakString[NextStringNum].cbegin(), m_stSpeakString[NextStringNum].cend(), isalpha)) {
-			continue;
+			break;
 		}
 
 		if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {

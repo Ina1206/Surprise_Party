@@ -29,12 +29,11 @@ CGhostSpeakStage::~CGhostSpeakStage()
 //=========================================.
 void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 {
-
-
 	//大きいお化け更新処理関数.
 	if (m_pCBigGhost->GetSleepFlag() == false) {
-		m_pCBigGhost->SetEmotionNum(m_pCSpeakBigGhost->GetEmotionNum());
+		DecisionFinishSpeak();
 	}
+
 	m_pCBigGhost->Update();
 
 	if (m_pCBigGhost->GetSleepFlag() == true) {
@@ -205,9 +204,29 @@ void CGhostSpeakStage::CameraMove()
 	//カメラが遠のく上限処理.
 	if (m_Camera.vPos.x < INIT_CAMERA_POS.x) {
 		m_Camera.vPos = INIT_CAMERA_POS;
+		//ステージ変更処理.
+		m_bChangeStageFlag = true;
 	}
 
 	if (m_Camera.vLook.x < INIT_CAMERA_LOOK.x) {
 		m_Camera.vLook = INIT_CAMERA_LOOK;
 	}
+}
+
+//===========================================.
+//		会話終了判定処理関数.
+//===========================================.
+void CGhostSpeakStage::DecisionFinishSpeak()
+{
+	const unsigned int FINISH_FLAG = m_pCSpeakBigGhost->FINISH_NEXT_GAME | m_pCSpeakBigGhost->FINISH_NEXT_TITLE;
+	if (m_pCSpeakBigGhost->GetFinishFlag() & FINISH_FLAG) {
+		if (m_pCBigGhost->GetSleepFlag() == true) {
+			m_bChangeStageFlag = true;
+		}
+
+		m_pCBigGhost->SetEmotionNum(static_cast<int>(CBigGhost::enEmotionType::Sleep));
+		return;
+	}
+
+	m_pCBigGhost->SetEmotionNum(m_pCSpeakBigGhost->GetEmotionNum());
 }

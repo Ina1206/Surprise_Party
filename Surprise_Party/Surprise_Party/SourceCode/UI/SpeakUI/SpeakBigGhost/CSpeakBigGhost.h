@@ -29,6 +29,9 @@ public:
 	const unsigned int SELECT_FLAG			= (1 << 1);	//選択フラグ.
 	const unsigned int SELECTED_STRING_FLAG = (1 << 2);	//選択した文章フラグ.
 
+	const unsigned int FINISH_NEXT_TITLE	= (1 << 0);	//次がタイトルでの終了.
+	const unsigned int FINISH_NEXT_GAME		= (1 << 1);	//次がゲームでの終了.
+
 	//======================関数=======================//.
 	void Update();			//更新処理関数.
 	void Render();			//描画処理関数.
@@ -36,6 +39,7 @@ public:
 
 	//================情報獲得処理関数==================//.
 	int GetEmotionNum() const { return m_EmotionNum[m_SpeakNum]; }
+	unsigned int GetFinishFlag() const { return m_FinishFlag; }
 
 private:
 	//======================関数========================//.
@@ -68,6 +72,8 @@ private:
 	unsigned int				m_StringFlag;		//文章フラグ.
 	int							m_SelectNum;		//選択番号.
 	int							m_SelectCnt;		//選択カウント.
+
+	unsigned int				m_FinishFlag;		//終了フラグ.
 
 };
 
