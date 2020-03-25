@@ -138,7 +138,7 @@ void CSceneManager::ChangeScene()
 		m_pCSceneBase.reset(new CTitle());
 		break;
 	case enSceneType::Tutorial:
-		m_pCSceneBase.reset(new CTutorial());
+		//m_pCSceneBase.reset(new CTutorial());
 		break;
 	case enSceneType::GameMain:
 		m_pCSceneBase.reset(new CGameMain());

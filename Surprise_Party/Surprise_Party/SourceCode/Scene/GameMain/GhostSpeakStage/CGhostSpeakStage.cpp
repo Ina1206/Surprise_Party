@@ -53,6 +53,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 
 	//大きいお化け会話更新処理クラス.
 	m_pCSpeakBigGhost->Update();
+	m_bTutorialFlag = m_pCSpeakBigGhost->GetTutorialFlag();
 
 	m_MoveCameraDirection = FAR_AWAY_CAMERA_DIRECT;
 }

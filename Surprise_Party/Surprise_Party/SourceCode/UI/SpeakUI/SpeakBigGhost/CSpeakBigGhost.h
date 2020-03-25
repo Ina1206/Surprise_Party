@@ -40,6 +40,7 @@ public:
 	//================情報獲得処理関数==================//.
 	int GetEmotionNum() const { return m_EmotionNum[m_SpeakNum]; }
 	unsigned int GetFinishFlag() const { return m_FinishFlag; }
+	bool GetTutorialFlag() const { return m_bTutorialFlag; }
 
 private:
 	//======================関数========================//.
@@ -75,6 +76,7 @@ private:
 	int							m_SelectCnt;		//選択カウント.
 
 	unsigned int				m_FinishFlag;		//終了フラグ.
+	bool						m_bTutorialFlag;	//チュートリアルフラグ.
 
 };
 

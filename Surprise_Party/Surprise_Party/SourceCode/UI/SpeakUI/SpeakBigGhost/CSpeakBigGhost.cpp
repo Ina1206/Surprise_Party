@@ -20,6 +20,7 @@ CSpeakBigGhost::CSpeakBigGhost()
 	, m_SelectNum			(0)
 	, m_SelectCnt			(0)
 	, m_FinishFlag			(0)
+	, m_bTutorialFlag		(false)
 {
 	//初期化処理関数.
 	Init();
@@ -320,6 +321,12 @@ void CSpeakBigGhost::ChangeString()
 	//終了処理.
 	if (m_stSpeakString[m_SpeakNum] == "finish") {
 		m_FinishFlag = FINISH_NEXT_TITLE;
+		return;
+	}
+
+	//チュートリアル.
+	if (m_stSpeakString[m_SpeakNum] == "tutorial") {
+		m_bTutorialFlag = true;
 		return;
 	}
 

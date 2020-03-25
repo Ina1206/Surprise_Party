@@ -15,7 +15,7 @@ CTutorial::~CTutorial()
 //===========================================.
 //		XVˆ—ŠÖ”.
 //===========================================.
-void CTutorial::UpDate()
+void CTutorial::UpDate(const bool& ControlFlag)
 {
 }
 
@@ -32,7 +32,7 @@ void CTutorial::Render()
 //===========================================.
 void CTutorial::Init()
 {
-	m_vBackColor = D3DXVECTOR4(1.0f, 0.0f, 0.0f, 1.0f);
+	//m_vBackColor = D3DXVECTOR4(1.0f, 0.0f, 0.0f, 1.0f);
 
 }
 
@@ -40,6 +40,14 @@ void CTutorial::Init()
 //		‰ğ•úˆ—ŠÖ”.
 //===========================================.
 void CTutorial::Release()
+{
+
+}
+
+//===========================================.
+//		‘€ìˆ—ŠÖ”.
+//===========================================.
+void CTutorial::Control()
 {
 
 }

@@ -41,7 +41,8 @@ public:
 	enBeforeStageEndigneType GetBeforeStageEndingType() const { return m_enBeforeStageEndingType; }
 	//終了フラグ.
 	unsigned int GetFinishFlag() const { return m_FinishFlag; }
-
+	//チュートリアルフラグ.
+	bool GetTutorialFlag() const { return m_bTutorialFlag; }
 protected:
 	//=====================関数=========================//.
 	virtual void Init() = 0;		//初期化処理関数.
@@ -60,6 +61,7 @@ protected:
 
 	enBeforeStageEndigneType	m_enBeforeStageEndingType;	//前回のステージのエンディングタイプ.
 	unsigned int				m_FinishFlag;				//終了フラグ.
+	bool						m_bTutorialFlag;			//チュートリアルフラグ.
 };
 
 #endif	//#ifndef CSTAGE_BASE_H.
