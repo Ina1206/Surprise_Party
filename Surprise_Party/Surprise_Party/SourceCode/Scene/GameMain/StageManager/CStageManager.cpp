@@ -6,6 +6,7 @@ CStageManager::CStageManager()
 	, m_StageNum			(0)
 	, m_enBeforeEndingType	(CMainStage::enBeforeStageEndigneType::Nothing)
 	, m_pCStageFade			(nullptr)
+	, m_FinishFlag			(0)
 {
 
 }
@@ -63,6 +64,11 @@ void CStageManager::UpDate()
 		}
 
 		m_pCStageFade->SetCurtainMoveFlag(m_pCStageFade->CLOSE_FLAG | m_pCStageFade->CLOSE_CURTAIN_FLAG);
+	}
+
+	//I—¹ˆ—.
+	if (m_pCStageBase->GetFinishFlag() & m_pCStageBase->FINISH_NEXT_ENDING) {
+		m_FinishFlag = FINISH_NEXT_ENDING;
 	}
 }
 

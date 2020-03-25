@@ -22,6 +22,10 @@ void CGameMain::UpDate()
 
 	//シーン管理クラスの更新処理関数.
 	m_pCStageManager->UpDate();
+
+	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_ENDING) {
+		m_bChangeScene = true;
+	}
 }
 
 //========================================.

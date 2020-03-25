@@ -34,6 +34,7 @@ public:
 	void Render();								//描画処理関数.
 	void Control();								//操作処理関数.
 
+
 private:
 	//========================関数=============================//.
 	void Init();								//初期化処理関数.
@@ -49,7 +50,6 @@ private:
 	std::unique_ptr<CSpeakBigGhost>	m_pCSpeakBigGhost;		//大きいお化け会話クラス.
 
 	int								m_MoveCameraDirection;	//カメラ移動方向.
-	
 };
 
 #endif //#ifndef CGHOST_SPEAK_STAGE_H.

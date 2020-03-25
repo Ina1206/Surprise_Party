@@ -22,6 +22,10 @@ public:
 		Nothing,	//なし.
 	};
 
+	//=====================定数=========================//.
+	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.
+	const unsigned int	FINISH_NEXT_GAME	= (1 << 1);		//次がゲームでの終了.
+
 
 	//=====================関数=========================//.
 	void RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画初期設定処理関数.
@@ -32,10 +36,12 @@ public:
 
 	//===============情報取得処理関数===================//.
 	//ステージ変更フラグ.
-	bool GetChangeStageFlag() { return m_bChangeStageFlag; }
+	bool GetChangeStageFlag() const { return m_bChangeStageFlag; }
 	//前回のステージエンディングタイプ.
-	enBeforeStageEndigneType GetBeforeStageEndingType() { return m_enBeforeStageEndingType; }
-	
+	enBeforeStageEndigneType GetBeforeStageEndingType() const { return m_enBeforeStageEndingType; }
+	//終了フラグ.
+	unsigned int GetFinishFlag() const { return m_FinishFlag; }
+
 protected:
 	//=====================関数=========================//.
 	virtual void Init() = 0;		//初期化処理関数.
@@ -53,6 +59,7 @@ protected:
 	int							m_StageNum;					//ステージ番号.
 
 	enBeforeStageEndigneType	m_enBeforeStageEndingType;	//前回のステージのエンディングタイプ.
+	unsigned int				m_FinishFlag;				//終了フラグ.
 };
 
 #endif	//#ifndef CSTAGE_BASE_H.

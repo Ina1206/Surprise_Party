@@ -23,11 +23,19 @@ public:
 		Start = GhostSpeakStage,	//初め.
 	};
 
+	//=====================定数=========================//.
+	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.
+	const unsigned int	FINISH_NEXT_GAME	= (1 << 1);		//次がゲームでの終了.
+
+
 	//====================関数=========================//.
 	void Init();																													//初期化処理関数.
 	void UpDate();																													//更新処理関数.
 	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos);		//描画処理関数.
 	void Release();																													//解放処理関数.
+
+	//==============情報獲得処理関数===================//.
+	unsigned int GetFinishFlag() const { return m_FinishFlag; }
 
 private:
 	//====================関数=========================//.
@@ -39,6 +47,7 @@ private:
 	int										m_StageNum;				//ステージ番号.
 	CMainStage::enBeforeStageEndigneType	m_enBeforeEndingType;	//前回のステージエンディングタイプ.
 	std::unique_ptr<CStageFade>				m_pCStageFade;			//ステージフェード.
+	unsigned int							m_FinishFlag;			//終了フラグ.
 };
 
 #endif	//#ifndef CSTAGE_MANAGER_H.

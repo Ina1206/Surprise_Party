@@ -9,6 +9,7 @@ CStageBase::CStageBase()
 	, m_bChangeStageFlag(false)
 	, m_StageNum		(0)
 	, m_enBeforeStageEndingType()
+	, m_FinishFlag		(0)
 {
 
 }
