@@ -57,7 +57,10 @@ public:
 	void Render();		//描画処理科数.
 
 	//===========情報取得処理関数==============//.
-	bool GetSleepFlag() { return m_bSleepFlag; }	//眠りフラグ.
+	bool GetSleepFlag() const { return m_bSleepFlag; }	//眠りフラグ.
+
+	//===========情報置換処理関数==============//.
+	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }	//感情番号.
 
 private:
 	//=================関数====================//.
@@ -87,6 +90,7 @@ private:
 	std::vector<std::unique_ptr<CSpriteEffectBase>>	m_pCSpriteEffect;		//スプライトエフェクト.
 	int												m_UsingEffectNum;		//使っているエフェクト番号.
 	int												m_EmotionNum;			//感情番号.
+	int												m_OldEmotionNum;		//前の感情番号.
 
 	bool											m_bSleepFlag;			//眠りフラグ.
 };

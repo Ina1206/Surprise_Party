@@ -51,7 +51,10 @@ void CHaveTroubleEffect::Update()
 //===========================================.
 void CHaveTroubleEffect::PlayStartInit(const int& num)
 {
-
+	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+		SettingDefaultValue(sprite);
+		m_fDistance[sprite] = 0.0f;
+	}
 }
 
 //===========================================.

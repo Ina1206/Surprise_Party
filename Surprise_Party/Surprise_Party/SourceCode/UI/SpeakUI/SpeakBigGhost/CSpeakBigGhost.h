@@ -34,6 +34,9 @@ public:
 	void Render();			//描画処理関数.
 	void RenderInit(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos);	//描画初期設定処理関数.
 
+	//================情報獲得処理関数==================//.
+	int GetEmotionNum() const { return m_EmotionNum[m_SpeakNum]; }
+
 private:
 	//======================関数========================//.
 	void Init();									//初期化処理関数.
@@ -58,6 +61,7 @@ private:
 
 	std::vector<std::string>	m_stSpeakString;	//会話文章.
 	std::vector<std::string>	m_stSelectString;	//選択文章.
+	std::vector<int>			m_EmotionNum;		//感情番号.
 	int							m_SpeakNum;			//会話番号.
 	float						m_fFontAlpha;		//文字透過値.
 	int							m_ChangingFontNum;	//変更中のフォント番号.

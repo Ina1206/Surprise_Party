@@ -32,6 +32,9 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 
 
 	//‘å‚«‚¢‚¨‰»‚¯XVˆ—ŠÖ”.
+	if (m_pCBigGhost->GetSleepFlag() == false) {
+		m_pCBigGhost->SetEmotionNum(m_pCSpeakBigGhost->GetEmotionNum());
+	}
 	m_pCBigGhost->Update();
 
 	if (m_pCBigGhost->GetSleepFlag() == true) {

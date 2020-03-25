@@ -67,7 +67,11 @@ void CRejoiceEffect::Update()
 //=========================================.
 void CRejoiceEffect::PlayStartInit(const int& num)
 {
-
+	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+		SettingDefaultValue(sprite);
+		m_fDistance[sprite] = 0.0f;
+		LinkSprite(sprite);
+	}
 }
 
 //=========================================.

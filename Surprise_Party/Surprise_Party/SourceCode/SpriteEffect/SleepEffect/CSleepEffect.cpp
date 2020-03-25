@@ -51,7 +51,10 @@ void CSleepEffect::Update()
 //===================================.
 void CSleepEffect::PlayStartInit(const int& num)
 {
-
+	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {
+		SettingDefaultValue(sprite);
+		m_DispTime = APPEAR_TIME;
+	}
 }
 
 //===================================.

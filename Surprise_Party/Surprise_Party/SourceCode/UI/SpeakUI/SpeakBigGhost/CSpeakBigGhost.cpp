@@ -11,6 +11,8 @@ CSpeakBigGhost::CSpeakBigGhost()
 	, m_fSelectAlpha		()
 	, m_fSelectScale		()
 	, m_stSpeakString		()
+	, m_stSelectString		()
+	, m_EmotionNum			()
 	, m_SpeakNum			(0)
 	, m_fFontAlpha			(0.0f)
 	, m_ChangingFontNum		(0)
@@ -161,6 +163,7 @@ void CSpeakBigGhost::LoadSpeakString()
 	for (int splite = 0; splite < m_pCFileReosource->GetSringMax(0); splite++) {
 		m_stSpeakString.push_back(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::MainString));
 		m_stSelectString.push_back(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::SelectString));
+		m_EmotionNum.push_back(atoi(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::EmotionNum).c_str()));
 	}
 
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
