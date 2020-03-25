@@ -29,11 +29,11 @@ CGhostSpeakStage::~CGhostSpeakStage()
 //=========================================.
 void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 {
-	//大きいお化け更新処理関数.
 	if (m_pCBigGhost->GetSleepFlag() == false) {
-		DecisionFinishSpeak();
+		SettingEmotion();
 	}
 
+	//大きいお化け更新処理関数.
 	m_pCBigGhost->Update();
 
 	if (m_pCBigGhost->GetSleepFlag() == true) {
@@ -172,9 +172,9 @@ void CGhostSpeakStage::CameraMove()
 }
 
 //===========================================.
-//		会話終了判定処理関数.
+//		感情設定処理関数.
 //===========================================.
-void CGhostSpeakStage::DecisionFinishSpeak()
+void CGhostSpeakStage::SettingEmotion()
 {
 	//終了フラグ.
 	const unsigned int FINISH_FLAG = m_pCSpeakBigGhost->FINISH_NEXT_GAME | m_pCSpeakBigGhost->FINISH_NEXT_TITLE;

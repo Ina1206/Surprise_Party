@@ -39,7 +39,7 @@ private:
 	void Init();								//‰Šú‰»ˆ—ŠÖ”.
 	void Release();								//‰ğ•úˆ—ŠÖ”.
 	void CameraMove();							//ƒJƒƒ‰ˆÚ“®ˆ—ŠÖ”.
-	void DecisionFinishSpeak();					//‰ï˜bI—¹”»’èˆ—ŠÖ”.
+	void SettingEmotion();						//Š´îİ’èˆ—ŠÖ”.
 
 	//========================ŠÖ”=============================//.
 	CFontResource*					m_pCFontResource;
