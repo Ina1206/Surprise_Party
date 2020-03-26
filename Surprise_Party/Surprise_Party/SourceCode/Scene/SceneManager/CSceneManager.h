@@ -2,7 +2,6 @@
 #define CSCENE_MANAGER_H
 
 #include "..\Title\CTitle.h"
-#include "..\Tutorial\CTutorial.h"
 #include "..\GameMain\CGameMain.h"
 #include "..\Ending\CEnding.h"
 
@@ -24,7 +23,6 @@ public:
 	//ゲームのシーン種類.
 	enum class enSceneType {
 		Title = 0,		//タイトル.
-		Tutorial,		//チュートリアル.
 		GameMain,		//ゲームメイン.
 		Ending,			//クリア.
 

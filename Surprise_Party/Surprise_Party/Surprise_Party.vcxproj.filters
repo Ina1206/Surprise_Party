@@ -158,9 +158,6 @@
     <Filter Include="SourceCode\Scene\GameMain\StageManager">
       <UniqueIdentifier>{448cb956-38e2-4c60-a4b7-b3de9e2e266b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceCode\Scene\Tutorial">
-      <UniqueIdentifier>{3177b2b1-fd3b-44eb-9d04-09026cdf4f3f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SourceCode\Scene\SceneBase">
       <UniqueIdentifier>{d2e944cf-78c6-4fe5-8fd8-7e1bcfc40595}</UniqueIdentifier>
     </Filter>
@@ -271,6 +268,9 @@
     </Filter>
     <Filter Include="SourceCode\FileLoad\FileString">
       <UniqueIdentifier>{d4cc7486-a729-47fe-a781-ede9dcb42296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Scene\GameMain\Tutorial">
+      <UniqueIdentifier>{3177b2b1-fd3b-44eb-9d04-09026cdf4f3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -421,9 +421,6 @@
     <ClInclude Include="SourceCode\Scene\Title\CTitle.h">
       <Filter>SourceCode\Scene\Title</Filter>
     </ClInclude>
-    <ClInclude Include="SourceCode\Scene\Tutorial\CTutorial.h">
-      <Filter>SourceCode\Scene\Tutorial</Filter>
-    </ClInclude>
     <ClInclude Include="SourceCode\Scene\Ending\CEnding.h">
       <Filter>SourceCode\Scene\Ending</Filter>
     </ClInclude>
@@ -549,6 +546,9 @@
     </ClInclude>
     <ClInclude Include="SourceCode\FileLoad\FileString\CFileString.h">
       <Filter>SourceCode\FileLoad\FileString</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Scene\GameMain\Tutorial\CTutorial.h">
+      <Filter>SourceCode\Scene\GameMain\Tutorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -687,9 +687,6 @@
     <ClCompile Include="SourceCode\Scene\Title\CTitle.cpp">
       <Filter>SourceCode\Scene\Title</Filter>
     </ClCompile>
-    <ClCompile Include="SourceCode\Scene\Tutorial\CTutorial.cpp">
-      <Filter>SourceCode\Scene\Tutorial</Filter>
-    </ClCompile>
     <ClCompile Include="SourceCode\Scene\Ending\CEnding.cpp">
       <Filter>SourceCode\Scene\Ending</Filter>
     </ClCompile>
@@ -815,6 +812,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\FileLoad\FileString\CFileString.cpp">
       <Filter>SourceCode\FileLoad\FileString</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\GameMain\Tutorial\CTutorial.cpp">
+      <Filter>SourceCode\Scene\GameMain\Tutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

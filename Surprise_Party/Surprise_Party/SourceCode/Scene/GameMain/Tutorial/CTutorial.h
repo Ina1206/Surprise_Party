@@ -1,8 +1,7 @@
 #ifndef CTUTORIAL_H
 #define CTUTORIAL_H
 
-#include "..\SceneBase\CSceneBase.h"
-#include "..\GameMain\StageBase\CStageBase.h"
+#include "..\StageBase\CStageBase.h"
 
 /************************************
 *	チュートリアルクラス.

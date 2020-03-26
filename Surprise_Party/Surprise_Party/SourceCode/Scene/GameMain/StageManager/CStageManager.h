@@ -4,7 +4,7 @@
 #include "..\MainStage\CMainStage.h"
 #include "..\GhostSpeakStage\CGhostSpeakStage.h"	
 #include "..\..\..\UI\Fade\StageFade\CStageFade.h"
-#include "..\..\Scene\Tutorial\CTutorial.h"
+#include "..\Tutorial\CTutorial.h"
 
 /**************************************************
 *		ステージ管理クラス.
