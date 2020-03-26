@@ -435,26 +435,6 @@ void CResourceManager::SpriteUIStateSetting()
 		m_pstSpriteUIState[pause].Disp.w = m_pstSpriteUIState[pause].Base.w;
 		m_pstSpriteUIState[pause].Disp.h = m_pstSpriteUIState[pause].Base.h;
 	}
-	////ポーズ.
-	//int PauseNum = static_cast<int>(enSpriteUI::Pause);
-	//m_pstSpriteUIState[PauseNum].Base.w = 500.0f;
-	//m_pstSpriteUIState[PauseNum].Base.h = 218.0f;
-	//m_pstSpriteUIState[PauseNum].Disp.w = m_pstSpriteUIState[PauseNum].Base.w;
-	//m_pstSpriteUIState[PauseNum].Disp.h = m_pstSpriteUIState[PauseNum].Base.h;
-
-	////続ける.
-	//int ContinueNum = static_cast<int>(enSpriteUI::Continue);
-	//m_pstSpriteUIState[ContinueNum].Base.w = 500.0f;
-	//m_pstSpriteUIState[ContinueNum].Base.h = 218.0f;
-	//m_pstSpriteUIState[ContinueNum].Disp.w = m_pstSpriteUIState[ContinueNum].Base.w;
-	//m_pstSpriteUIState[ContinueNum].Disp.h = m_pstSpriteUIState[ContinueNum].Base.h;
-
-	////終わる.
-	//int NextTitleNum = static_cast<int>(enSpriteUI::NextTitle);
-	//m_pstSpriteUIState[NextTitleNum].Base.w = 500.0f;
-	//m_pstSpriteUIState[NextTitleNum].Base.h = 218.0f;
-	//m_pstSpriteUIState[NextTitleNum].Disp.w = m_pstSpriteUIState[NextTitleNum].Base.w;
-	//m_pstSpriteUIState[NextTitleNum].Disp.h = m_pstSpriteUIState[NextTitleNum].Base.h;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
