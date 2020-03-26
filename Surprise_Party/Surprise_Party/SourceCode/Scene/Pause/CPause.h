@@ -15,10 +15,21 @@ public:
 	~CPause();
 
 	//=====================定数=====================//.
-	const int UI_MAX			= 4;	//UI最大数.
-	const int SELECT_STRING_MAX = 2;	//選択スプライト.
-	const int CURSOR_NUM		= 2;	//カーソル番号.
-	const int PAUSE_NUM			= 3;	//ポーズ番号.
+	const int	UI_MAX				= 4;		//UI最大数.
+	const int	SELECT_STRING_MAX	= 2;		//選択スプライト.
+	const int	CURSOR_NUM			= 2;		//カーソル番号.
+	const int	PAUSE_NUM			= 3;		//ポーズ番号.
+	const float	SELECT_STRING_WIDHT = 100.0f;	//選択文章幅.
+	const float CHANGE_CNT_MAX		= 10;		//変更カウント最大数.
+
+	const D3DXVECTOR3	SELECT_STRING_POS	= D3DXVECTOR3(700.0f, 400.0f, 0.0f);
+	const D3DXVECTOR3	CURSOR_POS			= D3DXVECTOR3(800.0f, 450.0f, 0.0f);
+	const D3DXVECTOR3	INIT_POS			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	const D3DXVECTOR3	INIT_ROT			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	const D3DXVECTOR3	CURSOR_ROT			= D3DXVECTOR3(0.0f, 3.0f, 0.0f);
+	const D3DXVECTOR2	INIT_UV				= D3DXVECTOR2(0.0f, 0.0f);
+	const D3DXVECTOR2	NORMAL_UV_POS		= D3DXVECTOR2(0.0f, 0.0f);	
+	const D3DXVECTOR2	ENTER_UV_POS		= D3DXVECTOR2(0.0f, 1.0f);
 
 	//=====================関数=====================//.
 	void UpDate();		//更新処理関数.
