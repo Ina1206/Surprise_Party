@@ -2,6 +2,7 @@
 #define CPEOPLE_BASE_H
 
 #include "..\CCharaBase.h"
+#include "..\..\SpriteEffect\SurpriseEffect\CSurpriseEffect.h"
 
 class CPeopleBase
 	: public CCharaBase
@@ -64,18 +65,18 @@ protected:
 	void SurpriseAnimChange(int surpriseAnimNo);	//驚きアニメーション変更処理関数.
 
 	//=================変数======================//.
-	CDX9SkinMesh*				m_pCSkinMesh;		//スキンメッシュ.
-	float						m_fAnimSpeed;		//アニメーション速度.
-	float						m_fWalkAnimSpeed;	//歩きアニメーション速度.
-	float						m_fStageMax;		//ステージ最大距離.
-	float						m_fMoveSpeed;		//移動速度.
-	int							m_SurpriseQuantity;	//驚きポイント量.
-	LPD3DXANIMATIONCONTROLLER	m_pAnimCtrl;		//アニメーションコントローラ.
-	bool						m_bSurpriseFlag;	//驚くフラグ.
-	int							m_AnimNo;			//アニメーション番号.
-	int							m_WalkAnimNo;		//歩きアニメーション番号.
-	unsigned int				m_SurpriseActFlag;	//驚く行動フラグ.
-
+	CDX9SkinMesh*						m_pCSkinMesh;		//スキンメッシュ.
+	float								m_fAnimSpeed;		//アニメーション速度.
+	float								m_fWalkAnimSpeed;	//歩きアニメーション速度.
+	float								m_fStageMax;		//ステージ最大距離.
+	float								m_fMoveSpeed;		//移動速度.
+	int									m_SurpriseQuantity;	//驚きポイント量.
+	LPD3DXANIMATIONCONTROLLER			m_pAnimCtrl;		//アニメーションコントローラ.
+	bool								m_bSurpriseFlag;	//驚くフラグ.
+	int									m_AnimNo;			//アニメーション番号.
+	int									m_WalkAnimNo;		//歩きアニメーション番号.
+	unsigned int						m_SurpriseActFlag;	//驚く行動フラグ.
+	std::unique_ptr<CSurpriseEffect>	m_pCSurpriseEffect;	//エフェクトクラス.
 	
 private:
 	//=================関数======================//.

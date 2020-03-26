@@ -128,6 +128,9 @@ void CPeopleBase::SurpriseAnimChange(int surpriseAnimNo)
 		m_pCSkinMesh->ChangeAnimSet(m_AnimNo, m_pAnimCtrl);
 		m_AnimTime = 0.0;
 		m_SurpriseActFlag = SURPRISE_ACT;
+
+		//驚きエフェクト開始.
+		m_pCSurpriseEffect->SetDispFlag(true);
 	}
 
 	if (m_SurpriseActFlag & SURPRISE_ACT) {
