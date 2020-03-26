@@ -27,16 +27,18 @@ CPause::~CPause()
 //========================================.
 void CPause::UpDate()
 {
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+	if (GetAsyncKeyState(VK_UP) & 0x0001) {
 		m_SelectNum--;
 		if (m_SelectNum < 0) {
 			m_SelectNum = 0;
+			//SE.
 		}
 	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
 		m_SelectNum++;
 		if (m_SelectNum >= SELECT_STRING_MAX) {
 			m_SelectNum = SELECT_STRING_MAX - 1;
+			//SE.
 		}
 	}
 
