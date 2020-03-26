@@ -28,7 +28,9 @@ void CSurpriseEffect::Update()
 //=============================================.
 void CSurpriseEffect::PlayStartInit(const int& num)
 {
-
+	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+		SettingDefaultValue(sprite);
+	}
 }
 
 //=============================================.
@@ -36,7 +38,17 @@ void CSurpriseEffect::PlayStartInit(const int& num)
 //=============================================.
 void CSurpriseEffect::Init()
 {
+	m_pCSprite.resize(2);
+	SettingElementsCount();
 
+	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+		SettingDefaultValue(sprite);
+
+		if (sprite == 0) {
+
+		}
+
+	}
 }
 
 //==============================================.

@@ -14,8 +14,8 @@ public:
 	~CSurpriseEffect();
 
 	//======================関数===========================//.
-	void Update();						//更新処理関数.
-	void PlayStartInit(const int& num);	//再生開始初期化処理関数.
+	void Update();							//更新処理関数.
+	void PlayStartInit(const int& num);		//再生開始初期化処理関数.
 
 private:
 	//======================関数===========================//.
