@@ -22,7 +22,11 @@ public:
 	//=============情報獲得処理関数================//.
 	D3DXVECTOR4 GetBackColor()		{ return m_vBackColor; }	//後ろの色情報取得処理関数.
 	bool		GetChangeSceneFlag(){ return m_bChangeScene; }	//シーン変更フラグ取得処理関数.
-	
+	bool		GetPauseFlag() const { return m_bPauseFlag; }	//一時停止フラグ.
+
+	//=============情報置換処理関数================//.
+	void SetPauseFlag(const bool& flag) { m_bPauseFlag = flag; }//一時停止フラグ.
+
 protected:
 	//===================関数======================//.
 	virtual void Init()		= 0;		//初期化処理関数.
@@ -35,6 +39,7 @@ protected:
 	D3DXVECTOR3 m_vCameraPos;	//カメラ座標.
 	D3DXVECTOR4 m_vBackColor;	//後ろの色.
 	bool		m_bChangeScene;	//シーン変更フラグ.
+	bool		m_bPauseFlag;	//一時停止フラグ.
 
 private:
 

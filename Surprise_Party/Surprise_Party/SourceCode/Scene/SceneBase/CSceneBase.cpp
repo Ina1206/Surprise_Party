@@ -7,6 +7,7 @@ CSceneBase::CSceneBase()
 	, m_vCameraPos	(0.0f, 0.0f, 0.0f)
 	, m_vBackColor	(0.0f, 0.0f, 0.0f, 0.0f)
 	, m_bChangeScene(false)
+	, m_bPauseFlag	(false)
 {
 
 }

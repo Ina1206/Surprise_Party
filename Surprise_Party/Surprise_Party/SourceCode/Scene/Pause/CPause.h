@@ -38,6 +38,7 @@ private:
 	CDepth_Stencil*					m_pCDepthStenceil;	//デプスステンシル.
 
 	int								m_SelectNum;		//選択番号.
+	int								m_ChangeCnt;		//変更カウント.
 };
 
 #endif	//#ifndef CPAUSE_H.

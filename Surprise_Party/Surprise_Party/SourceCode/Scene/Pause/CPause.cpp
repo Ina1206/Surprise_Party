@@ -11,6 +11,7 @@ CPause::CPause()
 	, m_pCResourceManager	(nullptr)
 	, m_pCDepthStenceil		(nullptr)
 	, m_SelectNum			(0)
+	, m_ChangeCnt			(0)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -35,7 +36,7 @@ void CPause::UpDate()
 		}
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
-		m_SelectNum++;
+		m_SelectNum++;	
 		if (m_SelectNum >= SELECT_STRING_MAX) {
 			m_SelectNum = SELECT_STRING_MAX - 1;
 			//SE.
@@ -44,6 +45,19 @@ void CPause::UpDate()
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		m_vUV[CURSOR_NUM] = D3DXVECTOR2(0.0f, 1.0f);
+		//SE.
+		m_ChangeCnt++;
+	}
+
+	if (m_ChangeCnt > 0) {
+		m_ChangeCnt++;
+
+		if (m_ChangeCnt >= 10) {
+			m_bPauseFlag = false;
+			m_vUV[CURSOR_NUM] = D3DXVECTOR2(0.0f, 0.0f);
+			m_ChangeCnt = 0;
+		}
+		return;
 	}
 
 	m_vPos[CURSOR_NUM].y = 450.0f + (100.0f * m_SelectNum);
@@ -105,5 +119,6 @@ void CPause::Init()
 //========================================.
 void CPause::Release()
 {
-
+	m_pCDepthStenceil = nullptr;
+	m_pCResourceManager = nullptr;
 }

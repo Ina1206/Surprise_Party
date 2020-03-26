@@ -59,13 +59,23 @@ void CSceneManager::UpDate()
 		return;
 	}
 
+	if (GetAsyncKeyState(VK_F1) & 0x0001) {
+		if (m_PausingFlag == true) {
+			m_PausingFlag = false;
+		}
+		else {
+			m_PausingFlag = true;
+		}
+	}
+
 	//シーンの更新処理関数.
 	int m_UsingSceneNum = NORMAL_SCENE_NUM;
 	if (m_PausingFlag == true) {
 		m_UsingSceneNum = PAUSE_SCENE_NUM;
+		m_pCSceneBase[m_UsingSceneNum]->SetPauseFlag(m_PausingFlag);
 	}
 	m_pCSceneBase[m_UsingSceneNum]->UpDate();
-
+	m_PausingFlag = m_pCSceneBase[m_UsingSceneNum]->GetPauseFlag();
 }
 
 //===========================================.
