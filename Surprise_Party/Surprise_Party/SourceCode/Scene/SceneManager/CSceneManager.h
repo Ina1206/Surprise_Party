@@ -4,7 +4,8 @@
 #include "..\Title\CTitle.h"
 #include "..\GameMain\CGameMain.h"
 #include "..\Ending\CEnding.h"
-
+#include "..\Pause\CPause.h"
+	
 #include "..\..\Drawing/Resource/CResourceManager.h"
 #include "..\GameMain\CGameMain.h"
 
@@ -30,6 +31,10 @@ public:
 		Start = Title,	//最初のシーン.
 	};
 
+	//===================定数======================//.
+	const int NORMAL_SCENE_NUM	= 0;		//通常シーン番号(タイトル、ゲームメイン、クリア画面).
+	const int PAUSE_SCENE_NUM	= 1;		//一時停止シーン番号.
+
 	//===================関数======================//.
 	void Init(HWND hWnd,LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pDevice11, ID3D11DeviceContext*	pContext11);					//初期化処理関数.
 	void Load();																													//読み込み処理関数.
@@ -45,17 +50,18 @@ private:
 	void ChangeScene();									//シーン変更処理関数.
 
 	//===================変数=======================//.
-	HWND						m_hWnd;					//ウィンドウハンドル.
-	LPDIRECT3DDEVICE9			m_pDevice9;
-	ID3D11Device*				m_pDevice11;			//デバイスオブジェクト.
-	ID3D11DeviceContext*		m_pContext11;			//デバイスコンテキスト.
+	HWND										m_hWnd;					//ウィンドウハンドル.
+	LPDIRECT3DDEVICE9							m_pDevice9;
+	ID3D11Device*								m_pDevice11;			//デバイスオブジェクト.
+	ID3D11DeviceContext*						m_pContext11;			//デバイスコンテキスト.
 
-	std::unique_ptr<CSceneBase>	m_pCSceneBase;			//シーンクラス.
-	D3DXVECTOR4					m_Color;
-	int							m_ChangeSceneCnt;		//シーン変更カウント.
-	int							m_SceneType;			//シーン種類.
+	std::vector<std::unique_ptr<CSceneBase>>	m_pCSceneBase;			//シーンクラス.
+	D3DXVECTOR4									m_Color;
+	int											m_ChangeSceneCnt;		//シーン変更カウント.
+	int											m_SceneType;			//シーン種類.
 
-	std::unique_ptr<CSceneFade> m_pCSceneFade;			//シーンフェードクラス.
+	std::unique_ptr<CSceneFade>					m_pCSceneFade;			//シーンフェードクラス.
+	bool										m_PausingFlag;			//一時停止フラグ.
 };
 
 #endif	//#ifndef CSCENE_MANAGER_H.

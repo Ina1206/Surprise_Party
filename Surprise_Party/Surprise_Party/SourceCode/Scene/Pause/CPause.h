@@ -2,6 +2,7 @@
 #define CPAUSE_H
 
 #include "..\SceneBase\CSceneBase.h"
+#include "..\..\Drawing\Resource\CResourceManager.h"
 
 /****************************************
 *		一時停止クラス.
@@ -21,6 +22,9 @@ private:
 	//=====================関数=====================//.
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
+
+	//=====================定数=====================//.
+	std::vector<CSpriteUI*>	m_pCSpriteUI;	//スプライトUI.
 
 };
 

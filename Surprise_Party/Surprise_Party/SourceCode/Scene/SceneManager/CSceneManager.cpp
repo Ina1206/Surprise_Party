@@ -3,7 +3,7 @@
 CSceneManager::CSceneManager()
 	: m_pDevice11		(nullptr)
 	, m_pContext11		(nullptr)
-	, m_pCSceneBase		(nullptr)
+	, m_pCSceneBase		()
 	, m_Color			(0.0f, 0.0f, 0.0f, 0.0f)
 	, m_ChangeSceneCnt	(0)
 	, m_SceneType		(0)
@@ -36,7 +36,7 @@ void CSceneManager::UpDate()
 	//シーンフェード更新処理関数.
 	m_pCSceneFade->UpDate();
 
-	m_Color = m_pCSceneBase->GetBackColor();
+	m_Color = m_pCSceneBase[NORMAL_SCENE_NUM]->GetBackColor();
 
 	if (m_pCSceneFade->GetShutterFlag() & m_pCSceneFade->CHANGE_SCENE_FLAG) {
 		//シーン変更処理関数.
@@ -49,17 +49,21 @@ void CSceneManager::UpDate()
 	}
 
 #ifdef _DEBUG
-	m_pCSceneBase->DebugSceneChange();
+	m_pCSceneBase[NORMAL_SCENE_NUM]->DebugSceneChange();
 #endif	//#ifdef _DEBUG.
 
 	//シーン変更時はシーン更新処理をさせない.
-	if (m_pCSceneBase->GetChangeSceneFlag() == true) {
+	if (m_pCSceneBase[NORMAL_SCENE_NUM]->GetChangeSceneFlag() == true) {
 		m_pCSceneFade->SetShutterFlag(m_pCSceneFade->CLOSE_FLAG);
 		return;
 	}
 
 	//シーンの更新処理関数.
-	m_pCSceneBase->UpDate();
+	int m_UsingSceneNum = NORMAL_SCENE_NUM;
+	if (m_PausingFlag == true) {
+		m_UsingSceneNum = PAUSE_SCENE_NUM;
+	}
+	m_pCSceneBase[m_UsingSceneNum]->UpDate();
 
 }
 
@@ -68,10 +72,16 @@ void CSceneManager::UpDate()
 //===========================================.
 void CSceneManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos)
 {
-	//シーンの描画初期設定処理関数.
-	m_pCSceneBase->RenderInitSetting(mView, mProj, vLightPos, vCameraPos);
-	//シーンの描画処理関数.
-	m_pCSceneBase->Render();
+	for (unsigned int scene = 0; scene < m_pCSceneBase.size(); scene++) {
+		//シーンの描画初期設定処理関数.
+		m_pCSceneBase[scene]->RenderInitSetting(mView, mProj, vLightPos, vCameraPos);
+		//シーンの描画処理関数.
+		m_pCSceneBase[scene]->Render();
+
+		if (m_PausingFlag == false) {
+			break;
+		}
+	}
 
 	//フェード描画処理関数.
 	if (m_pCSceneFade->GetShutterFlag() != 0) {
@@ -117,7 +127,9 @@ void CSceneManager::Load()
 	//m_SceneType = static_cast<int>(enSceneType::Title);
 	//m_pCSceneBase.reset(new CTitle());
 	m_SceneType = static_cast<int>(enSceneType::GameMain);
-	m_pCSceneBase.reset(new CGameMain());
+	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
+	m_pCSceneBase[PAUSE_SCENE_NUM].reset(new CPause());
+
 	m_pCSceneFade->SetShutterFlag(m_pCSceneFade->OPEN_FLAG);
 
 }
@@ -135,13 +147,13 @@ void CSceneManager::ChangeScene()
 
 	switch (static_cast<enSceneType>(m_SceneType)) {
 	case enSceneType::Title:
-		m_pCSceneBase.reset(new CTitle());
+		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CTitle());
 		break;
 	case enSceneType::GameMain:
-		m_pCSceneBase.reset(new CGameMain());
+		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
 		break;
 	case enSceneType::Ending:
-		m_pCSceneBase.reset(new CEnding());
+		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CEnding());
 		break;
 	}
 
