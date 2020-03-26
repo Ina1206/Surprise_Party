@@ -6,6 +6,7 @@ Select2.png
 
 illustAC	URL:https://www.ac-illust.com/
 TreeBord.png
+GhostCursor.png
 ThankYouStamp.png
 
 ロゴ作成	URL:http://lightbox.on.coocan.jp/html/fontImage.php
