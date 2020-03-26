@@ -7,6 +7,7 @@ CSceneManager::CSceneManager()
 	, m_Color			(0.0f, 0.0f, 0.0f, 0.0f)
 	, m_ChangeSceneCnt	(0)
 	, m_SceneType		(0)
+	, m_PausingFlag		(true)
 {
 
 }
@@ -127,6 +128,7 @@ void CSceneManager::Load()
 	//m_SceneType = static_cast<int>(enSceneType::Title);
 	//m_pCSceneBase.reset(new CTitle());
 	m_SceneType = static_cast<int>(enSceneType::GameMain);
+	m_pCSceneBase.resize(2);
 	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
 	m_pCSceneBase[PAUSE_SCENE_NUM].reset(new CPause());
 

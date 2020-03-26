@@ -196,9 +196,13 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\CloseString.png",				//Close文字.
 		"Data\\Texture\\UI\\Game\\extended_notification.png",	//延長通知.
 		"Data\\Texture\\UI\\Game\\TextBox.png",					//テキストボックス.
+		"Data\\Texture\\UI\\Game\\PauseTitle.png",				//ポーズ.
+		"Data\\Texture\\UI\\Game\\ToGame.png",					//続ける.
+		"Data\\Texture\\UI\\Game\\ToTitle.png",					//終わる.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
+		"Data\\Texture\\UI\\Game\\GhostCursor.png",				//お化けカーソル.
 	};
 }
 
@@ -423,6 +427,35 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[TextBoxNum].Disp.w = m_pstSpriteUIState[TextBoxNum].Base.w * 1.5f;
 	m_pstSpriteUIState[TextBoxNum].Disp.h = m_pstSpriteUIState[TextBoxNum].Base.h * 1.5f;
 
+	//ポーズ時の文字.
+	int PauseStringNum = static_cast<int>(enSpriteUI::Pause);
+	for(int pause = PauseStringNum; pause <= static_cast<int>(enSpriteUI::NextTitle); pause++){
+		m_pstSpriteUIState[pause].Base.w = 500.0f;
+		m_pstSpriteUIState[pause].Base.h = 218.0f;
+		m_pstSpriteUIState[pause].Disp.w = m_pstSpriteUIState[pause].Base.w;
+		m_pstSpriteUIState[pause].Disp.h = m_pstSpriteUIState[pause].Base.h;
+	}
+	////ポーズ.
+	//int PauseNum = static_cast<int>(enSpriteUI::Pause);
+	//m_pstSpriteUIState[PauseNum].Base.w = 500.0f;
+	//m_pstSpriteUIState[PauseNum].Base.h = 218.0f;
+	//m_pstSpriteUIState[PauseNum].Disp.w = m_pstSpriteUIState[PauseNum].Base.w;
+	//m_pstSpriteUIState[PauseNum].Disp.h = m_pstSpriteUIState[PauseNum].Base.h;
+
+	////続ける.
+	//int ContinueNum = static_cast<int>(enSpriteUI::Continue);
+	//m_pstSpriteUIState[ContinueNum].Base.w = 500.0f;
+	//m_pstSpriteUIState[ContinueNum].Base.h = 218.0f;
+	//m_pstSpriteUIState[ContinueNum].Disp.w = m_pstSpriteUIState[ContinueNum].Base.w;
+	//m_pstSpriteUIState[ContinueNum].Disp.h = m_pstSpriteUIState[ContinueNum].Base.h;
+
+	////終わる.
+	//int NextTitleNum = static_cast<int>(enSpriteUI::NextTitle);
+	//m_pstSpriteUIState[NextTitleNum].Base.w = 500.0f;
+	//m_pstSpriteUIState[NextTitleNum].Base.h = 218.0f;
+	//m_pstSpriteUIState[NextTitleNum].Disp.w = m_pstSpriteUIState[NextTitleNum].Base.w;
+	//m_pstSpriteUIState[NextTitleNum].Disp.h = m_pstSpriteUIState[NextTitleNum].Base.h;
+
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
 	m_pstSpriteUIState[GhostIconNum].Base.w = 3580.0f;
@@ -450,6 +483,14 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[TreeBordNum].Disp.w = 300.0f;
 	m_pstSpriteUIState[TreeBordNum].Disp.h = 150.0f;
 
+	//お化けのカーソル.
+	int GhostCursor = static_cast<int>(enSpriteUI::GhostCursor);
+	m_pstSpriteUIState[GhostCursor].Base.w = 1600.0f;
+	m_pstSpriteUIState[GhostCursor].Base.h = 1600.0f;
+	m_pstSpriteUIState[GhostCursor].Stride.w = m_pstSpriteUIState[GhostCursor].Base.w / 2.0f;
+	m_pstSpriteUIState[GhostCursor].Stride.h = m_pstSpriteUIState[GhostCursor].Base.h / 2.0f;
+	m_pstSpriteUIState[GhostCursor].Disp.w =100.0f;
+	m_pstSpriteUIState[GhostCursor].Disp.h =100.0f;
 
 	//全てのスプライトの1コマ当たりのサイズ.
 	for (int spriteui = 0; spriteui < static_cast<int>(enSpriteUI::SingleSpriteMax); spriteui++) {

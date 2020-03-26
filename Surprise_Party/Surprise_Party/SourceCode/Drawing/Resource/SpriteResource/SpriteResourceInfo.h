@@ -68,10 +68,14 @@ enum class enSpriteUI
 	CloseString,					//Close文字.
 	ExtendedNotification,			//延長通知.
 	TextBox,						//テキストボックス.
+	Pause,							//ポーズ.
+	Continue,						//続ける.
+	NextTitle,						//終わる.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
 	TreeBord,						//木の板.
+	GhostCursor,					//お化けカーソル.
 
 	Max,							//最大数.
 	Start,							//開始.
