@@ -272,6 +272,9 @@
     <Filter Include="SourceCode\Scene\GameMain\Tutorial">
       <UniqueIdentifier>{3177b2b1-fd3b-44eb-9d04-09026cdf4f3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Scene\Pause">
+      <UniqueIdentifier>{4370d017-a403-4b0a-b137-cb658b88b254}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -550,6 +553,9 @@
     <ClInclude Include="SourceCode\Scene\GameMain\Tutorial\CTutorial.h">
       <Filter>SourceCode\Scene\GameMain\Tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Pause\CPause.h">
+      <Filter>SourceCode\Scene\Pause</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -815,6 +821,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Scene\GameMain\Tutorial\CTutorial.cpp">
       <Filter>SourceCode\Scene\GameMain\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Pause\CPause.cpp">
+      <Filter>SourceCode\Scene\Pause</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

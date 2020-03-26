@@ -77,6 +77,7 @@
     <ClInclude Include="SourceCode\Scene\GameMain\StageBase\CStageBase.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\StageManager\CStageManager.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\Tutorial\CTutorial.h" />
+    <ClInclude Include="SourceCode\Scene\Pause\CPause.h" />
     <ClInclude Include="SourceCode\Scene\SceneBase\CSceneBase.h" />
     <ClInclude Include="SourceCode\Scene\SceneManager\CSceneManager.h" />
     <ClInclude Include="SourceCode\Scene\Title\CTitle.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="SourceCode\Scene\GameMain\StageBase\CStageBase.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\StageManager\CStageManager.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\Tutorial\CTutorial.cpp" />
+    <ClCompile Include="SourceCode\Scene\Pause\CPause.cpp" />
     <ClCompile Include="SourceCode\Scene\SceneBase\CSceneBase.cpp" />
     <ClCompile Include="SourceCode\Scene\SceneManager\CSceneManager.cpp" />
     <ClCompile Include="SourceCode\Scene\Title\CTitle.cpp" />
