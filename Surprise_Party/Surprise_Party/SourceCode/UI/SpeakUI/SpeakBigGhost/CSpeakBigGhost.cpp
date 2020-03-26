@@ -271,7 +271,7 @@ void CSpeakBigGhost::FindNextString(const int& NextStringNum)
 		}
 
 		if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {
-			m_SpeakNum = str /*- 1*/;
+			m_SpeakNum = str;
 			break;
 		}
 	}
@@ -335,6 +335,7 @@ void CSpeakBigGhost::ChangeString()
 	}
 
 	//チュートリアル.
+	bool m_bOldTutorialFlag = m_bTutorialFlag;
 	if (m_stSpeakString[m_SpeakNum] == "tutorial") {
 		if (m_bTutorialFlag == false) {
 			m_bTutorialFlag = true;
@@ -344,6 +345,10 @@ void CSpeakBigGhost::ChangeString()
 	//選択文章判定処理.
 	DecisionSelectString();
 
+	//チュートリアル後の文章設定.
+	if (m_bTutorialFlag != m_bOldTutorialFlag) {
+		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+	}
 
 	m_ChangingFontNum = 0;
 	m_fFontAlpha = 0.0f;

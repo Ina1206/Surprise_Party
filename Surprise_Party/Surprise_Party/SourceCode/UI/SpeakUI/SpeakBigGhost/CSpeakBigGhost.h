@@ -43,6 +43,7 @@ public:
 	bool GetTutorialFlag() const { return m_bTutorialFlag; }
 
 	//================情報置換処理関数==================//.
+	void SetControlFlag(const bool& flag) { m_bControlFlag = flag; }
 
 private:
 	//======================関数========================//.
@@ -79,6 +80,8 @@ private:
 
 	unsigned int				m_FinishFlag;		//終了フラグ.
 	bool						m_bTutorialFlag;	//チュートリアルフラグ.
+
+	bool						m_bControlFlag;		//操作フラグ.
 
 };
 

@@ -42,12 +42,17 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		return;
 	}
 
-	//‘€ìˆ—ŠÖ”.
-	if (ControlFlag == true) {
-		Control();
+	if (ControlFlag == false) {
+		return;
 	}
 
+	//‘€ìˆ—ŠÖ”.
+	Control();
+
 	if (m_pCBigGhost->GetSleepFlag() == true) {
+		return;
+	}
+	if (m_TutorialFlag & TUTORIAL_START) {
 		return;
 	}
 
@@ -63,10 +68,6 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 		}
 		return;
 	}
-
-	//if (OldTutorialFlag == true) {
-	//	m_pCSpeakBigGhost-
-	//}
 }
 
 //=========================================.
