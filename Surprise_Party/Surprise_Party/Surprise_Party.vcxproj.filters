@@ -275,6 +275,9 @@
     <Filter Include="SourceCode\Scene\Pause">
       <UniqueIdentifier>{4370d017-a403-4b0a-b137-cb658b88b254}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\SpriteEffect\SurpriseEffect">
+      <UniqueIdentifier>{81ba9252-d97a-4244-a1b3-e357b064235a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -556,6 +559,9 @@
     <ClInclude Include="SourceCode\Scene\Pause\CPause.h">
       <Filter>SourceCode\Scene\Pause</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.h">
+      <Filter>SourceCode\SpriteEffect\SurpriseEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -824,6 +830,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Scene\Pause\CPause.cpp">
       <Filter>SourceCode\Scene\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.cpp">
+      <Filter>SourceCode\SpriteEffect\SurpriseEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
