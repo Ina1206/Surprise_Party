@@ -24,9 +24,9 @@ void CSurpriseEffect::Update()
 }
 
 //=============================================.
-//		•`‰æˆ—ŠÖ”.
+//		Ä¶ŠJn‰Šú‰»‰Šú‰»ˆ—ŠÖ”.
 //=============================================.
-void CSurpriseEffect::Render()
+void CSurpriseEffect::PlayStartInit(const int& num)
 {
 
 }
@@ -43,6 +43,22 @@ void CSurpriseEffect::Init()
 //		‰ğ•úˆ—ŠÖ”.
 //==============================================.
 void CSurpriseEffect::Release()
+{
+
+}
+
+//===============================================.
+//		•\¦”»’èˆ—ŠÖ”.
+//===============================================.
+void CSurpriseEffect::AppeartJudgement(const int& num)
+{
+
+}
+
+//================================================.
+//		ˆÚ“®ˆ—ŠÖ”.
+//================================================.
+void CSurpriseEffect::Move(const int& num)
 {
 
 }
