@@ -194,48 +194,48 @@ void CMainStage::UpDate(const bool& ControlFlag)
 void CMainStage::Render()
 {
 	{
-		static bool	m_ControlFlag = true;
-		if (m_ControlFlag == true) {
-			if (GetAsyncKeyState('1') & 0x8000) {
-				m_stLight.fIntensity -= 0.1f;
-			}
+	//	static bool	m_ControlFlag = true;
+	//	if (m_ControlFlag == true) {
+	//		if (GetAsyncKeyState('1') & 0x8000) {
+	//			m_stLight.fIntensity -= 0.1f;
+	//		}
 
-			if (GetAsyncKeyState('2') & 0x8000) {
-				m_stLight.fIntensity += 0.1f;
-			}
-		}
-		else {
-			if (GetAsyncKeyState('1') & 0x8000) {
-				m_stLight.m_fLightWidth -= 0.1f;
-			}
+	//		if (GetAsyncKeyState('2') & 0x8000) {
+	//			m_stLight.fIntensity += 0.1f;
+	//		}
+	//	}
+	//	else {
+	//		if (GetAsyncKeyState('1') & 0x8000) {
+	//			m_stLight.m_fLightWidth -= 0.1f;
+	//		}
 
-			if (GetAsyncKeyState('2') & 0x8000) {
-				m_stLight.m_fLightWidth += 0.1f;
-			}
+	//		if (GetAsyncKeyState('2') & 0x8000) {
+	//			m_stLight.m_fLightWidth += 0.1f;
+	//		}
 
-		}
+	//	}
 
-		if (GetAsyncKeyState('S') & 0x8000) {
-			m_stLight.vPos.y += 0.1f;
-		}
-		if (GetAsyncKeyState('X') & 0x8000) {
-			m_stLight.vPos.y -= 0.1f;
-		}
-		if (GetAsyncKeyState('Z') & 0x8000) {
-			m_stLight.vPos.z += 0.1f;
-		}
-		if (GetAsyncKeyState('C') & 0x8000) {
-			m_stLight.vPos.z -= 0.1f;
-		}
+	//	if (GetAsyncKeyState('S') & 0x8000) {
+	//		m_stLight.vPos.y += 0.1f;
+	//	}
+	//	if (GetAsyncKeyState('X') & 0x8000) {
+	//		m_stLight.vPos.y -= 0.1f;
+	//	}
+	//	if (GetAsyncKeyState('Z') & 0x8000) {
+	//		m_stLight.vPos.z += 0.1f;
+	//	}
+	//	if (GetAsyncKeyState('C') & 0x8000) {
+	//		m_stLight.vPos.z -= 0.1f;
+	//	}
 
-		if (GetAsyncKeyState(VK_F1) & 0x8000) {
-			if (m_ControlFlag == true) {
-				m_ControlFlag = false;
-			}
-			else {
-				m_ControlFlag = true;
-			}
-		}
+	//	if (GetAsyncKeyState(VK_F1) & 0x8000) {
+	//		if (m_ControlFlag == true) {
+	//			m_ControlFlag = false;
+	//		}
+	//		else {
+	//			m_ControlFlag = true;
+	//		}
+	//	}
 	}
 
 	//ステージマップの描画.
