@@ -165,6 +165,7 @@ void CResourceManager::SpriteFileNameSetting()
 		"Data\\Texture\\UI\\Game\\TextBoxSmall.png",		//テキストボックス小.
 		"Data\\Texture\\UI\\Game\\AnswerNo.png",			//「いいえ」の回答.
 		"Data\\Texture\\UI\\Game\\AnswerYes.png",			//「はい」の回答.
+		"Data\\Texture\\UI\\Game\\shock.png",				//驚き.
 		"Data\\Texture\\UI\\Game\\HelthIcon.png",			//体力アイコン.
 		"Data\\Texture\\UI\\Game\\eight_part_note.png",		//8分音符.
 		"Data\\Texture\\UI\\Game\\sixteen_part_note.png",	//16分音符.
@@ -275,6 +276,13 @@ void CResourceManager::SpriteStateSetting()
 	m_pstSpriteState[AnswerYesNum].Base.h = 70.0f;
 	m_pstSpriteState[AnswerYesNum].Disp.w = 2.0f;
 	m_pstSpriteState[AnswerYesNum].Disp.h = 1.0f;
+
+	//驚き.
+	int ShockNum = static_cast<int>(enSprite::Shock);
+	m_pstSpriteState[ShockNum].Base.w = 100.0f;
+	m_pstSpriteState[ShockNum].Base.h = 200.0f;
+	m_pstSpriteState[ShockNum].Disp.w = 0.5f;
+	m_pstSpriteState[ShockNum].Disp.h = 1.0f;
 
 	//まとめて一コマ当たりのサイズ指定.
 	for (int sprite = 0; sprite < static_cast<int>(enSprite::SingleSpriteMax); sprite++) {

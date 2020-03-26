@@ -36,6 +36,7 @@ enum class enSprite
 	TextBoxSmall,					//テキストボックス小.
 	AnswerNo,						//「いいえ」の回答.
 	AnswerYes,						//「はい」の回答.
+	Shock,							//驚き.
 
 	Strenght_Icon,					//体力アイコン.
 	eight_part_note,				//8分音符.
