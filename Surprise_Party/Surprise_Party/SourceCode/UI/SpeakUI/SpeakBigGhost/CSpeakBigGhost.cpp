@@ -322,6 +322,13 @@ void CSpeakBigGhost::ChangeString()
 	m_SpeakNum++;
 
 	//終了処理.
+	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
+		m_FinishFlag = FINISH_NEXT_GAME;
+		m_SpeakNum = m_stSpeakString.size() - 1;
+		return;
+	}
+
+	//終了処理.
 	if (m_stSpeakString[m_SpeakNum] == "finish") {
 		m_FinishFlag = FINISH_NEXT_TITLE;
 		return;
@@ -337,13 +344,6 @@ void CSpeakBigGhost::ChangeString()
 	//選択文章判定処理.
 	DecisionSelectString();
 
-
-	//終了処理.
-	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
-		m_FinishFlag = FINISH_NEXT_GAME;
-		m_SpeakNum = m_stSpeakString.size() - 1;
-		return;
-	}
 
 	m_ChangingFontNum = 0;
 	m_fFontAlpha = 0.0f;

@@ -47,6 +47,7 @@ public:
 	//カーテン移動フラグ.
 	unsigned int GetCurtainMoveFlag() { return m_CurtainMoveFlag; }
 
+
 private:
 	//=================関数=====================//.
 	void Init();												//初期化処理関数.
