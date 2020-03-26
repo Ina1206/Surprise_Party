@@ -12,6 +12,8 @@ CPeopleBase::CPeopleBase()
 	, m_AnimNo			(0)
 	, m_WalkAnimNo		(0)
 	, m_SurpriseActFlag	(0)
+	, m_pCSurpriseEffect(nullptr)
+	, m_vEffectCenterPos(0.0f, 0.0f, 0.0f)
 	, m_AnimTime		(0.0)
 	, m_HumanNearNum	(FAR_NUM)
 	, m_SurpriseHumanMax(0)
@@ -49,6 +51,10 @@ void CPeopleBase::Render()
 	m_pCSkinMesh->SetAlphaDepth(true);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
 	m_pCSkinMesh->SetAlphaDepth(false);
+
+	//エフェクトの描画.
+	m_pCSurpriseEffect->SetCenterPos(m_vEffectCenterPos);
+	m_pCSurpriseEffect->Render(m_mView, m_mProj, m_vCameraPos);
 }
 
 //======================================.

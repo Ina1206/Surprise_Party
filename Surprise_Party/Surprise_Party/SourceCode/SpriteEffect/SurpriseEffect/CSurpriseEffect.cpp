@@ -81,6 +81,9 @@ void CSurpriseEffect::Init()
 
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);
 	}
+
+	m_fScalingSpeed = 0.01f;
+	m_fAlphaSpeed = 0.01f;
 }
 
 //==============================================.

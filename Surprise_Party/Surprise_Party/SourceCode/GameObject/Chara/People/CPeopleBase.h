@@ -77,7 +77,8 @@ protected:
 	int									m_WalkAnimNo;		//歩きアニメーション番号.
 	unsigned int						m_SurpriseActFlag;	//驚く行動フラグ.
 	std::unique_ptr<CSurpriseEffect>	m_pCSurpriseEffect;	//エフェクトクラス.
-	
+	D3DXVECTOR3							m_vEffectCenterPos;	//エフェクト中心座標.
+
 private:
 	//=================関数======================//.
 	void SpeedAcceleration();						//速度加速処理関数.

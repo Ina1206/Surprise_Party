@@ -32,6 +32,10 @@ void CGirl::Update()
 
 	//一時停止処理関数.
 	SearchMotion();
+
+	//驚きエフェクト更新処理関数.
+	m_pCSkinMesh->GetPosFromBone("sayaka_rifa_head", &m_vEffectCenterPos);
+	m_pCSurpriseEffect->Update();
 }
 
 //========================================.
@@ -63,6 +67,8 @@ void CGirl::Init()
 	std::uniform_int_distribution<> IntervalRand(SUSPEND_INTERVAL_TIME_MIN, SUSPEND_INRERVAL_TIME_MAX);
 	m_SuspendInterval = IntervalRand(mt);
 	
+	//驚きエフェクトクラスインスタンス化.
+	m_pCSurpriseEffect.reset(new CSurpriseEffect());
 }
 
 //========================================.

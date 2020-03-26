@@ -26,6 +26,10 @@ void CBoy::Update()
 	//驚きアニメーション変更処理関数.
 	SurpriseAnimChange(static_cast<int>(enBoyAnim::Surprise));
 
+	//驚きエフェクト更新処理関数.
+	m_pCSkinMesh->GetPosFromBone("towa_rig_atama1", &m_vEffectCenterPos);
+	m_pCSurpriseEffect->Update();
+
 }
 
 //===================================.
@@ -53,6 +57,9 @@ void CBoy::Init()
 	//アニメーション設定.
 	m_AnimNo = static_cast<int>(enBoyAnim::Walk);
 	m_pCSkinMesh->ChangeAnimSet(m_AnimNo, m_pAnimCtrl);
+
+	//驚きエフェクトクラスインスタンス化.
+	m_pCSurpriseEffect.reset(new CSurpriseEffect());
 }
 
 //===================================.

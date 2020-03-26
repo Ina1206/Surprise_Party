@@ -24,8 +24,8 @@ void CStageManager::Init()
 {
 	m_pCStageBase.resize(1);
 	//ステージ初期設定.
-	m_StageType = static_cast<int>(enStageType::GhostSpeakStage);
-	m_pCStageBase[NORMAL_STAGE_NUM].reset(new CGhostSpeakStage(m_StageNum));
+	m_StageType = static_cast<int>(enStageType::MainStage);
+	m_pCStageBase[NORMAL_STAGE_NUM].reset(new CMainStage(m_StageNum, m_enBeforeEndingType));
 
 	//ステージフェードインスタンス化.
 	m_pCStageFade.reset(new CStageFade());
