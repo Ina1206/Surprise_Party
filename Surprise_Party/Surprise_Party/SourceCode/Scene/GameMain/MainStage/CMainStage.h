@@ -36,6 +36,14 @@ public:
 	const unsigned int	GHOST_SELECTION_FLAG	= (1 << 0);		//お化け選択フラグ.
 	const unsigned int	GHOST_ACT_SELECT_FLAG	= (1 << 1);		//お化けの行動選択フラグ.
 	const unsigned int	GIMMICK_SELECTION_FLAG	= (1 << 2);		//ギミック選択フラグ.
+
+	const unsigned int	EXPLAINING_FLAG			= (1 << 0);		//説明中フラグ.
+	const unsigned int	EXPLAINED_GHOST_FLAG	= (1 << 1);		//お化けを説明したフラグ.
+	const unsigned int	EXPLAINED_GIMMICK_FLAG	= (1 << 2);		//ギミックを説明したフラグ.
+	const unsigned int	EXPLAINED_MAP_FLAG		= (1 << 3);		//マップを説明したフラグ.
+	const unsigned int	EXPLAINED_GAGE_FLAG		= (1 << 4);		//ゲージを説明したフラグ.
+	const unsigned int	EXPLAINED_CLOSE_FLAG	= (1 << 5);		//閉店の説明したフラグ.
+
 	const int			SLECTION_MAX			= 2;			//選択最大個数.
 	const int			GHOST_NUM				= 0;			//お化け番号.
 	const int			GIMMICK_NUM				= 1;			//ギミック番号.
@@ -43,7 +51,7 @@ public:
 
 	const int			START_TIME_UP_MAX		= 6;			//開始時の制限時間最大数.
 	const int			ADD_TIME_UP				= 1;			//制限時間追加量.
-	const int			BENEFITS_PREVIOS_RESULT = 1;			//前回の結果の特典.
+	const int			BENEFITS_PREVIOS_RESULT	= 1;			//前回の結果の特典.
 
 	const int			START_SUPRISE_GAGE_MAX	= 50;			//開始時の驚きゲージの最大数.
 	const int			SURPRISE_GAGE_ADD		= 20;			//驚きゲージ追加量.
@@ -84,7 +92,7 @@ private:
 	std::vector<D3DXVECTOR3>						m_vLightPos;				//ライト座標.
 
 	enStageType										m_enStageType;				//ステージタイプ.
-	bool											m_bDescriptionFlag;			//説明フラグ.
+	unsigned int									m_ExplainFlag;			//説明フラグ.
 
 };
 

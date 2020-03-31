@@ -21,7 +21,7 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCSurpriseGage			()
 	, m_vLightPos				()
 	, m_enStageType				(enStage)
-	, m_bDescriptionFlag		(false)
+	, m_ExplainFlag(false)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -167,11 +167,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//驚きゲージ更新処理関数.
 	m_pCSurpriseGage->UpDate();
 
-	//チュートリアルまでの処理.
-	if (m_enStageType == enStageType::Tutorial && m_bDescriptionFlag == true) {
+	//チュートリアルまでの処理(ここでお化けとギミックの時は例外の処理を行わなければならない).
+	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			//説明終了ゲームを動かすフラグ.
-			m_bDescriptionFlag = false;
+			m_ExplainFlag &= ~EXPLAINING_FLAG;
 		}
 
 		return;
@@ -376,7 +376,7 @@ void CMainStage::Init()
 	if (m_enBeforeStageEndingType == enBeforeStageEndigneType::Great) {
 		TimeUpMax += BENEFITS_PREVIOS_RESULT;
 	}
-	m_pCClosedTime.reset(new CClosedTime(/*TimeUpMax * TIME_DELIMITER*/10));
+	m_pCClosedTime.reset(new CClosedTime(TimeUpMax * TIME_DELIMITER));
 	//驚きゲージ.
 	//ステージごとに驚きゲージの最大数を増やす.
 	int SurpriseGageMax = START_SUPRISE_GAGE_MAX + (SURPRISE_GAGE_ADD * m_StageNum);
@@ -420,7 +420,7 @@ void CMainStage::Init()
 
 	if (m_enStageType == enStageType::Tutorial) {
 		m_TutorialFlag = TUTORIAL_START;
-		m_bDescriptionFlag = true;
+		m_ExplainFlag = EXPLAINING_FLAG;
 	}
 }
 
@@ -443,9 +443,18 @@ void CMainStage::Control()
 		GhostSelect();
 	}
 
-	//============================================.
-	//ギミック選択処理関数.
+	
+
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
+		
+		//チュートリアル時お化けの説明していなければ終了.
+		if (m_enStageType == enStageType::Tutorial &&
+			!(m_ExplainFlag & EXPLAINED_GHOST_FLAG)) {
+			return;
+		}
+
+		//============================================.
+		//ギミック選択処理関数.
 		GimmickSelect();
 	}
 
@@ -462,6 +471,11 @@ void CMainStage::Control()
 				m_ObjectSelectFlag = GHOST_ACT_SELECT_FLAG;
 				//選択フラグ.
 				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetSelectFlag(true);
+
+				if (m_ExplainFlag & EXPLAINING_FLAG) {
+					//お化けの説明終了.
+					m_ExplainFlag |= EXPLAINED_GHOST_FLAG;
+				}
 			}
 		}
 	}
@@ -495,6 +509,11 @@ void CMainStage::Control()
 					m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetChangeGimmickSelect(false);
 					//ギミックカーソル非表示フラグ設定.
 					m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
+
+					if (m_ExplainFlag & EXPLAINING_FLAG) {
+						//ギミック説明終了.
+						m_ExplainFlag |= EXPLAINED_GIMMICK_FLAG;
+					}
 				}
 			}
 		}
