@@ -27,21 +27,8 @@ CClosedTime::~CClosedTime()
 //=====================================.
 void CClosedTime::UpDate()
 {
-	//時間(h)計算フラグ.
-	bool HourCalcFlag = false;
-
-	for (unsigned int time = TIME_START_NUM; time < m_pCSpriteUI.size() - 1; time += 2) {
-		//時間(h)の数値計算処理.
-		if (HourCalcFlag == false ) {
-			HourCalc(time);
-
-			HourCalcFlag = true;
-			continue;
-		}
-
-		//分(m)の数値計算処理関数.
-		MinutesCalc(time);
-	}
+	//時間計算処理関数.
+	TitmeCalc();
 
 	//時間を減らす処理.
 	if (m_TimeReduceCnt > TIME_REDUCE_DELIMITER) {
@@ -127,6 +114,9 @@ void CClosedTime::Init()
 		//透過値.
 		m_fUIAlpha[ui] = ALPHA_MAX;
 	}
+
+	//時間計算処理関数.
+	TitmeCalc();
 }
 
 //======================================.
@@ -164,4 +154,26 @@ void CClosedTime::MinutesCalc(int time)
 	m_vPatternNo[time].x = static_cast<float>(minutes / NUM_RANK_DELIMITER);
 	//一の位数値.
 	m_vPatternNo[time + 1].x = static_cast<float>(minutes % NUM_RANK_DELIMITER);
+}
+
+//========================================.
+//		時間計算処理関数.
+//========================================.
+void CClosedTime::TitmeCalc()
+{
+	//時間(h)計算フラグ.
+	bool HourCalcFlag = false;
+
+	for (unsigned int time = TIME_START_NUM; time < m_pCSpriteUI.size() - 1; time += 2) {
+		//時間(h)の数値計算処理.
+		if (HourCalcFlag == false) {
+			HourCalc(time);
+
+			HourCalcFlag = true;
+			continue;
+		}
+
+		//分(m)の数値計算処理関数.
+		MinutesCalc(time);
+	}
 }

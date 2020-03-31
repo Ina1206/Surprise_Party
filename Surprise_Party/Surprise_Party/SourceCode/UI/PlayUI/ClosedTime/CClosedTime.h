@@ -49,6 +49,7 @@ private:
 	void Release();							//‰ğ•úˆ—ŠÖ”.
 	void HourCalc(int time);				//ŠÔ(h)ŒvZˆ—ŠÖ”.
 	void MinutesCalc(int time);				//•ª(m)ŒvZˆ—ŠÖ”.
+	void TitmeCalc();						//ŠÔŒvZˆ—ŠÖ”.
 
 
 	//====================•Ï”=====================//.

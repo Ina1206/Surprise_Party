@@ -2,12 +2,12 @@
 #include <random>
 
 CMainStage::CMainStage()
-	: CMainStage	(0, enBeforeStageEndigneType::Nothing)
+	: CMainStage	(0, enStageType::Start ,enBeforeStageEndigneType::Nothing)
 {
 
 }
 
-CMainStage::CMainStage(int stageNum, enBeforeStageEndigneType enType)
+CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneType enType)
 	: m_pCStaticObjectManager	(nullptr)
 	, m_pCMoveObjectManager		(nullptr)
 	, m_pCWorkGhost				()
@@ -20,6 +20,8 @@ CMainStage::CMainStage(int stageNum, enBeforeStageEndigneType enType)
 	, m_pCClosedTime			(nullptr)
 	, m_pCSurpriseGage			()
 	, m_vLightPos				()
+	, m_enStageType				(enStage)
+	, m_bDescriptionFlag		(false)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -44,10 +46,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//静的オブジェクト更新処理関数.
 	m_pCStaticObjectManager->SetCameraPos(m_Camera.vPos);
 	m_pCStaticObjectManager->Updata();
-
-
-	//人の更新処理関数.
-	m_pCPeopleManager->Update();
 
 	//お化け.
 	std::vector<D3DXVECTOR3> m_vGhostPos(m_pCWorkGhost.size());							//お化け座標.
@@ -126,11 +124,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		}
 	}
 
-	//操作処理関数.
-	if (ControlFlag == true) {
-		Control();
-	}
-
 	//動的オブジェクトの更新処理関数.
 	m_pCMoveObjectManager->SetCameraPos(m_Camera.vPos);
 	m_pCMoveObjectManager->SetSelectionNum(m_SelectNum[GIMMICK_NUM]);
@@ -174,6 +167,24 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//驚きゲージ更新処理関数.
 	m_pCSurpriseGage->UpDate();
 
+	//チュートリアルまでの処理.
+	if (m_enStageType == enStageType::Tutorial && m_bDescriptionFlag == true) {
+		if (GetAsyncKeyState('Q') & 0x8000) {
+			//説明終了ゲームを動かすフラグ.
+			m_bDescriptionFlag = false;
+		}
+
+		return;
+	}
+
+	//人の更新処理関数.
+	m_pCPeopleManager->Update();
+
+	//操作処理関数.
+	if (ControlFlag == true) {
+		Control();
+	}
+
 	//閉店までの時間更新処理関数.
 	m_pCClosedTime->UpDate();
 	m_pCClosedTime->GiveBornusTime(m_pCSurpriseGage->GetBornusGetFlag());
@@ -184,6 +195,9 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	//終了処理.
 	if (m_pCClosedTime->GetClosedFlag() == true) {
+		if (m_enStageType == enStageType::Tutorial) {
+			m_TutorialFlag = TUTORIAL_FINISH;
+		}
 		m_bChangeStageFlag = true;
 	}
 }
@@ -362,7 +376,7 @@ void CMainStage::Init()
 	if (m_enBeforeStageEndingType == enBeforeStageEndigneType::Great) {
 		TimeUpMax += BENEFITS_PREVIOS_RESULT;
 	}
-	m_pCClosedTime.reset(new CClosedTime(TimeUpMax * TIME_DELIMITER));
+	m_pCClosedTime.reset(new CClosedTime(/*TimeUpMax * TIME_DELIMITER*/10));
 	//驚きゲージ.
 	//ステージごとに驚きゲージの最大数を増やす.
 	int SurpriseGageMax = START_SUPRISE_GAGE_MAX + (SURPRISE_GAGE_ADD * m_StageNum);
@@ -404,6 +418,10 @@ void CMainStage::Init()
 	D3DXMatrixRotationZ(&mRoll, 0.0f);
 	m_stLight.mRot = mYaw * mPich * mRoll;
 
+	if (m_enStageType == enStageType::Tutorial) {
+		m_TutorialFlag = TUTORIAL_START;
+		m_bDescriptionFlag = true;
+	}
 }
 
 //====================================.

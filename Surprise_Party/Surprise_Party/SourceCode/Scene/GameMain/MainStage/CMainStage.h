@@ -26,7 +26,7 @@ class CMainStage
 public:
 
 	CMainStage();
-	CMainStage(int stageNum, enBeforeStageEndigneType enType);
+	CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneType enType);
 	~CMainStage();
 
 	//====================定数=========================//.
@@ -82,6 +82,10 @@ private:
 	std::unique_ptr<CSurpriseGage>					m_pCSurpriseGage;			//驚きゲージクラス.
 	
 	std::vector<D3DXVECTOR3>						m_vLightPos;				//ライト座標.
+
+	enStageType										m_enStageType;				//ステージタイプ.
+	bool											m_bDescriptionFlag;			//説明フラグ.
+
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

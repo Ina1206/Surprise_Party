@@ -14,17 +14,6 @@ class CStageManager
 public:
 	CStageManager();
 	~CStageManager();
-	//===================列挙体========================//.
-	//ステージ種類.
-	enum class enStageType {
-		GhostSpeakStage,			//お化けと会話するステージ.
-		MainStage,					//メインステージ.
-
-		Tutorial,					//チュートリアル.
-		NormalStageMax = Tutorial,	//最大数.
-
-		Start = GhostSpeakStage,	//初め.
-	};
 
 	//=====================定数=========================//.
 	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.

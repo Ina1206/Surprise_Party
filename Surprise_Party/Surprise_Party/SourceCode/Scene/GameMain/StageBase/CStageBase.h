@@ -21,13 +21,23 @@ public:
 		Bad,		//悪い.
 		Nothing,	//なし.
 	};
+	//ステージ種類.
+	enum class enStageType {
+		GhostSpeakStage = 0,		//お化けと会話するステージ.
+		MainStage,					//メインステージ.
+
+		Tutorial,					//チュートリアル.
+		NormalStageMax = Tutorial,	//最大数.
+
+		Start = GhostSpeakStage,	//初め.
+	};
 
 	//=====================定数=========================//.
 	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.
 	const unsigned int	FINISH_NEXT_GAME	= (1 << 1);		//次がゲームでの終了.
 
-	const unsigned int TUTORIAL_START		= (1 << 0);
-	const unsigned int TUTORIAL_FINISH		= (1 << 1);
+	const unsigned int TUTORIAL_START		= (1 << 0);		//チュートリアル開始.
+	const unsigned int TUTORIAL_FINISH		= (1 << 1);		//チュートリアル終了
 
 
 	//=====================関数=========================//.

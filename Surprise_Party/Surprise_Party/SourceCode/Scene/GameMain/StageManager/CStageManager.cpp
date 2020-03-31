@@ -24,8 +24,8 @@ void CStageManager::Init()
 {
 	m_pCStageBase.resize(1);
 	//ステージ初期設定.
-	m_StageType = static_cast<int>(enStageType::MainStage);
-	m_pCStageBase[NORMAL_STAGE_NUM].reset(new CMainStage(m_StageNum, m_enBeforeEndingType));
+	m_StageType = static_cast<int>(CStageBase::enStageType::GhostSpeakStage);
+	m_pCStageBase[NORMAL_STAGE_NUM].reset(new CGhostSpeakStage(m_StageNum));
 
 	//ステージフェードインスタンス化.
 	m_pCStageFade.reset(new CStageFade());
@@ -62,14 +62,14 @@ void CStageManager::UpDate()
 
 	if (m_pCStageBase[STAGE_TYPE_NUM]->GetChangeStageFlag() == true ||
 		m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() != m_bOldTutorialFlag) {
-		//
-		if (m_StageType == static_cast<int>(enStageType::GhostSpeakStage)){
+		if (m_StageType == static_cast<int>(CStageBase::enStageType::GhostSpeakStage)){
 			if (m_bOldTutorialFlag == 0 || m_bOldTutorialFlag & m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_FINISH) {
+				//開店時のカーテンの動き.
 				m_pCStageFade->SetCurtainMoveFlag(m_pCStageFade->OPENING_FLAG | m_pCStageFade->CLOSE_CURTAIN_FLAG);
 				return;
 			}
 		}
-
+		//閉店時のカーテンの動き.
 		m_pCStageFade->SetCurtainMoveFlag(m_pCStageFade->CLOSE_FLAG | m_pCStageFade->CLOSE_CURTAIN_FLAG);
 	}
 
@@ -111,8 +111,8 @@ void CStageManager::ChangeStage()
 	const int STAGE_TYPE_NUM = m_pCStageBase.size() - 1;
 
 	if (m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() & m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_START) {
-		m_pCStageBase.emplace_back(new CTutorial());
-		m_StageType = static_cast<int>(enStageType::Tutorial);
+		m_pCStageBase.emplace_back(new CMainStage(0, CStageBase::enStageType::Tutorial, m_enBeforeEndingType));
+		m_StageType = static_cast<int>(CStageBase::enStageType::Tutorial);
 		m_bOldTutorialFlag = m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_START;
 		return;
 	}
@@ -121,20 +121,23 @@ void CStageManager::ChangeStage()
 		if (m_pCStageBase.size() >= 2) {
 			m_pCStageBase.pop_back();
 			m_bOldTutorialFlag = m_pCStageBase[0]->TUTORIAL_FINISH;
-			m_StageType = static_cast<int>(enStageType::GhostSpeakStage);
+			m_StageType = static_cast<int>(CStageBase::enStageType::GhostSpeakStage);
 			m_pCStageBase[0]->SetTutorialFlag(m_pCStageBase[0]->TUTORIAL_FINISH);
 			return;
 		}
 	}
+	if (m_StageType == static_cast<int>(CStageBase::enStageType::Tutorial)) {
+		return;
+	}
 
 	//ステージの種類変更.
-	switch (static_cast<enStageType>(m_StageType)) {
-	case enStageType::GhostSpeakStage:
+	switch (static_cast<CStageBase::enStageType>(m_StageType)) {
+	case CStageBase::enStageType::GhostSpeakStage:
 		//次のステージへ.
-		m_pCStageBase[STAGE_TYPE_NUM].reset(new CMainStage(m_StageNum, m_enBeforeEndingType));
+		m_pCStageBase[STAGE_TYPE_NUM].reset(new CMainStage(m_StageNum, CStageBase::enStageType::GhostSpeakStage , m_enBeforeEndingType));
 		m_bOldTutorialFlag = 0;
 		break;
-	case enStageType::MainStage:
+	case CStageBase::enStageType::MainStage:
 		m_enBeforeEndingType = m_pCStageBase[STAGE_TYPE_NUM]->GetBeforeStageEndingType();
 		m_pCStageBase[STAGE_TYPE_NUM].reset(new CGhostSpeakStage(m_StageNum));
 		m_StageNum++;
@@ -142,7 +145,7 @@ void CStageManager::ChangeStage()
 	}
 
 	m_StageType++;
-	if (m_StageType >= static_cast<int>(enStageType::NormalStageMax)) {
-		m_StageType = static_cast<int>(enStageType::Start);
+	if (m_StageType >= static_cast<int>(CStageBase::enStageType::NormalStageMax)) {
+		m_StageType = static_cast<int>(CStageBase::enStageType::Start);
 	}
 }
