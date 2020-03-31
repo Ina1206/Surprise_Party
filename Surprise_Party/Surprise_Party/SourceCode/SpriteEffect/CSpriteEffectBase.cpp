@@ -95,8 +95,12 @@ bool CSpriteEffectBase::ScalingTransparent(const int& num)
 		return false;
 	}
 
+	if (m_ChangeAddSub[num] > CHANGE_ADD_SUB) {
+		return false;
+	}
+
 	//ï\é¶èIóπ.
-	if (m_fAlpha[num] <= ALPHA_MIN) {
+	if (m_fAlpha[m_fAlpha.size() - 1] <= ALPHA_MIN) {
 		return true;
 	}
 	return false;

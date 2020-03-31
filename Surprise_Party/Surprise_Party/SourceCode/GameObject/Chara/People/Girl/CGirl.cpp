@@ -33,9 +33,13 @@ void CGirl::Update()
 	//一時停止処理関数.
 	SearchMotion();
 
+	if (m_AnimNo == static_cast<int>(enGirlAnimType::Rejoice)) {
+		m_pCSurpriseEffect->SetDispFlag(true);
+	}
 	//驚きエフェクト更新処理関数.
-	m_pCSkinMesh->GetPosFromBone("sayaka_rifa_head", &m_vEffectCenterPos);
 	m_pCSurpriseEffect->Update();
+	m_vEffectCenterPos = m_vPos;
+	m_vEffectCenterPos.y += 4.0f;
 }
 
 //========================================.
