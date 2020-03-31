@@ -38,8 +38,7 @@ void CGirl::Update()
 	}
 	//驚きエフェクト更新処理関数.
 	m_pCSurpriseEffect->Update();
-	m_vEffectCenterPos = m_vPos;
-	m_vEffectCenterPos.y += 4.0f;
+	m_vEffectCenterPos = m_vPos + EFFECT_POS_ADJUSTMENT;
 }
 
 //========================================.

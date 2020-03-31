@@ -66,18 +66,20 @@ void CSurpriseEffect::PlayStartInit(const int& num)
 //=============================================.
 void CSurpriseEffect::Init()
 {
-	m_pCSprite.resize(3);
+	//要素数設定.
+	m_pCSprite.resize(SPRITE_MAX);
 	m_fDistance.resize(m_pCSprite.size());
 	SettingElementsCount();
 
+	//初期値設定.
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		SettingDefaultValue(sprite);
 
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);
 	}
 
-	m_fScalingSpeed = 0.08f;
-	m_fAlphaSpeed = 0.08f;
+	m_fScalingSpeed = SCALE_SPEED;
+	m_fAlphaSpeed = ALPHA_SPEED;
 }
 
 //==============================================.
@@ -96,7 +98,7 @@ void CSurpriseEffect::AppeartJudgement(const int& num)
 	//初期位置.
 	m_vPos[num] = m_vCenterPos;
 	//角度.
-	m_vRot[num].y = 3.1f;
+	m_vRot[num].y = ROT_Y;
 
 	m_fDistance[num] = 0.0f;
 
@@ -111,11 +113,11 @@ void CSurpriseEffect::AppeartJudgement(const int& num)
 void CSurpriseEffect::Move(const int& num)
 {
 	//角度.
-	const float angle = 120.0f + (30.0f * (num % 3));
+	const float angle = BASE_ANGLE + (ANGLE_WIDTH * (num % SPRITE_MAX));
 	//ラジアン.
 	const float radian = angle / CIRCLE_HALF_ANGLE * PI;
 
-	m_fDistance[num] += 0.005f;
+	m_fDistance[num] += MOVE_SPEED;
 
 	m_vPos[num].x += (cos(radian) * m_fDistance[num]) ;
 	m_vPos[num].y += (sin(radian) * m_fDistance[num]) ;

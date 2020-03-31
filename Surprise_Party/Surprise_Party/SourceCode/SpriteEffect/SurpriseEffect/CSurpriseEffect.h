@@ -13,6 +13,15 @@ public:
 	CSurpriseEffect();
 	~CSurpriseEffect();
 
+	//======================定数===========================//.
+	const int	SPRITE_MAX	= 3;		//スプライト最大数.
+	const float SCALE_SPEED = 0.05f;	//大きさ速度.
+	const float ALPHA_SPEED = 0.05f;	//透過速度.
+	const float ROT_Y		= 3.1f;		//y軸の角度.
+	const float BASE_ANGLE	= 120.0f;	//基本の角度.
+	const float ANGLE_WIDTH = 30.0f;	//角度幅.
+	const float MOVE_SPEED	= 0.003f;	//移動速度.
+
 	//======================関数===========================//.
 	void Update();							//更新処理関数.
 	void PlayStartInit(const int& num);		//再生開始初期化処理関数.

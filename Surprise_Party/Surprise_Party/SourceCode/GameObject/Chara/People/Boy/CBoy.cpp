@@ -27,8 +27,7 @@ void CBoy::Update()
 	SurpriseAnimChange(static_cast<int>(enBoyAnim::Surprise));
 
 	//驚きエフェクト更新処理関数.
-	m_pCSkinMesh->GetPosFromBone("towa_rig_atama1", &m_vEffectCenterPos);
-	m_vEffectCenterPos.y += 0.5f;
+	m_vEffectCenterPos = m_vPos + EFFECT_POS_ADJUSTMENT;
 	m_pCSurpriseEffect->Update();
 
 }

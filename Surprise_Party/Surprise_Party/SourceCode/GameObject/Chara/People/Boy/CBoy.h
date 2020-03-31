@@ -3,6 +3,9 @@
 
 #include "..\CPeopleBase.h"
 
+/************************************
+*	男の子クラス.
+**********/
 class CBoy
 	: public CPeopleBase
 {
@@ -16,6 +19,7 @@ public:
 		Stand,		//立つ.
 		Surprise,	//驚く.
 	};
+
 
 	//=================関数===================//.
 	void Update();		//更新処理関数.

@@ -21,6 +21,7 @@ public:
 	const float			SCALE				= 0.1f;								//人の大きさ.
 	const int			DECREMENT_POINT		= 1;								//ポイント減少.
 	const float			ADD_ANIM_SPEED		= 0.005f;							//追加アニメーション速度.
+	const D3DXVECTOR3 EFFECT_POS_ADJUSTMENT = D3DXVECTOR3(0.0f, 4.0f, -0.5f);	//エフェクト座標調整.
 
 	//================列挙体=====================//.
 	//人の種類.
