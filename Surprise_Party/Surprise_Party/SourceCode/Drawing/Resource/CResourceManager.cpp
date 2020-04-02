@@ -204,6 +204,7 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
 		"Data\\Texture\\UI\\Game\\GhostCursor.png",				//お化けカーソル.
+		"Data\\Texture\\UI\\Game\\balloon.png",					//吹き出し.
 	};
 }
 
@@ -479,6 +480,15 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[GhostCursor].Stride.h = m_pstSpriteUIState[GhostCursor].Base.h / 2.0f;
 	m_pstSpriteUIState[GhostCursor].Disp.w =100.0f;
 	m_pstSpriteUIState[GhostCursor].Disp.h =100.0f;
+
+	//吹き出し.
+	int BalloonNum = static_cast<int>(enSpriteUI::Balloon);
+	m_pstSpriteUIState[BalloonNum].Base.w = 1755.0f;
+	m_pstSpriteUIState[BalloonNum].Base.h = 1754.0f;
+	m_pstSpriteUIState[BalloonNum].Stride.w = m_pstSpriteUIState[BalloonNum].Base.w / 2.0f;
+	m_pstSpriteUIState[BalloonNum].Stride.h = m_pstSpriteUIState[BalloonNum].Base.h / 2.0f;
+	m_pstSpriteUIState[BalloonNum].Disp.w = 500.0f;
+	m_pstSpriteUIState[BalloonNum].Disp.h = 500.0f;
 
 	//全てのスプライトの1コマ当たりのサイズ.
 	for (int spriteui = 0; spriteui < static_cast<int>(enSpriteUI::SingleSpriteMax); spriteui++) {

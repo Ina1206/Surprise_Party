@@ -77,6 +77,7 @@ enum class enSpriteUI
 	Time,							//時間.
 	TreeBord,						//木の板.
 	GhostCursor,					//お化けカーソル.
+	Balloon,						//吹き出し.
 
 	Max,							//最大数.
 	Start,							//開始.

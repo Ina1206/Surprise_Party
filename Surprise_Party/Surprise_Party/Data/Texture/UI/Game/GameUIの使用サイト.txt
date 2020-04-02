@@ -38,6 +38,7 @@ bubble.png
 illust Mansion	URL:https://illustmansion.com/
 eight_part_note.png
 six_teen_note.png
+balloon.png
 
 NUREYON		URL:https://nureyon.com/
 Swet.png
