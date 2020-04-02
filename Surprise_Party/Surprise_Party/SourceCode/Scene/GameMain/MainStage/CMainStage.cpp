@@ -21,7 +21,8 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCSurpriseGage			()
 	, m_vLightPos				()
 	, m_enStageType				(enStage)
-	, m_ExplainFlag(false)
+	, m_ExplainFlag				(0)
+	, m_bDispTextFlag			(true)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -171,7 +172,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			//説明終了ゲームを動かすフラグ.
-			m_ExplainFlag &= ~EXPLAINING_FLAG;
+			m_ExplainFlag = 0;
 		}
 
 		return;
@@ -182,7 +183,9 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	//操作処理関数.
 	if (ControlFlag == true) {
-		Control();
+		if ( !(m_ExplainFlag & EXPLAINED_MAP_FLAG)) {
+			Control();
+		}
 	}
 
 	//閉店までの時間更新処理関数.
@@ -301,6 +304,13 @@ void CMainStage::Render()
 
 	//驚きゲージ描画処理関数.
 	m_pCSurpriseGage->Render();
+
+	//テキスト表示.
+	if (m_bDispTextFlag == false) {
+		return;
+	}
+
+
 }
 
 //===================================.

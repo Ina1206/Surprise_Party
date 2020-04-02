@@ -92,7 +92,8 @@ private:
 	std::vector<D3DXVECTOR3>						m_vLightPos;				//ライト座標.
 
 	enStageType										m_enStageType;				//ステージタイプ.
-	unsigned int									m_ExplainFlag;			//説明フラグ.
+	unsigned int									m_ExplainFlag;				//説明フラグ.
+	bool											m_bDispTextFlag;			//テキスト表示フラグ.
 
 };
 
