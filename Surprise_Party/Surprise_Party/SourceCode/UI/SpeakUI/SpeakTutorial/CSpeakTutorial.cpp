@@ -26,6 +26,7 @@ void CSpeakTutorial::Update()
 			m_SpeakNum = 0;
 		}
 		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+		//チュートリアル探索処理関数.
 		SerchTutorial();
 	}
 }

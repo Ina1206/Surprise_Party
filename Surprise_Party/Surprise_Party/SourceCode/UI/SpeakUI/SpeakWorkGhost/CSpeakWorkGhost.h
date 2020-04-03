@@ -26,9 +26,10 @@ private:
 	void Release();		//解放処理関数.
 
 	//==================変数====================//.
-	CSpriteUI*		m_pCSpriteUI;	//スプライトUI.
-	D3DXVECTOR3		m_vPos;			//座標.
-	int				m_GhostTypeNum;	//お化けの種類番号.
+	CSpriteUI*					m_pCSpriteUI;	//スプライトUI.
+	D3DXVECTOR3					m_vPos;			//座標.
+	int							m_GhostTypeNum;	//お化けの種類番号.
+	std::vector<D3DXVECTOR2>	m_vPatternNum;	//パターン番号.	
 };
 
 #endif	//#ifndef CSPEAK_WORK_GHOST_H.

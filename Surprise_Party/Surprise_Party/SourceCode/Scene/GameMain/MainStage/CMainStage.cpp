@@ -574,13 +574,15 @@ void CMainStage::Control()
 //========================================.
 void CMainStage::GhostSelect()
 {
+	bool MoveSelectFlag = false;	//‚¨‰»‚¯‘I‘ðˆÚ“®ƒtƒ‰ƒO.
+
 	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
 		m_SelectNum[GHOST_NUM]++;
 
 		if (m_SelectNum[GHOST_NUM] >= static_cast<int>(m_pCWorkGhost.size())) {
 			m_SelectNum[GHOST_NUM] = m_pCWorkGhost.size() - 1;
 		}
-		return;
+		MoveSelectFlag = true;
 	}
 
 	if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
@@ -589,7 +591,12 @@ void CMainStage::GhostSelect()
 		if (m_SelectNum[GHOST_NUM] < 0) {
 			m_SelectNum[GHOST_NUM] = 0;
 		}
-		return;
+		MoveSelectFlag = true;
+	}
+
+	if (MoveSelectFlag == true) {
+		const int GHOST_TYPE_NUM = static_cast<int>(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSurpriseObjectType());
+		m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
 	}
 }
 
