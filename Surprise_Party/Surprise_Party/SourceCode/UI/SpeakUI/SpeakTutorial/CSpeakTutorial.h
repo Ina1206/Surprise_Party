@@ -25,7 +25,6 @@ private:
 	//==================変数=======================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;	//スプライトUI.
 	std::vector<D3DXVECTOR3>	m_vPos;			//座標.
-	std::vector<std::string>	m_stSpeak;		//会話文.
 
 };
 
