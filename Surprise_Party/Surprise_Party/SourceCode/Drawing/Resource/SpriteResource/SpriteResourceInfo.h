@@ -72,6 +72,7 @@ enum class enSpriteUI
 	Pause,							//ポーズ.
 	Continue,						//続ける.
 	NextTitle,						//終わる.
+	BigGhostIcon,					//ビッグゴーストアイコン.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
