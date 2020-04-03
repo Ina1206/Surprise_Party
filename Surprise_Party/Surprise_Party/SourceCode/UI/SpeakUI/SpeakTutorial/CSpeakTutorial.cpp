@@ -79,3 +79,11 @@ void CSpeakTutorial::Release()
 {
 
 }
+
+//========================================.
+//		チュートリアル検索処理関数.
+//========================================.
+void CSpeakTutorial::SerchTutorial()
+{
+	//switch()
+}
