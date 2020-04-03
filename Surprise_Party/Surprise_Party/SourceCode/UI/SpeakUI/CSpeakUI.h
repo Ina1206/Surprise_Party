@@ -19,6 +19,7 @@ protected:
 	//===================変数======================//.
 	CFontResource*				m_pCFontResource;	//フォント読み込みクラス.
 	std::vector<std::string>	m_stSpeakString;	//会話文章.
+	std::vector<std::string>	m_stSelectString;	//選択文章.
 	int							m_SpeakNum;			//会話番号.
 	float						m_fFontAlpha;		//文字透過値.
 	int							m_ChangingFontNum;	//変更中のフォント番号.

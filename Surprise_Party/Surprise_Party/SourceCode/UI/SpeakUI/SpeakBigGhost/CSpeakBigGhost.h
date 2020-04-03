@@ -67,7 +67,6 @@ private:
 	std::vector<float>			m_fSelectAlpha;		//透過値.
 	std::vector<float>			m_fSelectScale;		//大きさ.
 
-	std::vector<std::string>	m_stSelectString;	//選択文章.
 	std::vector<int>			m_EmotionNum;		//感情番号.
 	unsigned int				m_StringFlag;		//文章フラグ.
 	int							m_SelectNum;		//選択番号.

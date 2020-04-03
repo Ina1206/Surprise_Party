@@ -3,6 +3,7 @@
 CSpeakUI::CSpeakUI()
 	: m_pCFontResource	(nullptr)
 	, m_stSpeakString	()
+	, m_stSelectString	()
 	, m_SpeakNum		(0)
 	, m_fFontAlpha		(0.0f)
 	, m_ChangingFontNum	(0)
