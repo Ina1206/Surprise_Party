@@ -134,7 +134,8 @@ void CFileResource::SpeakLoad()
 {
 	//ファイルパス.
 	std::vector<std::string> m_FileName = {
-		"Data\\File\\Speak\\Test.csv"
+		"Data\\File\\Speak\\Test.csv",
+		"Data\\File\\Speak\\TutorialTest.csv",
 	};
 
 

@@ -40,6 +40,11 @@ public:
 		Max,			//最大値.
 		Start = Ghost,
 	};
+	//会話ファイル種類.
+	enum class enSpeakFileType {
+		GhostSpeakStage,
+		SpeakTutorialBigGhost,
+	};
 
 	//===================関数=======================//.
 	void Load();		//読み込み処理関数.
