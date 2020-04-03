@@ -180,18 +180,22 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_ExplainFlag = 0;
 		}
 
-		return;
+		if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->SELECT_GHOST_FLAG)) {
+			return;
+		}
+	}
+	//操作処理関数.
+	if (ControlFlag == true) {
+		Control();
+
+		if (m_ExplainFlag & EXPLAINING_FLAG) {
+			return;
+		}
 	}
 
 	//人の更新処理関数.
 	m_pCPeopleManager->Update();
 
-	//操作処理関数.
-	if (ControlFlag == true) {
-		if ( !(m_ExplainFlag & EXPLAINED_MAP_FLAG)) {
-			Control();
-		}
-	}
 
 	//閉店までの時間更新処理関数.
 	m_pCClosedTime->UpDate();
@@ -461,6 +465,11 @@ void CMainStage::Control()
 	//============================================.
 	//お化け選択処理関数.
 	if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
+		if (m_pCSpeakTutorial != nullptr) {
+			if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->SELECT_GHOST_FLAG)) {
+				return;
+			}
+		}
 		GhostSelect();
 	}
 

@@ -3,6 +3,7 @@
 CSpeakTutorial::CSpeakTutorial()
 	: m_pCSpriteUI	()
 	, m_vPos		()
+	, m_TutorialFlag(0)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -25,6 +26,7 @@ void CSpeakTutorial::Update()
 			m_SpeakNum = 0;
 		}
 		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+		SerchTutorial();
 	}
 }
 
