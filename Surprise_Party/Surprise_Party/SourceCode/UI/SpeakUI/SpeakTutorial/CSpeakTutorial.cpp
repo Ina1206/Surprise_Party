@@ -27,12 +27,12 @@ void CSpeakTutorial::Update()
 //=======================================.
 void CSpeakTutorial::Render()
 {
+	m_pCSpriteUI[1]->SetPattern(D3DXVECTOR2(1.0f, 1.0f));
 	for (int speak = 0; speak < 2; speak++) {
 		m_pCSpriteUI[speak]->SetPosition(m_vPos[speak]);
 		m_pCDepthStencil->SetDepth(false);
 		m_pCSpriteUI[speak]->Render();
 		m_pCDepthStencil->SetDepth(true);
-
 	}
 }
 
