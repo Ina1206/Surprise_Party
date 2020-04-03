@@ -23,6 +23,8 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_enStageType				(enStage)
 	, m_ExplainFlag				(0)
 	, m_bDispTextFlag			(true)
+	, m_pCSpeakTutorial			(nullptr)
+	, m_pCSpeakWorkGhost		(nullptr)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -323,6 +325,11 @@ void CMainStage::Render()
 	if (m_pCSpeakTutorial != nullptr) {
 		m_pCSpeakTutorial->Render();
 	}
+
+	//“­‚­‚¨‰»‚¯‰ï˜bƒNƒ‰ƒX.
+	if (m_pCSpeakWorkGhost != nullptr) {
+		m_pCSpeakWorkGhost->Render();
+	}
 }
 
 //===================================.
@@ -447,6 +454,7 @@ void CMainStage::Init()
 	m_TutorialFlag = TUTORIAL_START;
 	m_ExplainFlag = EXPLAINING_FLAG;
 	m_pCSpeakTutorial.reset(new CSpeakTutorial());
+	m_pCSpeakWorkGhost.reset(new CSpeakWorkGhost());
 }
 
 //====================================.

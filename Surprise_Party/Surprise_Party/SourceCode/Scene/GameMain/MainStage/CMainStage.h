@@ -17,6 +17,7 @@
 #include "..\..\..\UI\PlayUI\SurpriseGage\CSurpriseGage.h"
 
 #include "..\..\..\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.h"
+#include "..\..\..\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.h"
 
 /************************************
 *		メインステージクラス.
@@ -97,6 +98,7 @@ private:
 	bool											m_bDispTextFlag;			//テキスト表示フラグ.
 
 	std::unique_ptr<CSpeakTutorial>					m_pCSpeakTutorial;			//チュートリアル会話文.
+	std::unique_ptr<CSpeakWorkGhost>				m_pCSpeakWorkGhost;			//働くお化け会話クラス.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

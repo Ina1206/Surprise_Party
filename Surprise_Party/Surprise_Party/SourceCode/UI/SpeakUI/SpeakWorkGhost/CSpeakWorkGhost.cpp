@@ -4,6 +4,9 @@
 *		“­‚­‚¨‰»‚¯‰ï˜bƒNƒ‰ƒX.
 ************/
 CSpeakWorkGhost::CSpeakWorkGhost()
+	: m_pCSpriteUI	(nullptr)
+	, m_vPos		(0.0f, 0.0f, 0.0f)
+	, m_GhostTypeNum(0)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -28,7 +31,10 @@ void CSpeakWorkGhost::Update()
 //==================================.
 void CSpeakWorkGhost::Render()
 {
-
+	m_pCSpriteUI->SetPosition(m_vPos);
+	m_pCDepthStencil->SetDepth(false);
+	m_pCSpriteUI->Render();
+	m_pCDepthStencil->SetDepth(true);
 }
 
 //==================================.
@@ -36,7 +42,9 @@ void CSpeakWorkGhost::Render()
 //==================================.
 void CSpeakWorkGhost::Init()
 {
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon);
 
+	m_vPos = D3DXVECTOR3(650.0f, 200.0f, 0.0f);
 }
 
 //==================================.
@@ -44,5 +52,5 @@ void CSpeakWorkGhost::Init()
 //==================================.
 void CSpeakWorkGhost::Release()
 {
-
+	m_pCSpriteUI = nullptr;
 }
