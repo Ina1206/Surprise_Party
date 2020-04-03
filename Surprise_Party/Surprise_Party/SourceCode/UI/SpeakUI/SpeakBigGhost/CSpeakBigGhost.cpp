@@ -159,7 +159,6 @@ void CSpeakBigGhost::LoadSpeakString()
 		m_EmotionNum.push_back(atoi(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::EmotionNum).c_str()));
 	}
 
-	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
 	//“Ç‚İ‚İˆ—ŠÖ”.
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	//ˆÊ’uİ’èˆ—ŠÖ”
