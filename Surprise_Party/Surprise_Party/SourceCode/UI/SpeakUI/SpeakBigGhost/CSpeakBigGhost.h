@@ -2,7 +2,6 @@
 #define CSPEAK_BIG_GHOST_H
 
 #include "..\CSpeakUI.h"
-#include "..\..\FileLoad\FileResource\CFileResource.h"
 
 /**********************************************
 *		ビッグゴーストがしゃべるクラス.

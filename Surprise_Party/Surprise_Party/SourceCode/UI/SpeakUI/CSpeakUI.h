@@ -3,6 +3,7 @@
 
 #include "..\CUI.h"
 #include "..\..\Drawing\Resource\FontResource\CFontResource.h"
+#include "..\..\FileLoad\FileResource\CFileResource.h"
 
 class CSpeakUI
 	: public CUI
