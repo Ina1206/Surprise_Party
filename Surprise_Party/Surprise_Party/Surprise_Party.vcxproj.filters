@@ -275,6 +275,9 @@
     <Filter Include="SourceCode\SpriteEffect\SurpriseEffect">
       <UniqueIdentifier>{81ba9252-d97a-4244-a1b3-e357b064235a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SpeakUI\SpeakTutorial">
+      <UniqueIdentifier>{0fc1f443-1d05-4a39-a095-728b6f96de43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -556,6 +559,9 @@
     <ClInclude Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.h">
       <Filter>SourceCode\SpriteEffect\SurpriseEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.h">
+      <Filter>SourceCode\UI\SpeakUI\SpeakTutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -824,6 +830,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.cpp">
       <Filter>SourceCode\SpriteEffect\SurpriseEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.cpp">
+      <Filter>SourceCode\UI\SpeakUI\SpeakTutorial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
