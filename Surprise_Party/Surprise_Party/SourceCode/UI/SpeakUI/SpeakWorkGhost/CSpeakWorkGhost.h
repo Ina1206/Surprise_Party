@@ -22,6 +22,9 @@ private:
 	void Init();		//‰Šú‰»ˆ—ŠÖ”.
 	void Release();		//‰ğ•úˆ—ŠÖ”.
 
+	//==================•Ï”====================//.
+	std::vector<CSpriteUI*>		m_pCSpriteUI;
+	std::vector<D3DXVECTOR3>	m_vPos;
 };
 
 #endif	//#ifndef CSPEAK_WORK_GHOST_H.

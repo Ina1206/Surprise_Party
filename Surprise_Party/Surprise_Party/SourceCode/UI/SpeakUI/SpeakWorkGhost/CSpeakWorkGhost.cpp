@@ -1,5 +1,8 @@
 #include "CSpeakWorkGhost.h"
 
+/*************************************
+*		“­‚­‚¨‰»‚¯‰ï˜bƒNƒ‰ƒX.
+************/
 CSpeakWorkGhost::CSpeakWorkGhost()
 {
 	//‰Šú‰»ˆ—ŠÖ”.
