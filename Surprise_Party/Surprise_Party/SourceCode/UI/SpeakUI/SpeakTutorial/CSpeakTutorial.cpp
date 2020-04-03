@@ -21,7 +21,7 @@ void CSpeakTutorial::Update()
 {
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		m_SpeakNum++;
-		if (m_SpeakNum >= m_stSpeakString.size()) {
+		if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
 			m_SpeakNum = 0;
 		}
 		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
@@ -67,6 +67,7 @@ void CSpeakTutorial::Init()
 	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
 	for (int file = 0; file < m_pCFileResource->GetSringMax(1); file++) {
 		m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::MainString));
+		m_stSelectString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::SelectString));
 	}
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	m_vPos.push_back(D3DXVECTOR3(60.0f, 210.0f, 0.0f));
@@ -85,5 +86,17 @@ void CSpeakTutorial::Release()
 //========================================.
 void CSpeakTutorial::SerchTutorial()
 {
-	//switch()
+	if (m_stSelectString[m_SpeakNum] == "0") {
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "GhostSelect") {
+		m_TutorialFlag |= SELECT_GHOST_FLAG;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "GhostDecide") {
+		m_TutorialFlag |= DECIDE_GHOST_FLAG;
+		return;
+	}
 }
