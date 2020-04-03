@@ -203,6 +203,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		}
 		m_bChangeStageFlag = true;
 	}
+
+	//チュートリアル会話更新処理関数.
+	if (m_pCSpeakTutorial != nullptr) {
+		m_pCSpeakTutorial->Update();
+	}
 }
 
 //===================================.
@@ -310,7 +315,10 @@ void CMainStage::Render()
 		return;
 	}
 
-
+	//チュートリアル会話描画処理.
+	if (m_pCSpeakTutorial != nullptr) {
+		m_pCSpeakTutorial->Render();
+	}
 }
 
 //===================================.
@@ -428,10 +436,13 @@ void CMainStage::Init()
 	D3DXMatrixRotationZ(&mRoll, 0.0f);
 	m_stLight.mRot = mYaw * mPich * mRoll;
 
-	if (m_enStageType == enStageType::Tutorial) {
-		m_TutorialFlag = TUTORIAL_START;
-		m_ExplainFlag = EXPLAINING_FLAG;
+	//チュートリアルでの初期化処理.
+	if (m_enStageType != enStageType::Tutorial) {
+		return;
 	}
+	m_TutorialFlag = TUTORIAL_START;
+	m_ExplainFlag = EXPLAINING_FLAG;
+	m_pCSpeakTutorial.reset(new CSpeakTutorial());
 }
 
 //====================================.
@@ -455,6 +466,8 @@ void CMainStage::Control()
 
 	
 
+	//============================================.
+	//ギミック選択処理関数.
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
 		
 		//チュートリアル時お化けの説明していなければ終了.
@@ -463,8 +476,6 @@ void CMainStage::Control()
 			return;
 		}
 
-		//============================================.
-		//ギミック選択処理関数.
 		GimmickSelect();
 	}
 

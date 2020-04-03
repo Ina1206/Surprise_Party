@@ -16,6 +16,7 @@
 #include "..\..\..\UI\PlayUI\ClosedTime\CClosedTime.h"
 #include "..\..\..\UI\PlayUI\SurpriseGage\CSurpriseGage.h"
 
+#include "..\..\..\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.h"
 
 /************************************
 *		メインステージクラス.
@@ -95,6 +96,7 @@ private:
 	unsigned int									m_ExplainFlag;				//説明フラグ.
 	bool											m_bDispTextFlag;			//テキスト表示フラグ.
 
+	std::unique_ptr<CSpeakTutorial>					m_pCSpeakTutorial;			//チュートリアル会話文.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

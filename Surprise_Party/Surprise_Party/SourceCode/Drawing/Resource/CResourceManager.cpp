@@ -450,8 +450,8 @@ void CResourceManager::SpriteUIStateSetting()
 	int BigGhostIconNum = static_cast<int>(enSpriteUI::BigGhostIcon);
 	m_pstSpriteUIState[BigGhostIconNum].Base.w = 311.0f;
 	m_pstSpriteUIState[BigGhostIconNum].Base.h = 311.0f;
-	m_pstSpriteUIState[BigGhostIconNum].Disp.w = m_pstSpriteUIState[BigGhostIconNum].Base.w;
-	m_pstSpriteUIState[BigGhostIconNum].Disp.h = m_pstSpriteUIState[BigGhostIconNum].Base.h;
+	m_pstSpriteUIState[BigGhostIconNum].Disp.w = 150;
+	m_pstSpriteUIState[BigGhostIconNum].Disp.h = 150;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
@@ -495,8 +495,8 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[BalloonNum].Base.h = 1754.0f;
 	m_pstSpriteUIState[BalloonNum].Stride.w = m_pstSpriteUIState[BalloonNum].Base.w / 2.0f;
 	m_pstSpriteUIState[BalloonNum].Stride.h = m_pstSpriteUIState[BalloonNum].Base.h / 2.0f;
-	m_pstSpriteUIState[BalloonNum].Disp.w = 500.0f;
-	m_pstSpriteUIState[BalloonNum].Disp.h = 500.0f;
+	m_pstSpriteUIState[BalloonNum].Disp.w = 300.0f;
+	m_pstSpriteUIState[BalloonNum].Disp.h = 300.0f;
 
 	//全てのスプライトの1コマ当たりのサイズ.
 	for (int spriteui = 0; spriteui < static_cast<int>(enSpriteUI::SingleSpriteMax); spriteui++) {
