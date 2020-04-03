@@ -113,6 +113,7 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\CSpeakUI.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.h" />
+    <ClInclude Include="SourceCode\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Drawing\CCommon.cpp" />
@@ -205,6 +206,7 @@
     <ClCompile Include="SourceCode\UI\SpeakUI\CSpeakUI.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.cpp" />
+    <ClCompile Include="SourceCode\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Data\Shader\DebugText.hlsl">
