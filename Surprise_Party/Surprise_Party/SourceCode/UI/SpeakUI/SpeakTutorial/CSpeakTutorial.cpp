@@ -19,7 +19,13 @@ CSpeakTutorial::~CSpeakTutorial()
 //======================================.
 void CSpeakTutorial::Update()
 {
-
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+		m_SpeakNum++;
+		if (m_SpeakNum >= m_stSpeakString.size()) {
+			m_SpeakNum = 0;
+		}
+		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+	}
 }
 
 //=======================================.

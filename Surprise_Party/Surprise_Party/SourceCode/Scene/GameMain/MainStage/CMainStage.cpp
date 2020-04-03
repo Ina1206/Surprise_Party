@@ -170,6 +170,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	//チュートリアルまでの処理(ここでお化けとギミックの時は例外の処理を行わなければならない).
 	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
+
+		//チュートリアル会話更新処理関数.
+		if (m_pCSpeakTutorial != nullptr) {
+			m_pCSpeakTutorial->Update();
+		}
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			//説明終了ゲームを動かすフラグ.
 			m_ExplainFlag = 0;
@@ -202,11 +207,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_TutorialFlag = TUTORIAL_FINISH;
 		}
 		m_bChangeStageFlag = true;
-	}
-
-	//チュートリアル会話更新処理関数.
-	if (m_pCSpeakTutorial != nullptr) {
-		m_pCSpeakTutorial->Update();
 	}
 }
 
