@@ -25,7 +25,7 @@ CSurpriseGage::~CSurpriseGage()
 //======================================.
 //		XVˆ—ŠÖ”.
 //======================================.
-void CSurpriseGage::UpDate()
+void CSurpriseGage::Update()
 {
 	if (m_SurprisePoint >= m_SurprisePointMax) {
 		m_SurprisePoint = m_SurprisePointMax;

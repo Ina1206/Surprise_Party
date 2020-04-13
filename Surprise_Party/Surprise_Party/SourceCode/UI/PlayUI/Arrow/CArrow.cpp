@@ -18,7 +18,7 @@ CArrow::~CArrow()
 //=============================================.
 //		çXêVèàóùä÷êî.
 //=============================================.
-void CArrow::UpDate()
+void CArrow::Update()
 {
 
 }
@@ -28,7 +28,9 @@ void CArrow::UpDate()
 //=============================================.
 void CArrow::Init()
 {
-
+	for (int arrow = 0; arrow < 2; arrow++) {
+		m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Arrow));
+	}
 }
 
 //=============================================.

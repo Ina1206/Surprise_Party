@@ -31,7 +31,7 @@ public:
 	const D3DXVECTOR3	SHRINK_SPEED		= D3DXVECTOR3(0.05f, 0.05f, 0.0f);		//縮む速度.
 
 	//===================関数======================//.
-	void UpDate();						//更新処理関数.
+	void Update();						//更新処理関数.
 	void AddSurprisePoint(int Point);	//驚きポイント追加処理関数.
 
 	//=============情報取得処理関数================//.

@@ -168,7 +168,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 
 	//驚きゲージ更新処理関数.
-	m_pCSurpriseGage->UpDate();
+	m_pCSurpriseGage->Update();
 
 	//チュートリアルまでの処理(ここでお化けとギミックの時は例外の処理を行わなければならない).
 	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
@@ -200,7 +200,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 
 	//閉店までの時間更新処理関数.
-	m_pCClosedTime->UpDate();
+	m_pCClosedTime->Update();
 	m_pCClosedTime->GiveBornusTime(m_pCSurpriseGage->GetBornusGetFlag());
 
 	if (m_pCSurpriseGage->GetSurprisePointMax() == true) {

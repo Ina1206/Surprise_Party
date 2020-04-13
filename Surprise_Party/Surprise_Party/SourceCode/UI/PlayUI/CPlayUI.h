@@ -22,7 +22,7 @@ public:
 	const D3DXVECTOR2	INIT_PATTARN_NO = D3DXVECTOR2(0.0f, 0.0f);			//基本パターン番号.
 
 	//=====================関数========================//.
-	virtual void UpDate() = 0;	//更新処理関数.
+	virtual void Update() = 0;	//更新処理関数.
 	
 	void Render();				//描画処理関数.
 

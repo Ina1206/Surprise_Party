@@ -25,7 +25,7 @@ CClosedTime::~CClosedTime()
 //=====================================.
 //		XVˆ—ŠÖ”.
 //=====================================.
-void CClosedTime::UpDate()
+void CClosedTime::Update()
 {
 	//ŠÔŒvZˆ—ŠÖ”.
 	TitmeCalc();

@@ -36,7 +36,7 @@ public:
 	const float			TIME_INTERVAL			= 50.0f;								//時間の間隔.
 	
 	//====================関数=====================//.
-	void UpDate();							//更新処理関数.
+	void Update();							//更新処理関数.
 	void GiveBornusTime(const bool& flag);	//追加時間与える処理関数.
 
 	//==============情報取得処理関数===============//.
