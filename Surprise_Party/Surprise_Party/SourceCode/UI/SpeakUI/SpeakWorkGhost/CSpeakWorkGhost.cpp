@@ -4,10 +4,11 @@
 *		働くお化け会話クラス.
 ************/
 CSpeakWorkGhost::CSpeakWorkGhost()
-	: m_pCSpriteUI	(nullptr)
-	, m_vPos		(0.0f, 0.0f, 0.0f)
-	, m_GhostTypeNum(0)
-	, m_vPatternNum	()
+	: m_pCBalloonSpriteUI	(nullptr)
+	, m_pCCommentSpriteUI	()
+	, m_vPos				(0.0f, 0.0f, 0.0f)
+	, m_GhostTypeNum		(0)
+	, m_vPatternNum			()
 {
 	//初期化処理関数.
 	Init();
@@ -32,11 +33,11 @@ void CSpeakWorkGhost::Update()
 //==================================.
 void CSpeakWorkGhost::Render()
 {
-	m_pCSpriteUI->SetPattern(m_vPatternNum[m_GhostTypeNum]);
-	m_pCSpriteUI->SetPosition(m_vPos);
-	m_pCDepthStencil->SetDepth(false);
-	m_pCSpriteUI->Render();
-	m_pCDepthStencil->SetDepth(true);
+	//吹き出し描画処理関数.
+	RenderBalloon();
+
+	//コメント描画処理関数.
+	RenderComment();
 }
 
 //==================================.
@@ -44,7 +45,10 @@ void CSpeakWorkGhost::Render()
 //==================================.
 void CSpeakWorkGhost::Init()
 {
-	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon);
+	m_pCBalloonSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon);
+	m_pCCommentSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::DispPaintGhostComment));
+	m_pCCommentSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::SwitchGhostComment));
+
 
 	m_vPos = D3DXVECTOR3(650.0f, 100.0f, 0.0f);
 
@@ -57,5 +61,32 @@ void CSpeakWorkGhost::Init()
 //==================================.
 void CSpeakWorkGhost::Release()
 {
-	m_pCSpriteUI = nullptr;
+	for (int comment = static_cast<int>(m_pCCommentSpriteUI.size()) - 1; comment >= 0; comment--) {
+		m_pCCommentSpriteUI[comment] = nullptr;
+	}
+	m_pCBalloonSpriteUI = nullptr;
+}
+
+//==================================.
+//		吹き出し描画処理関数.
+//==================================.
+void CSpeakWorkGhost::RenderBalloon()
+{
+	m_pCBalloonSpriteUI->SetPattern(m_vPatternNum[m_GhostTypeNum]);
+	m_pCBalloonSpriteUI->SetPosition(m_vPos);
+	m_pCDepthStencil->SetDepth(false);
+	m_pCBalloonSpriteUI->Render();
+	m_pCDepthStencil->SetDepth(true);
+}
+
+//==================================.
+//		コメント描画処理関数.
+//==================================.
+void CSpeakWorkGhost::RenderComment()
+{
+	const D3DXVECTOR3 m_vCommentPos = m_vPos + D3DXVECTOR3(10.0f, 100.0f, 0.0f);
+	m_pCCommentSpriteUI[m_GhostTypeNum]->SetPosition(m_vCommentPos);
+	m_pCDepthStencil->SetDepth(false);
+	m_pCCommentSpriteUI[m_GhostTypeNum]->Render();
+	m_pCDepthStencil->SetDepth(true);
 }
