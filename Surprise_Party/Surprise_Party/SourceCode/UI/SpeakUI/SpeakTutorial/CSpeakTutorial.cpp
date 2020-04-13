@@ -22,8 +22,10 @@ CSpeakTutorial::~CSpeakTutorial()
 void CSpeakTutorial::Update()
 {
 	if (m_bAdvanceCommentFlag == true) {
-		//コメント進める処理関数.
-		AdvanceComment();
+		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+			//コメント一回進める処理.
+			AdvanceOnceComment();
+		}
 	}
 }
 
@@ -55,6 +57,20 @@ void CSpeakTutorial::Render()
 }
 
 //========================================.
+//		一回コメントを進める処理関数.
+//========================================.
+void CSpeakTutorial::AdvanceOnceComment()
+{
+	m_SpeakNum++;
+	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
+		m_SpeakNum = 0;
+	}
+	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+	//チュートリアル探索処理関数.
+	SerchTutorial();
+}
+
+//========================================.
 //		初期化処理関数.
 //========================================.
 void CSpeakTutorial::Init()
@@ -81,22 +97,6 @@ void CSpeakTutorial::Init()
 void CSpeakTutorial::Release()
 {
 
-}
-
-//========================================.
-//		コメント進める処理関数.
-//========================================.
-void CSpeakTutorial::AdvanceComment()
-{
-	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-		m_SpeakNum++;
-		if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
-			m_SpeakNum = 0;
-		}
-		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
-		//チュートリアル探索処理関数.
-		SerchTutorial();
-	}
 }
 
 //========================================.
