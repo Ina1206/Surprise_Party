@@ -506,8 +506,10 @@ void CMainStage::Control()
 			if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetMoveFlag() & 
 				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SURPRISE_FLAG) {
 
-				if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->DECIDE_GHOST_FLAG)) {
-					return;
+				if (m_pCSpeakTutorial != nullptr) {
+					if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->DECIDE_GHOST_FLAG)) {
+						return;
+					}
 				}
 
 				//お化け選択後行動.
@@ -601,9 +603,15 @@ void CMainStage::GhostSelect()
 
 	if (MoveSelectFlag == true) {
 		const int GHOST_TYPE_NUM = static_cast<int>(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSurpriseObjectType());
-		m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
-		//選択移動カウント追加処理関数.
-		m_pCSpeakTutorial->AddSelectMoveCount();
+		
+		if (m_pCSpeakWorkGhost != nullptr) {
+			m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
+		}
+
+		if (m_pCSpeakTutorial != nullptr) {
+			//選択移動カウント追加処理関数.
+			m_pCSpeakTutorial->AddSelectMoveCount();
+		}
 	}
 }
 

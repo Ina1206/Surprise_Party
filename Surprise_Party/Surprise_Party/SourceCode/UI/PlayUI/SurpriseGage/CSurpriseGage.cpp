@@ -60,17 +60,10 @@ void CSurpriseGage::Init()
 {
 	//ƒTƒCƒY.
 	m_pCSpriteUI.resize(UI_MAX);
-	m_vUIPos.resize(m_pCSpriteUI.size());
-	m_vUIScale.resize(m_pCSpriteUI.size());
-	m_vPatternNo.resize(m_pCSpriteUI.size());
-	m_fUIAlpha.resize(m_pCSpriteUI.size());
+	//‰Šúİ’èˆ—ŠÖ”.
+	SettingInit();
 
 	//‰Šú‰»ˆ—.
-	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
-		m_vUIScale[ui]		= SCALE_MAX;
-		m_vPatternNo[ui]	= INIT_PATTARN_NO;
-		m_fUIAlpha[ui]		= ALPHA_MAX;
-	}
 	m_vUIScale[STAMP_NUM]	= SCALE_MIN;
 
 	m_fUIAlpha[INFOM_NUM]	= ALPHA_MIN;

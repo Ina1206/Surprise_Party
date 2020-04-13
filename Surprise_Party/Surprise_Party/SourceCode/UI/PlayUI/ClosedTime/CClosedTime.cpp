@@ -71,10 +71,8 @@ void CClosedTime::Init()
 {
 	//サイズ.
 	m_pCSpriteUI.resize(TIME_UI_MAX);
-	m_vPatternNo.resize(m_pCSpriteUI.size());
-	m_vUIPos.resize(m_pCSpriteUI.size());
-	m_vUIScale.resize(m_pCSpriteUI.size());
-	m_fUIAlpha.resize(m_pCSpriteUI.size());
+	//初期設定処理関数.
+	SettingInit();
 
 	//アドレス取得.
 	//時間.
@@ -104,16 +102,8 @@ void CClosedTime::Init()
 		//時間の座標設定.
 		m_vUIPos[time] = TIME_POS;
 		m_vUIPos[time].x += TIME_INTERVAL * (time - TIME_START_NUM);
-		//パターン初期化.
-		m_vPatternNo[time] = INIT_PATTARN_NO;
 	}
 
-	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
-		//大きさ.
-		m_vUIScale[ui] = SCALE_MAX;
-		//透過値.
-		m_fUIAlpha[ui] = ALPHA_MAX;
-	}
 
 	//時間計算処理関数.
 	TitmeCalc();

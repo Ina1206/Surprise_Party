@@ -16,6 +16,26 @@ CPlayUI::~CPlayUI()
 }
 
 //==========================================.
+//		èâä˙ê›íËèàóùä÷êî.
+//==========================================.
+void CPlayUI::SettingInit()
+{
+	_ASSERT_EXPR(m_pCSpriteUI.size() != 0, L"m_pCSpriteUI.size() == 0");
+
+	m_vUIPos.resize(m_pCSpriteUI.size());
+	m_vUIScale.resize(m_pCSpriteUI.size());
+	m_vPatternNo.resize(m_pCSpriteUI.size());
+	m_fUIAlpha.resize(m_pCSpriteUI.size());
+
+	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
+		m_vUIPos[ui]		= INIT_POS;
+		m_vUIScale[ui]		= SCALE_MAX;
+		m_vPatternNo[ui]	= INIT_PATTARN_NO;
+		m_fUIAlpha[ui]		= ALPHA_MAX;
+	}
+}
+
+//==========================================.
 //		ï`âÊèàóùä÷êî.
 //==========================================.
 void CPlayUI::Render()
