@@ -49,8 +49,8 @@ void CSpeakWorkGhost::Init()
 	m_pCCommentSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::SwitchGhostComment));
 
 
-	m_vPatternNum.push_back(D3DXVECTOR2(0.0f, 0.0f));
-	m_vPatternNum.push_back(D3DXVECTOR2(1.0f, 0.0f));
+	m_vPatternNum.push_back(DISP_GHOST_BALLOON);
+	m_vPatternNum.push_back(SWITCH_GHOST_BALLOON);
 }
 
 //==================================.

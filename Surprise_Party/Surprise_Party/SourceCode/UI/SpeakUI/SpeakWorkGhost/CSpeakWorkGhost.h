@@ -14,8 +14,11 @@ public:
 	~CSpeakWorkGhost();
 
 	//==================定数====================//.
-	const D3DXVECTOR3	BALLOON_POS	= D3DXVECTOR3(650.0f, 150.0f, 0.0f);	//吹き出し座標.
-	const D3DXVECTOR3	COMMENT_POS = D3DXVECTOR3(690.0f, 250.0f, 0.0f);	//コメント座標.
+	const D3DXVECTOR3	BALLOON_POS				= D3DXVECTOR3(650.0f, 150.0f, 0.0f);	//吹き出し座標.
+	const D3DXVECTOR3	COMMENT_POS				= D3DXVECTOR3(690.0f, 250.0f, 0.0f);	//コメント座標.
+	const D3DXVECTOR2	DISP_GHOST_BALLOON		= D3DXVECTOR2(0.0f, 0.0f);				//現れるお化け吹き出しのパターン.
+	const D3DXVECTOR2	SWITCH_GHOST_BALLOON	= D3DXVECTOR2(1.0f, 0.0f);				//スイッチお化け吹き出しパターン.
+
 
 	//==================関数====================//.
 	void Update();		//更新処理関数.
