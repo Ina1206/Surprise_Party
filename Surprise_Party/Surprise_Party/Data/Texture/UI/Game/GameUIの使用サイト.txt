@@ -50,3 +50,5 @@ TextBoxSmall.png
 illust image	URL:https://illustimage.com/
 flower.png
 
+矢印デザイン
+Arrow.png	URL:http://yajidesign.com/
