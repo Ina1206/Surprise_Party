@@ -21,6 +21,8 @@ extended_notification.png
 Z.png
 AnswerNo
 AnswerYes
+DispPaintGhostComment.png
+SwitchGhostComment.png
 
 古いシャッター（テクスチャー）のフリー素材 URL:https://www.pakutaso.com/20150254049post-5191.html
 Shutter.jpg
