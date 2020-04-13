@@ -37,6 +37,7 @@ void CSpeakTutorial::Update()
 void CSpeakTutorial::Render()
 {
 	for (int speak = 0; speak < 2; speak++) {
+		//‚«o‚µŽí—ÞÝ’è.
 		if (m_pCSpriteUI[speak] == m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon)) {
 			m_pCSpriteUI[speak]->SetPattern(D3DXVECTOR2(1.0f, 1.0f));
 		}
