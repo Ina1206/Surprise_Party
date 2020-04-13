@@ -5,6 +5,7 @@ CSpeakTutorial::CSpeakTutorial()
 	, m_vPos				()
 	, m_TutorialFlag		(0)
 	, m_bAdvanceCommentFlag	(true)
+	, m_SelectMoveCount		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -68,6 +69,26 @@ void CSpeakTutorial::AdvanceOnceComment()
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	//チュートリアル探索処理関数.
 	SerchTutorial();
+}
+
+//========================================.
+//		選択移動カウント追加処理関数.
+//========================================.
+void CSpeakTutorial::AddSelectMoveCount()
+{
+	//例外処理.
+	if (m_TutorialFlag & DECIDE_GHOST_FLAG) {
+		return;
+	}
+
+	m_SelectMoveCount++;
+
+	if (m_SelectMoveCount >= 2) {
+		//一回コメントを進める処理関数.
+		AdvanceOnceComment();
+
+		m_SelectMoveCount = 0;
+	}
 }
 
 //========================================.

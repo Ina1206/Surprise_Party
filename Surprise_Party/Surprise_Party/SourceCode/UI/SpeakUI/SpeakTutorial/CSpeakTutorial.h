@@ -23,6 +23,7 @@ public:
 	void Update();				//更新処理関数.
 	void Render();				//描画処理関数.
 	void AdvanceOnceComment();	//一回コメントを進める処理関数.
+	void AddSelectMoveCount();	//選択移動カウント追加処理関数.
 
 	//============情報取得処理関数=================//.
 	//チュートリアルフラグ.
@@ -33,6 +34,7 @@ public:
 	//============情報置換処理関数=================//.
 	//コメント進めるフラグ.
 	void SetAdvanceCommentFlag(const bool& bFlag) { m_bAdvanceCommentFlag = bFlag; }
+
 
 private:
 	//==================関数=======================//.
@@ -45,6 +47,7 @@ private:
 	std::vector<D3DXVECTOR3>	m_vPos;					//座標.
 	unsigned int				m_TutorialFlag;			//チュートリアルフラグ.
 	bool						m_bAdvanceCommentFlag;	//コメント進めるフラグ.
+	int							m_SelectMoveCount;		//選択移動カウント.
 };
 
 #endif	//#ifndef CSPEAK_TUTORIAL_H.

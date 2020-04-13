@@ -602,6 +602,8 @@ void CMainStage::GhostSelect()
 	if (MoveSelectFlag == true) {
 		const int GHOST_TYPE_NUM = static_cast<int>(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSurpriseObjectType());
 		m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
+		//選択移動カウント追加処理関数.
+		m_pCSpeakTutorial->AddSelectMoveCount();
 	}
 }
 
