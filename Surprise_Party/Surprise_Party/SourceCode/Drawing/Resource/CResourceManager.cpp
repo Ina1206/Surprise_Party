@@ -458,10 +458,10 @@ void CResourceManager::SpriteUIStateSetting()
 	//ÉRÉÅÉìÉg.
 	const int CommentNum = static_cast<int>(enSpriteUI::DispPaintGhostComment);
 	for (int comment = CommentNum; comment <= static_cast<int>(enSpriteUI::SwitchGhostComment); comment++) {
-		m_pstSpriteUIState[comment].Base.w = 625.0f;
-		m_pstSpriteUIState[comment].Base.h = 120.0f;
-		m_pstSpriteUIState[comment].Disp.w = 300.0f;
-		m_pstSpriteUIState[comment].Disp.h = 60.0f;
+		m_pstSpriteUIState[comment].Base.w = 460.0f;
+		m_pstSpriteUIState[comment].Base.h = 180.0f;
+		m_pstSpriteUIState[comment].Disp.w = 230.0f;
+		m_pstSpriteUIState[comment].Disp.h = 90.0f;
 	}
 
 	//Ç®âªÇØ.
