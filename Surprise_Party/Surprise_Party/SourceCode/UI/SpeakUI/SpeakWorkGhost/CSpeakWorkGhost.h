@@ -21,8 +21,8 @@ public:
 
 
 	//==================関数====================//.
-	void Update();		//更新処理関数.
-	void Render();		//描画処理関数.
+	void Update();			//更新処理関数.
+	void Render();			//描画処理関数.
 
 	//============情報置換処理関数==============//.
 	void SetGhostTypeNum(const int& num) { m_GhostTypeNum = num; }
