@@ -201,6 +201,8 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\ToGame.png",					//続ける.
 		"Data\\Texture\\UI\\Game\\ToTitle.png",					//終わる.
 		"Data\\Texture\\UI\\Game\\BigGhostIcon.png",			//ビッグゴーストアイコン.
+		"Data\\Texture\\UI\\Game\\DispPaintGhostComment.png",	//現れるお化けコメント.
+		"Data\\Texture\\UI\\Game\\SwitchGhostComment.png",		//スイッチお化けコメント.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
@@ -452,6 +454,15 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[BigGhostIconNum].Base.h = 311.0f;
 	m_pstSpriteUIState[BigGhostIconNum].Disp.w = 150;
 	m_pstSpriteUIState[BigGhostIconNum].Disp.h = 150;
+
+	//コメント.
+	const int CommentNum = static_cast<int>(enSpriteUI::DispPaintGhostComment);
+	for (int comment = CommentNum; comment <= static_cast<int>(enSpriteUI::SwitchGhostComment); comment++) {
+		m_pstSpriteUIState[comment].Base.w = 625.0f;
+		m_pstSpriteUIState[comment].Base.h = 120.0f;
+		m_pstSpriteUIState[comment].Disp.w = 300.0f;
+		m_pstSpriteUIState[comment].Disp.h = 60.0f;
+	}
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
