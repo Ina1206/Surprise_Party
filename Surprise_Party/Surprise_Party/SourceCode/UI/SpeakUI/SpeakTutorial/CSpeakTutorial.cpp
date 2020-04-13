@@ -1,9 +1,10 @@
 #include "CSpeakTutorial.h"
 
 CSpeakTutorial::CSpeakTutorial()
-	: m_pCSpriteUI	()
-	, m_vPos		()
-	, m_TutorialFlag(0)
+	: m_pCSpriteUI			()
+	, m_vPos				()
+	, m_TutorialFlag		(0)
+	, m_bAdvanceCommentFlag	(true)
 {
 	//初期化処理関数.
 	Init();
@@ -20,14 +21,9 @@ CSpeakTutorial::~CSpeakTutorial()
 //======================================.
 void CSpeakTutorial::Update()
 {
-	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-		m_SpeakNum++;
-		if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
-			m_SpeakNum = 0;
-		}
-		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
-		//チュートリアル探索処理関数.
-		SerchTutorial();
+	if (m_bAdvanceCommentFlag == true) {
+		//コメント進める処理関数.
+		AdvanceComment();
 	}
 }
 
@@ -88,6 +84,22 @@ void CSpeakTutorial::Release()
 }
 
 //========================================.
+//		コメント進める処理関数.
+//========================================.
+void CSpeakTutorial::AdvanceComment()
+{
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+		m_SpeakNum++;
+		if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
+			m_SpeakNum = 0;
+		}
+		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+		//チュートリアル探索処理関数.
+		SerchTutorial();
+	}
+}
+
+//========================================.
 //		チュートリアル検索処理関数.
 //========================================.
 void CSpeakTutorial::SerchTutorial()
@@ -98,6 +110,8 @@ void CSpeakTutorial::SerchTutorial()
 
 	if (m_stSelectString[m_SpeakNum] == "GhostSelect") {
 		m_TutorialFlag |= SELECT_GHOST_FLAG;
+		//コメント進めるの停止.
+		m_bAdvanceCommentFlag = false;
 		return;
 	}
 

@@ -505,6 +505,11 @@ void CMainStage::Control()
 			//お化けが驚かしているときのみ.
 			if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetMoveFlag() & 
 				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SURPRISE_FLAG) {
+
+				if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->DECIDE_GHOST_FLAG)) {
+					return;
+				}
+
 				//お化け選択後行動.
 				m_ObjectSelectFlag = GHOST_ACT_SELECT_FLAG;
 				//選択フラグ.
