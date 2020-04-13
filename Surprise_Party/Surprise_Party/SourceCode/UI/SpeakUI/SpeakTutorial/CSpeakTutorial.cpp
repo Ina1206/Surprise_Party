@@ -36,6 +36,7 @@ void CSpeakTutorial::Update()
 //=======================================.
 void CSpeakTutorial::Render()
 {
+	//吹き出しの描画.
 	for (int speak = 0; speak < 2; speak++) {
 		//吹き出し種類設定.
 		if (m_pCSpriteUI[speak] == m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon)) {
@@ -47,6 +48,7 @@ void CSpeakTutorial::Render()
 		m_pCDepthStencil->SetDepth(true);
 	}
 
+	//テキストの描画.
 	m_pCFontResource->SetFontScale(30.0f);
 	m_pCFontResource->SetWidthMax(150.0f);
 	m_pCFontResource->SetStartPos(m_vPos[2]);
