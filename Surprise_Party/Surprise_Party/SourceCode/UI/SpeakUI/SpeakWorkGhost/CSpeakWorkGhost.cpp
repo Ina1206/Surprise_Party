@@ -44,11 +44,12 @@ void CSpeakWorkGhost::Render()
 //==================================.
 void CSpeakWorkGhost::Init()
 {
+	//スプライトUI設定.
 	m_pCBalloonSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon);
 	m_pCCommentSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::DispPaintGhostComment));
 	m_pCCommentSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::SwitchGhostComment));
 
-
+	//パターン設定.
 	m_vPatternNum.push_back(DISP_GHOST_BALLOON);
 	m_vPatternNum.push_back(SWITCH_GHOST_BALLOON);
 }
