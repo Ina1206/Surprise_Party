@@ -107,6 +107,7 @@
     <ClInclude Include="SourceCode\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor\CMapGimmickCursor.h" />
     <ClInclude Include="SourceCode\UI\MapUI\CMapUI.h" />
     <ClInclude Include="SourceCode\UI\MapUI\StageMap\CStageMap.h" />
+    <ClInclude Include="SourceCode\UI\PlayUI\Arrow\CArrow.h" />
     <ClInclude Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.h" />
     <ClInclude Include="SourceCode\UI\PlayUI\CPlayUI.h" />
     <ClInclude Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="SourceCode\UI\MapUI\CMapUI.cpp" />
     <ClCompile Include="SourceCode\UI\CUI.cpp" />
     <ClCompile Include="SourceCode\UI\MapUI\StageMap\CStageMap.cpp" />
+    <ClCompile Include="SourceCode\UI\PlayUI\Arrow\CArrow.cpp" />
     <ClCompile Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.cpp" />
     <ClCompile Include="SourceCode\UI\PlayUI\CPlayUI.cpp" />
     <ClCompile Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.cpp" />

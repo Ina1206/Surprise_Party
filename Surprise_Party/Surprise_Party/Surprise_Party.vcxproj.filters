@@ -281,6 +281,9 @@
     <Filter Include="SourceCode\UI\SpeakUI\SpeakWorkGhost">
       <UniqueIdentifier>{0e08f52b-98c7-4aaf-ac1a-68511881aba7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\PlayUI\Arrow">
+      <UniqueIdentifier>{28473546-4e4b-4d5e-835c-e0f97af80c65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -568,6 +571,9 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.h">
       <Filter>SourceCode\UI\SpeakUI\SpeakWorkGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\PlayUI\Arrow\CArrow.h">
+      <Filter>SourceCode\UI\PlayUI\Arrow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -842,6 +848,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.cpp">
       <Filter>SourceCode\UI\SpeakUI\SpeakWorkGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\PlayUI\Arrow\CArrow.cpp">
+      <Filter>SourceCode\UI\PlayUI\Arrow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
