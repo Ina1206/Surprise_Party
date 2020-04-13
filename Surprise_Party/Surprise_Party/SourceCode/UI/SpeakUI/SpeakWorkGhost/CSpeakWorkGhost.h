@@ -13,6 +13,10 @@ public:
 	CSpeakWorkGhost();
 	~CSpeakWorkGhost();
 
+	//==================定数====================//.
+	const D3DXVECTOR3	BALLOON_POS	= D3DXVECTOR3(650.0f, 150.0f, 0.0f);	//吹き出し座標.
+	const D3DXVECTOR3	COMMENT_POS = D3DXVECTOR3(690.0f, 250.0f, 0.0f);	//コメント座標.
+
 	//==================関数====================//.
 	void Update();		//更新処理関数.
 	void Render();		//描画処理関数.
@@ -30,7 +34,6 @@ private:
 	//==================変数====================//.
 	CSpriteUI*					m_pCBalloonSpriteUI;	//スプライトUI.
 	std::vector<CSpriteUI*>		m_pCCommentSpriteUI;	//コメントスプライトUI.
-	D3DXVECTOR3					m_vPos;					//座標.
 	int							m_GhostTypeNum;			//お化けの種類番号.
 	std::vector<D3DXVECTOR2>	m_vPatternNum;			//パターン番号.	
 };

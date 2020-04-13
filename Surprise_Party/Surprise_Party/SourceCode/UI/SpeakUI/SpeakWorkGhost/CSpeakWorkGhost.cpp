@@ -6,7 +6,6 @@
 CSpeakWorkGhost::CSpeakWorkGhost()
 	: m_pCBalloonSpriteUI	(nullptr)
 	, m_pCCommentSpriteUI	()
-	, m_vPos				(0.0f, 0.0f, 0.0f)
 	, m_GhostTypeNum		(0)
 	, m_vPatternNum			()
 {
@@ -50,8 +49,6 @@ void CSpeakWorkGhost::Init()
 	m_pCCommentSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::SwitchGhostComment));
 
 
-	m_vPos = D3DXVECTOR3(650.0f, 100.0f, 0.0f);
-
 	m_vPatternNum.push_back(D3DXVECTOR2(0.0f, 0.0f));
 	m_vPatternNum.push_back(D3DXVECTOR2(1.0f, 0.0f));
 }
@@ -72,9 +69,8 @@ void CSpeakWorkGhost::Release()
 //==================================.
 void CSpeakWorkGhost::RenderBalloon()
 {
-	const D3DXVECTOR3 m_vBallonPos = m_vPos + D3DXVECTOR3(0.0f, 50.0f, 0.0f);
 	m_pCBalloonSpriteUI->SetPattern(m_vPatternNum[m_GhostTypeNum]);
-	m_pCBalloonSpriteUI->SetPosition(m_vBallonPos);
+	m_pCBalloonSpriteUI->SetPosition(BALLOON_POS);
 	m_pCDepthStencil->SetDepth(false);
 	m_pCBalloonSpriteUI->Render();
 	m_pCDepthStencil->SetDepth(true);
@@ -85,8 +81,7 @@ void CSpeakWorkGhost::RenderBalloon()
 //==================================.
 void CSpeakWorkGhost::RenderComment()
 {
-	const D3DXVECTOR3 m_vCommentPos = m_vPos + D3DXVECTOR3(40.0f, 150.0f, 0.0f);
-	m_pCCommentSpriteUI[m_GhostTypeNum]->SetPosition(m_vCommentPos);
+	m_pCCommentSpriteUI[m_GhostTypeNum]->SetPosition(COMMENT_POS);
 	m_pCDepthStencil->SetDepth(false);
 	m_pCCommentSpriteUI[m_GhostTypeNum]->Render();
 	m_pCDepthStencil->SetDepth(true);
