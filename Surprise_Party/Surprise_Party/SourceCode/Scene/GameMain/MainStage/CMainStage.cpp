@@ -78,6 +78,13 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		//お化け更新処理関数.
 		m_pCWorkGhost[ghost]->Update();
 
+		//チュートリアル時コメント一つ進める処理.
+		if (m_pCWorkGhost[ghost]->GetTutorialAddCommentFlag() == true) {
+			if (m_pCSpeakTutorial != nullptr) {
+				m_pCSpeakTutorial->AdvanceOnceComment();
+			}
+		}
+
 		//お化けの座標取得.
 		m_vGhostPos[ghost] = m_pCWorkGhost[ghost]->GetPos();
 		D3DXVECTOR3 vTargetPos;
@@ -556,7 +563,6 @@ void CMainStage::Control()
 					}
 					//コメント進める.
 					m_pCSpeakTutorial->AdvanceOnceComment();
-					m_pCSpeakTutorial->SetAdvanceCommentFlag(true);
 				}
 
 				//お化け選択後行動.

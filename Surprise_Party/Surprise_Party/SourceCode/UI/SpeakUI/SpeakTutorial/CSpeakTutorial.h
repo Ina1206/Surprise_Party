@@ -14,10 +14,11 @@ public:
 	~CSpeakTutorial();
 
 	//=================定数=======================//.
-	const unsigned int SELECT_GHOST_FLAG = (1 << 0);	//お化け選択フラグ.
-	const unsigned int DECIDE_GHOST_FLAG = (1 << 1);	//お化け決定フラグ.
-	const unsigned int SELECT_GIMMICK_FLAG = (1 << 2);	//ギミック選択フラグ.
-	const unsigned int DECIDE_GIMMICK_FLAG = (1 << 3);	//ギミック決定フラグ.
+	const unsigned int SELECT_GHOST_FLAG	= (1 << 0);	//お化け選択フラグ.
+	const unsigned int DECIDE_GHOST_FLAG	= (1 << 1);	//お化け決定フラグ.
+	const unsigned int DECIDE_ACT_FLAG		= (1 << 2);	//行動決定フラグ.
+	const unsigned int SELECT_GIMMICK_FLAG	= (1 << 3);	//ギミック選択フラグ.
+	const unsigned int DECIDE_GIMMICK_FLAG	= (1 << 4);	//ギミック決定フラグ.
 
 	//=================関数=======================//.
 	void Update();				//更新処理関数.
@@ -43,11 +44,11 @@ private:
 	void SerchTutorial();	//チュートリアル検索処理関数.
 
 	//==================変数=======================//.
-	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.
-	std::vector<D3DXVECTOR3>	m_vPos;					//座標.
-	unsigned int				m_TutorialFlag;			//チュートリアルフラグ.
-	bool						m_bAdvanceCommentFlag;	//コメント進めるフラグ.
-	int							m_SelectMoveCount;		//選択移動カウント.
+	std::vector<CSpriteUI*>		m_pCSpriteUI;				//スプライトUI.
+	std::vector<D3DXVECTOR3>	m_vPos;						//座標.
+	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
+	bool						m_bAdvanceCommentFlag;		//コメント進めるフラグ.
+	int							m_SelectMoveCount;			//選択移動カウント.
 };
 
 #endif	//#ifndef CSPEAK_TUTORIAL_H.

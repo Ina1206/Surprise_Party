@@ -126,6 +126,7 @@ void CSpeakTutorial::Release()
 void CSpeakTutorial::SerchTutorial()
 {
 	if (m_stSelectString[m_SpeakNum] == "0") {
+		m_bAdvanceCommentFlag = true;
 		return;
 	}
 
@@ -138,6 +139,13 @@ void CSpeakTutorial::SerchTutorial()
 
 	if (m_stSelectString[m_SpeakNum] == "GhostDecide") {
 		m_TutorialFlag |= DECIDE_GHOST_FLAG;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "ActDecide") {
+		m_TutorialFlag |= DECIDE_ACT_FLAG;
+		//ÉRÉÅÉìÉgêiÇﬂÇÈÇÃí‚é~.
+		m_bAdvanceCommentFlag = false;
 		return;
 	}
 }

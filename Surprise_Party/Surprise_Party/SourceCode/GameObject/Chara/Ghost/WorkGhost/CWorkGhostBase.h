@@ -139,6 +139,8 @@ public:
 	std::vector<int> GetNearHumanNum() { return m_NearHumanNum; }
 	//使っているギミック番号.
 	int GetUsingGimmickNum() { return m_UsingGimmickNum; }
+	//チュートリアル時のコメント一つ増やすフラグ.
+	bool GetTutorialAddCommentFlag() const { return m_bTutorialCommentAddFlag; }
 
 protected:
 	//===============関数=================//.
@@ -191,21 +193,22 @@ private:
 	void  Resurrection(float* pfVar, float fSpeed, float fMin);	//回復処理関数.
 
 	//===============変数===================//.
-	int									m_MoveDirection;		//移動方向.
-	float								m_fMoveAngle;			//移動角度.
-	std::vector<D3DXVECTOR3>			m_vGimmickPos;			//ギミック座標.
-	std::vector<D3DXVECTOR3>			m_vHumanPos;			//人の座標.
-	D3DXVECTOR3							m_vSurprisePos;			//驚く場所.
-	std::vector<CDX9Mesh*>				m_pCHitSphere;			//当たり判定用スフィア.
-	std::vector<int>					m_NearHumanNum;			//近くにいる人の番号.
-	bool								m_bHumanSurpriseFlag;	//人が驚くフラグ.
-	int									m_SurpriseHumanNum;		//驚いた人番号.
-	int									m_UseGimmickNum;		//使うギミック番号.
-	int									m_OldStrengthType;		//体力種類.
-	int									m_SurpriseRestTime;		//驚き休憩時間.
-	int									m_UsingGimmickNum;		//使っている番号.
+	int									m_MoveDirection;			//移動方向.
+	float								m_fMoveAngle;				//移動角度.
+	std::vector<D3DXVECTOR3>			m_vGimmickPos;				//ギミック座標.
+	std::vector<D3DXVECTOR3>			m_vHumanPos;				//人の座標.
+	D3DXVECTOR3							m_vSurprisePos;				//驚く場所.
+	std::vector<CDX9Mesh*>				m_pCHitSphere;				//当たり判定用スフィア.
+	std::vector<int>					m_NearHumanNum;				//近くにいる人の番号.
+	bool								m_bHumanSurpriseFlag;		//人が驚くフラグ.
+	int									m_SurpriseHumanNum;			//驚いた人番号.
+	int									m_UseGimmickNum;			//使うギミック番号.
+	int									m_OldStrengthType;			//体力種類.
+	int									m_SurpriseRestTime;			//驚き休憩時間.
+	int									m_UsingGimmickNum;			//使っている番号.
 
-	bool								m_bLimitationRest;		//限界休憩フラグ.
+	bool								m_bLimitationRest;			//限界休憩フラグ.
+	bool								m_bTutorialCommentAddFlag;	//チュートリアルコメント進めるフラグ.
 };
 
 #endif	//#ifndef CWORK_GHOST_BASE_H.

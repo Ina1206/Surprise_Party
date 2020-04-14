@@ -1,41 +1,42 @@
 #include "CWorkGhostBase.h"
 
 CWorkGhostBase::CWorkGhostBase()
-	: m_pCAct_Selection		(nullptr)
-	, m_MoveFlag			(SURPRISE_FLAG)
-	, m_bSelectFlag			(false)
-	, m_ActType				(0)
-	, m_fStageMaxDistance	(0.0f)
-	, m_pCGhostIcon			(nullptr)
-	, m_bGhostSelectIcon	(false)
-	, m_vObjectiveGimmickPos(0.0f, 0.0f, 0.0f)
-	, m_bChangeGimmickSelect(false)
-	, m_enSurpriseObjectType(enSurpriseObjectType::Disp)
-	, m_fStrength			(0.0f)
-	, m_fStrengthMax		(0.0f)
-	, m_fMoveSpeed			(0.0f)
-	, m_fMoveSpeedMax		(0.0f)
-	, m_fRecoverySpeed		(0.0f)
-	, m_SurpriseFlag		(0)
-	, m_fScaleMax			(0.0f)
-	, m_pCGhostStrengthIcon	(nullptr)
-	, m_UpDownObjectFlag	(0)
-	, m_vMovePos			(0.0f, 0.0f, 0.0f)
-	, m_vSurpriseBeforePos	(0.0f, 0.0f, 0.0f)
-	, m_vStrengthIconPos	(0.0f, 0.0f, 0.0f)
-	, m_fMoveFinishHight	(0.0f)
-	, m_bNowHumanSurprise	(false)
-	, m_MoveDirection		(0)
-	, m_fMoveAngle			(0.0f)
-	, m_vGimmickPos			()
-	, m_vHumanPos			()
-	, m_pCHitSphere			(2)
-	, m_NearHumanNum		()
-	, m_RestFlag			(REST_PREPARAT_FLAG)
-	, m_OldStrengthType		(0)
-	, m_SurpriseRestTime	(0)
-	, m_UseGimmickNum		(-1)
-	, m_bLimitationRest		(false)
+	: m_pCAct_Selection			(nullptr)
+	, m_MoveFlag				(SURPRISE_FLAG)
+	, m_bSelectFlag				(false)
+	, m_ActType					(0)
+	, m_fStageMaxDistance		(0.0f)
+	, m_pCGhostIcon				(nullptr)
+	, m_bGhostSelectIcon		(false)
+	, m_vObjectiveGimmickPos	(0.0f, 0.0f, 0.0f)
+	, m_bChangeGimmickSelect	(false)
+	, m_enSurpriseObjectType	(enSurpriseObjectType::Disp)
+	, m_fStrength				(0.0f)
+	, m_fStrengthMax			(0.0f)
+	, m_fMoveSpeed				(0.0f)
+	, m_fMoveSpeedMax			(0.0f)
+	, m_fRecoverySpeed			(0.0f)
+	, m_SurpriseFlag			(0)
+	, m_fScaleMax				(0.0f)
+	, m_pCGhostStrengthIcon		(nullptr)
+	, m_UpDownObjectFlag		(0)
+	, m_vMovePos				(0.0f, 0.0f, 0.0f)
+	, m_vSurpriseBeforePos		(0.0f, 0.0f, 0.0f)
+	, m_vStrengthIconPos		(0.0f, 0.0f, 0.0f)
+	, m_fMoveFinishHight		(0.0f)
+	, m_bNowHumanSurprise		(false)
+	, m_MoveDirection			(0)
+	, m_fMoveAngle				(0.0f)
+	, m_vGimmickPos				()
+	, m_vHumanPos				()
+	, m_pCHitSphere				(2)
+	, m_NearHumanNum			()
+	, m_RestFlag				(REST_PREPARAT_FLAG)
+	, m_OldStrengthType			(0)
+	, m_SurpriseRestTime		(0)
+	, m_UseGimmickNum			(-1)
+	, m_bLimitationRest			(false)
+	, m_bTutorialCommentAddFlag	(false)
 {
 	//読み込んだ球体アドレス取得.
 	for (unsigned int sphere = 0; sphere < m_pCHitSphere.size(); sphere++) {
@@ -81,6 +82,8 @@ void CWorkGhostBase::StrengthIconRender()
 //=========================================.
 void CWorkGhostBase::SelectUpdate()
 {
+	m_bTutorialCommentAddFlag = false;
+
 	//体力無いときに自動休憩処理.
 	if (m_fStrength <= 0.0f) {
 		if (m_MoveFlag & SURPRISE_FLAG) {
@@ -129,6 +132,9 @@ void CWorkGhostBase::SelectUpdate()
 				
 				//アイコンの表情戻す.
 				m_pCGhostIcon->SetSelectedFlag(false);
+
+				//チュートリアル時コメント一つ増やすフラグ.
+				m_bTutorialCommentAddFlag = true;
 
 				m_ActType = m_pCAct_Selection->GetGhostActFlag();
 				if (m_ActType & m_pCAct_Selection->MOVE_FLAG) {
