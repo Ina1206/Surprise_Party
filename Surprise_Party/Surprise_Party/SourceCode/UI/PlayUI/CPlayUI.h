@@ -17,6 +17,7 @@ public:
 	const D3DXVECTOR3	INIT_POS		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//初期位置.
 	const D3DXVECTOR3	SCALE_MAX		= D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//大きさ最大数.
 	const D3DXVECTOR3	SCALE_MIN		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//大きさ最小値.
+	const D3DXVECTOR3	INIT_ROT		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//初期角度.
 	const D3DXVECTOR2	INIT_PATTARN_NO = D3DXVECTOR2(0.0f, 0.0f);			//基本パターン番号.
 	const float			ALPHA_MAX		= 1.0f;								//透過値最大数.
 	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
@@ -33,6 +34,7 @@ protected:
 	std::vector<CSpriteUI*>		m_pCSpriteUI;	//スプライトUI.
 	std::vector<D3DXVECTOR3>	m_vUIPos;		//UI座標.
 	std::vector<D3DXVECTOR3>	m_vUIScale;		//UI大きさ.
+	std::vector<D3DXVECTOR3>	m_vUIRot;		//UI角度.
 	std::vector<D3DXVECTOR2>	m_vPatternNo;	//パターン番号.
 	std::vector<float>			m_fUIAlpha;		//透過値.
 

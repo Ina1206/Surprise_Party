@@ -31,6 +31,14 @@ void CArrow::Init()
 	for (int arrow = 0; arrow < 2; arrow++) {
 		m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Arrow));
 	}
+	//‰Šúİ’èŠÖ”.
+	SettingInit();
+
+	for (unsigned int arrow = 0; arrow < m_pCSpriteUI.size(); arrow++) {
+		m_vUIPos[arrow] = BASE_POS;
+		m_vUIPos[arrow].x += arrow * 100.0f;
+	}
+	m_vUIRot[LEFT_ARROW_NUM].x = 3.5f;
 }
 
 //=============================================.

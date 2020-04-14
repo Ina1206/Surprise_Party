@@ -469,8 +469,8 @@ void CResourceManager::SpriteUIStateSetting()
 	const int ArrowNum = static_cast<int>(enSpriteUI::Arrow);
 	m_pstSpriteUIState[ArrowNum].Base.w = 504.0f;
 	m_pstSpriteUIState[ArrowNum].Base.h = 273.0f;
-	m_pstSpriteUIState[ArrowNum].Disp.w = 504.0f;
-	m_pstSpriteUIState[ArrowNum].Disp.h = 273.0f;
+	m_pstSpriteUIState[ArrowNum].Disp.w = 100.8f;
+	m_pstSpriteUIState[ArrowNum].Disp.h = 54.6f;
 
 	//‚¨‰»‚¯.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);

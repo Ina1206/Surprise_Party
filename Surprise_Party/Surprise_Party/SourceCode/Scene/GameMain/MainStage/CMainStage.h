@@ -18,6 +18,7 @@
 
 #include "..\..\..\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.h"
 #include "..\..\..\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.h"
+#include "..\..\..\UI\PlayUI\Arrow\CArrow.h"
 
 /************************************
 *		メインステージクラス.
@@ -99,6 +100,7 @@ private:
 
 	std::unique_ptr<CSpeakTutorial>					m_pCSpeakTutorial;			//チュートリアル会話文.
 	std::unique_ptr<CSpeakWorkGhost>				m_pCSpeakWorkGhost;			//働くお化け会話クラス.
+	std::unique_ptr<CArrow>							m_pCArrow;					//矢印クラス.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

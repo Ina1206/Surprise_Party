@@ -25,6 +25,7 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_bDispTextFlag			(true)
 	, m_pCSpeakTutorial			(nullptr)
 	, m_pCSpeakWorkGhost		(nullptr)
+	, m_pCArrow					(nullptr)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -330,6 +331,14 @@ void CMainStage::Render()
 	if (m_pCSpeakWorkGhost != nullptr) {
 		m_pCSpeakWorkGhost->Render();
 	}
+
+	//矢印クラス.
+	if (m_pCArrow != nullptr) {
+		if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG ||
+			m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
+			m_pCArrow->Render();
+		}
+	}
 }
 
 //===================================.
@@ -455,6 +464,7 @@ void CMainStage::Init()
 	m_ExplainFlag = EXPLAINING_FLAG;
 	m_pCSpeakTutorial.reset(new CSpeakTutorial());
 	m_pCSpeakWorkGhost.reset(new CSpeakWorkGhost());
+	m_pCArrow.reset(new CArrow());
 }
 
 //====================================.
@@ -479,6 +489,10 @@ void CMainStage::Control()
 			}
 		}
 		GhostSelect();
+		//矢印更新処理関数.
+		if (m_pCArrow != nullptr) {
+			m_pCArrow->Update();
+		}
 	}
 
 	
@@ -494,6 +508,10 @@ void CMainStage::Control()
 		}
 
 		GimmickSelect();
+		//矢印更新処理関数.
+		if (m_pCArrow != nullptr) {
+			m_pCArrow->Update();
+		}
 	}
 
 	//============================================.
