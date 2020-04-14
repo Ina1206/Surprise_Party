@@ -13,6 +13,7 @@ CAct_Selection::CAct_Selection()
 	, m_SelectNum		(0)
 	, m_GhostActFlag	(0)
 	, m_bTutorialFlag	(false)
+	, m_bDecideFlag		(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -198,6 +199,13 @@ void CAct_Selection::Control()
 {
 	if (GetAsyncKeyState(VK_BACK) & 0x0001) {
 		m_MoveFlag = CLOSE_MOVE;
+	}
+
+	if (m_bTutorialFlag == true) {
+		//Œˆ’è—áŠO‚Ìˆ—.
+		if (m_bDecideFlag == false) {
+			return;
+		}
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {

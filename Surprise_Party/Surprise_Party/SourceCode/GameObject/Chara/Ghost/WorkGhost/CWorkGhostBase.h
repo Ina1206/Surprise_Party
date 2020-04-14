@@ -115,6 +115,8 @@ public:
 	void SetSelectStop() { m_MoveFlag |= SELECT_STOP_FLAG; }
 	//チュートリアルフラグ.
 	void SetTutorialFlag(const bool& Flag) { m_pCAct_Selection->SetTutorialFlag(Flag); }
+	//選択決定フラグ.
+	void SetDecideSelectFlag(const bool& Flag) { m_pCAct_Selection->SetDecideFlag(Flag); }
 
 	//=========情報獲得処理関数===========//.
 	//選択フラグ.

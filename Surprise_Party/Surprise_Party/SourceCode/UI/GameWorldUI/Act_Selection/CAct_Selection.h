@@ -50,7 +50,9 @@ public:
 	void SetSelectFlag(const bool& flag) { m_bSelectFlag = flag; }
 	//チュートリアルフラグ.
 	void SetTutorialFlag(const bool& flag) { m_bTutorialFlag = flag; }
-	
+	//決定フラグ.
+	void SetDecideFlag(const bool& flag) { m_bDecideFlag = flag; }
+
 	//==============情報取得処理関数=================//.
 	//選択フラグ.
 	bool GetSelectFlag() { return m_bSelectFlag; }
@@ -79,6 +81,7 @@ private:
 	int							m_SelectNum;	//選択番号.
 	int							m_GhostActFlag;	//お化け行動フラグ.
 	bool						m_bTutorialFlag;//チュートリアルフラグ.
+	bool						m_bDecideFlag;	//決定フラグ.
 };
 
 #endif //#ifndef CACT_SELECTION_H.

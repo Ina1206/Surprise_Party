@@ -55,6 +55,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	std::vector<D3DXVECTOR3> m_vGhostPos(m_pCWorkGhost.size());							//お化け座標.
 	std::vector<D3DXVECTOR3> m_vGimmickPos = m_pCMoveObjectManager->GetAllGimmickPos();	//ギミック座標.
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
+
 		//ステージ全体の距離取得.
 		m_pCWorkGhost[ghost]->SetStageDistanceMax(m_pCStaticObjectManager->GetStageDistanceMax());
 
@@ -64,6 +65,14 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		//チュートリアルフラグ.
 		if (m_enStageType == enStageType::Tutorial) {
 			m_pCWorkGhost[ghost]->SetTutorialFlag(true);
+		}
+
+		//選択決定フラグ設定.
+		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == false) {
+			m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
+		}
+		else {
+			m_pCWorkGhost[ghost]->SetDecideSelectFlag(false);
 		}
 
 		//お化け更新処理関数.
@@ -192,6 +201,14 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			return;
 		}
 	}
+
+	if (m_pCSpeakTutorial != nullptr) {
+		//コメント進めるときは下まで処理しない.
+		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
+			return;
+		}
+	}
+
 	//操作処理関数.
 	if (ControlFlag == true) {
 		Control();
@@ -537,6 +554,9 @@ void CMainStage::Control()
 					if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->DECIDE_GHOST_FLAG)) {
 						return;
 					}
+					//コメント進める.
+					m_pCSpeakTutorial->AdvanceOnceComment();
+					m_pCSpeakTutorial->SetAdvanceCommentFlag(true);
 				}
 
 				//お化け選択後行動.
@@ -592,15 +612,15 @@ void CMainStage::Control()
 	}
 
 
-#ifdef _DEBUG
-	if (GetAsyncKeyState(VK_UP) & 0x0001) {
-		m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
-	}
-
-	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
-		m_ObjectSelectFlag = GIMMICK_SELECTION_FLAG;
-	}
-#endif	//#ifdef _DEBUG.
+//#ifdef _DEBUG
+//	if (GetAsyncKeyState(VK_UP) & 0x0001) {
+//		m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
+//	}
+//
+//	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
+//		m_ObjectSelectFlag = GIMMICK_SELECTION_FLAG;
+//	}
+//#endif	//#ifdef _DEBUG.
 }
 
 //========================================.
