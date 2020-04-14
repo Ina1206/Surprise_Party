@@ -8,6 +8,7 @@ illustAC	URL:https://www.ac-illust.com/
 TreeBord.png
 GhostCursor.png
 ThankYouStamp.png
+Arrow.png	
 
 ロゴ作成	URL:http://lightbox.on.coocan.jp/html/fontImage.php
 ActMoveString.png
@@ -53,4 +54,4 @@ illust image	URL:https://illustimage.com/
 flower.png
 
 矢印デザイン
-Arrow.png	URL:http://yajidesign.com/
+

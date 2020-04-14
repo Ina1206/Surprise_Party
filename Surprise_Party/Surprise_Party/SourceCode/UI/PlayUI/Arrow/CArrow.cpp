@@ -38,7 +38,7 @@ void CArrow::Init()
 		m_vUIPos[arrow] = BASE_POS;
 		m_vUIPos[arrow].x += arrow * 100.0f;
 	}
-	m_vUIRot[LEFT_ARROW_NUM].x = 3.5f;
+	m_vUIRot[LEFT_ARROW_NUM].y = 1.35f;
 }
 
 //=============================================.
