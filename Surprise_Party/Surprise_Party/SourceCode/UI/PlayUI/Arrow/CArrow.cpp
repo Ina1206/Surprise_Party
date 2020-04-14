@@ -20,7 +20,10 @@ CArrow::~CArrow()
 //=============================================.
 void CArrow::Update()
 {
-
+	for (unsigned int arrow = 0; arrow < m_pCSpriteUI.size(); arrow++) {
+		m_vUIPos[arrow] = BASE_POS;
+		m_vUIPos[arrow].x += 100.0f * arrow;
+	}
 }
 
 //=============================================.
@@ -28,17 +31,17 @@ void CArrow::Update()
 //=============================================.
 void CArrow::Init()
 {
-	for (int arrow = 0; arrow < 2; arrow++) {
+	for (int arrow = 0; arrow < ARROW_MAX; arrow++) {
 		m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Arrow));
 	}
 	//‰Šúİ’èŠÖ”.
 	SettingInit();
 
-	for (unsigned int arrow = 0; arrow < m_pCSpriteUI.size(); arrow++) {
-		m_vUIPos[arrow] = BASE_POS;
-		m_vUIPos[arrow].x += arrow * 100.0f;
-	}
-	m_vUIRot[LEFT_ARROW_NUM].y = 1.35f;
+	//for (unsigned int arrow = 0; arrow < m_pCSpriteUI.size(); arrow++) {
+	//	m_vUIPos[arrow] = BASE_POS;
+	//	m_vUIPos[arrow].x += arrow * ARROW_WIDTH;
+	//}
+	m_vUIRot[LEFT_ARROW_NUM].y = LEFT_ARROW_ROT_Y;
 }
 
 //=============================================.

@@ -491,6 +491,7 @@ void CMainStage::Control()
 		GhostSelect();
 		//–îˆóXVˆ—ŠÖ”.
 		if (m_pCArrow != nullptr) {
+			m_pCArrow->SetCenterPos(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos());
 			m_pCArrow->Update();
 		}
 	}
