@@ -489,9 +489,12 @@ void CMainStage::Control()
 			}
 		}
 		GhostSelect();
-		//矢印更新処理関数.
+
 		if (m_pCArrow != nullptr) {
-			m_pCArrow->SetCenterPos(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos());
+			//動かす矢印フラグ.
+			const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
+			m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
+			//矢印更新処理関数.
 			m_pCArrow->Update();
 		}
 	}
