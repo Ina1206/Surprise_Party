@@ -12,6 +12,7 @@ CAct_Selection::CAct_Selection()
 	, m_MoveFlag		(0)
 	, m_SelectNum		(0)
 	, m_GhostActFlag	(0)
+	, m_bTutorialFlag	(false)
 {
 	//初期化処理関数.
 	Init();
@@ -219,6 +220,13 @@ void CAct_Selection::Control()
 
 		if (m_SelectNum == static_cast<int>(enGhostActType::Move)) {
 			m_GhostActFlag = MOVE_FLAG;
+			return;
+		}
+
+		//チュートリアル例外処理.
+		if (m_bTutorialFlag == true) {
+			m_MoveFlag = 0;
+			//ブッブーみたいなSE入れる.
 			return;
 		}
 

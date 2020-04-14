@@ -48,6 +48,8 @@ public:
 	//==============情報置換処理関数=================//.
 	//選択フラグ.
 	void SetSelectFlag(const bool& flag) { m_bSelectFlag = flag; }
+	//チュートリアルフラグ.
+	void SetTutorialFlag(const bool& flag) { m_bTutorialFlag = flag; }
 	
 	//==============情報取得処理関数=================//.
 	//選択フラグ.
@@ -76,6 +78,7 @@ private:
 	int							m_MoveFlag;		//移動フラグ.
 	int							m_SelectNum;	//選択番号.
 	int							m_GhostActFlag;	//お化け行動フラグ.
+	bool						m_bTutorialFlag;//チュートリアルフラグ.
 };
 
 #endif //#ifndef CACT_SELECTION_H.

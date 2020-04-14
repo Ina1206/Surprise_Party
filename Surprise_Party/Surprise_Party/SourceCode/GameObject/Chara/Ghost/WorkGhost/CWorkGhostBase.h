@@ -113,6 +113,8 @@ public:
 	void SetUsingGimmickNum(const int& GimmickNum) { m_UsingGimmickNum = GimmickNum; }
 	//選択中止設定.
 	void SetSelectStop() { m_MoveFlag |= SELECT_STOP_FLAG; }
+	//チュートリアルフラグ.
+	void SetTutorialFlag(const bool& Flag) { m_pCAct_Selection->SetTutorialFlag(Flag); }
 
 	//=========情報獲得処理関数===========//.
 	//選択フラグ.

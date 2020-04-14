@@ -61,6 +61,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		//ギミックと人の座標取得.
 		m_pCWorkGhost[ghost]->SetSurprisePosInfo(m_vGimmickPos, m_pCPeopleManager->GetHumanPos());
 
+		//チュートリアルフラグ.
+		if (m_enStageType == enStageType::Tutorial) {
+			m_pCWorkGhost[ghost]->SetTutorialFlag(true);
+		}
+
 		//お化け更新処理関数.
 		m_pCWorkGhost[ghost]->Update();
 
