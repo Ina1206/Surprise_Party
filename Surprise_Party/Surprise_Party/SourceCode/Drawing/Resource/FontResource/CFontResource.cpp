@@ -32,7 +32,7 @@ void CFontResource::Init(ID3D11Device* pDevice11, ID3D11DeviceContext* pContext1
 	//ttfファイル読み込み.
 	DESIGNVECTOR design;
 	AddFontResourceEx(
-		TEXT("Data\\Font\\APJapanesefontF.ttf"),
+		TEXT("Data\\Font\\SNsanafonmaru.ttf"),
 		FR_PRIVATE,
 		&design);
 
@@ -51,7 +51,7 @@ void CFontResource::Init(ID3D11Device* pDevice11, ID3D11DeviceContext* pContext1
 		CLIP_DEFAULT_PRECIS,
 		PROOF_QUALITY,
 		FIXED_PITCH | FF_MODERN,
-		_T("あんずもじ湛")
+		_T("さなフォン丸")
 	};
 
 	if (!(m_hFont = CreateFontIndirect(&lf))) {
