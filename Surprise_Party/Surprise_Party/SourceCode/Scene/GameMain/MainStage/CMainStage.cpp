@@ -220,6 +220,18 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	if (ControlFlag == true) {
 		Control();
 
+		//矢印
+		const unsigned int SELECT_ALL_FLAG = GHOST_SELECTION_FLAG | GIMMICK_SELECTION_FLAG;
+		if (m_ObjectSelectFlag & SELECT_ALL_FLAG) {
+			if (m_pCArrow != nullptr) {
+				//動かす矢印フラグ.
+				const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
+				m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
+				//矢印更新処理関数.
+				m_pCArrow->Update();
+			}
+		}
+
 		//説明中例外処理.
 		if (m_ExplainFlag & EXPLAINING_FLAG) {
 			return;
@@ -364,9 +376,12 @@ void CMainStage::Render()
 
 	//矢印クラス.
 	if (m_pCArrow != nullptr) {
-		if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG ||
-			m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
-			m_pCArrow->Render();
+		const unsigned int SELECT_ALL_FLAG = GHOST_SELECTION_FLAG | GIMMICK_SELECTION_FLAG;
+		if (m_ObjectSelectFlag & SELECT_ALL_FLAG) {
+			if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG ||
+				m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
+				m_pCArrow->Render();
+			}
 		}
 	}
 }

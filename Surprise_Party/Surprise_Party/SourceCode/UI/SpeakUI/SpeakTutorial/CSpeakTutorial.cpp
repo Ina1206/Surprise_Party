@@ -148,4 +148,13 @@ void CSpeakTutorial::SerchTutorial()
 		m_bAdvanceCommentFlag = false;
 		return;
 	}
+
+	if (m_stSelectString[m_SpeakNum] == "GimmickSelect") {
+		m_TutorialFlag |= SELECT_GIMMICK_FLAG;
+		m_bAdvanceCommentFlag = false;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "GimmickDecide") {
+
+	}
 }
