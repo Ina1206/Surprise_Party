@@ -29,6 +29,16 @@ CGhostSpeakStage::~CGhostSpeakStage()
 //=========================================.
 void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 {
+	if (GetAsyncKeyState('Q') & 0x8000) {
+		//const bool OldTutorialFlag = m_pCSpeakBigGhost->GetTutorialFlag();
+		if (m_TutorialFlag != TUTORIAL_FINISH) {
+			//if (OldTutorialFlag == true) {
+				m_TutorialFlag = TUTORIAL_START;
+			//}
+			return;
+		}
+	}
+
 	if (m_pCBigGhost->GetSleepFlag() == false) {
 		SettingEmotion();
 	}

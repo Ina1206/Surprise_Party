@@ -51,7 +51,7 @@ void CSpeakTutorial::Render()
 	m_pCFontResource->SetFontScale(30.0f);
 	m_pCFontResource->SetWidthMax(150.0f);
 	m_pCFontResource->SetStartPos(m_vPos[2]);
-	for (unsigned int font = 0; font < m_stSpeakString[1].size(); font++) {
+	for (unsigned int font = 0; font < m_stSpeakString[m_SpeakNum].length() / 2; font++) {
 		m_pCFontResource->SetAlpha(1.0f, font);
 	}
 	m_pCFontResource->String_Render();
