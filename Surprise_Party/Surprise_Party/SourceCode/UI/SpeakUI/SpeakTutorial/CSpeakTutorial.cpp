@@ -78,7 +78,12 @@ void CSpeakTutorial::AddSelectMoveCount()
 {
 	//例外処理.
 	if (m_TutorialFlag & DECIDE_GHOST_FLAG) {
-		return;
+		if (!(m_TutorialFlag & SELECT_GIMMICK_FLAG)) {
+			return;
+		}
+		if (m_TutorialFlag & DECIDE_GIMMICK_FLAG) {
+			return;
+		}
 	}
 
 	m_SelectMoveCount++;
@@ -155,6 +160,8 @@ void CSpeakTutorial::SerchTutorial()
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "GimmickDecide") {
-
+		m_TutorialFlag |= DECIDE_GIMMICK_FLAG;
+		//コメントをEnterで進めることが可能.
+		//m_bAdvanceCommentFlag = true;
 	}
 }

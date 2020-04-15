@@ -195,6 +195,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//チュートリアルまでの処理(ここでお化けとギミックの時は例外の処理を行わなければならない).
 	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
 
+		if (ControlFlag == false) {
+			return;
+
+		}
+
 		//チュートリアル会話更新処理関数.
 		if (m_pCSpeakTutorial != nullptr) {
 			m_pCSpeakTutorial->Update();
@@ -611,6 +616,11 @@ void CMainStage::Control()
 					//ギミックカーソル非表示フラグ設定.
 					m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
 
+					//チュートリアル時にコメントを進める処理.
+					if (m_pCSpeakTutorial != nullptr) {
+						m_pCSpeakTutorial->AdvanceOnceComment();
+					}
+
 					if (m_ExplainFlag & EXPLAINING_FLAG) {
 						//ギミック説明終了.
 						m_ExplainFlag |= EXPLAINED_GIMMICK_FLAG;
@@ -676,13 +686,14 @@ void CMainStage::GhostSelect()
 //========================================.
 void CMainStage::GimmickSelect()
 {
+	bool MoveSelectFlag = false;		//選択移動フラグ.
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
 		m_SelectNum[GIMMICK_NUM]++;
 		if (m_SelectNum[GIMMICK_NUM] >= m_pCMoveObjectManager->GetGimmickIconMax()) {
 			m_SelectNum[GIMMICK_NUM] = m_pCMoveObjectManager->GetGimmickIconMax() - 1;
 		}
-		return;
+		MoveSelectFlag = true;
 	}
 
 	if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
@@ -690,10 +701,15 @@ void CMainStage::GimmickSelect()
 		if (m_SelectNum[GIMMICK_NUM] < 0) {
 			m_SelectNum[GIMMICK_NUM] = 0;
 		}
-		return;
+		MoveSelectFlag = true;
 	}
 
-	
+	if (MoveSelectFlag == true) {
+		//選択移動カウント追加処理関数.
+		if (m_pCSpeakTutorial != nullptr) {
+			m_pCSpeakTutorial->AddSelectMoveCount();
+		}
+	}
 }
 
 //=======================================.
