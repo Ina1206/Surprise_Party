@@ -534,14 +534,6 @@ void CMainStage::Control()
 			}
 		}
 		GhostSelect();
-
-		//if (m_pCArrow != nullptr) {
-		//	//動かす矢印フラグ.
-		//	const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
-		//	m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
-		//	//矢印更新処理関数.
-		//	m_pCArrow->Update();
-		//}
 	}
 
 
@@ -556,13 +548,6 @@ void CMainStage::Control()
 		}
 
 		GimmickSelect();
-		//if (m_pCArrow != nullptr) {
-		//	//動かす矢印フラグ.
-		//	const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
-		//	m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
-		//	//矢印更新処理関数.
-		//	m_pCArrow->Update();
-		//}
 	}
 
 	//============================================.
