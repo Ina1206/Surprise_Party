@@ -161,7 +161,5 @@ void CSpeakTutorial::SerchTutorial()
 
 	if (m_stSelectString[m_SpeakNum] == "GimmickDecide") {
 		m_TutorialFlag |= DECIDE_GIMMICK_FLAG;
-		//コメントをEnterで進めることが可能.
-		//m_bAdvanceCommentFlag = true;
 	}
 }
