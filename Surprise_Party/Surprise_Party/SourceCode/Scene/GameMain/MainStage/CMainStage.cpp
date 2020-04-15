@@ -381,10 +381,17 @@ void CMainStage::Render()
 
 	//矢印クラス.
 	if (m_pCArrow != nullptr) {
-		const unsigned int SELECT_ALL_FLAG = GHOST_SELECTION_FLAG | GIMMICK_SELECTION_FLAG;
-		if (m_ObjectSelectFlag & SELECT_ALL_FLAG) {
-			if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG ||
-				m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
+		//会話文を進めるときは例外処理.
+		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
+			return;
+		}
+
+		//選択時のみ描画.
+		if (m_ObjectSelectFlag == GHOST_SELECTION_FLAG ||
+			m_ObjectSelectFlag == GIMMICK_SELECTION_FLAG) {
+			
+			const unsigned int SELECT_ALL_TUTORIAL_FLAG = m_pCSpeakTutorial->SELECT_GHOST_FLAG | m_pCSpeakTutorial->SELECT_GIMMICK_FLAG;
+			if (m_pCSpeakTutorial->GetTutorialFlag() & SELECT_ALL_TUTORIAL_FLAG) {
 				m_pCArrow->Render();
 			}
 		}
