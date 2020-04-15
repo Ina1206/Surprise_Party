@@ -284,6 +284,9 @@
     <Filter Include="SourceCode\UI\PlayUI\Arrow">
       <UniqueIdentifier>{28473546-4e4b-4d5e-835c-e0f97af80c65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\PlayUI\TutorialBlackScreen">
+      <UniqueIdentifier>{5eb6c148-77e9-44b1-9d70-3469a790c983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -574,6 +577,9 @@
     <ClInclude Include="SourceCode\UI\PlayUI\Arrow\CArrow.h">
       <Filter>SourceCode\UI\PlayUI\Arrow</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.h">
+      <Filter>SourceCode\UI\PlayUI\TutorialBlackScreen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -851,6 +857,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\PlayUI\Arrow\CArrow.cpp">
       <Filter>SourceCode\UI\PlayUI\Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.cpp">
+      <Filter>SourceCode\UI\PlayUI\TutorialBlackScreen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

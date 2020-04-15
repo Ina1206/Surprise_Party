@@ -1,5 +1,8 @@
 #include "CSpeakTutorial.h"
 
+/******************************************
+*		チュートリアル会話.
+***************/
 CSpeakTutorial::CSpeakTutorial()
 	: m_pCSpriteUI			()
 	, m_vPos				()

@@ -26,6 +26,7 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCSpeakTutorial			(nullptr)
 	, m_pCSpeakWorkGhost		(nullptr)
 	, m_pCArrow					(nullptr)
+	, m_pCTutorialBlackScreen	(nullptr)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -204,6 +205,12 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		if (m_pCSpeakTutorial != nullptr) {
 			m_pCSpeakTutorial->Update();
 		}
+
+		//チュートリアル黒画面更新処理関数.
+		if (m_pCTutorialBlackScreen != nullptr) {
+			m_pCTutorialBlackScreen->Update();
+		}
+
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			//説明終了ゲームを動かすフラグ.
 			m_ExplainFlag = 0;
@@ -396,6 +403,11 @@ void CMainStage::Render()
 			}
 		}
 	}
+
+	//チュートリアル黒画面.
+	if (m_pCTutorialBlackScreen != nullptr) {
+		m_pCTutorialBlackScreen->Render();
+	}
 }
 
 //===================================.
@@ -522,6 +534,7 @@ void CMainStage::Init()
 	m_pCSpeakTutorial.reset(new CSpeakTutorial());
 	m_pCSpeakWorkGhost.reset(new CSpeakWorkGhost());
 	m_pCArrow.reset(new CArrow());
+	m_pCTutorialBlackScreen.reset(new CTutorialBlackScreen());
 }
 
 //====================================.

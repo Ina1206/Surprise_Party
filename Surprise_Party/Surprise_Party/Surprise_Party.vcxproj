@@ -111,6 +111,7 @@
     <ClInclude Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.h" />
     <ClInclude Include="SourceCode\UI\PlayUI\CPlayUI.h" />
     <ClInclude Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.h" />
+    <ClInclude Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\CSpeakUI.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="SourceCode\UI\PlayUI\ClosedTime\CClosedTime.cpp" />
     <ClCompile Include="SourceCode\UI\PlayUI\CPlayUI.cpp" />
     <ClCompile Include="SourceCode\UI\PlayUI\SurpriseGage\CSurpriseGage.cpp" />
+    <ClCompile Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\CSpeakUI.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.cpp" />
