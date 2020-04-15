@@ -21,3 +21,9 @@
 もし「指示するお化け」や「移動」を押してしまったら,0
 「ＢａｃｋＳｐａｃｅ」を押すと,0
 １つ前の選択に戻るんだ,0
+地図の説明,MapDescription
+ギミック説明,
+お化けアイコン説明,
+人説明,
+驚かしゲージ説明,SurpriseGageDescription
+時間説明,CloseTimeDescription
