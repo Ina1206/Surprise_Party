@@ -68,7 +68,7 @@ void CSpeakTutorial::AdvanceOnceComment()
 	}
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	//チュートリアル探索処理関数.
-	SerchTutorial();
+	FindTutorial();
 }
 
 //========================================.
@@ -126,9 +126,9 @@ void CSpeakTutorial::Release()
 }
 
 //========================================.
-//		チュートリアル検索処理関数.
+//		チュートリアル見つける処理関数.
 //========================================.
-void CSpeakTutorial::SerchTutorial()
+void CSpeakTutorial::FindTutorial()
 {
 	if (m_stSelectString[m_SpeakNum] == "0") {
 		m_bAdvanceCommentFlag = true;
@@ -157,9 +157,51 @@ void CSpeakTutorial::SerchTutorial()
 	if (m_stSelectString[m_SpeakNum] == "GimmickSelect") {
 		m_TutorialFlag |= SELECT_GIMMICK_FLAG;
 		m_bAdvanceCommentFlag = false;
+		return;
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "GimmickDecide") {
 		m_TutorialFlag |= DECIDE_GIMMICK_FLAG;
+		return;
+	}
+
+	//説明内容検索処理関数.
+	FindDescription();
+
+}
+
+//========================================.
+//		説明内容見つける処理関数.
+//========================================.
+void CSpeakTutorial::FindDescription()
+{
+	if (m_stSelectString[m_SpeakNum] == "MapDescription") {
+		m_DescriptionFlag = MAP_DESCRIPTION_FLAG;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "GhostDescription") {
+		m_DescriptionFlag = GHOST_DESCRIPTION_FLAG;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "GimmickDescription") {
+		m_DescriptionFlag = GIMMICK_DESCRIPTION_FLAG;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "PeopleDescription") {
+		m_DescriptionFlag = PEOPLE_DESCRIPTION_FLAG;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "SurpriseGageDescription") {
+		m_DescriptionFlag = GAGE_DESCRIPTION_FLAG;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "CloseTimeDescription") {
+		m_DescriptionFlag = CLOSE_TIME_DESCRIPTION_FLAG;
+		return;
 	}
 }

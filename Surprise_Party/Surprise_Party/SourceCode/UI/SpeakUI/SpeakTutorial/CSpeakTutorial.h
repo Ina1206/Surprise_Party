@@ -14,11 +14,18 @@ public:
 	~CSpeakTutorial();
 
 	//=================定数=======================//.
-	const unsigned int SELECT_GHOST_FLAG	= (1 << 0);	//お化け選択フラグ.
-	const unsigned int DECIDE_GHOST_FLAG	= (1 << 1);	//お化け決定フラグ.
-	const unsigned int DECIDE_ACT_FLAG		= (1 << 2);	//行動決定フラグ.
-	const unsigned int SELECT_GIMMICK_FLAG	= (1 << 3);	//ギミック選択フラグ.
-	const unsigned int DECIDE_GIMMICK_FLAG	= (1 << 4);	//ギミック決定フラグ.
+	const unsigned int SELECT_GHOST_FLAG			= (1 << 0);	//お化け選択フラグ.
+	const unsigned int DECIDE_GHOST_FLAG			= (1 << 1);	//お化け決定フラグ.
+	const unsigned int DECIDE_ACT_FLAG				= (1 << 2);	//行動決定フラグ.
+	const unsigned int SELECT_GIMMICK_FLAG			= (1 << 3);	//ギミック選択フラグ.
+	const unsigned int DECIDE_GIMMICK_FLAG			= (1 << 4);	//ギミック決定フラグ.
+
+	const unsigned int MAP_DESCRIPTION_FLAG			= (1 << 0);	//地図の説明フラグ.
+	const unsigned int GHOST_DESCRIPTION_FLAG		= (1 << 1);	//お化けの説明フラグ.
+	const unsigned int GIMMICK_DESCRIPTION_FLAG		= (1 << 2);	//ギミックの説明フラグ.
+	const unsigned int PEOPLE_DESCRIPTION_FLAG		= (1 << 3);	//人々の説明フラグ.
+	const unsigned int GAGE_DESCRIPTION_FLAG		= (1 << 4);	//驚きゲージの説明フラグ.
+	const unsigned int CLOSE_TIME_DESCRIPTION_FLAG	= (1 << 5);	//閉鎖時間の説明フラグ.
 
 	//=================関数=======================//.
 	void Update();				//更新処理関数.
@@ -41,12 +48,14 @@ private:
 	//==================関数=======================//.
 	void Init();			//初期化処理関数.
 	void Release();			//解放処理関数.
-	void SerchTutorial();	//チュートリアル検索処理関数.
+	void FindTutorial();	//チュートリアル見つける処理関数.
+	void FindDescription();	//説明内容見つける処理関数.
 
 	//==================変数=======================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;				//スプライトUI.
 	std::vector<D3DXVECTOR3>	m_vPos;						//座標.
 	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
+	unsigned int				m_DescriptionFlag;			//説明フラグ.
 	bool						m_bAdvanceCommentFlag;		//コメント進めるフラグ.
 	int							m_SelectMoveCount;			//選択移動カウント.
 };
