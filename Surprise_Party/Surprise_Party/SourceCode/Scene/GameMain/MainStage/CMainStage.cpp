@@ -79,8 +79,8 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		m_pCWorkGhost[ghost]->Update();
 
 		//チュートリアル時コメント一つ進める処理.
-		if (m_pCWorkGhost[ghost]->GetTutorialAddCommentFlag() == true) {
-			if (m_pCSpeakTutorial != nullptr) {
+		if (m_pCSpeakTutorial != nullptr) {
+			if (m_pCWorkGhost[ghost]->GetTutorialAddCommentFlag() == true) {
 				m_pCSpeakTutorial->AdvanceOnceComment();
 			}
 		}
@@ -220,6 +220,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	if (ControlFlag == true) {
 		Control();
 
+		//説明中例外処理.
 		if (m_ExplainFlag & EXPLAINING_FLAG) {
 			return;
 		}
@@ -519,16 +520,15 @@ void CMainStage::Control()
 		}
 		GhostSelect();
 
-		if (m_pCArrow != nullptr) {
-			//動かす矢印フラグ.
-			const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
-			m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
-			//矢印更新処理関数.
-			m_pCArrow->Update();
-		}
+		//if (m_pCArrow != nullptr) {
+		//	//動かす矢印フラグ.
+		//	const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
+		//	m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
+		//	//矢印更新処理関数.
+		//	m_pCArrow->Update();
+		//}
 	}
 
-	
 
 	//============================================.
 	//ギミック選択処理関数.
@@ -541,10 +541,13 @@ void CMainStage::Control()
 		}
 
 		GimmickSelect();
-		//矢印更新処理関数.
-		if (m_pCArrow != nullptr) {
-			m_pCArrow->Update();
-		}
+		//if (m_pCArrow != nullptr) {
+		//	//動かす矢印フラグ.
+		//	const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
+		//	m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
+		//	//矢印更新処理関数.
+		//	m_pCArrow->Update();
+		//}
 	}
 
 	//============================================.
