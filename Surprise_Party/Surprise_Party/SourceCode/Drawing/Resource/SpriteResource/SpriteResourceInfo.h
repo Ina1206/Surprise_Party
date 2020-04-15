@@ -76,6 +76,7 @@ enum class enSpriteUI
 	DispPaintGhostComment,			//現れるお化けコメント.
 	SwitchGhostComment,				//スイッチお化けコメント.
 	Arrow,							//矢印.
+	DescriptionBlack,				//説明用黒画面.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
