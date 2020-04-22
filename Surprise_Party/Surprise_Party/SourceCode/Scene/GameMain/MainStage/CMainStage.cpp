@@ -407,19 +407,31 @@ void CMainStage::Render()
 	}
 	//–îˆóƒNƒ‰ƒX.
 	if (m_pCArrow != nullptr) {
-		//‰ï˜b•¶‚ği‚ß‚é‚Æ‚«‚Í—áŠOˆ—.
-		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
-			return;
-		}
+		//•`‰æƒtƒ‰ƒO.
+		bool ArrowRenderFlag = false;
 
-		//‘I‘ğ‚Ì‚İ•`‰æ.
+		//‘I‘ğ‚Ì•`‰æ.
 		if (m_ObjectSelectFlag == GHOST_SELECTION_FLAG ||
 			m_ObjectSelectFlag == GIMMICK_SELECTION_FLAG) {
+			//‰ï˜b•¶‚ği‚ß‚é‚Æ‚«‚Í—áŠOˆ—.
+			if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
+				return;
+			}
 			
 			const unsigned int SELECT_ALL_TUTORIAL_FLAG = m_pCSpeakTutorial->SELECT_GHOST_FLAG | m_pCSpeakTutorial->SELECT_GIMMICK_FLAG;
 			if (m_pCSpeakTutorial->GetTutorialFlag() & SELECT_ALL_TUTORIAL_FLAG) {
-				m_pCArrow->Render();
+				ArrowRenderFlag = true;
 			}
+		}
+
+		//ƒQ[ƒ€UIà–¾‚É•`‰æ.
+		const unsigned int NECESSARY_ARROW = m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG | m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG;
+		if (m_pCSpeakTutorial->GetDescriptionFlag() & NECESSARY_ARROW) {
+			ArrowRenderFlag = true;
+		}
+
+		if (ArrowRenderFlag == true) {
+			m_pCArrow->Render();
 		}
 	}
 }
