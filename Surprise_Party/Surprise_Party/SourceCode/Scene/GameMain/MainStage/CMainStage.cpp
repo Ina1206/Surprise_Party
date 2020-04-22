@@ -197,14 +197,27 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//チュートリアルまでの処理(ここでお化けとギミックの時は例外の処理を行わなければならない).
 	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
 
+		//フェード中は例外処理.
 		if (ControlFlag == false) {
 			return;
 
 		}
 
-		//チュートリアル会話更新処理関数.
 		if (m_pCSpeakTutorial != nullptr) {
+			//チュートリアル会話更新処理関数.
 			m_pCSpeakTutorial->Update();
+
+			//矢印の向き設定.
+			
+			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG) {
+				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_LEFT_FLAG);
+				m_pCArrow->SetCenterPos(m_pCSurpriseGage->GetUIPos());
+			}
+
+			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG) {
+				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_RIGHT_FLAG);
+				m_pCArrow->SetCenterPos(m_pCClosedTime->GetUIPos());
+			}
 		}
 
 		//チュートリアル黒画面更新処理関数.

@@ -26,6 +26,9 @@ public:
 	virtual void Update() = 0;	//XVˆ—ŠÖ”.
 	void Render();				//•`‰æˆ—ŠÖ”.
 
+	//===============î•ñæ“¾ˆ—ŠÖ”==================//.
+	D3DXVECTOR3 GetUIPos() const { return m_vUIPos[0]; }
+
 protected:
 	//=====================ŠÖ”========================//.
 	void SettingInit();			//‰Šúİ’èˆ—ŠÖ”.

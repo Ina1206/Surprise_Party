@@ -38,6 +38,8 @@ public:
 	unsigned int GetTutorialFlag() const { return m_TutorialFlag; }
 	//コメント進めるフラグ.
 	bool GetAdvanceCommentFlag() const { return m_bAdvanceCommentFlag; }
+	//説明フラグ.
+	unsigned int GetDescriptionFlag() const { return m_DescriptionFlag; }
 
 	//============情報置換処理関数=================//.
 	//コメント進めるフラグ.
