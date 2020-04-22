@@ -31,6 +31,9 @@ void CTutorialBlackScreen::Init()
 	m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::DescriptionBlack));
 	//‰Šúİ’èˆ—.
 	SettingInit();
+	const int SpriteNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
+	m_vUIPos[SpriteNum].y += 20.0f;
+	m_vUIScale[SpriteNum] = D3DXVECTOR3(1.1f, 1.1f, 1.1f);
 }
 
 //============================================.

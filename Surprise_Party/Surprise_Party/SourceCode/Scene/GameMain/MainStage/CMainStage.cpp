@@ -401,10 +401,10 @@ void CMainStage::Render()
 		m_pCSpeakWorkGhost->Render();
 	}
 
-	////チュートリアル黒画面.
-	//if (m_pCTutorialBlackScreen != nullptr) {
-	//	m_pCTutorialBlackScreen->Render();
-	//}
+	//チュートリアル黒画面.
+	if (m_pCTutorialBlackScreen != nullptr) {
+		m_pCTutorialBlackScreen->Render();
+	}
 
 	//チュートリアル会話描画処理.
 	if (m_pCSpeakTutorial != nullptr) {
