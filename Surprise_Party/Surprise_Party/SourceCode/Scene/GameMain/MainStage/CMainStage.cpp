@@ -208,15 +208,16 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_pCSpeakTutorial->Update();
 
 			//矢印の向き設定.
-			
 			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG) {
 				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_LEFT_FLAG);
 				m_pCArrow->SetCenterPos(m_pCSurpriseGage->GetUIPos());
+				m_pCArrow->Update();
 			}
 
 			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG) {
 				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_RIGHT_FLAG);
 				m_pCArrow->SetCenterPos(m_pCClosedTime->GetUIPos());
+				m_pCArrow->Update();
 			}
 		}
 
@@ -396,10 +397,10 @@ void CMainStage::Render()
 		m_pCSpeakWorkGhost->Render();
 	}
 
-	//チュートリアル黒画面.
-	if (m_pCTutorialBlackScreen != nullptr) {
-		m_pCTutorialBlackScreen->Render();
-	}
+	////チュートリアル黒画面.
+	//if (m_pCTutorialBlackScreen != nullptr) {
+	//	m_pCTutorialBlackScreen->Render();
+	//}
 
 	//チュートリアル会話描画処理.
 	if (m_pCSpeakTutorial != nullptr) {
@@ -410,24 +411,27 @@ void CMainStage::Render()
 		//描画フラグ.
 		bool ArrowRenderFlag = false;
 
+		//ゲームUI説明時に描画.
+		const unsigned int NECESSARY_ARROW = m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG | m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG;
+		if (m_pCSpeakTutorial->GetDescriptionFlag() & NECESSARY_ARROW) {
+			ArrowRenderFlag = true;
+		}
+
+		//会話文を進めるときは例外処理.
+		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
+			if (ArrowRenderFlag == false) {
+				return;
+			}
+		}
+
 		//選択時の描画.
 		if (m_ObjectSelectFlag == GHOST_SELECTION_FLAG ||
 			m_ObjectSelectFlag == GIMMICK_SELECTION_FLAG) {
-			//会話文を進めるときは例外処理.
-			if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
-				return;
-			}
 			
 			const unsigned int SELECT_ALL_TUTORIAL_FLAG = m_pCSpeakTutorial->SELECT_GHOST_FLAG | m_pCSpeakTutorial->SELECT_GIMMICK_FLAG;
 			if (m_pCSpeakTutorial->GetTutorialFlag() & SELECT_ALL_TUTORIAL_FLAG) {
 				ArrowRenderFlag = true;
 			}
-		}
-
-		//ゲームUI説明時に描画.
-		const unsigned int NECESSARY_ARROW = m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG | m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG;
-		if (m_pCSpeakTutorial->GetDescriptionFlag() & NECESSARY_ARROW) {
-			ArrowRenderFlag = true;
 		}
 
 		if (ArrowRenderFlag == true) {
