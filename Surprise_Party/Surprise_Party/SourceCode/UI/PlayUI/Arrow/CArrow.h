@@ -42,6 +42,7 @@ private:
 	void Init();			//‰Šú‰»ˆ—ŠÖ”.
 	void Release();			//‰ğ•úˆ—ŠÖ”.
 	void MoveArrow();		//–îˆóˆÚ“®ˆ—ŠÖ”.
+	void SettingPos();		//À•Wİ’èˆ—ŠÖ”.			
 
 	//===================•Ï”====================//.
 	D3DXVECTOR3		m_vCenterPos;		//’†SÀ•W.

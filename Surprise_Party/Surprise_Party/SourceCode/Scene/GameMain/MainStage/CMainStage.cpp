@@ -210,13 +210,17 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			//–îˆó‚ÌŒü‚«Ý’è.
 			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG) {
 				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_LEFT_FLAG);
-				m_pCArrow->SetCenterPos(m_pCSurpriseGage->GetUIPos());
+				const D3DXVECTOR3 vGagePos = m_pCSurpriseGage->GetUIPos();
+				const D3DXVECTOR3 vCenterPos = D3DXVECTOR3(vGagePos.x + 500.0f, vGagePos.y - 30.0f, vGagePos.z);
+				m_pCArrow->SetCenterPos(vCenterPos);
 				m_pCArrow->Update();
 			}
 
 			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG) {
 				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_RIGHT_FLAG);
-				m_pCArrow->SetCenterPos(m_pCClosedTime->GetUIPos());
+				const D3DXVECTOR3 vTimePos = m_pCClosedTime->GetUIPos();
+				const D3DXVECTOR3 vCenterPos = D3DXVECTOR3(vTimePos.x - 100.0f, vTimePos.y, vTimePos.z);
+				m_pCArrow->SetCenterPos(vCenterPos);
 				m_pCArrow->Update();
 			}
 		}

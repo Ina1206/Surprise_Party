@@ -25,14 +25,44 @@ CArrow::~CArrow()
 //=============================================.
 void CArrow::Update()
 {
-	
-	for (unsigned int arrow = 0; arrow < m_pCSpriteUI.size(); arrow++) {
-		m_vUIPos[arrow] = BASE_POS;
-		m_vUIPos[arrow].x += ARROW_WIDTH * arrow;
-	}
+	//À•WÝ’èˆ—ŠÖ”.
+	SettingPos();
 	
 	//–îˆóˆÚ“®ˆ—ŠÖ”.
 	MoveArrow();
+}
+
+//=============================================.
+//		À•WÝ’èˆ—ŠÖ”.
+//=============================================.
+void CArrow::SettingPos()
+{
+	const unsigned int BOTH_ARROW_FLAG = USING_LEFT_FLAG | USING_RIGHT_FLAG;
+	if (m_UsingArrowFlag == BOTH_ARROW_FLAG) {
+		for (unsigned int arrow = 0; arrow < m_pCSpriteUI.size(); arrow++) {
+			m_vUIPos[arrow] = BASE_POS;
+			m_vUIPos[arrow].x += ARROW_WIDTH * arrow;
+		}
+		return;
+	}
+	
+	//À•W‰Šú‰».
+	const SPRITE_STATE ArrowState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Arrow);
+	for (unsigned int arrow = 0; arrow < m_pCSpriteUI.size(); arrow++) {
+		m_vUIPos[arrow] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vUIPos[arrow].x -= ArrowState.Disp.w;
+	}
+
+	if (m_UsingArrowFlag & USING_LEFT_FLAG) {
+		m_vUIPos[LEFT_ARROW_NUM] = m_vCenterPos;
+		return;
+	}
+
+	if (m_UsingArrowFlag & USING_RIGHT_FLAG) {
+		m_vUIPos[RIGHT_ARROW_NUM] = m_vCenterPos;
+	}
+
+
 }
 
 //=============================================.
