@@ -1,5 +1,11 @@
 ここがお化け屋敷だよ,0
 お化けに指示しながらお客様を驚かして欲しいんだ！！,0
+地図の説明,MapDescription
+お化けアイコン説明,GhostDescription
+ギミック説明,GimmickDescription
+人説明,PeopleDescription
+驚かしゲージ説明,SurpriseGageDescription
+時間説明,CloseTimeDescription
 お化けの指示の仕方を説明するね,0
 まず、お化けを「←」「→」の矢印キーで選んでね,GhostSelect
 指示するお化けを決めて「Ｅｎｔｅｒ」を押して決定してね,GhostDecide
@@ -21,9 +27,3 @@
 もし「指示するお化け」や「移動」を押してしまったら,0
 「ＢａｃｋＳｐａｃｅ」を押すと,0
 １つ前の選択に戻るんだ,0
-地図の説明,MapDescription
-お化けアイコン説明,GhostDescription
-ギミック説明,GimmickDescription
-人説明,PeopleDescription
-驚かしゲージ説明,SurpriseGageDescription
-時間説明,CloseTimeDescription
