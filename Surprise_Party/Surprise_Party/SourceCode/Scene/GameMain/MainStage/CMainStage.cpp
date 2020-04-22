@@ -207,21 +207,25 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			//チュートリアル会話更新処理関数.
 			m_pCSpeakTutorial->Update();
 
-			//矢印の向き設定.
 			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG) {
+				//矢印の向き設定.
 				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_LEFT_FLAG);
 				const D3DXVECTOR3 vGagePos = m_pCSurpriseGage->GetUIPos();
 				const D3DXVECTOR3 vCenterPos = D3DXVECTOR3(vGagePos.x + 500.0f, vGagePos.y - 30.0f, vGagePos.z);
 				m_pCArrow->SetCenterPos(vCenterPos);
 				m_pCArrow->Update();
+				m_pCTutorialBlackScreen->SetCenterPos(vGagePos);
 			}
 
 			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG) {
+				//矢印の向き設定.
 				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_RIGHT_FLAG);
 				const D3DXVECTOR3 vTimePos = m_pCClosedTime->GetUIPos();
 				const D3DXVECTOR3 vCenterPos = D3DXVECTOR3(vTimePos.x - 100.0f, vTimePos.y, vTimePos.z);
 				m_pCArrow->SetCenterPos(vCenterPos);
 				m_pCArrow->Update();
+
+				m_pCTutorialBlackScreen->SetCenterPos(vTimePos);
 			}
 		}
 
