@@ -377,16 +377,21 @@ void CMainStage::Render()
 		return;
 	}
 
-	//チュートリアル会話描画処理.
-	if (m_pCSpeakTutorial != nullptr) {
-		m_pCSpeakTutorial->Render();
-	}
 
 	//働くお化け会話クラス.
 	if (m_pCSpeakWorkGhost != nullptr) {
 		m_pCSpeakWorkGhost->Render();
 	}
 
+	//チュートリアル黒画面.
+	if (m_pCTutorialBlackScreen != nullptr) {
+		m_pCTutorialBlackScreen->Render();
+	}
+
+	//チュートリアル会話描画処理.
+	if (m_pCSpeakTutorial != nullptr) {
+		m_pCSpeakTutorial->Render();
+	}
 	//矢印クラス.
 	if (m_pCArrow != nullptr) {
 		//会話文を進めるときは例外処理.
@@ -403,11 +408,6 @@ void CMainStage::Render()
 				m_pCArrow->Render();
 			}
 		}
-	}
-
-	//チュートリアル黒画面.
-	if (m_pCTutorialBlackScreen != nullptr) {
-		m_pCTutorialBlackScreen->Render();
 	}
 }
 
