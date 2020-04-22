@@ -63,18 +63,19 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		//ギミックと人の座標取得.
 		m_pCWorkGhost[ghost]->SetSurprisePosInfo(m_vGimmickPos, m_pCPeopleManager->GetHumanPos());
 
-		//チュートリアルフラグ.
 		if (m_enStageType == enStageType::Tutorial) {
+			//チュートリアルフラグ.
 			m_pCWorkGhost[ghost]->SetTutorialFlag(true);
+
+			//選択決定フラグ設定.
+			if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == false) {
+				m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
+			}
+			else {
+				m_pCWorkGhost[ghost]->SetDecideSelectFlag(false);
+			}
 		}
 
-		//選択決定フラグ設定.
-		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == false) {
-			m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
-		}
-		else {
-			m_pCWorkGhost[ghost]->SetDecideSelectFlag(false);
-		}
 
 		//お化け更新処理関数.
 		m_pCWorkGhost[ghost]->Update();
