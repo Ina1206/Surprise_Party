@@ -287,6 +287,9 @@
     <Filter Include="SourceCode\UI\PlayUI\TutorialBlackScreen">
       <UniqueIdentifier>{5eb6c148-77e9-44b1-9d70-3469a790c983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\PlayUI\DescriptionUIManager">
+      <UniqueIdentifier>{deaa8c65-7789-4d56-82f3-49361e8bbcff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -580,6 +583,9 @@
     <ClInclude Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.h">
       <Filter>SourceCode\UI\PlayUI\TutorialBlackScreen</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\PlayUI\DescriptionUIManager\CDescriptionUIManager.h">
+      <Filter>SourceCode\UI\PlayUI\DescriptionUIManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -860,6 +866,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.cpp">
       <Filter>SourceCode\UI\PlayUI\TutorialBlackScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\PlayUI\DescriptionUIManager\CDescriptionUIManager.cpp">
+      <Filter>SourceCode\UI\PlayUI\DescriptionUIManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

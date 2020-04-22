@@ -25,6 +25,8 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_bDispTextFlag			(true)
 	, m_pCSpeakTutorial			(nullptr)
 	, m_pCSpeakWorkGhost		(nullptr)
+	, m_pCDescriptionUIManager	(nullptr)
+
 	, m_pCArrow					(nullptr)
 	, m_pCTutorialBlackScreen	(nullptr)
 {
@@ -234,6 +236,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_pCTutorialBlackScreen->Update();
 		}
 
+		//説明UI管理クラス.
+		if (m_pCDescriptionUIManager != nullptr) {
+			m_pCDescriptionUIManager->Update();
+		}
+
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			//説明終了ゲームを動かすフラグ.
 			m_ExplainFlag = 0;
@@ -264,6 +271,8 @@ void CMainStage::UpDate(const bool& ControlFlag)
 				m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
 				//矢印更新処理関数.
 				m_pCArrow->Update();
+
+				
 			}
 		}
 
@@ -446,6 +455,11 @@ void CMainStage::Render()
 			m_pCArrow->Render();
 		}
 	}
+
+	//説明UI管理クラス.
+	if (m_pCDescriptionUIManager != nullptr) {
+		m_pCDescriptionUIManager->Render();
+	}
 }
 
 //===================================.
@@ -571,6 +585,8 @@ void CMainStage::Init()
 	m_ExplainFlag = EXPLAINING_FLAG;
 	m_pCSpeakTutorial.reset(new CSpeakTutorial());
 	m_pCSpeakWorkGhost.reset(new CSpeakWorkGhost());
+	m_pCDescriptionUIManager.reset(new CDescriptionUIManager());
+
 	m_pCArrow.reset(new CArrow());
 	m_pCTutorialBlackScreen.reset(new CTutorialBlackScreen());
 }
