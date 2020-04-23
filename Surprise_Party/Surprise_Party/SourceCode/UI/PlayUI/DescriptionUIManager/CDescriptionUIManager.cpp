@@ -46,8 +46,10 @@ void CDescriptionUIManager::Update()
 //==========================================.
 void CDescriptionUIManager::Render()
 {
-	//説明用黒画面.
-	m_pCTutorialBlackScreen->Render();
+	if (m_pCTutorialBlackScreen->GetDispFlag() == true) {
+		//説明用黒画面.
+		m_pCTutorialBlackScreen->Render();
+	}
 
 	//チュートリアル会話.
 	m_pCSpeakTutorial->Render();

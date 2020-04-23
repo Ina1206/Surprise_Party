@@ -14,7 +14,13 @@ public:
 	~CTutorialBlackScreen();
 
 	//====================定数======================//.
-	const float HALF_SCREEN_SIZE = WND_W / 2.0f;	//スクリーンの半分サイズ.
+	const float HALF_SCREEN_SIZE		= WND_W / 2.0f;	//スクリーンの半分サイズ.
+	const float	DESCRIPTION_UI_HEIGHT	= 90.0f;		//説明用UIの表示高さ.
+	const float	SCALE_BASE				= 1.2f;			//基本大きさ.
+	const float	NORMAL_POS_X			= 0.0f;			//通常x座標.
+	const float	REVERSE_POS_X			= 1300.0f;		//反転x座標.
+	const float	REVERSE_ROT_Y			= 3.1f;			//反転y軸角度.
+	const float	FADE_SPEED				= 0.05f;		//フェード速度.
 
 	const unsigned int FADE_IN_FLAG		= (1 << 0);	//フェードインフラグ.
 	const unsigned int FADE_OUT_FLAG	= (1 << 1);	//フェードアウトフラグ.
@@ -25,7 +31,8 @@ public:
 	//==============情報置換処理関数================//.
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }
 
-	
+	//==============情報取得処理関数================//.
+	bool GetDispFlag() const { return m_bDispFlag; }
 
 private:
 	//====================関数======================//.
