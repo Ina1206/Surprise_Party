@@ -16,13 +16,9 @@
 #include "..\..\..\UI\PlayUI\ClosedTime\CClosedTime.h"
 #include "..\..\..\UI\PlayUI\SurpriseGage\CSurpriseGage.h"
 
-#include "..\..\..\UI\SpeakUI\SpeakTutorial\CSpeakTutorial.h"
 #include "..\..\..\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.h"
 
 #include "..\..\..\UI\PlayUI\DescriptionUIManager\CDescriptionUIManager.h"
-
-#include "..\..\..\UI\PlayUI\Arrow\CArrow.h"
-#include "..\..\..\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.h"
 
 /************************************
 *		メインステージクラス.
@@ -102,13 +98,10 @@ private:
 	unsigned int									m_ExplainFlag;				//説明フラグ.
 	bool											m_bDispTextFlag;			//テキスト表示フラグ.
 
-	std::unique_ptr<CSpeakTutorial>					m_pCSpeakTutorial;			//チュートリアル会話文.
 	std::unique_ptr<CSpeakWorkGhost>				m_pCSpeakWorkGhost;			//働くお化け会話クラス.
 
 	std::unique_ptr<CDescriptionUIManager>			m_pCDescriptionUIManager;	//説明UI管理クラス.
 
-	std::unique_ptr<CArrow>							m_pCArrow;					//矢印クラス.
-	std::unique_ptr<CTutorialBlackScreen>			m_pCTutorialBlackScreen;	//チュートリアル黒画面.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

@@ -3,6 +3,13 @@
 
 #include "..\CSpeakUI.h"
 
+//=================定数=======================//.
+const unsigned int SELECT_GHOST_FLAG			= (1 << 0);	//お化け選択フラグ.
+const unsigned int DECIDE_GHOST_FLAG			= (1 << 1);	//お化け決定フラグ.
+const unsigned int DECIDE_ACT_FLAG				= (1 << 2);	//行動決定フラグ.
+const unsigned int SELECT_GIMMICK_FLAG			= (1 << 3);	//ギミック選択フラグ.
+const unsigned int DECIDE_GIMMICK_FLAG			= (1 << 4);	//ギミック決定フラグ.
+
 /******************************************
 *		チュートリアル会話.
 ***************/
@@ -14,12 +21,6 @@ public:
 	~CSpeakTutorial();
 
 	//=================定数=======================//.
-	const unsigned int SELECT_GHOST_FLAG			= (1 << 0);	//お化け選択フラグ.
-	const unsigned int DECIDE_GHOST_FLAG			= (1 << 1);	//お化け決定フラグ.
-	const unsigned int DECIDE_ACT_FLAG				= (1 << 2);	//行動決定フラグ.
-	const unsigned int SELECT_GIMMICK_FLAG			= (1 << 3);	//ギミック選択フラグ.
-	const unsigned int DECIDE_GIMMICK_FLAG			= (1 << 4);	//ギミック決定フラグ.
-
 	const unsigned int MAP_DESCRIPTION_FLAG			= (1 << 0);	//地図の説明フラグ.
 	const unsigned int GHOST_DESCRIPTION_FLAG		= (1 << 1);	//お化けの説明フラグ.
 	const unsigned int GIMMICK_DESCRIPTION_FLAG		= (1 << 2);	//ギミックの説明フラグ.

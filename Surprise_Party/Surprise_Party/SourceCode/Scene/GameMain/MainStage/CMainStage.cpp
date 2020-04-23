@@ -23,12 +23,8 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_enStageType				(enStage)
 	, m_ExplainFlag				(0)
 	, m_bDispTextFlag			(true)
-	, m_pCSpeakTutorial			(nullptr)
 	, m_pCSpeakWorkGhost		(nullptr)
 	, m_pCDescriptionUIManager	(nullptr)
-
-	, m_pCArrow					(nullptr)
-	, m_pCTutorialBlackScreen	(nullptr)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -70,7 +66,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_pCWorkGhost[ghost]->SetTutorialFlag(true);
 
 			//選択決定フラグ設定.
-			if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == false) {
+			if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
 				m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
 			}
 			else {
@@ -83,9 +79,9 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		m_pCWorkGhost[ghost]->Update();
 
 		//チュートリアル時コメント一つ進める処理.
-		if (m_pCSpeakTutorial != nullptr) {
+		if (m_pCDescriptionUIManager != nullptr) {
 			if (m_pCWorkGhost[ghost]->GetTutorialAddCommentFlag() == true) {
-				m_pCSpeakTutorial->AdvanceOnceComment();
+				m_pCDescriptionUIManager->SetAdvanceComment();
 			}
 		}
 
@@ -205,35 +201,8 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 		}
 
-		if (m_pCSpeakTutorial != nullptr) {
-			//チュートリアル会話更新処理関数.
-			m_pCSpeakTutorial->Update();
-
-			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG) {
-				//矢印の向き設定.
-				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_LEFT_FLAG);
-				const D3DXVECTOR3 vGagePos = m_pCSurpriseGage->GetUIPos();
-				const D3DXVECTOR3 vCenterPos = D3DXVECTOR3(vGagePos.x + 500.0f, vGagePos.y - 30.0f, vGagePos.z);
-				m_pCArrow->SetCenterPos(vCenterPos);
-				m_pCArrow->Update();
-				m_pCTutorialBlackScreen->SetCenterPos(vGagePos);
-			}
-
-			if (m_pCSpeakTutorial->GetDescriptionFlag() & m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG) {
-				//矢印の向き設定.
-				m_pCArrow->SetUsingArrowFlag(m_pCArrow->USING_RIGHT_FLAG);
-				const D3DXVECTOR3 vTimePos = m_pCClosedTime->GetUIPos();
-				const D3DXVECTOR3 vCenterPos = D3DXVECTOR3(vTimePos.x - 100.0f, vTimePos.y, vTimePos.z);
-				m_pCArrow->SetCenterPos(vCenterPos);
-				m_pCArrow->Update();
-
-				m_pCTutorialBlackScreen->SetCenterPos(vTimePos);
-			}
-		}
-
-		//チュートリアル黒画面更新処理関数.
-		if (m_pCTutorialBlackScreen != nullptr) {
-			m_pCTutorialBlackScreen->Update();
+		if (m_pCDescriptionUIManager != nullptr) {
+			m_pCDescriptionUIManager->SetCenterPos(m_pCSurpriseGage->GetUIPos(), m_pCClosedTime->GetUIPos());
 		}
 
 		//説明UI管理クラス.
@@ -246,14 +215,11 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_ExplainFlag = 0;
 		}
 
-		if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->SELECT_GHOST_FLAG)) {
-			return;
-		}
 	}
 
-	if (m_pCSpeakTutorial != nullptr) {
+	if (m_pCDescriptionUIManager != nullptr) {
 		//コメント進めるときは下まで処理しない.
-		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
+		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == true) {
 			return;
 		}
 	}
@@ -261,21 +227,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//操作処理関数.
 	if (ControlFlag == true) {
 		Control();
-
-		//矢印
-		const unsigned int SELECT_ALL_FLAG = GHOST_SELECTION_FLAG | GIMMICK_SELECTION_FLAG;
-		if (m_ObjectSelectFlag & SELECT_ALL_FLAG) {
-			if (m_pCArrow != nullptr) {
-				//動かす矢印フラグ.
-				const unsigned int MOVE_ARROW_FLAG = m_pCArrow->USING_RIGHT_FLAG | m_pCArrow->USING_LEFT_FLAG;
-				m_pCArrow->SetUsingArrowFlag(MOVE_ARROW_FLAG);
-				//矢印更新処理関数.
-				m_pCArrow->Update();
-
-				
-			}
-		}
-
 		//説明中例外処理.
 		if (m_ExplainFlag & EXPLAINING_FLAG) {
 			return;
@@ -414,46 +365,15 @@ void CMainStage::Render()
 		m_pCSpeakWorkGhost->Render();
 	}
 
-	//チュートリアル黒画面.
-	if (m_pCTutorialBlackScreen != nullptr) {
-		m_pCTutorialBlackScreen->Render();
+	
+	//各UI座標取得.
+	if (m_ObjectSelectFlag == GHOST_SELECTION_FLAG ||
+		m_ObjectSelectFlag == GIMMICK_SELECTION_FLAG) {
+		
+		m_pCDescriptionUIManager->SetRenderBothArrowFlag(true);
 	}
-
-	//チュートリアル会話描画処理.
-	if (m_pCSpeakTutorial != nullptr) {
-		m_pCSpeakTutorial->Render();
-	}
-	//矢印クラス.
-	if (m_pCArrow != nullptr) {
-		//描画フラグ.
-		bool ArrowRenderFlag = false;
-
-		//ゲームUI説明時に描画.
-		const unsigned int NECESSARY_ARROW = m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG | m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG;
-		if (m_pCSpeakTutorial->GetDescriptionFlag() & NECESSARY_ARROW) {
-			ArrowRenderFlag = true;
-		}
-
-		//会話文を進めるときは例外処理.
-		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
-			if (ArrowRenderFlag == false) {
-				return;
-			}
-		}
-
-		//選択時の描画.
-		if (m_ObjectSelectFlag == GHOST_SELECTION_FLAG ||
-			m_ObjectSelectFlag == GIMMICK_SELECTION_FLAG) {
-			
-			const unsigned int SELECT_ALL_TUTORIAL_FLAG = m_pCSpeakTutorial->SELECT_GHOST_FLAG | m_pCSpeakTutorial->SELECT_GIMMICK_FLAG;
-			if (m_pCSpeakTutorial->GetTutorialFlag() & SELECT_ALL_TUTORIAL_FLAG) {
-				ArrowRenderFlag = true;
-			}
-		}
-
-		if (ArrowRenderFlag == true) {
-			m_pCArrow->Render();
-		}
+	else {
+		m_pCDescriptionUIManager->SetRenderBothArrowFlag(false);
 	}
 
 	//説明UI管理クラス.
@@ -583,12 +503,9 @@ void CMainStage::Init()
 	}
 	m_TutorialFlag = TUTORIAL_START;
 	m_ExplainFlag = EXPLAINING_FLAG;
-	m_pCSpeakTutorial.reset(new CSpeakTutorial());
 	m_pCSpeakWorkGhost.reset(new CSpeakWorkGhost());
 	m_pCDescriptionUIManager.reset(new CDescriptionUIManager());
 
-	m_pCArrow.reset(new CArrow());
-	m_pCTutorialBlackScreen.reset(new CTutorialBlackScreen());
 }
 
 //====================================.
@@ -607,8 +524,8 @@ void CMainStage::Control()
 	//============================================.
 	//お化け選択処理関数.
 	if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
-		if (m_pCSpeakTutorial != nullptr) {
-			if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->SELECT_GHOST_FLAG)) {
+		if (m_pCDescriptionUIManager != nullptr) {
+			if (!(m_pCDescriptionUIManager->GetTutorialFlag() & SELECT_GHOST_FLAG)) {
 				return;
 			}
 		}
@@ -639,12 +556,12 @@ void CMainStage::Control()
 			if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetMoveFlag() & 
 				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SURPRISE_FLAG) {
 
-				if (m_pCSpeakTutorial != nullptr) {
-					if (!(m_pCSpeakTutorial->GetTutorialFlag() & m_pCSpeakTutorial->DECIDE_GHOST_FLAG)) {
+				if (m_pCDescriptionUIManager != nullptr) {
+					if (!(m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GHOST_FLAG)) {
 						return;
 					}
 					//コメント進める.
-					m_pCSpeakTutorial->AdvanceOnceComment();
+					m_pCDescriptionUIManager->SetAdvanceComment();
 				}
 
 				//お化け選択後行動.
@@ -691,8 +608,8 @@ void CMainStage::Control()
 					m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
 
 					//チュートリアル時にコメントを進める処理.
-					if (m_pCSpeakTutorial != nullptr) {
-						m_pCSpeakTutorial->AdvanceOnceComment();
+					if (m_pCDescriptionUIManager != nullptr) {
+						m_pCDescriptionUIManager->SetAdvanceComment();
 					}
 
 					if (m_ExplainFlag & EXPLAINING_FLAG) {
@@ -748,9 +665,9 @@ void CMainStage::GhostSelect()
 			m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
 		}
 
-		if (m_pCSpeakTutorial != nullptr) {
+		if (m_pCDescriptionUIManager != nullptr) {
 			//選択移動カウント追加処理関数.
-			m_pCSpeakTutorial->AddSelectMoveCount();
+			m_pCDescriptionUIManager->SetAddSelectMoveCount();
 		}
 	}
 }
@@ -780,8 +697,8 @@ void CMainStage::GimmickSelect()
 
 	if (MoveSelectFlag == true) {
 		//選択移動カウント追加処理関数.
-		if (m_pCSpeakTutorial != nullptr) {
-			m_pCSpeakTutorial->AddSelectMoveCount();
+		if (m_pCDescriptionUIManager != nullptr) {
+			m_pCDescriptionUIManager->SetAddSelectMoveCount();
 		}
 	}
 }
