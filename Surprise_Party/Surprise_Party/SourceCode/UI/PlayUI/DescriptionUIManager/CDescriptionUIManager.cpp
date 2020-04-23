@@ -25,7 +25,7 @@ CDescriptionUIManager::~CDescriptionUIManager()
 //==========================================.
 void CDescriptionUIManager::Update()
 {
-	//チュートリアル会話更新処理関数.
+	//チュートリアル会話.
 	m_pCSpeakTutorial->Update();
 
 	//矢印.
@@ -76,6 +76,8 @@ void CDescriptionUIManager::SetCenterPos(const D3DXVECTOR3& vGagePos, const D3DX
 		m_vCenterPos = vTimePos;
 		return;
 	}
+
+	m_vCenterPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 }
 
 //===========================================.
