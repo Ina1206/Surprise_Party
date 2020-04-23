@@ -30,6 +30,7 @@ public:
 
 	//==============情報置換処理関数================//.
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }
+	void SetDescriptionFlag(const bool& Flag) { m_bDescriptionFlag = Flag; }
 
 	//==============情報取得処理関数================//.
 	bool GetDispFlag() const { return m_bDispFlag; }
@@ -48,6 +49,7 @@ private:
 	D3DXVECTOR3		m_vOldCenterPos;		//前回の中心座標.
 	bool			m_bDispFlag;			//表示フラグ.
 	unsigned int	m_FadeFlag;				//フェードフラグ.
+	bool			m_bDescriptionFlag;		//説明フラグ.
 };
 
 #endif	//#ifndef CTUTORIAL_BLACK_SCREEN_H.

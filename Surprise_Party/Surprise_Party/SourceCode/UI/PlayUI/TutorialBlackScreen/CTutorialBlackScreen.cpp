@@ -8,6 +8,7 @@ CTutorialBlackScreen::CTutorialBlackScreen()
 	, m_vOldCenterPos		(0.0f, 0.0f, 0.0f)
 	, m_bDispFlag			(false)
 	, m_FadeFlag			(0)
+	, m_bDescriptionFlag	(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -78,6 +79,7 @@ void CTutorialBlackScreen::SettingPos()
 {
 
 	const int SpriteNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
+
 	if (m_vCenterPos.x < HALF_SCREEN_SIZE) {
 		m_vUIPos[SpriteNum].x = NORMAL_POS_X;
 		return;
