@@ -22,7 +22,6 @@ public:
 	void SetCenterPos(const D3DXVECTOR3& vGagePos, const D3DXVECTOR3& vTimePos);
 	void SetAdvanceComment() { m_pCSpeakTutorial->AdvanceOnceComment(); }
 	void SetAddSelectMoveCount() { m_pCSpeakTutorial->AddSelectMoveCount(); }
-	//void SetRenderBothArrowFlag(const bool& bFlag) { m_bRenderBothArrowFlag = bFlag; }
 
 	//================î•ñŽæ“¾ˆ—ŠÖ”===================//.
 	bool GetAdvanceCommentFlag() const { return m_pCSpeakTutorial->GetAdvanceCommentFlag(); }
