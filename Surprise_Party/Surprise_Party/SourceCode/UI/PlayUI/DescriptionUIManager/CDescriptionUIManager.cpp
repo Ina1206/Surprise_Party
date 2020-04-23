@@ -162,11 +162,11 @@ unsigned int CDescriptionUIManager::SettingArrowFlag()
 	}
 
 	//ˆÚ“®Žž.
-	if (m_bRenderBothArrowFlag == true) {
-		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == false) {
-			return m_pCArrow->USING_LEFT_FLAG | m_pCArrow->USING_RIGHT_FLAG;
-		}
+	const unsigned int ALL_SELECT_FLAG = SELECT_GHOST_FLAG | SELECT_GIMMICK_FLAG;
+	if (m_pCSpeakTutorial->GetTutorialFlag() & ALL_SELECT_FLAG) {
+		return m_pCArrow->USING_LEFT_FLAG | m_pCArrow->USING_RIGHT_FLAG;
 	}
+
 
 	return 0;
 }

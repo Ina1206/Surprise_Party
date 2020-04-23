@@ -129,9 +129,9 @@ void CSpeakTutorial::Release()
 //========================================.
 void CSpeakTutorial::FindTutorial()
 {
+	m_DescriptionFlag = 0;
 	if (m_stSelectString[m_SpeakNum] == "0") {
 		m_bAdvanceCommentFlag = true;
-		m_DescriptionFlag = 0;
 		return;
 	}
 
