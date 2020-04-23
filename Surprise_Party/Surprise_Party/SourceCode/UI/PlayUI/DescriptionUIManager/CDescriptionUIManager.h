@@ -22,7 +22,7 @@ public:
 	void SetCenterPos(const D3DXVECTOR3& vGagePos, const D3DXVECTOR3& vTimePos);
 	void SetAdvanceComment() { m_pCSpeakTutorial->AdvanceOnceComment(); }
 	void SetAddSelectMoveCount() { m_pCSpeakTutorial->AddSelectMoveCount(); }
-	void SetRenderBothArrowFlag(const bool& bFlag) { m_bRenderBothArrowFlag = bFlag; }
+	//void SetRenderBothArrowFlag(const bool& bFlag) { m_bRenderBothArrowFlag = bFlag; }
 
 	//================情報取得処理関数===================//.
 	bool GetAdvanceCommentFlag() const { return m_pCSpeakTutorial->GetAdvanceCommentFlag(); }
@@ -40,7 +40,7 @@ private:
 	std::unique_ptr<CTutorialBlackScreen>		m_pCTutorialBlackScreen;	//チュートリアル黒画面.
 	std::unique_ptr<CSpeakTutorial>				m_pCSpeakTutorial;			//チュートリアル会話.
 	D3DXVECTOR3									m_vCenterPos;				//中心座標.
-	bool										m_bRenderBothArrowFlag;		//両方の矢印の描画フラグ.
+	bool										m_bRenderArrowFlag;			//両方の矢印の描画フラグ.
 };
 
 #endif	//#ifndef CDESCRIPTION_UI_MANAGER_H.

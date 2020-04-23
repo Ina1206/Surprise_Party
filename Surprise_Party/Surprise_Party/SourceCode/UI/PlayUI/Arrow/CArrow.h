@@ -37,6 +37,9 @@ public:
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }
 	void SetUsingArrowFlag(const unsigned int& Flag) { m_UsingArrowFlag = Flag; }
 
+	//=============î•ñæ“¾ˆ—ŠÖ”==============//.
+	unsigned int GetUsingArrowFlag() const { return m_UsingArrowFlag; }
+
 private:
 	//===================ŠÖ”====================//.
 	void Init();			//‰Šú‰»ˆ—ŠÖ”.

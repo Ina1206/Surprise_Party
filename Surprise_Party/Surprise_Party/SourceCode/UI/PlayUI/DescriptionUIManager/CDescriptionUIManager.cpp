@@ -8,7 +8,7 @@ CDescriptionUIManager::CDescriptionUIManager()
 	, m_pCTutorialBlackScreen	(nullptr)
 	, m_pCSpeakTutorial			(nullptr)
 	, m_vCenterPos				(0.0f, 0.0f, 0.0f)
-	, m_bRenderBothArrowFlag	(false)
+	, m_bRenderArrowFlag		(false)
 {
 	//初期化処理関数.
 	Init();
@@ -30,8 +30,10 @@ void CDescriptionUIManager::Update()
 
 	//矢印.
 	m_pCArrow->SetUsingArrowFlag(SettingArrowFlag());
-	m_pCArrow->SetCenterPos(SettingArrowPos());
-	m_pCArrow->Update();
+	if (m_pCArrow->GetUsingArrowFlag() != 0) {
+		m_pCArrow->SetCenterPos(SettingArrowPos());
+		m_pCArrow->Update();
+	}
 
 	//説明用黒画面.
 	m_pCTutorialBlackScreen->SetCenterPos(m_vCenterPos);
@@ -44,46 +46,17 @@ void CDescriptionUIManager::Update()
 //==========================================.
 void CDescriptionUIManager::Render()
 {
-	if (m_pCTutorialBlackScreen != nullptr) {
-		m_pCTutorialBlackScreen->Render();
+	//説明用黒画面.
+	m_pCTutorialBlackScreen->Render();
+
+	//チュートリアル会話.
+	m_pCSpeakTutorial->Render();
+
+	//矢印.
+	if (m_pCArrow->GetUsingArrowFlag() != 0) {
+		m_pCArrow->Render();
 	}
-
-	//チュートリアル会話描画処理.
-	if (m_pCSpeakTutorial != nullptr) {
-		m_pCSpeakTutorial->Render();
-	}
-	//矢印クラス.
-	if (m_pCArrow != nullptr) {
-		//描画フラグ.
-		bool ArrowRenderFlag = false;
-
-		//ゲームUI説明時に描画.
-		const unsigned int NECESSARY_ARROW = m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG | m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG;
-		if (m_pCSpeakTutorial->GetDescriptionFlag() & NECESSARY_ARROW) {
-			ArrowRenderFlag = true;
-		}
-
-		//会話文を進めるときは例外処理.
-		if (m_pCSpeakTutorial->GetAdvanceCommentFlag() == true) {
-			if (ArrowRenderFlag == false) {
-				return;
-			}
-		}
-
-		//選択時の描画.
-		if (m_bRenderBothArrowFlag == true) {
-
-			const unsigned int SELECT_ALL_TUTORIAL_FLAG = SELECT_GHOST_FLAG | SELECT_GIMMICK_FLAG;
-			if (m_pCSpeakTutorial->GetTutorialFlag() & SELECT_ALL_TUTORIAL_FLAG) {
-				ArrowRenderFlag = true;
-			}
-		}
-
-		if (ArrowRenderFlag == true) {
-			m_pCArrow->Render();
-		}
-	}
-
+	
 }
 
 //===========================================.

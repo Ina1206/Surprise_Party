@@ -201,14 +201,9 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 		}
 
-		if (m_pCDescriptionUIManager != nullptr) {
-			m_pCDescriptionUIManager->SetCenterPos(m_pCSurpriseGage->GetUIPos(), m_pCClosedTime->GetUIPos());
-		}
-
 		//説明UI管理クラス.
-		if (m_pCDescriptionUIManager != nullptr) {
-			m_pCDescriptionUIManager->Update();
-		}
+		m_pCDescriptionUIManager->SetCenterPos(m_pCSurpriseGage->GetUIPos(), m_pCClosedTime->GetUIPos());
+		m_pCDescriptionUIManager->Update();
 
 		if (GetAsyncKeyState('Q') & 0x8000) {
 			//説明終了ゲームを動かすフラグ.
@@ -363,17 +358,6 @@ void CMainStage::Render()
 	//働くお化け会話クラス.
 	if (m_pCSpeakWorkGhost != nullptr) {
 		m_pCSpeakWorkGhost->Render();
-	}
-
-	
-	//各UI座標取得.
-	if (m_ObjectSelectFlag == GHOST_SELECTION_FLAG ||
-		m_ObjectSelectFlag == GIMMICK_SELECTION_FLAG) {
-		
-		m_pCDescriptionUIManager->SetRenderBothArrowFlag(true);
-	}
-	else {
-		m_pCDescriptionUIManager->SetRenderBothArrowFlag(false);
 	}
 
 	//説明UI管理クラス.
