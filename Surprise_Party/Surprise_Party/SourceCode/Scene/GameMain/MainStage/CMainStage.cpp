@@ -525,7 +525,7 @@ void CMainStage::Control()
 	//‚¨‰»‚¯‘I‘ðˆ—ŠÖ”.
 	if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
 		if (m_pCDescriptionUIManager != nullptr) {
-			if (!(m_pCDescriptionUIManager->GetTutorialFlag() & SELECT_GHOST_FLAG)) {
+			if (!(m_pCDescriptionUIManager->GetTutorialFlag() & (SELECT_GHOST_FLAG | DECIDE_GHOST_FLAG))) {
 				return;
 			}
 		}

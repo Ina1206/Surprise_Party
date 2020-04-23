@@ -79,14 +79,10 @@ void CSpeakTutorial::AdvanceOnceComment()
 //========================================.
 void CSpeakTutorial::AddSelectMoveCount()
 {
-	//例外処理.
-	if (m_TutorialFlag & DECIDE_GHOST_FLAG) {
-		if (!(m_TutorialFlag & SELECT_GIMMICK_FLAG)) {
-			return;
-		}
-		if (m_TutorialFlag & DECIDE_GIMMICK_FLAG) {
-			return;
-		}
+	//例外処理(選択時以外例外).
+	const unsigned int SELECT_FLAG = SELECT_GHOST_FLAG | SELECT_GIMMICK_FLAG;
+	if (!(m_TutorialFlag & SELECT_FLAG)) {
+		return;
 	}
 
 	m_SelectMoveCount++;
@@ -140,32 +136,32 @@ void CSpeakTutorial::FindTutorial()
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "GhostSelect") {
-		m_TutorialFlag |= SELECT_GHOST_FLAG;
+		m_TutorialFlag = SELECT_GHOST_FLAG;
 		//コメント進めるの停止.
 		m_bAdvanceCommentFlag = false;
 		return;
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "GhostDecide") {
-		m_TutorialFlag |= DECIDE_GHOST_FLAG;
+		m_TutorialFlag = DECIDE_GHOST_FLAG;
 		return;
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "ActDecide") {
-		m_TutorialFlag |= DECIDE_ACT_FLAG;
+		m_TutorialFlag = DECIDE_ACT_FLAG;
 		//コメント進めるの停止.
 		m_bAdvanceCommentFlag = false;
 		return;
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "GimmickSelect") {
-		m_TutorialFlag |= SELECT_GIMMICK_FLAG;
+		m_TutorialFlag = SELECT_GIMMICK_FLAG;
 		m_bAdvanceCommentFlag = false;
 		return;
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "GimmickDecide") {
-		m_TutorialFlag |= DECIDE_GIMMICK_FLAG;
+		m_TutorialFlag = DECIDE_GIMMICK_FLAG;
 		return;
 	}
 
