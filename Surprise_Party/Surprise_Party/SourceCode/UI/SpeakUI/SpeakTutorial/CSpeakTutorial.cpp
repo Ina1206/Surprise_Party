@@ -7,6 +7,7 @@ CSpeakTutorial::CSpeakTutorial()
 	: m_pCSpriteUI			()
 	, m_vPos				()
 	, m_TutorialFlag		(0)
+	, m_DescriptionFlag		(0)
 	, m_bAdvanceCommentFlag	(true)
 	, m_SelectMoveCount		(0)
 {

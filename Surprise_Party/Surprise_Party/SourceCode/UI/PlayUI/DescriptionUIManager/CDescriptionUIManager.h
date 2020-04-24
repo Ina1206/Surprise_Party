@@ -33,6 +33,7 @@ private:
 	void Release();					//解放処理関数.
 	D3DXVECTOR3 SettingArrowPos();	//矢印座標設定処理関数.
 	unsigned int SettingArrowFlag();//矢印フラグ設定処理関数.
+	void JudgeDescription();		//説明判定処理関数.
 
 	//======================変数=========================//.
 	std::unique_ptr<CArrow>						m_pCArrow;					//矢印クラス.

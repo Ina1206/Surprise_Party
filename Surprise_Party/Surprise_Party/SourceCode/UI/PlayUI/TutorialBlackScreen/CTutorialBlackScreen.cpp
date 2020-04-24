@@ -9,6 +9,7 @@ CTutorialBlackScreen::CTutorialBlackScreen()
 	, m_bDispFlag			(false)
 	, m_FadeFlag			(0)
 	, m_bDescriptionFlag	(false)
+	, m_bOldDescriptionFlag	(false)
 {
 	//初期化処理関数.
 	Init();
@@ -25,7 +26,8 @@ CTutorialBlackScreen::~CTutorialBlackScreen()
 //==========================================.
 void CTutorialBlackScreen::Update()
 {
-	if (m_vCenterPos != m_vOldCenterPos) {
+	if (m_vCenterPos != m_vOldCenterPos || 
+		m_bDescriptionFlag != m_bOldDescriptionFlag) {
 		//フェード判定処理関数.
 		FadeDecision();
 	}
@@ -35,6 +37,7 @@ void CTutorialBlackScreen::Update()
 		SettingPos();
 	}
 	m_vOldCenterPos = m_vCenterPos;
+	m_bOldDescriptionFlag = m_bDescriptionFlag;
 
 	//フェードアウト.
 	if (m_FadeFlag & FADE_OUT_FLAG) {
@@ -58,8 +61,8 @@ void CTutorialBlackScreen::Init()
 	//初期設定処理.
 	SettingInit();
 	const int SpriteNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
-	m_vUIPos[SpriteNum].y -= DESCRIPTION_UI_HEIGHT;
 	m_vUIScale[SpriteNum] = D3DXVECTOR3(SCALE_BASE, SCALE_BASE, SCALE_BASE);
+	m_vUIPos[SpriteNum].y = DESCRIPTION_MAP_HEIGHT;
 
 	m_fUIAlpha[SpriteNum] = ALPHA_MIN;
 }
@@ -77,16 +80,19 @@ void CTutorialBlackScreen::Release()
 //============================================.
 void CTutorialBlackScreen::SettingPos()
 {
-
 	const int SpriteNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
 
-	if (m_vCenterPos.x < HALF_SCREEN_SIZE) {
-		m_vUIPos[SpriteNum].x = NORMAL_POS_X;
+	if (m_vCenterPos.y > 0) {
+		m_vUIPos[SpriteNum].y = DESCRIPTION_UI_HEIGHT;
+		if (m_vCenterPos.x < HALF_SCREEN_SIZE) {
+			m_vUIPos[SpriteNum].x = NORMAL_POS_X;
+			return;
+		}
+
+		m_vUIPos[SpriteNum].x = REVERSE_POS_X;
+		m_vUIRot[SpriteNum].y = REVERSE_ROT_Y;
 		return;
 	}
-
-	m_vUIPos[SpriteNum].x = REVERSE_POS_X;
-	m_vUIRot[SpriteNum].y = REVERSE_ROT_Y;
 }
 
 //============================================.
@@ -94,7 +100,7 @@ void CTutorialBlackScreen::SettingPos()
 //============================================.
 void CTutorialBlackScreen::FadeDecision()
 {
-	if (m_vCenterPos.y <= 0) {
+	if (m_bDescriptionFlag == false) {
 		m_FadeFlag = FADE_OUT_FLAG;
 		return;
 	}

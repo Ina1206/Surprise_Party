@@ -15,7 +15,8 @@ public:
 
 	//====================定数======================//.
 	const float HALF_SCREEN_SIZE		= WND_W / 2.0f;	//スクリーンの半分サイズ.
-	const float	DESCRIPTION_UI_HEIGHT	= 90.0f;		//説明用UIの表示高さ.
+	const float DESCRIPTION_MAP_HEIGHT	= 150.0f;		//初期マップ説明高さ.
+	const float	DESCRIPTION_UI_HEIGHT	= -90.0f;		//ゲームメインUIの表示高さ.
 	const float	SCALE_BASE				= 1.2f;			//基本大きさ.
 	const float	NORMAL_POS_X			= 0.0f;			//通常x座標.
 	const float	REVERSE_POS_X			= 1300.0f;		//反転x座標.
@@ -50,6 +51,7 @@ private:
 	bool			m_bDispFlag;			//表示フラグ.
 	unsigned int	m_FadeFlag;				//フェードフラグ.
 	bool			m_bDescriptionFlag;		//説明フラグ.
+	bool			m_bOldDescriptionFlag;	//前回の説明フラグ.
 };
 
 #endif	//#ifndef CTUTORIAL_BLACK_SCREEN_H.

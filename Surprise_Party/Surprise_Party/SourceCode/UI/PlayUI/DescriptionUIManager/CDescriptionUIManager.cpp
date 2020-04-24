@@ -36,6 +36,7 @@ void CDescriptionUIManager::Update()
 	}
 
 	//à–¾—p•‰æ–Ê.
+	JudgeDescription();
 	m_pCTutorialBlackScreen->SetCenterPos(m_vCenterPos);
 	m_pCTutorialBlackScreen->Update();
 
@@ -146,4 +147,17 @@ unsigned int CDescriptionUIManager::SettingArrowFlag()
 
 
 	return 0;
+}
+
+//=============================================.
+//		à–¾”»’èˆ—ŠÖ”.
+//=============================================.
+void CDescriptionUIManager::JudgeDescription()
+{
+	if (m_pCSpeakTutorial->GetDescriptionFlag() == 0) {
+		m_pCTutorialBlackScreen->SetDescriptionFlag(false);
+		return;
+	}
+
+	m_pCTutorialBlackScreen->SetDescriptionFlag(true);
 }
