@@ -64,8 +64,9 @@ void CFontResource::Init(ID3D11Device* pDevice11, ID3D11DeviceContext* pContext1
 //===================================.
 //		“Ç‚İ‚İˆ—ŠÖ”.
 //===================================.
-void CFontResource::Load(std::string str)
+void CFontResource::Load(std::string str, bool InputPictureFlag)
 {
+
 	//•¶š”‚ğæ“¾i‘SŠp•¶š‚Ì‚İj.
 	m_StrLength = str.length() / 2;
 	if (static_cast<int>(m_pCFont.size()) < m_StrLength) {
@@ -89,10 +90,21 @@ void CFontResource::Load(std::string str)
 		m_pCFont[size].reset(new CFont());
 		//•¶š—ñ‚ğ‚P•¶š‚É•ª‰ğ.
 		std::string cda = str.substr(size * 2, 2);
+
+		if (InputPictureFlag == true) {
+			if (cda >= "‚O" && cda <= "‚X") {
+				m_InputPictureNum.push_back(size);
+				m_PictureTypeNum.push_back(cda);
+				cda -= (L'‚O' - L'0');
+				cda = "@";
+			}
+		}
+
 		const char* c = cda.c_str();
 		//‰Šú‰»ˆ—ŠÖ”.
 		m_pCFont[size]->Init(m_pDevice11, m_pContext11, c, m_hFont, m_hdc);
 		m_fAlpha[size] = 0.0f;
+
 	}
 
 
@@ -107,9 +119,9 @@ void CFontResource::String_Render()
 	int widh, hight;
 	widh = hight = 0;
 	const float	WIDTH_MAX = WND_W - 150.0f;
+	CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
 
 	for (int size = 0; size < m_StrLength; size++) {
-		CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
 		//•¶š‚ÌÀ•W.
 		const float FONT_WIDTH = widh * (BASIC_WIDTH * m_fFontScale);
 		const float	FONT_HEIGHT = hight * (BASIC_WIDTH * m_fFontScale);

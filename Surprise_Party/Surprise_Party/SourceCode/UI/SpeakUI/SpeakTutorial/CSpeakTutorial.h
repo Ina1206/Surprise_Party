@@ -49,13 +49,16 @@ public:
 
 private:
 	//==================関数=======================//.
-	void Init();			//初期化処理関数.
-	void Release();			//解放処理関数.
-	void FindTutorial();	//チュートリアル見つける処理関数.
-	void FindDescription();	//説明内容見つける処理関数.
+	void Init();					//初期化処理関数.
+	void Release();					//解放処理関数.
+	void FindTutorial();			//チュートリアル見つける処理関数.
+	void FindDescription();			//説明内容見つける処理関数.
+	void SettingDescriptionIcon();	//説明用アイコン設定処理関数.
 
 	//==================変数=======================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;				//スプライトUI.
+	std::vector<CSpriteUI*>		m_pCDescriptionIcon;		//説明用アイコン.
+	std::vector<D3DXVECTOR3>	m_vIconPos;					//アイコン座標.
 	std::vector<D3DXVECTOR3>	m_vPos;						//座標.
 	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
 	unsigned int				m_DescriptionFlag;			//説明フラグ.

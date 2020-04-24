@@ -10,6 +10,7 @@ CSpeakTutorial::CSpeakTutorial()
 	, m_DescriptionFlag		(0)
 	, m_bAdvanceCommentFlag	(true)
 	, m_SelectMoveCount		(0)
+	, m_pCDescriptionIcon	()
 {
 	//初期化処理関数.
 	Init();
@@ -40,7 +41,7 @@ void CSpeakTutorial::Update()
 void CSpeakTutorial::Render()
 {
 	//吹き出しの描画.
-	for (int speak = 0; speak < 2; speak++) {
+	for (unsigned int speak = 0; speak < m_pCSpriteUI.size(); speak++) {
 		//吹き出し種類設定.
 		if (m_pCSpriteUI[speak] == m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon)) {
 			m_pCSpriteUI[speak]->SetPattern(D3DXVECTOR2(1.0f, 1.0f));
@@ -59,6 +60,8 @@ void CSpeakTutorial::Render()
 		m_pCFontResource->SetAlpha(1.0f, font);
 	}
 	m_pCFontResource->String_Render();
+
+
 }
 
 //========================================.
@@ -70,7 +73,7 @@ void CSpeakTutorial::AdvanceOnceComment()
 	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
 		m_SpeakNum = 0;
 	}
-	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 	//チュートリアル探索処理関数.
 	FindTutorial();
 }
@@ -104,7 +107,7 @@ void CSpeakTutorial::Init()
 	m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::BigGhostIcon));
 	m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon));
 	
-	for (unsigned int speak = 0; speak < 2; speak++) {
+	for (unsigned int speak = 0; speak < m_pCSpriteUI.size(); speak++) {
 		m_vPos.push_back(D3DXVECTOR3(10.0f + (10.0f * speak), 400.0f - (250.0f * speak), 0.0f));
 	}
 	
@@ -113,7 +116,7 @@ void CSpeakTutorial::Init()
 		m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::MainString));
 		m_stSelectString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::SelectString));
 	}
-	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
+	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 	m_vPos.push_back(D3DXVECTOR3(60.0f, 210.0f, 0.0f));
 }
 
@@ -203,6 +206,24 @@ void CSpeakTutorial::FindDescription()
 
 	if (m_stSelectString[m_SpeakNum] == "CloseTimeDescription") {
 		m_DescriptionFlag = CLOSE_TIME_DESCRIPTION_FLAG;
+		return;
+	}
+}
+
+//=========================================.
+//		説明用アイコン設定処理関数.
+//=========================================.
+void CSpeakTutorial::SettingDescriptionIcon()
+{
+	if (m_DescriptionFlag & GHOST_DESCRIPTION_FLAG) {
+		return;
+	}
+
+	if (m_DescriptionFlag & GIMMICK_DESCRIPTION_FLAG) {
+		return;
+	}
+
+	if (m_DescriptionFlag & PEOPLE_DESCRIPTION_FLAG) {
 		return;
 	}
 }
