@@ -70,8 +70,10 @@ void CSpeakWorkGhost::Release()
 //==================================.
 void CSpeakWorkGhost::RenderBalloon()
 {
+	const float SCALE_BASE = 1.0f;
 	m_pCBalloonSpriteUI->SetPattern(m_vPatternNum[m_GhostTypeNum]);
 	m_pCBalloonSpriteUI->SetPosition(BALLOON_POS);
+	m_pCBalloonSpriteUI->SetScale(SCALE_BASE);
 	m_pCDepthStencil->SetDepth(false);
 	m_pCBalloonSpriteUI->Render();
 	m_pCDepthStencil->SetDepth(true);

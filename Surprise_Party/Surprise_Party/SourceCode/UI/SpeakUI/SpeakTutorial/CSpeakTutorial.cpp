@@ -8,7 +8,6 @@ CSpeakTutorial::CSpeakTutorial()
 	, m_pCDescriptionIcon	()
 	, m_vIconPos			()
 	, m_vPos				()
-	, m_vColor				()
 	, m_vPattern			()
 	, m_TutorialFlag		(0)
 	, m_DescriptionFlag		(0)
@@ -49,6 +48,7 @@ void CSpeakTutorial::Render()
 		if (m_pCSpriteUI[speak] == m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon)) {
 			m_pCSpriteUI[speak]->SetPattern(D3DXVECTOR2(1.0f, 1.0f));
 		}
+		m_pCSpriteUI[speak]->SetScale(1.3f);
 		m_pCSpriteUI[speak]->SetPosition(m_vPos[speak]);
 		m_pCDepthStencil->SetDepth(false);
 		m_pCSpriteUI[speak]->Render();
@@ -119,9 +119,10 @@ void CSpeakTutorial::Init()
 	}
 	m_vPos.push_back(D3DXVECTOR3(60.0f, 210.0f, 0.0f));
 
-	m_pCFontResource->SetFontScale(30.0f);
-	m_pCFontResource->SetWidthMax(150.0f);
-	m_pCFontResource->SetStartPos(m_vPos[2]);
+	m_pCFontResource->SetFontScale(40.0f);
+	m_pCFontResource->SetWidthMax(200.0f);
+	const D3DXVECTOR3 vFontPos = m_vPos[2] + D3DXVECTOR3(0.0f, 10.0f, 0.0f);
+	m_pCFontResource->SetStartPos(vFontPos);
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 
 }
@@ -281,8 +282,7 @@ void CSpeakTutorial::RenderDescriptionIcon()
 	}
 	
 	for (unsigned int IconNum = 0; IconNum < m_pCDescriptionIcon.size(); IconNum++) {
-		if (m_vColor.size() > 0) {
-			m_pCDescriptionIcon[IconNum]->SetColor(m_vColor[IconNum]);
+		if (m_DescriptionFlag & GHOST_DESCRIPTION_FLAG) {
 			m_pCDescriptionIcon[IconNum]->SetPattern(m_vPattern[IconNum]);
 		}
 		m_pCDescriptionIcon[IconNum]->SetAlpha(ALPHA_MAX);
@@ -299,10 +299,14 @@ void CSpeakTutorial::RenderDescriptionIcon()
 //============================================.
 void CSpeakTutorial::GhostIconSetting(const int& IconMax)
 {
+	if (m_vPattern.size() > 0) {
+		m_vPattern.clear();
+	}
+
 	for (int Icon = 0; Icon < IconMax; Icon++) {
 		
 		m_pCDescriptionIcon.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Ghost_Icon));
-		
+
 		const std::string InputPictureType = m_pCFontResource->GetPictureTypeNum(Icon);
 		if (InputPictureType == "‚O") {
 			m_vPattern.push_back(D3DXVECTOR2(0.0f, 0.0f));

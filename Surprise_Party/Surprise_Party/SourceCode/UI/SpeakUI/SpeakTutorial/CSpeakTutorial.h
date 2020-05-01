@@ -28,7 +28,7 @@ public:
 	const unsigned int	GAGE_DESCRIPTION_FLAG		= (1 << 4);	//驚きゲージの説明フラグ.
 	const unsigned int	CLOSE_TIME_DESCRIPTION_FLAG	= (1 << 5);	//閉鎖時間の説明フラグ.
 
-	const float			DESCRIPTION_ICON_SCALE		= 0.7f;		//説明用アイコン大きさ.	
+	const float			DESCRIPTION_ICON_SCALE		= 0.9f;		//説明用アイコン大きさ.	
 
 	//=================関数=======================//.
 	void Update();				//更新処理関数.
@@ -66,7 +66,6 @@ private:
 	std::vector<CSpriteUI*>		m_pCDescriptionIcon;		//説明用アイコン.
 	std::vector<D3DXVECTOR3>	m_vIconPos;					//アイコン座標.
 	std::vector<D3DXVECTOR3>	m_vPos;						//座標.
-	std::vector<D3DXVECTOR3>	m_vColor;					//色.
 	std::vector<D3DXVECTOR2>	m_vPattern;					//パターン番号.
 	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
 	unsigned int				m_DescriptionFlag;			//説明フラグ.
