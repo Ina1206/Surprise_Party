@@ -26,7 +26,9 @@ CDescriptionUIManager::~CDescriptionUIManager()
 void CDescriptionUIManager::Update()
 {
 	//チュートリアル会話.
-	m_pCSpeakTutorial->Update();
+	if (m_pCTutorialBlackScreen->GetFadeFlag() == 0) {
+		m_pCSpeakTutorial->Update();
+	}
 
 	//矢印.
 	m_pCArrow->SetUsingArrowFlag(SettingArrowFlag());

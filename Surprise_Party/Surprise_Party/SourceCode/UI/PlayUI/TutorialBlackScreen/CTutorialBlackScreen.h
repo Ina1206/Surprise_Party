@@ -35,6 +35,7 @@ public:
 
 	//==============î•ñæ“¾ˆ—ŠÖ”================//.
 	bool GetDispFlag() const { return m_bDispFlag; }
+	unsigned int GetFadeFlag() const { return m_FadeFlag; }
 
 private:
 	//====================ŠÖ”======================//.
