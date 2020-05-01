@@ -6,6 +6,7 @@ CFontResource::CFontResource()
 	, m_pCFont		()
 	, m_StrLength	(0)
 	, m_vStartPos	(0.0f, 0.0f, 0.0f)
+	, m_vPos		()
 	, m_hFont		(nullptr)
 	, m_hdc			(nullptr)
 	, m_fFontScale	(0.0f)
@@ -84,6 +85,15 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 	}
 	//透過値サイズ設定.
 	m_fAlpha.resize(m_pCFont.size());
+	//座標サイズ指定.
+	m_vPos.resize(m_pCFont.size());
+	m_InputPictureNum.clear();
+	m_PictureTypeNum.clear();
+
+	//幅、高さ.
+	int widh, hight;
+	widh = hight = 0;
+	const float	WIDTH_MAX = WND_W - 150.0f;
 
 	//文字のテクスチャ作成.
 	for (int size = 0; size < m_StrLength; size++) {
@@ -104,6 +114,20 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 		m_pCFont[size]->Init(m_pDevice11, m_pContext11, c, m_hFont, m_hdc);
 		m_fAlpha[size] = 0.0f;
 
+
+		//文字の座標.
+		const float FONT_WIDTH = widh * (BASIC_WIDTH * m_fFontScale);
+		const float	FONT_HEIGHT = hight * (BASIC_WIDTH * m_fFontScale);
+		m_vPos[size] = D3DXVECTOR3(m_vStartPos.x + FONT_WIDTH, m_vStartPos.y + FONT_HEIGHT, m_vStartPos.z);
+		//改行.
+		if (FONT_WIDTH > m_fWidthMax) {
+			widh = 0;
+			hight++;
+		}
+		else {
+			widh++;
+		}
+
 	}
 
 
@@ -114,18 +138,11 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 //===================================.
 void CFontResource::String_Render()
 {
-	//幅、高さ.
-	int widh, hight;
-	widh = hight = 0;
-	const float	WIDTH_MAX = WND_W - 150.0f;
 	CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
 
 	for (int size = 0; size < m_StrLength; size++) {
-		//文字の座標.
-		const float FONT_WIDTH = widh * (BASIC_WIDTH * m_fFontScale);
-		const float	FONT_HEIGHT = hight * (BASIC_WIDTH * m_fFontScale);
 		//位置設定処理関数.
-		m_pCFont[size]->SetPosition(D3DXVECTOR3(m_vStartPos.x + FONT_WIDTH, m_vStartPos.y + FONT_HEIGHT, m_vStartPos.z));
+		m_pCFont[size]->SetPosition(m_vPos[size]);
 		//文字の大きさ設定処理関数.
 		m_pCFont[size]->SetScale(m_fFontScale);
 		//文字の透過値.
@@ -134,15 +151,6 @@ void CFontResource::String_Render()
 		m_pCDepthStencil->SetDepth(false);
 		m_pCFont[size]->Render();
 		m_pCDepthStencil->SetDepth(true);
-
-		//改行.
-		if (FONT_WIDTH > m_fWidthMax) {
-			widh = 0;
-			hight++;
-		}
-		else {
-			widh++;
-		}
 	}
 }
 
@@ -174,3 +182,4 @@ void CFontResource::Release()
 		FR_PRIVATE,
 		&design);
 }
+

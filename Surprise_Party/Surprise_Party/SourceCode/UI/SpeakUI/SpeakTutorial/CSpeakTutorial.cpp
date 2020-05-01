@@ -5,12 +5,15 @@
 ***************/
 CSpeakTutorial::CSpeakTutorial()
 	: m_pCSpriteUI			()
+	, m_pCDescriptionIcon	()
+	, m_vIconPos			()
 	, m_vPos				()
+	, m_vColor				()
+	, m_vPattern			()
 	, m_TutorialFlag		(0)
 	, m_DescriptionFlag		(0)
 	, m_bAdvanceCommentFlag	(true)
 	, m_SelectMoveCount		(0)
-	, m_pCDescriptionIcon	()
 {
 	//初期化処理関数.
 	Init();
@@ -53,15 +56,13 @@ void CSpeakTutorial::Render()
 	}
 
 	//テキストの描画.
-	m_pCFontResource->SetFontScale(30.0f);
-	m_pCFontResource->SetWidthMax(150.0f);
-	m_pCFontResource->SetStartPos(m_vPos[2]);
 	for (unsigned int font = 0; font < m_stSpeakString[m_SpeakNum].length() / 2; font++) {
 		m_pCFontResource->SetAlpha(1.0f, font);
 	}
 	m_pCFontResource->String_Render();
 
-
+	//説明用アイコン描画処理関数.
+	RenderDescriptionIcon();
 }
 
 //========================================.
@@ -116,9 +117,12 @@ void CSpeakTutorial::Init()
 		m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::MainString));
 		m_stSelectString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::SelectString));
 	}
-	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 	m_vPos.push_back(D3DXVECTOR3(60.0f, 210.0f, 0.0f));
 
+	m_pCFontResource->SetFontScale(30.0f);
+	m_pCFontResource->SetWidthMax(150.0f);
+	m_pCFontResource->SetStartPos(m_vPos[2]);
+	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 
 }
 
@@ -174,6 +178,9 @@ void CSpeakTutorial::FindTutorial()
 	//説明内容検索処理関数.
 	FindDescription();
 
+	//説明用アイコン設定処理関数.
+	SettingDescriptionIcon();
+
 }
 
 //========================================.
@@ -181,6 +188,7 @@ void CSpeakTutorial::FindTutorial()
 //========================================.
 void CSpeakTutorial::FindDescription()
 {
+
 	if (m_stSelectString[m_SpeakNum] == "MapDescription") {
 		m_DescriptionFlag = MAP_DESCRIPTION_FLAG;
 		return;
@@ -217,21 +225,126 @@ void CSpeakTutorial::FindDescription()
 //=========================================.
 void CSpeakTutorial::SettingDescriptionIcon()
 {
+	//削除.
 	if (m_pCDescriptionIcon.size() > 0) {
 		m_pCDescriptionIcon.clear();
 	}
 
-	if (m_DescriptionFlag & GHOST_DESCRIPTION_FLAG) {
-		m_pCDescriptionIcon.resize(2);
+	//挿入アイコンのサイズ.
+	const unsigned int ICON_MAX = m_pCFontResource->GetInputPictureSize();
+
+	//例外処理.
+	if (ICON_MAX <= 0) {
+		return;
+	}
+
+	//フォント座標.
+	for (unsigned int Icon = 0; Icon < ICON_MAX; Icon++) {
+		const int			FontNum = m_pCFontResource->GetInputPictureNum(Icon);
+		const D3DXVECTOR3	vPosAdjustment = D3DXVECTOR3(-10.0f, -10.0f, 0.0f);
+		const D3DXVECTOR3	vFontPos = m_pCFontResource->GetFontPos(FontNum) + vPosAdjustment;
 		
+		if (Icon < m_vIconPos.size()) {
+			m_vIconPos[Icon] = vFontPos;
+			continue;
+		}
+		m_vIconPos.push_back(vFontPos);
+	}
+
+	//お化けのアイコン設定.
+	if (m_DescriptionFlag & GHOST_DESCRIPTION_FLAG) {
+		GhostIconSetting(ICON_MAX);
+
 		return;
 	}
 
+	//ギミックアイコン設定.
 	if (m_DescriptionFlag & GIMMICK_DESCRIPTION_FLAG) {
+		GimmickIconSetting(ICON_MAX);
 		return;
 	}
 
+	//人のアイコン.
 	if (m_DescriptionFlag & PEOPLE_DESCRIPTION_FLAG) {
+		PeopleIconSetting(ICON_MAX);
 		return;
 	}
+}
+
+//===========================================.
+//		説明用アイコン描画処理関数.
+//===========================================.
+void CSpeakTutorial::RenderDescriptionIcon()
+{
+	if (m_pCDescriptionIcon.size() <= 0) {
+		return;
+	}
+	
+	for (unsigned int IconNum = 0; IconNum < m_pCDescriptionIcon.size(); IconNum++) {
+		if (m_vColor.size() > 0) {
+			m_pCDescriptionIcon[IconNum]->SetColor(m_vColor[IconNum]);
+			m_pCDescriptionIcon[IconNum]->SetPattern(m_vPattern[IconNum]);
+		}
+		m_pCDescriptionIcon[IconNum]->SetAlpha(ALPHA_MAX);
+		m_pCDescriptionIcon[IconNum]->SetPosition(m_vIconPos[IconNum]);
+		m_pCDescriptionIcon[IconNum]->SetScale(DESCRIPTION_ICON_SCALE);
+		m_pCDepthStencil->SetDepth(false);
+		m_pCDescriptionIcon[IconNum]->Render();
+		m_pCDepthStencil->SetDepth(true);
+	}
+}
+
+//============================================.
+//		お化けアイコン設定処理関数.
+//============================================.
+void CSpeakTutorial::GhostIconSetting(const int& IconMax)
+{
+	for (int Icon = 0; Icon < IconMax; Icon++) {
+		
+		m_pCDescriptionIcon.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Ghost_Icon));
+		
+		const std::string InputPictureType = m_pCFontResource->GetPictureTypeNum(Icon);
+		if (InputPictureType == "０") {
+			m_vPattern.push_back(D3DXVECTOR2(0.0f, 0.0f));
+			continue;
+		}
+		if (InputPictureType == "１") {
+			m_vPattern.push_back(D3DXVECTOR2(0.0f, 2.0f));
+		}
+	}
+}
+
+//============================================.
+//		ギミックアイコン設定処理関数.
+//============================================.
+void CSpeakTutorial::GimmickIconSetting(const int& IconMax)
+{
+	for (int Icon = 0; Icon < IconMax; Icon++) {
+		const std::string InputPictureType = m_pCFontResource->GetPictureTypeNum(Icon);
+		if (InputPictureType == "０") {
+			m_pCDescriptionIcon.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::DispGimmick_Iccon));
+			continue;
+		}
+		if (InputPictureType == "１") {
+			m_pCDescriptionIcon.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Switch_Icon));
+		}
+	}
+}
+
+//============================================.
+//		人々のアイコン設定処理関数.
+//============================================.
+void CSpeakTutorial::PeopleIconSetting(const int& IconMax)
+{
+	for (int Icon = 0; Icon < IconMax; Icon++) {
+		const std::string InputPictureType = m_pCFontResource->GetPictureTypeNum(Icon);
+		if (InputPictureType == "０") {
+			m_pCDescriptionIcon.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Girl_Icon));
+			continue;
+		}
+		if (InputPictureType == "１") {
+			m_pCDescriptionIcon.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Boy_Icon));
+		}
+	}
+
 }

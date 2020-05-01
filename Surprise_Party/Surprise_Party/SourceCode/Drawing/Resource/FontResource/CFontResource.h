@@ -31,12 +31,16 @@ public:
 	void SetWidthMax(const float& fWidthMax) { m_fWidthMax = fWidthMax; }
 
 	//==========情報獲得処理関数===============//.
-	CFont*	GetFont() const { return m_pCFont[0].get(); }
-	int		GetStrLength() const { return m_StrLength; }
+	CFont*			GetFont() const { return m_pCFont[0].get(); }
+	int				GetStrLength() const { return m_StrLength; }			//文字列長さ取得.
+	D3DXVECTOR3		GetFontPos(const int& num) const { return m_vPos[num]; }//フォント座標取得.
+	unsigned int	GetInputPictureSize() const { return m_InputPictureNum.size(); }
+	int				GetInputPictureNum(const int& num) { return m_InputPictureNum[num]; }
+	std::string		GetPictureTypeNum(const int& num) { return m_PictureTypeNum[num]; }
 
 private:
 	//=================関数====================//.
-	void Release();														//解放処理関数.
+	void Release();													//解放処理関数.
 
 	//=================変数====================//.
 	ID3D11Device*							m_pDevice11;			//デバイスオブジェクト.
@@ -44,6 +48,7 @@ private:
 	std::vector<std::unique_ptr<CFont>>		m_pCFont;				//フォントクラス.
 	int										m_StrLength;			//文字列の長さ.
 	D3DXVECTOR3								m_vStartPos;			//一文字目の位置.
+	std::vector<D3DXVECTOR3>				m_vPos;					//座標.
 	HFONT									m_hFont;				//フォント.
 	HDC										m_hdc;					//デバイスコンテキスト.
 	float									m_fFontScale;			//文字の大きさ.

@@ -62,8 +62,6 @@ void CSpeakBigGhost::Render()
 	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
 		m_pCFontResource->SetAlpha(m_fFontAlpha, m_ChangingFontNum);
 	}
-	m_pCFontResource->SetFontScale(FONT_SCALE);
-	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
 	m_pCFontResource->String_Render();
 
 	//‘I‘ð‚µ‚Ä‚¢‚é‚Æ‚«ˆÈŠOˆ—‚µ‚È‚¢.
@@ -154,10 +152,12 @@ void CSpeakBigGhost::LoadSpeakString()
 		m_EmotionNum.push_back(atoi(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::EmotionNum).c_str()));
 	}
 
-	//“Ç‚Ýž‚Ýˆ—ŠÖ”.
-	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	//ˆÊ’uÝ’èˆ—ŠÖ”
 	m_pCFontResource->SetStartPos(D3DXVECTOR3(90.0f, 480.0f, 0.0f));
+	m_pCFontResource->SetFontScale(FONT_SCALE);
+	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
+	//“Ç‚Ýž‚Ýˆ—ŠÖ”.
+	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 }
 
 //======================================.

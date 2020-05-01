@@ -21,12 +21,14 @@ public:
 	~CSpeakTutorial();
 
 	//=================定数=======================//.
-	const unsigned int MAP_DESCRIPTION_FLAG			= (1 << 0);	//地図の説明フラグ.
-	const unsigned int GHOST_DESCRIPTION_FLAG		= (1 << 1);	//お化けの説明フラグ.
-	const unsigned int GIMMICK_DESCRIPTION_FLAG		= (1 << 2);	//ギミックの説明フラグ.
-	const unsigned int PEOPLE_DESCRIPTION_FLAG		= (1 << 3);	//人々の説明フラグ.
-	const unsigned int GAGE_DESCRIPTION_FLAG		= (1 << 4);	//驚きゲージの説明フラグ.
-	const unsigned int CLOSE_TIME_DESCRIPTION_FLAG	= (1 << 5);	//閉鎖時間の説明フラグ.
+	const unsigned int	MAP_DESCRIPTION_FLAG		= (1 << 0);	//地図の説明フラグ.
+	const unsigned int	GHOST_DESCRIPTION_FLAG		= (1 << 1);	//お化けの説明フラグ.
+	const unsigned int	GIMMICK_DESCRIPTION_FLAG	= (1 << 2);	//ギミックの説明フラグ.
+	const unsigned int	PEOPLE_DESCRIPTION_FLAG		= (1 << 3);	//人々の説明フラグ.
+	const unsigned int	GAGE_DESCRIPTION_FLAG		= (1 << 4);	//驚きゲージの説明フラグ.
+	const unsigned int	CLOSE_TIME_DESCRIPTION_FLAG	= (1 << 5);	//閉鎖時間の説明フラグ.
+
+	const float			DESCRIPTION_ICON_SCALE		= 0.7f;		//説明用アイコン大きさ.	
 
 	//=================関数=======================//.
 	void Update();				//更新処理関数.
@@ -49,17 +51,23 @@ public:
 
 private:
 	//==================関数=======================//.
-	void Init();					//初期化処理関数.
-	void Release();					//解放処理関数.
-	void FindTutorial();			//チュートリアル見つける処理関数.
-	void FindDescription();			//説明内容見つける処理関数.
-	void SettingDescriptionIcon();	//説明用アイコン設定処理関数.
+	void Init();									//初期化処理関数.
+	void Release();									//解放処理関数.
+	void FindTutorial();							//チュートリアル見つける処理関数.
+	void FindDescription();							//説明内容見つける処理関数.
+	void SettingDescriptionIcon();					//説明用アイコン設定処理関数.
+	void RenderDescriptionIcon();					//説明用アイコン描画処理関数.
+	void GhostIconSetting(const int& IconMax);		//お化けアイコン設定処理関数.
+	void GimmickIconSetting(const int& IconMax);	//ギミックアイコン設定処理関数.
+	void PeopleIconSetting(const int& IconMax);		//人々のアイコン設定処理関数.
 
 	//==================変数=======================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;				//スプライトUI.
 	std::vector<CSpriteUI*>		m_pCDescriptionIcon;		//説明用アイコン.
 	std::vector<D3DXVECTOR3>	m_vIconPos;					//アイコン座標.
 	std::vector<D3DXVECTOR3>	m_vPos;						//座標.
+	std::vector<D3DXVECTOR3>	m_vColor;					//色.
+	std::vector<D3DXVECTOR2>	m_vPattern;					//パターン番号.
 	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
 	unsigned int				m_DescriptionFlag;			//説明フラグ.
 	bool						m_bAdvanceCommentFlag;		//コメント進めるフラグ.
