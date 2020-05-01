@@ -95,7 +95,6 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 			if (cda >= "‚O" && cda <= "‚X") {
 				m_InputPictureNum.push_back(size);
 				m_PictureTypeNum.push_back(cda);
-				cda -= (L'‚O' - L'0');
 				cda = "@";
 			}
 		}
