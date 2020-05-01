@@ -118,6 +118,8 @@ void CSpeakTutorial::Init()
 	}
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 	m_vPos.push_back(D3DXVECTOR3(60.0f, 210.0f, 0.0f));
+
+
 }
 
 //========================================.
@@ -215,7 +217,13 @@ void CSpeakTutorial::FindDescription()
 //=========================================.
 void CSpeakTutorial::SettingDescriptionIcon()
 {
+	if (m_pCDescriptionIcon.size() > 0) {
+		m_pCDescriptionIcon.clear();
+	}
+
 	if (m_DescriptionFlag & GHOST_DESCRIPTION_FLAG) {
+		m_pCDescriptionIcon.resize(2);
+		
 		return;
 	}
 
