@@ -5,10 +5,10 @@
 地図の中にはそれぞれのアイコンがあるから今から説明するね,MapDescription
 ０これはお化けのアイコンだよ！,GhostDescription
 お化けの体力や指示されるときに表情が変わるんだけど,GhostDescription
-３のになった時、お化けはもの凄く疲れているから,GhostDescription
+１のになった時、お化けはもの凄く疲れているから,GhostDescription
 休ませてあげてね！！そうしないと、お化けが倒れちゃう！！,GhostDescription
 お化けが倒れちゃったら元気になるまで休憩するよ！！,GhostDescription
-次は０、０、これはギミックのアイコンだよ,GimmickDescription
+次は０、１、これはギミックのアイコンだよ,GimmickDescription
 ギミックの種類によってボタンが違うんだ！！,GimmickDescription
 最後にお客のアイコンの説明がするよ！！,PeopleDescription
 ０が女の子、１が男の子のアイコンだよ,PeopleDescription
