@@ -96,10 +96,12 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 	const float	WIDTH_MAX = WND_W - 150.0f;
 
 	//文字のテクスチャ作成.
+	bool bLineFeed = false;
 	for (int size = 0; size < m_StrLength; size++) {
-		m_pCFont[size].reset(new CFont());
 		//文字列を１文字に分解.
 		std::string cda = str.substr(size * 2, 2);
+
+		m_pCFont[size].reset(new CFont());
 
 		if (InputPictureFlag == true) {
 			if (cda >= "０" && cda <= "９") {
@@ -107,6 +109,12 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 				m_PictureTypeNum.push_back(cda);
 				cda = "　";
 			}
+		}
+
+		bLineFeed = false;
+		if (cda == "￥") {
+			cda = "　";
+			bLineFeed = true;
 		}
 
 		const char* c = cda.c_str();
@@ -120,7 +128,7 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 		const float	FONT_HEIGHT = hight * (BASIC_WIDTH * m_fFontScale);
 		m_vPos[size] = D3DXVECTOR3(m_vStartPos.x + FONT_WIDTH, m_vStartPos.y + FONT_HEIGHT, m_vStartPos.z);
 		//改行.
-		if (FONT_WIDTH > m_fWidthMax) {
+		if (FONT_WIDTH > m_fWidthMax || bLineFeed == true) {
 			widh = 0;
 			hight++;
 		}

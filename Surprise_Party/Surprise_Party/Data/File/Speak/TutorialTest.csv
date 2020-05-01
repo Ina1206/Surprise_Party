@@ -1,4 +1,4 @@
-ここがお化け屋敷だよ,0
+ここが￥お化け屋敷￥だよ,0
 お化けに指示しながらお客様を驚かして欲しいんだ！！,0
 お化けの指示の仕方を説明するね,0
 上の図はこのお化け屋敷の全体の地図だよ！！,MapDescription
@@ -11,7 +11,7 @@
 次は０、１、これはギミックのアイコンだよ,GimmickDescription
 ギミックの種類によってボタンが違うんだ！！,GimmickDescription
 最後にお客のアイコンの説明がするよ！！,PeopleDescription
-０が女の子、１が男の子のアイコンだよ,PeopleDescription
+０が女の子、￥￥１が男の子のアイコンだよ,PeopleDescription
 このゲージはお客が驚いたら増えるんだ,SurpriseGageDescription
 ゲージがいっぱいになってくると良いことがあるよ！！,SurpriseGageDescription
 これは閉店まであとどれくらいか教えてくれるよ,CloseTimeDescription
