@@ -10,6 +10,10 @@ const unsigned int DECIDE_ACT_FLAG				= (1 << 2);	//行動決定フラグ.
 const unsigned int SELECT_GIMMICK_FLAG			= (1 << 3);	//ギミック選択フラグ.
 const unsigned int DECIDE_GIMMICK_FLAG			= (1 << 4);	//ギミック決定フラグ.
 
+const unsigned int CustomerEnterSE				= (1 << 0);	//客が入ってきたSE.
+const unsigned int SeePeople					= (1 << 1);	//客を見る.
+const unsigned int DescriptionEnd				= (1 << 2);	//説明終了.
+
 /******************************************
 *		チュートリアル会話.
 ***************/
@@ -43,6 +47,8 @@ public:
 	bool GetAdvanceCommentFlag() const { return m_bAdvanceCommentFlag; }
 	//説明フラグ.
 	unsigned int GetDescriptionFlag() const { return m_DescriptionFlag; }
+	//開始直前フラグ.
+	unsigned int GetStartLatestFlag() const { return m_enStartLatestFlag; }
 
 	//============情報置換処理関数=================//.
 	//コメント進めるフラグ.
@@ -71,6 +77,7 @@ private:
 	unsigned int				m_DescriptionFlag;			//説明フラグ.
 	bool						m_bAdvanceCommentFlag;		//コメント進めるフラグ.
 	int							m_SelectMoveCount;			//選択移動カウント.
+	unsigned int				m_enStartLatestFlag;		//開始直前フラグ.
 };
 
 #endif	//#ifndef CSPEAK_TUTORIAL_H.

@@ -215,7 +215,9 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	if (m_pCDescriptionUIManager != nullptr) {
 		//コメント進めるときは下まで処理しない.
 		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == true) {
-			return;
+			if (!(m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople)) {
+				return;
+			}
 		}
 	}
 
@@ -223,9 +225,18 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	if (ControlFlag == true) {
 		Control();
 		//説明中例外処理.
-		if (m_ExplainFlag & EXPLAINING_FLAG) {
-			return;
+		if (m_ExplainFlag & EXPLAINING_FLAG ){
+			if(!(m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople)) {
+				//if(カメラが移動していたら）{
+					//カメラを戻すフラグ.
+				//}
+				return;
+			}
+			if (m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople) {
+				//カメラ移動フラグ.
+			}
 		}
+
 	}
 
 	//人の更新処理関数.

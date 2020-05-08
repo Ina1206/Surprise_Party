@@ -13,6 +13,7 @@ CSpeakTutorial::CSpeakTutorial()
 	, m_DescriptionFlag		(0)
 	, m_bAdvanceCommentFlag	(true)
 	, m_SelectMoveCount		(0)
+	, m_enStartLatestFlag	(0)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -29,6 +30,10 @@ CSpeakTutorial::~CSpeakTutorial()
 //======================================.
 void CSpeakTutorial::Update()
 {
+	if (m_enStartLatestFlag & SeePeople) {
+		m_enStartLatestFlag = 0;
+	}
+
 	if (m_bAdvanceCommentFlag == true) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 			//ƒRƒƒ“ƒgˆê‰ñi‚ß‚éˆ—.
@@ -218,6 +223,20 @@ void CSpeakTutorial::FindDescription()
 	if (m_stSelectString[m_SpeakNum] == "CloseTimeDescription") {
 		m_DescriptionFlag = CLOSE_TIME_DESCRIPTION_FLAG;
 		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "CustomerEnterSE") {
+		m_enStartLatestFlag = CustomerEnterSE;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "SeePeople") {
+		m_enStartLatestFlag = SeePeople;
+		return;
+	}
+
+	if (m_stSelectString[m_SpeakNum] == "DescriptionEnd") {
+		m_enStartLatestFlag = DescriptionEnd;
 	}
 }
 
