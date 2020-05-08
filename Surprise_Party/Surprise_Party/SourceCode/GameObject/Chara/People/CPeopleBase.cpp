@@ -17,6 +17,7 @@ CPeopleBase::CPeopleBase()
 	, m_AnimTime		(0.0)
 	, m_HumanNearNum	(FAR_NUM)
 	, m_SurpriseHumanMax(0)
+	, m_bTutorialFlag	(false)
 {
 	m_vRot = PERSON_ROT;
 }
@@ -34,6 +35,10 @@ CPeopleBase::~CPeopleBase()
 //======================================.
 void CPeopleBase::Render()
 {
+	if (m_bTutorialFlag == true) {
+		m_pCSkinMesh->ChangeAnimSet(4);
+	}
+
 	//À•W.
 	m_pCSkinMesh->SetPosition(m_vPos);
 	//Šp“x.

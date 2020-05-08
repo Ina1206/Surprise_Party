@@ -42,7 +42,7 @@ public:
 	};
 
 	//=================関数======================//.
-	void Render();		//描画処理関数.
+	void Render();			//描画処理関数.
 
 	//============情報置換処理関数===============//.
 	//ステージの最大数.
@@ -53,6 +53,8 @@ public:
 	void SetHumanNearNum(const int& Num) { m_HumanNearNum = Num; }
 	//驚いた人最大数.
 	void SetSurpriseHumanMax(const int& Max) { m_SurpriseHumanMax = Max; }
+	//チュートリアルフラグ.
+	void SetTutorialFlag(const bool& bFlag) { m_bTutorialFlag = bFlag; }
 
 	//=============情報獲得処理関数==============//.
 	//追加ポイント量.
@@ -88,7 +90,7 @@ private:
 	double						m_AnimTime;			//アニメーション時間.
 	int							m_HumanNearNum;		//近づいたときの人間番号.
 	int							m_SurpriseHumanMax;	//驚いた人最大数.
-
+	bool						m_bTutorialFlag;	//チュートリアルフラグ.
 };
 
 #endif	//#ifndef CPEOPLE_BASE_H.

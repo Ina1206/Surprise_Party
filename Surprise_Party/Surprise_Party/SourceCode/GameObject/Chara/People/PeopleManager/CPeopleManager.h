@@ -25,7 +25,7 @@ public:
 	void Init(int FileNum, int max, float StageMax);	//初期化処理関数.
 	void Update();										//更新処理関数.
 	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight);	//描画処理関数.
-
+	
 	//===========情報置換処理関数============//.
 	//ステージ距離最大値.
 	void SetStageDistanceMax(const float& fStageDistanceMax) { m_fStageDistanceMax = fStageDistanceMax; }
@@ -33,6 +33,8 @@ public:
 	void SetSurpriseFlag(const int& SurpriseHumanNum, const bool& bFlag) { m_bSurpriseFlag[SurpriseHumanNum] = bFlag; }
 	//驚いている人番号.
 	void SetNowHumanSurprise(const std::vector<int>& HumanNum);
+	//チュートリアルフラグ.
+	void SetTutorialFlag(const bool& bFlag) { m_pCPeopleBase[0]->SetTutorialFlag(bFlag); }
 
 	//===========情報獲得処理関数============//.
 	//人の座標取得.

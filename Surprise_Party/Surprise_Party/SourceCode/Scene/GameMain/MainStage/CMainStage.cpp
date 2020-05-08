@@ -226,6 +226,8 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		Control();
 		//説明中例外処理.
 		if (m_ExplainFlag & EXPLAINING_FLAG ){
+			m_pCPeopleManager->SetTutorialFlag(true);
+
 			if(!(m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople)) {
 				//if(カメラが移動していたら）{
 					//カメラを戻すフラグ.
