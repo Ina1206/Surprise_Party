@@ -47,6 +47,9 @@ public:
 	const unsigned int	EXPLAINED_GAGE_FLAG		= (1 << 4);		//ゲージを説明したフラグ.
 	const unsigned int	EXPLAINED_CLOSE_FLAG	= (1 << 5);		//閉店の説明したフラグ.
 
+	const unsigned int	CAMERA_MOVE_START_FLAG	= (1 << 0);		//カメラ移動開始フラグ.
+	const unsigned int	CAMERA_MOVE_RETURN_FLAG = (1 << 1);		//カメラ戻りフラグ.
+
 	const int			SLECTION_MAX			= 2;			//選択最大個数.
 	const int			GHOST_NUM				= 0;			//お化け番号.
 	const int			GIMMICK_NUM				= 1;			//ギミック番号.
@@ -58,6 +61,9 @@ public:
 
 	const int			START_SUPRISE_GAGE_MAX	= 50;			//開始時の驚きゲージの最大数.
 	const int			SURPRISE_GAGE_ADD		= 20;			//驚きゲージ追加量.
+
+	const D3DXVECTOR3	CAMERA_PEOPLE_SEE_POS = D3DXVECTOR3(8.8f, 2.0f, -7.0f);		//カメラが人を見る座標.
+	const D3DXVECTOR3	CAMERA_PEOPLE_SEE_LOOK = D3DXVECTOR3(-4.3f, 4.3f, 0.0f);	//カメラが人を見る注視点.
 
 	//====================関数=========================//.
 	void UpDate(const bool& ControlFlag);			//更新処理関数.
@@ -102,6 +108,8 @@ private:
 
 	std::unique_ptr<CDescriptionUIManager>			m_pCDescriptionUIManager;	//説明UI管理クラス.
 
+	unsigned int									m_bTutorialCameraMove;		//チュートリアルカメラ移動フラグ.
+	CAMERA											m_stOldCamera;				//古いカメラ情報.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

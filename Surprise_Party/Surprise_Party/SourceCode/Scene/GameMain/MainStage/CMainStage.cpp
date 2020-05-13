@@ -25,6 +25,8 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_bDispTextFlag			(true)
 	, m_pCSpeakWorkGhost		(nullptr)
 	, m_pCDescriptionUIManager	(nullptr)
+	, m_bTutorialCameraMove		(false)
+	, m_stOldCamera				()
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -215,7 +217,8 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	if (m_pCDescriptionUIManager != nullptr) {
 		//コメント進めるときは下まで処理しない.
 		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == true) {
-			if (!(m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople)) {
+			const unsigned int DESCRIPTION_LAST_FLAG = SeePeople | DescriptionEnd;
+			if (!(m_pCDescriptionUIManager->GetStartLatestFlag() & DESCRIPTION_LAST_FLAG)) {
 				return;
 			}
 		}
@@ -229,17 +232,24 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_pCPeopleManager->SetTutorialFlag(true);
 
 			if(!(m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople)) {
-				//if(カメラが移動していたら）{
-					//カメラを戻すフラグ.
-				//}
+				if (m_bTutorialCameraMove & CAMERA_MOVE_START_FLAG) {
+					m_bTutorialCameraMove = CAMERA_MOVE_RETURN_FLAG;
+				}
 				return;
 			}
 			if (m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople) {
 				//カメラ移動フラグ.
+				m_bTutorialCameraMove = CAMERA_MOVE_START_FLAG;
+
+				m_stOldCamera.vPos = m_Camera.vPos;
+				m_stOldCamera.vLook = m_Camera.vLook;
+
 			}
 		}
 
 	}
+
+	
 
 	//人の更新処理関数.
 	m_pCPeopleManager->Update();
@@ -289,19 +299,39 @@ void CMainStage::Render()
 
 	//	}
 
-	//	if (GetAsyncKeyState('S') & 0x8000) {
-	//		m_stLight.vPos.y += 0.1f;
-	//	}
-	//	if (GetAsyncKeyState('X') & 0x8000) {
-	//		m_stLight.vPos.y -= 0.1f;
-	//	}
-	//	if (GetAsyncKeyState('Z') & 0x8000) {
-	//		m_stLight.vPos.z += 0.1f;
-	//	}
-	//	if (GetAsyncKeyState('C') & 0x8000) {
-	//		m_stLight.vPos.z -= 0.1f;
-	//	}
+		//if (m_bTutorialCameraMove == true) {
+		//	if (GetAsyncKeyState('S') & 0x8000) {
+		//		m_Camera.vLook.y += 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('X') & 0x8000) {
+		//		m_Camera.vLook.y -= 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('Z') & 0x8000) {
+		//		m_Camera.vLook.x += 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('C') & 0x8000) {
+		//		m_Camera.vLook.x -= 0.1f;
+		//	}
 
+		//	if (GetAsyncKeyState('I') & 0x8000) {
+		//		m_Camera.vPos.y += 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('K') & 0x8000) {
+		//		m_Camera.vPos.y -= 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('J') & 0x8000) {
+		//		m_Camera.vPos.x += 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('L') & 0x8000) {
+		//		m_Camera.vPos.x -= 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('U') & 0x8000) {
+		//		m_Camera.vPos.z += 0.1f;
+		//	}
+		//	if (GetAsyncKeyState('O') & 0x8000) {
+		//		m_Camera.vPos.z -= 0.1f;
+		//	}
+		//}
 	//	if (GetAsyncKeyState(VK_F1) & 0x8000) {
 	//		if (m_ControlFlag == true) {
 	//			m_ControlFlag = false;
@@ -470,6 +500,8 @@ void CMainStage::Init()
 	//カメラ初期設置.
 	m_Camera.vPos = CAMERA_START_POS;
 	m_Camera.vLook = CAMERA_START_LOOK;
+
+
 
 	//ライト情報初期設定.
 	m_stLight.vPos = D3DXVECTOR3(0.0f , 21.7f, -0.5f);
@@ -717,6 +749,44 @@ void CMainStage::GhostElementSort(T pClass, int array)
 //=======================================.
 void CMainStage::CameraMove()
 {
+	if(m_bTutorialCameraMove & CAMERA_MOVE_START_FLAG){
+		if (m_Camera.vPos.x > 11.0f) {
+			m_Camera.vPos.x -= 0.6f;
+			m_Camera.vLook.x = m_Camera.vPos.x;
+			return;
+		}
+
+		const D3DXVECTOR3 vSeePeopleOldPos = D3DXVECTOR3(m_Camera.vPos.x, m_stOldCamera.vPos.y, m_stOldCamera.vPos.z);
+		const D3DXVECTOR3 vOldPos_Camera = vSeePeopleOldPos - CAMERA_PEOPLE_SEE_POS;
+		const float	vLength = D3DXVec3Length(&(vOldPos_Camera));
+		const D3DXVECTOR3 vRato = vOldPos_Camera / vLength;
+
+		m_Camera.vPos -= 0.2f * vRato;
+
+		if(m_Camera.vPos.y < CAMERA_PEOPLE_SEE_POS.y){
+			m_Camera.vPos = CAMERA_PEOPLE_SEE_POS;
+		}
+
+		const D3DXVECTOR3 vSeePeopleOldLook = D3DXVECTOR3(m_Camera.vLook.x, m_stOldCamera.vLook.y, m_stOldCamera.vLook.z);
+		const D3DXVECTOR3 vOldLook_SeeLook = m_stOldCamera.vLook - CAMERA_PEOPLE_SEE_LOOK;
+		const float	vLookLength = D3DXVec3Length(&vOldLook_SeeLook);
+		const D3DXVECTOR3 vLookRaito = vOldLook_SeeLook / vLookLength;
+
+		m_Camera.vLook -= 0.2f * vLookRaito;
+
+		if (m_Camera.vPos.y < CAMERA_PEOPLE_SEE_LOOK.y) {
+			m_Camera.vLook = CAMERA_PEOPLE_SEE_LOOK;
+		}
+
+		return;
+	}
+
+	if (m_bTutorialCameraMove & CAMERA_MOVE_RETURN_FLAG) {
+		m_Camera.vPos = m_stOldCamera.vPos;
+		m_Camera.vLook = m_stOldCamera.vLook;
+		return;
+	}
+
 	D3DXVECTOR3 m_GhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
 	//お化け選択時.
 	if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {

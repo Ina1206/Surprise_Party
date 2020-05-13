@@ -78,6 +78,7 @@ private:
 	bool						m_bAdvanceCommentFlag;		//コメント進めるフラグ.
 	int							m_SelectMoveCount;			//選択移動カウント.
 	unsigned int				m_enStartLatestFlag;		//開始直前フラグ.
+	bool						m_bDescriptionEnd;			//終了フラグ.
 };
 
 #endif	//#ifndef CSPEAK_TUTORIAL_H.

@@ -36,6 +36,10 @@ void CSpeakTutorial::Update()
 
 	if (m_bAdvanceCommentFlag == true) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+			if (m_enStartLatestFlag & DescriptionEnd) {
+				
+			}
+
 			//ƒRƒƒ“ƒgˆê‰ñi‚ß‚éˆ—.
 			AdvanceOnceComment();
 		}
