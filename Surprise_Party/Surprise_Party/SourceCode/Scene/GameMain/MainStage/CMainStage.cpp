@@ -64,15 +64,21 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		m_pCWorkGhost[ghost]->SetSurprisePosInfo(m_vGimmickPos, m_pCPeopleManager->GetHumanPos());
 
 		if (m_enStageType == enStageType::Tutorial) {
-			//チュートリアルフラグ.
-			m_pCWorkGhost[ghost]->SetTutorialFlag(true);
+			if (m_ExplainFlag != 0) {
+				//チュートリアルフラグ.
+				m_pCWorkGhost[ghost]->SetTutorialFlag(true);
 
-			//選択決定フラグ設定.
-			if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
-				m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
+				//選択決定フラグ設定.
+				if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
+					m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
+				}
+				else {
+					m_pCWorkGhost[ghost]->SetDecideSelectFlag(false);
+				}
 			}
 			else {
-				m_pCWorkGhost[ghost]->SetDecideSelectFlag(false);
+				m_pCWorkGhost[ghost]->SetTutorialFlag(false);
+				m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
 			}
 		}
 
@@ -214,6 +220,9 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		
 		if (m_pCDescriptionUIManager->GetDescriptionEndFlag() == true) {
 			m_ExplainFlag = 0;
+			//テキスト描画終了.
+			m_bDispTextFlag = false;
+			m_bTutorialCameraMove = 0;
 		}
 	}
 
@@ -523,7 +532,7 @@ void CMainStage::Control()
 	//============================================.
 	//お化け選択処理関数.
 	if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
-		if (m_pCDescriptionUIManager != nullptr) {
+		if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
 			if (!(m_pCDescriptionUIManager->GetTutorialFlag() & (SELECT_GHOST_FLAG | DECIDE_GHOST_FLAG))) {
 				return;
 			}
@@ -537,9 +546,11 @@ void CMainStage::Control()
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
 		
 		//チュートリアル時お化けの説明していなければ終了.
-		if (m_enStageType == enStageType::Tutorial &&
-			!(m_ExplainFlag & EXPLAINED_GHOST_FLAG)) {
-			return;
+		if (m_ExplainFlag != 0) {
+			if (m_enStageType == enStageType::Tutorial &&
+				!(m_ExplainFlag & EXPLAINED_GHOST_FLAG)) {
+				return;
+			}
 		}
 
 		GimmickSelect();
@@ -555,7 +566,7 @@ void CMainStage::Control()
 			if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetMoveFlag() & 
 				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SURPRISE_FLAG) {
 
-				if (m_pCDescriptionUIManager != nullptr) {
+				if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
 					if (!(m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GHOST_FLAG)) {
 						return;
 					}
@@ -607,7 +618,7 @@ void CMainStage::Control()
 					m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
 
 					//チュートリアル時にコメントを進める処理.
-					if (m_pCDescriptionUIManager != nullptr) {
+					if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
 						m_pCDescriptionUIManager->SetAdvanceComment();
 					}
 
