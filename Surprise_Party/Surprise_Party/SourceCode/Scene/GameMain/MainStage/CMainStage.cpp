@@ -302,39 +302,6 @@ void CMainStage::Render()
 
 	//	}
 
-		//if (m_bTutorialCameraMove == true) {
-		//	if (GetAsyncKeyState('S') & 0x8000) {
-		//		m_Camera.vLook.y += 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('X') & 0x8000) {
-		//		m_Camera.vLook.y -= 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('Z') & 0x8000) {
-		//		m_Camera.vLook.x += 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('C') & 0x8000) {
-		//		m_Camera.vLook.x -= 0.1f;
-		//	}
-
-		//	if (GetAsyncKeyState('I') & 0x8000) {
-		//		m_Camera.vPos.y += 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('K') & 0x8000) {
-		//		m_Camera.vPos.y -= 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('J') & 0x8000) {
-		//		m_Camera.vPos.x += 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('L') & 0x8000) {
-		//		m_Camera.vPos.x -= 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('U') & 0x8000) {
-		//		m_Camera.vPos.z += 0.1f;
-		//	}
-		//	if (GetAsyncKeyState('O') & 0x8000) {
-		//		m_Camera.vPos.z -= 0.1f;
-		//	}
-		//}
 	//	if (GetAsyncKeyState(VK_F1) & 0x8000) {
 	//		if (m_ControlFlag == true) {
 	//			m_ControlFlag = false;
