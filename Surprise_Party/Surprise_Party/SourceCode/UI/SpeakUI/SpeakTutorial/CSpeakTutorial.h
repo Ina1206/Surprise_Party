@@ -49,7 +49,8 @@ public:
 	unsigned int GetDescriptionFlag() const { return m_DescriptionFlag; }
 	//開始直前フラグ.
 	unsigned int GetStartLatestFlag() const { return m_enStartLatestFlag; }
-
+	//終了フラグ.
+	bool GetDescriptionEndFlag() const { return m_bDescriptionEnd; }
 	//============情報置換処理関数=================//.
 	//コメント進めるフラグ.
 	void SetAdvanceCommentFlag(const bool& bFlag) { m_bAdvanceCommentFlag = bFlag; }

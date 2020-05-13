@@ -14,6 +14,7 @@ CSpeakTutorial::CSpeakTutorial()
 	, m_bAdvanceCommentFlag	(true)
 	, m_SelectMoveCount		(0)
 	, m_enStartLatestFlag	(0)
+	, m_bDescriptionEnd		(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -37,7 +38,8 @@ void CSpeakTutorial::Update()
 	if (m_bAdvanceCommentFlag == true) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 			if (m_enStartLatestFlag & DescriptionEnd) {
-				
+				m_bDescriptionEnd = true;
+				return;
 			}
 
 			//ƒRƒƒ“ƒgˆê‰ñi‚ß‚éˆ—.

@@ -211,7 +211,10 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			//説明終了ゲームを動かすフラグ.
 			m_ExplainFlag = 0;
 		}
-
+		
+		if (m_pCDescriptionUIManager->GetDescriptionEndFlag() == true) {
+			m_ExplainFlag = 0;
+		}
 	}
 
 	if (m_pCDescriptionUIManager != nullptr) {
