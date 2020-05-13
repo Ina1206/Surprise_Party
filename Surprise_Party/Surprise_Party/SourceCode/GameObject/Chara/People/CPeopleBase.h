@@ -22,6 +22,7 @@ public:
 	const int			DECREMENT_POINT		= 1;								//ポイント減少.
 	const float			ADD_ANIM_SPEED		= 0.005f;							//追加アニメーション速度.
 	const D3DXVECTOR3 EFFECT_POS_ADJUSTMENT = D3DXVECTOR3(0.0f, 4.0f, -0.5f);	//エフェクト座標調整.
+	const int			TUTORIAL_ANIM_NO	= 3;								//チュートリアル時アニメーション番号.
 
 	//================列挙体=====================//.
 	//人の種類.

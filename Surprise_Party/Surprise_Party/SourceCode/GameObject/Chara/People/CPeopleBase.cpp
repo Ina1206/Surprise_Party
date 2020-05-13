@@ -36,7 +36,8 @@ CPeopleBase::~CPeopleBase()
 void CPeopleBase::Render()
 {
 	if (m_bTutorialFlag == true) {
-		m_pCSkinMesh->ChangeAnimSet(4);
+		m_pCSkinMesh->ChangeAnimSet(TUTORIAL_ANIM_NO, m_pAnimCtrl);
+		m_bTutorialFlag = false;
 	}
 
 	//ç¿ïW.

@@ -17,9 +17,9 @@ public:
 	~CPeopleManager();
 
 	//=================定数==================//.
-	const D3DXVECTOR3	INIT_POS		= D3DXVECTOR3(-1.0f, 0.0f, -2.5f);		//最初の位置.
-	const unsigned int	DISP_TIME		= 60;									//表示させる時間.
-	const int			HUMAN_TYPE_MAX	= 2;									//人間種類最大数.
+	const D3DXVECTOR3	INIT_POS			= D3DXVECTOR3(-1.0f, 0.0f, -2.5f);		//最初の位置.
+	const unsigned int	DISP_TIME			= 60;									//表示させる時間.
+	const int			HUMAN_TYPE_MAX		= 2;									//人間種類最大数.
 
 	//=================関数==================//.
 	void Init(int FileNum, int max, float StageMax);	//初期化処理関数.
