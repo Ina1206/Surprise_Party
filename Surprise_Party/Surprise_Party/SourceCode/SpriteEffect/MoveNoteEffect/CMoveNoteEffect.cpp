@@ -66,10 +66,10 @@ void CMoveNoteEffect::Init()
 		SettingDefaultValue(Effect);
 
 		m_fAlpha[Effect] = 1.0f;
-		m_fScale[Effect] = 2.0f;
+		m_fScale[Effect] = 1.0f;
 	}
 	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
-	m_DispTime = 10;
+	m_DispTime = 15;
 }
 
 //========================================.
@@ -85,7 +85,7 @@ void CMoveNoteEffect::Release()
 //========================================.
 void CMoveNoteEffect::AppeartJudgement(const int& num)
 {
-	if (m_DispTime < 10) {
+	if (m_DispTime < 15) {
 		return;
 	}
 
@@ -111,4 +111,8 @@ void CMoveNoteEffect::Move(const int& num)
 
 	m_vPos[num].x += cos(RADIAN) * m_fDistance[num];
 	m_vPos[num].y += sin(RADIAN) * m_fDistance[num];
+
+	if (num >= 1) {
+		m_vRot[num].z = RADIAN;
+	}
 }
