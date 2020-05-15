@@ -64,13 +64,11 @@ void CHaveTroubleEffect::Init()
 {
 	//óvëfêîê›íË.
 	m_pCSprite.resize(SPRITE_MAX);
-	m_fDistance.resize(m_pCSprite.size());
 	SettingElementsCount();
 
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		//èâä˙ílê›íË.
 		SettingDefaultValue(sprite);
-		m_fDistance[sprite] = 0.0f;
 
 		//äæâÊëú.
 		m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::Swet);

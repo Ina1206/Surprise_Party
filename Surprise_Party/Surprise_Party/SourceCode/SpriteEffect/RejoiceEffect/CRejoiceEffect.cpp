@@ -81,13 +81,10 @@ void CRejoiceEffect::Init()
 	//要素数設定処理.
 	m_pCSprite.resize(SPRITE_MAX);
 	SettingElementsCount();
-	m_fDistance.resize(m_pCSprite.size());
 
 	//初期化処理関数.
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		SettingDefaultValue(sprite);
-
-		m_fDistance[sprite] = 0.0f;
 		//スプライト紐づけ処理関数.
 		LinkSprite(sprite);
 	}

@@ -75,6 +75,7 @@ void CSpriteEffectBase::SettingElementsCount()
 	m_vRot.resize(m_pCSprite.size());
 	m_fAlpha.resize(m_pCSprite.size());
 	m_fAngle.resize(m_pCSprite.size());
+	m_fDistance.resize(m_pCSprite.size());
 	m_vPart.resize(m_pCSprite.size());
 	m_bDispFlag.resize(m_pCSprite.size());
 	m_ChangeAddSub.resize(m_pCSprite.size());
@@ -118,6 +119,7 @@ void CSpriteEffectBase::SettingDefaultValue(const int& num)
 	m_vRot[num] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_fScale[num] = SCALE_MIN;
 	m_fAlpha[num] = ALPHA_MIN;
+	m_fDistance[num] = 0.0f;
 	m_ChangeAddSub[num] = ADDITION_NUM;
 	m_vPart[num] = D3DXVECTOR2(0.0f, 0.0f);
 }

@@ -68,7 +68,6 @@ void CSurpriseEffect::Init()
 {
 	//—v‘f”İ’è.
 	m_pCSprite.resize(SPRITE_MAX);
-	m_fDistance.resize(m_pCSprite.size());
 	SettingElementsCount();
 
 	//‰Šú’lİ’è.
