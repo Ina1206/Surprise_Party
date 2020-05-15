@@ -295,8 +295,8 @@ void CResourceManager::SpriteStateSetting()
 	int WaveNum = static_cast<int>(enSprite::Wave);
 	m_pstSpriteState[WaveNum].Base.w = 80.0f;
 	m_pstSpriteState[WaveNum].Base.h = 80.0f;
-	m_pstSpriteState[WaveNum].Disp.w = 2.0f;
-	m_pstSpriteState[WaveNum].Disp.h = 2.0f;
+	m_pstSpriteState[WaveNum].Disp.w = 1.1f;
+	m_pstSpriteState[WaveNum].Disp.h = 1.1f;
 
 	//まとめて一コマ当たりのサイズ指定.
 	for (int sprite = 0; sprite < static_cast<int>(enSprite::SingleSpriteMax); sprite++) {
@@ -320,8 +320,8 @@ void CResourceManager::SpriteStateSetting()
 		m_pstSpriteState[note].Base.h = 1321.0f;
 		m_pstSpriteState[note].Stride.w = m_pstSpriteState[note].Base.w / 3.0f;
 		m_pstSpriteState[note].Stride.h = m_pstSpriteState[note].Base.h / 3.0f;
-		m_pstSpriteState[note].Disp.w = 2.0f;
-		m_pstSpriteState[note].Disp.h = 2.0f;
+		m_pstSpriteState[note].Disp.w = 1.5f;
+		m_pstSpriteState[note].Disp.h = 1.5f;
 	}
 
 	//花.
