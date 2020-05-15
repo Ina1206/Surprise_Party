@@ -35,7 +35,13 @@ void CMoveNoteEffect::PlayStartInit(const int& num)
 void CMoveNoteEffect::Init()
 {
 	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::eight_part_note));
+	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Wave));
+	//—v‘f”İ’èˆ—ŠÖ”.
 	SettingElementsCount();
+	for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
+		//‰Šú’lİ’èˆ—ŠÖ”.
+		SettingDefaultValue(Effect);
+	}
 }
 
 //========================================.
