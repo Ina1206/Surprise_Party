@@ -608,6 +608,15 @@ void CMainStage::Control()
 						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetUseGimmickNum(), false);
 					}
 
+					//チュートリアル時にコメントを進める処理.
+					if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
+						//例外処理.
+						if (!(m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GIMMICK_FLAG)) {
+							return;
+						}
+						m_pCDescriptionUIManager->SetAdvanceComment();
+					}
+
 					//移動目的のオブジェクト座標取得.
 					m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetObjectiveGimmickPos(m_pCMoveObjectManager->GetGimmickPos());
 					//お化けの選択に戻る.
@@ -616,11 +625,6 @@ void CMainStage::Control()
 					m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetChangeGimmickSelect(false);
 					//ギミックカーソル非表示フラグ設定.
 					m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
-
-					//チュートリアル時にコメントを進める処理.
-					if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
-						m_pCDescriptionUIManager->SetAdvanceComment();
-					}
 
 					if (m_ExplainFlag & EXPLAINING_FLAG) {
 						//ギミック説明終了.
