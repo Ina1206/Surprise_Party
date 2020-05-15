@@ -39,6 +39,11 @@ void CMoveNoteEffect::Update()
 	for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
 		//•\Ž¦”»’èˆ—ŠÖ”.
 		AppeartJudgement(Effect);
+
+		if (m_bDispFlag[Effect] == false) {
+			continue;
+		}
+
 		//ˆÚ“®ˆ—ŠÖ”.
 		Move(Effect);
 		//Šgkˆ—ŠÖ”.
@@ -52,7 +57,9 @@ void CMoveNoteEffect::Update()
 //========================================.
 void CMoveNoteEffect::PlayStartInit(const int& num)
 {
-
+	SettingDefaultValue(num);
+	m_vPos[num] = m_vCenterPos;
+	m_ScalingFlag[num] = SCALE_FLAG;
 }
 
 //========================================.
@@ -71,10 +78,9 @@ void CMoveNoteEffect::Init()
 		m_ScalingFlag[Effect] = SCALE_FLAG;
 
 		m_fAlpha[Effect] = 1.0f;
-		//m_fScale[Effect] = 1.0f;
 	}
 	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
-	m_DispTime = 15;
+	m_DispTime = 20;
 }
 
 //========================================.
@@ -90,7 +96,7 @@ void CMoveNoteEffect::Release()
 //========================================.
 void CMoveNoteEffect::AppeartJudgement(const int& num)
 {
-	if (m_DispTime < 15) {
+	if (m_DispTime < 20) {
 		return;
 	}
 
@@ -105,11 +111,7 @@ void CMoveNoteEffect::AppeartJudgement(const int& num)
 //========================================.
 void CMoveNoteEffect::Move(const int& num)
 {
-	if (m_bDispFlag[num] == false) {
-		return;
-	}
-
-	m_fDistance[num] = 0.2f;
+	m_fDistance[num] = 0.06f;
 
 	//ƒ‰ƒWƒAƒ“.
 	const float RADIAN = static_cast<float>(D3DXToRadian(m_fAngle[num]));
@@ -128,7 +130,7 @@ void CMoveNoteEffect::Move(const int& num)
 void CMoveNoteEffect::Scaling(const int& num)
 {
 	if (m_ScalingFlag[num] & SCALE_FLAG) {
-		m_fScale[num] += 0.05f;
+		m_fScale[num] += 0.02f;
 
 		if (m_fScale[num] > SCALE_MAX) {
 			m_fScale[num] = SCALE_MAX;
@@ -138,7 +140,7 @@ void CMoveNoteEffect::Scaling(const int& num)
 		return;
 	}
 
-	m_fScale[num] -= 0.05f;
+	m_fScale[num] -= 0.02f;
 	if (m_fScale[num] < SCALE_MIN) {
 		m_fScale[num] = SCALE_MIN;
 	}
