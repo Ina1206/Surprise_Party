@@ -27,6 +27,7 @@ void CMoveNoteEffect::Update()
 		m_bRenderFlag = true;
 	}
 
+	//•`‰æ‚µ‚È‚©‚Á‚½‚ç—áŠOˆ—.
 	if (m_bRenderFlag == false) {
 		return;
 	}
@@ -66,6 +67,7 @@ void CMoveNoteEffect::Init()
 		m_fScale[Effect] = 2.0f;
 	}
 	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
+	m_DispTime = 10;
 }
 
 //========================================.
@@ -100,6 +102,11 @@ void CMoveNoteEffect::Move(const int& num)
 		return;
 	}
 
-	m_vPos[num].y -= 0.05f;
-	m_vPos[num].x -= 0.05f;
+	m_fAngle[num] += 1.5f;
+	if (m_fAngle[num] > 360.0f) {
+		m_fAngle[num] = 0.0f;
+	}
+
+	m_vPos[num].y += 0.2f * sin(m_fAngle[num]);
+	m_vPos[num].x += 0.2f * cos(m_fAngle[num]);
 }
