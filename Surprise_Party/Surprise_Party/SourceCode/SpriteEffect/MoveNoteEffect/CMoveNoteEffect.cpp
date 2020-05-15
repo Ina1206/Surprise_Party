@@ -27,8 +27,18 @@ void CMoveNoteEffect::Update()
 		m_bRenderFlag = true;
 	}
 
-	
+	if (m_bRenderFlag == false) {
+		return;
+	}
 
+	m_DispTime++;
+
+	for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
+		//•\Ž¦”»’èˆ—ŠÖ”.
+		AppeartJudgement(Effect);
+		//ˆÚ“®ˆ—ŠÖ”.
+		Move(Effect);
+	}
 }
 
 //========================================.
@@ -53,7 +63,7 @@ void CMoveNoteEffect::Init()
 		SettingDefaultValue(Effect);
 
 		m_fAlpha[Effect] = 1.0f;
-		m_fScale[Effect] = 1.0f;
+		m_fScale[Effect] = 2.0f;
 	}
 	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
 }
@@ -71,7 +81,14 @@ void CMoveNoteEffect::Release()
 //========================================.
 void CMoveNoteEffect::AppeartJudgement(const int& num)
 {
+	if (m_DispTime < 10) {
+		return;
+	}
 
+	if (m_bDispFlag[num] == false) {
+		m_bDispFlag[num] = true;
+		m_DispTime = 0;
+	}
 }
 
 //========================================.
@@ -79,5 +96,10 @@ void CMoveNoteEffect::AppeartJudgement(const int& num)
 //========================================.
 void CMoveNoteEffect::Move(const int& num)
 {
+	if (m_bDispFlag[num] == false) {
+		return;
+	}
 
+	m_vPos[num].y -= 0.05f;
+	m_vPos[num].x -= 0.05f;
 }
