@@ -123,3 +123,13 @@ void CSpriteEffectBase::SettingDefaultValue(const int& num)
 	m_ChangeAddSub[num] = ADDITION_NUM;
 	m_vPart[num] = D3DXVECTOR2(0.0f, 0.0f);
 }
+
+//=========================================.
+//		î•ñ’uŠ·ˆ—ŠÖ”(Šp“x).
+//=========================================.
+void CSpriteEffectBase::SetAngle(const float& angle)
+{
+	for (unsigned int Num = 0; Num < m_pCSprite.size(); Num++) {
+		m_fAngle[Num] = angle;
+	}
+}

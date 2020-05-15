@@ -26,8 +26,9 @@ void CPlaySoundSwitch::Update()
 	EffectUpdate();
 
 	for (unsigned int Effect = 0; Effect < m_pCSpriteEffect.size(); Effect++) {
-		const D3DXVECTOR3 vEffectCenterPos = m_vPos + D3DXVECTOR3(0.0f, 0.0f, 8.0f);
+		const D3DXVECTOR3 vEffectCenterPos = m_vPos + D3DXVECTOR3(0.0f, 10.0f, 0.0f);
 		m_pCSpriteEffect[Effect]->SetCenterPos(vEffectCenterPos);
+		m_pCSpriteEffect[Effect]->SetAngle(225.0f);
 		m_pCSpriteEffect[Effect]->SetPlayFlag(m_bMoveObjectEffect);
 		m_pCSpriteEffect[Effect]->Update();
 	}

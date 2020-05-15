@@ -33,6 +33,7 @@ public:
 	//==========情報置換処理関数==============//.
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }		//中央座標.
 	void SetPlayFlag(const bool& flag) { m_bPlayFlag = flag; }
+	void SetAngle(const float& angle);										//角度.
 
 	//==========情報取得処理関数==============//.
 	int GetSpriteMax() { return m_pCSprite.size(); }						//スプライト最大数.

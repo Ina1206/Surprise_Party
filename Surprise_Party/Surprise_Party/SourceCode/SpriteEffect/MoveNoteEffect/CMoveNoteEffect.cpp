@@ -23,6 +23,7 @@ void CMoveNoteEffect::Update()
 	if (m_bPlayFlag == true) {
 		for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
 			m_vPos[Effect] = m_vCenterPos;
+			m_fDistance[Effect] = 0.0f;
 		}
 		m_bRenderFlag = true;
 	}
@@ -40,6 +41,7 @@ void CMoveNoteEffect::Update()
 		//ˆÚ“®ˆ—ŠÖ”.
 		Move(Effect);
 	}
+
 }
 
 //========================================.
@@ -102,11 +104,11 @@ void CMoveNoteEffect::Move(const int& num)
 		return;
 	}
 
-	m_fAngle[num] += 1.5f;
-	if (m_fAngle[num] > 360.0f) {
-		m_fAngle[num] = 0.0f;
-	}
+	m_fDistance[num] = 0.2f;
 
-	m_vPos[num].y += 0.2f * sin(m_fAngle[num]);
-	m_vPos[num].x += 0.2f * cos(m_fAngle[num]);
+	//ƒ‰ƒWƒAƒ“.
+	const float RADIAN = static_cast<float>(D3DXToRadian(m_fAngle[num]));
+
+	m_vPos[num].x += cos(RADIAN) * m_fDistance[num];
+	m_vPos[num].y += sin(RADIAN) * m_fDistance[num];
 }
