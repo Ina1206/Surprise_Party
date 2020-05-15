@@ -23,8 +23,7 @@ void CMoveNoteEffect::Update()
 {
 	if (m_bPlayFlag == true) {
 		for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
-			m_vPos[Effect] = m_vCenterPos;
-			m_ScalingFlag[Effect] = SCALE_FLAG;
+			PlayStartInit(Effect);
 		}
 		m_bRenderFlag = true;
 	}
