@@ -32,9 +32,11 @@ public:
 
 	//==========情報置換処理関数==============//.
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }		//中央座標.
+	void SetPlayFlag(const bool& flag) { m_bPlayFlag = flag; }
 
 	//==========情報取得処理関数==============//.
 	int GetSpriteMax() { return m_pCSprite.size(); }						//スプライト最大数.
+	bool GetRenderFlag() const { return m_bRenderFlag; }
 
 protected:
 	//================関数====================//.
@@ -63,6 +65,9 @@ protected:
 	std::vector<bool>			m_bDispFlag;		//表示フラグ.
 	int							m_DispTime;			//表示区切り時間.
 	std::vector<int>			m_ChangeAddSub;		//加算減算変更.
+
+	bool						m_bPlayFlag;		//再生フラグ.
+	bool						m_bRenderFlag;		//描画フラグ.
 
 private:
 

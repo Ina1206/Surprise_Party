@@ -5,12 +5,14 @@
 *************/
 CMoveNoteEffect::CMoveNoteEffect()
 {
-
+	//‰Šú‰»ˆ—ŠÖ”.
+	Init();
 }
 
 CMoveNoteEffect::~CMoveNoteEffect()
 {
-
+	//‰ğ•úˆ—ŠÖ”.
+	Release();
 }
 
 //========================================.
@@ -18,6 +20,14 @@ CMoveNoteEffect::~CMoveNoteEffect()
 //========================================.
 void CMoveNoteEffect::Update()
 {
+	if (m_bPlayFlag == true) {
+		for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
+			m_vPos[Effect] = m_vCenterPos;
+		}
+		m_bRenderFlag = true;
+	}
+
+	
 
 }
 
@@ -43,6 +53,7 @@ void CMoveNoteEffect::Init()
 		SettingDefaultValue(Effect);
 
 		m_fAlpha[Effect] = 1.0f;
+		m_fScale[Effect] = 1.0f;
 	}
 	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
 }

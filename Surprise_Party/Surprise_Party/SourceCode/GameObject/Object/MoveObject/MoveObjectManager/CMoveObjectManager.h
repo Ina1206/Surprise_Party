@@ -129,6 +129,7 @@ private:
 	std::vector<unsigned int>						m_AttachedObjMoveFlag;	//付属オブジェクト移動フラグ.
 	std::vector<int>								m_FlowerSwingCnt;		//花瓶の揺れるカウント.
 	std::vector<bool>								m_bUsedGimmickFlag;		//ギミックが使われているフラグ.
+	std::vector<bool>								m_bPlayEffectSound;		//エフェクトと音再生.
 };
 
 #endif	//#ifndef CMVOE_OBJECT_MANAGER_H.

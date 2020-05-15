@@ -1,6 +1,7 @@
 #include "CPlaySoundSwitch.h"
 
 CPlaySoundSwitch::CPlaySoundSwitch()
+	: m_pCMoveNoteEffect	(nullptr)
 {
 	//初期化処理関数.
 	Init();
@@ -23,6 +24,12 @@ void CPlaySoundSwitch::Update()
 
 	//エフェクト更新処理関数.
 	EffectUpdate();
+
+	for (unsigned int Effect = 0; Effect < m_pCSpriteEffect.size(); Effect++) {
+		m_pCSpriteEffect[Effect]->SetCenterPos(m_vPos);
+		m_pCSpriteEffect[Effect]->SetPlayFlag(m_bMoveObjectEffect);
+		m_pCSpriteEffect[Effect]->Update();
+	}
 }
 
 //=======================================.
@@ -36,6 +43,9 @@ void CPlaySoundSwitch::Init()
 
 	//エフェクトアドレス取得処理関数.
 	m_pCEffect = m_pCResourceManager->GetEffect(CResourceEffect::enEffect::PlaySound_Area_Effect);
+	
+	//音符移動エフェクトクラスインスタンス化.
+	m_pCSpriteEffect.emplace_back(new CMoveNoteEffect());
 }
 
 //=======================================.

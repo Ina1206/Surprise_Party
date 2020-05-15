@@ -9,6 +9,7 @@ CMoveObjectBase::CMoveObjectBase()
 	, m_pCAttachedObjMesh	()
 	, m_vAttachedObjPos		()
 	, m_vAttachedObjRot		()
+	, m_bMoveObjectEffect	(false)
 {
 	m_vEffectPos = D3DXVECTOR3(0.0f, 0.1f, -3.0f);
 }
@@ -28,6 +29,14 @@ void CMoveObjectBase::EffectRender()
 		m_pCEffect->SetScale(m_EffectHandle, vEffectScale);
 		m_pCEffect->Render(m_mView, m_mProj);
 	}
+
+	//スプライトエフェクト.
+	for (unsigned int Effect = 0; Effect < m_pCSpriteEffect.size(); Effect++) {
+		if (m_pCSpriteEffect[Effect]->GetRenderFlag() == true) {
+			m_pCSpriteEffect[Effect]->Render(m_mView, m_mProj, m_vCameraPos);
+		}
+	}
+
 }
 
 //===================================.

@@ -2,6 +2,7 @@
 #define CMOVE_OBJECT_BASE_H
 
 #include "..\CObjectBase.h"
+#include "..\..\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h"
 
 /***************************************************
 *		動くオブジェクト基底クラス.
@@ -27,6 +28,8 @@ public:
 	void SetAttachedObjPos(const int objNum ,const D3DXVECTOR3& vPos) { m_vAttachedObjPos[objNum] = vPos; }
 	//付属オブジェクト角度.
 	void SetAttachedObjRot(const int objNum, const D3DXVECTOR3& vRot) { m_vAttachedObjRot[objNum] = vRot; }
+	//オブジェクトが動いたときのエフェクトフラグ.
+	void SetMoveObjectEffect(const bool& flag) { m_bMoveObjectEffect = flag; }
 
 protected:
 	//==============関数===============//.
@@ -42,6 +45,9 @@ protected:
 	std::vector<CDX9Mesh*>		m_pCAttachedObjMesh;	//付属オブジェクトメッシュ.
 	std::vector<D3DXVECTOR3>	m_vAttachedObjPos;		//付属オブジェクト座標.
 	std::vector<D3DXVECTOR3>	m_vAttachedObjRot;		//付属オブジェクト角度.
+	bool						m_bMoveObjectEffect;	//オブジェクトが動いたときのエフェクトフラグ.
+
+	std::vector<std::unique_ptr<CSpriteEffectBase>> m_pCSpriteEffect;
 
 private:
 	//===============関数===============//.

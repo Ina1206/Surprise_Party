@@ -25,6 +25,7 @@ CMoveObjectManager::CMoveObjectManager(const int& FileNum, const int& StageNum)
 	, m_DispPaintingMax		(0)
 	, m_AttachedObjMoveFlag	(0)
 	, m_FlowerSwingCnt		(0)
+	, m_bPlayEffectSound	()
 {
 	//初期化処理関数.
 	Init(FileNum, StageNum);
@@ -51,6 +52,8 @@ void CMoveObjectManager::UpDate()
 					m_pCMoveObjectBase[obj]->SetPos(m_vMoveObjectPos[allObj]);
 					//カメラ表示フラグ.
 					m_pCMoveObjectBase[obj]->SetCameraDispFlag();
+					//エフェクトと音再生フラグ.
+					m_pCMoveObjectBase[obj]->SetMoveObjectEffect(m_bPlayEffectSound[allObj]);
 					if (obj == static_cast<int>(enMoveObjectType::ObjectMoveSwitch)) {
 						for (int attach = 1; attach < 2; attach++) {
 							//座標.
@@ -234,6 +237,8 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 	m_vAttachRot.resize(m_pCGimmickIcon.size(), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	//花瓶が揺れるカウント.
 	m_FlowerSwingCnt.resize(m_pCGimmickIcon.size());
+	//エフェクトと音を再生させるフラグ.
+	m_bPlayEffectSound.resize(m_pCGimmickIcon.size());
 
 	//オブジェクトインスタンス化.
 	m_pCMoveObjectBase.resize(static_cast<int>(enMoveObjectType::Max));
@@ -338,6 +343,8 @@ void CMoveObjectManager::PaintingUpDown(int objNum)
 //==============================================.
 void CMoveObjectManager::SwitchPush(int objNum, CGameObject::enSurpriseObjectType enSurpriseObj)
 {
+	m_bPlayEffectSound[objNum] = false;
+
 	//下げる処理.
 	if (m_ObjeMoveFlag[objNum] & DOWN_FLAG) {
 		m_vMoveObjectPos[objNum].y -= SWITCH_UP_DOWN_SPEED;
@@ -352,7 +359,7 @@ void CMoveObjectManager::SwitchPush(int objNum, CGameObject::enSurpriseObjectTyp
 			}
 			else{
 				//SE鳴らす.
-
+				m_bPlayEffectSound[objNum] = true;
 			}
 		}
 		return;
