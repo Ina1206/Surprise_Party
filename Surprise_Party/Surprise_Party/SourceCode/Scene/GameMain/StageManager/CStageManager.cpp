@@ -24,10 +24,10 @@ void CStageManager::Init()
 {
 	m_pCStageBase.resize(1);
 	//ステージ初期設定.
-	//m_StageType = static_cast<int>(CStageBase::enStageType::MainStage);
-	//m_pCStageBase[NORMAL_STAGE_NUM].reset(new CMainStage(m_StageNum, CStageBase::enStageType::MainStage, CStageBase::enBeforeStageEndigneType::Bad));
-	m_StageType = static_cast<int>(CStageBase::enStageType::GhostSpeakStage);
-	m_pCStageBase[NORMAL_STAGE_NUM].reset(new CGhostSpeakStage(m_StageNum));
+	m_StageType = static_cast<int>(CStageBase::enStageType::MainStage);
+	m_pCStageBase[NORMAL_STAGE_NUM].reset(new CMainStage(m_StageNum, CStageBase::enStageType::MainStage, CStageBase::enBeforeStageEndigneType::Bad));
+	//m_StageType = static_cast<int>(CStageBase::enStageType::GhostSpeakStage);
+	//m_pCStageBase[NORMAL_STAGE_NUM].reset(new CGhostSpeakStage(m_StageNum));
 
 	//ステージフェードインスタンス化.
 	m_pCStageFade.reset(new CStageFade());
