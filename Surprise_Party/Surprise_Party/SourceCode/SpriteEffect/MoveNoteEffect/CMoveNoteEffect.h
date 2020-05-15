@@ -27,7 +27,7 @@ private:
 	void Release();									//‰ğ•úˆ—ŠÖ”.
 	void AppeartJudgement(const int& num);			//•\¦”»’èˆ—ŠÖ”.
 	void Move(const int& num);						//ˆÚ“®ˆ—ŠÖ”.
-	void Scaling(const int& num);					//Šgkˆ—ŠÖ”.
+	void TransparentScaling(const int& num);		//Šgkˆ—ŠÖ”.
 
 	//=================•Ï”====================//.
 	std::vector<unsigned int> m_ScalingFlag;		//Šg‘åk¬ƒtƒ‰ƒO.
