@@ -290,6 +290,9 @@
     <Filter Include="SourceCode\UI\PlayUI\DescriptionUIManager">
       <UniqueIdentifier>{deaa8c65-7789-4d56-82f3-49361e8bbcff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\SpriteEffect\MoveNoteEffect">
+      <UniqueIdentifier>{10fd1eef-7dac-4530-9eb3-e14b117d92ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -586,6 +589,9 @@
     <ClInclude Include="SourceCode\UI\PlayUI\DescriptionUIManager\CDescriptionUIManager.h">
       <Filter>SourceCode\UI\PlayUI\DescriptionUIManager</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h">
+      <Filter>SourceCode\SpriteEffect\MoveNoteEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -869,6 +875,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\PlayUI\DescriptionUIManager\CDescriptionUIManager.cpp">
       <Filter>SourceCode\UI\PlayUI\DescriptionUIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.cpp">
+      <Filter>SourceCode\SpriteEffect\MoveNoteEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

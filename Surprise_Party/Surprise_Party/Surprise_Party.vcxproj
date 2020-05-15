@@ -82,6 +82,7 @@
     <ClInclude Include="SourceCode\Scene\Title\CTitle.h" />
     <ClInclude Include="SourceCode\SpriteEffect\CSpriteEffectBase.h" />
     <ClInclude Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h" />
+    <ClInclude Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="SourceCode\Scene\Title\CTitle.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\CSpriteEffectBase.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.cpp" />
+    <ClCompile Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.cpp" />
