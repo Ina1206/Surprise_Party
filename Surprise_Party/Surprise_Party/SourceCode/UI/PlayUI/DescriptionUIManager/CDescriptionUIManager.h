@@ -22,6 +22,7 @@ public:
 	void SetCenterPos(const D3DXVECTOR3& vGagePos, const D3DXVECTOR3& vTimePos);
 	void SetAdvanceComment() { m_pCSpeakTutorial->AdvanceOnceComment(); }
 	void SetAddSelectMoveCount() { m_pCSpeakTutorial->AddSelectMoveCount(); }
+	void SetAdvanceCommentFlag(const bool& flag) { m_pCSpeakTutorial->SetAdvanceCommentFlag(flag); }
 
 	//================î•ñŽæ“¾ˆ—ŠÖ”===================//.
 	bool GetAdvanceCommentFlag() const { return m_pCSpeakTutorial->GetAdvanceCommentFlag(); }

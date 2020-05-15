@@ -734,6 +734,7 @@ void CMainStage::GhostElementSort(T pClass, int array)
 //=======================================.
 void CMainStage::CameraMove()
 {
+	//チュートリアル時のカメラ移動.
 	if(m_bTutorialCameraMove & CAMERA_MOVE_START_FLAG){
 		if (m_Camera.vPos.x > 11.0f) {
 			m_Camera.vPos.x -= 0.6f;
@@ -767,8 +768,12 @@ void CMainStage::CameraMove()
 	}
 
 	if (m_bTutorialCameraMove & CAMERA_MOVE_RETURN_FLAG) {
-		m_Camera.vPos = m_stOldCamera.vPos;
-		m_Camera.vLook = m_stOldCamera.vLook;
+		//現在選択しているお化けのところへカメラを戻す.
+		const D3DXVECTOR3 vSelectGhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
+		m_Camera.vPos = CAMERA_START_POS;
+		m_Camera.vPos.x = vSelectGhostPos.x;
+		m_Camera.vLook = CAMERA_START_LOOK;
+		m_Camera.vLook.x = vSelectGhostPos.x;
 		return;
 	}
 
