@@ -41,7 +41,10 @@ void CMoveNoteEffect::Init()
 	for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
 		//‰Šú’lÝ’èˆ—ŠÖ”.
 		SettingDefaultValue(Effect);
+
+		m_fAlpha[Effect] = 1.0f;
 	}
+	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
 }
 
 //========================================.
