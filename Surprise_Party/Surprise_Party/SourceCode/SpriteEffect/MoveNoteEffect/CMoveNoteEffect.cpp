@@ -34,7 +34,8 @@ void CMoveNoteEffect::PlayStartInit(const int& num)
 //========================================.
 void CMoveNoteEffect::Init()
 {
-
+	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::eight_part_note));
+	SettingElementsCount();
 }
 
 //========================================.
