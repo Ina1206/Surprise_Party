@@ -6,7 +6,6 @@
 CRejoiceEffect::CRejoiceEffect()
 	: m_DispCnt		(0)
 	, m_PopCnt		(0)
-	, m_fDistance	()
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();

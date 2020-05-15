@@ -66,7 +66,6 @@ private:
 	//====================変数=========================//.
 	int					m_DispCnt;			//表示カウント.
 	int					m_PopCnt;			//出現カウント.
-	std::vector<float>	m_fDistance;		//距離.
 };
 
 #endif	//#ifndef CREJICE_EFFECT_H.

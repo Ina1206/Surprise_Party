@@ -40,7 +40,6 @@ private:
 
 	//=================変数===================//.
 	int					m_DispCnt;		//表示カウント.
-	std::vector<float>	m_fDistance;	//距離.
 };
 
 #endif	//#ifndef CHAVE_TROUBLE_EFFECT_H.

@@ -39,7 +39,6 @@ private:
 	//======================変数===========================//.
 	int					m_DispCnt;		//表示カウント.
 	bool				m_bAllDispFlag;	//全体表示フラグ.
-	std::vector<float>	m_fDistance;	//距離.
 
 };
 
