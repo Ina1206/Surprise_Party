@@ -100,7 +100,7 @@ void CSmokeEffect::AppeartJudgement(const int& num)
 //======================================.
 void CSmokeEffect::Move(const int& num)
 {
-	m_fAngle[num] += 0.8f;
+	m_fAngle[num] += 2.0f;
 	if (m_fAngle[num] > 360.0f) {
 		m_fAngle[num] = 90.0f;
 	}
