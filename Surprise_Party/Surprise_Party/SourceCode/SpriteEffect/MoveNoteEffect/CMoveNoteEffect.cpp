@@ -46,7 +46,8 @@ void CMoveNoteEffect::Update()
 		//ˆÚ“®ˆ—ŠÖ”.
 		Move(Effect);
 		//Šgkˆ—ŠÖ”.
-		TransparentScaling(Effect);
+		//TransparentScaling(Effect);
+		ScalingTransparent(Effect);
 	}
 
 }
@@ -80,6 +81,8 @@ void CMoveNoteEffect::Init()
 	}
 	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
 	m_DispTime = 20;
+	m_fAlphaSpeed = 0.02f;
+	m_fScalingSpeed = 0.02f;
 }
 
 //========================================.
@@ -120,30 +123,5 @@ void CMoveNoteEffect::Move(const int& num)
 
 	if (num >= 1) {
 		m_vRot[num].z = RADIAN;
-	}
-}
-
-//========================================.
-//		Šgkˆ—ŠÖ”.
-//========================================.
-void CMoveNoteEffect::TransparentScaling(const int& num)
-{
-	if (m_ScalingFlag[num] & SCALE_FLAG) {
-		m_fScale[num] += 0.02f;
-		m_fAlpha[num] += 0.02f;
-		if (m_fScale[num] > SCALE_MAX) {
-			m_fScale[num] = SCALE_MAX;
-			m_ScalingFlag[num] = SCALE_DOWN_FLAG;
-			m_fAlpha[num] = ALPHA_MAX;
-		}
-
-		return;
-	}
-
-	m_fScale[num] -= 0.02f;
-	m_fAlpha[num] -= 0.02f;
-	if (m_fScale[num] < SCALE_MIN) {
-		m_fScale[num] = SCALE_MIN;
-		m_fAlpha[num] = ALPHA_MIN;
 	}
 }
