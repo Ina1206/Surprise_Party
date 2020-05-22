@@ -40,6 +40,9 @@ void CSmokeEffect::Update()
 
 		//Šgk“§‰ßˆ—ŠÖ”.
 		ScalingTransparent(sprite);
+
+		//‰ñ“]ˆ—ŠÖ”.
+		Rotation(sprite);
 	}
 }
 
@@ -116,5 +119,5 @@ void CSmokeEffect::Move(const int& num)
 //========================================.
 void CSmokeEffect::Rotation(const int& num)
 {
-
+	m_vRot[num].z += 0.05f * m_MoveDirection[num];
 }
