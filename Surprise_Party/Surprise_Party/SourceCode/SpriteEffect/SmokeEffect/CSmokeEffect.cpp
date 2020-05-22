@@ -39,7 +39,9 @@ void CSmokeEffect::Update()
 		Move(sprite);
 
 		//Šgk“§‰ßˆ—ŠÖ”.
-		ScalingTransparent(sprite);
+		if (ScalingTransparent(sprite) == true) {
+			m_bRenderFlag = false;
+		}
 
 		//‰ñ“]ˆ—ŠÖ”.
 		Rotation(sprite);
@@ -77,7 +79,6 @@ void CSmokeEffect::Init()
 		//¶‰E‚Ì•ûŒü‚Ì”’l‚É•ª‚¯‚é.
 		m_MoveDirection[SpriteNum] = -1 + (2 * SpriteNum);
 	}
-	m_bRenderFlag = true;
 	m_fAlphaSpeed = 0.015f;
 	m_fScalingSpeed = 0.015f;
 }

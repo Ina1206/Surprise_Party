@@ -46,7 +46,9 @@ void CMoveNoteEffect::Update()
 		//ˆÚ“®ˆ—ŠÖ”.
 		Move(Effect);
 		//Šgkˆ—ŠÖ”.
-		ScalingTransparent(Effect);
+		if (ScalingTransparent(Effect) == true) {
+			m_bRenderFlag = false;
+		}
 	}
 
 }
