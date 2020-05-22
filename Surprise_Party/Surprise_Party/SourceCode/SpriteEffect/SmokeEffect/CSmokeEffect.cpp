@@ -78,8 +78,8 @@ void CSmokeEffect::Init()
 		m_MoveDirection[SpriteNum] = -1 + (2 * SpriteNum);
 	}
 	m_bRenderFlag = true;
-	m_fAlphaSpeed = 0.02f;
-	m_fScalingSpeed = 0.02f;
+	m_fAlphaSpeed = 0.015f;
+	m_fScalingSpeed = 0.015f;
 }
 
 //======================================.
