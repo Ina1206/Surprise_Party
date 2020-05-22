@@ -19,7 +19,9 @@ CSmokeEffect::~CSmokeEffect()
 //======================================.
 void CSmokeEffect::Update()
 {
-
+	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+		m_vPos[sprite] = m_vCenterPos;
+	}
 }
 
 //======================================.
@@ -43,7 +45,10 @@ void CSmokeEffect::Init()
 	//‰Šú’lÝ’è.
 	for (unsigned int SpriteNum = 0; SpriteNum < m_pCSprite.size(); SpriteNum++) {
 		SettingDefaultValue(SpriteNum);
+		m_fScale[SpriteNum] = 1.0f;
+		m_fAlpha[SpriteNum] = 1.0f;
 	}
+		m_bRenderFlag = true;
 }
 
 //======================================.

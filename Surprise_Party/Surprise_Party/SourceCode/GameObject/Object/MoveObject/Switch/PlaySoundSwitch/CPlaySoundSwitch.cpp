@@ -24,10 +24,13 @@ void CPlaySoundSwitch::Update()
 	//エフェクト更新処理関数.
 	EffectUpdate();
 
+	const D3DXVECTOR3 vEffectCenterPos = m_vPos + D3DXVECTOR3(0.0f, 10.0f, 0.0f);
+	m_pCSpriteEffect[0]->SetCenterPos(vEffectCenterPos);
+	m_pCSpriteEffect[0]->SetAngle(225.0f);
+
+	m_pCSpriteEffect[1]->SetCenterPos(m_vPos);
+
 	for (unsigned int Effect = 0; Effect < m_pCSpriteEffect.size(); Effect++) {
-		const D3DXVECTOR3 vEffectCenterPos = m_vPos + D3DXVECTOR3(0.0f, 10.0f, 0.0f);
-		m_pCSpriteEffect[Effect]->SetCenterPos(vEffectCenterPos);
-		m_pCSpriteEffect[Effect]->SetAngle(225.0f);
 		m_pCSpriteEffect[Effect]->SetPlayFlag(m_bMoveObjectEffect);
 		m_pCSpriteEffect[Effect]->Update();
 	}
@@ -45,8 +48,9 @@ void CPlaySoundSwitch::Init()
 	//エフェクトアドレス取得処理関数.
 	m_pCEffect = m_pCResourceManager->GetEffect(CResourceEffect::enEffect::PlaySound_Area_Effect);
 	
-	//音符移動エフェクトクラスインスタンス化.
-	m_pCSpriteEffect.emplace_back(new CMoveNoteEffect());
+	//エフェクトクラスインスタンス化.
+	m_pCSpriteEffect.emplace_back(new CMoveNoteEffect());	//音符移動.
+	m_pCSpriteEffect.emplace_back(new CSmokeEffect());		//煙エフェクト.
 }
 
 //=======================================.
