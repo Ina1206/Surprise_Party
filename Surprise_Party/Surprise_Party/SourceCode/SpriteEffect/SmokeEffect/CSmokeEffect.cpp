@@ -4,6 +4,7 @@
 *		煙エフェクトクラス.
 **********/
 CSmokeEffect::CSmokeEffect()
+	: m_MoveDirection	(0)
 {
 	//初期化処理関数.
 	Init();
@@ -61,6 +62,7 @@ void CSmokeEffect::Init()
 	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Smoke));
 	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Smoke));
 	SettingElementsCount();
+	m_MoveDirection.resize(m_pCSprite.size());
 
 	//初期値設定.
 	for (unsigned int SpriteNum = 0; SpriteNum < m_pCSprite.size(); SpriteNum++) {
@@ -68,6 +70,9 @@ void CSmokeEffect::Init()
 		m_fScale[SpriteNum] = 1.0f;
 		m_fAlpha[SpriteNum] = 1.0f;
 		m_fAngle[SpriteNum] = 90.0f;
+
+		//左右の方向の数値に分ける.
+		m_MoveDirection[SpriteNum] = -1 + (2 * SpriteNum);
 	}
 	m_bRenderFlag = true;
 }
@@ -99,6 +104,8 @@ void CSmokeEffect::Move(const int& num)
 	}
 	const float Angle = static_cast<float>(D3DXToRadian(m_fAngle[num]));
 
-	m_vPos[num].x += 0.05f;
+	m_vPos[num].x += 0.05f * m_MoveDirection[num];
 	m_vPos[num].y += sinf(Angle) * 0.05f;
+	ScalingTransparent(num);
 }
+

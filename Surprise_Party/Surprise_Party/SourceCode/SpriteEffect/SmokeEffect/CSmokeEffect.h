@@ -24,6 +24,8 @@ private:
 	void AppeartJudgement(const int& num);	//•\¦”»’èˆ—ŠÖ”.
 	void Move(const int& num);				//ˆÚ“®ˆ—ŠÖ”.
 
+	//=====================•Ï”=======================//.
+	std::vector<int> m_MoveDirection;		//ˆÚ“®•ûŒü.
 };
 
 #endif	//#ifndef CSMOKE_EFFECT_H.
