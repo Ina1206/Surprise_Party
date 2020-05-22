@@ -35,7 +35,11 @@ void CSmokeEffect::Update()
 	}
 
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+		//移動処理関数.
 		Move(sprite);
+
+		//拡縮透過処理関数.
+		ScalingTransparent(sprite);
 	}
 }
 
@@ -46,8 +50,6 @@ void CSmokeEffect::PlayStartInit(const int& num)
 {
 	//初期値設定.
 	SettingDefaultValue(num);
-	m_fScale[num] = 1.0f;
-	m_fAlpha[num] = 1.0f;
 	m_fAngle[num] = 90.0f;
 	//配置.
 	m_vPos[num] = m_vCenterPos;
@@ -67,14 +69,14 @@ void CSmokeEffect::Init()
 	//初期値設定.
 	for (unsigned int SpriteNum = 0; SpriteNum < m_pCSprite.size(); SpriteNum++) {
 		SettingDefaultValue(SpriteNum);
-		m_fScale[SpriteNum] = 1.0f;
-		m_fAlpha[SpriteNum] = 1.0f;
 		m_fAngle[SpriteNum] = 90.0f;
 
 		//左右の方向の数値に分ける.
 		m_MoveDirection[SpriteNum] = -1 + (2 * SpriteNum);
 	}
 	m_bRenderFlag = true;
+	m_fAlphaSpeed = 0.02f;
+	m_fScalingSpeed = 0.02f;
 }
 
 //======================================.
@@ -106,7 +108,7 @@ void CSmokeEffect::Move(const int& num)
 
 	m_vPos[num].x += 0.05f * m_MoveDirection[num];
 	m_vPos[num].y += sinf(Angle) * 0.05f;
-	ScalingTransparent(num);
+
 }
 
 //========================================.
