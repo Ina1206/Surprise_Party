@@ -293,6 +293,9 @@
     <Filter Include="SourceCode\SpriteEffect\MoveNoteEffect">
       <UniqueIdentifier>{10fd1eef-7dac-4530-9eb3-e14b117d92ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\SpriteEffect\SmokeEffect">
+      <UniqueIdentifier>{6febd7f8-0bda-48c3-a3ac-f160e1a99f1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -592,6 +595,9 @@
     <ClInclude Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h">
       <Filter>SourceCode\SpriteEffect\MoveNoteEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\SpriteEffect\SmokeEffect\CSmokeEffect.h">
+      <Filter>SourceCode\SpriteEffect\SmokeEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -878,6 +884,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.cpp">
       <Filter>SourceCode\SpriteEffect\MoveNoteEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\SpriteEffect\SmokeEffect\CSmokeEffect.cpp">
+      <Filter>SourceCode\SpriteEffect\SmokeEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
