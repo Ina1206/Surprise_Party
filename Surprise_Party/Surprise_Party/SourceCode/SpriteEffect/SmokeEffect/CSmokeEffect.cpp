@@ -109,3 +109,10 @@ void CSmokeEffect::Move(const int& num)
 	ScalingTransparent(num);
 }
 
+//========================================.
+//		‰ñ“]ˆ—ŠÖ”.
+//========================================.
+void CSmokeEffect::Rotation(const int& num)
+{
+
+}

@@ -23,6 +23,7 @@ private:
 	void Release();							//‰ğ•úˆ—ŠÖ”.
 	void AppeartJudgement(const int& num);	//•\¦”»’èˆ—ŠÖ”.
 	void Move(const int& num);				//ˆÚ“®ˆ—ŠÖ”.
+	void Rotation(const int& num);			//‰ñ“]ˆ—ŠÖ”.
 
 	//=====================•Ï”=======================//.
 	std::vector<int> m_MoveDirection;		//ˆÚ“®•ûŒü.
