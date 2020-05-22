@@ -35,10 +35,12 @@ void CSmokeEffect::PlayStartInit(const int& num)
 //======================================.
 void CSmokeEffect::Init()
 {
+	//—v‘f”‚Ìİ’è.
 	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Smoke));
 	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Smoke));
 	SettingElementsCount();
 
+	//‰Šú’lİ’è.
 	for (unsigned int SpriteNum = 0; SpriteNum < m_pCSprite.size(); SpriteNum++) {
 		SettingDefaultValue(SpriteNum);
 	}
