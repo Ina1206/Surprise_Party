@@ -46,7 +46,6 @@ void CMoveNoteEffect::Update()
 		//ˆÚ“®ˆ—ŠÖ”.
 		Move(Effect);
 		//Šgkˆ—ŠÖ”.
-		//TransparentScaling(Effect);
 		ScalingTransparent(Effect);
 	}
 
