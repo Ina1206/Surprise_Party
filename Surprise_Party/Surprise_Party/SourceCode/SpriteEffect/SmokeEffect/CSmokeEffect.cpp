@@ -19,8 +19,22 @@ CSmokeEffect::~CSmokeEffect()
 //======================================.
 void CSmokeEffect::Update()
 {
+	if (m_bPlayFlag == true) {
+		for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
+			//エフェクト開始処理関数.
+			PlayStartInit(sprite);
+
+			//表示判定処理関数.
+			AppeartJudgement(sprite);
+		}
+	}
+
+	if (m_bRenderFlag == false) {
+		return;
+	}
+
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
-		m_vPos[sprite] = m_vCenterPos;
+		Move(sprite);
 	}
 }
 
@@ -29,7 +43,13 @@ void CSmokeEffect::Update()
 //======================================.
 void CSmokeEffect::PlayStartInit(const int& num)
 {
-
+	//初期値設定.
+	SettingDefaultValue(num);
+	m_fScale[num] = 1.0f;
+	m_fAlpha[num] = 1.0f;
+	m_fAngle[num] = 90.0f;
+	//配置.
+	m_vPos[num] = m_vCenterPos;
 }
 
 //======================================.
@@ -47,8 +67,9 @@ void CSmokeEffect::Init()
 		SettingDefaultValue(SpriteNum);
 		m_fScale[SpriteNum] = 1.0f;
 		m_fAlpha[SpriteNum] = 1.0f;
+		m_fAngle[SpriteNum] = 90.0f;
 	}
-		m_bRenderFlag = true;
+	m_bRenderFlag = true;
 }
 
 //======================================.
@@ -64,7 +85,7 @@ void CSmokeEffect::Release()
 //======================================.
 void CSmokeEffect::AppeartJudgement(const int& num)
 {
-
+	m_bRenderFlag = true;
 }
 
 //======================================.
@@ -72,5 +93,12 @@ void CSmokeEffect::AppeartJudgement(const int& num)
 //======================================.
 void CSmokeEffect::Move(const int& num)
 {
+	m_fAngle[num] += 0.8f;
+	if (m_fAngle[num] > 360.0f) {
+		m_fAngle[num] = 90.0f;
+	}
+	const float Angle = static_cast<float>(D3DXToRadian(m_fAngle[num]));
 
+	m_vPos[num].x += 0.05f;
+	m_vPos[num].y += sinf(Angle) * 0.05f;
 }

@@ -303,8 +303,8 @@ void CResourceManager::SpriteStateSetting()
 	int SmokeNum = static_cast<int>(enSprite::Smoke);
 	m_pstSpriteState[SmokeNum].Base.w = 200.0f;
 	m_pstSpriteState[SmokeNum].Base.h = 200.0f;
-	m_pstSpriteState[SmokeNum].Disp.w = 1.0f;
-	m_pstSpriteState[SmokeNum].Disp.h = 1.0f;
+	m_pstSpriteState[SmokeNum].Disp.w = 2.0f;
+	m_pstSpriteState[SmokeNum].Disp.h = 2.0f;
 
 	//まとめて一コマ当たりのサイズ指定.
 	for (int sprite = 0; sprite < static_cast<int>(enSprite::SingleSpriteMax); sprite++) {
