@@ -38,6 +38,7 @@ enum class enSprite
 	AnswerYes,						//「はい」の回答.
 	Shock,							//驚き.
 	Wave,							//波線.
+	Smoke,							//煙.
 
 	Strenght_Icon,					//体力アイコン.
 	eight_part_note,				//8分音符.
