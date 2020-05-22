@@ -5,7 +5,8 @@
 **********/
 CSmokeEffect::CSmokeEffect()
 {
-
+	//‰Šú‰»ˆ—ŠÖ”.
+	Init();
 }
 
 CSmokeEffect::~CSmokeEffect()
@@ -34,7 +35,13 @@ void CSmokeEffect::PlayStartInit(const int& num)
 //======================================.
 void CSmokeEffect::Init()
 {
+	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Smoke));
+	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Smoke));
+	SettingElementsCount();
 
+	for (unsigned int SpriteNum = 0; SpriteNum < m_pCSprite.size(); SpriteNum++) {
+		SettingDefaultValue(SpriteNum);
+	}
 }
 
 //======================================.
