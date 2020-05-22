@@ -1,7 +1,6 @@
 #include "CPlaySoundSwitch.h"
 
 CPlaySoundSwitch::CPlaySoundSwitch()
-	: m_pCMoveNoteEffect	(nullptr)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();

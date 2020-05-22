@@ -3,6 +3,7 @@
 
 #include "..\CSwitchBase.h"
 #include "..\..\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h"
+#include "..\..\SpriteEffect\SmokeEffect\CSmokeEffect.h"
 
 class CPlaySoundSwitch
 	: public CSwitchBase
@@ -18,9 +19,6 @@ private:
 	//=================関数=================//.
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
-
-	//=================変数=================//.
-	std::unique_ptr<CMoveNoteEffect>	m_pCMoveNoteEffect;	//音符移動エフェクトクラス.
 
 };
 
