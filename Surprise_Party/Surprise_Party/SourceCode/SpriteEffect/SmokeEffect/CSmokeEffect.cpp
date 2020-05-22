@@ -109,7 +109,7 @@ void CSmokeEffect::Move(const int& num)
 	}
 	const float Angle = static_cast<float>(D3DXToRadian(m_fAngle[num]));
 
-	m_vPos[num].x += 0.05f * m_MoveDirection[num];
+	m_vPos[num].x += 0.03f * m_MoveDirection[num];
 	m_vPos[num].y += sinf(Angle) * 0.05f;
 
 }
