@@ -3,7 +3,6 @@
 
 #include "..\CSwitchBase.h"
 #include "..\..\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h"
-#include "..\..\SpriteEffect\SmokeEffect\CSmokeEffect.h"
 
 class CPlaySoundSwitch
 	: public CSwitchBase

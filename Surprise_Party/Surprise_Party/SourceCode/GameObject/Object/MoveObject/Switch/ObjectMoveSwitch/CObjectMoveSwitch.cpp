@@ -34,6 +34,12 @@ void CObjectMoveSwitch::Update()
 		//初期は座標全体を取得.
 		m_vAttachedObjPos[TABLE_NUM] = m_vAttachedObjPos[FLOWER_NUM];
 	}
+
+	for (unsigned int sprite = 0; sprite < m_pCSpriteEffect.size(); sprite++) {
+		m_pCSpriteEffect[sprite]->SetCenterPos(m_vPos);
+		m_pCSpriteEffect[sprite]->SetPlayFlag(m_bMoveObjectEffect);
+		m_pCSpriteEffect[sprite]->Update();
+	}
 }
 
 //===============================.
@@ -57,6 +63,9 @@ void CObjectMoveSwitch::Init()
 		m_vAttachedObjPos[attached] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		m_vAttachedObjRot[attached] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	}
+
+	//スプライトエフェクトインスタンス化.
+	m_pCSpriteEffect.emplace_back(new CSmokeEffect());
 }
 
 //===============================.

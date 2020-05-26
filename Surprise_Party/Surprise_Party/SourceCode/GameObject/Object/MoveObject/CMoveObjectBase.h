@@ -2,7 +2,7 @@
 #define CMOVE_OBJECT_BASE_H
 
 #include "..\CObjectBase.h"
-#include "..\..\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h"
+#include "..\..\SpriteEffect\SmokeEffect\CSmokeEffect.h"
 
 /***************************************************
 *		動くオブジェクト基底クラス.
