@@ -25,6 +25,8 @@ CWorkGhostBase::CWorkGhostBase()
 	, m_vStrengthIconPos		(0.0f, 0.0f, 0.0f)
 	, m_fMoveFinishHight		(0.0f)
 	, m_bNowHumanSurprise		(false)
+	, m_vEffectCenterPos		(0.0f, 0.0f, 0.0f)
+	, m_pCFatigue				(nullptr)
 	, m_MoveDirection			(0)
 	, m_fMoveAngle				(0.0f)
 	, m_vGimmickPos				()
@@ -44,6 +46,9 @@ CWorkGhostBase::CWorkGhostBase()
 	}
 	//お化けの体力アイコンのインスタンス化.
 	m_pCGhostStrengthIcon.reset(new CGhostStrengthIcon());
+
+	//疲労エフェクトインスタンス化.
+	m_pCFatigue.reset(new CSurpriseEffect());
 }
 
 CWorkGhostBase::~CWorkGhostBase()
@@ -530,5 +535,23 @@ void CWorkGhostBase::MovePosReference()
 	if (!(m_SurpriseFlag & SURPRISE_ACT_FLAG) &&
 		m_MoveFlag & MOVE_FLAG) {
 		m_vMovePos = m_vPos;
+	}
+}
+
+//============================================.
+//		疲労エフェクト更新処理関数.
+//============================================.
+void CWorkGhostBase::UpdateFutigueEffect()
+{
+	//疲労の表情種類番号.
+	const int FutigueEffectFaceType = static_cast<int>(CGhostIcon::enFaceType::Bad_Face);
+	
+	//疲労エフェクト更新処理.
+	if (m_pCGhostIcon->GetFaceType() == FutigueEffectFaceType) {
+		m_pCFatigue->SetCenterPos(m_vEffectCenterPos); {
+		if(m_pCFatigue->GetDispFlag() == false && !(m_SurpriseFlag & SURPRISE_ACT_FLAG))
+			m_pCFatigue->SetDispFlag(true);
+		}
+		m_pCFatigue->Update();
 	}
 }

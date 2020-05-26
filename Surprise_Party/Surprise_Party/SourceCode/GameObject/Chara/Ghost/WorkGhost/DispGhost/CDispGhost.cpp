@@ -64,6 +64,11 @@ void CDispGhost::Update()
 		}
 	}
 
+	//疲労エフェクト更新処理関数.
+	m_pCSkinMesh->GetPosFromBone("gost_b_joint4", &m_vEffectCenterPos);
+	m_vEffectCenterPos.y += 1.5f;
+	UpdateFutigueEffect();
+
 	//選択スプライト表示座標設定.
 	m_vSurpriseBeforePos = m_vPos;
 	//体力アイコン座標設定.
@@ -103,6 +108,9 @@ void CDispGhost::Render()
 
 	//デバッグ用球体描画処理関数.
 	DebugHitSphereRender();
+
+	//疲労エフェクト描画.
+	m_pCFatigue->Render(m_mView, m_mProj, m_vCameraPos);
 
 }
 

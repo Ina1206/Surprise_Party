@@ -6,6 +6,8 @@
 CSurpriseEffect::CSurpriseEffect()
 	: m_DispCnt			(0)
 	, m_bAllDispFlag	(false)
+	, m_Direct			(1)
+	, m_vOldCenterPos	(0.0f, 0.0f, 0.0f)
 {
 	//èâä˙âªèàóùä÷êî.
 	Init();
@@ -23,6 +25,11 @@ CSurpriseEffect::~CSurpriseEffect()
 void CSurpriseEffect::Update()
 {
 
+	const float DIFFERENCE_CENTER_POS = m_vCenterPos.x - m_vOldCenterPos.x;
+	if (DIFFERENCE_CENTER_POS != 0.0f) {
+		m_Direct = static_cast<int>(DIFFERENCE_CENTER_POS / fabsf(DIFFERENCE_CENTER_POS));
+	}
+	m_vOldCenterPos = m_vCenterPos;
 
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		if (m_bAllDispFlag == false) {
@@ -35,6 +42,7 @@ void CSurpriseEffect::Update()
 
 		if (m_bDispFlag[sprite] == true) {
 			if (ScalingTransparent(sprite)) {
+				SettingDefaultValue(sprite);
 				m_bAllDispFlag = false;
 			}
 			//à⁄ìÆèàóùä÷êî.
@@ -96,10 +104,8 @@ void CSurpriseEffect::AppeartJudgement(const int& num)
 {
 	//èâä˙à íu.
 	m_vPos[num] = m_vCenterPos;
-	//äpìx.
-	m_vRot[num].y = ROT_Y;
 
-	m_fDistance[num] = 0.0f;
+	//m_fDistance[num] = 0.0f;
 
 	m_DispCnt++;
 	m_bDispFlag[num] = true;
@@ -111,14 +117,21 @@ void CSurpriseEffect::AppeartJudgement(const int& num)
 //================================================.
 void CSurpriseEffect::Move(const int& num)
 {
-	//äpìx.
-	const float angle = BASE_ANGLE + (ANGLE_WIDTH * (num % SPRITE_MAX));
-	//ÉâÉWÉAÉì.
-	const float radian = angle / CIRCLE_HALF_ANGLE * PI;
 
+	//äpìx.
+	float angle = 0.0f;
+	if (m_Direct > 0) {
+		angle = static_cast<float>(D3DXToRadian(LEFT_ANGLE + (ANGLE_WIDTH * (num % SPRITE_MAX))));
+		//äpìx.
+		m_vRot[num].y = ROT_Y;
+	}
+	else {
+		angle = static_cast<float>(D3DXToRadian(RIGHT_ANGLE + (ANGLE_WIDTH * (num % SPRITE_MAX))));
+		m_vRot[num].y = 0.0f;
+	}
 	m_fDistance[num] += MOVE_SPEED;
 
-	m_vPos[num].x += (cos(radian) * m_fDistance[num]) ;
-	m_vPos[num].y += (sin(radian) * m_fDistance[num]) ;
+	m_vPos[num].x = cos(angle) - (m_fDistance[num] * m_Direct) + m_vCenterPos.x;
+	m_vPos[num].y = sin(angle) + m_fDistance[num] + m_vCenterPos.y;
 
 }

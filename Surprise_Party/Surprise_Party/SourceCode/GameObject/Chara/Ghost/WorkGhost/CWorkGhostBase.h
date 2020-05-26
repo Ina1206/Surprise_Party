@@ -5,6 +5,7 @@
 #include "..\..\..\..\UI\GameWorldUI\Act_Selection\CAct_Selection.h"
 #include "..\..\..\..\UI\MapUI\CharaUI\Icon\GhostIcon\CGhostIcon.h"
 #include "..\..\..\..\UI\GameWorldUI\GhostStrengthIcon\CGhostStrengthIcon.h"
+#include "..\..\SpriteEffect\SurpriseEffect\CSurpriseEffect.h"
 
 /*************************************
 *		働くお化け基底クラス.
@@ -152,6 +153,7 @@ protected:
 	void	StrengthIconUpdate();							//体力アイコン更新処理関数.
 	void	MoveSpeedChange();								//移動速度変更処理関数.
 	void	MovePosReference();								//移動更新処理関数.
+	void	UpdateFutigueEffect();							//疲労エフェクト更新処理関数.
 
 	virtual void SurpriseAct()			= 0;				//驚かす行動処理関数.
 	virtual void ChangeObjectUpDown()	= 0;				//上下移動変更処理関数.
@@ -183,6 +185,9 @@ protected:
 	D3DXVECTOR3							m_vStrengthIconPos;		//体力アイコン座標.
 	float								m_fMoveFinishHight;		//移動終了後の高さ.
 	bool								m_bNowHumanSurprise;	//現在人が驚くフラグ.
+	D3DXVECTOR3							m_vEffectCenterPos;		//エフェクト中心座標.
+
+	std::unique_ptr<CSurpriseEffect>	m_pCFatigue;			//疲労エフェクト.
 
 private:
 	//===============関数===================//.

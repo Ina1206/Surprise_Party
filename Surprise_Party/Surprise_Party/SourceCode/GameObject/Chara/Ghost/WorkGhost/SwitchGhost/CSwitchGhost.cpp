@@ -56,6 +56,7 @@ void CSwitchGhost::Update()
 		}
 	}
 
+
 	//移動更新処理関数.
 	MovePosReference();
 
@@ -82,6 +83,10 @@ void CSwitchGhost::Update()
 	if (m_MoveFlag & MOVE_FLAG) {
 		m_bUseRotFlag = true;
 	}
+
+	//疲労エフェクト更新処理関数.
+	m_vEffectCenterPos = m_vMovePos + D3DXVECTOR3(0.0f, 0.5f, 0.0f);
+	UpdateFutigueEffect();
 
 	m_vOldPos = m_vMovePos;
 	m_vSurpriseBeforePos = m_vPos + D3DXVECTOR3(0.0f, -STANDERD_POS_HIGHT, 0.0f);
@@ -112,6 +117,9 @@ void CSwitchGhost::Render()
 
 	//デバッグ用球体描画処理関数.
 	DebugHitSphereRender();
+
+	//疲労エフェクト描画処理.
+	m_pCFatigue->Render(m_mView, m_mProj, m_vCameraPos);
 }
 
 //==================================.
