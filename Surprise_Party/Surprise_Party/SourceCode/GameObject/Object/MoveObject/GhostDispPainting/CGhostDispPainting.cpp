@@ -23,6 +23,13 @@ void CGhostDispPainting::Update()
 	//オブジェクト透過処理関数.
 	ObjAlpha();
 
+	//スプライトエフェクト設定.
+	const D3DXVECTOR3 vEffectCenterPos = D3DXVECTOR3(m_vPos.x, -1.0f, m_vPos.z);
+	for (unsigned int sprite = 0; sprite < m_pCSpriteEffect.size(); sprite++) {
+		m_pCSpriteEffect[sprite]->SetPlayFlag(m_bMoveObjectEffect);
+		m_pCSpriteEffect[sprite]->SetCenterPos(vEffectCenterPos);
+		m_pCSpriteEffect[sprite]->Update();
+	}
 }
 
 //=================================.
@@ -37,6 +44,9 @@ void CGhostDispPainting::Init()
 
 	//エフェクトの読み込みアドレス取得.
 	m_pCEffect = m_pCResourceManager->GetEffect(CResourceEffect::enEffect::DispGhost_Area_Effect);
+
+	//スプライトエフェクトインスタンス化.
+	m_pCSpriteEffect.emplace_back(new CSmokeEffect());
 }
 
 //=================================.

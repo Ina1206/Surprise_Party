@@ -316,6 +316,8 @@ void CMoveObjectManager::GimmickSort()
 //============================================.
 void CMoveObjectManager::PaintingUpDown(int objNum)
 {
+	m_bPlayEffectSound[objNum] = false;
+
 	//‰º‚°‚éˆ—.
 	if (m_ObjeMoveFlag[objNum] & DOWN_FLAG) {
 		m_vMoveObjectPos[objNum].y -= PAINTING_MOVE_SPEED;
@@ -331,6 +333,7 @@ void CMoveObjectManager::PaintingUpDown(int objNum)
 		//Œ³‚ÌˆÊ’u‚É–ß‚·.
 		if (m_vMoveObjectPos[objNum].y >= STANDERD_PAINTING_POS.y) {
 			m_vMoveObjectPos[objNum].y = STANDERD_PAINTING_POS.y;
+			m_bPlayEffectSound[objNum] = true;
 		}
 	}
 
