@@ -27,6 +27,7 @@ public:
 	const unsigned int TRANSPARENTING_FLAG	= (1 << 0);	//透過処理中フラグ.
 	const unsigned int SELECT_FLAG			= (1 << 1);	//選択フラグ.
 	const unsigned int SELECTED_STRING_FLAG = (1 << 2);	//選択した文章フラグ.
+	const unsigned int EVALUTION_FLAG		= (1 << 3);	//評価フラグ.
 
 	const unsigned int FINISH_NEXT_TITLE	= (1 << 0);	//次がタイトルでの終了.
 	const unsigned int FINISH_NEXT_GAME		= (1 << 1);	//次がゲームでの終了.
