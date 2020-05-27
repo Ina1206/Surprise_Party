@@ -167,6 +167,14 @@ void CSpeakBigGhost::LoadSpeakString()
 		m_EmotionNum.push_back(atoi(m_pCFileReosource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::EmotionNum).c_str()));
 	}
 
+	//intå^Ç©ÇÁstringå^Ç÷.
+	std::ostringstream oss;
+	oss << m_StageNum;
+
+	if (m_StageNum > 0) {
+		m_stSpeakString[0] = ChangeFullwidth(oss.str().c_str()) + m_stSpeakString[0];
+	}
+
 	//à íuê›íËèàóùä÷êî
 	m_pCFontResource->SetStartPos(D3DXVECTOR3(90.0f, 480.0f, 0.0f));
 	m_pCFontResource->SetFontScale(FONT_SCALE);
@@ -362,4 +370,15 @@ void CSpeakBigGhost::ChangeString()
 	m_ChangingFontNum = 0;
 	m_fFontAlpha = 0.0f;
 	m_StringFlag &= ~TRANSPARENTING_FLAG;
+}
+
+//===========================================.
+//		ëSäpïœçXèàóùä÷êî.
+//===========================================.
+std::string CSpeakBigGhost::ChangeFullwidth(const char* str)
+{
+	char ret_str[CHAR_MAX];
+	LCMapString(GetUserDefaultLCID(), LCMAP_FULLWIDTH, str, sizeof(ret_str), ret_str, sizeof(ret_str));
+
+	return ret_str;
 }
