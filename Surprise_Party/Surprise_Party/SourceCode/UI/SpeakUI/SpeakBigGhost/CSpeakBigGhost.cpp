@@ -172,7 +172,8 @@ void CSpeakBigGhost::LoadSpeakString()
 	oss << m_StageNum;
 
 	if (m_StageNum > 0) {
-		m_stSpeakString[0] = ChangeFullwidth(oss.str().c_str()) + m_stSpeakString[0];
+		const int FirstStringNum = 0;
+		m_stSpeakString[FirstStringNum] = ChangeFullwidth(oss.str().c_str()) + m_stSpeakString[FirstStringNum];
 	}
 
 	//ˆÊ’uİ’èˆ—ŠÖ”
