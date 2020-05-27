@@ -124,7 +124,7 @@ void CGhostSpeakStage::Init()
 	m_pCBigGhost.reset(new CBigGhost());
 
 	//‘å‚«‚¢‚¨‰»‚¯‰ï˜bƒNƒ‰ƒX.
-	m_pCSpeakBigGhost.reset(new CSpeakBigGhost());
+	m_pCSpeakBigGhost.reset(new CSpeakBigGhost(m_StageNum));
 
 	m_stLight.fIntensity = 10.0f;
 	m_stLight.fLightPosWidth = 20.0f;

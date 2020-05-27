@@ -11,6 +11,7 @@ class CSpeakBigGhost
 {
 public:
 	CSpeakBigGhost();
+	CSpeakBigGhost(const int& StageNum);
 	~CSpeakBigGhost();
 
 	//======================定数=======================//.
@@ -77,7 +78,8 @@ private:
 	bool						m_bTutorialFlag;	//チュートリアルフラグ.
 
 	bool						m_bControlFlag;		//操作フラグ.
-
+	int							m_StageNum;			//ステージ番号.
+	int							m_LoadFileNum;		//読み込みファイル番号.
 };
 
 

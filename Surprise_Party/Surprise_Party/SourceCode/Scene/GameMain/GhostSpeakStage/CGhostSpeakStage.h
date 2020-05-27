@@ -50,6 +50,7 @@ private:
 	std::unique_ptr<CSpeakBigGhost>	m_pCSpeakBigGhost;		//大きいお化け会話クラス.
 
 	int								m_MoveCameraDirection;	//カメラ移動方向.
+	bool							m_StageFinish;			//ステージ終了フラグ.
 };
 
 #endif //#ifndef CGHOST_SPEAK_STAGE_H.

@@ -1,6 +1,12 @@
 #include "CSpeakBigGhost.h"
 
 CSpeakBigGhost::CSpeakBigGhost()
+	: CSpeakBigGhost(0)
+{
+
+}
+
+CSpeakBigGhost::CSpeakBigGhost(const int& StageNum)
 	: m_mView				()
 	, m_mProj				()
 	, m_vCameraPos			()
@@ -16,6 +22,8 @@ CSpeakBigGhost::CSpeakBigGhost()
 	, m_SelectCnt			(0)
 	, m_FinishFlag			(0)
 	, m_bTutorialFlag		(false)
+	, m_StageNum			(StageNum)
+	, m_LoadFileNum			(0)
 {
 	//初期化処理関数.
 	Init();
@@ -145,11 +153,18 @@ void CSpeakBigGhost::LoadSpeakString()
 {
 	CFileResource*	m_pCFileReosource = CFileResource::GetResourceInstance();
 
+	//ステージが初回では無ければ読み込むファイルを別物とする.
+	if (m_StageNum > 0) {
+		m_LoadFileNum++;
+	}
+
+	//ファイル内全ての文章の数.
+	const int AllStringInFile = m_pCFileReosource->GetSringMax(m_LoadFileNum);
 	//ファイルの中の全文章設定.
-	for (int splite = 0; splite < m_pCFileReosource->GetSringMax(0); splite++) {
-		m_stSpeakString.push_back(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::MainString));
-		m_stSelectString.push_back(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::SelectString));
-		m_EmotionNum.push_back(atoi(m_pCFileReosource->GetSpeakString(0, splite, CFileString::enStringType::EmotionNum).c_str()));
+	for (int splite = 0; splite < AllStringInFile; splite++) {
+		m_stSpeakString.push_back(m_pCFileReosource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::MainString));
+		m_stSelectString.push_back(m_pCFileReosource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::SelectString));
+		m_EmotionNum.push_back(atoi(m_pCFileReosource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::EmotionNum).c_str()));
 	}
 
 	//位置設定処理関数

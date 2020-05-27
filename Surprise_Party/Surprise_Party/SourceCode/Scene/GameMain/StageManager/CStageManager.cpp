@@ -141,8 +141,8 @@ void CStageManager::ChangeStage()
 		break;
 	case CStageBase::enStageType::MainStage:
 		m_enBeforeEndingType = m_pCStageBase[STAGE_TYPE_NUM]->GetBeforeStageEndingType();
-		m_pCStageBase[STAGE_TYPE_NUM].reset(new CGhostSpeakStage(m_StageNum));
 		m_StageNum++;
+		m_pCStageBase[STAGE_TYPE_NUM].reset(new CGhostSpeakStage(m_StageNum));
 		break;
 	}
 
