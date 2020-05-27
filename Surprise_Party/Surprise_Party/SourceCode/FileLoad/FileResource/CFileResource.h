@@ -42,6 +42,7 @@ public:
 	};
 	//会話ファイル種類.
 	enum class enSpeakFileType {
+		GhostSpeakFirstStage,
 		GhostSpeakStage,
 		SpeakTutorialBigGhost,
 	};
