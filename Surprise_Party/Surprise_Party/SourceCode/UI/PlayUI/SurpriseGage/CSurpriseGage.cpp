@@ -11,6 +11,7 @@ CSurpriseGage::CSurpriseGage(int SurprisePointMax)
 	, m_SurprisePointMax	(SurprisePointMax)
 	, m_bSurprisePointMax	(false)
 	, m_bBorusGetFlag		(false)
+	, m_EvalutionFlag		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -41,6 +42,9 @@ void CSurpriseGage::Update()
 		
 		m_bBorusGetFlag = true;
 	}
+
+	//驚きポイント評価処理関数.
+	EvalutionSurprisePoint();
 
 	m_vUIScale[GAGE_NUM].x = static_cast<float>(m_SurprisePoint) / static_cast<float>(m_SurprisePointMax);
 }
@@ -132,4 +136,22 @@ void CSurpriseGage::InfomMove()
 		m_fUIAlpha[INFOM_NUM] = ALPHA_MIN;
 	}
 
+}
+
+//==========================================.
+//		驚きポイント評価処理関数.
+//==========================================.
+void CSurpriseGage::EvalutionSurprisePoint()
+{
+	if (m_SurprisePoint < m_SurprisePointMax / 3.0f) {
+		m_EvalutionFlag = BAD_FLAG;
+		return;
+	}
+
+	if (m_SurprisePoint < m_SurprisePointMax  * GET_BONUS_POINT_RATIO) {
+		m_EvalutionFlag = GOOD_FLAG;
+		return;
+	}
+
+	m_EvalutionFlag = GREAT_FLAG;
 }

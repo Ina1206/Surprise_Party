@@ -271,9 +271,10 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	m_pCClosedTime->Update();
 	m_pCClosedTime->GiveBornusTime(m_pCSurpriseGage->GetBornusGetFlag());
 
-	if (m_pCSurpriseGage->GetSurprisePointMax() == true) {
-		m_enBeforeStageEndingType = enBeforeStageEndigneType::Great;
-	}
+	//if (m_pCSurpriseGage->GetSurprisePointMax() == true) {
+	//	m_enBeforeStageEndingType = enBeforeStageEndigneType::Great;
+	//}
+	m_enBeforeStageEndingType = Evalute();
 
 	//終了処理.
 	if (m_pCClosedTime->GetClosedFlag() == true) {
@@ -461,6 +462,9 @@ void CMainStage::Init()
 	if (m_enBeforeStageEndingType == enBeforeStageEndigneType::Great) {
 		TimeUpMax += BENEFITS_PREVIOS_RESULT;
 	}
+	//前回のステージ初期化.
+	m_enBeforeStageEndingType = enBeforeStageEndigneType::Nothing;
+
 	m_pCClosedTime.reset(new CClosedTime(TimeUpMax * TIME_DELIMITER));
 	//驚きゲージ.
 	//ステージごとに驚きゲージの最大数を増やす.
@@ -803,4 +807,22 @@ void CMainStage::SpotLightUpdate()
 			break;
 		}
 	}
+}
+
+//==========================================.
+//		評価処理関数.
+//==========================================.
+CMainStage::enBeforeStageEndigneType CMainStage::Evalute()
+{
+	const unsigned int EVALUTION_FLAG = m_pCSurpriseGage->GetEvalutionFlag();
+
+	if (EVALUTION_FLAG & m_pCSurpriseGage->BAD_FLAG) {
+		return enBeforeStageEndigneType::Bad;
+	}
+
+	if (EVALUTION_FLAG & m_pCSurpriseGage->GOOD_FLAG) {
+		return enBeforeStageEndigneType::Good;
+	}
+
+	return enBeforeStageEndigneType::Great;
 }

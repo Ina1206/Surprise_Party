@@ -30,15 +30,21 @@ public:
 	const D3DXVECTOR3	SHRINK_STOP_SCALE	= D3DXVECTOR3(0.6f, 0.6f, 0.0f);		//縮むのを停止しするサイズ.
 	const D3DXVECTOR3	SHRINK_SPEED		= D3DXVECTOR3(0.05f, 0.05f, 0.0f);		//縮む速度.
 
+	const unsigned int BAD_FLAG				= (1 << 0);	//Badフラグ.
+	const unsigned int GOOD_FLAG			= (1 << 1);	//Goodフラグ.
+	const unsigned int GREAT_FLAG			= (1 << 2);	//Greatフラグ.
+
 	//===================関数======================//.
 	void Update();						//更新処理関数.
 	void AddSurprisePoint(int Point);	//驚きポイント追加処理関数.
 
 	//=============情報取得処理関数================//.
 	//驚きポイント最大数になったフラグ.
-	bool GetSurprisePointMax() { return m_bSurprisePointMax; }
+	bool GetSurprisePointMax() const { return m_bSurprisePointMax; }
 	//ボーナス取得フラグ.
-	bool GetBornusGetFlag() { return m_bBorusGetFlag; }
+	bool GetBornusGetFlag() const { return m_bBorusGetFlag; }
+	//評価フラグ.
+	unsigned int GetEvalutionFlag() const { return m_EvalutionFlag; }
 
 private:
 	//===================関数======================//.
@@ -46,12 +52,14 @@ private:
 	void Release();						//解放処理関数.
 	void StampDisp();					//スタンプ表示処理関数.
 	void InfomMove();					//通知移動処理関数.
+	void EvalutionSurprisePoint();		//驚きポイント評価処理関数.
 
 	//===================変数======================//.
-	int		m_SurprisePoint;				//驚かしポイント.
-	int		m_SurprisePointMax;				//驚かしポイント最大数.
-	bool	m_bSurprisePointMax;			//驚きポイント最大数になったフラグ.
-	bool	m_bBorusGetFlag;				//ボーナス取得フラグ.
+	int				m_SurprisePoint;	//驚かしポイント.
+	int				m_SurprisePointMax;	//驚かしポイント最大数.
+	bool			m_bSurprisePointMax;//驚きポイント最大数になったフラグ.
+	bool			m_bBorusGetFlag;	//ボーナス取得フラグ.
+	unsigned int 	m_EvalutionFlag;	//評価フラグ.
 };
 
 

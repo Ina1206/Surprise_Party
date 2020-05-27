@@ -80,6 +80,7 @@ private:
 	void GhostElementSort(T pClass, int array);		//お化け要素数変換処理関数.
 	void CameraMove();								//カメラ移動処理.
 	void SpotLightUpdate();							//スポットライト更新処理関数.
+	enBeforeStageEndigneType Evalute();				//評価処理関数.
 
 	//===================変数=======================//.
 	std::unique_ptr<CStaticObjectManager>			m_pCStaticObjectManager;	//静的オブジェクト管理クラス.
