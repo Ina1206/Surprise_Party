@@ -15,7 +15,7 @@ class CGhostSpeakStage
 {
 public:
 	CGhostSpeakStage();
-	CGhostSpeakStage(int stagenum);
+	CGhostSpeakStage(int stagenum, enBeforeStageEndigneType BeforeStageEndingType);
 	~CGhostSpeakStage();
 
 	//========================’è”=============================//.

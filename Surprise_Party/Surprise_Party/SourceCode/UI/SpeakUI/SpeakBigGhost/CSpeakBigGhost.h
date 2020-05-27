@@ -11,7 +11,7 @@ class CSpeakBigGhost
 {
 public:
 	CSpeakBigGhost();
-	CSpeakBigGhost(const int& StageNum);
+	CSpeakBigGhost(const int& StageNum, const int& BeforeEndingTypeNum);
 	~CSpeakBigGhost();
 
 	//======================定数=======================//.
@@ -29,6 +29,7 @@ public:
 	const unsigned int SELECT_FLAG			= (1 << 1);	//選択フラグ.
 	const unsigned int SELECTED_STRING_FLAG = (1 << 2);	//選択した文章フラグ.
 	const unsigned int EVALUTION_FLAG		= (1 << 3);	//評価フラグ.
+	const unsigned int IN_EVALUTION_FLAG	= (1 << 4);	//評価中フラグ.
 
 	const unsigned int FINISH_NEXT_TITLE	= (1 << 0);	//次がタイトルでの終了.
 	const unsigned int FINISH_NEXT_GAME		= (1 << 1);	//次がゲームでの終了.
@@ -57,6 +58,7 @@ private:
 	void SelectingMove();							//選択中移動処理関数.
 	void ChangeString();							//文章変更処理関数.
 	std::string ChangeFullwidth(const char* str);	//全角変更処理関数.
+	void FindEvalutionString();						//評価文章見つける処理関数.
 
 	//======================変数========================//.
 	D3DXMATRIX					m_mView;			//ビュー行列.
@@ -81,6 +83,7 @@ private:
 	bool						m_bControlFlag;		//操作フラグ.
 	int							m_StageNum;			//ステージ番号.
 	int							m_LoadFileNum;		//読み込みファイル番号.
+	int							m_EndingTypeNum;	//エンディングタイプ番号.
 };
 
 

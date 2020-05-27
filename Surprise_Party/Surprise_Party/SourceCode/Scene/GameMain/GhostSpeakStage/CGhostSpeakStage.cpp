@@ -1,11 +1,11 @@
 #include "CGhostSpeakStage.h"
 
 CGhostSpeakStage::CGhostSpeakStage()
-	: CGhostSpeakStage	(0)
+	: CGhostSpeakStage	(0, enBeforeStageEndigneType::Nothing)
 {
 }
 
-CGhostSpeakStage::CGhostSpeakStage(int stageNum)	
+CGhostSpeakStage::CGhostSpeakStage(int stageNum, CGhostSpeakStage::enBeforeStageEndigneType enBeforeStageEndingType)	
 	: m_pCFontResource		(nullptr)
 	, changestr				()
 	, m_pCFloor				(nullptr)
@@ -124,7 +124,7 @@ void CGhostSpeakStage::Init()
 	m_pCBigGhost.reset(new CBigGhost());
 
 	//‘å‚«‚¢‚¨‰»‚¯‰ï˜bƒNƒ‰ƒX.
-	m_pCSpeakBigGhost.reset(new CSpeakBigGhost(m_StageNum));
+	m_pCSpeakBigGhost.reset(new CSpeakBigGhost(m_StageNum,static_cast<int>(m_enBeforeStageEndingType)));
 
 	m_stLight.fIntensity = 10.0f;
 	m_stLight.fLightPosWidth = 20.0f;

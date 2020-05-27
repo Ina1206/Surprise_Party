@@ -1,12 +1,12 @@
 #include "CSpeakBigGhost.h"
 
 CSpeakBigGhost::CSpeakBigGhost()
-	: CSpeakBigGhost(0)
+	: CSpeakBigGhost(0, 0)
 {
 
 }
 
-CSpeakBigGhost::CSpeakBigGhost(const int& StageNum)
+CSpeakBigGhost::CSpeakBigGhost(const int& StageNum, const int& BeforeEndingTypeNum)
 	: m_mView				()
 	, m_mProj				()
 	, m_vCameraPos			()
@@ -24,6 +24,7 @@ CSpeakBigGhost::CSpeakBigGhost(const int& StageNum)
 	, m_bTutorialFlag		(false)
 	, m_StageNum			(StageNum)
 	, m_LoadFileNum			(0)
+	, m_EndingTypeNum		(BeforeEndingTypeNum)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -220,6 +221,11 @@ void CSpeakBigGhost::TransparentFont()
 //======================================.
 void CSpeakBigGhost::DecisionSelectString()
 {
+	if (m_StringFlag & EVALUTION_FLAG) {
+		//•]‰¿•¶ÍŒ©‚Â‚¯‚éˆ—ŠÖ”.
+		FindEvalutionString();
+	}
+
 	//Ÿ‚Ì•¶š”Ô†.
 	int NextCharacterNum = m_SpeakNum + 1;
 	//ƒƒCƒ“•¶Í.
@@ -232,6 +238,11 @@ void CSpeakBigGhost::DecisionSelectString()
 		//Ÿ‚Ì•¶Í‚ª”š‚Ì‘I‘ğ.
 		if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
 			m_StringFlag |= SELECT_FLAG;
+		}
+		//Ÿ‚Ì•¶Í‚ª•]‰¿“à—e‚Ìê‡.
+		const int NextSelectStringNum = atoi(m_stSelectString[NextCharacterNum].c_str());
+		if (NextSelectStringNum > 0) {
+			m_StringFlag |= EVALUTION_FLAG;
 		}
 		return;
 	}
@@ -251,6 +262,7 @@ void CSpeakBigGhost::DecisionSelectString()
 			break;
 		}
 	}
+
 
 	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
 	m_StringFlag &= ~SELECT_FLAG;
@@ -382,4 +394,37 @@ std::string CSpeakBigGhost::ChangeFullwidth(const char* str)
 	LCMapString(GetUserDefaultLCID(), LCMAP_FULLWIDTH, str, sizeof(ret_str), ret_str, sizeof(ret_str));
 
 	return ret_str;
+}
+
+//===========================================.
+//		•]‰¿•¶ÍŒ©‚Â‚¯‚éˆ—ŠÖ”.
+//===========================================.
+void CSpeakBigGhost::FindEvalutionString()
+{
+	//•]‰¿‘I‘ğ”Ô†.
+	const int SelectionNum = atoi(m_stSelectString[m_SpeakNum].c_str());
+	for (unsigned int str = m_SpeakNum; str < m_stSpeakString.size(); str++) {
+		//•]‰¿’†‚Ì.
+		if (m_StringFlag & IN_EVALUTION_FLAG) {
+			if (SelectionNum == m_EndingTypeNum + 1) {
+				break;
+			}
+
+			//•]‰¿‚µI‚í‚Á‚½‚Ìˆ—.
+			if (atoi(m_stSelectString[str].c_str()) == 0) {
+				m_SpeakNum = str;
+				m_StringFlag &= ~EVALUTION_FLAG | ~IN_EVALUTION_FLAG;
+				break;
+			}
+
+			continue;
+		}
+
+		//•]‰¿ˆ—.
+		if (m_EndingTypeNum + 1 == atoi(m_stSelectString[str].c_str())) {
+			m_SpeakNum = str;
+			m_StringFlag |= IN_EVALUTION_FLAG;
+			break;
+		}
+	}
 }
