@@ -124,9 +124,11 @@ void CSpeakTutorial::Init()
 	}
 	
 	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
-	for (int file = 0; file < m_pCFileResource->GetSringMax(1); file++) {
-		m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::MainString));
-		m_stSelectString.push_back(m_pCFileResource->GetSpeakString(1, file, CFileString::enStringType::SelectString));
+	//ì«Ç›çûÇﬁÉtÉ@ÉCÉãî‘çÜ.
+	const int LoadFileNum = static_cast<int>(CFileResource::enSpeakFileType::SpeakTutorialBigGhost);
+	for (int file = 0; file < m_pCFileResource->GetSringMax(LoadFileNum); file++) {
+		m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(LoadFileNum, file, CFileString::enStringType::MainString));
+		m_stSelectString.push_back(m_pCFileResource->GetSpeakString(LoadFileNum, file, CFileString::enStringType::SelectString));
 	}
 	m_vPos.push_back(D3DXVECTOR3(60.0f, 210.0f, 0.0f));
 
