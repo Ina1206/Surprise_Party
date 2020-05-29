@@ -226,6 +226,24 @@ void CSpeakBigGhost::DecisionSelectString()
 		FindEvalutionString();
 	}
 
+	//ëIëÇµÇΩÇ‡ÇÃï∂èÕ.
+	if (m_StringFlag & SELECT_FLAG) {
+		m_SelectCnt++;
+		for (unsigned int str = m_SpeakNum; str < m_stSpeakString.size(); str++) {
+			if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) == 0) {
+				//ìØÇ∂ï∂éöóÒÇå©Ç¬ÇØÇÈ.
+				if (std::to_string(m_SelectNum) == m_stSpeakString[str]) {
+					m_SpeakNum = str;
+					break;
+				}
+				continue;
+			}
+			m_SpeakNum = str;
+			m_StringFlag &= ~SELECT_FLAG | ~IN_BRANCH_FLAG;
+			break;
+		}
+	}
+
 	//éüÇÃï∂éöî‘çÜ.
 	int NextCharacterNum = m_SpeakNum + 1;
 	//ÉÅÉCÉìï∂èÕ.
@@ -247,25 +265,9 @@ void CSpeakBigGhost::DecisionSelectString()
 		return;
 	}
 
-	//ëIëÇµÇΩÇ‡ÇÃï∂èÕ.
-	if (m_StringFlag & SELECT_FLAG) {
-		m_SelectCnt++;
-		for (unsigned int str = m_SpeakNum; str < m_stSpeakString.size(); str++) {
-			if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) == 0) {
-				//ìØÇ∂ï∂éöóÒÇå©Ç¬ÇØÇÈ.
-				if (std::to_string(m_SelectNum) == m_stSpeakString[str]) {
-					m_SpeakNum = str;
-					break;
-				}
-				continue;
-			}
-			break;
-		}
-	}
 
 
 	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
-	m_StringFlag &= ~SELECT_FLAG;
 
 	//if (std::any_of(m_stSpeakString[m_SpeakNum].cbegin(), m_stSpeakString[m_SpeakNum].cend(), isalpha)) {
 	//	return;
