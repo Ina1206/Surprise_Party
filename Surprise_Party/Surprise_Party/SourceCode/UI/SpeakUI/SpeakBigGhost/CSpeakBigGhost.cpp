@@ -226,20 +226,22 @@ void CSpeakBigGhost::DecisionSelectString()
 		FindEvalutionString();
 	}
 
+	
 	//‘I‘ğ‚µ‚½‚à‚Ì•¶Í.
 	if (m_StringFlag & SELECT_FLAG) {
-		m_SelectCnt++;
 		for (unsigned int str = m_SpeakNum; str < m_stSpeakString.size(); str++) {
 			if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) == 0) {
 				//“¯‚¶•¶š—ñ‚ğŒ©‚Â‚¯‚é.
 				if (std::to_string(m_SelectNum) == m_stSpeakString[str]) {
 					m_SpeakNum = str;
+					m_StringFlag &= ~SELECT_FLAG;
 					break;
 				}
 				continue;
 			}
+			//‘I‘ğ•ªŠò‚ª–³‚¢ê‡.
 			m_SpeakNum = str;
-			m_StringFlag &= ~SELECT_FLAG | ~IN_BRANCH_FLAG;
+			m_StringFlag &= ~SELECT_FLAG;
 			break;
 		}
 	}
@@ -303,7 +305,8 @@ void CSpeakBigGhost::FindNextString(const int& NextStringNum)
 		}
 
 		if (IsDBCSLeadByte(m_stSpeakString[str][FIRST_CHARACTER_NUM]) != 0) {
-			m_SpeakNum = str;
+			//ˆê‚Â‘O‚Ì•¶Í‚Éİ’è‚·‚é.
+			m_SpeakNum = str - 1;
 			break;
 		}
 	}
