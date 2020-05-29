@@ -462,6 +462,11 @@ void CMainStage::Init()
 	if (m_enBeforeStageEndingType == enBeforeStageEndigneType::Great) {
 		TimeUpMax += BENEFITS_PREVIOS_RESULT;
 	}
+	//チュートリアルは別.
+	if (m_enStageType == enStageType::Tutorial) {
+		TimeUpMax = 1;
+	}
+
 	//前回のステージ初期化.
 	m_enBeforeStageEndingType = enBeforeStageEndigneType::Nothing;
 
