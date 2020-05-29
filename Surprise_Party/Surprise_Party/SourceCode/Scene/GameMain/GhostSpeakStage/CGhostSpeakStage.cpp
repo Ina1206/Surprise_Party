@@ -14,6 +14,7 @@ CGhostSpeakStage::CGhostSpeakStage(int stageNum, CGhostSpeakStage::enBeforeStage
 	, m_MoveCameraDirection	(GET_CLOSER_CAMERA_DIRECT)
 {
 	m_StageNum = stageNum;
+	m_enBeforeStageEndingType = enBeforeStageEndingType;
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
 }
