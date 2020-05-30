@@ -41,6 +41,17 @@ CSpeakBigGhost::~CSpeakBigGhost()
 //====================================.
 void CSpeakBigGhost::Update()
 {
+	//チュートリアル終了後すぐ次の文章表示.
+	if (m_StringFlag & TUTORIAL_FLAG) {
+		//フォントプロパティ設定処理関数.
+		SettingFontProperty();
+
+		//文章変更処理関数.
+		ChangeString();
+
+		m_StringFlag &= ~TUTORIAL_FLAG;
+	}
+
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 			//文章変更処理関数.
@@ -177,10 +188,8 @@ void CSpeakBigGhost::LoadSpeakString()
 		m_stSpeakString[FirstStringNum] = ChangeFullwidth(oss.str().c_str()) + m_stSpeakString[FirstStringNum];
 	}
 
-	//位置設定処理関数
-	m_pCFontResource->SetStartPos(D3DXVECTOR3(90.0f, 480.0f, 0.0f));
-	m_pCFontResource->SetFontScale(FONT_SCALE);
-	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
+	//フォントプロパティ設定処理関数.
+	SettingFontProperty();
 	//読み込み処理関数.
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 }
@@ -379,8 +388,10 @@ void CSpeakBigGhost::ChangeString()
 	if (m_stSpeakString[m_SpeakNum] == "tutorial") {
 		if (m_bTutorialFlag == false) {
 			m_bTutorialFlag = true;
+			m_StringFlag |= TUTORIAL_FLAG;
 		}
 	}
+
 
 	//選択文章判定処理.
 	DecisionSelectString();
@@ -437,4 +448,17 @@ void CSpeakBigGhost::FindEvalutionString()
 			break;
 		}
 	}
+}
+
+//===========================================.
+//		フォントプロパティ設定処理関数.
+//===========================================.
+void CSpeakBigGhost::SettingFontProperty()
+{
+	//表示開始位置.
+	m_pCFontResource->SetStartPos(D3DXVECTOR3(90.0f, 480.0f, 0.0f));
+	//大きさ.
+	m_pCFontResource->SetFontScale(FONT_SCALE);
+	//表示幅最大.
+	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
 }
