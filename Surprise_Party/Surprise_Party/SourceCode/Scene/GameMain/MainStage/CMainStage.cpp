@@ -24,6 +24,7 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_ExplainFlag				(0)
 	, m_bDispTextFlag			(true)
 	, m_pCSpeakWorkGhost		(nullptr)
+	, m_vSelectGhostPos			(0.0f, 0.0f, 0.0f)
 	, m_pCDescriptionUIManager	(nullptr)
 	, m_bTutorialCameraMove		(false)
 	, m_stOldCamera				()
@@ -380,7 +381,12 @@ void CMainStage::Render()
 
 	//働くお化け会話クラス.
 	if (m_pCSpeakWorkGhost != nullptr) {
-		m_pCSpeakWorkGhost->Render();
+		//お化けの選択に関係する全てのフラグ.
+		const unsigned int RELATED_TO_GHOST_ALL_FLAG = SELECT_GHOST_FLAG | GHOST_ACT_SELECT_FLAG;
+		if (m_Camera.vPos.x == m_vSelectGhostPos.x ||
+			m_ObjectSelectFlag & RELATED_TO_GHOST_ALL_FLAG) {
+			m_pCSpeakWorkGhost->Render();
+		}
 	}
 
 	//説明UI管理クラス.
@@ -685,7 +691,13 @@ void CMainStage::GhostSelect()
 		const int GHOST_TYPE_NUM = static_cast<int>(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSurpriseObjectType());
 		
 		if (m_pCSpeakWorkGhost != nullptr) {
-			m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
+			//お化け選択に関係するすべてのフラグ.
+			const unsigned int RELATED_TO_GHOST_ALL_FLAG = GHOST_SELECTION_FLAG | GHOST_ACT_SELECT_FLAG;
+			//お化け選択している時のみ設定可能.
+			if (m_ObjectSelectFlag & RELATED_TO_GHOST_ALL_FLAG) {
+				m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
+				m_vSelectGhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
+			}
 		}
 
 		if (m_pCDescriptionUIManager != nullptr) {

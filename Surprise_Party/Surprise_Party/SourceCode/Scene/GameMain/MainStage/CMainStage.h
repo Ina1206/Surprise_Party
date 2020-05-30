@@ -106,6 +106,7 @@ private:
 	bool											m_bDispTextFlag;			//テキスト表示フラグ.
 
 	std::unique_ptr<CSpeakWorkGhost>				m_pCSpeakWorkGhost;			//働くお化け会話クラス.
+	D3DXVECTOR3										m_vSelectGhostPos;			//選択しているお化けの座標.
 
 	std::unique_ptr<CDescriptionUIManager>			m_pCDescriptionUIManager;	//説明UI管理クラス.
 
