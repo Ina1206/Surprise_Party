@@ -353,6 +353,11 @@ void CSpeakBigGhost::SelectingMove()
 //=========================================.
 void CSpeakBigGhost::ChangeString()
 {
+	//終了フラグが入っている場合は例外処理.
+	if (m_FinishFlag != 0) {
+		return;
+	}
+
 	//読み込み処理関数.
 	m_SpeakNum++;
 
