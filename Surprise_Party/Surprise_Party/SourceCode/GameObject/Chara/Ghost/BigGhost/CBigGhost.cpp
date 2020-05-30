@@ -41,38 +41,38 @@ void CBigGhost::Update()
 	//	}
 	//}
 
-	//D3DXVECTOR3 vChange;
+	D3DXVECTOR3 vChange;
 	//if (flag == false) {
 	//	vChange = m_vPos;
 	//}
 	//else {
-	//	vChange = m_vRot;
+		vChange = m_vRot;
 	//}
 
-	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-	//	vChange.x += 0.01f;
-	//}
-	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-	//	vChange.x -= 0.01f;
-	//}
-	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
-	//	vChange.y += 0.01f;
-	//}
-	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-	//	vChange.y -= 0.01f;
-	//}
-	//if (GetAsyncKeyState('Z') & 0x8000) {
-	//	vChange.z += 0.01f;
-	//}
-	//if (GetAsyncKeyState('X') & 0x8000) {
-	//	vChange.z -= 0.01f;
-	//}
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		vChange.x += 0.01f;
+	}
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		vChange.x -= 0.01f;
+	}
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		vChange.y += 0.01f;
+	}
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		vChange.y -= 0.01f;
+	}
+	if (GetAsyncKeyState('Z') & 0x8000) {
+		vChange.z += 0.01f;
+	}
+	if (GetAsyncKeyState('X') & 0x8000) {
+		vChange.z -= 0.01f;
+	}
 
 	//if (flag == false) {
 	//	m_vPos = vChange;
 	//}
 	//else {
-	//	m_vRot = vChange;
+		m_vRot = vChange;
 	//}
 
 	//if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
@@ -241,6 +241,20 @@ void CBigGhost::RejoiceEmotion()
 	}
 
 	
+}
+
+//==========================================.
+//		ã^ñ‚ä¥èÓèàóùä÷êî.
+//==========================================.
+void CBigGhost::QuestionEmotion()
+{
+	m_vRot.z -= LEAN_SPEED;
+
+	//åXÇ´ç≈è¨íl.
+	const float LEAN_ROT_MIN = static_cast<float>(D3DXToRadian(45.0f));
+	if (m_vRot.z < LEAN_ROT_MIN) {
+		m_vRot.z = LEAN_ROT_MIN;
+	}
 }
 
 //==========================================.

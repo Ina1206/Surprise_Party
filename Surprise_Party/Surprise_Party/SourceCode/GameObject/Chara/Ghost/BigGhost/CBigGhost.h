@@ -21,6 +21,7 @@ public:
 		Sleep = 0,		//Q‚é.
 		HaveTrounble,	//¢‚é.
 		Rejoice,		//Šì‚Ô.
+		Question,		//‹^–â.
 
 		Max,			//Å‘å’l.
 		Nothing,		//–³‚µ.
@@ -69,6 +70,7 @@ private:
 	void WakeUp();							//‹N°ˆ—ŠÖ”.
 	void HaveTroubleEmotion();				//¢‚éŠ´îˆ—ŠÖ”.
 	void RejoiceEmotion();					//Šì‚ÔŠ´îˆ—ŠÖ”.
+	void QuestionEmotion();					//‹^–âŠ´îˆ—ŠÖ”.
 	void Sleep();							//Q‚éˆ—ŠÖ”.
 	void Lean(const int& Direction);		//ŒX‚­ˆ—ŠÖ”.
 	void FallDown(const int& Direction);	//“|‚ê‚éˆ—ŠÖ”.
