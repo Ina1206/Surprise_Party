@@ -28,7 +28,6 @@ CWorkGhostBase::CWorkGhostBase()
 	, m_vEffectCenterPos		(0.0f, 0.0f, 0.0f)
 	, m_pCFatigue				(nullptr)
 	, m_MoveDirection			(0)
-	, m_fMoveAngle				(0.0f)
 	, m_vGimmickPos				()
 	, m_vHumanPos				()
 	, m_pCHitSphere				(2)
@@ -451,12 +450,8 @@ void CWorkGhostBase::MoveGimmick()
 	//‰¡ˆÚ“®.
 	m_vPos.x += m_fMoveSpeed * MoveDirection;
 	
-	//ã‰ºˆÚ“®.
-	m_fMoveAngle += ANGLE_SPEED;
-	if (m_fMoveAngle >= ANGLE_MAX) {
-		m_fMoveAngle = ANGLE_MIN;
-	}
-	m_vPos.y += (sin(m_fMoveAngle) * VERTICAL_WIDTH) * UP_DOWN_SPEED;
+	//•‚—Vˆ—ŠÖ”.
+	MoveUpDown();
 
 	//‘Ì—ÍŒ¸­ˆ—.
 	m_fStrength -= MOVE_REDUCE_SPEED;

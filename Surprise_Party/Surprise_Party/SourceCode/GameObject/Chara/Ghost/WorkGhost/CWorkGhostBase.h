@@ -39,11 +39,6 @@ public:
 	const unsigned int	UP_FLAG				= (1 << 1);							//上げるフラグ.
 
 	const float			COLOR_MAX			= 255.0f;							//色の最大値.
-	const float			ANGLE_SPEED			= 0.1f;								//角度追加速度.
-	const float			ANGLE_MAX			= 360.0f;							//角度最大値.
-	const float			ANGLE_MIN			= 0.0f;								//角度最小値.
-	const float			UP_DOWN_SPEED		= 0.01f;							//上下移動の速度.
-	const float			VERTICAL_WIDTH		= 2.5f;								//縦の幅.
 	const float			ADJUSTMENT_WIDTH	= 0.1f;								//幅調整.
 	const float			NEAR_SENTER_ADJUST	= 5.0f;								//近づく判定中央差分.
 	const float			GIMMICK_UP_DECISION = 0.1f;								//ギミックの上に乗っているかの判定差分.
@@ -199,7 +194,6 @@ private:
 
 	//===============変数===================//.
 	int									m_MoveDirection;			//移動方向.
-	float								m_fMoveAngle;				//移動角度.
 	std::vector<D3DXVECTOR3>			m_vGimmickPos;				//ギミック座標.
 	std::vector<D3DXVECTOR3>			m_vHumanPos;				//人の座標.
 	D3DXVECTOR3							m_vSurprisePos;				//驚く場所.
