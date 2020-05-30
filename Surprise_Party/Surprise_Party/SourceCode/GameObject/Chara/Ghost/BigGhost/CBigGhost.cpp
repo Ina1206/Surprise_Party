@@ -133,11 +133,12 @@ void CBigGhost::Init()
 	//m_vRot = WAKE_UP_ROT;
 
 	//エフェクト初期化処理.
-	m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
-	m_pCSpriteEffect[static_cast<int>(enEmotionType::Sleep)].reset(new CSleepEffect());
-	m_pCSpriteEffect[static_cast<int>(enEmotionType::HaveTrounble)].reset(new CHaveTroubleEffect());
-	m_pCSpriteEffect[static_cast<int>(enEmotionType::Rejoice)].reset(new CRejoiceEffect());
-	
+	//m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
+	m_pCSpriteEffect.emplace_back(new CSleepEffect());
+	m_pCSpriteEffect.emplace_back(new CHaveTroubleEffect());
+	m_pCSpriteEffect.emplace_back(new CRejoiceEffect());
+	//m_pCSpriteEffect.emplace_back()
+
 	m_EmotionNum = static_cast<int>(enEmotionType::Sleep);
 	m_OldEmotionNum = m_EmotionNum;
 }
@@ -355,6 +356,9 @@ void CBigGhost::ChangeEffect()
 	case enEmotionType::Rejoice:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Rejoice);
 		break;
+	//case enEmotionType::Question:
+	//	m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
+	//	break;
 	default:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
 		break;
@@ -363,7 +367,7 @@ void CBigGhost::ChangeEffect()
 	//初期化.
 	m_vPos = WAKE_UP_POS;
 	m_vRot = WAKE_UP_ROT;
-	if (m_EmotionNum != static_cast<int>(enEmotionType::Nothing)) {
+	if(m_EmotionNum <= static_cast<int>(m_pCSpriteEffect.size())){
 		for (int sprite = 0; sprite < m_pCSpriteEffect[m_UsingEffectNum]->GetSpriteMax(); sprite++) {
 			//エフェクト開始初期化処理関数.
 			m_pCSpriteEffect[m_UsingEffectNum]->PlayStartInit(sprite);
