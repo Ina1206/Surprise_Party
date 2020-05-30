@@ -347,9 +347,9 @@ void CBigGhost::ChangeEffect()
 	}
 
 	//初期化.
+	m_vPos = WAKE_UP_POS;
+	m_vRot = WAKE_UP_ROT;
 	if (m_EmotionNum != static_cast<int>(enEmotionType::Nothing)) {
-		m_vPos = WAKE_UP_POS;
-		m_vRot = WAKE_UP_ROT;
 		for (int sprite = 0; sprite < m_pCSpriteEffect[m_UsingEffectNum]->GetSpriteMax(); sprite++) {
 			//エフェクト開始初期化処理関数.
 			m_pCSpriteEffect[m_UsingEffectNum]->PlayStartInit(sprite);
@@ -386,9 +386,9 @@ void CBigGhost::EmotionMove()
 		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::Nothing:
+		MoveUpDown();
 		//通常座標.
-		m_vPos = WAKE_UP_POS;
-		m_vRot = WAKE_UP_ROT;
+		//m_vRot = WAKE_UP_ROT;
 		break;
 	}
 

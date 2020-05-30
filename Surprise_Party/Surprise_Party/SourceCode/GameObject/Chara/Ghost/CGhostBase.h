@@ -11,7 +11,7 @@ public:
 	virtual ~CGhostBase();
 
 	//=======================定数==========================//.
-	const float	ANGLE_SPEED		= 0.1f;								//角度追加速度.
+	const float	ANGLE_SPEED		= 0.08f;							//角度追加速度.
 	const float	ANGLE_MAX		= 360.0f;							//角度最大値.
 	const float	ANGLE_MIN		= 0.0f;								//角度最小値.
 	const float	UP_DOWN_SPEED	= 0.01f;							//上下移動の速度.
