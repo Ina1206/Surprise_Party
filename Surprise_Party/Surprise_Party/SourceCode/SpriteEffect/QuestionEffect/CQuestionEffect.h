@@ -22,6 +22,9 @@ public:
 	const float			MOVE_SPEED				= 0.025f;	//移動速度.
 	const float			DISTANCE_MAX			= 1.5f;		//距離最大値.
 
+	const float			SCALING_SPEED			= 0.1f;		//拡縮速度.
+	const float			SCALING_MIN				= 0.2f;		//拡縮最小値.
+
 	//====================関数========================//.
 	void Update();							//更新処理関数.
 	void PlayStartInit(const int& num);		//エフェクト開始処理化処理関数.
