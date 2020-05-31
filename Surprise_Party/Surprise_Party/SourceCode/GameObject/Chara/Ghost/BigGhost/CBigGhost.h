@@ -22,9 +22,9 @@ public:
 		HaveTrounble,	//ç¢ÇÈ.
 		Rejoice,		//äÏÇ‘.
 		Question,		//ã^ñ‚.
+		Nothing,		//ñ≥Çµ.
 
 		Max,			//ç≈ëÂíl.
-		Nothing,		//ñ≥Çµ.
 	};
 
 	//=================ä÷êî====================//.
