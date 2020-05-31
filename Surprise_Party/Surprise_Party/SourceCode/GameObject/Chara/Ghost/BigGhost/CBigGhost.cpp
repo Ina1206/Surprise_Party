@@ -405,6 +405,9 @@ void CBigGhost::EmotionMove()
 	case enEmotionType::Question:
 		//‹^–âŠ´îˆ—ŠÖ”.
 		QuestionEmotion();
+		//ã‰ºˆÚ“®ˆ—ŠÖ”.
+		MoveUpDown();
+
 		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::Nothing:
