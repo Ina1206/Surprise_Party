@@ -9,6 +9,7 @@ TreeBord.png
 GhostCursor.png
 ThankYouStamp.png
 Arrow.png	
+QuestionMark.png
 
 ロゴ作成	URL:http://lightbox.on.coocan.jp/html/fontImage.php
 ActMoveString.png
