@@ -168,6 +168,7 @@ void CResourceManager::SpriteFileNameSetting()
 		"Data\\Texture\\UI\\Game\\shock.png",				//驚き.
 		"Data\\Texture\\UI\\Game\\Wave.png",				//波線.
 		"Data\\Texture\\UI\\Game\\Smoke.png",				//煙.
+		"Data\\Texture\\UI\\Game\\QuestionMark.png",		//はてなマーク.
 		"Data\\Texture\\UI\\Game\\HelthIcon.png",			//体力アイコン.
 		"Data\\Texture\\UI\\Game\\eight_part_note.png",		//8分音符.
 		"Data\\Texture\\UI\\Game\\sixteen_part_note.png",	//16分音符.
@@ -305,6 +306,13 @@ void CResourceManager::SpriteStateSetting()
 	m_pstSpriteState[SmokeNum].Base.h = 200.0f;
 	m_pstSpriteState[SmokeNum].Disp.w = 2.0f;
 	m_pstSpriteState[SmokeNum].Disp.h = 2.0f;
+
+	//はてなマーク.
+	const int QuestionMark = static_cast<int>(enSprite::QuestionMark);
+	m_pstSpriteState[QuestionMark].Base.w = 625.0f;
+	m_pstSpriteState[QuestionMark].Base.h = 625.0f;
+	m_pstSpriteState[QuestionMark].Disp.w = 2.0f;
+	m_pstSpriteState[QuestionMark].Disp.h = 2.0f;
 
 	//まとめて一コマ当たりのサイズ指定.
 	for (int sprite = 0; sprite < static_cast<int>(enSprite::SingleSpriteMax); sprite++) {
