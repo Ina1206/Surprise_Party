@@ -11,7 +11,8 @@ CQuestionEffect::CQuestionEffect()
 
 CQuestionEffect::~CQuestionEffect()
 {
-
+	//‰ğ•úˆ—ŠÖ”.
+	Release();
 }
 
 //========================================.
