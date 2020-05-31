@@ -41,38 +41,38 @@ void CBigGhost::Update()
 	//	}
 	//}
 
-	D3DXVECTOR3 vChange;
+	//D3DXVECTOR3 vChange;
 	//if (flag == false) {
 	//	vChange = m_vPos;
 	//}
 	//else {
-		vChange = m_vRot;
+		//vChange = m_vRot;
 	//}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		vChange.x += 0.01f;
-	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		vChange.x -= 0.01f;
-	}
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		vChange.y += 0.01f;
-	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		vChange.y -= 0.01f;
-	}
-	if (GetAsyncKeyState('Z') & 0x8000) {
-		vChange.z += 0.01f;
-	}
-	if (GetAsyncKeyState('X') & 0x8000) {
-		vChange.z -= 0.01f;
-	}
+	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+	//	vChange.x += 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+	//	vChange.x -= 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
+	//	vChange.y += 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	//	vChange.y -= 0.01f;
+	//}
+	//if (GetAsyncKeyState('Z') & 0x8000) {
+	//	vChange.z += 0.01f;
+	//}
+	//if (GetAsyncKeyState('X') & 0x8000) {
+	//	vChange.z -= 0.01f;
+	//}
 
 	//if (flag == false) {
 	//	m_vPos = vChange;
 	//}
 	//else {
-		m_vRot = vChange;
+		//m_vRot = vChange;
 	//}
 
 	//if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
@@ -93,7 +93,7 @@ void CBigGhost::Update()
 	EmotionMove();
 
 	//エフェクト更新処理関数.
-	if (m_UsingEffectNum != static_cast<int>(enEmotionType::Nothing)) {
+	if (m_UsingEffectNum < static_cast<int>(m_pCSpriteEffect.size())) {
 		m_pCSpriteEffect[m_UsingEffectNum]->Update();
 	}
 
@@ -112,7 +112,7 @@ void CBigGhost::Render()
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	//エフェクト描画.
-	if (m_UsingEffectNum != static_cast<int>(enEmotionType::Nothing)) {
+	if (m_UsingEffectNum < static_cast<int>(m_pCSpriteEffect.size())) {
 		m_pCSpriteEffect[m_UsingEffectNum]->Render(m_mView, m_mProj, m_vCameraPos);
 	}
 }
@@ -249,10 +249,10 @@ void CBigGhost::RejoiceEmotion()
 //==========================================.
 void CBigGhost::QuestionEmotion()
 {
-	m_vRot.z -= LEAN_SPEED;
+	m_vRot.z -= 0.02f;
 
 	//傾き最小値.
-	const float LEAN_ROT_MIN = static_cast<float>(D3DXToRadian(45.0f));
+	const float LEAN_ROT_MIN = static_cast<float>(D3DXToRadian(-30.0f));
 	if (m_vRot.z < LEAN_ROT_MIN) {
 		m_vRot.z = LEAN_ROT_MIN;
 	}
@@ -356,9 +356,9 @@ void CBigGhost::ChangeEffect()
 	case enEmotionType::Rejoice:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Rejoice);
 		break;
-	//case enEmotionType::Question:
-	//	m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
-	//	break;
+	case enEmotionType::Question:
+		m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
+		break;
 	default:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
 		break;
@@ -367,7 +367,7 @@ void CBigGhost::ChangeEffect()
 	//初期化.
 	m_vPos = WAKE_UP_POS;
 	m_vRot = WAKE_UP_ROT;
-	if(m_EmotionNum <= static_cast<int>(m_pCSpriteEffect.size())){
+	if(m_EmotionNum < static_cast<int>(m_pCSpriteEffect.size())){
 		for (int sprite = 0; sprite < m_pCSpriteEffect[m_UsingEffectNum]->GetSpriteMax(); sprite++) {
 			//エフェクト開始初期化処理関数.
 			m_pCSpriteEffect[m_UsingEffectNum]->PlayStartInit(sprite);
@@ -403,6 +403,10 @@ void CBigGhost::EmotionMove()
 		RejoiceEmotion();
 		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
+	case enEmotionType::Question:
+		//疑問感情処理関数.
+		QuestionEmotion();
+		break;
 	case enEmotionType::Nothing:
 		MoveUpDown();
 		//通常座標.
@@ -411,7 +415,7 @@ void CBigGhost::EmotionMove()
 	}
 
 	//エフェクト出す中心座標設定.
-	if (m_UsingEffectNum != static_cast<int>(enEmotionType::Nothing)) {
+	if (m_UsingEffectNum < static_cast<int>(m_pCSpriteEffect.size())) {
 		m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(vCenterPos);
 	}
 }
