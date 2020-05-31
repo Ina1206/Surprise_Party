@@ -14,8 +14,8 @@ public:
 	virtual ~CSpriteEffectBase();
 
 	//================定数====================//.
-	const float			SCALE_MAX			= 1.0f;								//大きさ最大値.
-	const float			SCALE_MIN			= 0.0f;								//大きさ最小値.
+	const D3DXVECTOR3	SCALE_MAX			= D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//大きさ最大値.
+	const D3DXVECTOR3	SCALE_MIN			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//大きさ最小値.
 	const float			ALPHA_MAX			= 1.0f;								//透過値最大値.
 	const float			ALPHA_MIN			= 0.0f;								//透過値最小値.
 
@@ -53,7 +53,7 @@ protected:
 	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
 	std::vector<D3DXVECTOR3>	m_vPos;				//座標.
 	std::vector<D3DXVECTOR3>	m_vRot;				//角度.
-	std::vector<float>			m_fScale;			//大きさ.
+	std::vector<D3DXVECTOR3>	m_vScale;			//大きさ.
 	std::vector<float>			m_fAlpha;			//透過値.
 	std::vector<float>			m_fAngle;			//角度.
 	std::vector<float>			m_fDistance;		//距離.
