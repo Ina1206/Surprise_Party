@@ -32,6 +32,7 @@ private:
 	void Release();							//‰ğ•úˆ—ŠÖ”.
 	void AppeartJudgement(const int& num);	//•\¦”»’èˆ—ŠÖ”.
 	void Move(const int& num);				//ˆÚ“®ˆ—ŠÖ”.
+	void Scaling(const int& num);			//Šgkˆ—ŠÖ”.
 
 	//====================•Ï”========================//.
 	float			m_fAcc;					//‰Á‘¬“x.

@@ -42,7 +42,6 @@ void CQuestionEffect::PlayStartInit(const int& num)
 	//‰Šú’lİ’èˆ—ŠÖ”.
 	SettingDefaultValue(num);
 	m_fAlpha[num] = 1.0f;
-	m_fScale[num] = 1.0f;
 
 	m_fAcc = 0.0f;
 	m_vPos[num] = m_vCenterPos;
@@ -61,8 +60,6 @@ void CQuestionEffect::Init()
 
 	const int SpriteNum = 0;
 	SettingDefaultValue(SpriteNum);
-	m_fAlpha[SpriteNum] = 1.0f;
-	m_fScale[SpriteNum] = 1.0f;
 }
 
 //========================================.
@@ -108,4 +105,12 @@ void CQuestionEffect::Move(const int& num)
 	}
 	m_vPos[num].x = m_vStartPos.x + m_fDistance[num];
 
+}
+
+//=======================================.
+//		Šgkˆ—ŠÖ”.
+//=======================================.
+void CQuestionEffect::Scaling(const int& num)
+{
+	
 }
