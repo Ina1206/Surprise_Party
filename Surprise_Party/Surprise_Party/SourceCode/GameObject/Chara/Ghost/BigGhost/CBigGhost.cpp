@@ -133,11 +133,10 @@ void CBigGhost::Init()
 	//m_vRot = WAKE_UP_ROT;
 
 	//エフェクト初期化処理.
-	//m_pCSpriteEffect.resize(static_cast<int>(enEmotionType::Max));
 	m_pCSpriteEffect.emplace_back(new CSleepEffect());
 	m_pCSpriteEffect.emplace_back(new CHaveTroubleEffect());
 	m_pCSpriteEffect.emplace_back(new CRejoiceEffect());
-	//m_pCSpriteEffect.emplace_back()
+	m_pCSpriteEffect.emplace_back(new CQuestionEffect());
 
 	m_EmotionNum = static_cast<int>(enEmotionType::Sleep);
 	m_OldEmotionNum = m_EmotionNum;
@@ -406,6 +405,7 @@ void CBigGhost::EmotionMove()
 	case enEmotionType::Question:
 		//疑問感情処理関数.
 		QuestionEmotion();
+		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::Nothing:
 		MoveUpDown();

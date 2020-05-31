@@ -28,7 +28,7 @@ void CQuestionEffect::Update()
 //========================================.
 void CQuestionEffect::PlayStartInit(const int& num)
 {
-
+	m_vPos[num] = m_vCenterPos;
 }
 
 //========================================.
