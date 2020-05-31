@@ -5,7 +5,8 @@
 ***************/
 CQuestionEffect::CQuestionEffect()
 {
-
+	//‰Šú‰»ˆ—.
+	Init();
 }
 
 CQuestionEffect::~CQuestionEffect()
