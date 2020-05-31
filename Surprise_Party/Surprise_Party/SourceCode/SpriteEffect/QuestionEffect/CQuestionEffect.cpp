@@ -36,7 +36,13 @@ void CQuestionEffect::PlayStartInit(const int& num)
 //========================================.
 void CQuestionEffect::Init()
 {
+	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::QuestionMark));
+	SettingElementsCount();
 
+	const int SpriteNum = 0;
+	SettingDefaultValue(SpriteNum);
+	m_fAlpha[SpriteNum] = 1.0f;
+	m_fScale[SpriteNum] = 1.0f;
 }
 
 //========================================.
