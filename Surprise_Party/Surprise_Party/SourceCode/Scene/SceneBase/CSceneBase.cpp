@@ -37,11 +37,3 @@ void CSceneBase::DebugSceneChange()
 		m_bChangeScene = true;
 	}
 }
-
-//===========================================.
-//	メインステージ以外のライト設定処理関数.
-//===========================================.
-void CSceneBase::SettingLightOtherThanMainStage()
-{
-
-}

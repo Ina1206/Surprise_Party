@@ -2,7 +2,6 @@
 #define CSCENE_BASE_H
 
 #include "..\..\Global.h"
-#include "..\..\Drawing\Resource\CResourceManager.h"
 
 /************************************
 *		シーン基底クラス.
@@ -30,15 +29,12 @@ public:
 
 protected:
 	//===================関数======================//.
-	virtual void Init()		= 0;			//初期化処理関数.
-	virtual void Release()	= 0;			//解放処理関数.
-	
-	void SettingLightOtherThanMainStage();	//メインステージ以外のライト設定処理関数.
+	virtual void Init()		= 0;		//初期化処理関数.
+	virtual void Release()	= 0;		//解放処理関数.
 
 	//===================変数======================//.
 	D3DXMATRIX	m_mView;		//ビュー行列.
 	D3DXMATRIX	m_mProj;		//プロジェクション行列.
-	LIGHT		m_stLight;		//ライト情報.
 	D3DXVECTOR3 m_vLightPos;	//ライト座標.
 	D3DXVECTOR3 m_vCameraPos;	//カメラ座標.
 	D3DXVECTOR4 m_vBackColor;	//後ろの色.
