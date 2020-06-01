@@ -302,6 +302,12 @@
     <Filter Include="SourceCode\GameObject\Object\StaticObject\Light">
       <UniqueIdentifier>{f6ba456d-d733-4e53-97cc-ec6afd26ce8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight">
+      <UniqueIdentifier>{b996eef4-9990-426b-a49c-bbe0d35bb7f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\Light\BackstageLight">
+      <UniqueIdentifier>{d51ebced-30d9-4e90-bedc-dcad08754bbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -610,6 +616,9 @@
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.h">
       <Filter>SourceCode\GameObject\Object\StaticObject\Light</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -905,6 +914,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.cpp">
       <Filter>SourceCode\GameObject\Object\StaticObject\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
