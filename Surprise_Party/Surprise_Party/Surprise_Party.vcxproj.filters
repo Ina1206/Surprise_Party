@@ -299,6 +299,9 @@
     <Filter Include="SourceCode\SpriteEffect\QuestionEffect">
       <UniqueIdentifier>{b42ae46b-91ce-416d-a88b-f0bfcb39805e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\Light">
+      <UniqueIdentifier>{f6ba456d-d733-4e53-97cc-ec6afd26ce8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -604,6 +607,9 @@
     <ClInclude Include="SourceCode\SpriteEffect\QuestionEffect\CQuestionEffect.h">
       <Filter>SourceCode\SpriteEffect\QuestionEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -896,6 +902,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\SpriteEffect\QuestionEffect\CQuestionEffect.cpp">
       <Filter>SourceCode\SpriteEffect\QuestionEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

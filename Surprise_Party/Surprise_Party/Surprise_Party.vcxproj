@@ -64,6 +64,7 @@
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.cpp" />
