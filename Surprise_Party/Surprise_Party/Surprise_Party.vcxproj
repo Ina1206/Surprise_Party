@@ -64,6 +64,7 @@
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\BookShelf\CBookShelf.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\CStaticObjectBase.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Floor\CFloor.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.cpp" />
