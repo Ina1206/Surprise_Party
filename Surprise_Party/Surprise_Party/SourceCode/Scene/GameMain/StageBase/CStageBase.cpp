@@ -3,8 +3,6 @@
 CStageBase::CStageBase()
 	: m_mView			()
 	, m_mProj			()
-	, m_stLight			()
-	//, m_vCameraPos		(0.0f, 0.0f, 0.0f)
 	, m_Camera			()
 	, m_bChangeStageFlag(false)
 	, m_StageNum		(0)

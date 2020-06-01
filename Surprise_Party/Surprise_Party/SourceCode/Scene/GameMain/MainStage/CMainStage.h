@@ -9,6 +9,8 @@
 #include "..\..\..\GameObject/Chara/Ghost/WorkGhost/SwitchGhost/CSwitchGhost.h"
 #include "..\..\..\GameObject/Chara/People/PeopleManager/CPeopleManager.h"
 
+#include "..\..\..\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.h"
+
 #include "..\..\..\UI\MapUI\StageMap\CStageMap.h"
 #include "..\..\..\UI\MapUI\CharaUI\MapCursor\MapGhostCursor\CMapGhostCursor.h"
 #include "..\..\..\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor\CMapGimmickCursor.h"
@@ -99,7 +101,7 @@ private:
 	std::unique_ptr<CClosedTime>					m_pCClosedTime;				//閉店までの時間クラス.
 	std::unique_ptr<CSurpriseGage>					m_pCSurpriseGage;			//驚きゲージクラス.
 	
-	std::vector<D3DXVECTOR3>						m_vLightPos;				//ライト座標.
+	std::unique_ptr<CFrontstageLight>				m_pCFrontstageLight;		//表舞台のライトクラス.
 
 	enStageType										m_enStageType;				//ステージタイプ.
 	unsigned int									m_ExplainFlag;				//説明フラグ.

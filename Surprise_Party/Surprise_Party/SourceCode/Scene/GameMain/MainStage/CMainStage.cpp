@@ -19,7 +19,7 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCGameGhostCursor		(nullptr)
 	, m_pCClosedTime			(nullptr)
 	, m_pCSurpriseGage			()
-	, m_vLightPos				()
+	, m_pCFrontstageLight		(nullptr)
 	, m_enStageType				(enStage)
 	, m_ExplainFlag				(0)
 	, m_bDispTextFlag			(true)
@@ -46,8 +46,9 @@ CMainStage::~CMainStage()
 //===================================.
 void CMainStage::UpDate(const bool& ControlFlag)
 {
-	//スポットライト更新処理関数.
-	SpotLightUpdate();
+	//表舞台ライトクラスの更新処理関数.
+	m_pCFrontstageLight->SetCameraPos(m_Camera.vPos);
+	m_pCFrontstageLight->Update();
 
 	//静的オブジェクト更新処理関数.
 	m_pCStaticObjectManager->SetCameraPos(m_Camera.vPos);
@@ -323,6 +324,9 @@ void CMainStage::Render()
 	//	}
 	}
 
+	//ライト情報.
+	const LIGHT m_Light = m_pCFrontstageLight->GetLight();
+
 	//ステージマップの描画.
 	m_pCStageMap->Render();
 
@@ -334,18 +338,18 @@ void CMainStage::Render()
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
 		//お化け本体の描画処理関数.
 		m_pCWorkGhost[ghost]->SetCameraPos(m_Camera.vPos);
-		m_pCWorkGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_stLight);
+		m_pCWorkGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
 		m_pCWorkGhost[ghost]->Render();
 	}
 
 
 
 	//動くオブジェクトスイッチの描画.
-	m_pCMoveObjectManager->RenderSwitch(m_mView, m_mProj, m_stLight);
+	m_pCMoveObjectManager->RenderSwitch(m_mView, m_mProj, m_Light);
 	//静的オブジェクトの描画.
-	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
+	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_Camera.vPos, m_Light);
 	//動くオブジェクト描画処理.
-	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_stLight);
+	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_Light);
 
 	//お化け体力アイコン描画処理関数.
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
@@ -353,7 +357,7 @@ void CMainStage::Render()
 	}
 
 	//人の描画処理関数.
-	m_pCPeopleManager->Render(m_mView, m_mProj, m_Camera.vPos, m_stLight);
+	m_pCPeopleManager->Render(m_mView, m_mProj, m_Camera.vPos, m_Light);
 
 	//動くオブジェクトのエフェクト描画.
 	m_pCMoveObjectManager->EffectRender();
@@ -495,31 +499,10 @@ void CMainStage::Init()
 	m_Camera.vPos = CAMERA_START_POS;
 	m_Camera.vLook = CAMERA_START_LOOK;
 
-
-
-	//ライト情報初期設定.
-	m_stLight.vPos = D3DXVECTOR3(0.0f , 21.7f, -0.5f);
-	m_stLight.fIntensity = 119.0f;
-	m_stLight.m_fLightWidth = 10.9f;
-	m_stLight.fLightPosWidth = 20.0f;
-	m_stLight.vLightColor = D3DXVECTOR3(0.5f, 0.5f, 1.0f);
-	m_stLight.m_fLightMax = 3.0f;
-	D3DXMatrixIdentity(&m_stLight.mRot);
-
-	//ライトの配置横幅.
-	float m_LightWidth = m_stLight.fLightPosWidth;
-	for (int Light = 0; m_LightWidth * Light <= m_fStageDistanceMax; Light++) {
-		D3DXVECTOR3 vLightPos = m_stLight.vPos;
-		vLightPos.x = m_LightWidth * Light;
-		m_vLightPos.push_back(vLightPos);
-	}
+	//表舞台のライトクラスのインスタンス化.
+	m_pCFrontstageLight.reset(new CFrontstageLight());
+	m_pCFrontstageLight->SettingAllLightPos(m_fStageDistanceMax);
 	
-	D3DXMATRIX mYaw, mPich, mRoll;
-	D3DXMatrixRotationY(&mYaw, 0.0f);
-	D3DXMatrixRotationX(&mPich, 0.0f);
-	D3DXMatrixRotationZ(&mRoll, 0.0f);
-	m_stLight.mRot = mYaw * mPich * mRoll;
-
 	//チュートリアルでの初期化処理.
 	if (m_enStageType != enStageType::Tutorial) {
 		return;
@@ -817,13 +800,6 @@ void CMainStage::CameraMove()
 //=========================================.
 void CMainStage::SpotLightUpdate()
 {
-	for (unsigned int light = 0; light < m_vLightPos.size(); light++) {
-		if (m_Camera.vPos.x + 16.0f > m_vLightPos[light].x &&
-			m_Camera.vPos.x - 16.0f < m_vLightPos[light].x) {
-			m_stLight.vPos = m_vLightPos[light];
-			break;
-		}
-	}
 }
 
 //==========================================.
