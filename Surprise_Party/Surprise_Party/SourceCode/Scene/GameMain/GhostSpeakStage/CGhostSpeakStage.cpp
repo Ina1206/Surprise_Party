@@ -11,6 +11,7 @@ CGhostSpeakStage::CGhostSpeakStage(int stageNum, CGhostSpeakStage::enBeforeStage
 	, m_pCFloor				(nullptr)
 	, m_pCBigGhost			(nullptr)
 	, m_pCSpeakBigGhost		(nullptr)
+	, m_pCBackstageLight	(nullptr)
 	, m_MoveCameraDirection	(GET_CLOSER_CAMERA_DIRECT)
 {
 	m_StageNum = stageNum;
@@ -86,15 +87,18 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 //=========================================.
 void CGhostSpeakStage::Render()
 {
+	//ライト情報.
+	const LIGHT m_Light = m_pCBackstageLight->GetLight();
+
 	//床の描画.
 	m_pCFloor->SetCameraPos(m_Camera.vPos);
-	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_stLight);
+	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_Light);
 	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -6.0f, 0.0f));
 	m_pCFloor->Render();
 
 	//大きいお化け描画.
 	m_pCBigGhost->SetCameraPos(m_Camera.vPos);
-	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_stLight);
+	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_Light);
 	m_pCBigGhost->Render();
 
 	if (m_pCBigGhost->GetSleepFlag() == true) {
@@ -127,15 +131,8 @@ void CGhostSpeakStage::Init()
 	//大きいお化け会話クラス.
 	m_pCSpeakBigGhost.reset(new CSpeakBigGhost(m_StageNum,static_cast<int>(m_enBeforeStageEndingType)));
 
-	m_stLight.fIntensity = 10.0f;
-	m_stLight.fLightPosWidth = 20.0f;
-	m_stLight.m_fLightWidth = 10.0f;
-	m_stLight.m_fLightMax = 1.0f;
-	m_stLight.vLightColor = D3DXVECTOR3(243.0f, 232.0f, 12.0f) / 255.0f;
-	m_stLight.vPos = D3DXVECTOR3(26.2f, 11.7f, 6.7f);
-	D3DXMatrixRotationYawPitchRoll(&m_stLight.mRot, 0.0f, 0.0f, 0.0f);
-	m_stLight.fIntensity = 27.0f;
-	m_stLight.m_fLightWidth = 6.2f;
+	//舞台裏のライトクラス.
+	m_pCBackstageLight.reset(new CBackstageLight());
 
 	m_Camera.vPos = D3DXVECTOR3(5.0f, 2.5f, -3.5f);
 	m_Camera.vLook = D3DXVECTOR3(5.0f, 2.5f, 5.0f);

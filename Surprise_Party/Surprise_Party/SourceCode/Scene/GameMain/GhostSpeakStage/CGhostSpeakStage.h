@@ -6,6 +6,7 @@
 #include "..\..\GameObject\Object\StaticObject\Floor\CFloor.h"
 #include "..\..\GameObject\Chara\Ghost\BigGhost\CBigGhost.h"
 #include "..\..\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.h"
+#include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
 
 /*****************************************
 *	お化けとの会話ステージクラス.
@@ -43,14 +44,16 @@ private:
 	void SettingEmotion();						//感情設定処理関数.
 
 	//========================関数=============================//.
-	CFontResource*					m_pCFontResource;
-	std::vector<std::string>		changestr;
-	std::unique_ptr<CFloor>			m_pCFloor;				//床.
-	std::unique_ptr<CBigGhost>		m_pCBigGhost;			//大きいお化け.
-	std::unique_ptr<CSpeakBigGhost>	m_pCSpeakBigGhost;		//大きいお化け会話クラス.
+	CFontResource*						m_pCFontResource;
+	std::vector<std::string>			changestr;
+	std::unique_ptr<CFloor>				m_pCFloor;				//床.
+	std::unique_ptr<CBigGhost>			m_pCBigGhost;			//大きいお化け.
+	std::unique_ptr<CSpeakBigGhost>		m_pCSpeakBigGhost;		//大きいお化け会話クラス.
 
-	int								m_MoveCameraDirection;	//カメラ移動方向.
-	bool							m_StageFinish;			//ステージ終了フラグ.
+	std::unique_ptr<CBackstageLight>	m_pCBackstageLight;		//舞台裏のライトクラス.
+
+	int									m_MoveCameraDirection;	//カメラ移動方向.
+	bool								m_StageFinish;			//ステージ終了フラグ.
 };
 
 #endif //#ifndef CGHOST_SPEAK_STAGE_H.
