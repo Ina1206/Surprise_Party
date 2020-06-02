@@ -18,8 +18,7 @@ public:
 	virtual void Update() = 0;								//XVˆ—ŠÖ”.
 	virtual void Render() = 0;								//•`‰æˆ—ŠÖ”.
 	
-	void RenderInitSetting( const D3DXMATRIX& mView, 
-							const D3DXMATRIX& mProj);		//•`‰æ‰Šúİ’èˆ—ŠÖ”.
+	void RenderInitSetting(const D3DXMATRIX& mProj);		//•`‰æ‰Šúİ’èˆ—ŠÖ”.
 
 protected:
 	//========================ŠÖ”=============================//.

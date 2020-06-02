@@ -23,10 +23,14 @@ CEndingStageBase::~CEndingStageBase()
 //=========================================.
 //		描画初期化処理関数.
 //=========================================.
-void CEndingStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj)
+void CEndingStageBase::RenderInitSetting( const D3DXMATRIX& mProj)
 {
-	m_mView = mView;
 	m_mProj = mProj;
+
+	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
+	D3DXMatrixLookAtLH(
+		&m_mView,								//(out)ビュー計算結果.
+		&m_Camera.vPos, &m_Camera.vLook, &vUpVec);
 }
 
 //=========================================.

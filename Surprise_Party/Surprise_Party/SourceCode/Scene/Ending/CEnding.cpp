@@ -26,7 +26,7 @@ void CEnding::UpDate()
 //==================================.
 void CEnding::Render()
 {
-	m_pCEndingStageBase->RenderInitSetting(m_mView, m_mProj);
+	m_pCEndingStageBase->RenderInitSetting(m_mProj);
 	m_pCEndingStageBase->Render();
 }
 
