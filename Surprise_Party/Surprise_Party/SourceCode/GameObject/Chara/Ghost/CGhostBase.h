@@ -29,6 +29,9 @@ public:
 		Max,			//Å‘å’l.
 	};
 
+	//===========î•ñ’uŠ·ˆ—ŠÖ”==============//.
+	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }	//Š´î”Ô†.
+
 protected:
 	//=======================ŠÖ”==========================//.
 	void MoveUpDown();		//•‚—Vˆ—ŠÖ”.

@@ -51,8 +51,6 @@ public:
 	//===========î•ñæ“¾ˆ—ŠÖ”==============//.
 	bool GetSleepFlag() const { return m_bSleepFlag; }	//–°‚èƒtƒ‰ƒO.
 
-	//===========î•ñ’uŠ·ˆ—ŠÖ”==============//.
-	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }	//Š´î”Ô†.
 
 private:
 	//=================ŠÖ”====================//.

@@ -111,6 +111,10 @@ void CEndingStageBase::InitCommonValue()
 
 		const D3DXVECTOR3 vPos = D3DXVECTOR3(0.0f + (2.0f * ghost), 0.3f, 9.0f);
 		m_pCGhost[ghost]->SetPos(vPos);
+
+		//Š´î”Ô†.
+		const int m_EmotionType = static_cast<int>(CGhostBase::enEmotionType::ViewSmartphone);
+		m_pCGhost[ghost]->SetEmotionNum(m_EmotionType);
 	}
 }
 
