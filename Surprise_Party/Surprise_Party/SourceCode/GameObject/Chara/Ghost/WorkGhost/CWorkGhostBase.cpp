@@ -3,7 +3,7 @@
 CWorkGhostBase::CWorkGhostBase()
 	: m_pCSkinMesh	(nullptr)
 	, m_pAnimCtrl	(nullptr)
-
+	, m_pCMesh		(nullptr)
 {
 }
 
@@ -47,4 +47,28 @@ void CWorkGhostBase::RenderDispGhost(const D3DXVECTOR3& vPos)
 	m_pCSkinMesh->SetRotation(m_vRot);
 	//描画.
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
+}
+
+//=========================================.
+//	静的オブジェクトお化け初期化処理関数.
+//=========================================.
+void CWorkGhostBase::InitStaticMeshGhost()
+{
+	//メッシュの読み込みアドレス取得.
+	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::SwitchPushGhost);
+	//大きさ.
+	m_fScale = SWITHC_GHOST_SCALE;
+
+}
+
+//=========================================.
+//		スイッチお化け描画処理関数.
+//=========================================.
+void CWorkGhostBase::RenderSwitchGhost(const D3DXVECTOR3& vPos)
+{
+	m_pCMesh->SetPosition(vPos);
+	m_pCMesh->SetScale(m_fScale);
+	m_pCMesh->SetPrePos(D3DXVECTOR3(0.0f, -23.0f, 0.0f));
+	m_pCMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
+
 }

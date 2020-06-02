@@ -1,8 +1,7 @@
 #include "CMainStageSwitchGhost.h"
 
 CMainStageSwitchGhost::CMainStageSwitchGhost()
-	: m_pCMesh				(nullptr)
-	, m_PushSwitchActFlag	(0)
+	: m_PushSwitchActFlag	(0)
 	, m_fGravity			(0.0f)
 	, m_UpDownDirection		(-1)
 	, m_vPointDistance		(0.0f, 0.0f, 0.0f)
@@ -107,10 +106,8 @@ void CMainStageSwitchGhost::Render()
 		m_pCMesh->SetRotAngleApplication();
 		m_pCMesh->SetRotation(m_vRot);
 	}
-	m_pCMesh->SetPosition(m_vMovePos);
-	m_pCMesh->SetScale(m_fScale);
-	m_pCMesh->SetPrePos(D3DXVECTOR3(0.0f, -23.0f, 0.0f));
-	m_pCMesh->Render(m_mView, m_mProj,m_vCameraPos, m_stLight);
+	//スイッチお化け描画処理関数.
+	RenderSwitchGhost(m_vMovePos);
 
 	//お化けアイコン描画.
 	m_pCGhostIcon->Render();
@@ -127,10 +124,9 @@ void CMainStageSwitchGhost::Render()
 //==================================.
 void CMainStageSwitchGhost::Init()
 {
-	//メッシュの読み込みアドレス取得.
-	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::SwitchPushGhost);
-	//大きさ.
-	m_fScale = SCALE_MAX;
+	//静的オブジェクトお化け初期化処理関数.
+	InitStaticMeshGhost();
+
 	m_fScaleMax = m_fScale;
 
 	//行動選択インスタンス化.
