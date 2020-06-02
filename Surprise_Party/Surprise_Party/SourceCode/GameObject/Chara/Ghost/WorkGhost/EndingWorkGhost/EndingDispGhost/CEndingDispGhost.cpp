@@ -27,7 +27,8 @@ void CEndingDispGhost::Update()
 //===========================================.
 void CEndingDispGhost::Render()
 {
-
+	m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAIT_ANIM_START_POS, m_pAnimCtrl);
+	RenderDispGhost(m_vPos);
 }
 
 //===========================================.

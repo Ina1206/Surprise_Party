@@ -4,12 +4,13 @@
 *		エンディングステージ基底クラス.
 *****************/
 CEndingStageBase::CEndingStageBase()
-	: m_mView				()
-	, m_mProj				()
-	, m_Camera				()
-	, m_pCBigGhost			(nullptr)
-	, m_pCBackstageLight	(nullptr)
-	, m_pCFloor				(nullptr)
+	: m_mView					()
+	, m_mProj					()
+	, m_Camera					()
+	, m_pCBackstageLight		(nullptr)
+	, m_pCBigGhost				(nullptr)
+	, m_pCEndingWorkGhostBase	(0)
+	, m_pCFloor					(nullptr)
 {
 	//共通の値の初期化処理関数.
 	InitCommonValue();
@@ -63,6 +64,19 @@ void CEndingStageBase::RenderBigGhost()
 }
 
 //=========================================.
+//		働くお化け描画処理関数.
+//=========================================.
+void CEndingStageBase::RenderWorkGhost()
+{
+	//ライト情報.
+	const LIGHT m_Light = m_pCBackstageLight->GetLight();
+
+	for (unsigned int ghost = 0; ghost < m_pCEndingWorkGhostBase.size(); ghost++) {
+		m_pCEndingWorkGhostBase[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
+	}
+}
+
+//=========================================.
 //		共通値の初期化処理関数.
 //=========================================.
 void CEndingStageBase::InitCommonValue()
@@ -71,4 +85,8 @@ void CEndingStageBase::InitCommonValue()
 	m_pCBigGhost.reset(new CBigGhost());
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
+
+	for (int ghost = 0; ghost < 5; ghost++) {
+		m_pCEndingWorkGhostBase.emplace_back(new CEndingDispGhost());
+	}
 }

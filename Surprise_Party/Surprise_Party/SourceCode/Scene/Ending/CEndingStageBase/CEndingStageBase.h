@@ -2,6 +2,7 @@
 #define CENDING_STAGE_BASE_H
 
 #include "..\..\GameObject\Chara\Ghost\BigGhost\CBigGhost.h"
+#include "..\..\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingDispGhost\CEndingDispGhost.h"
 #include "..\..\GameObject\Object\StaticObject\Floor\CFloor.h"
 #include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
 
@@ -27,14 +28,15 @@ protected:
 
 	void RenderFloor();										//床の描画処理関数.
 	void RenderBigGhost();									//ビッグゴースト描画処理関数.
+	void RenderWorkGhost();									//働くお化け描画処理関数.
 
 	//========================変数=============================//.
-	D3DXMATRIX							m_mView;			//ビュー行列.
-	D3DXMATRIX							m_mProj;			//プロジェクション行列.
-	CAMERA								m_Camera;			//カメラ構造体.
-	std::unique_ptr<CBigGhost>			m_pCBigGhost;		//ビッグゴーストクラス.
-	std::unique_ptr<CBackstageLight>	m_pCBackstageLight;	//舞台裏ライトクラス.
-
+	D3DXMATRIX											m_mView;					//ビュー行列.
+	D3DXMATRIX											m_mProj;					//プロジェクション行列.
+	CAMERA												m_Camera;					//カメラ構造体.
+	std::unique_ptr<CBackstageLight>					m_pCBackstageLight;			//舞台裏ライトクラス.
+	std::unique_ptr<CBigGhost>							m_pCBigGhost;				//ビッグゴーストクラス.
+	std::vector<std::unique_ptr<CEndingWorkGhostBase>>	m_pCEndingWorkGhostBase;	//働くお化けクラス.
 
 
 private:
