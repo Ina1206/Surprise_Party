@@ -5,7 +5,8 @@
 **************/
 CEndingDispGhost::CEndingDispGhost()
 {
-
+	//初期化処理関数.
+	Init();
 }
 
 CEndingDispGhost::~CEndingDispGhost()
@@ -34,7 +35,8 @@ void CEndingDispGhost::Render()
 //===========================================.
 void CEndingDispGhost::Init()
 {
-
+	//アニメーション初期化処理関数.
+	InitAnimation();
 }
 
 //============================================.
