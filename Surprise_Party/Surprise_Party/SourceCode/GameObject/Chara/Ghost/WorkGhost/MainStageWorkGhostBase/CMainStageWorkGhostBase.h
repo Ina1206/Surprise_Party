@@ -14,48 +14,48 @@ public:
 	virtual ~CMainStageWorkGhostBase();
 
 	//==============定数=================//.
-//m_MoveFlag.
-	const unsigned int	SURPRISE_FLAG = (1 << 0);							//驚かしているフラグ.
-	const unsigned int	SELECT_FLAG = (1 << 1);							//選択フラグ.
-	const unsigned int	SELECT_ACT_FLAG = (1 << 2);							//選択行動フラグ.
-	const unsigned int	MOVE_FLAG = (1 << 3);							//移動フラグ.
-	const unsigned int	REST_FLAG = (1 << 4);							//休憩フラグ.
-	const unsigned int	SELECT_STOP_FLAG = (1 << 5);							//選択戻るフラグ.
+	//m_MoveFlag.
+	const unsigned int	SURPRISE_FLAG		= (1 << 0);							//驚かしているフラグ.
+	const unsigned int	SELECT_FLAG			= (1 << 1);							//選択フラグ.
+	const unsigned int	SELECT_ACT_FLAG		= (1 << 2);							//選択行動フラグ.
+	const unsigned int	MOVE_FLAG			= (1 << 3);							//移動フラグ.
+	const unsigned int	REST_FLAG			= (1 << 4);							//休憩フラグ.
+	const unsigned int	SELECT_STOP_FLAG	= (1 << 5);							//選択戻るフラグ.
 	//m_SurpriseFlag.
-	const unsigned int	GIMMICK_TOP_FLAG = (1 << 0);							//ギミックの上にいるかフラグ.	
-	const unsigned int	HUMAN_NEAR_FLAG = (1 << 1);							//人が近づいているかフラグ.
-	const unsigned int	SURPRISE_ACT_FLAG = (1 << 2);							//人を驚かしているかどうかフラグ.
-	const unsigned int	SURPRISE_REST_FLAG = (1 << 3);							//驚き休憩フラグ.
+	const unsigned int	GIMMICK_TOP_FLAG	= (1 << 0);							//ギミックの上にいるかフラグ.	
+	const unsigned int	HUMAN_NEAR_FLAG		= (1 << 1);							//人が近づいているかフラグ.
+	const unsigned int	SURPRISE_ACT_FLAG	= (1 << 2);							//人を驚かしているかどうかフラグ.
+	const unsigned int	SURPRISE_REST_FLAG	= (1 << 3);							//驚き休憩フラグ.
 	//m_RestFlag.
-	const unsigned int	REST_PREPARAT_FLAG = (1 << 0);							//休憩準備フラグ.
-	const unsigned int	IN_REST_FLAG = (1 << 1);							//休憩中フラグ.
-	const unsigned int	RESURRECTION_FLAG = (1 << 2);							//復活フラグ.
+	const unsigned int	REST_PREPARAT_FLAG	= (1 << 0);							//休憩準備フラグ.
+	const unsigned int	IN_REST_FLAG		= (1 << 1);							//休憩中フラグ.
+	const unsigned int	RESURRECTION_FLAG	= (1 << 2);							//復活フラグ.
 	//m_UpDownObjectFlag.
-	const unsigned int	DOWN_FLAG = (1 << 0);							//下げるフラグ.
-	const unsigned int	UP_FLAG = (1 << 1);							//上げるフラグ.
+	const unsigned int	DOWN_FLAG			= (1 << 0);							//下げるフラグ.
+	const unsigned int	UP_FLAG				= (1 << 1);							//上げるフラグ.
 
-	const float			COLOR_MAX = 255.0f;							//色の最大値.
-	const float			ADJUSTMENT_WIDTH = 0.1f;								//幅調整.
-	const float			NEAR_SENTER_ADJUST = 5.0f;								//近づく判定中央差分.
+	const float			COLOR_MAX			= 255.0f;							//色の最大値.
+	const float			ADJUSTMENT_WIDTH	= 0.1f;								//幅調整.
+	const float			NEAR_SENTER_ADJUST	= 5.0f;								//近づく判定中央差分.
 	const float			GIMMICK_UP_DECISION = 0.1f;								//ギミックの上に乗っているかの判定差分.
 	const float			SURPRISE_POS_ADJUST = 2.5f;								//驚く場所の差分.
-	const int			NOT_SURPRISE_NUM = -1;								//誰も驚いていないときの番号.
-	const float			HUMAN_HIT_SCALE = 1.0f;								//人が驚く当たり判定大きさ.
-	const float			SURPRISE_HIT_SCALE = 0.5f;								//人が驚く場所の当たり判定大きさ.
+	const int			NOT_SURPRISE_NUM	= -1;								//誰も驚いていないときの番号.
+	const float			HUMAN_HIT_SCALE		= 1.0f;								//人が驚く当たり判定大きさ.
+	const float			SURPRISE_HIT_SCALE	= 0.5f;								//人が驚く場所の当たり判定大きさ.
 	const D3DXVECTOR3	REST_ROTATION_SPEED = D3DXVECTOR3(0.02f, 0.03f, 0.0f);	//回復回転速度.
-	const float			REST_MOVE_SPEED = 0.02f;							//回復移動速度.
-	const float			REST_SCALE_SPEED = 0.002f;							//回復大きさ速度.
-	const D3DXVECTOR3	REST_ROTATION_MAX = D3DXVECTOR3(1.5f, 2.5f, 0.0f);	//回復回転最大数.
-	const float			REST_MOVE_MAX = 1.5f;								//回復移動最大数.
-	const float			REST_SCALE_MIN = 0.0f;								//回復大きさ最小.
-	const float			BASIC_REDUCE_SPEED = 0.01f;							//基本体力減らす速度.
-	const float			MOVE_REDUCE_SPEED = 0.015f;							//移動時の体力減る速度.
-	const float			CAMERA_DISP_RANGE = 15.0f;							//表示カメラ範囲.
-	const float			ROT_SPEED = 0.1f;								//角度の速度.
-	const float			ROT_MAX = 1.35f;							//角度の最大値.
-	const float			ROT_MIN = 0.0f;								//角度の最小値.
-	const float			ROT_MIN_ADJUST = 0.1f;								//角度最小値微調整.
-	const int			SURPRISE_REST_MAX = 120;								//驚かし休憩最大時間.
+	const float			REST_MOVE_SPEED		= 0.02f;							//回復移動速度.
+	const float			REST_SCALE_SPEED	= 0.002f;							//回復大きさ速度.
+	const D3DXVECTOR3	REST_ROTATION_MAX	= D3DXVECTOR3(1.5f, 2.5f, 0.0f);	//回復回転最大数.
+	const float			REST_MOVE_MAX		= 1.5f;								//回復移動最大数.
+	const float			REST_SCALE_MIN		= 0.0f;								//回復大きさ最小.
+	const float			BASIC_REDUCE_SPEED	= 0.01f;							//基本体力減らす速度.
+	const float			MOVE_REDUCE_SPEED	= 0.015f;							//移動時の体力減る速度.
+	const float			CAMERA_DISP_RANGE	= 15.0f;							//表示カメラ範囲.
+	const float			ROT_SPEED			= 0.1f;								//角度の速度.
+	const float			ROT_MAX				= 1.35f;							//角度の最大値.
+	const float			ROT_MIN				= 0.0f;								//角度の最小値.
+	const float			ROT_MIN_ADJUST		= 0.1f;								//角度最小値微調整.
+	const int			SURPRISE_REST_MAX	= 120;								//驚かし休憩最大時間.
 	//ステータス.
 	enum class enStatus {
 		Strength,			//体力.
