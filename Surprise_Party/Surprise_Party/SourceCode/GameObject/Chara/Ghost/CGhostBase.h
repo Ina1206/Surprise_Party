@@ -17,14 +17,28 @@ public:
 	const float	UP_DOWN_SPEED	= 0.01f;							//ã‰ºˆÚ“®‚Ì‘¬“x.
 	const float	VERTICAL_WIDTH	= 2.5f;								//c‚Ì•.
 
+	//================—ñ‹“‘à===================//.
+	enum class enEmotionType {
+		Sleep = 0,		//Q‚é.
+		HaveTrounble,	//¢‚é.
+		Rejoice,		//Šì‚Ô.
+		Question,		//‹^–â.
+		Nothing,		//–³‚µ.
+
+		Max,			//Å‘å’l.
+	};
 
 protected:
 	//=======================ŠÖ”==========================//.
 	void MoveUpDown();		//•‚—Vˆ—ŠÖ”.
 
+
+	//=======================•Ï”==========================//.
+	int		m_EmotionNum;		//Š´î”Ô†.
+
 private:
 	//=======================•Ï”==========================//.
-	float m_fMoveAngle;		//ˆÚ“®Šp“x.
+	float	m_fMoveAngle;		//ˆÚ“®Šp“x.
 
 };
 

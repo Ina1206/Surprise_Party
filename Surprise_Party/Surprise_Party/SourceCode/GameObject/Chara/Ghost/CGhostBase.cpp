@@ -2,6 +2,7 @@
 
 CGhostBase::CGhostBase()
 	: m_fMoveAngle	(0.0f)
+	, m_EmotionNum(0)
 {
 
 }

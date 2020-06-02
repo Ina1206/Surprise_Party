@@ -17,16 +17,6 @@ public:
 	CBigGhost();
 	~CBigGhost();
 
-	//================列挙隊===================//.
-	enum class enEmotionType {
-		Sleep = 0,		//寝る.
-		HaveTrounble,	//困る.
-		Rejoice,		//喜ぶ.
-		Question,		//疑問.
-		Nothing,		//無し.
-
-		Max,			//最大値.
-	};
 
 	//=================関数====================//.
 	const D3DXVECTOR3	SLEEP_POS			= D3DXVECTOR3(6.0f, -0.8f, 10.5f);	//寝てる場所.
@@ -89,10 +79,8 @@ private:
 	int												m_UpDownDirect;			//上下方向.
 	unsigned int									m_HaveTroubleActFlag;	//困る感情行動フラグ.
 	bool											m_ChangeEmotionFlag;	//感情変更フラグ.
-
 	std::vector<std::unique_ptr<CSpriteEffectBase>>	m_pCSpriteEffect;		//スプライトエフェクト.
 	int												m_UsingEffectNum;		//使っているエフェクト番号.
-	int												m_EmotionNum;			//感情番号.
 	int												m_OldEmotionNum;		//前の感情番号.
 
 	bool											m_bSleepFlag;			//眠りフラグ.

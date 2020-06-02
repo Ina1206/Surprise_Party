@@ -12,7 +12,6 @@ CBigGhost::CBigGhost()
 	, m_ChangeEmotionFlag	(false)
 	, m_pCSpriteEffect		()
 	, m_UsingEffectNum		(0)
-	, m_EmotionNum			(0)
 	, m_OldEmotionNum		(0)
 	, m_bSleepFlag			(true)
 {
