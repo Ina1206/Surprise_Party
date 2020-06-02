@@ -27,6 +27,7 @@ protected:
 	virtual void Release() = 0;								//解放処理関数.
 
 	void RenderFloor();										//床の描画処理関数.
+	void RenderBigGhost();									//ビッグゴースト描画処理関数.
 
 	//========================変数=============================//.
 	D3DXMATRIX							m_mView;			//ビュー行列.

@@ -46,6 +46,19 @@ void CEndingStageBase::RenderFloor()
 }
 
 //=========================================.
+//		ビッグゴースト描画処理関数.
+//=========================================.
+void CEndingStageBase::RenderBigGhost()
+{
+	//ライト情報.
+	const LIGHT m_Light = m_pCBackstageLight->GetLight();
+
+	m_pCBigGhost->SetCameraPos(m_Camera.vPos);
+	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_Light);
+	m_pCBigGhost->Render();
+}
+
+//=========================================.
 //		共通値の初期化処理関数.
 //=========================================.
 void CEndingStageBase::InitCommonValue()
