@@ -360,6 +360,10 @@ void CBigGhost::ChangeEffect()
 	case enEmotionType::Question:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
 		break;
+	case enEmotionType::ViewSmartphone:
+		m_bSleepFlag = true;
+		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
+		break;
 	default:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
 		break;
@@ -408,6 +412,9 @@ void CBigGhost::EmotionMove()
 		MoveUpDown();
 
 		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
+		break;
+	case enEmotionType::ViewSmartphone:
+
 		break;
 	case enEmotionType::Nothing:
 		MoveUpDown();
