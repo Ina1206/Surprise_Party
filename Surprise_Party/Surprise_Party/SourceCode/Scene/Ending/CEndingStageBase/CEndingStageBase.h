@@ -2,6 +2,7 @@
 #define CENDING_STAGE_BASE_H
 
 #include "..\..\GameObject\Chara\Ghost\BigGhost\CBigGhost.h"
+#include "..\..\GameObject\Object\StaticObject\Floor\CFloor.h"
 
 /*******************************************
 *		エンディングステージ基底クラス.
@@ -23,7 +24,7 @@ protected:
 
 	//========================変数=============================//.
 	std::unique_ptr<CBigGhost>	m_pCBigGhost;	//ビッグゴーストクラス.
-
+	std::unique_ptr<CFloor>		m_pCFloor;		//床クラス.
 private:
 
 
