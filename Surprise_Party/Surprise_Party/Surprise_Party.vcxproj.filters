@@ -311,6 +311,9 @@
     <Filter Include="SourceCode\Scene\Ending\CEndingStageBase">
       <UniqueIdentifier>{f70d04d7-63ba-4a65-a848-248dd88a3ec3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Scene\Ending\BeforeResultStage">
+      <UniqueIdentifier>{8f380b97-bf97-4201-b483-8084684745ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -628,6 +631,9 @@
     <ClInclude Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.h">
       <Filter>SourceCode\Scene\Ending\CEndingStageBase</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.h">
+      <Filter>SourceCode\Scene\Ending\BeforeResultStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -932,6 +938,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.cpp">
       <Filter>SourceCode\Scene\Ending\CEndingStageBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.cpp">
+      <Filter>SourceCode\Scene\Ending\BeforeResultStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

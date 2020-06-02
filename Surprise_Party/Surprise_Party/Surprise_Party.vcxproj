@@ -73,6 +73,7 @@
     <ClInclude Include="SourceCode\Global.h" />
     <ClInclude Include="SourceCode\Main.h" />
     <ClInclude Include="SourceCode\MyMacro.h" />
+    <ClInclude Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.h" />
     <ClInclude Include="SourceCode\Scene\Ending\CEnding.h" />
     <ClInclude Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\CGameMain.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.cpp" />
     <ClCompile Include="SourceCode\Main.cpp" />
+    <ClCompile Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\CEnding.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\CGameMain.cpp" />
