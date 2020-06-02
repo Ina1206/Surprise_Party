@@ -38,7 +38,7 @@ void CEndingDispGhost::Init()
 {
 	//アニメーション初期化処理関数.
 	InitAnimation();
-	m_fScale = 0.08f;
+	m_fScale = 0.07f;
 }
 
 //============================================.
