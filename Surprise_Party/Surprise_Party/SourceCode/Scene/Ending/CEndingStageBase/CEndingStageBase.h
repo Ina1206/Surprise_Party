@@ -3,6 +3,7 @@
 
 #include "..\..\GameObject\Chara\Ghost\BigGhost\CBigGhost.h"
 #include "..\..\GameObject\Object\StaticObject\Floor\CFloor.h"
+#include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
 
 /*******************************************
 *		エンディングステージ基底クラス.
@@ -23,8 +24,10 @@ protected:
 	virtual void Release() = 0;	//解放処理関数.
 
 	//========================変数=============================//.
-	std::unique_ptr<CBigGhost>	m_pCBigGhost;	//ビッグゴーストクラス.
-	std::unique_ptr<CFloor>		m_pCFloor;		//床クラス.
+	std::unique_ptr<CBigGhost>			m_pCBigGhost;		//ビッグゴーストクラス.
+	std::unique_ptr<CFloor>				m_pCFloor;			//床クラス.
+	std::unique_ptr<CBackstageLight>	m_pCBackstageLight;	//舞台裏ライトクラス.
+
 private:
 
 
