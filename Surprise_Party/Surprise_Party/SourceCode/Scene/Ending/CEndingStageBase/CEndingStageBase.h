@@ -29,6 +29,8 @@ protected:
 	std::unique_ptr<CBackstageLight>	m_pCBackstageLight;	//舞台裏ライトクラス.
 
 private:
+	//========================関数=============================//.
+	void InitCommonValue();		//共通値の初期化処理関数.
 
 
 };
