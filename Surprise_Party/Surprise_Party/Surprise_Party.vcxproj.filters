@@ -308,6 +308,9 @@
     <Filter Include="SourceCode\GameObject\Object\StaticObject\Light\BackstageLight">
       <UniqueIdentifier>{d51ebced-30d9-4e90-bedc-dcad08754bbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Scene\Ending\CEndingStageBase">
+      <UniqueIdentifier>{f70d04d7-63ba-4a65-a848-248dd88a3ec3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -622,6 +625,9 @@
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h">
       <Filter>SourceCode\GameObject\Object\StaticObject\Light\BackstageLight</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.h">
+      <Filter>SourceCode\Scene\Ending\CEndingStageBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -923,6 +929,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.cpp">
       <Filter>SourceCode\GameObject\Object\StaticObject\Light\BackstageLight</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.cpp">
+      <Filter>SourceCode\Scene\Ending\CEndingStageBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

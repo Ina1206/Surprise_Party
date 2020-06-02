@@ -74,6 +74,7 @@
     <ClInclude Include="SourceCode\Main.h" />
     <ClInclude Include="SourceCode\MyMacro.h" />
     <ClInclude Include="SourceCode\Scene\Ending\CEnding.h" />
+    <ClInclude Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\CGameMain.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\MainStage\CMainStage.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.cpp" />
     <ClCompile Include="SourceCode\Main.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\CEnding.cpp" />
+    <ClCompile Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\CGameMain.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\MainStage\CMainStage.cpp" />
