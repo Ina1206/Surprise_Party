@@ -48,8 +48,8 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\CGhostBase.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.h" />
-    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\CMainStageWorkGhostBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\People\Boy\CBoy.h" />
     <ClInclude Include="SourceCode\GameObject\Chara\People\CPeopleBase.h" />
@@ -155,8 +155,8 @@
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\BigGhost\CBigGhost.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\CGhostBase.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.cpp" />
-    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\CMainStageWorkGhostBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\People\Boy\CBoy.cpp" />
     <ClCompile Include="SourceCode\GameObject\Chara\People\CPeopleBase.cpp" />

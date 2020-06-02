@@ -98,7 +98,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		//‚¨‰»‚¯‚ÌÀ•Wæ“¾.
 		m_vGhostPos[ghost] = m_pCWorkGhost[ghost]->GetPos();
 		D3DXVECTOR3 vTargetPos;
-		std::unique_ptr<CWorkGhostBase> pTmp;
+		std::unique_ptr<CMainStageWorkGhostBase> pTmp;
 		//‚¨‰»‚¯‚Ì—v‘f”•ÏŠ·ˆ—.
 		if (ghost < m_pCWorkGhost.size() - 1) {
 			//¶‚©‚ç‰E.
@@ -435,7 +435,7 @@ void CMainStage::Init()
 		switch (m_pCFileResource->GetStageNum(GhostFilenum, m_column, stage) - 1) {
 		case 0:
 			m_pCWorkGhost.push_back(nullptr);
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CDispGhost());
+			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CMainStageDispGhost());
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(D3DXVECTOR3(stage * m_pCStaticObjectManager->OBJECT_WIDTH, 0.0f, 3.5f));
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetInitMovePos();
 			break;

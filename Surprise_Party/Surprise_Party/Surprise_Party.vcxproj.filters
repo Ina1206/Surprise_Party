@@ -314,10 +314,10 @@
     <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost">
       <UniqueIdentifier>{9beb42bf-053d-46b5-92b1-cfc65aa419b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\DispGhost">
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageDispGhost">
       <UniqueIdentifier>{2e59853b-1a49-4104-8dd5-674baba2b625}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\SwitchGhost">
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost">
       <UniqueIdentifier>{4c6455c6-6354-4320-b0ff-612d6d16e53d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -445,11 +445,8 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
     </ClInclude>
-    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.h">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\DispGhost</Filter>
-    </ClInclude>
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.h">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\SwitchGhost</Filter>
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
     </ClInclude>
     <ClInclude Include="SourceCode\GameObject\Chara\People\CPeopleBase.h">
       <Filter>SourceCode\GameObject\Chara\People</Filter>
@@ -643,6 +640,9 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\CMainStageWorkGhostBase.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageDispGhost</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -756,11 +756,8 @@
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
     </ClCompile>
-    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.cpp">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\DispGhost</Filter>
-    </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.cpp">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\SwitchGhost</Filter>
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\People\CPeopleBase.cpp">
       <Filter>SourceCode\GameObject\Chara\People</Filter>
@@ -953,6 +950,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\CMainStageWorkGhostBase.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageDispGhost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

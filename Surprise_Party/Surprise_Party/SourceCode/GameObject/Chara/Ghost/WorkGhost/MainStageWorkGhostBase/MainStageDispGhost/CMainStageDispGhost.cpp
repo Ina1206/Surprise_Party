@@ -1,6 +1,9 @@
-#include "CDispGhost.h"
+#include "CMainStageDispGhost.h"
 
-CDispGhost::CDispGhost()
+/***********************************************
+*		メインステージの現れるお化けクラス.
+******************/
+CMainStageDispGhost::CMainStageDispGhost()
 	: m_pCSkinMesh		(nullptr)
 	, m_pAnimCtrl		(nullptr)
 	, m_fAnimSpeed		(0.0f)
@@ -11,7 +14,7 @@ CDispGhost::CDispGhost()
 	Init();
 }
 
-CDispGhost::~CDispGhost()
+CMainStageDispGhost::~CMainStageDispGhost()
 {
 	//解放処理関数.
 	Release();
@@ -20,7 +23,7 @@ CDispGhost::~CDispGhost()
 //=================================.
 //		更新処理関数.
 //=================================.
-void CDispGhost::Update()
+void CMainStageDispGhost::Update()
 {
 	//選択更新処理関数.
 	SelectUpdate();
@@ -79,7 +82,7 @@ void CDispGhost::Update()
 //=================================.
 //		描画処理関数.
 //=================================.
-void CDispGhost::Render()
+void CMainStageDispGhost::Render()
 {
 	if (fabsf(m_vCameraPos.x - m_vPos.x) < CAMERA_DISP_RANGE) {
 		if (!(m_RestFlag & IN_REST_FLAG)) {
@@ -117,7 +120,7 @@ void CDispGhost::Render()
 //=================================.
 //		初期化処理関数.
 //=================================.
-void CDispGhost::Init()
+void CMainStageDispGhost::Init()
 {
 	//スキンメッシュのアドレス取得.
 	m_pCSkinMesh = m_pCResourceManager->GetSkinMesh(enSkinMeshType::DispGhost);
@@ -168,7 +171,7 @@ void CDispGhost::Init()
 //==================================.
 //		解放処理関数.
 //==================================.
-void CDispGhost::Release()
+void CMainStageDispGhost::Release()
 {
 	m_pCSkinMesh = nullptr;
 }
@@ -176,7 +179,7 @@ void CDispGhost::Release()
 //==================================.
 //		驚かす行動処理関数.
 //==================================.
-void CDispGhost::SurpriseAct()
+void CMainStageDispGhost::SurpriseAct()
 {
 	//驚かしに現れる処理.
 	if (m_SurpriseActFlag & APPEAR_FLAG) {
@@ -223,7 +226,7 @@ void CDispGhost::SurpriseAct()
 //==================================.
 //		上下移動変更処理関数.
 //==================================.
-void CDispGhost::ChangeObjectUpDown()
+void CMainStageDispGhost::ChangeObjectUpDown()
 {
 	//下げる.
 	if (m_vMovePos.z <= OBJECT_DOWN_POS) {
@@ -238,7 +241,7 @@ void CDispGhost::ChangeObjectUpDown()
 //==================================.
 //		戻る移動処理関数.
 //==================================.
-void CDispGhost::ReturnMove()
+void CMainStageDispGhost::ReturnMove()
 {
 	if (m_vMovePos.z < GHOST_POS_Z) {
 		m_vMovePos.z += RETURN_SPEED;

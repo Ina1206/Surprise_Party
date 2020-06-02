@@ -5,7 +5,7 @@
 #include "..\..\..\GameObject/Object/StaticObject/StaticObjectManager/CStaticObjectManager.h"
 #include "..\..\..\GameObject/Object/MoveObject/MoveObjectManager/CMoveObjectManager.h"
 #include "..\..\..\FileLoad/FileResource/CFileResource.h"
-#include "..\..\..\GameObject/Chara/Ghost/WorkGhost/DispGhost/CDispGhost.h"
+#include "..\..\..\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.h"
 #include "..\..\..\GameObject/Chara/Ghost/WorkGhost/SwitchGhost/CSwitchGhost.h"
 #include "..\..\..\GameObject/Chara/People/PeopleManager/CPeopleManager.h"
 
@@ -85,35 +85,35 @@ private:
 	enBeforeStageEndigneType Evalute();				//評価処理関数.
 
 	//===================変数=======================//.
-	std::unique_ptr<CStaticObjectManager>			m_pCStaticObjectManager;	//静的オブジェクト管理クラス.
-	std::unique_ptr<CMoveObjectManager>				m_pCMoveObjectManager;		//動的オブジェクト管理クラス.
-	std::vector<std::unique_ptr<CWorkGhostBase>>	m_pCWorkGhost;				//働くお化けクラス.
-	std::unique_ptr<CPeopleManager>					m_pCPeopleManager;			//人管理クラス.
+	std::unique_ptr<CStaticObjectManager>					m_pCStaticObjectManager;	//静的オブジェクト管理クラス.
+	std::unique_ptr<CMoveObjectManager>						m_pCMoveObjectManager;		//動的オブジェクト管理クラス.
+	std::vector<std::unique_ptr<CMainStageWorkGhostBase>>	m_pCWorkGhost;				//働くお化けクラス.
+	std::unique_ptr<CPeopleManager>							m_pCPeopleManager;			//人管理クラス.
 
-	std::unique_ptr<CStageMap>						m_pCStageMap;				//ステージマップ.
-	std::unique_ptr<CMapCursor>						m_pCMapGhostCursor;			//マップ上のお化けのカーソルクラス.
+	std::unique_ptr<CStageMap>								m_pCStageMap;				//ステージマップ.
+	std::unique_ptr<CMapCursor>								m_pCMapGhostCursor;			//マップ上のお化けのカーソルクラス.
 
-	std::vector<int>								m_SelectNum;				//選択番号.
-	unsigned int									m_ObjectSelectFlag;			//オブジェクト選択フラグ.
+	std::vector<int>										m_SelectNum;				//選択番号.
+	unsigned int											m_ObjectSelectFlag;			//オブジェクト選択フラグ.
 
-	std::unique_ptr<CGameGhostCursor>				m_pCGameGhostCursor;		//ゲーム内のお化けのカーソルクラス.
+	std::unique_ptr<CGameGhostCursor>						m_pCGameGhostCursor;		//ゲーム内のお化けのカーソルクラス.
 
-	std::unique_ptr<CClosedTime>					m_pCClosedTime;				//閉店までの時間クラス.
-	std::unique_ptr<CSurpriseGage>					m_pCSurpriseGage;			//驚きゲージクラス.
+	std::unique_ptr<CClosedTime>							m_pCClosedTime;				//閉店までの時間クラス.
+	std::unique_ptr<CSurpriseGage>							m_pCSurpriseGage;			//驚きゲージクラス.
 	
-	std::unique_ptr<CFrontstageLight>				m_pCFrontstageLight;		//表舞台のライトクラス.
+	std::unique_ptr<CFrontstageLight>						m_pCFrontstageLight;		//表舞台のライトクラス.
 
-	enStageType										m_enStageType;				//ステージタイプ.
-	unsigned int									m_ExplainFlag;				//説明フラグ.
-	bool											m_bDispTextFlag;			//テキスト表示フラグ.
+	enStageType												m_enStageType;				//ステージタイプ.
+	unsigned int											m_ExplainFlag;				//説明フラグ.
+	bool													m_bDispTextFlag;			//テキスト表示フラグ.
 
-	std::unique_ptr<CSpeakWorkGhost>				m_pCSpeakWorkGhost;			//働くお化け会話クラス.
-	D3DXVECTOR3										m_vSelectGhostPos;			//選択しているお化けの座標.
+	std::unique_ptr<CSpeakWorkGhost>						m_pCSpeakWorkGhost;			//働くお化け会話クラス.
+	D3DXVECTOR3												m_vSelectGhostPos;			//選択しているお化けの座標.
 
-	std::unique_ptr<CDescriptionUIManager>			m_pCDescriptionUIManager;	//説明UI管理クラス.
+	std::unique_ptr<CDescriptionUIManager>					m_pCDescriptionUIManager;	//説明UI管理クラス.
 
-	unsigned int									m_bTutorialCameraMove;		//チュートリアルカメラ移動フラグ.
-	CAMERA											m_stOldCamera;				//古いカメラ情報.
+	unsigned int											m_bTutorialCameraMove;		//チュートリアルカメラ移動フラグ.
+	CAMERA													m_stOldCamera;				//古いカメラ情報.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

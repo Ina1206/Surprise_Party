@@ -1,14 +1,17 @@
-#ifndef CDISP_GHOST_H
-#define CDISP_GHOST_H
+#ifndef CMAIN_STAGE_DISP_GHOST_H
+#define CMAIN_STAGE_DISP_GHOST_H
 
-#include "..\CWorkGhostBase.h"
+#include "..\CMainStageWorkGhostBase.h"
 
-class CDispGhost
-	: public CWorkGhostBase
+/***********************************************
+*		メインステージの現れるお化けクラス.
+******************/
+class CMainStageDispGhost
+	: public CMainStageWorkGhostBase
 {
 public:
-	CDispGhost();
-	~CDispGhost();
+	CMainStageDispGhost();
+	~CMainStageDispGhost();
 
 	//===============定数===================//.
 	const unsigned int	APPEAR_FLAG					= (1 << 0);	//現れるフラグ.
@@ -48,4 +51,4 @@ private:
 	double						m_dAnimTime;		//アニメーション時間.
 };
 
-#endif	//#ifndef CDISP_GHOST_H.
+#endif	//#ifndef CMAIN_STAGE_DISP_GHOST_H.
