@@ -8,8 +8,8 @@ CEndingStageBase::CEndingStageBase()
 	, m_mProj				()
 	, m_Camera				()
 	, m_pCBigGhost			(nullptr)
-	, m_pCFloor				(nullptr)
 	, m_pCBackstageLight	(nullptr)
+	, m_pCFloor				(nullptr)
 {
 	//‹¤’Ê‚Ì’l‚Ì‰Šú‰»ˆ—ŠÖ”.
 	InitCommonValue();

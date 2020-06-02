@@ -33,7 +33,6 @@ protected:
 	D3DXMATRIX							m_mProj;			//プロジェクション行列.
 	CAMERA								m_Camera;			//カメラ構造体.
 	std::unique_ptr<CBigGhost>			m_pCBigGhost;		//ビッグゴーストクラス.
-	std::unique_ptr<CFloor>				m_pCFloor;			//床クラス.
 	std::unique_ptr<CBackstageLight>	m_pCBackstageLight;	//舞台裏ライトクラス.
 
 
@@ -42,6 +41,8 @@ private:
 	//========================関数=============================//.
 	void InitCommonValue();									//共通値の初期化処理関数.
 
+	//========================変数=============================//.
+	std::unique_ptr<CFloor>				m_pCFloor;			//床クラス.
 
 };
 
