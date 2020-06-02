@@ -4,7 +4,8 @@ CGhostBase::CGhostBase()
 	: m_fMoveAngle	(0.0f)
 	, m_EmotionNum	(0)
 	, m_bUseRotFlag	(true)
-	, m_mPoint()
+	, m_mPoint		()
+	, m_vLookAtPos	(0.0f, 0.0f, 0.0f)
 {
 
 }

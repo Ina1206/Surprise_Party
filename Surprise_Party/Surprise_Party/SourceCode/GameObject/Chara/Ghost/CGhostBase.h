@@ -31,7 +31,8 @@ public:
 	};
 
 	//===========情報置換処理関数==============//.
-	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }	//感情番号.
+	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }			//感情番号.
+	void SetLookAtPos(const D3DXVECTOR3& vPos) { m_vLookAtPos = vPos; }	//見る座標.
 
 protected:
 	//=======================関数==========================//.
@@ -44,6 +45,7 @@ protected:
 	int				m_EmotionNum;		//感情番号.
 	bool			m_bUseRotFlag;		//角度使用フラグ.
 	D3DXMATRIX		m_mPoint;			//回転行列.
+	D3DXVECTOR3		m_vLookAtPos;		//見る座標.
 
 private:
 	//=======================変数==========================//.
