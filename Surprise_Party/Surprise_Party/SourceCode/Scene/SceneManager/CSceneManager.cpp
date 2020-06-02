@@ -139,7 +139,7 @@ void CSceneManager::Load()
 	//m_pCSceneBase.reset(new CTitle());
 	m_SceneType = static_cast<int>(enSceneType::GameMain);
 	m_pCSceneBase.resize(2);
-	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CEnding());
+	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
 	m_pCSceneBase[PAUSE_SCENE_NUM].reset(new CPause());
 
 	m_pCSceneFade->SetShutterFlag(m_pCSceneFade->OPEN_FLAG);

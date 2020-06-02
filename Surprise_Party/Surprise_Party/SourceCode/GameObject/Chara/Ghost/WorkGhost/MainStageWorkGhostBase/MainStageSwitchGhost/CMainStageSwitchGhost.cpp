@@ -1,6 +1,6 @@
-#include "CSwitchGhost.h"
+#include "CMainStageSwitchGhost.h"
 
-CSwitchGhost::CSwitchGhost()
+CMainStageSwitchGhost::CMainStageSwitchGhost()
 	: m_pCMesh				(nullptr)
 	, m_PushSwitchActFlag	(0)
 	, m_fGravity			(0.0f)
@@ -15,7 +15,7 @@ CSwitchGhost::CSwitchGhost()
 	Init();
 }
 
-CSwitchGhost::~CSwitchGhost()
+CMainStageSwitchGhost::~CMainStageSwitchGhost()
 {
 	//解放処理関数.
 	Release();
@@ -24,7 +24,7 @@ CSwitchGhost::~CSwitchGhost()
 //==================================.
 //		更新処理関数.
 //==================================.
-void CSwitchGhost::Update()
+void CMainStageSwitchGhost::Update()
 {
 
 	//選択更新処理関数.
@@ -96,7 +96,7 @@ void CSwitchGhost::Update()
 //==================================.
 //		描画処理関数.
 //==================================.
-void CSwitchGhost::Render()
+void CMainStageSwitchGhost::Render()
 {
 	if (m_bUseRotFlag == false) {
 		//マトリックス参照型.
@@ -125,7 +125,7 @@ void CSwitchGhost::Render()
 //==================================.
 //		初期化処理関数.
 //==================================.
-void CSwitchGhost::Init()
+void CMainStageSwitchGhost::Init()
 {
 	//メッシュの読み込みアドレス取得.
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::SwitchPushGhost);
@@ -163,7 +163,7 @@ void CSwitchGhost::Init()
 //===================================.
 //		解放処理関数.
 //===================================.
-void CSwitchGhost::Release()
+void CMainStageSwitchGhost::Release()
 {
 	m_pCMesh = nullptr;
 }
@@ -171,7 +171,7 @@ void CSwitchGhost::Release()
 //===================================.
 //		驚かす行動処理関数.
 //===================================.
-void CSwitchGhost::SurpriseAct()
+void CMainStageSwitchGhost::SurpriseAct()
 {
 	if (m_PushSwitchActFlag == 0) {
 		m_PushSwitchActFlag = PUSH_BUTTON_FLAG | GO_TO_PUSH_FLAG;
@@ -219,7 +219,7 @@ void CSwitchGhost::SurpriseAct()
 //===================================.
 //		上下移動変更処理関数.
 //===================================.
-void CSwitchGhost::ChangeObjectUpDown()
+void CMainStageSwitchGhost::ChangeObjectUpDown()
 {
 	if (m_vMovePos.y <= CHANGE_UP_DOWN_FLAG_H) {
 		m_UpDownObjectFlag = DOWN_FLAG;
@@ -232,7 +232,7 @@ void CSwitchGhost::ChangeObjectUpDown()
 //===================================.
 //		戻る移動処理関数.
 //===================================.
-void CSwitchGhost::ReturnMove()
+void CMainStageSwitchGhost::ReturnMove()
 {
 	m_vMovePos += m_vUnitVector * MOVE_SPEED;
 
@@ -250,7 +250,7 @@ void CSwitchGhost::ReturnMove()
 //===================================.
 //		押す準備処理関数.
 //===================================.
-void CSwitchGhost::PushPreparation()
+void CMainStageSwitchGhost::PushPreparation()
 {
 	m_vMovePos.x += MOVE_SPEED;
 	//移動角度処理関数.
@@ -265,7 +265,7 @@ void CSwitchGhost::PushPreparation()
 //===================================.
 //		押す処理関数.
 //===================================.
-void CSwitchGhost::PushButton()
+void CMainStageSwitchGhost::PushButton()
 {
 	m_fGravity -= GRAVITY * m_UpDownDirection;
 	m_vMovePos.y += m_fGravity * m_UpDownDirection;
@@ -298,7 +298,7 @@ void CSwitchGhost::PushButton()
 //===================================.
 //		押し終わった処理関数.
 //===================================.
-void CSwitchGhost::PushEnd()
+void CMainStageSwitchGhost::PushEnd()
 {
 	m_vMovePos += MOVE_SPEED * m_vUnitVector;
 	//移動角度処理関数.
@@ -320,7 +320,7 @@ void CSwitchGhost::PushEnd()
 //===================================.
 //		移動角度処理関数.
 //===================================.
-void CSwitchGhost::MoveRotation()
+void CMainStageSwitchGhost::MoveRotation()
 {
 	D3DXVECTOR3 Z = m_vOldPos - m_vMovePos;
 	D3DXVECTOR3 X, Y;

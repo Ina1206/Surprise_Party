@@ -1,14 +1,17 @@
-#ifndef CSWITCH_GHOST_H
-#define CSWITCH_GHOST_H
+#ifndef CMAIN_STAGE_SWITCH_GHOST_H
+#define CMAIN_STAGE_SWITCH_GHOST_H
 
-#include "..\CWorkGhostBase.h"
+#include "..\CMainStageWorkGhostBase.h"
 
-class CSwitchGhost
-	: public CWorkGhostBase
+/**********************************************
+*	メインステージのスイッチを押すお化けクラス.
+*****************/
+class CMainStageSwitchGhost
+	: public CMainStageWorkGhostBase
 {
 public:
-	CSwitchGhost();
-	~CSwitchGhost();
+	CMainStageSwitchGhost();
+	~CMainStageSwitchGhost();
 
 	//=================定数====================//.
 	const unsigned int	PUSH_PREPARATION_FALG	= (1 << 0);								//押す準備フラグ.
@@ -59,4 +62,4 @@ private:
 	bool			m_bUseRotFlag;			//角度使用フラグ.
 };
 
-#endif	//#ifndef CSWITCH_GHOST_H.
+#endif	//#ifndef CMAIN_STAGE_SWITCH_GHOST_H.

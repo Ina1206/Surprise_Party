@@ -6,7 +6,7 @@
 #include "..\..\..\GameObject/Object/MoveObject/MoveObjectManager/CMoveObjectManager.h"
 #include "..\..\..\FileLoad/FileResource/CFileResource.h"
 #include "..\..\..\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.h"
-#include "..\..\..\GameObject/Chara/Ghost/WorkGhost/SwitchGhost/CSwitchGhost.h"
+#include "..\..\..\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageSwitchGhost\CMainStageSwitchGhost.h"
 #include "..\..\..\GameObject/Chara/People/PeopleManager/CPeopleManager.h"
 
 #include "..\..\..\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.h"

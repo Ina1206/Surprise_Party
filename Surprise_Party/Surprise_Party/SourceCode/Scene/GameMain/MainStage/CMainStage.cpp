@@ -441,7 +441,7 @@ void CMainStage::Init()
 			break;
 		case 1:
 			m_pCWorkGhost.push_back(nullptr);
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CSwitchGhost());
+			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CMainStageSwitchGhost());
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(D3DXVECTOR3(stage * m_pCStaticObjectManager->OBJECT_WIDTH, 3.5f, 3.5f));
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetInitMovePos();
 			break;

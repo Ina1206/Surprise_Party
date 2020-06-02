@@ -445,9 +445,6 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
     </ClInclude>
-    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.h">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
-    </ClInclude>
     <ClInclude Include="SourceCode\GameObject\Chara\People\CPeopleBase.h">
       <Filter>SourceCode\GameObject\Chara\People</Filter>
     </ClInclude>
@@ -643,6 +640,9 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageDispGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageSwitchGhost\CMainStageSwitchGhost.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -755,9 +755,6 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\CWorkGhostBase.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.cpp">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\People\CPeopleBase.cpp">
       <Filter>SourceCode\GameObject\Chara\People</Filter>
@@ -953,6 +950,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageDispGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageSwitchGhost\CMainStageSwitchGhost.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
