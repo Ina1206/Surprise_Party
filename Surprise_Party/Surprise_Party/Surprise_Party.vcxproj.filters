@@ -119,12 +119,6 @@
     <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost">
       <UniqueIdentifier>{f63c6c7f-a3dc-44a4-8dc6-b98f87392d91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost">
-      <UniqueIdentifier>{2e59853b-1a49-4104-8dd5-674baba2b625}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost">
-      <UniqueIdentifier>{4c6455c6-6354-4320-b0ff-612d6d16e53d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SourceCode\GameObject\Chara\People">
       <UniqueIdentifier>{cb377dd6-cb6f-4b5f-9aa8-ed0a9772268c}</UniqueIdentifier>
     </Filter>
@@ -314,6 +308,18 @@
     <Filter Include="SourceCode\Scene\Ending\BeforeResultStage">
       <UniqueIdentifier>{8f380b97-bf97-4201-b483-8084684745ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost">
+      <UniqueIdentifier>{b2e8bfc5-cf6f-4130-8d2a-934b20498151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost">
+      <UniqueIdentifier>{9beb42bf-053d-46b5-92b1-cfc65aa419b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\DispGhost">
+      <UniqueIdentifier>{2e59853b-1a49-4104-8dd5-674baba2b625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\SwitchGhost">
+      <UniqueIdentifier>{4c6455c6-6354-4320-b0ff-612d6d16e53d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -440,10 +446,10 @@
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
     </ClInclude>
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.h">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost</Filter>
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\DispGhost</Filter>
     </ClInclude>
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.h">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost</Filter>
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\SwitchGhost</Filter>
     </ClInclude>
     <ClInclude Include="SourceCode\GameObject\Chara\People\CPeopleBase.h">
       <Filter>SourceCode\GameObject\Chara\People</Filter>
@@ -634,6 +640,9 @@
     <ClInclude Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.h">
       <Filter>SourceCode\Scene\Ending\BeforeResultStage</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\CMainStageWorkGhostBase.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -748,10 +757,10 @@
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost</Filter>
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost\CDispGhost.cpp">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\DispGhost</Filter>
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\DispGhost</Filter>
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost\CSwitchGhost.cpp">
-      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\SwitchGhost</Filter>
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\SwitchGhost</Filter>
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\People\CPeopleBase.cpp">
       <Filter>SourceCode\GameObject\Chara\People</Filter>
@@ -941,6 +950,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.cpp">
       <Filter>SourceCode\Scene\Ending\BeforeResultStage</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\CMainStageWorkGhostBase.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
