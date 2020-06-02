@@ -344,7 +344,9 @@ void CBigGhost::FallDown(const int& Direction)
 void CBigGhost::ChangeEffect()
 {
 	//èâä˙âª.
-	m_vPos = WAKE_UP_POS;
+	if (m_EmotionNum != static_cast<int>(enEmotionType::ViewSmartphone)) {
+		m_vPos = WAKE_UP_POS;
+	}
 	m_vRot = WAKE_UP_ROT;
 	switch (static_cast<enEmotionType>(m_EmotionNum)) {
 	case enEmotionType::Sleep:
@@ -361,6 +363,8 @@ void CBigGhost::ChangeEffect()
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
 		break;
 	case enEmotionType::ViewSmartphone:
+		m_vPos.y = WAKE_UP_POS.y;
+
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
 		break;
