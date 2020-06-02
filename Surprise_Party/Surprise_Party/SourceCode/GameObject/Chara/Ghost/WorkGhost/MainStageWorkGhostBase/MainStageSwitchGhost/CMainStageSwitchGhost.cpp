@@ -127,6 +127,7 @@ void CMainStageSwitchGhost::Init()
 	//静的オブジェクトお化け初期化処理関数.
 	InitStaticMeshGhost();
 
+	m_fScale = SWITHC_GHOST_SCALE;
 	m_fScaleMax = m_fScale;
 
 	//行動選択インスタンス化.

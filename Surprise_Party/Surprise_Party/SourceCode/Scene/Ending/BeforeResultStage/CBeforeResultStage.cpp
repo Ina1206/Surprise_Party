@@ -32,7 +32,10 @@ void CBeforeResultStage::Render()
 	RenderFloor();
 
 	//ビッグゴースト描画処理関数.
-	RenderBigGhost();
+	//RenderBigGhost();
+
+	//お化け描画処理関数.
+	RenderGhost();
 
 }
 

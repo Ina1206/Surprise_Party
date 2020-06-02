@@ -30,7 +30,6 @@ void CWorkGhostBase::InitAnimation()
 		_ASSERT_EXPR(false, L"現れるお化けのアニメーションコントローラのクローン作成失敗");
 	}
 
-	m_fScale = 0.15f;
 
 }
 
@@ -56,9 +55,6 @@ void CWorkGhostBase::InitStaticMeshGhost()
 {
 	//メッシュの読み込みアドレス取得.
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::SwitchPushGhost);
-	//大きさ.
-	m_fScale = SWITHC_GHOST_SCALE;
-
 }
 
 //=========================================.

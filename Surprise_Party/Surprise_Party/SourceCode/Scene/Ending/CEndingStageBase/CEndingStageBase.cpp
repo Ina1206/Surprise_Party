@@ -10,6 +10,7 @@ CEndingStageBase::CEndingStageBase()
 	, m_pCBackstageLight		(nullptr)
 	, m_pCBigGhost				(nullptr)
 	, m_pCEndingWorkGhostBase	(0)
+	, m_pCGhost					(0)
 	, m_pCFloor					(nullptr)
 {
 	//共通の値の初期化処理関数.
@@ -77,6 +78,21 @@ void CEndingStageBase::RenderWorkGhost()
 }
 
 //=========================================.
+//		お化け描画処理関数.
+//=========================================.
+void CEndingStageBase::RenderGhost()
+{
+	//ライト情報.
+	const LIGHT m_Light = m_pCBackstageLight->GetLight();
+
+	for (unsigned int ghost = 0; ghost < m_pCEndingWorkGhostBase.size(); ghost++) {
+		m_pCGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
+		m_pCGhost[ghost]->SetCameraPos(m_Camera.vPos);
+		m_pCGhost[ghost]->Render();
+	}
+}
+
+//=========================================.
 //		共通値の初期化処理関数.
 //=========================================.
 void CEndingStageBase::InitCommonValue()
@@ -88,5 +104,15 @@ void CEndingStageBase::InitCommonValue()
 
 	for (int ghost = 0; ghost < 5; ghost++) {
 		m_pCEndingWorkGhostBase.emplace_back(new CEndingDispGhost());
+	}
+	for (int ghost = 0; ghost < 5; ghost++) {
+		const D3DXVECTOR3 vPos = D3DXVECTOR3(0.0f + (2.0f * ghost), 0.3f, 9.0f);
+		if (ghost == 2) {
+			m_pCGhost.emplace_back(new CBigGhost());
+			m_pCGhost[ghost]->SetPos(vPos);
+			continue;
+		}
+		m_pCGhost.emplace_back(new CEndingDispGhost());
+		m_pCGhost[ghost]->SetPos(vPos);
 	}
 }

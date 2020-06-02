@@ -21,6 +21,7 @@ public:
 	const unsigned int	PUSH_RETURN_FLAG		= (1 << 4);								//押して戻るフラグ.
 	const unsigned int	MOVE_ROT_CHANGE_FLAG	= (1 << 5);								//移動時角度変更処理関数.
 	const D3DXVECTOR3	GHOST_COLOR				= D3DXVECTOR3(202.0f, 255.0f, 250.0f);	//お化けの色.
+	const float			SWITHC_GHOST_SCALE		= 0.1f;									//スイッチお化けの大きさ.
 	const float			POS_HEIGHT_MIN			= 0.2f;									//高さの最小値.
 	const float			STANDERD_POS_HIGHT		= 3.5f;									//基本の高さ.
 	const float			RETURN_ROTATION			= -1.35f;								//戻った時の角度.

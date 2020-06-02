@@ -136,7 +136,7 @@ void CMainStageDispGhost::Init()
 	//	_ASSERT_EXPR(false, L"現れるお化けのアニメーションコントローラのクローン作成失敗");
 	//}
 
-	//m_fScale = 0.15f;
+	m_fScale = 0.15f;
 
 	//アニメーション初期化処理関数.
 	InitAnimation();
