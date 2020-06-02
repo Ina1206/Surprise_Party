@@ -4,9 +4,7 @@
 *		メインステージの現れるお化けクラス.
 ******************/
 CMainStageDispGhost::CMainStageDispGhost()
-	: m_pCSkinMesh		(nullptr)
-	, m_pAnimCtrl		(nullptr)
-	, m_fAnimSpeed		(0.0f)
+	: m_fAnimSpeed		(0.0f)
 	, m_SurpriseActFlag	(0)
 	, m_dAnimTime		(0.0)
 {
@@ -86,8 +84,6 @@ void CMainStageDispGhost::Render()
 {
 	if (fabsf(m_vCameraPos.x - m_vPos.x) < CAMERA_DISP_RANGE) {
 		if (!(m_RestFlag & IN_REST_FLAG)) {
-			//座標.
-			m_pCSkinMesh->SetPosition(m_vMovePos);
 			//アニメーション速度.
 			if (m_SurpriseFlag & SURPRISE_ACT_FLAG) {
 				m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
@@ -95,12 +91,16 @@ void CMainStageDispGhost::Render()
 			else {
 				m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAIT_ANIM_START_POS, m_pAnimCtrl);
 			}
-			//大きさ.
-			m_pCSkinMesh->SetScale(m_fScale);
-			//角度.
-			m_pCSkinMesh->SetRotation(m_vRot);
-			//描画.
-			m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
+
+			RenderDispGhost(m_vMovePos);
+			////座標.
+			//m_pCSkinMesh->SetPosition(m_vMovePos);
+			////大きさ.
+			//m_pCSkinMesh->SetScale(m_fScale);
+			////角度.
+			//m_pCSkinMesh->SetRotation(m_vRot);
+			////描画.
+			//m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
 		}
 	}
 
@@ -122,21 +122,25 @@ void CMainStageDispGhost::Render()
 //=================================.
 void CMainStageDispGhost::Init()
 {
-	//スキンメッシュのアドレス取得.
-	m_pCSkinMesh = m_pCResourceManager->GetSkinMesh(enSkinMeshType::DispGhost);
+	////スキンメッシュのアドレス取得.
+	//m_pCSkinMesh = m_pCResourceManager->GetSkinMesh(enSkinMeshType::DispGhost);
 
-	//アニメーションコントローラのクローン作成.
-	LPD3DXANIMATIONCONTROLLER	pAC = m_pCSkinMesh->GetAnimationController();
-	if (FAILED(pAC->CloneAnimationController(
-		pAC->GetMaxNumAnimationOutputs(),
-		pAC->GetMaxNumAnimationSets(),
-		pAC->GetMaxNumTracks(),
-		pAC->GetMaxNumEvents(),
-		&m_pAnimCtrl))) {
-		_ASSERT_EXPR(false, L"現れるお化けのアニメーションコントローラのクローン作成失敗");
-	}
+	////アニメーションコントローラのクローン作成.
+	//LPD3DXANIMATIONCONTROLLER	pAC = m_pCSkinMesh->GetAnimationController();
+	//if (FAILED(pAC->CloneAnimationController(
+	//	pAC->GetMaxNumAnimationOutputs(),
+	//	pAC->GetMaxNumAnimationSets(),
+	//	pAC->GetMaxNumTracks(),
+	//	pAC->GetMaxNumEvents(),
+	//	&m_pAnimCtrl))) {
+	//	_ASSERT_EXPR(false, L"現れるお化けのアニメーションコントローラのクローン作成失敗");
+	//}
 
-	m_fScale = 0.15f;
+	//m_fScale = 0.15f;
+
+	//アニメーション初期化処理関数.
+	InitAnimation();
+
 	m_fScaleMax = m_fScale;
 
 	m_fAnimSpeed = SURPRISE_ANIM_SPEED;

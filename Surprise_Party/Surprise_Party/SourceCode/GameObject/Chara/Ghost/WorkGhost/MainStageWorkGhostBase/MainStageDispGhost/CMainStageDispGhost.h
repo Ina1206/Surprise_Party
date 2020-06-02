@@ -19,7 +19,6 @@ public:
 	const unsigned int	RETURN_FLAG					= (1 << 2);	//戻るフラグ.
 	const float			WAIT_SURPRISE_ANIM_SPEED	= 0.0f;		//驚かし待ちのアニメーション速度.
 	const float			SURPRISE_ANIM_SPEED			= 0.008f;	//驚かすときのアニメーション速度.
-	const float			WAIT_ANIM_START_POS			= 0.95f;	//待機時のアニメーション座標.
 	const double		RETURN_ANIM_TIME			= 1.1;		//戻るアニメーション時間.
 	const double		WAIT_ANIM_TIME				= 1.5;		//待機アニメーション時間.
 	const float			APPEAR_SPEED				= 0.15f;	//現れる速度.
@@ -44,8 +43,6 @@ private:
 	void ReturnMove();								//戻る移動処理関数.
 
 	//===============変数===================//.
-	CDX9SkinMesh*				m_pCSkinMesh;		//スキンメッシュクラス.
-	LPD3DXANIMATIONCONTROLLER	m_pAnimCtrl;		//アニメーションコントローラ.
 	float						m_fAnimSpeed;		//アニメーション速度.
 	unsigned int				m_SurpriseActFlag;	//驚かす行動フラグ.
 	double						m_dAnimTime;		//アニメーション時間.

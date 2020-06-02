@@ -17,6 +17,8 @@ public:
 	CWorkGhostBase();
 	virtual ~CWorkGhostBase();
 
+	//=============================定数======================================//.
+	const float			WAIT_ANIM_START_POS = 0.95f;	//待機時のアニメーション座標.
 
 	//=============列挙体================//.
 	//お化けの種類.
@@ -30,6 +32,13 @@ public:
 
 
 protected:
+	//==============================関数====================================//.
+	void InitAnimation();							//アニメーション初期化処理関数.
+	void RenderDispGhost(const D3DXVECTOR3& vPos);	//現れるお化け描画処理関数.
+
+	//==============================変数====================================//.
+	CDX9SkinMesh*				m_pCSkinMesh;		//スキンメッシュクラス.
+	LPD3DXANIMATIONCONTROLLER	m_pAnimCtrl;		//アニメーションコントローラ.
 
 private:
 };
