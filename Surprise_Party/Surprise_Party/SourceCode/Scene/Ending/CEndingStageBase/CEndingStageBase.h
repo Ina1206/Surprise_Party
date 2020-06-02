@@ -23,6 +23,8 @@ protected:
 	virtual void Init() = 0;	//初期化処理関数.
 	virtual void Release() = 0;	//解放処理関数.
 
+	void RenderFloor();			//床の描画処理関数.
+
 	//========================変数=============================//.
 	std::unique_ptr<CBigGhost>			m_pCBigGhost;		//ビッグゴーストクラス.
 	std::unique_ptr<CFloor>				m_pCFloor;			//床クラス.

@@ -18,6 +18,19 @@ CEndingStageBase::~CEndingStageBase()
 }
 
 //=========================================.
+//		°‚Ì•`‰æˆ—ŠÖ”.
+//=========================================.
+void CEndingStageBase::RenderFloor()
+{
+	m_pCFloor->SetScale(0.5f);
+	m_pCFloor->SetCameraPos(m_Camera.vPos);
+	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_Light);
+	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -6.0f, 0.0f));
+	m_pCFloor->Render();
+
+}
+
+//=========================================.
 //		‹¤’Ê’l‚Ì‰Šú‰»ˆ—ŠÖ”.
 //=========================================.
 void CEndingStageBase::InitCommonValue()
