@@ -28,6 +28,7 @@ void CEndingDispGhost::Update()
 void CEndingDispGhost::Render()
 {
 	m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAIT_ANIM_START_POS, m_pAnimCtrl);
+	MoveRotation(m_vPos, m_vLookAtPos);
 	RenderDispGhost(m_vPos);
 }
 

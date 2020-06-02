@@ -43,7 +43,8 @@ void CWorkGhostBase::RenderDispGhost(const D3DXVECTOR3& vPos)
 	//‘å‚«‚³.
 	m_pCSkinMesh->SetScale(m_fScale);
 	//Šp“x.
-	m_pCSkinMesh->SetRotation(m_vRot);
+	//m_pCSkinMesh->SetRotation(m_vRot);
+	m_pCSkinMesh->SetRot(m_mPoint);
 	//•`‰æ.
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
 }

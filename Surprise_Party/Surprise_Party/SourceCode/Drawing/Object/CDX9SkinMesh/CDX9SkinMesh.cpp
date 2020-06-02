@@ -652,8 +652,14 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 	//中心軸をずらす.
 	D3DXMatrixTranslation(&mPreTran, m_vPrePos.x, m_vPrePos.y, m_vPrePos.z);
 
-	//回転行列(合成)
-	m_mRotation = mYaw * mPitch * mRoll;
+
+	//回転行列を作成.
+	if (m_bvRotNotUse == false) {
+		m_mRotation = mYaw * mPitch * mRoll;
+	}
+	else {
+		m_mRotation = m_mRot;
+	}
 	//平行移動.
 	D3DXMatrixTranslation( &mTran, m_vPos.x, m_vPos.y, m_vPos.z );
 	//ワールド行列.

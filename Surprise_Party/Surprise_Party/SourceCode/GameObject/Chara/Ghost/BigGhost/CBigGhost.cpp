@@ -30,6 +30,9 @@ CBigGhost::~CBigGhost()
 //==========================================.
 void CBigGhost::Update()
 {
+	//移動角度処理関数.
+	MoveRotation(m_vPos, m_vLookAtPos);
+
 	//static bool flag = false;
 	//if (GetAsyncKeyState(VK_F1) & 0x0001) {
 	//	if (flag == false) {
@@ -107,7 +110,8 @@ void CBigGhost::Render()
 	m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
 	m_pCSkinMesh->SetScale(0.1f);
 	m_pCSkinMesh->SetPosition(m_vPos);
-	m_pCSkinMesh->SetRotation(m_vRot);
+	//m_pCSkinMesh->SetRotation(m_vRot);
+	m_pCSkinMesh->SetRot(m_mPoint);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	//エフェクト描画.
@@ -364,7 +368,9 @@ void CBigGhost::ChangeEffect()
 		break;
 	case enEmotionType::ViewSmartphone:
 		m_vPos.y = WAKE_UP_POS.y;
-
+		//移動角度処理関数.
+		MoveRotation(m_vPos, m_vLookAtPos);
+		
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
 		break;
