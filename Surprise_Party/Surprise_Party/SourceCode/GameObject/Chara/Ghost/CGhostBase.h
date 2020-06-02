@@ -24,6 +24,7 @@ public:
 		Rejoice,		//喜ぶ.
 		Question,		//疑問.
 		Nothing,		//無し.
+		ViewSmartphone,	//スマートフォンを見る.
 
 		Max,			//最大値.
 	};

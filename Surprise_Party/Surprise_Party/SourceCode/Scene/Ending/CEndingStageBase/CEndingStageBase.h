@@ -43,6 +43,7 @@ protected:
 private:
 	//========================関数=============================//.
 	void InitCommonValue();									//共通値の初期化処理関数.
+	void CreateInstanceFronClass(const int& num);			//クラスからインスタンスを作成する処理関数.
 
 	//========================変数=============================//.
 	std::unique_ptr<CFloor>				m_pCFloor;			//床クラス.

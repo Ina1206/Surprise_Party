@@ -343,6 +343,9 @@ void CBigGhost::FallDown(const int& Direction)
 //============================================.
 void CBigGhost::ChangeEffect()
 {
+	//初期化.
+	m_vPos = WAKE_UP_POS;
+	m_vRot = WAKE_UP_ROT;
 	switch (static_cast<enEmotionType>(m_EmotionNum)) {
 	case enEmotionType::Sleep:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Sleep);
@@ -362,9 +365,6 @@ void CBigGhost::ChangeEffect()
 		break;
 	}
 
-	//初期化.
-	m_vPos = WAKE_UP_POS;
-	m_vRot = WAKE_UP_ROT;
 	if(m_EmotionNum < static_cast<int>(m_pCSpriteEffect.size())){
 		for (int sprite = 0; sprite < m_pCSpriteEffect[m_UsingEffectNum]->GetSpriteMax(); sprite++) {
 			//エフェクト開始初期化処理関数.

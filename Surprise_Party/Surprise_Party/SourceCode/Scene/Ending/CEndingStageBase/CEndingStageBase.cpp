@@ -106,13 +106,22 @@ void CEndingStageBase::InitCommonValue()
 		m_pCEndingWorkGhostBase.emplace_back(new CEndingDispGhost());
 	}
 	for (int ghost = 0; ghost < 5; ghost++) {
+		//クラスからインスタンスを作成する処理関数.
+		CreateInstanceFronClass(ghost);
+
 		const D3DXVECTOR3 vPos = D3DXVECTOR3(0.0f + (2.0f * ghost), 0.3f, 9.0f);
-		if (ghost == 2) {
-			m_pCGhost.emplace_back(new CBigGhost());
-			m_pCGhost[ghost]->SetPos(vPos);
-			continue;
-		}
-		m_pCGhost.emplace_back(new CEndingDispGhost());
 		m_pCGhost[ghost]->SetPos(vPos);
 	}
+}
+
+//==========================================.
+//	クラスからインスタンスを作成する処理関数.
+//==========================================.
+void CEndingStageBase::CreateInstanceFronClass(const int& num)
+{
+	if (num == 2) {
+		m_pCGhost.emplace_back(new CBigGhost());
+		return;
+	}
+	m_pCGhost.emplace_back(new CEndingDispGhost());
 }
