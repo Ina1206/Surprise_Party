@@ -1,6 +1,7 @@
 #include "CEnding.h"
 
 CEnding::CEnding()
+	: m_pCEndingStageBase	(nullptr)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -17,6 +18,7 @@ CEnding::~CEnding()
 //=================================.
 void CEnding::UpDate()
 {
+	m_pCEndingStageBase->Update();
 }
 
 //==================================.
@@ -24,7 +26,8 @@ void CEnding::UpDate()
 //==================================.
 void CEnding::Render()
 {
-
+	m_pCEndingStageBase->RenderInitSetting(m_mView, m_mProj);
+	m_pCEndingStageBase->Render();
 }
 
 //==================================.
@@ -34,6 +37,7 @@ void CEnding::Init()
 {
 	m_vBackColor = D3DXVECTOR4(1.0f, 0.5f, 0.0f, 1.0f);
 
+	m_pCEndingStageBase.reset(new CBeforeResultStage());
 }
 
 //==================================.

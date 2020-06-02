@@ -3,6 +3,8 @@
 
 #include "..\SceneBase\CSceneBase.h"
 
+#include "BeforeResultStage\CBeforeResultStage.h"
+
 /************************************************
 *		エンディングクラス.
 ***********/
@@ -21,7 +23,8 @@ private:
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
 
-
+	//========================変数===========================//.
+	std::unique_ptr<CEndingStageBase>	m_pCEndingStageBase;	//エンディングステージ基底クラス.
 
 };
 
