@@ -31,6 +31,9 @@ void CBeforeResultStage::Render()
 	//床の描画処理関数.
 	RenderFloor();
 
+	//ビッグゴースト描画処理関数.
+	RenderBigGhost();
+
 }
 
 //=======================================.
