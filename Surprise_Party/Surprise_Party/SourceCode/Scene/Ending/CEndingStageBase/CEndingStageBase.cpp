@@ -109,8 +109,8 @@ void CEndingStageBase::InitCommonValue()
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);
 
-		const float			RADIAN	= static_cast<float>(D3DXToRadian(70.0f + (ghost * 30.0f)));
-		const D3DXVECTOR3	vPos	= D3DXVECTOR3((cos(RADIAN) * 3.0f) + 5.0f, 0.3f, (sin(RADIAN) * 3.0f) + 10.0f);
+		const float			RADIAN	= static_cast<float>(D3DXToRadian(-57.5 + (ghost * 50.0f)));
+		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 3.0f) + D3DXVECTOR3(5.0f, -0.8f, 5.0f);
 		m_pCGhost[ghost]->SetPos(vPos);
 
 		//感情番号.

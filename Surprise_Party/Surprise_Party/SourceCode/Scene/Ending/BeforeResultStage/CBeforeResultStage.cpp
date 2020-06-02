@@ -23,6 +23,8 @@ void CBeforeResultStage::Update()
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
 		m_pCGhost[ghost]->Update();
 	}
+	
+
 }
 
 //=======================================.
