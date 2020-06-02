@@ -32,7 +32,6 @@ public:
 	const int			DOWN_DIRECTION			= -1;									//下の方向.
 	const int			CHANGE_DIRECTION		= -1;									//方向変更.
 	const float			PUSH_END_ROT_SPEED		= 0.1f;									//押し終わって回転速度.
-	const D3DXVECTOR3	SKY_DIRECT				= D3DXVECTOR3(0.0f, 1.0f, 0.0f);		//空方向.
 	const float			CHANGE_UP_DOWN_FLAG_H	= 0.7f;									//上下移動フラグ変更高さ.
 
 	//=================関数====================//.
@@ -48,7 +47,6 @@ private:
 	void PushPreparation();					//押す準備処理関数.
 	void PushButton();						//押す処理関数.
 	void PushEnd();							//押し終わった処理関数.
-	void MoveRotation();					//移動角度処理関数.
 
 	//=================変数====================//.
 	unsigned int	m_PushSwitchActFlag;	//ボタンを押すときのフラグ.
@@ -57,8 +55,6 @@ private:
 	D3DXVECTOR3		m_vPointDistance;		//2点間の距離.
 	D3DXVECTOR3		m_vUnitVector;			//単位ベクトル.
 	D3DXVECTOR3		m_vOldPos;				//前回の座標.
-	D3DXMATRIX		m_mPoint;				
-	bool			m_bUseRotFlag;			//角度使用フラグ.
 };
 
 #endif	//#ifndef CMAIN_STAGE_SWITCH_GHOST_H.
