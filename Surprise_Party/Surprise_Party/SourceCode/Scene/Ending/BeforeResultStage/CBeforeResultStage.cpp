@@ -28,6 +28,8 @@ void CBeforeResultStage::Update()
 //=======================================.
 void CBeforeResultStage::Render()
 {
+	//°‚Ì•`‰æˆ—ŠÖ”.
+	RenderFloor();
 
 }
 
