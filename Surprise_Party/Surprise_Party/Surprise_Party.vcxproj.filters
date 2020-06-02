@@ -308,9 +308,6 @@
     <Filter Include="SourceCode\Scene\Ending\BeforeResultStage">
       <UniqueIdentifier>{8f380b97-bf97-4201-b483-8084684745ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost">
-      <UniqueIdentifier>{b2e8bfc5-cf6f-4130-8d2a-934b20498151}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost">
       <UniqueIdentifier>{9beb42bf-053d-46b5-92b1-cfc65aa419b7}</UniqueIdentifier>
     </Filter>
@@ -319,6 +316,9 @@
     </Filter>
     <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost">
       <UniqueIdentifier>{4c6455c6-6354-4320-b0ff-612d6d16e53d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase">
+      <UniqueIdentifier>{b2e8bfc5-cf6f-4130-8d2a-934b20498151}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -643,6 +643,9 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageSwitchGhost\CMainStageSwitchGhost.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\CEndingWorkGhostBase.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -953,6 +956,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageSwitchGhost\CMainStageSwitchGhost.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageSwitchGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\CEndingWorkGhostBase.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
