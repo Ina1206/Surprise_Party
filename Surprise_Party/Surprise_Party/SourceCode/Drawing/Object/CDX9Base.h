@@ -66,6 +66,8 @@ public:
 
 	void SetAlphaDepth(const bool& flag) { m_pCObjectAlphaBlend->SetAlphaDepth(flag); }
 
+	void SetPreRot(const D3DXVECTOR3& vPreRot) { m_vPreRot = vPreRot; }
+
 protected:
 	//======================================.
 	//	構造体.
@@ -114,7 +116,7 @@ protected:
 	D3DXVECTOR3							m_vRot;					//角度.
 	float								m_fScale;				//大きさ.
 	D3DXVECTOR3							m_vPrePos;				//読み込み時のオブジェクトの中心軸差分.
-
+	D3DXVECTOR3							m_vPreRot;				//角度.
 	float								m_fAlpha;				//透過値.
 
 	D3DXVECTOR2							m_vUV;					//UV.

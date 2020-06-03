@@ -643,9 +643,16 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 	m_pContext11->PSSetShader( m_pPixelShader, nullptr, 0 );
 
 
-	D3DXMATRIX	mScale, mYaw, mPitch, mRoll, mTran, mPreTran;
+	D3DXMATRIX	mScale, mYaw, mPitch, mRoll, mTran, mPreTran, mPreRot;
 	//拡縮.
 	D3DXMatrixScaling( &mScale, m_fScale, m_fScale, m_fScale );
+
+	D3DXMatrixRotationY(&mYaw, m_vPreRot.y);		//Y軸回転.
+	D3DXMatrixRotationX(&mPitch, m_vPreRot.x);		//X軸回転.
+	D3DXMatrixRotationZ(&mRoll, m_vPreRot.z);		//Z軸回転.
+
+	mPreRot = mYaw * mPitch * mRoll;
+
 	D3DXMatrixRotationY( &mYaw, m_vRot.y );		//Y軸回転.
 	D3DXMatrixRotationX( &mPitch, m_vRot.x );	//X軸回転.
 	D3DXMatrixRotationZ( &mRoll, m_vRot.z );		//Z軸回転.
@@ -657,7 +664,7 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 	//平行移動.
 	D3DXMatrixTranslation( &mTran, m_vPos.x, m_vPos.y, m_vPos.z );
 	//ワールド行列.
-	m_mWorld = mPreTran * mScale * m_mRotation * mTran;
+	m_mWorld = mPreTran * mPreRot * mScale * m_mRotation * mTran;
 
 
 	//アニメーションフレームを進める スキンを更新.
