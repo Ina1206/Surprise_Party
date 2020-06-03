@@ -130,5 +130,11 @@ void CEndingStageBase::CreateInstanceFronClass(const int& num)
 		m_pCGhost.emplace_back(new CBigGhost());
 		return;
 	}
-	m_pCGhost.emplace_back(new CEndingDispGhost());
+
+	if (num % 2 == 0) {
+		m_pCGhost.emplace_back(new CEndingDispGhost());
+		return;
+	}
+	
+	m_pCGhost.emplace_back(new CEndingSwitchGhost());
 }

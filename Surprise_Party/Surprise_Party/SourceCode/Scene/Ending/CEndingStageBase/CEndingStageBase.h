@@ -3,6 +3,7 @@
 
 #include "..\..\GameObject\Chara\Ghost\BigGhost\CBigGhost.h"
 #include "..\..\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingDispGhost\CEndingDispGhost.h"
+#include "..\..\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingSwitchGhost\CEndingSwitchGhost.h"
 #include "..\..\GameObject\Object\StaticObject\Floor\CFloor.h"
 #include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
 

@@ -20,8 +20,11 @@ CEndingSwitchGhost::~CEndingSwitchGhost()
 //===========================================.
 void CEndingSwitchGhost::Update()
 {
+	m_vPos.y = 0.7f;
+
 	//移動角度処理関数.
 	MoveRotation(m_vPos, m_vLookAtPos);
+
 }
 
 //===========================================.
@@ -41,7 +44,7 @@ void CEndingSwitchGhost::Init()
 	//静的オブジェクトお化け初期化処理関数.
 	InitStaticMeshGhost();
 
-	m_fScale = 0.025f;
+	m_fScale = 0.05f;
 
 }
 
