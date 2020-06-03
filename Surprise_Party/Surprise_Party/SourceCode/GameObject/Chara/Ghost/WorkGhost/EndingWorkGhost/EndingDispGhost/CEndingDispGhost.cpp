@@ -19,7 +19,7 @@ CEndingDispGhost::~CEndingDispGhost()
 //===========================================.
 void CEndingDispGhost::Update()
 {
-	//ConvertRotationMatrixToQuaternion();
+	
 }
 
 //===========================================.
@@ -29,9 +29,6 @@ void CEndingDispGhost::Render()
 {
 	m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAIT_ANIM_START_POS, m_pAnimCtrl);
 	MoveRotation(m_vPos, m_vLookAtPos);
-	//D3DXQUATERNION a;
-	//D3DXQuaternionRotationMatrix(&a, &m_mPoint);
-	//m_vRot = D3DXVECTOR3(a.x, a.y, a.z);
 	RenderDispGhost(m_vPos);
 	
 }
