@@ -39,7 +39,6 @@ protected:
 	void MoveUpDown();											//浮遊処理関数.
 	void MoveRotation(const D3DXVECTOR3& vSalfPos, 
 					  const D3DXVECTOR3& vTargetPos);			//移動角度処理関数.
-	void ConvertRotationMatrixToQuaternion();					//回転行列からクウォータニオンに変換処理関数.
 
 	//=======================変数==========================//.
 	int				m_EmotionNum;		//感情番号.
@@ -47,6 +46,9 @@ protected:
 	D3DXVECTOR3		m_vLookAtPos;		//見る座標.
 
 private:
+	//=======================関数==========================//.
+	void ConvertRotationMatrixToRadian(const D3DXMATRIX& mMat);	//回転行列からクウォータニオンに変換処理関数.
+
 	//=======================変数==========================//.
 	float	m_fMoveAngle;		//移動角度.
 

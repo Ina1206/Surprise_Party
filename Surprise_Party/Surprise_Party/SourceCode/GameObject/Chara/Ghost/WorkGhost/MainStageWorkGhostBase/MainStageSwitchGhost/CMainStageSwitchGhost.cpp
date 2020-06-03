@@ -281,10 +281,6 @@ void CMainStageSwitchGhost::PushButton()
 //===================================.
 void CMainStageSwitchGhost::PushEnd()
 {
-	m_vMovePos += MOVE_SPEED * m_vUnitVector;
-	//ˆÚ“®Šp“xˆ—ŠÖ”.
-	MoveRotation(m_vOldPos, m_vMovePos);
-
 	if (fabsf(m_vPos.x - m_vMovePos.x) < DISTANCE_ADJUSTMENT) {
 		m_vMovePos = m_vPos;
 
@@ -294,6 +290,11 @@ void CMainStageSwitchGhost::PushEnd()
 			m_SurpriseFlag &= ~SURPRISE_ACT_FLAG;
 			m_SurpriseFlag |= SURPRISE_REST_FLAG;
 		}
+		return;
 	}
+	m_vMovePos += MOVE_SPEED * m_vUnitVector;
+	//ˆÚ“®Šp“xˆ—ŠÖ”.
+	MoveRotation(m_vOldPos, m_vMovePos);
+
 }
 

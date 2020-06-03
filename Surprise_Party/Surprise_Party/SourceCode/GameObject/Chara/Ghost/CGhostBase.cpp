@@ -50,90 +50,59 @@ void CGhostBase::MoveRotation(const D3DXVECTOR3& vSalfPos, const D3DXVECTOR3& vT
 	m_mPoint._41 = 0.0f; m_mPoint._42 = 0.0f; m_mPoint._43 = 0.0f;  m_mPoint._44 = 1.0f;
 
 	//回転行列からクォータニオンに変換処理関数.
-	ConvertRotationMatrixToQuaternion();
+	ConvertRotationMatrixToRadian(m_mPoint);
 }
 
 //====================================.
 //	回転行列からクウォータニオンに変換処理関数.
 //====================================.
-void CGhostBase::ConvertRotationMatrixToQuaternion()
+void CGhostBase::ConvertRotationMatrixToRadian(const D3DXMATRIX& mMat)
 {
-	//一時クウォータニオンに変換するように.
+	//オイラー角に変換するために回転行列からクォータニオンへ変換.
 	D3DXQUATERNION Tmp;
 	D3DXQuaternionRotationMatrix(&Tmp, &m_mPoint);
 
+	//それぞれ2乗にする.
+	const int Index = 2;
+	const float Powx = pow(Tmp.x, Index); 
+	const float Powy = pow(Tmp.y, Index);
+	const float Powz = pow(Tmp.z, Index);
 
-	//float sinr_cosp = 2 * ((Tmp.w * Tmp.x) + (Tmp.y * Tmp.z));
-	//float cosr_cosp = powf(Tmp.w, 2.0f) - powf(Tmp.x, 2.0f) - powf(Tmp.y, 2.0f) + powf(Tmp.z, 2.0f);
-	////float cosr_cosp = 1 - (2 * ((Tmp.x * Tmp.x) + (Tmp.y * Tmp.y)));
-	//const float Roll = std::atan2f(sinr_cosp , cosr_cosp);
+	//4つ全てそれぞれ組み合わせて掛ける.
+	const float xy = Tmp.x * Tmp.y; 
+	const float xz = Tmp.x * Tmp.z;
+	const float yz = Tmp.y * Tmp.z;
+	const float wx = Tmp.w * Tmp.x; 
+	const float wy = Tmp.w * Tmp.y; 
+	const float wz = Tmp.w * Tmp.z;
 
-	//float sinp = 2 * ((Tmp.w * Tmp.y) - (Tmp.z * Tmp.x));
-	//float Pitch;
-	//if (std::fabsf(sinp) >= 1) {
-	//	Pitch = static_cast<float>(std::copysign( M_PI / 2, sinp));
-	//}
-	//else {
-	//	Pitch = std::asinf(sinp);
-	//}
-	//
-	//float siny_cosp = 2 * ((Tmp.w * Tmp.z) + (Tmp.x * Tmp.y));
-	//float cosy_cosp = powf(Tmp.w, 2.0f) + powf(Tmp.x, 2.0f) - powf(Tmp.y, 2.0f) - powf(Tmp.z, 2.0f);
-	////float cosy_cosp = 1 - (2 * ((Tmp.y * Tmp.y) + (Tmp.z * Tmp.z)));
-	//
-	//const float Yaw = std::atan2f(siny_cosp , cosy_cosp);
 
-	////m_vRot.x = static_cast<float>(D3DXToRadian(Roll));
-	////m_vRot.y = static_cast<float>(D3DXToRadian(Pitch));
-	////m_vRot.z = static_cast<float>(D3DXToRadian(Yaw));
+	const float m00 = 1.0f - (2.0f * Powy) - (2.0f * Powz);
+	const float m01 = (2.0f * xy) + (2.0f * wz);
+	const float m10 = (2.0f * xy) - (2.0f * wz);
+	const float m11 = 1.0f - (2.0f * Powx) - (2.0f * Powz);
+	const float m20 = (2.0f * xz) + (2.0f * wy);
+	const float m21 = (2.0f * yz) - (2.0f * wx);
+	const float m22 = 1.0f - (2.0f * Powx) - (2.0f * Powy);
 
-	float x = Tmp.x; float y = Tmp.y; float z = Tmp.z; float w = Tmp.w;
-
-	float x2 = x * x; float y2 = y * y; float z2 = z * z;
-
-	float xy = x * y; float xz = x * z; 
-	float yz = y * z;
-	float wx = w * x; float wy = w * y; float wz = w * z;
-
-	float m00 = 1.0f - (2.0f * y2) - (2.0f * z2);
-	float m01 = (2.0f * xy) + (2.0f * wz);
-	float m10 = (2.0f * xy) - (2.0f * wz);
-	float m11 = 1.0f - (2.0f * x2) - (2.0f * z2);
-	float m20 = (2.0f * xz) + (2.0f * wy);
-	float m21 = (2.0f * yz) - (2.0f * wx);
-	float m22 = 1.0f - (2.0f * x2) - (2.0f * y2);
-
-	float tx, ty, tz;
+	//クォータニオンからラジアンに変換用変数.
+	D3DXVECTOR3 m_vQueToRot;
+	//FLT_EPSILON:類似.
 	if (fabsf(1.0f - m21) < FLT_EPSILON) {
-		tx = static_cast<float>(M_PI) / 2.0f;
-		ty = 0.0f;
-		tz = std::atan2f(m10, m00);
+		m_vQueToRot.x = static_cast<float>(M_PI) / 2.0f;
+		m_vQueToRot.y = 0.0f;
+		m_vQueToRot.z = std::atan2f(m10, m00);
 	}
 	else if (fabsf((-1.0f) - m21) < FLT_EPSILON) {
-		tx = static_cast<float>(-M_PI) / 2.0f;
-		ty = 0.0f;
-		tz = std::atan2f(m10, m00);
+		m_vQueToRot.x = static_cast<float>(-M_PI) / 2.0f;
+		m_vQueToRot.y = 0.0f;
+		m_vQueToRot.z = std::atan2f(m10, m00);
 	}
 	else {
-		tx = asinf(-m21);
-		ty = atan2f(m20, m22);
-		tz = atan2f(m01, m11);
+		m_vQueToRot.x = asinf(-m21);
+		m_vQueToRot.y = atan2f(m20, m22);
+		m_vQueToRot.z = atan2f(m01, m11);
 	}
 
-	//tx *= static_cast<float>(360.0f / (M_PI * 2));
-	//ty *= static_cast<float>(360.0f / (M_PI * 2));
-	//tz *= static_cast<float>(360.0f / (M_PI * 2));
-
-
-	m_vRot = D3DXVECTOR3(tx, ty, tz);
-	//m_vRot = D3DXVECTOR3(Roll, Pitch, Yaw);
-
-	D3DXQUATERNION a;
-	D3DXQuaternionRotationYawPitchRoll(&a, m_vRot.z, m_vRot.y, m_vRot.x);
-
-	//角度のD3DXVECTOR3に置換.
-	//m_vRot = D3DXVECTOR3(Tmp.x, Tmp.y, Tmp.z) / Tmp.w ;
-	//D3DXQuaternionToAxisAngle
-
-	
+	m_vRot = m_vQueToRot;
 }
