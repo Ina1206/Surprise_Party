@@ -76,10 +76,6 @@ void CMainStageSwitchGhost::Update()
 		}
 	}
 
-	//移動時には角度確定する.
-	if (m_MoveFlag & MOVE_FLAG) {
-		m_bUseRotFlag = true;
-	}
 
 	//疲労エフェクト更新処理関数.
 	m_vEffectCenterPos = m_vMovePos + D3DXVECTOR3(0.0f, 0.5f, 0.0f);
@@ -95,15 +91,6 @@ void CMainStageSwitchGhost::Update()
 //==================================.
 void CMainStageSwitchGhost::Render()
 {
-	if (m_bUseRotFlag == false) {
-		//マトリックス参照型.
-		m_pCMesh->SetRot(m_mPoint);
-	}
-	else {
-		//角度参照型.
-		m_pCMesh->SetRotAngleApplication();
-		m_pCMesh->SetRotation(m_vRot);
-	}
 	//スイッチお化け描画処理関数.
 	RenderSwitchGhost(m_vMovePos);
 
@@ -239,7 +226,6 @@ void CMainStageSwitchGhost::ReturnMove()
 
 	m_vMovePos = m_vPos;
 	m_MoveFlag |= MOVE_FLAG;
-	m_bUseRotFlag = true;
 }
 
 //===================================.
@@ -302,7 +288,6 @@ void CMainStageSwitchGhost::PushEnd()
 	if (fabsf(m_vPos.x - m_vMovePos.x) < DISTANCE_ADJUSTMENT) {
 		m_vMovePos = m_vPos;
 
-		m_bUseRotFlag = true;
 		m_vRot.y += PUSH_END_ROT_SPEED;
 		if(m_vRot.y >= 0.0f){
 			m_PushSwitchActFlag = 0;

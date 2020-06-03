@@ -116,6 +116,8 @@ void CEndingStageBase::InitCommonValue()
 		//Š´î”Ô†.
 		const int m_EmotionType = static_cast<int>(CGhostBase::enEmotionType::ViewSmartphone);
 		m_pCGhost[ghost]->SetEmotionNum(m_EmotionType);
+
+		
 	}
 }
 

@@ -42,9 +42,23 @@ void CWorkGhostBase::RenderDispGhost(const D3DXVECTOR3& vPos)
 	m_pCSkinMesh->SetPosition(vPos);
 	//‘å‚«‚³.
 	m_pCSkinMesh->SetScale(m_fScale);
-	//Šp“x.
-	//m_pCSkinMesh->SetRotation(m_vRot);
-	m_pCSkinMesh->SetRot(m_mPoint);
+	////Šp“x.
+	//static bool flag = false;
+	//if (GetAsyncKeyState('2') & 0x0001) {
+	//	if (flag == false) {
+	//		flag = true;
+	//	}
+	//	else {
+	//		flag = false;
+	//	}
+	//}
+	//if (flag == false) {
+		m_pCSkinMesh->SetRotation(m_vRot);
+	//}
+	//else {
+
+	//	m_pCSkinMesh->SetRot(m_mPoint);
+	//}
 	//•`‰æ.
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);
 }
@@ -64,6 +78,7 @@ void CWorkGhostBase::InitStaticMeshGhost()
 void CWorkGhostBase::RenderSwitchGhost(const D3DXVECTOR3& vPos)
 {
 	m_pCMesh->SetPosition(vPos);
+	m_pCMesh->SetRotation(m_vRot);
 	m_pCMesh->SetScale(m_fScale);
 	m_pCMesh->SetPrePos(D3DXVECTOR3(0.0f, -23.0f, 0.0f));
 	m_pCMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);

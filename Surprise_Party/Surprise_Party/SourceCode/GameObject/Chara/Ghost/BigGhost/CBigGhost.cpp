@@ -30,9 +30,6 @@ CBigGhost::~CBigGhost()
 //==========================================.
 void CBigGhost::Update()
 {
-	//ˆÚ“®Šp“xˆ—ŠÖ”.
-	MoveRotation(m_vPos, m_vLookAtPos);
-
 	//static bool flag = false;
 	//if (GetAsyncKeyState(VK_F1) & 0x0001) {
 	//	if (flag == false) {
