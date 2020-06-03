@@ -323,6 +323,9 @@
     <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingDispGhost">
       <UniqueIdentifier>{6b531cc5-6387-4300-b465-90ea4a2d4107}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingSwitchGhost">
+      <UniqueIdentifier>{e66284d6-5001-4129-bc9b-ee6c0ab67b44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -652,6 +655,9 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingDispGhost\CEndingDispGhost.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingDispGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingSwitchGhost\CEndingSwitchGhost.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingSwitchGhost</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -968,6 +974,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingDispGhost\CEndingDispGhost.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingDispGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingSwitchGhost\CEndingSwitchGhost.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingSwitchGhost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
