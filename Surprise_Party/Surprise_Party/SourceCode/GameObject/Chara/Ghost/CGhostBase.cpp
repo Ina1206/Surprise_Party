@@ -6,7 +6,6 @@
 CGhostBase::CGhostBase()
 	: m_fMoveAngle	(0.0f)
 	, m_EmotionNum	(0)
-	, m_mPoint		()
 	, m_vLookAtPos	(5.0f, -0.8f, 5.0f)
 {
 
@@ -36,6 +35,7 @@ void CGhostBase::MoveUpDown()
 //===================================.
 void CGhostBase::MoveRotation(const D3DXVECTOR3& vSalfPos, const D3DXVECTOR3& vTargetPos)
 {
+	D3DXMATRIX MATRIX_POINT;
 	D3DXVECTOR3 Z = vSalfPos - vTargetPos;
 	D3DXVECTOR3 X, Y;
 
@@ -44,13 +44,13 @@ void CGhostBase::MoveRotation(const D3DXVECTOR3& vSalfPos, const D3DXVECTOR3& vT
 	D3DXVec3Normalize(&X, &X);
 	D3DXVec3Normalize(&Y, D3DXVec3Cross(&Y, &Z, &X));
 
-	m_mPoint._11 = X.x;  m_mPoint._12 = X.y;  m_mPoint._13 = X.z;   m_mPoint._14 = 0;
-	m_mPoint._21 = Y.x;  m_mPoint._22 = Y.y;  m_mPoint._23 = Y.z;   m_mPoint._24 = 0;
-	m_mPoint._31 = Z.x;  m_mPoint._32 = Z.y;  m_mPoint._33 = Z.z;   m_mPoint._34 = 0;
-	m_mPoint._41 = 0.0f; m_mPoint._42 = 0.0f; m_mPoint._43 = 0.0f;  m_mPoint._44 = 1.0f;
+	MATRIX_POINT._11 = X.x;  MATRIX_POINT._12 = X.y;  MATRIX_POINT._13 = X.z;   MATRIX_POINT._14 = 0;
+	MATRIX_POINT._21 = Y.x;  MATRIX_POINT._22 = Y.y;  MATRIX_POINT._23 = Y.z;   MATRIX_POINT._24 = 0;
+	MATRIX_POINT._31 = Z.x;  MATRIX_POINT._32 = Z.y;  MATRIX_POINT._33 = Z.z;   MATRIX_POINT._34 = 0;
+	MATRIX_POINT._41 = 0.0f; MATRIX_POINT._42 = 0.0f; MATRIX_POINT._43 = 0.0f;  MATRIX_POINT._44 = 1.0f;
 
 	//回転行列からクォータニオンに変換処理関数.
-	ConvertRotationMatrixToRadian(m_mPoint);
+	ConvertRotationMatrixToRadian(MATRIX_POINT);
 }
 
 //====================================.
@@ -60,7 +60,7 @@ void CGhostBase::ConvertRotationMatrixToRadian(const D3DXMATRIX& mMat)
 {
 	//オイラー角に変換するために回転行列からクォータニオンへ変換.
 	D3DXQUATERNION Tmp;
-	D3DXQuaternionRotationMatrix(&Tmp, &m_mPoint);
+	D3DXQuaternionRotationMatrix(&Tmp, &mMat);
 
 	//それぞれ2乗にする.
 	const int Index = 2;

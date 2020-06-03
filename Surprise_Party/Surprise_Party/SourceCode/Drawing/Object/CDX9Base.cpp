@@ -20,8 +20,6 @@ CDX9Base::CDX9Base()
 	, m_vPrePos				(0.0f, 0.0f, 0.0f)
 	, m_fAlpha				(1.0f)
 	, m_vUV					(0.0f, 0.0f)
-	, m_bvRotNotUse			(false)
-	, m_mRot				()
 	, m_pCObjectAlphaBlend	(new CObjectAlphaBlend())
 {
 

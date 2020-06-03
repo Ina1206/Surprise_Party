@@ -42,7 +42,6 @@ protected:
 
 	//=======================•Ï”==========================//.
 	int				m_EmotionNum;		//Š´î”Ô†.
-	D3DXMATRIX		m_mPoint;			//‰ñ“]s—ñ.
 	D3DXVECTOR3		m_vLookAtPos;		//Œ©‚éÀ•W.
 
 private:

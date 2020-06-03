@@ -62,17 +62,6 @@ public:
 	//初期位置をずらす.
 	void SetPrePos(D3DXVECTOR3 vPrePos) { m_vPrePos = vPrePos; }
 
-	//回転行列作成.
-	void SetRot(const D3DXMATRIX& mRot) {
-		m_bvRotNotUse = true;
-		m_mRot = mRot;
-	}
-
-	//回転角度反映.
-	void SetRotAngleApplication() {
-		m_bvRotNotUse = false;
-	}
-
 	void SetUV(const D3DXVECTOR2& vUV) { m_vUV = vUV; }
 
 	void SetAlphaDepth(const bool& flag) { m_pCObjectAlphaBlend->SetAlphaDepth(flag); }
@@ -129,8 +118,6 @@ protected:
 	float								m_fAlpha;				//透過値.
 
 	D3DXVECTOR2							m_vUV;					//UV.
-	bool								m_bvRotNotUse;			//角度使わないフラグ.
-	D3DXMATRIX							m_mRot;					//回転行列.
 
 	std::unique_ptr<CObjectAlphaBlend>	m_pCObjectAlphaBlend;	//オブジェクトアルファブレンド.
 };

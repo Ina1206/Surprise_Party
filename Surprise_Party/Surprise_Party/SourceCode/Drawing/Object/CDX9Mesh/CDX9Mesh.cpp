@@ -590,13 +590,7 @@ void CDX9Mesh::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
 		&PreTran,							//(out)計算結果.
 		m_vPrePos.x, m_vPrePos.y, m_vPrePos.z);	//x,y,z座標.
 
-	//回転行列を作成.
-	if (m_bvRotNotUse == false) {
-		mRot = mYaw * mPitch * mRoll;
-	}
-	else {
-		mRot = m_mRot;
-	}
+	mRot = mYaw * mPitch * mRoll;
 	//D3DXMatrixTranslationのx,y,zで世界の位置に置くことができる.
 	//ワールド行列作成.
 	mWorld = PreTran * mScale * mRot * mTran;
