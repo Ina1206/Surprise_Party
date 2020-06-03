@@ -20,7 +20,7 @@ CEndingSwitchGhost::~CEndingSwitchGhost()
 //===========================================.
 void CEndingSwitchGhost::Update()
 {
-	m_vPos.y = 0.7f;
+	m_vPos.y = 1.0f;
 
 	//ˆÚ“®Šp“xˆ—ŠÖ”.
 	MoveRotation(m_vPos, m_vLookAtPos);
