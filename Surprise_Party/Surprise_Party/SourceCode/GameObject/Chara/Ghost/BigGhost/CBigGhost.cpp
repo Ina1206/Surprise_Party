@@ -107,8 +107,7 @@ void CBigGhost::Render()
 	m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
 	m_pCSkinMesh->SetScale(0.1f);
 	m_pCSkinMesh->SetPosition(m_vPos);
-	//m_pCSkinMesh->SetRotation(m_vRot);
-	m_pCSkinMesh->SetRot(m_mPoint);
+	m_pCSkinMesh->SetRotation(m_vRot);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	//エフェクト描画.
