@@ -664,7 +664,7 @@ void CDX9SkinMesh::DrawPartsMesh( SKIN_PARTS_MESH* pMesh, D3DXMATRIX World, MYME
 	//平行移動.
 	D3DXMatrixTranslation( &mTran, m_vPos.x, m_vPos.y, m_vPos.z );
 	//ワールド行列.
-	m_mWorld = mPreTran * mPreRot * mScale * m_mRotation * mTran;
+	m_mWorld = mPreRot * mPreTran * mScale * m_mRotation * mTran;
 
 
 	//アニメーションフレームを進める スキンを更新.

@@ -20,8 +20,6 @@ CEndingSwitchGhost::~CEndingSwitchGhost()
 //===========================================.
 void CEndingSwitchGhost::Update()
 {
-	//m_vPos.y = 1.0f;
-
 	//à⁄ìÆäpìxèàóùä÷êî.
 	MoveRotation(m_vPos, m_vLookAtPos);
 
@@ -45,6 +43,7 @@ void CEndingSwitchGhost::Init()
 	InitStaticMeshGhost();
 
 	m_fScale = 0.05f;
+	m_vPrePos.y = -10.0f;
 
 }
 

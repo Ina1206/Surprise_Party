@@ -86,7 +86,7 @@ void CEndingStageBase::RenderGhost()
 	//ライト情報.
 	const LIGHT m_Light = m_pCBackstageLight->GetLight();
 
-	for (unsigned int ghost = 0; ghost < m_pCEndingWorkGhostBase.size(); ghost++) {
+	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
 		m_pCGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
 		m_pCGhost[ghost]->SetCameraPos(m_Camera.vPos);
 		m_pCGhost[ghost]->Render();
@@ -113,8 +113,11 @@ void CEndingStageBase::InitCommonValue()
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);
 
-		const float			RADIAN	= static_cast<float>(D3DXToRadian(-57.5 + (ghost * 45.0f)));
-		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.0f) + D3DXVECTOR3(5.0f, 1.0f + ((ghost % 2) * 1.5f), 5.0f);
+		const float			RADIAN	= static_cast<float>(D3DXToRadian(2.5f + (ghost * 45.0f)));
+		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.0f) + D3DXVECTOR3(5.0f, 1.5f + ((ghost % 2) * 0.5f), 5.0f);
+
+		//vPos = D3DXVECTOR3(ghost * 3.0f, 0.0f, 0.0f);
+
 		m_pCGhost[ghost]->SetPos(vPos);
 
 		//感情番号.

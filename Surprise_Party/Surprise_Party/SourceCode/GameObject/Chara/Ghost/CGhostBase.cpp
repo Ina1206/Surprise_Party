@@ -7,6 +7,7 @@ CGhostBase::CGhostBase()
 	: m_fMoveAngle	(0.0f)
 	, m_EmotionNum	(0)
 	, m_vLookAtPos	(5.0f, -0.8f, 5.0f)
+	, m_vPrePos		(0.0f, 0.0f, 0.0f)
 {
 
 }

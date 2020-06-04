@@ -41,6 +41,7 @@ void CEndingDispGhost::Init()
 	//アニメーション初期化処理関数.
 	InitAnimation();
 	m_fScale = 0.07f;
+	m_vPrePos.y = -20.0f;
 }
 
 //============================================.
