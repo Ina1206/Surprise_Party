@@ -329,6 +329,9 @@
     <Filter Include="SourceCode\GameObject\Object\StaticObject\SmartPhone">
       <UniqueIdentifier>{5d22c7a0-fb4f-4915-adb3-b6a404c78e4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Camera">
+      <UniqueIdentifier>{cfe2a5af-7588-4336-bdbd-5d53d9c826f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -664,6 +667,9 @@
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.h">
       <Filter>SourceCode\GameObject\Object\StaticObject\SmartPhone</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Camera\CCamera.h">
+      <Filter>SourceCode\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -986,6 +992,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.cpp">
       <Filter>SourceCode\GameObject\Object\StaticObject\SmartPhone</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Camera\CCamera.cpp">
+      <Filter>SourceCode\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

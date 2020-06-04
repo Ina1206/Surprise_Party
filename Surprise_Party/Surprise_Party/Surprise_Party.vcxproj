@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SourceCode\Camera\CCamera.h" />
     <ClInclude Include="SourceCode\Drawing\CCommon.h" />
     <ClInclude Include="SourceCode\Drawing\Effect\CEffect.h" />
     <ClInclude Include="SourceCode\Drawing\Font\CFont.h" />
@@ -132,6 +133,7 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceCode\Camera\CCamera.cpp" />
     <ClCompile Include="SourceCode\Drawing\CCommon.cpp" />
     <ClCompile Include="SourceCode\Drawing\Effect\CEffect.cpp" />
     <ClCompile Include="SourceCode\Drawing\Font\CFont.cpp" />
