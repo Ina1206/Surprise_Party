@@ -72,6 +72,7 @@
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.h" />
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.h" />
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.h" />
     <ClInclude Include="SourceCode\Global.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\CLightBase.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Painting\CPainting.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.cpp" />
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\Wall\CWall.cpp" />
     <ClCompile Include="SourceCode\Main.cpp" />

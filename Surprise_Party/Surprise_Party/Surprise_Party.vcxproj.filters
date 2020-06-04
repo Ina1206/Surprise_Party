@@ -661,6 +661,9 @@
     <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingSwitchGhost\CEndingSwitchGhost.h">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingSwitchGhost</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.h">
+      <Filter>SourceCode\GameObject\Object\StaticObject\SmartPhone</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -980,6 +983,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingSwitchGhost\CEndingSwitchGhost.cpp">
       <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingSwitchGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.cpp">
+      <Filter>SourceCode\GameObject\Object\StaticObject\SmartPhone</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
