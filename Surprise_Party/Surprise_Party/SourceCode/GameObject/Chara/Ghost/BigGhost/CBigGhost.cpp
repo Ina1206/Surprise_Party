@@ -114,7 +114,6 @@ void CBigGhost::Render()
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	if (m_pCSmartPhone != nullptr) {
-		m_pCSmartPhone->SetPos(m_vLookAtPos);
 		m_pCSmartPhone->RenderInitSetting(m_mView, m_mProj, m_stLight);
 		m_pCSmartPhone->SetCameraPos(m_vCameraPos);
 		m_pCSmartPhone->Render();
@@ -437,6 +436,10 @@ void CBigGhost::EmotionMove()
 	case enEmotionType::ViewSmartphone:
 		
 		if (m_pCSmartPhone != nullptr) {
+			D3DXVECTOR3 vSmartPhonePos;
+			m_pCSkinMesh->GetPosFromBone("joint11", &vSmartPhonePos);
+			vSmartPhonePos.x += 0.8f;
+			m_pCSmartPhone->SetPos(vSmartPhonePos);
 			m_pCSmartPhone->Update();
 		}
 

@@ -29,7 +29,8 @@ void CSmartPhone::Update()
 void CSmartPhone::Render()
 {
 	m_pCMesh->SetPosition(m_vPos);
-	m_pCMesh->SetScale(0.1f);
+	m_pCMesh->SetRotation(m_vRot);
+	m_pCMesh->SetScale(0.05f);
 	m_pCMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 }
 
@@ -39,6 +40,10 @@ void CSmartPhone::Render()
 void CSmartPhone::Init()
 {
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::Phone);
+	
+	m_vRot.x = static_cast<float>(D3DXToRadian(30.0f));
+	m_vRot.y = static_cast<float>(D3DXToRadian(45.0f));
+	m_vRot.z = static_cast<float>(D3DXToRadian(-15.0f));
 }
 
 //============================================.
