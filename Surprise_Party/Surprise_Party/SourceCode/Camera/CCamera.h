@@ -4,7 +4,7 @@
 #include "..\Drawing\Resource\CResourceManager.h"
 
 /**************************************
-*		カメラ基底クラス.
+*		カメラクラス.
 **************/
 class CCamera
 {
