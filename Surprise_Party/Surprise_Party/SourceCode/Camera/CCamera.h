@@ -17,6 +17,9 @@ public:
 	void InitGameMainStage();	//ゲームメインステージの初期化処理関数.
 	void InitGhostSpeakStage();	//お化けが話すステージの初期化処理関数.
 	void InitEnding();			//エンディングの初期化処理関数.
+	void MoveGameMainStage();
+	void MoveGhostSpeakStage();
+	void MoveEnding();
 
 	//=================情報取得処理関数====================//.
 	//カメラ座標.
