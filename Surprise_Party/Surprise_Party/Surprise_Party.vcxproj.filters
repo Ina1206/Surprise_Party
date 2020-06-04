@@ -326,6 +326,9 @@
     <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhostBase\EndingSwitchGhost">
       <UniqueIdentifier>{e66284d6-5001-4129-bc9b-ee6c0ab67b44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\GameObject\Object\StaticObject\SmartPhone">
+      <UniqueIdentifier>{5d22c7a0-fb4f-4915-adb3-b6a404c78e4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">

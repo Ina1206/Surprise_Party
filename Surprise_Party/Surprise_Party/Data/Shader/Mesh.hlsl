@@ -26,7 +26,7 @@ cbuffer per_frame	: register(b2)
 {
 	float4	g_vCamPos					: packoffset(c0);	//カメラ情報.
 	float4	g_vLightDir					: packoffset(c1);	//ライト方向.
-	float4	g_vCasterToLight			: packoffset(c2);	//影を落とすモデルとライトを結ぶベクトル.
+	//float4	g_vCasterToLight			: packoffset(c2);	//影を落とすモデルとライトを結ぶベクトル.
 	//float4  g_vCasterPos[SHADOW_MAX]	: packoffset(c3);	//影を落とすキャスター位置.
 	float	g_fAlpha					: packoffset(c3);
 	float2	g_vUV						: packoffset(c4);

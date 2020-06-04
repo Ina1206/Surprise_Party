@@ -149,15 +149,25 @@ VS_OUT VS_NoTex(float4 Pos		: POSITION,
 {
 	VS_OUT Out = (VS_OUT)0;
 
-	//ﾌﾟﾛｼﾞｪｸｼｮﾝ変換(ﾜｰﾙﾄﾞ→ﾋﾞｭｰ→ﾌﾟﾛｼﾞｪｸｼｮﾝ).
+	//法線をワールド空間に.
+	Norm.w = 0;	//w=0で移動成分を反映させない.
+	Out.Normal = mul(Norm, g_mW);
 	Out.Pos = mul(Pos, g_mWVP);
+	//ライト方向.
+	//Out.Light = g_vLightDir;
+	//視線ベクトル.
+	float3 PosWorld = mul(Pos, g_mW);
+	//Out.EyeVector = g_vCamPos - PosWorld;
 
-	//法線をﾓﾃﾞﾙの姿勢に合わせる.
-	// (ﾓﾃﾞﾙが回転すれば法線も回転させる必要があるため).
-	Out.Normal = mul(Norm, (float3x3)g_mW);
+	float3 Normal = normalize(Out.Normal);
+	float3 LightDir = normalize(g_vLightPos);
+	float3 ViewDir = normalize(g_vCamPos - PosWorld);
+	float4 NL = saturate(dot(Normal, LightDir));
 
-	//ﾜｰﾙﾄﾞ座標系での位置座標.
-	Out.PosWorld = mul(Pos, g_mW);
+	float3 Reflect = normalize(2 * NL*Normal - LightDir);
+	float4 Specular = pow(saturate(dot(Reflect, ViewDir)), 4);
+
+	Out.Color = g_Diffuse * NL + Specular * g_Specular;
 
 	return Out;
 }
@@ -168,62 +178,6 @@ VS_OUT VS_NoTex(float4 Pos		: POSITION,
 float4 PS_NoTex(VS_OUT In) : SV_Target
 {
 	//ﾗｲﾄ位置.
-	float4 vLightPos = g_vLightPos;
-	//視線ﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙから視点座標に向かうﾍﾞｸﾄﾙ.
-	float4 vEyeVector = normalize(g_vCamPos - In.PosWorld);
-	//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
-	float4 vLightVector = normalize(vLightPos - In.PosWorld);
-	//ﾗｲﾄの基準ﾍﾞｸﾄﾙ.
-	float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
-
-	//ﾗｲﾄの基準ﾍﾞｸﾄﾙに現在のﾗｲﾄの回転を反映.
-	vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
-
-	//基本色.
-	float4 BaseColor = g_Texture.Sample(g_SamLinear, In.Tex) / 1.0f + In.Color / 1.0f;
-
-	//環境光　①.
-	float4 ambient = g_Ambient;
-
-	//拡散反射光 ②.
-	float NL = saturate(dot(In.Normal, vLightVector));
-	float4 diffuse = g_Diffuse * NL;
-
-	//鏡面反射光 ③.
-	float3 reflect = normalize(2 * NL * In.Normal - vLightVector);
-	float4 specular =
-		pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
-
-	//ﾌｫﾝﾓﾃﾞﾙ最終色　①②③の合計.
-	float4 Color = ambient + diffuse + specular;
-
-	//ﾗｲﾄ強度を反映.
-	Color *= g_fIntensity.x;
-
-	//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
-	float cos = saturate(dot(vLightBaseVector, vLightVector));
-	//ｺｰﾝ角度:とりあえず 0.9f.
-	if (cos < g_fLightWidth.x) {
-		Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
-	}
-
-	//減衰.
-	float Distance = length(g_vLightPos - In.PosWorld);
-	// att = 1 ÷ 0 ÷ ( a + b * d + c * d^2 )
-	// d:距離
-	// a,b,c:定数.
-	Color *=
-		1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
-
-	//                 1
-	// fatt = -------------------
-	//        a + b * d + c * d^2
-	// fatt :減衰.
-	// a,b,c:定数.
-	// d    :距離.
-
-	Color.a *= g_vAlpha.x;
-
-
+	float4 Color = In.Color;
 	return Color;
 }
