@@ -12,6 +12,7 @@ CEndingStageBase::CEndingStageBase()
 	, m_pCGhost					(0)
 	, m_pCFloor					(nullptr)
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
+	, m_pCCameraEnding			(nullptr)
 {
 	//共通の値の初期化処理関数.
 	InitCommonValue();
@@ -32,7 +33,7 @@ void CEndingStageBase::RenderInitSetting( const D3DXMATRIX& mProj)
 	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
 	D3DXMatrixLookAtLH(
 		&m_mView,								//(out)ビュー計算結果.
-		&m_Camera.vPos, &m_Camera.vLook, &vUpVec);
+		&m_pCCameraEnding->GetPos(), &m_pCCameraEnding->GetLook(), &vUpVec);
 }
 
 //=========================================.
@@ -44,7 +45,8 @@ void CEndingStageBase::RenderFloor()
 	const LIGHT m_Light = m_pCBackstageLight->GetLight();
 
 	m_pCFloor->SetScale(0.5f);
-	m_pCFloor->SetCameraPos(m_Camera.vPos);
+	//m_pCFloor->SetCameraPos(m_Camera.vPos);
+	m_pCFloor->SetCameraPos(m_pCCameraEnding->GetPos());
 	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_Light);
 	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -6.0f, 0.0f));
 	m_pCFloor->Render();
@@ -61,7 +63,7 @@ void CEndingStageBase::RenderGhost()
 
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
 		m_pCGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
-		m_pCGhost[ghost]->SetCameraPos(m_Camera.vPos);
+		m_pCGhost[ghost]->SetCameraPos(m_pCCameraEnding->GetPos());
 		m_pCGhost[ghost]->Render();
 	}
 }
@@ -75,6 +77,7 @@ void CEndingStageBase::InitCommonValue()
 	m_pCBigGhost.reset(new CBigGhost());
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
+	m_pCCameraEnding.reset(new CCameraEnding());
 
 	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 5.0f);
 

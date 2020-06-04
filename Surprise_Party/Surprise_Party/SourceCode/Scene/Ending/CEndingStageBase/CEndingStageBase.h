@@ -6,6 +6,7 @@
 #include "..\..\GameObject\Chara\Ghost\WorkGhost\EndingWorkGhost\EndingSwitchGhost\CEndingSwitchGhost.h"
 #include "..\..\GameObject\Object\StaticObject\Floor\CFloor.h"
 #include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
+#include "..\..\Camera\CameraEnding\CCameraEnding.h"
 
 /*******************************************
 *		エンディングステージ基底クラス.
@@ -37,6 +38,7 @@ protected:
 	std::unique_ptr<CBackstageLight>					m_pCBackstageLight;			//舞台裏ライトクラス.
 	std::unique_ptr<CBigGhost>							m_pCBigGhost;				//ビッグゴーストクラス.
 	std::vector<std::unique_ptr<CGhostBase>>			m_pCGhost;					//お化けクラス.
+	std::unique_ptr<CCameraEnding>						m_pCCameraEnding;
 
 private:
 	//========================関数=============================//.

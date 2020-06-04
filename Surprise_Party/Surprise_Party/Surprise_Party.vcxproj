@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SourceCode\Camera\CameraEnding\CCameraEnding.h" />
     <ClInclude Include="SourceCode\Camera\CameraGameMainStage\CCameraGameMainStage.h" />
     <ClInclude Include="SourceCode\Camera\CameraGhostSpeakStage\CCameraGhostSpeakStage.h" />
     <ClInclude Include="SourceCode\Camera\CCameraBase.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakWorkGhost\CSpeakWorkGhost.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceCode\Camera\CameraEnding\CCameraEnding.cpp" />
     <ClCompile Include="SourceCode\Camera\CameraGameMainStage\CCameraGameMainStage.cpp" />
     <ClCompile Include="SourceCode\Camera\CameraGhostSpeakStage\CCameraGhostSpeakStage.cpp" />
     <ClCompile Include="SourceCode\Camera\CCameraBase.cpp" />
