@@ -667,7 +667,7 @@
     <ClInclude Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.h">
       <Filter>SourceCode\GameObject\Object\StaticObject\SmartPhone</Filter>
     </ClInclude>
-    <ClInclude Include="SourceCode\Camera\CCamera.h">
+    <ClInclude Include="SourceCode\Camera\CCameraBase.h">
       <Filter>SourceCode\Camera</Filter>
     </ClInclude>
   </ItemGroup>
@@ -993,7 +993,7 @@
     <ClCompile Include="SourceCode\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.cpp">
       <Filter>SourceCode\GameObject\Object\StaticObject\SmartPhone</Filter>
     </ClCompile>
-    <ClCompile Include="SourceCode\Camera\CCamera.cpp">
+    <ClCompile Include="SourceCode\Camera\CCameraBase.cpp">
       <Filter>SourceCode\Camera</Filter>
     </ClCompile>
   </ItemGroup>

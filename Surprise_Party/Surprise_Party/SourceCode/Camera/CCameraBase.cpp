@@ -1,15 +1,15 @@
-#include "CCamera.h"
+#include "CCameraBase.h"
 
 /**************************************
-*		カメラクラス.
+*		カメラ基底クラス.
 **************/
-CCamera::CCamera()
+CCameraBase::CCameraBase()
 {
 	//初期化処理関数.
 	Init();
 }
 
-CCamera::~CCamera()
+CCameraBase::~CCameraBase()
 {
 	//解放処理関数.
 	Release();
@@ -18,7 +18,7 @@ CCamera::~CCamera()
 //==============================================.
 //		更新処理関数.
 //==============================================.
-void CCamera::Update()
+void CCameraBase::Update()
 {
 
 }
@@ -26,14 +26,14 @@ void CCamera::Update()
 //==============================================.
 //		ゲームメインステージの初期化処理関数.
 //==============================================.
-void CCamera::InitGameMainStage()
+void CCameraBase::InitGameMainStage()
 {
 }
 
 //==============================================.
 //		お化けが話すステージの初期化処理関数.
 //==============================================.
-void CCamera::InitGhostSpeakStage()
+void CCameraBase::InitGhostSpeakStage()
 {
 	m_Camera.vPos = D3DXVECTOR3(5.0f, 2.5f, -3.5f);
 	m_Camera.vLook = D3DXVECTOR3(5.0f, 2.5f, 5.0f);
@@ -42,7 +42,7 @@ void CCamera::InitGhostSpeakStage()
 //==============================================.
 //		エンディングの初期化処理関数.
 //==============================================.
-void CCamera::InitEnding()
+void CCameraBase::InitEnding()
 {
 
 }
@@ -50,7 +50,7 @@ void CCamera::InitEnding()
 //==============================================.
 //		初期化処理関数.
 //==============================================.
-void CCamera::Init()
+void CCameraBase::Init()
 {
 
 }
@@ -58,7 +58,7 @@ void CCamera::Init()
 //==============================================.
 //		解放処理関数.
 //==============================================.
-void CCamera::Release()
+void CCameraBase::Release()
 {
 
 }

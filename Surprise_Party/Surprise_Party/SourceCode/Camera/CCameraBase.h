@@ -4,13 +4,13 @@
 #include "..\Drawing\Resource\CResourceManager.h"
 
 /**************************************
-*		カメラクラス.
+*		カメラ基底クラス.
 **************/
-class CCamera
+class CCameraBase
 {
 public:
-	CCamera();
-	~CCamera();
+	CCameraBase();
+	~CCameraBase();
 
 	//=======================関数==========================//.
 	void Update();				//更新処理関数.
