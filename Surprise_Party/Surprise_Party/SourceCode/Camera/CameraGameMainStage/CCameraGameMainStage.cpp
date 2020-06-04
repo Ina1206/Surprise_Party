@@ -56,7 +56,6 @@ void CCameraGameMainStage::Update()
 	if (m_MoveFlag & GHOST_LOOK_FLAG) {
 		//現在選択しているお化けのところへカメラを戻す.
 		const D3DXVECTOR3 vSelectGhostPos = m_vTargetPos;
-		//const D3DXVECTOR3 vSelectGhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
 		m_Camera.vPos = CAMERA_START_POS;
 		m_Camera.vPos.x = vSelectGhostPos.x;
 		m_Camera.vLook = CAMERA_START_LOOK;
@@ -64,16 +63,6 @@ void CCameraGameMainStage::Update()
 		return;
 	}
 
-	//D3DXVECTOR3 m_GhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
-	////お化け選択時.
-	//if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
-	//	m_GhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
-	//}
-	////ギミック選択時.
-	//if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
-	//	m_GhostPos = m_pCMoveObjectManager->GetGimmickPos();
-	//}
-	//カメラ座標と注視点の座標設定.
 	m_Camera.vLook.x = m_Camera.vPos.x = m_vTargetPos.x;
 
 }
