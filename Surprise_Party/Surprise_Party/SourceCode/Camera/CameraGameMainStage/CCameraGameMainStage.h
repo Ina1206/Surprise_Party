@@ -24,10 +24,12 @@ public:
 
 private:
 	//==========================ŠÖ”=============================//.
-	void Init();		//‰Šú‰»ˆ—ŠÖ”.
-	void Release();		//‰ð•úˆ—ŠÖ”.
-
-
+	void Init();			//‰Šú‰»ˆ—ŠÖ”.
+	void Release();			//‰ð•úˆ—ŠÖ”.
+	void LookAtPeople();	//l‚ðŒ©‚éˆ—ŠÖ”.
+	void LookAtGhost();		//‚¨‰»‚¯‚ðŒ©‚éˆ—ŠÖ”.
+	void MovePosLookUp();	//Œ©ã‚°‚é‚½‚ß‚ÉÀ•WˆÚ“®.
+	void MoveLookLookUp();	//Œ©ã‚°‚é‚½‚ß‚É’Ž‹“_ˆÚ“®.
 };
 
 
