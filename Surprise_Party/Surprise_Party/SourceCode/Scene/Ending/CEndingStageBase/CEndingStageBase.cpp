@@ -9,7 +9,6 @@ CEndingStageBase::CEndingStageBase()
 	, m_Camera					()
 	, m_pCBackstageLight		(nullptr)
 	, m_pCBigGhost				(nullptr)
-	, m_pCEndingWorkGhostBase	(0)
 	, m_pCGhost					(0)
 	, m_pCFloor					(nullptr)
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
@@ -53,32 +52,6 @@ void CEndingStageBase::RenderFloor()
 }
 
 //=========================================.
-//		ビッグゴースト描画処理関数.
-//=========================================.
-void CEndingStageBase::RenderBigGhost()
-{
-	//ライト情報.
-	const LIGHT m_Light = m_pCBackstageLight->GetLight();
-
-	m_pCBigGhost->SetCameraPos(m_Camera.vPos);
-	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_Light);
-	m_pCBigGhost->Render();
-}
-
-//=========================================.
-//		働くお化け描画処理関数.
-//=========================================.
-void CEndingStageBase::RenderWorkGhost()
-{
-	//ライト情報.
-	const LIGHT m_Light = m_pCBackstageLight->GetLight();
-
-	for (unsigned int ghost = 0; ghost < m_pCEndingWorkGhostBase.size(); ghost++) {
-		m_pCEndingWorkGhostBase[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
-	}
-}
-
-//=========================================.
 //		お化け描画処理関数.
 //=========================================.
 void CEndingStageBase::RenderGhost()
@@ -105,9 +78,6 @@ void CEndingStageBase::InitCommonValue()
 
 	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 5.0f);
 
-	for (int ghost = 0; ghost < 5; ghost++) {
-		m_pCEndingWorkGhostBase.emplace_back(new CEndingDispGhost());
-	}
 	for (int ghost = 0; ghost < 5; ghost++) {
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);

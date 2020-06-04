@@ -71,52 +71,9 @@ void CBeforeResultStage::Update()
 		vLookPos = Tmp;
 	}
 
-	//const unsigned int X = 1 << 0;
-	//const unsigned int Y = 1 << 1;
-	//const unsigned int Z = 1 << 2;
-	//static int	Count = 0;
-	//if (GetAsyncKeyState('1') & 0x0001) {
-	//	Count++;
-	//}
-	//if (Count >= 3) {
-	//	Count = 0;
-	//}
-
-	//unsigned int m_Flag = 1 << Count;
-	//static D3DXVECTOR3 vPos = D3DXVECTOR3(5.0f, -0.8f, 5.0f);
-	//float Pos = 0.0f;
-	//if (m_Flag & X) {
-	//	Pos = vPos.x;
-	//}
-	//else if (m_Flag & Y) {
-	//	Pos = vPos.y;
-	//}
-	//else {
-	//	Pos = vPos.z;
-	//}
-
-	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
-	//	Pos += 0.5f;
-	//}
-	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-	//	Pos -= 0.5f;
-	//}
-
-
-	//if (m_Flag & X) {
-	//	vPos.x = Pos;
-	//}
-	//else if (m_Flag & Y) {
-	//	vPos.y = Pos;
-	//}
-	//else {
-	//	vPos.z = Pos;
-	//}
 
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
 		m_pCGhost[ghost]->Update();
-		//m_pCGhost[ghost]->SetLookAtPos(vLookPos);
-		//m_pCGhost[ghost]->SetLookAtPos(D3DXVECTOR3(5.0f, -0.8f, 5.0f));
 	}
 	
 
@@ -130,8 +87,6 @@ void CBeforeResultStage::Render()
 	//床の描画処理関数.
 	RenderFloor();
 
-	//ビッグゴースト描画処理関数.
-	//RenderBigGhost();
 
 	//お化け描画処理関数.
 	RenderGhost();

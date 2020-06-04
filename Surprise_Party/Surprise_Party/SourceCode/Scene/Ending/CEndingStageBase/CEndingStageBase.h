@@ -28,8 +28,6 @@ protected:
 	virtual void Release() = 0;								//解放処理関数.
 
 	void RenderFloor();										//床の描画処理関数.
-	void RenderBigGhost();									//ビッグゴースト描画処理関数.
-	void RenderWorkGhost();									//働くお化け描画処理関数.
 	void RenderGhost();										//お化け描画処理関数.
 
 	//========================変数=============================//.
@@ -38,7 +36,6 @@ protected:
 	CAMERA												m_Camera;					//カメラ構造体.
 	std::unique_ptr<CBackstageLight>					m_pCBackstageLight;			//舞台裏ライトクラス.
 	std::unique_ptr<CBigGhost>							m_pCBigGhost;				//ビッグゴーストクラス.
-	std::vector<std::unique_ptr<CEndingWorkGhostBase>>	m_pCEndingWorkGhostBase;	//働くお化けクラス.
 	std::vector<std::unique_ptr<CGhostBase>>			m_pCGhost;					//お化けクラス.
 
 private:

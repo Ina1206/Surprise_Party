@@ -422,7 +422,6 @@ void CBigGhost::EmotionMove()
 		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::ViewSmartphone:
-		MoveRotation(m_vPos, m_vLookAtPos);
 
 		break;
 	case enEmotionType::Nothing:
