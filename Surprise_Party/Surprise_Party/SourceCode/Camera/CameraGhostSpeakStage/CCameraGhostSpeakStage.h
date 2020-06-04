@@ -13,9 +13,13 @@ public:
 	CCameraGhostSpeakStage();
 	~CCameraGhostSpeakStage();
 
-
-
+	//========================ŠÖ”==========================//.
+	void Update();		//XVˆ—ŠÖ”.
 private:
+	//========================ŠÖ”==========================//.
+	void Init();		//‰Šú‰»ˆ—ŠÖ”.
+	void Release();		//‰ğ•úˆ—ŠÖ”.
+
 
 };
 
