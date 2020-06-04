@@ -366,13 +366,13 @@ void CBigGhost::ChangeEffect()
 	case enEmotionType::ViewSmartphone:
 		m_vPos.y = WAKE_UP_POS.y;
 		//à⁄ìÆäpìxèàóùä÷êî.
-		MoveRotation(m_vPos, m_vLookAtPos);
+		//MoveRotation(m_vPos, m_vLookAtPos);
 		//m_vRot.x += 0.f;
 		//m_vRot.z -= 0.3f;
 
-		
+		m_vRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
-		m_vRot.y += 0.1f;
+		//m_vRot.y += 0.1f;
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
 		break;

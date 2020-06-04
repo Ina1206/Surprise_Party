@@ -126,10 +126,10 @@ void CEndingStageBase::InitCommonValue()
 //==========================================.
 void CEndingStageBase::CreateInstanceFronClass(const int& num)
 {
-	if (num == 2) {
-		m_pCGhost.emplace_back(new CBigGhost());
-		return;
-	}
+	//if (num == 2) {
+	//	m_pCGhost.emplace_back(new CBigGhost());
+	//	return;
+	//}
 
 	if (num % 2 == 0) {
 		m_pCGhost.emplace_back(new CEndingDispGhost());
