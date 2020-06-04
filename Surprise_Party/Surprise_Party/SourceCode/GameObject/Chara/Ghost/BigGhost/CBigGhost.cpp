@@ -109,8 +109,8 @@ void CBigGhost::Render()
 	m_pCSkinMesh->SetScale(0.1f);
 	m_pCSkinMesh->SetPosition(m_vPos);
 	m_pCSkinMesh->SetRotation(m_vRot);
-	m_pCSkinMesh->SetPreRot(WAKE_UP_ROT);
-	m_pCSkinMesh->SetPrePos(m_vPrePos);
+	//m_pCSkinMesh->SetPreRot(WAKE_UP_ROT);
+	//m_pCSkinMesh->SetPrePos(m_vPrePos);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	if (m_pCSmartPhone != nullptr) {
@@ -136,9 +136,9 @@ void CBigGhost::Init()
 
 	m_fAnimSpeed = SLEEP_ANIM_SPEED;
 
-	m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
-	m_vPos = WAKE_UP_POS;
-	m_vRot = WAKE_UP_ROT;
+	//m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
+	//m_vPos = WAKE_UP_POS;
+	//m_vRot = WAKE_UP_ROT;
 
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.emplace_back(new CSleepEffect());
@@ -339,10 +339,13 @@ void CBigGhost::FallDown(const int& Direction)
 		return;
 	}
 
+	if (m_vRot.y < SLEEP_ROT.y) {
+		m_vRot = SLEEP_ROT;
+		m_vPos = SLEEP_POS;
+		m_bSleepFlag = true;
+	}
 	if (m_vPos.y <= SLEEP_POS.y) {
 		m_vPos = SLEEP_POS;
-	}
-	if (m_vRot.y < SLEEP_ROT.y) {
 		m_vRot = SLEEP_ROT;
 		m_bSleepFlag = true;
 	}

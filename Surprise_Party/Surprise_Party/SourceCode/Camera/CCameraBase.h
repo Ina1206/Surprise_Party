@@ -12,12 +12,28 @@ public:
 	CCameraBase();
 	virtual ~CCameraBase();
 
+	//=======================定数==========================//.
+	const unsigned int MOVE_FLAG		= (1 << 0);		//移動フラグ.
+	const unsigned int STOP_FLAG		= (1 << 1);		//停止フラグ.
+	const unsigned int MOVE_FINISH_FLAG = (1 << 2);		//移動終了フラグ.
+
 	//=======================関数==========================//.
 	virtual void Update() = 0;		//更新処理関数.
 
+
 	//=================情報取得処理関数====================//.
 	//カメラ座標.
-	D3DXVECTOR3 GetCameraPos() const { return m_Camera.vPos; }
+	D3DXVECTOR3 GetPos() const { return m_Camera.vPos; }
+	//カメラ注視点.
+	D3DXVECTOR3 GetLook() const { return m_Camera.vLook; }
+	//カメラ移動終了.	
+	//bool GetFinishMoveCamera() const { return m_bFinishMoveCamera; }
+	//移動フラグ.
+	unsigned int GetMoveFlag() const { return m_MoveFlag; }
+
+	//=================情報置換処理関数====================//.
+	//移動フラグ.
+	void SetMoveFlag(const unsigned int& Flag) { m_MoveFlag = Flag; }
 
 protected:
 	//=======================関数==========================//.
@@ -25,7 +41,9 @@ protected:
 	virtual void Release() = 0;		//解放処理関数.
 
 	//=======================変数==========================//.
-	CAMERA	m_Camera;	//カメラ情報.
+	CAMERA	m_Camera;				//カメラ情報.
+	//bool	m_bFinishMoveCamera;	//カメラ移動終了.
+	unsigned int m_MoveFlag;		//移動フラグ.
 
 };
 

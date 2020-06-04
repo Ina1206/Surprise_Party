@@ -3,6 +3,7 @@
 
 #include "..\..\..\Global.h"
 #include "..\..\..\Drawing\Resource\CResourceManager.h"
+#include "..\..\Camera\CCameraBase.h"
 
 /*****************************************
 *		ステージ基底クラス.
@@ -68,16 +69,18 @@ protected:
 	virtual void Control() = 0;		//操作処理関数.
 
 	//=====================変数=========================//.
-	D3DXMATRIX					m_mView;					//ビュー行列.
-	D3DXMATRIX					m_mProj;					//プロジェクション行列.
-	CAMERA						m_Camera;					//カメラ構造体.
+	D3DXMATRIX						m_mView;					//ビュー行列.
+	D3DXMATRIX						m_mProj;					//プロジェクション行列.
+	CAMERA							m_Camera;					//カメラ構造体.
 
-	bool						m_bChangeStageFlag;			//ステージ変更フラグ.
-	int							m_StageNum;					//ステージ番号.
+	bool							m_bChangeStageFlag;			//ステージ変更フラグ.
+	int								m_StageNum;					//ステージ番号.
 
-	enBeforeStageEndigneType	m_enBeforeStageEndingType;	//前回のステージのエンディングタイプ.
-	unsigned int				m_FinishFlag;				//終了フラグ.
-	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
+	enBeforeStageEndigneType		m_enBeforeStageEndingType;	//前回のステージのエンディングタイプ.
+	unsigned int					m_FinishFlag;				//終了フラグ.
+	unsigned int					m_TutorialFlag;				//チュートリアルフラグ.
+
+	std::unique_ptr<CCameraBase>	m_pCCamera;					//カメラクラス.
 };
 
 #endif	//#ifndef CSTAGE_BASE_H.

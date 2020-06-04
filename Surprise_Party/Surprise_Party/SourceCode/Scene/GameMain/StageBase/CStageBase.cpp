@@ -9,6 +9,7 @@ CStageBase::CStageBase()
 	, m_enBeforeStageEndingType()
 	, m_FinishFlag		(0)
 	, m_TutorialFlag	(false)
+	, m_pCCamera		(nullptr)
 {
 
 }
@@ -26,11 +27,13 @@ void CStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mP
 	m_mView			= mView;
 	m_mProj			= mProj;
 	//m_vCameraPos	= vCameraPos;
+	const D3DXVECTOR3 m_vCameraLook = m_pCCamera->GetLook();
+	const D3DXVECTOR3 m_vCameraPos = m_pCCamera->GetPos();
 
 	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
 	D3DXMatrixLookAtLH(
 		&m_mView,								//(out)ビュー計算結果.
-		&m_Camera.vPos, &m_Camera.vLook, &vUpVec);
+		&m_vCameraPos, &m_vCameraLook, &vUpVec);
 }
 
 //==========================================.
