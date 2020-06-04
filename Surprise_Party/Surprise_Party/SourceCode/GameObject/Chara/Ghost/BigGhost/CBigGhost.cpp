@@ -13,6 +13,7 @@ CBigGhost::CBigGhost()
 	, m_pCSpriteEffect		()
 	, m_UsingEffectNum		(0)
 	, m_OldEmotionNum		(0)
+	, m_pCSmartPhone		(nullptr)
 	, m_bSleepFlag			(true)
 {
 	//初期化処理関数.
@@ -112,6 +113,13 @@ void CBigGhost::Render()
 	m_pCSkinMesh->SetPrePos(m_vPrePos);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
+	if (m_pCSmartPhone != nullptr) {
+		m_pCSmartPhone->SetPos(m_vLookAtPos);
+		m_pCSmartPhone->RenderInitSetting(m_mView, m_mProj, m_stLight);
+		m_pCSmartPhone->SetCameraPos(m_vCameraPos);
+		m_pCSmartPhone->Render();
+	}
+
 	//エフェクト描画.
 	if (m_UsingEffectNum < static_cast<int>(m_pCSpriteEffect.size())) {
 		m_pCSpriteEffect[m_UsingEffectNum]->Render(m_mView, m_mProj, m_vCameraPos);
@@ -129,15 +137,16 @@ void CBigGhost::Init()
 
 	m_fAnimSpeed = SLEEP_ANIM_SPEED;
 
-	//m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
-	//m_vPos = WAKE_UP_POS;
-	//m_vRot = WAKE_UP_ROT;
+	m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
+	m_vPos = WAKE_UP_POS;
+	m_vRot = WAKE_UP_ROT;
 
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.emplace_back(new CSleepEffect());
 	m_pCSpriteEffect.emplace_back(new CHaveTroubleEffect());
 	m_pCSpriteEffect.emplace_back(new CRejoiceEffect());
 	m_pCSpriteEffect.emplace_back(new CQuestionEffect());
+
 
 	m_EmotionNum = static_cast<int>(enEmotionType::Sleep);
 	m_OldEmotionNum = m_EmotionNum;
@@ -369,6 +378,10 @@ void CBigGhost::ChangeEffect()
 		MoveRotation(m_vPos, m_vLookAtPos);
 		m_vPrePos.z = 10.0f;
 
+		if (m_pCSmartPhone == nullptr) {
+			m_pCSmartPhone.reset(new CSmartPhone());
+		}
+
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
 		break;
@@ -422,6 +435,10 @@ void CBigGhost::EmotionMove()
 		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::ViewSmartphone:
+		
+		if (m_pCSmartPhone != nullptr) {
+			m_pCSmartPhone->Update();
+		}
 
 		break;
 	case enEmotionType::Nothing:

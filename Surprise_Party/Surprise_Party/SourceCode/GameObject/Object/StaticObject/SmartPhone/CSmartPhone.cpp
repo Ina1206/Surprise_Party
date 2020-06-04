@@ -28,7 +28,9 @@ void CSmartPhone::Update()
 //============================================.
 void CSmartPhone::Render()
 {
-
+	m_pCMesh->SetPosition(m_vPos);
+	m_pCMesh->SetScale(0.1f);
+	m_pCMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 }
 
 //============================================.
@@ -36,7 +38,7 @@ void CSmartPhone::Render()
 //============================================.
 void CSmartPhone::Init()
 {
-
+	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::Phone);
 }
 
 //============================================.

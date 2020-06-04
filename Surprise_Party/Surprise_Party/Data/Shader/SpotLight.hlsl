@@ -144,8 +144,8 @@ float4 PS_Main(VS_OUT In) : SV_Target
 //---------------------------------------
 //	’¸“_¼ª°ÀÞ.
 //---------------------------------------
-VS_OUT VS_NoTex(float4 Pos		: POSITION,
-	float4 Norm : NORMAL)
+VS_OUT VS_NoTex(float4 Pos	: POSITION,
+				float4 Norm : NORMAL)
 {
 	VS_OUT Out = (VS_OUT)0;
 
@@ -169,6 +169,7 @@ VS_OUT VS_NoTex(float4 Pos		: POSITION,
 
 	Out.Color = g_Diffuse * NL + Specular * g_Specular;
 
+
 	return Out;
 }
 
@@ -177,7 +178,68 @@ VS_OUT VS_NoTex(float4 Pos		: POSITION,
 //---------------------------------------
 float4 PS_NoTex(VS_OUT In) : SV_Target
 {
-	//×²ÄˆÊ’u.
-	float4 Color = In.Color;
-	return Color;
+	float4 AllColor = float4(0.0f, 0.0f, 0.0f, 0.0f);
+	for (int light = 0; light < g_vLightMax.x; light++) {
+		//×²ÄˆÊ’u.
+		float4 vLightPos = g_vLightPos;
+		vLightPos.x += (g_vLightPosWidth.x * light) - g_vLightPosWidth.x;
+		//×²ÄÍÞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚ç×²ÄŒ»ÝÀ•W‚ÉŒü‚©‚¤ÍÞ¸ÄÙ.
+		float4 vLightVector = normalize(vLightPos - In.PosWorld);
+
+		//Ž‹üÍÞ¸ÄÙ:‚±‚ÌËß¸¾Ù‚©‚çŽ‹“_À•W‚ÉŒü‚©‚¤ÍÞ¸ÄÙ.
+		float4 vEyeVector = normalize(g_vCamPos - In.PosWorld);
+		//×²Ä‚ÌŠî€ÍÞ¸ÄÙ.
+		float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
+
+		//×²Ä‚ÌŠî€ÍÞ¸ÄÙ‚ÉŒ»Ý‚Ì×²Ä‚Ì‰ñ“]‚ð”½‰f.
+		vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
+
+		//ŠÂ‹«Œõ@‡@.
+		float4 ambient = g_Ambient;
+
+		//ŠgŽU”½ŽËŒõ ‡A.
+		float NL = saturate(dot(In.Normal, vLightVector));
+		float4 diffuse =
+			(g_Diffuse / 2 + g_Texture.Sample(g_SamLinear, In.Tex) / 2)/**NL*/;
+
+		//‹¾–Ê”½ŽËŒõ ‡B.
+		float3 reflect = normalize(2.0f * NL * In.Normal - vLightVector);
+		float4 specular =
+			pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
+		//Ì«ÝÓÃÞÙÅIF@‡@‡A‡B‚Ì‡Œv.
+		float4 Color = ambient + diffuse + specular;
+		Color.r *= g_vLightColor.x;
+		Color.g *= g_vLightColor.y;
+		Color.b *= g_vLightColor.z;
+		//½Îß¯Ä×²Ä‚Ì”ÍˆÍ“à‚Æ”ÍˆÍŠO‚Ì‹«ŠE‚ðŠŠ‚ç‚©‚É•Ï‰»‚³‚¹‚é.
+		float cos = saturate(dot(vLightBaseVector, vLightVector));
+		//º°ÝŠp“x:‚Æ‚è‚ ‚¦‚¸ 0.9f.
+		if (cos < g_fLightWidth.x) {
+			Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
+		}
+
+		//Œ¸Š.
+		float Distance = length(vLightPos - In.PosWorld);
+		//att = 1 € 0 € ( a + b * d + c * d^2 )
+		//d:‹——£
+		//a,b,c:’è”.
+		Color *= 1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
+		//×²Ä‹­“x‚ð”½‰f.
+		Color *= g_fIntensity.x;
+
+		AllColor += Color;
+	}
+	//ƒx[ƒX‚ÌF.
+	float4 BaseColor = g_Texture.Sample(g_SamLinear, In.Tex) / 1.0f + In.Color / 1.0f;
+	AllColor.a = BaseColor.a;
+	AllColor.a *= g_vAlpha.x;
+
+	//                 1
+	// fatt = -------------------
+	//        a + b * d + c * d^2
+	// fatt :Œ¸Š.
+	// a,b,c:’è”.
+	// d    :‹——£.
+
+	return AllColor;
 }

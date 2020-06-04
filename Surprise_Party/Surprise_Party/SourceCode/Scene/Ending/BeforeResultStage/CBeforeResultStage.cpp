@@ -1,5 +1,7 @@
 #include "CBeforeResultStage.h"
 
+#include "..\..\..\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.h"
+
 /********************************************
 *		結果発表前のステージクラス.
 ******************/
@@ -90,7 +92,6 @@ void CBeforeResultStage::Render()
 
 	//お化け描画処理関数.
 	RenderGhost();
-
 }
 
 //=======================================.
