@@ -67,12 +67,13 @@ CDX9SkinMesh::~CDX9SkinMesh()
 
 //初期化.
 HRESULT CDX9SkinMesh::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9,ID3D11Device* pDevice11,
-	ID3D11DeviceContext* pContext11, const char* fileName)
+	ID3D11DeviceContext* pContext11, const char* fileName, const bool& bSpotLightHLSL)
 {
 	m_hWnd = hWnd;
 	m_pDevice9 = pDevice9;
 	m_pDevice11 = pDevice11;
 	m_pContext11 = pContext11;
+	m_bSpotLightUseFlag = bSpotLightHLSL;
 
 	//シェーダの作成.
 	if( FAILED( InitShader() ) )

@@ -23,7 +23,7 @@ public:
 	void Init_Replacement(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pDevice11, ID3D11DeviceContext* pContext11);	//初期置換処理.
 	
 	virtual HRESULT Init(int max) = 0;								//初期化処理関数.
-	virtual HRESULT Load(std::vector<std::string> vecFileName) = 0;	//読み込み処理関数.
+	//virtual HRESULT Load(std::vector<std::string> vecFileName) = 0;	//読み込み処理関数.
 	virtual HRESULT ReleaseCalling() = 0;							//解放処理呼び出し関数.
 protected:
 	HWND					m_hWnd;			//ウィンドウハンドル.

@@ -45,22 +45,18 @@ HRESULT CObjectResource<T1, T2>::Init(int max)
 //		読み込み処理関数.
 //=======================================.
 template<class T1, class T2>
-HRESULT CObjectResource<T1, T2>::Load(std::vector<std::string> vecFileName)
+HRESULT CObjectResource<T1, T2>::Load(std::vector<std::tuple<std::string, bool>> tStringFlag)
 {
-	//ファイルパスの代入.
-	const char** fileName = nullptr;
-	fileName = new const char*[m_ResourceMax]();
-	for (int file = 0; file < m_ResourceMax; file++) {
-		fileName[file] = vecFileName[file].c_str();
-	}
-	
-	//読み込み処理関数.
 	for (int ObjNum = 0; ObjNum < m_ResourceMax; ObjNum++) {
-		Create(static_cast<T2>(ObjNum), fileName[ObjNum]);
-	}
+		//ファイル名.
+		const std::string FileName = std::get<0>(tStringFlag[ObjNum]);
 
-	//配列動的確保したものの解放.
-	SAFE_DELETE_ARRAY(fileName);
+		//スポットライトを使うフラグ.
+		const bool bUseSpotLightFlag = std::get<1>(tStringFlag[ObjNum]);
+
+		//読み込み処理関数.
+		Create(static_cast<T2>(ObjNum), FileName.c_str(), bUseSpotLightFlag);
+	}
 
 	return S_OK;
 }
@@ -100,7 +96,7 @@ T1* CObjectResource<T1, T2>::GetMeshObject(T2 enObjectInof)
 //		作成処理関数.
 //=======================================.
 template<class T1, class T2>
-HRESULT CObjectResource<T1, T2>::Create(T2 enObjectInfo, const char* pFileName) 
+HRESULT CObjectResource<T1, T2>::Create(T2 enObjectInfo, const char* pFileName, const bool& bSpotLight) 
 {
 	//範囲外なら終了.
 	if (FAILED(Check_ObjectRange(enObjectInfo))) {
@@ -114,7 +110,7 @@ HRESULT CObjectResource<T1, T2>::Create(T2 enObjectInfo, const char* pFileName)
 
 	//モデルの読み込み.
 	m_ppCObject[static_cast<int>(enObjectInfo)] = new T1();
-	if (FAILED(m_ppCObject[static_cast<int>(enObjectInfo)]->Init(m_hWnd, m_pDevice9, m_pDevice11, m_pContext11, pFileName))) {
+	if (FAILED(m_ppCObject[static_cast<int>(enObjectInfo)]->Init(m_hWnd, m_pDevice9, m_pDevice11, m_pContext11, pFileName, bSpotLight))) {
 		return E_FAIL;
 	}
 

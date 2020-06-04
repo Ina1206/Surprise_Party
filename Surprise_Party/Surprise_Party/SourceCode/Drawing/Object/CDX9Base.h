@@ -122,6 +122,8 @@ protected:
 	D3DXVECTOR2							m_vUV;					//UV.
 
 	std::unique_ptr<CObjectAlphaBlend>	m_pCObjectAlphaBlend;	//オブジェクトアルファブレンド.
+	
+	bool								m_bSpotLightUseFlag;	//スポットライト使用フラグ.
 };
 
 #endif	//#ifndef _CDX9BASE_H.

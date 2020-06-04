@@ -24,12 +24,16 @@ cbuffer per_material : register(b1)
 //フレーム単位.
 cbuffer per_frame	: register(b2)
 {
-	float4	g_vCamPos					: packoffset(c0);	//カメラ情報.
-	float4	g_vLightDir					: packoffset(c1);	//ライト方向.
-	//float4	g_vCasterToLight			: packoffset(c2);	//影を落とすモデルとライトを結ぶベクトル.
-	//float4  g_vCasterPos[SHADOW_MAX]	: packoffset(c3);	//影を落とすキャスター位置.
-	float	g_fAlpha					: packoffset(c3);
-	float2	g_vUV						: packoffset(c4);
+	float4	g_vCamPos;			//カメラ情報.
+	float4	g_vLightDir;			//ライト方向.
+	matrix	g_mLightRot;		//ﾗｲﾄ回転行列.
+	float4	g_fIntensity;		//ﾗｲﾄ強度(明るさ). ※xのみ使用する.
+	float4	g_fLightWidth;		//ライトの広さ.
+	float4	g_vLightColor;		//ライト色.
+	float4	g_vAlpha;			//透過値.
+	float4	g_vUv;				//UV.
+	float4	g_vLightPosWidth;	//ライト配置幅.
+	float4	g_vLightMax;		//ライト最大値.
 };
 
 //頂点シェーダの出力パラメータ.
@@ -77,8 +81,8 @@ VS_OUTPUT VS_Main(float4 Pos : POSITION,
 	//テクスチャ座標を渡す.
 	output.Tex = Tex;
 
-	output.Tex.x += g_vUV.x;
-	output.Tex.y += g_vUV.y;
+	output.Tex.x += g_vUv.x;
+	output.Tex.y += g_vUv.y;
 
 	return output;
 }
@@ -104,7 +108,7 @@ float4 PS_Main( VS_OUTPUT input ) : SV_Target
 	//	}
 	//}
 
-	Color.a *= g_fAlpha;
+	Color.a *= g_vAlpha;
 
 	return Color;
 }

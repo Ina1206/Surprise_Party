@@ -1,7 +1,8 @@
 #include "CDX9Mesh.h"
 #include <crtdbg.h>	
 
-const char SHADER_NAME[] = "Data\\Shader\\SpotLight.hlsl";
+const char SPOTLIGHT_SHADER_NAME[] = "Data\\Shader\\SpotLight.hlsl";
+const char MESH_SHADER_NAME[] = "Data\\Shader\\Mesh.hlsl";
 
 //コンストラクタ.
 CDX9Mesh::CDX9Mesh()
@@ -31,12 +32,13 @@ CDX9Mesh::~CDX9Mesh()
 
 HRESULT CDX9Mesh::Init(
 	HWND hWnd, LPDIRECT3DDEVICE9 pDevice9,ID3D11Device* pDevice11,
-	ID3D11DeviceContext* pContext11, const char* fileName)
+	ID3D11DeviceContext* pContext11, const char* fileName, const bool& bSpotLightHLSL)
 {
 	m_hWnd			= hWnd;
 	m_pDevice9		= pDevice9;
 	m_pDevice11		= pDevice11;
 	m_pContext11	= pContext11;
+	m_bSpotLightUseFlag = bSpotLightHLSL;
 
 	if (FAILED(InitBlend(m_pDevice11, m_pContext11))) {
 		return E_FAIL;
@@ -325,11 +327,19 @@ HRESULT CDX9Mesh::InitShader()
 		D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION;
 #endif	//#ifdef _DEBUG.
 
+	std::string SHADER_NAME;
+	if (m_bSpotLightUseFlag == true) {
+		SHADER_NAME = SPOTLIGHT_SHADER_NAME;
+	}
+	else {
+		SHADER_NAME = MESH_SHADER_NAME;
+	}
+
 	//HLSLからバーテックスシェーダのブロブを作成.
 	if (m_EnableTexture == true){
 		if (FAILED(
 			D3DX11CompileFromFile(
-				SHADER_NAME,		//シェーダファイル名(HLSLファイル).
+				SHADER_NAME.c_str(),//シェーダファイル名(HLSLファイル).
 				nullptr,			//マクロ定義の配列へのポインタ(未使用).
 				nullptr,			//インクルードファイルを扱うインターフェイスへのポインタ(未使用).
 				"VS_Main",			//シェーダエントリーポイント関数の名前.				//""はプロパティの設定項目と一緒.
@@ -348,7 +358,7 @@ HRESULT CDX9Mesh::InitShader()
 	else {
 		if (FAILED(
 			D3DX11CompileFromFile(
-				SHADER_NAME,		//シェーダファイル名(HLSLファイル).
+				SHADER_NAME.c_str(),//シェーダファイル名(HLSLファイル).
 				nullptr,			//マクロ定義の配列へのポインタ(未使用).
 				nullptr,			//インクルードファイルを扱うインターフェイスへのポインタ(未使用).
 				"VS_NoTex",			//シェーダエントリーポイント関数の名前.				//""はプロパティの設定項目と一緒.
@@ -458,7 +468,7 @@ HRESULT CDX9Mesh::InitShader()
 	if (m_EnableTexture == true) {
 		if (FAILED(
 			D3DX11CompileFromFile(
-				SHADER_NAME,		//シェーダファイル名(HLSLファイル).
+				SHADER_NAME.c_str(),//シェーダファイル名(HLSLファイル).
 				nullptr,			//マクロ定義の配列へのポインタ(未使用).
 				nullptr,			//インクルードファイルを扱うインターフェイスへのポインタ(未使用).
 				"PS_Main",			//シェーダエントリーポイント関数の名前.
@@ -477,7 +487,7 @@ HRESULT CDX9Mesh::InitShader()
 	else {
 		if (FAILED(
 			D3DX11CompileFromFile(
-				SHADER_NAME,		//シェーダファイル名(HLSLファイル).
+				SHADER_NAME.c_str(),//シェーダファイル名(HLSLファイル).
 				nullptr,			//マクロ定義の配列へのポインタ(未使用).
 				nullptr,			//インクルードファイルを扱うインターフェイスへのポインタ(未使用).
 				"PS_NoTex",			//シェーダエントリーポイント関数の名前.

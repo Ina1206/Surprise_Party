@@ -22,6 +22,7 @@ CDX9Base::CDX9Base()
 	, m_fAlpha				(1.0f)
 	, m_vUV					(0.0f, 0.0f)
 	, m_pCObjectAlphaBlend	(new CObjectAlphaBlend())
+	, m_bSpotLightUseFlag	(false)
 {
 
 }

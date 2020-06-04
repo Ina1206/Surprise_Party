@@ -5,6 +5,7 @@
 #include "ObjectResource/CObjectResource.h"
 #include "EffectResource/CResourceEffect.h"
 #include "FontResource/CFontResource.h"
+#include <tuple>
 
 /*******************************************
 *		読み込み管理クラス.
@@ -57,6 +58,10 @@ private:
 	std::vector<std::string>										m_vSpriteUIFileNmae;	//スプライトUIのファイル名.
 	std::vector<std::string>										m_vStaticMeshFileName;	//スタティックメッシュのファイル名.
 	std::vector<std::string>										m_vSkinMeshFileName;	//スキンメッシュのファイル名.
+	
+	std::vector<bool>												m_bUseSpotLightFlag;	//スポットライト使用フラグ.
+	std::vector<std::tuple<std::string, bool>>									m_tStaticMesh;
+	std::vector<std::tuple<std::string, bool>>									m_tSkinMesh;
 
 	SPRITE_STATE*													m_pstSpriteState;		//スプライト情報構造体.
 	SPRITE_STATE*													m_pstSpriteUIState;		//スプライトUI情報構造体.

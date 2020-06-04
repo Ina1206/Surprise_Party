@@ -11,6 +11,7 @@ CResourceManager::CResourceManager()
 	, m_vSpriteUIFileNmae	()
 	, m_vStaticMeshFileName	()
 	, m_vSkinMeshFileName	()
+	, m_bUseSpotLightFlag	()
 	, m_pstSpriteState		(nullptr)
 	, m_pstSpriteUIState	(nullptr)
 {
@@ -70,7 +71,8 @@ HRESULT CResourceManager::Load(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Devi
 	//初期化処理.
 	m_pCStaticMesh->Init(static_cast<int>(enStaticMeshType::Max));
 	//読み込み処理.
-	m_pCStaticMesh->Load(m_vStaticMeshFileName);
+	m_pCStaticMesh->Load(m_tStaticMesh);
+	//m_pCStaticMesh->Load(m_vStaticMeshFileName);
 	//当たり判定用スフィア作成処理関数.
 	if (FAILED(InitSphere())) {
 		_ASSERT_EXPR(false, L"当たり判定用スフィア作成失敗");
@@ -84,7 +86,7 @@ HRESULT CResourceManager::Load(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Devi
 	//初期化処理.
 	m_pCSkinMesh->Init(static_cast<int>(enSkinMeshType::Max));
 	//読み込み処理.
-	m_pCSkinMesh->Load(m_vSkinMeshFileName);
+	m_pCSkinMesh->Load(m_tSkinMesh);
 
 	//エフェクト.
 	m_pCEffect.reset(new CResourceEffect());
@@ -121,19 +123,30 @@ HRESULT CResourceManager::Release()
 //==================================================.
 void CResourceManager::StaticMeshFileNmaeSetting()
 {
-	m_vStaticMeshFileName = {
-		"Data\\Object\\StaticMesh\\Wall\\Wall.x",				//壁.
-		"Data\\Object\\StaticMesh\\Floor\\Flor.X",				//床.
-		"Data\\Object\\StaticMesh\\Painting\\e.X",				//絵画.
-		"Data\\Object\\StaticMesh\\BookShelf\\BookShelf.x",		//本棚.
-		"Data\\Object\\StaticMesh\\UpDownFloor\\UpDownFloor.X",	//オブジェクト移動スイッチ.
-		"Data\\Object\\StaticMesh\\Switch\\Switch.X",			//音が鳴るスイッチ.
-		"Data\\Object\\StaticMesh\\Ghost\\gost_a.X",			//スイッチを押すお化け.
-		"Data\\Object\\StaticMesh\\Phone\\phone.X",				//携帯.
-		"Data\\Object\\StaticMesh\\HitSphere\\Sphere.x",		//当たり判定用スフィア.
-		"Data\\Object\\StaticMesh\\Table\\Round table.X",		//机.
-		"Data\\Object\\StaticMesh\\VaseFlowar\\vase_flower.X",	//花瓶.
-	};
+	//m_vStaticMeshFileName = {
+	//	"Data\\Object\\StaticMesh\\Wall\\Wall.x",				//壁.
+	//	"Data\\Object\\StaticMesh\\Floor\\Flor.X",				//床.
+	//	"Data\\Object\\StaticMesh\\Painting\\e.X",				//絵画.
+	//	"Data\\Object\\StaticMesh\\BookShelf\\BookShelf.x",		//本棚.
+	//	"Data\\Object\\StaticMesh\\UpDownFloor\\UpDownFloor.X",	//オブジェクト移動スイッチ.
+	//	"Data\\Object\\StaticMesh\\Switch\\Switch.X",			//音が鳴るスイッチ.
+	//	"Data\\Object\\StaticMesh\\Ghost\\gost_a.X",			//スイッチを押すお化け.
+	//	"Data\\Object\\StaticMesh\\Phone\\phone.X",				//携帯.
+	//	"Data\\Object\\StaticMesh\\HitSphere\\Sphere.x",		//当たり判定用スフィア.
+	//	"Data\\Object\\StaticMesh\\Table\\Round table.X",		//机.
+	//	"Data\\Object\\StaticMesh\\VaseFlowar\\vase_flower.X",	//花瓶.
+	//};
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\Wall\\Wall.x", true));				//壁.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\Floor\\Flor.X", true));				//床.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\Painting\\e.X", true));				//絵画.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\BookShelf\\BookShelf.x", true));		//本棚.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\UpDownFloor\\UpDownFloor.X", true));	//オブジェクト移動スイッチ.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\Switch\\Switch.X", true));			//音が鳴るスイッチ.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\Ghost\\gost_a.X", true));			//スイッチを押すお化け.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\Phone\\phone.X", false));				//携帯.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\HitSphere\\Sphere.x", true));		//当たり判定用スフィア.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\Table\\Round table.X", true));		//机.
+	m_tStaticMesh.push_back(std::make_tuple("Data\\Object\\StaticMesh\\VaseFlowar\\vase_flower.X", true));	//花瓶.
 }
 
 //=================================================.
@@ -141,12 +154,16 @@ void CResourceManager::StaticMeshFileNmaeSetting()
 //=================================================.
 void CResourceManager::SkinMeshFileNameSetting()
 {
-	m_vSkinMeshFileName = {
-		"Data\\Object\\SkinMesh\\People\\Sayaka\\Sayaka_s.X",	//女の子.
-		"Data\\Object\\SkinMesh\\People\\Towa\\Towa_s.X",		//男の子.
-		"Data\\Object\\SkinMesh\\Ghost\\GhostB\\GhostB_s.X",	//現れるお化け.
-		"Data\\Object\\SkinMesh\\Ghost\\BigGhost\\BigGhost_s.X",//大きいお化け.
-	};
+	//m_vSkinMeshFileName = {
+	//	"Data\\Object\\SkinMesh\\People\\Sayaka\\Sayaka_s.X",	//女の子.
+	//	"Data\\Object\\SkinMesh\\People\\Towa\\Towa_s.X",		//男の子.
+	//	"Data\\Object\\SkinMesh\\Ghost\\GhostB\\GhostB_s.X",	//現れるお化け.
+	//	"Data\\Object\\SkinMesh\\Ghost\\BigGhost\\BigGhost_s.X",//大きいお化け.
+	//};
+	m_tSkinMesh.push_back(std::make_tuple("Data\\Object\\SkinMesh\\People\\Sayaka\\Sayaka_s.X",	true ));//女の子.
+	m_tSkinMesh.push_back(std::make_tuple("Data\\Object\\SkinMesh\\People\\Towa\\Towa_s.X",		true ));//男の子.
+	m_tSkinMesh.push_back(std::make_tuple("Data\\Object\\SkinMesh\\Ghost\\GhostB\\GhostB_s.X",	true ));//現れるお化け.
+	m_tSkinMesh.push_back(std::make_tuple("Data\\Object\\SkinMesh\\Ghost\\BigGhost\\BigGhost_s.X", true));//大きいお化け.
 }
 
 //=================================================.

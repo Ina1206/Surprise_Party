@@ -54,7 +54,7 @@ public:
 	~CDX9Mesh();	//デストラクタ.
 
 	HRESULT Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9,ID3D11Device* pDevice11,
-		ID3D11DeviceContext* pContext11, const char* fileName);
+		ID3D11DeviceContext* pContext11, const char* fileName, const bool& bSpotLightHLSL);
 
 	//レンダリング用.
 	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj,
