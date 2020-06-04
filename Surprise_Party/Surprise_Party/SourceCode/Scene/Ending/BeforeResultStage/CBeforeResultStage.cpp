@@ -22,12 +22,11 @@ void CBeforeResultStage::Update()
 {
 	const unsigned int PosFlag = (1 << 0);
 	const unsigned int LookFlag = (1 << 1);
-	const unsigned int LookPosFlag = (1 << 2);
 	static int Cnt = 0;
 	static D3DXVECTOR3 vLookPos = D3DXVECTOR3(5.0f, -0.8f, 5.0f);
 	if (GetAsyncKeyState('1') & 0x0001) {
 		Cnt++;
-		if (Cnt > 2) {
+		if (Cnt > 1) {
 			Cnt = 0;
 		}
 	}
@@ -116,7 +115,7 @@ void CBeforeResultStage::Update()
 
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
 		m_pCGhost[ghost]->Update();
-		m_pCGhost[ghost]->SetLookAtPos(vLookPos);
+		//m_pCGhost[ghost]->SetLookAtPos(vLookPos);
 		//m_pCGhost[ghost]->SetLookAtPos(D3DXVECTOR3(5.0f, -0.8f, 5.0f));
 	}
 	

@@ -103,8 +103,7 @@ void CEndingStageBase::InitCommonValue()
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
 
-	m_vObjLookPos = D3DXVECTOR3(5.7f, 0.9f, 5.0f);
-
+	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 5.0f);
 
 	for (int ghost = 0; ghost < 5; ghost++) {
 		m_pCEndingWorkGhostBase.emplace_back(new CEndingDispGhost());
@@ -113,10 +112,8 @@ void CEndingStageBase::InitCommonValue()
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);
 
-		const float			RADIAN	= static_cast<float>(D3DXToRadian(2.5f + (ghost * 45.0f)));
-		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.0f) + D3DXVECTOR3(5.0f, 1.5f + ((ghost % 2) * 0.5f), 5.0f);
-
-		//vPos = D3DXVECTOR3(ghost * 3.0f, 0.0f, 0.0f);
+		const float			RADIAN	= static_cast<float>(D3DXToRadian(122.5f + (ghost * 55.0f)));
+		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.5f) + D3DXVECTOR3(5.0f, 1.5f + ((ghost % 2) * 0.5f), 5.0f);
 
 		m_pCGhost[ghost]->SetPos(vPos);
 

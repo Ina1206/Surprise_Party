@@ -365,19 +365,10 @@ void CBigGhost::ChangeEffect()
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
 		break;
 	case enEmotionType::ViewSmartphone:
-		//m_vPos.y = WAKE_UP_POS.y;
-		//m_vPos.x += 1.5f;
-		//m_vPos.z += 1.5f;
 		//à⁄ìÆäpìxèàóùä÷êî.
 		MoveRotation(m_vPos, m_vLookAtPos);
-		//m_vRot.x += 0.f;
-		//m_vRot.z -= 0.3f;
-
-		//m_vRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		//m_vPrePos.z = -30.0f;
-		//m_vPrePos.y = 50.0f;
 		m_vPrePos.z = 10.0f;
-		//m_vRot.y += 0.1f;
+
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
 		break;
