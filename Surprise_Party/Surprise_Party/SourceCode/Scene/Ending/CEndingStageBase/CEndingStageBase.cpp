@@ -12,6 +12,7 @@ CEndingStageBase::CEndingStageBase()
 	, m_pCEndingWorkGhostBase	(0)
 	, m_pCGhost					(0)
 	, m_pCFloor					(nullptr)
+	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
 {
 	//共通の値の初期化処理関数.
 	InitCommonValue();
@@ -102,6 +103,9 @@ void CEndingStageBase::InitCommonValue()
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
 
+	m_vObjLookPos = D3DXVECTOR3(5.7f, 0.9f, 5.0f);
+
+
 	for (int ghost = 0; ghost < 5; ghost++) {
 		m_pCEndingWorkGhostBase.emplace_back(new CEndingDispGhost());
 	}
@@ -109,16 +113,17 @@ void CEndingStageBase::InitCommonValue()
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);
 
-		const float			RADIAN	= static_cast<float>(D3DXToRadian(-57.5 + (ghost * 50.0f)));
-		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 3.0f) + D3DXVECTOR3(5.0f, -0.8f, 5.0f);
+		const float			RADIAN	= static_cast<float>(D3DXToRadian(-57.5 + (ghost * 45.0f)));
+		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.0f) + D3DXVECTOR3(5.0f, 1.0f + ((ghost % 2) * 1.5f), 5.0f);
 		m_pCGhost[ghost]->SetPos(vPos);
 
 		//感情番号.
 		const int m_EmotionType = static_cast<int>(CGhostBase::enEmotionType::ViewSmartphone);
 		m_pCGhost[ghost]->SetEmotionNum(m_EmotionType);
 
-		
+		m_pCGhost[ghost]->SetLookAtPos(m_vObjLookPos);
 	}
+
 }
 
 //==========================================.
@@ -126,15 +131,15 @@ void CEndingStageBase::InitCommonValue()
 //==========================================.
 void CEndingStageBase::CreateInstanceFronClass(const int& num)
 {
-	//if (num == 2) {
-	//	m_pCGhost.emplace_back(new CBigGhost());
-	//	return;
-	//}
+	if (num == 2) {
+		m_pCGhost.emplace_back(new CBigGhost());
+		return;
+	}
 
 	if (num % 2 == 0) {
 		m_pCGhost.emplace_back(new CEndingDispGhost());
 		return;
 	}
-	
 	m_pCGhost.emplace_back(new CEndingSwitchGhost());
+	
 }

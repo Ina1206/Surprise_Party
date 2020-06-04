@@ -30,49 +30,49 @@ CBigGhost::~CBigGhost()
 //==========================================.
 void CBigGhost::Update()
 {
-	static bool flag = false;
-	if (GetAsyncKeyState(VK_F2) & 0x0001) {
-		if (flag == false) {
-			flag = true;
-		}
-		else {
-			flag = false;
-		}
-	}
+	//static bool flag = false;
+	//if (GetAsyncKeyState(VK_F2) & 0x0001) {
+	//	if (flag == false) {
+	//		flag = true;
+	//	}
+	//	else {
+	//		flag = false;
+	//	}
+	//}
 
-	D3DXVECTOR3 vChange;
-	if (flag == false) {
-		vChange = m_vPos;
-	}
-	else {
-		vChange = m_vRot;
-	}
+	//D3DXVECTOR3 vChange;
+	//if (flag == false) {
+	//	vChange = m_vPos;
+	//}
+	//else {
+	//	vChange = m_vRot;
+	//}
 
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		vChange.x += 0.01f;
-	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		vChange.x -= 0.01f;
-	}
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		vChange.y += 0.01f;
-	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		vChange.y -= 0.01f;
-	}
-	if (GetAsyncKeyState('Z') & 0x8000) {
-		vChange.z += 0.01f;
-	}
-	if (GetAsyncKeyState('X') & 0x8000) {
-		vChange.z -= 0.01f;
-	}
+	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+	//	vChange.x += 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+	//	vChange.x -= 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
+	//	vChange.y += 0.01f;
+	//}
+	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	//	vChange.y -= 0.01f;
+	//}
+	//if (GetAsyncKeyState('Z') & 0x8000) {
+	//	vChange.z += 0.01f;
+	//}
+	//if (GetAsyncKeyState('X') & 0x8000) {
+	//	vChange.z -= 0.01f;
+	//}
 
-	if (flag == false) {
-		m_vPos = vChange;
-	}
-	else {
-		m_vRot = vChange;
-	}
+	//if (flag == false) {
+	//	m_vPos = vChange;
+	//}
+	//else {
+	//	m_vRot = vChange;
+	//}
 
 	//if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 	//	m_ChangeEmotionFlag = true;
@@ -365,12 +365,14 @@ void CBigGhost::ChangeEffect()
 		break;
 	case enEmotionType::ViewSmartphone:
 		m_vPos.y = WAKE_UP_POS.y;
+		m_vPos.x += 1.5f;
+		m_vPos.z += 1.5f;
 		//ˆÚ“®Šp“xˆ—ŠÖ”.
-		//MoveRotation(m_vPos, m_vLookAtPos);
+		MoveRotation(m_vPos, m_vLookAtPos);
 		//m_vRot.x += 0.f;
 		//m_vRot.z -= 0.3f;
 
-		m_vRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		//m_vRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 		//m_vRot.y += 0.1f;
 		m_bSleepFlag = true;
@@ -426,6 +428,7 @@ void CBigGhost::EmotionMove()
 		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::ViewSmartphone:
+		MoveRotation(m_vPos, m_vLookAtPos);
 
 		break;
 	case enEmotionType::Nothing:

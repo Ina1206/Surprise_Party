@@ -48,7 +48,7 @@ private:
 
 	//========================変数=============================//.
 	std::unique_ptr<CFloor>				m_pCFloor;			//床クラス.
-
+	D3DXVECTOR3							m_vObjLookPos;		//オブジェクトが見る場所.
 };
 
 #endif	//#ifndef CENDING_STAGE_BASE_H.
