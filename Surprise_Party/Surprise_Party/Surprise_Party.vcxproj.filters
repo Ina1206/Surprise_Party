@@ -332,6 +332,9 @@
     <Filter Include="SourceCode\Camera">
       <UniqueIdentifier>{cfe2a5af-7588-4336-bdbd-5d53d9c826f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Camera\CameraGhostSpeakStage">
+      <UniqueIdentifier>{beb91a3e-55bb-46f2-a784-1f47de5069fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -670,6 +673,9 @@
     <ClInclude Include="SourceCode\Camera\CCameraBase.h">
       <Filter>SourceCode\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Camera\CameraGhostSpeakStage\CCameraGhostSpeakStage.h">
+      <Filter>SourceCode\Camera\CameraGhostSpeakStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -995,6 +1001,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Camera\CCameraBase.cpp">
       <Filter>SourceCode\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Camera\CameraGhostSpeakStage\CCameraGhostSpeakStage.cpp">
+      <Filter>SourceCode\Camera\CameraGhostSpeakStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

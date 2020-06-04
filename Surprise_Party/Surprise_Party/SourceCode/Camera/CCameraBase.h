@@ -10,7 +10,7 @@ class CCameraBase
 {
 public:
 	CCameraBase();
-	~CCameraBase();
+	virtual ~CCameraBase();
 
 	//=======================ŠÖ”==========================//.
 	void Update();				//XVˆ—ŠÖ”.
