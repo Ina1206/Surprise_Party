@@ -4,6 +4,7 @@
 *		スマートフォンクラス
 *************/
 CSmartPhone::CSmartPhone()
+	: m_vUV	(0.0f, 0.0f)
 {
 	//初期化処理関数.
 	Init();
@@ -20,7 +21,14 @@ CSmartPhone::~CSmartPhone()
 //============================================.
 void CSmartPhone::Update()
 {
+	
 
+	m_vUV.y += 0.05f;
+	
+	if(m_vUV.y >= 1.0f){
+		m_vUV.y = 0.0f;
+	}
+	
 }
 
 //============================================.
@@ -31,6 +39,7 @@ void CSmartPhone::Render()
 	m_pCMesh->SetPosition(m_vPos);
 	m_pCMesh->SetRotation(m_vRot);
 	m_pCMesh->SetScale(0.05f);
+	m_pCMesh->SetUV(m_vUV);
 	m_pCMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 }
 
