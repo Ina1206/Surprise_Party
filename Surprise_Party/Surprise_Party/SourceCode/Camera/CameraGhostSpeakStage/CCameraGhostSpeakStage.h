@@ -25,11 +25,14 @@ public:
 	const int			FAR_AWAY_CAMERA_DIRECT		= -1;									//カメラが遠のく方向.
 
 	//========================関数==========================//.
-	void Update();		//更新処理関数.
+	void Update();				//更新処理関数.
 private:
 	//========================関数==========================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
+	void Init();				//初期化処理関数.
+	void Release();				//解放処理関数.
+	void Move();				//移動処理関数.
+	void GetCloserUpperLimit();	//接近上限処理関数.
+	void FarAwayUpperLimit();	//遠のく上限処理関数.
 
 	//========================変数==========================//.
 	int	m_MoveCameraDirection;	//カメラ移動方向.
