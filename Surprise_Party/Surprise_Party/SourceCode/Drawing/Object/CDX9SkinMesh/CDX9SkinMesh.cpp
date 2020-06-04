@@ -7,7 +7,8 @@
 #include <crtdbg.h>
 
 //シェーダ名(ディレクトリも含む)
-const char SHADER_NAME[] = "Data\\Shader\\SkinMesh.hlsl";
+const char SKINMESH_SHADER_NAME[] = "Data\\Shader\\SkinMesh.hlsl";
+const char SPOT_LIGHT_SHADER_NAME[] = "Data\\Shader\\SkinMeshSpotLight.hlsl";
 
 /******************************************************************************************************************************************
 *
@@ -108,10 +109,18 @@ HRESULT	CDX9SkinMesh::InitShader()
 	uCompileFlag = D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION;
 #endif//#ifdef _DEBUG
 
+	std::string SHADER_NAME;
+	if (m_bSpotLightUseFlag == true) {
+		SHADER_NAME = SPOT_LIGHT_SHADER_NAME;
+	}
+	else {
+		SHADER_NAME = SKINMESH_SHADER_NAME;
+	}
+
 	//ブロブからバーテックスシェーダー作成.
 	if( FAILED(
 		D3DX11CompileFromFile(
-			SHADER_NAME, nullptr, nullptr,
+			SHADER_NAME.c_str(), nullptr, nullptr,
 			"VS_Main", "vs_5_0",
 			uCompileFlag, 0, nullptr,
 			&pCompiledShader, &pErrors, nullptr ) ) )
@@ -155,7 +164,7 @@ HRESULT	CDX9SkinMesh::InitShader()
 	//ブロブからピクセルシェーダー作成
 	if(FAILED(
 		D3DX11CompileFromFile(
-			SHADER_NAME, nullptr, nullptr,
+			SHADER_NAME.c_str(), nullptr, nullptr,
 			"PS_Main", "ps_5_0",
 			uCompileFlag, 0, nullptr,
 			&pCompiledShader, &pErrors, nullptr ) ) )

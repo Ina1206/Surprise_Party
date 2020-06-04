@@ -138,15 +138,72 @@ PSSkinIn VS_Main( VSSkinIn input )
 float4 PS_Main( PSSkinIn input ) : SV_Target
 {
 
+	float4 AllColor = float4(0.0f, 0.0f, 0.0f, 0.0f);
+	for (int light = 0; light < g_vLightMax.x; light++) {
+		//ﾗｲﾄ位置.
+		float4 vLightPos = g_vLightPos;
+		vLightPos.x += (g_vLightPosWidth.x * light) - g_vLightPosWidth.x;
+		//ﾗｲﾄﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙからﾗｲﾄ現在座標に向かうﾍﾞｸﾄﾙ.
+		float4 vLightVector = normalize(vLightPos - input.PosWorld);
+		//視線ﾍﾞｸﾄﾙ:このﾋﾟｸｾﾙから視点座標に向かうﾍﾞｸﾄﾙ.
+		float4 vEyeVector = normalize(g_vEye - input.PosWorld);
+		//ﾗｲﾄの基準ﾍﾞｸﾄﾙ.
+		float4 vLightBaseVector = float4(0.0f, 1.0f, 0.0f, 1.0f);
+
+		//ﾗｲﾄの基準ﾍﾞｸﾄﾙに現在のﾗｲﾄの回転を反映.
+		vLightBaseVector = mul(vLightBaseVector, g_mLightRot);
+
+
+		//環境光　①.
+		float4 ambient = g_Ambient;
+
+		//拡散反射光 ②.
+		float NL = saturate(dot(input.Norm, vLightVector));
+		float4 diffuse =
+			(g_Diffuse / 2 + g_Texture.Sample(g_Sampler, input.Tex) / 2)/**NL*/;
+
+
+		//鏡面反射光 ③.
+		float3 reflect = normalize(2.0f * NL * input.Normal - vLightVector);
+		float4 specular =
+			pow(saturate(dot(reflect, vEyeVector)), 4)*g_Specular;
+
+		//ﾌｫﾝﾓﾃﾞﾙ最終色　①②③の合計.
+		float4 Color = ambient + diffuse + specular;
+		Color.r *= g_vLightColor.x;
+		Color.g *= g_vLightColor.y;
+		Color.b *= g_vLightColor.z;
+
+		//ｽﾎﾟｯﾄﾗｲﾄの範囲内と範囲外の境界を滑らかに変化させる.
+		float cos = saturate(dot(vLightBaseVector, vLightVector));
+		//ｺｰﾝ角度:とりあえず 0.9f.
+		if (cos < g_fLightWidth.x) {
+			Color *= pow(cos / 3.0f, 12.0f *(0.9f - cos)) * Color;
+		}
+
+		//減衰.
+		float Distance = length(vLightPos - input.PosWorld);
+		//att = 1 ÷ 0 ÷ ( a + b * d + c * d^2 )
+		//d:距離
+		//a,b,c:定数.
+		Color *=
+			1.0f / (0.0f + 0.0f * Distance + 0.3f * Distance * Distance);
+
+		//ﾗｲﾄ強度を反映.
+		Color *= g_fIntensity.x;
+
+		AllColor += Color;
+	}
 	// テクスチャからピクセル色を取り出す.
 	float4 TexDiffuse = g_Texture.Sample(g_Sampler, input.Tex);
-	// 出力用を作成.
-	float4 RetColor = input.Color/*/2.0f */ + TexDiffuse/*/2.0f*/;
+	AllColor.a = TexDiffuse.a;
 
-	//RetColor = g_Ambient;
-
-	// テクスチャのα値をそのまま使用。
-	RetColor.a = TexDiffuse.a;
-
-	return RetColor;
+   //                 1
+   // fatt = -------------------
+   //        a + b * d + c * d^2
+   // fatt :減衰.
+   // a,b,c:定数.
+   // d    :距離.
+	
+	return AllColor;
 }

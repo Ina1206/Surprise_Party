@@ -1004,5 +1004,8 @@
     <FxCompile Include="Data\Shader\SpotLight.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
+    <FxCompile Include="Data\Shader\SkinMeshSpotLight.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
