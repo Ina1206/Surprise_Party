@@ -27,8 +27,6 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCSpeakWorkGhost		(nullptr)
 	, m_vSelectGhostPos			(0.0f, 0.0f, 0.0f)
 	, m_pCDescriptionUIManager	(nullptr)
-	//, m_bTutorialCameraMove		(false)
-	//, m_stOldCamera				()
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -58,12 +56,10 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	//表舞台ライトクラスの更新処理関数.
 	m_pCFrontstageLight->SetCameraPos(m_vCameraPos);
-	//m_pCFrontstageLight->SetCameraPos(m_Camera.vPos);
 	m_pCFrontstageLight->Update();
 
 	//静的オブジェクト更新処理関数.
 	m_pCStaticObjectManager->SetCameraPos(m_vCameraPos);
-	//m_pCStaticObjectManager->SetCameraPos(m_Camera.vPos);
 	m_pCStaticObjectManager->Updata();
 
 	//お化け.
@@ -173,7 +169,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	//動的オブジェクトの更新処理関数.
 	m_pCMoveObjectManager->SetCameraPos(m_vCameraPos);
-	//m_pCMoveObjectManager->SetCameraPos(m_Camera.vPos);
 	m_pCMoveObjectManager->SetSelectionNum(m_SelectNum[GIMMICK_NUM]);
 	m_pCMoveObjectManager->SetGhostPos(m_vGhostPos);
 	m_pCMoveObjectManager->UpDate();
@@ -207,10 +202,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	m_pCGameGhostCursor->SetCharacterPos(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos());
 	//ゲーム内でのお化けのカーソル更新処理関数.
 	m_pCGameGhostCursor->UpDate();
-
-	//カメラ移動.
-	CameraMove();
-
 
 	//驚きゲージ更新処理関数.
 	m_pCSurpriseGage->Update();
@@ -259,21 +250,17 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_pCPeopleManager->SetTutorialFlag(true);
 
 			if(!(m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople)) {
-				//if (m_bTutorialCameraMove & CAMERA_MOVE_START_FLAG) {
-				//	m_bTutorialCameraMove = CAMERA_MOVE_RETURN_FLAG;
-				//}
+				//お化けに視点を戻す.
 				if (m_pCCamera->GetMoveFlag() & m_pCCamera->PEOPLE_LOOK_FLAG) {
 					m_pCCamera->SetMoveFlag(m_pCCamera->GHOST_LOOK_FLAG);
 				}
 				return;
 			}
 			if (m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople) {
-				//カメラ移動フラグ.
-				//m_bTutorialCameraMove = CAMERA_MOVE_START_FLAG;
+				//人に視点を移動.
 				m_pCCamera->SetMoveFlag(m_pCCamera->PEOPLE_LOOK_FLAG);
+				//差分取得処理関数.
 				m_pCCamera->AcquisitionDifference();
-				//m_stOldCamera.vPos = m_Camera.vPos;
-				//m_stOldCamera.vLook = m_Camera.vLook;
 
 			}
 		}
@@ -290,9 +277,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	m_pCClosedTime->Update();
 	m_pCClosedTime->GiveBornusTime(m_pCSurpriseGage->GetBornusGetFlag());
 
-	//if (m_pCSurpriseGage->GetSurprisePointMax() == true) {
-	//	m_enBeforeStageEndingType = enBeforeStageEndigneType::Great;
-	//}
 	m_enBeforeStageEndingType = Evalute();
 
 	//終了処理.
@@ -357,7 +341,6 @@ void CMainStage::Render()
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
 		//お化け本体の描画処理関数.
 		m_pCWorkGhost[ghost]->SetCameraPos(m_vCameraPos);
-		//m_pCWorkGhost[ghost]->SetCameraPos(m_Camera.vPos);
 		m_pCWorkGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
 		m_pCWorkGhost[ghost]->Render();
 	}
@@ -368,7 +351,6 @@ void CMainStage::Render()
 	m_pCMoveObjectManager->RenderSwitch(m_mView, m_mProj, m_Light);
 	//静的オブジェクトの描画.
 	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
-	//m_pCStaticObjectManager->Render(m_mView, m_mProj, m_Camera.vPos, m_Light);
 	//動くオブジェクト描画処理.
 	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_Light);
 
@@ -379,14 +361,12 @@ void CMainStage::Render()
 
 	//人の描画処理関数.
 	m_pCPeopleManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
-	//m_pCPeopleManager->Render(m_mView, m_mProj, m_Camera.vPos, m_Light);
 
 	//動くオブジェクトのエフェクト描画.
 	m_pCMoveObjectManager->EffectRender();
 	
 	//ゲーム内でのお化けのカーソル描画処理関数.
 	m_pCGameGhostCursor->RenderSetting(m_mView, m_mProj, m_vCameraPos);
-	//m_pCGameGhostCursor->RenderSetting(m_mView, m_mProj, m_Camera.vPos);
 	m_pCGameGhostCursor->Render();
 
 	//お化けの選択描画処理関数.
@@ -411,7 +391,6 @@ void CMainStage::Render()
 		//お化けの選択に関係する全てのフラグ.
 		const unsigned int RELATED_TO_GHOST_ALL_FLAG = SELECT_GHOST_FLAG | GHOST_ACT_SELECT_FLAG;
 		if (m_vCameraPos.x == m_vSelectGhostPos.x ||
-		//if (m_Camera.vPos.x == m_vSelectGhostPos.x ||
 			m_ObjectSelectFlag & RELATED_TO_GHOST_ALL_FLAG) {
 			m_pCSpeakWorkGhost->Render();
 		}
@@ -519,9 +498,7 @@ void CMainStage::Init()
 		m_SelectNum[select] = 0;
 	}
 
-	//カメラ初期設置.
-	//m_Camera.vPos = CAMERA_START_POS;
-	//m_Camera.vLook = CAMERA_START_LOOK;
+	//カメラクラスのインスタンス化.
 	m_pCCamera.reset(new CCameraGameMainStage());
 
 	//表舞台のライトクラスのインスタンス化.
@@ -758,74 +735,6 @@ void CMainStage::GhostElementSort(T pClass, int array)
 	pClass[array + 1].swap(pTmp);
 }
 
-//=======================================.
-//		カメラ移動処理関数.
-//=======================================.
-void CMainStage::CameraMove()
-{
-	//チュートリアル時のカメラ移動.
-	//if(m_bTutorialCameraMove & CAMERA_MOVE_START_FLAG){
-	//	if (m_Camera.vPos.x > 11.0f) {
-	//		m_Camera.vPos.x -= 0.6f;
-	//		m_Camera.vLook.x = m_Camera.vPos.x;
-	//		return;
-	//	}
-
-	//	const D3DXVECTOR3 vSeePeopleOldPos = D3DXVECTOR3(m_Camera.vPos.x, m_stOldCamera.vPos.y, m_stOldCamera.vPos.z);
-	//	const D3DXVECTOR3 vOldPos_Camera = vSeePeopleOldPos - CAMERA_PEOPLE_SEE_POS;
-	//	const float	vLength = D3DXVec3Length(&(vOldPos_Camera));
-	//	const D3DXVECTOR3 vRato = vOldPos_Camera / vLength;
-
-	//	m_Camera.vPos -= 0.2f * vRato;
-
-	//	if(m_Camera.vPos.y < CAMERA_PEOPLE_SEE_POS.y){
-	//		m_Camera.vPos = CAMERA_PEOPLE_SEE_POS;
-	//	}
-
-	//	const D3DXVECTOR3 vSeePeopleOldLook = D3DXVECTOR3(m_Camera.vLook.x, m_stOldCamera.vLook.y, m_stOldCamera.vLook.z);
-	//	const D3DXVECTOR3 vOldLook_SeeLook = m_stOldCamera.vLook - CAMERA_PEOPLE_SEE_LOOK;
-	//	const float	vLookLength = D3DXVec3Length(&vOldLook_SeeLook);
-	//	const D3DXVECTOR3 vLookRaito = vOldLook_SeeLook / vLookLength;
-
-	//	m_Camera.vLook -= 0.2f * vLookRaito;
-
-	//	if (m_Camera.vPos.y < CAMERA_PEOPLE_SEE_LOOK.y) {
-	//		m_Camera.vLook = CAMERA_PEOPLE_SEE_LOOK;
-	//	}
-
-	//	return;
-	//}
-
-	//if (m_bTutorialCameraMove & CAMERA_MOVE_RETURN_FLAG) {
-	//	//現在選択しているお化けのところへカメラを戻す.
-	//	const D3DXVECTOR3 vSelectGhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
-	//	m_Camera.vPos = CAMERA_START_POS;
-	//	m_Camera.vPos.x = vSelectGhostPos.x;
-	//	m_Camera.vLook = CAMERA_START_LOOK;
-	//	m_Camera.vLook.x = vSelectGhostPos.x;
-	//	return;
-	//}
-
-	//D3DXVECTOR3 m_GhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
-	////お化け選択時.
-	//if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
-	//	m_GhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
-	//}
-	////ギミック選択時.
-	//if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
-	//	m_GhostPos = m_pCMoveObjectManager->GetGimmickPos();
-	//}
-	////カメラ座標と注視点の座標設定.
-	//m_Camera.vLook.x = m_Camera.vPos.x = m_GhostPos.x;
-	
-}
-
-//=========================================.
-//		スポットライト更新処理関数.
-//=========================================.
-void CMainStage::SpotLightUpdate()
-{
-}
 
 //==========================================.
 //		評価処理関数.

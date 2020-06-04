@@ -28,8 +28,6 @@ public:
 	D3DXVECTOR3 GetPos() const { return m_Camera.vPos; }
 	//カメラ注視点.
 	D3DXVECTOR3 GetLook() const { return m_Camera.vLook; }
-	//カメラ移動終了.	
-	//bool GetFinishMoveCamera() const { return m_bFinishMoveCamera; }
 	//移動フラグ.
 	unsigned int GetMoveFlag() const { return m_MoveFlag; }
 
@@ -46,9 +44,8 @@ protected:
 	virtual void Release() = 0;		//解放処理関数.
 
 	//=======================変数==========================//.
-	CAMERA	m_Camera;				//カメラ情報.
-	//bool	m_bFinishMoveCamera;	//カメラ移動終了.
-	unsigned int m_MoveFlag;		//移動フラグ.
+	CAMERA			m_Camera;		//カメラ情報.
+	unsigned int	m_MoveFlag;		//移動フラグ.
 	D3DXVECTOR3		m_vTargetPos;	//相手の座標.
 	CAMERA			m_OldCamera;	//差分用変数.
 };
