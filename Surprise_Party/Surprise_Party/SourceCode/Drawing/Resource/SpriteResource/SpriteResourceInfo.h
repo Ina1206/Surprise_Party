@@ -81,6 +81,7 @@ enum class enSpriteUI
 	Arrow,							//矢印.
 	DescriptionBlack,				//説明用黒画面.
 	WhiteScreen,					//白画面.
+	CursorSNS,						//カーソルSNS.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.

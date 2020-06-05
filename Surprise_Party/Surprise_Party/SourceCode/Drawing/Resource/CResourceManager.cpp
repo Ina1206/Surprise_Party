@@ -207,6 +207,7 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\Arrow.png",					//矢印.
 		"Data\\Texture\\UI\\DescriptionBlack.png",				//説明用黒画面.
 		"Data\\Texture\\UI\\Game\\WhiteScreen.png",				//白画面.
+		"Data\\Texture\\UI\\Game\\SNSCursor.png",				//SNS用カーソル.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
@@ -509,6 +510,13 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[WhiteScreenNum].Base.h = WND_H;
 	m_pstSpriteUIState[WhiteScreenNum].Disp.w = WND_W;
 	m_pstSpriteUIState[WhiteScreenNum].Disp.h = WND_H;
+
+	//カーソルSNS.
+	const int CursorSNSNum = static_cast<int>(enSpriteUI::CursorSNS);
+	m_pstSpriteUIState[CursorSNSNum].Base.w = 90.0f;
+	m_pstSpriteUIState[CursorSNSNum].Base.h = 90.0f;
+	m_pstSpriteUIState[CursorSNSNum].Disp.w = 90.0f;
+	m_pstSpriteUIState[CursorSNSNum].Disp.h = 90.0f;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
