@@ -106,6 +106,7 @@
     <ClInclude Include="SourceCode\UI\Fade\CFade.h" />
     <ClInclude Include="SourceCode\UI\Fade\SceneFade\CSceneFade.h" />
     <ClInclude Include="SourceCode\UI\Fade\StageFade\CStageFade.h" />
+    <ClInclude Include="SourceCode\UI\Fade\WhiteScreenFade\CWhiteScreenFade.h" />
     <ClInclude Include="SourceCode\UI\GameWorldUI\Act_Selection\CAct_Selection.h" />
     <ClInclude Include="SourceCode\UI\GameWorldUI\CGameWorldUI.h" />
     <ClInclude Include="SourceCode\UI\GameWorldUI\GameWorldCursor\CGameWorldCursor.h" />
@@ -218,6 +219,7 @@
     <ClCompile Include="SourceCode\UI\Fade\CFade.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\SceneFade\CSceneFade.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\StageFade\CStageFade.cpp" />
+    <ClCompile Include="SourceCode\UI\Fade\WhiteScreenFade\CWhiteScreenFade.cpp" />
     <ClCompile Include="SourceCode\UI\GameWorldUI\Act_Selection\CAct_Selection.cpp" />
     <ClCompile Include="SourceCode\UI\GameWorldUI\CGameWorldUI.cpp" />
     <ClCompile Include="SourceCode\UI\GameWorldUI\GameWorldCursor\CGameWorldCursor.cpp" />

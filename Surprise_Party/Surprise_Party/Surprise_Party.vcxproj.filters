@@ -341,6 +341,9 @@
     <Filter Include="SourceCode\Camera\CameraEnding">
       <UniqueIdentifier>{50b94959-e273-44cf-9de7-c48fc60e024b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\Fade\WhiteScreenFade">
+      <UniqueIdentifier>{d997246e-a7d1-4045-b3e9-4d51414cf3e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -688,6 +691,9 @@
     <ClInclude Include="SourceCode\Camera\CameraEnding\CCameraEnding.h">
       <Filter>SourceCode\Camera\CameraEnding</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\Fade\WhiteScreenFade\CWhiteScreenFade.h">
+      <Filter>SourceCode\UI\Fade\WhiteScreenFade</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1022,6 +1028,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Camera\CameraEnding\CCameraEnding.cpp">
       <Filter>SourceCode\Camera\CameraEnding</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\Fade\WhiteScreenFade\CWhiteScreenFade.cpp">
+      <Filter>SourceCode\UI\Fade\WhiteScreenFade</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
