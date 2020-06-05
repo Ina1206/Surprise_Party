@@ -14,7 +14,7 @@ public:
 	virtual ~CFade();
 
 	//======================関数==========================//.
-	virtual void UpDate() = 0;	//更新処理関数.
+	virtual void Update() = 0;	//更新処理関数.
 	virtual void Render() = 0;	//描画処理関数.
 
 

@@ -19,7 +19,7 @@ CSceneFade::~CSceneFade()
 //=====================================.
 //		XVˆ—ŠÖ”.
 //=====================================.
-void CSceneFade::UpDate()
+void CSceneFade::Update()
 {
 	if (m_ShutterFlag == 0) {
 		return;

@@ -35,7 +35,7 @@ void CSceneManager::UpDate()
 {
 
 	//シーンフェード更新処理関数.
-	m_pCSceneFade->UpDate();
+	m_pCSceneFade->Update();
 
 	m_Color = m_pCSceneBase[NORMAL_SCENE_NUM]->GetBackColor();
 

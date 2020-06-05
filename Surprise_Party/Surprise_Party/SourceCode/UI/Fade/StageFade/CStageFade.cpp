@@ -25,7 +25,7 @@ CStageFade::~CStageFade()
 //=======================================.
 //		XVˆ—ŠÖ”.
 //=======================================.
-void CStageFade::UpDate()
+void CStageFade::Update()
 {
 	if (m_CurtainMoveFlag == 0) {
 		return;

@@ -40,7 +40,7 @@ void CStageManager::UpDate()
 {
 
 	//ステージフェード更新処理関数.
-	m_pCStageFade->UpDate();
+	m_pCStageFade->Update();
 
 	if (m_pCStageFade->GetCurtainMoveFlag() & m_pCStageFade->CHANGE_STAGE_FLAG) {
 		//ステージ変更処理関数.
