@@ -15,10 +15,9 @@ public:
 	//=======================定数==========================//.
 	const unsigned int MOVE_FLAG			= (1 << 0);		//移動フラグ.
 	const unsigned int STOP_FLAG			= (1 << 1);		//停止フラグ.
-	const unsigned int MOVE_FINISH_FLAG		= (1 << 2);		//移動終了フラグ.
+	const unsigned int CHANGE_STAGE_FLAG	= (1 << 2);		//ステージ変更フラグ.
 	const unsigned int PEOPLE_LOOK_FLAG		= (1 << 3);		//人を見るフラグ.
 	const unsigned int GHOST_LOOK_FLAG		= (1 << 4);		//お化けを見るフラグ.
-	const unsigned int CHANGE_STAGE_FLAG	= (1 << 2);		//ステージ変更フラグ.
 
 	//=======================関数==========================//.
 	virtual void Update() = 0;		//更新処理関数.

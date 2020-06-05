@@ -64,7 +64,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	
 		m_pCCamera->Update();
 
-		if (m_pCCamera->GetMoveFlag() & m_pCCamera->MOVE_FINISH_FLAG) {
+		if (m_pCCamera->GetMoveFlag() & m_pCCamera->CHANGE_STAGE_FLAG) {
 			if (m_pCSpeakBigGhost->GetFinishFlag() & m_pCSpeakBigGhost->FINISH_NEXT_GAME) {
 				//ƒQ[ƒ€ƒƒCƒ“‚Éi‚Ş.
 				m_bChangeStageFlag = true;

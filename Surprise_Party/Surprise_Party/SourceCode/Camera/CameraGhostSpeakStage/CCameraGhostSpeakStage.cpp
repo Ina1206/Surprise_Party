@@ -102,7 +102,7 @@ void CCameraGhostSpeakStage::FarAwayUpperLimit()
 	if (m_Camera.vPos.x < INIT_CAMERA_POS.x) {
 		m_Camera.vPos = INIT_CAMERA_POS;
 		m_Camera.vLook = INIT_CAMERA_LOOK;
-		m_MoveFlag = STOP_FLAG | MOVE_FINISH_FLAG;
+		m_MoveFlag = STOP_FLAG | CHANGE_STAGE_FLAG;
 	}
 
 	if (m_Camera.vLook.x < INIT_CAMERA_LOOK.x) {
