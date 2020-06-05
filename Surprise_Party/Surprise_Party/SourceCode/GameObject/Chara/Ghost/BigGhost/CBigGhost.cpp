@@ -5,6 +5,7 @@ CBigGhost::CBigGhost()
 	, m_dCntAnimSpeed		(0.0)
 	, m_fAnimSpeed			(0.0f)
 	, m_AnimNum				(0)
+	, m_vPreRot				(0.0f, 0.0f, 0.0f)
 	, m_WakeUpCnt			(0)
 	, m_LeanDirect			(1)
 	, m_UpDownDirect		(1)
@@ -109,8 +110,8 @@ void CBigGhost::Render()
 	m_pCSkinMesh->SetScale(0.1f);
 	m_pCSkinMesh->SetPosition(m_vPos);
 	m_pCSkinMesh->SetRotation(m_vRot);
-	//m_pCSkinMesh->SetPreRot(WAKE_UP_ROT);
-	//m_pCSkinMesh->SetPrePos(m_vPrePos);
+	m_pCSkinMesh->SetPreRot(m_vPreRot);
+	m_pCSkinMesh->SetPrePos(m_vPrePos);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 	if (m_pCSmartPhone != nullptr) {
@@ -359,6 +360,8 @@ void CBigGhost::ChangeEffect()
 	//èâä˙âª.
 	if (m_EmotionNum != static_cast<int>(enEmotionType::ViewSmartphone)) {
 		m_vPos = WAKE_UP_POS;
+		m_vPrePos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vPreRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	}
 	m_vRot = WAKE_UP_ROT;
 	switch (static_cast<enEmotionType>(m_EmotionNum)) {
@@ -379,6 +382,7 @@ void CBigGhost::ChangeEffect()
 		//à⁄ìÆäpìxèàóùä÷êî.
 		MoveRotation(m_vPos, m_vLookAtPos);
 		m_vPrePos.z = 10.0f;
+		m_vPreRot = WAKE_UP_ROT;
 
 		if (m_pCSmartPhone == nullptr) {
 			m_pCSmartPhone.reset(new CSmartPhone());

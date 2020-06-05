@@ -73,6 +73,8 @@ private:
 	float											m_fAnimSpeed;			//アニメーション速度.
 	int												m_AnimNum;				//アニメーション番号.
 
+	D3DXVECTOR3										m_vPreRot;				//角度初期設定.
+
 	int												m_WakeUpCnt;			//起きるカウント.
 	int												m_LeanDirect;			//傾く方向.
 	int												m_UpDownDirect;			//上下方向.
