@@ -4,6 +4,9 @@
 *		白スクリーンフェードクラス.
 ************/
 CWhiteScreenFade::CWhiteScreenFade()
+	: m_pCSpriteUI	(nullptr)
+	, m_vPos		(0.0f, 0.0f, 0.0f)
+	, m_fAlpha		(ALPHA_MAX)
 {
 	//初期化処理関数.
 	Init();
@@ -28,7 +31,9 @@ void CWhiteScreenFade::Update()
 //=========================================.
 void CWhiteScreenFade::Render()
 {
-
+	m_pCSpriteUI->SetPosition(m_vPos);
+	m_pCSpriteUI->SetAlpha(m_fAlpha);
+	m_pCSpriteUI->Render();
 }
 
 //=========================================.

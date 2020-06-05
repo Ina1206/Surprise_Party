@@ -24,6 +24,8 @@ private:
 
 	//========================変数=========================//.
 	CSpriteUI*	m_pCSpriteUI;		//スプライトUIクラス.
+	D3DXVECTOR3	m_vPos;				//座標.
+	float		m_fAlpha;			//透過値.
 
 };
 
