@@ -6,7 +6,6 @@
 CEndingStageBase::CEndingStageBase()
 	: m_mView					()
 	, m_mProj					()
-	, m_Camera					()
 	, m_pCBackstageLight		(nullptr)
 	, m_pCBigGhost				(nullptr)
 	, m_pCGhost					(0)
@@ -45,7 +44,6 @@ void CEndingStageBase::RenderFloor()
 	const LIGHT m_Light = m_pCBackstageLight->GetLight();
 
 	m_pCFloor->SetScale(0.5f);
-	//m_pCFloor->SetCameraPos(m_Camera.vPos);
 	m_pCFloor->SetCameraPos(m_pCCameraEnding->GetPos());
 	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_Light);
 	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -6.0f, 0.0f));

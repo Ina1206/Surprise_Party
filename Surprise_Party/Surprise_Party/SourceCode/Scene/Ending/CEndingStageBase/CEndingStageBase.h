@@ -34,7 +34,6 @@ protected:
 	//========================変数=============================//.
 	D3DXMATRIX											m_mView;					//ビュー行列.
 	D3DXMATRIX											m_mProj;					//プロジェクション行列.
-	CAMERA												m_Camera;					//カメラ構造体.
 	std::unique_ptr<CBackstageLight>					m_pCBackstageLight;			//舞台裏ライトクラス.
 	std::unique_ptr<CBigGhost>							m_pCBigGhost;				//ビッグゴーストクラス.
 	std::vector<std::unique_ptr<CGhostBase>>			m_pCGhost;					//お化けクラス.
