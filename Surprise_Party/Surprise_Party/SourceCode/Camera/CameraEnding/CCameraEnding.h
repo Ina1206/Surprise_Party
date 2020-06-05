@@ -22,7 +22,7 @@ public:
 	const D3DXVECTOR3	INTERMEDIATE_POINT_POS	= D3DXVECTOR3(5.1f, 21.8f, 3.9f);	//中間地点座標.
 	const D3DXVECTOR3	INTERMEDIATE_POINT_LOOK	= D3DXVECTOR3(5.7f, -5.0, 5.0f);	//中間地点注視点.
 
-	const float			MOVE_SPEED				= 0.3f;								//移動速度.
+	const float			MOVE_SPEED				= 0.15f;								//移動速度.
 	const float			ANGLE_MIN				= -123.0f;							//角度最小値.
 	const float			ANGLE_MAX				= -18.0f;							//角度最大値.
 	//===========================関数===============================//.
