@@ -158,6 +158,7 @@ void CCameraEnding::MoveApproching()
 
 		//‰º~ˆÚ“®ˆ—‚É•ÏX.
 		m_ApprochFlag = APPROCH_SMARTPHONE_FLAG;
+		m_MoveFlag = CHANGE_STAGE_FLAG;
 		return;
 	}
 

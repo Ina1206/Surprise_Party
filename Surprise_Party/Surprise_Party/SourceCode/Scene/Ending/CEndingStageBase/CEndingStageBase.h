@@ -7,6 +7,7 @@
 #include "..\..\GameObject\Object\StaticObject\Floor\CFloor.h"
 #include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
 #include "..\..\Camera\CameraEnding\CCameraEnding.h"
+#include "..\..\UI\Fade\WhiteScreenFade\CWhiteScreenFade.h"
 
 /*******************************************
 *		エンディングステージ基底クラス.
@@ -37,7 +38,8 @@ protected:
 	std::unique_ptr<CBackstageLight>					m_pCBackstageLight;			//舞台裏ライトクラス.
 	std::unique_ptr<CBigGhost>							m_pCBigGhost;				//ビッグゴーストクラス.
 	std::vector<std::unique_ptr<CGhostBase>>			m_pCGhost;					//お化けクラス.
-	std::unique_ptr<CCameraEnding>						m_pCCameraEnding;
+	std::unique_ptr<CCameraEnding>						m_pCCameraEnding;			//エンディングカメラ.
+	std::unique_ptr<CWhiteScreenFade>					m_pCWhiteScreenFade;		//白画面のフェード
 
 private:
 	//========================関数=============================//.

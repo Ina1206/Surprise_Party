@@ -29,7 +29,10 @@ void CBeforeResultStage::Update()
 		m_pCGhost[ghost]->Update();
 	}
 	
-
+	if (m_pCCameraEnding->GetMoveFlag() & m_pCCameraEnding->CHANGE_STAGE_FLAG) {
+		m_pCWhiteScreenFade->SetFadeFlag(m_pCWhiteScreenFade->FADE_IN_FLAG);
+		m_pCWhiteScreenFade->Update();
+	}
 }
 
 //=======================================.
@@ -43,6 +46,9 @@ void CBeforeResultStage::Render()
 
 	//‚¨‰»‚¯•`‰æˆ—ŠÖ”.
 	RenderGhost();
+
+	//ƒtƒF[ƒh•`‰æˆ—ŠÖ”.
+	m_pCWhiteScreenFade->Render();
 }
 
 //=======================================.

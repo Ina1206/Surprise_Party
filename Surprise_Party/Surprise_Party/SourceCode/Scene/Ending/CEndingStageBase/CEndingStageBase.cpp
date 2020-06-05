@@ -9,9 +9,10 @@ CEndingStageBase::CEndingStageBase()
 	, m_pCBackstageLight		(nullptr)
 	, m_pCBigGhost				(nullptr)
 	, m_pCGhost					(0)
+	, m_pCCameraEnding			(nullptr)
+	, m_pCWhiteScreenFade		(nullptr)
 	, m_pCFloor					(nullptr)
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
-	, m_pCCameraEnding			(nullptr)
 {
 	//ã§í ÇÃílÇÃèâä˙âªèàóùä÷êî.
 	InitCommonValue();
@@ -76,6 +77,7 @@ void CEndingStageBase::InitCommonValue()
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
 	m_pCCameraEnding.reset(new CCameraEnding());
+	m_pCWhiteScreenFade.reset(new CWhiteScreenFade());
 
 	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 5.0f);
 
