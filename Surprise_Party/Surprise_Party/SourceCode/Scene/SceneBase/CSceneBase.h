@@ -13,7 +13,7 @@ public:
 	virtual ~CSceneBase();
 
 	//===================関数======================//.
-	void	RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos);	//描画初期設定.
+	void	RenderInitSetting(const D3DXMATRIX& mProj);	//描画初期設定.
 	void	DebugSceneChange();			//デバッグ用シーン変更処理関数.
 	
 	virtual void UpDate()	= 0;		//更新処理関数.

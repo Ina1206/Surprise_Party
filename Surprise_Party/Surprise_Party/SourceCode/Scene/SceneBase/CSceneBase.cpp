@@ -20,12 +20,9 @@ CSceneBase::~CSceneBase()
 //===========================================.
 //		•`‰æ‰Šúİ’èˆ—ŠÖ”.
 //===========================================.
-void CSceneBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos)
+void CSceneBase::RenderInitSetting(const D3DXMATRIX& mProj)
 {
-	m_mView			= mView;
 	m_mProj			= mProj;
-	m_vLightPos		= vLightPos;
-	m_vCameraPos	= vCameraPos;
 }
 
 //===========================================.

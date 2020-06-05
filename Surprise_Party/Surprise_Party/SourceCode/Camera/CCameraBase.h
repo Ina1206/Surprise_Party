@@ -1,7 +1,7 @@
 #ifndef CCAMERA_BASE_H
 #define CCAMERA_BASE_H
 
-#include "..\Drawing\Resource\CResourceManager.h"
+#include"..\Global.h"
 
 /**************************************
 *		カメラ基底クラス.
@@ -42,6 +42,22 @@ protected:
 	//=======================関数==========================//.
 	virtual void Init() = 0;		//初期化処理関数.
 	virtual void Release() = 0;		//解放処理関数.
+
+	//======================構造体=========================//.
+	struct CAMERA
+	{
+		D3DXVECTOR3	vPos;	//位置.
+		D3DXVECTOR3 vLook;	//注視位置.
+		float		fYaw;	//Y軸回転.
+		D3DXMATRIX	mRot;	//回転行列.
+		
+		CAMERA()
+			: vPos	(0.0f, 0.0f, 0.0f)
+			, vLook	(0.0f, 0.0f, 0.0f)
+			, fYaw	(0.0f)
+			, mRot	()
+		{}
+	};
 
 	//=======================変数==========================//.
 	CAMERA			m_Camera;		//カメラ情報.

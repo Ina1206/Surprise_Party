@@ -33,17 +33,6 @@ struct BBOX
 	{}
 };
 
-//カメラ情報.
-//今回はY軸回転のみ対応.
-struct CAMERA
-{
-	D3DXVECTOR3	vPos;	//位置.
-	D3DXVECTOR3 vLook;	//注視位置.
-	float		fYaw;	//Y軸回転.
-	D3DXMATRIX	mRot;	//回転行列.
-};
-
-
 //メッシュデータをファイルから取り出す為だけにDirectX9を使用する.
 //※レンダリング(描画)は、DirectX11で行う.
 class CDX9Mesh

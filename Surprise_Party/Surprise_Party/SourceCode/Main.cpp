@@ -64,13 +64,9 @@ CMain::CMain()
 	, m_pBackBuffer_TexRTV(nullptr)
 	, m_pBackBuffer_DSTex(nullptr)
 	, m_pBackBuffer_DSTexDSV(nullptr)
-	, m_vLight(0.0f, 5.0f, 0.0f)	//ライト方向.
-	, m_mView()
 	, m_mProj()
 	, m_pCSceneManager	(nullptr)
 {
-	//カメラ(視点)位置.
-	m_Camera.vPos = D3DXVECTOR3(0.0f, 3.0f, -5.0f);
 
 	//メモリリーク.
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -264,11 +260,10 @@ void CMain::UpDate()
 void CMain::Render()
 {
 	ClearBackBuffer();
-	Camera();
 	Proj();
 
 	//シーン管理の描画処理関数.
-	m_pCSceneManager->Render(m_mView, m_mProj, m_vLight, m_Camera.vPos);
+	m_pCSceneManager->Render( m_mProj);
 
 	//レンダリングされたイメージを表示.
 	m_pSwapChain->Present(0, 0);
@@ -541,9 +536,6 @@ HRESULT CMain::LoadMesh()
 	//シーン管理クラス.
 	m_pCSceneManager->Load();
 
-	//カメラの設定.
-	m_Camera.vPos = D3DXVECTOR3(11.9f, 7.5f, -19.9f);
-	m_Camera.vLook = D3DXVECTOR3(11.9f, 5.3f, 4.0f);
 
 	return S_OK;
 }
@@ -565,46 +557,6 @@ void CMain::ClearBackBuffer()
 		m_pBackBuffer_DSTexDSV,
 		D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,
 		1.0f, 0);
-}
-
-//カメラ関数.
-void CMain::Camera()
-{
-	//------------------------------------------------------------.
-	//		追従カメラ設定.
-	//------------------------------------------------------------.
-	//カメラ位置(自機の背中から)の設定.
-	//m_Camera.vPos = D3DXVECTOR3(0.0f, 3.0f, -5.0f);	//自機の位置をコピー.
-	//m_Camera.vLook = D3DXVECTOR3(0.0f, 1.0f, 6.0f);
-
-	//if (GetAsyncKeyState('A') & 0x8000) {
-	//	m_Camera.vPos.x -= 0.1f;
-	//	m_Camera.vLook.x -= 0.1f;
-	//}
-	//if (GetAsyncKeyState('D') & 0x8000) {
-	//	m_Camera.vPos.x += 0.1f;
-	//	m_Camera.vLook.x += 0.1f;
-	//}
-	//if (GetAsyncKeyState('S') & 0x8000) {
-	//	m_Camera.vPos.y -= 0.1f;
-	//	m_Camera.vLook.y -= 0.1f;
-	//}
-	//if (GetAsyncKeyState('W') & 0x8000) {
-	//	m_Camera.vPos.y += 0.1f;
-	//	m_Camera.vLook.y += 0.1f;
-	//}
-	//if (GetAsyncKeyState('Q') & 0x8000) {
-	//	m_Camera.vPos.z -= 0.1f;
-	//}
-	//if (GetAsyncKeyState('E') & 0x8000) {
-	//	m_Camera.vPos.z += 0.1f;
-	//}
-	////ビュー(カメラ)変換.
-	//D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
-	//D3DXMatrixLookAtLH(
-	//	&m_mView,								//(out)ビュー計算結果.
-	//	&m_Camera.vPos, &m_Camera.vLook, &vUpVec);
-
 }
 
 //プロジェクション関数.

@@ -71,7 +71,6 @@ protected:
 	//=====================変数=========================//.
 	D3DXMATRIX						m_mView;					//ビュー行列.
 	D3DXMATRIX						m_mProj;					//プロジェクション行列.
-	CAMERA							m_Camera;					//カメラ構造体.
 
 	bool							m_bChangeStageFlag;			//ステージ変更フラグ.
 	int								m_StageNum;					//ステージ番号.

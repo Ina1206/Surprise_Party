@@ -13,17 +13,6 @@
 
 #include "MyMacro.h"
 #include "Global.h"
-//#include "Drawing/Resource/CResourceManager.h"
-////#include "GameObject/Object/StaticObject/Wall/CWall.h"
-////#include "GameObject/Object/StaticObject/Floor/CFloor.h"
-//#include "Drawing/Resource/FontResource/CFontResource.h"
-////#include "FileLoad/FileNumber/CFileNumber.h"
-//#include "GameObject/Object/StaticObject/StaticObjectManager/CStaticObjectManager.h"
-//#include "GameObject/Object/MoveObject/MoveObjectManager/CMoveObjectManager.h"
-//#include "FileLoad/FileResource/CFileResource.h"
-//#include "GameObject/Chara/Ghost/WorkGhost/DispGhost/CDispGhost.h"
-//#include "GameObject/Chara/Ghost/WorkGhost/SwitchGhost/CSwitchGhost.h"
-//#include "GameObject/Chara/People/PeopleManager/CPeopleManager.h"
 
 #include <memory>
 #include "Scene/SceneManager/CSceneManager.h"
@@ -109,8 +98,6 @@ public:
 
 	//バックバッファクリア関数.
 	void ClearBackBuffer();
-	//カメラ関数.
-	void Camera();
 	//プロジェクション関数.
 	void Proj();
 
@@ -136,12 +123,6 @@ private:
 	LPDIRECT3D9				m_pD3d9;				//Dx9オブジェクト.
 	LPDIRECT3DDEVICE9		m_pDevice9;				//Dx9デバイス.
 
-	//複数宣言可能.
-	D3DXVECTOR3				m_vLight;				//ライトの方向.
-	CAMERA					m_Camera;		//カメラ情報.
-
-
-	D3DXMATRIX				m_mView;		//ビュー行列.
 	D3DXMATRIX				m_mProj;		//プロジェクション行列.
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
 

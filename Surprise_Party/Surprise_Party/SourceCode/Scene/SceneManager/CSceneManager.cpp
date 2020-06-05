@@ -81,11 +81,11 @@ void CSceneManager::UpDate()
 //===========================================.
 //		•`‰æˆ—ŠÖ”.
 //===========================================.
-void CSceneManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos)
+void CSceneManager::Render(const D3DXMATRIX& mProj)
 {
 	for (unsigned int scene = 0; scene < m_pCSceneBase.size(); scene++) {
 		//ƒV[ƒ“‚Ì•`‰æ‰Šúİ’èˆ—ŠÖ”.
-		m_pCSceneBase[scene]->RenderInitSetting(mView, mProj, vLightPos, vCameraPos);
+		m_pCSceneBase[scene]->RenderInitSetting(mProj);
 		//ƒV[ƒ“‚Ì•`‰æˆ—ŠÖ”.
 		m_pCSceneBase[scene]->Render();
 
