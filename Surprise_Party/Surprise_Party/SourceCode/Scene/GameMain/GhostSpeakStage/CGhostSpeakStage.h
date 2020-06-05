@@ -38,7 +38,6 @@ private:
 	//========================関数=============================//.
 	void Init();								//初期化処理関数.
 	void Release();								//解放処理関数.
-	void CameraMove();							//カメラ移動処理関数.
 	void SettingEmotion();						//感情設定処理関数.
 
 	//========================関数=============================//.
@@ -51,7 +50,6 @@ private:
 	std::unique_ptr<CBackstageLight>	m_pCBackstageLight;		//舞台裏のライトクラス.
 
 	bool								m_StageFinish;			//ステージ終了フラグ.
-	int	m_MoveCameraDirection;	//カメラ移動方向.
 
 	bool								m_bOldSleepBigGhost;	//大きいお化け寝るフラグ差分用.
 };
