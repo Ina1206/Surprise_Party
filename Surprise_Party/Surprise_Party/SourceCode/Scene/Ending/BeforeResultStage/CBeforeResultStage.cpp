@@ -22,7 +22,7 @@ CBeforeResultStage::~CBeforeResultStage()
 //=======================================.
 void CBeforeResultStage::Update()
 {
-
+	//ƒJƒƒ‰XVˆ—ŠÖ”.
 	m_pCCameraEnding->Update();
 
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
