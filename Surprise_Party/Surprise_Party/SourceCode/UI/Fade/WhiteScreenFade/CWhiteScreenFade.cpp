@@ -36,7 +36,7 @@ void CWhiteScreenFade::Render()
 //=========================================.
 void CWhiteScreenFade::Init()
 {
-
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::WhiteScreen);
 }
 
 //=========================================.
