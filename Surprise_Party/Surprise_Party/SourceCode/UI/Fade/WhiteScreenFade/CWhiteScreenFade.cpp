@@ -5,12 +5,14 @@
 ************/
 CWhiteScreenFade::CWhiteScreenFade()
 {
-
+	//‰Šú‰»ˆ—ŠÖ”.
+	Init();
 }
 
 CWhiteScreenFade::~CWhiteScreenFade()
 {
-
+	//‰ğ•úˆ—ŠÖ”.
+	Release();
 }
 
 //=========================================.
