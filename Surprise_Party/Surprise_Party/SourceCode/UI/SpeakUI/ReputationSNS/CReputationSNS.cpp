@@ -26,6 +26,7 @@ CReputationSNS::~CReputationSNS()
 //==========================================.
 void CReputationSNS::Update()
 {
+	//文字透過処理.
 	TransparentFont();
 
 	//カーソル更新処理関数.
@@ -58,12 +59,13 @@ void CReputationSNS::Render()
 void CReputationSNS::DecideString(const int& EndingNum)
 {
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
+	//読み込むファイル番号.
 	const int m_FileNum = static_cast<int>(CFileResource::enSpeakFileType::EndingSpeak);
-
+	//メイン文字列の番号.
 	const CFileString::enStringType MainStringNum = CFileString::enStringType::MainString;
 	m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(m_FileNum, EndingNum, MainStringNum));
 
-
+	//読み込み処理関数.
 	m_pCFontResource->Load(m_stSpeakString[0]);
 
 }
@@ -74,11 +76,12 @@ void CReputationSNS::DecideString(const int& EndingNum)
 void CReputationSNS::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::CursorSNS);
-	m_vCursorPos = D3DXVECTOR3(50.0f, 250.0f, 0.0f);
+	m_vCursorPos = INIT_FONT_POS;
 
-	m_pCFontResource->SetStartPos(D3DXVECTOR3(50.0f, 250.0f, 0.0f));
-	m_pCFontResource->SetFontScale(90.0f);
-	m_pCFontResource->SetWidthMax(1000.0f);
+	//フォントの初期化処理.
+	m_pCFontResource->SetStartPos(INIT_FONT_POS);
+	m_pCFontResource->SetFontScale(FONT_SCALE);
+	m_pCFontResource->SetWidthMax(STRING_WIDTH_MAX);
 }
 
 //==========================================.
@@ -99,7 +102,7 @@ void CReputationSNS::UpdateCursor()
 
 	m_FlashingCursorCnt++;
 
-	if (m_FlashingCursorCnt > 20) {
+	if (m_FlashingCursorCnt > FLASING_CNT_MAX) {
 		
 		m_FlashingCursorCnt = 0;
 
@@ -132,11 +135,13 @@ void CReputationSNS::MoveCursor()
 {
 	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
 		m_vCursorPos = m_pCFontResource->GetFontPos(m_ChangingFontNum);
-		m_vCursorPos.y += 15.0f;
+		m_vCursorPos.y += ADJUSTMENT_HEIGHT;
 		return;
 	}
 
+	//一番端の座標から一文字足したところに置く.
 	m_vCursorPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
-	m_vCursorPos.x += 90.0f;
-	m_vCursorPos.y += 15.0f;
+	m_vCursorPos.x += FONT_SCALE;
+
+	m_vCursorPos.y += ADJUSTMENT_HEIGHT;
 }
