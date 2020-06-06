@@ -92,7 +92,12 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			}
 		}
 
-
+		if (m_pCDescriptionUIManager != nullptr) {
+			if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
+				m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
+				break;
+			}
+		}
 		//お化け更新処理関数.
 		m_pCWorkGhost[ghost]->Update();
 
@@ -166,6 +171,15 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_pCMoveObjectManager->SetGimmickMoveFlag(UseGimmickNum, m_pCMoveObjectManager->UP_FLAG);
 		}
 	}
+
+	////全てのフォントを表示し終わると.
+	//if (m_pCDescriptionUIManager != nullptr) {
+	//	if (m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GHOST_FLAG &&
+	//		m_pCDescriptionUIManager->GetAppearancedAllFont() == true) {
+	//		m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetSelectFlag(true);
+	//	}
+	//}
+
 
 	//動的オブジェクトの更新処理関数.
 	m_pCMoveObjectManager->SetCameraPos(m_vCameraPos);
@@ -561,7 +575,7 @@ void CMainStage::Control()
 
 	//行動を起こすお化け決定.
 	if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
-		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			//お化けが驚かしているときのみ.
 			if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetMoveFlag() & 
 				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SURPRISE_FLAG) {
@@ -570,14 +584,19 @@ void CMainStage::Control()
 					if (!(m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GHOST_FLAG)) {
 						return;
 					}
+
+					if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false) {
+						return;
+					}
+
 					//コメント進める.
 					m_pCDescriptionUIManager->SetAdvanceComment();
 				}
+				//選択フラグ.
+				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetSelectFlag(true);
 
 				//お化け選択後行動.
 				m_ObjectSelectFlag = GHOST_ACT_SELECT_FLAG;
-				//選択フラグ.
-				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetSelectFlag(true);
 
 				if (m_ExplainFlag & EXPLAINING_FLAG) {
 					//お化けの説明終了.
@@ -599,7 +618,7 @@ void CMainStage::Control()
 			m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
 		}
 
-		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			if (m_pCMoveObjectManager->GetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM]) == false) {
 				//お化けの種類とギミックの種類があっているときのみ.
 				if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSurpriseObjectType() ==

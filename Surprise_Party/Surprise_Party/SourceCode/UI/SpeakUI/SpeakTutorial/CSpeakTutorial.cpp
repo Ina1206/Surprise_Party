@@ -4,17 +4,18 @@
 *		チュートリアル会話.
 ***************/
 CSpeakTutorial::CSpeakTutorial()
-	: m_pCSpriteUI			()
-	, m_pCDescriptionIcon	()
-	, m_vIconPos			()
-	, m_vPos				()
-	, m_vPattern			()
-	, m_TutorialFlag		(0)
-	, m_DescriptionFlag		(0)
-	, m_bAdvanceCommentFlag	(true)
-	, m_SelectMoveCount		(0)
-	, m_enStartLatestFlag	(0)
-	, m_bDescriptionEnd		(false)
+	: m_pCSpriteUI				()
+	, m_pCDescriptionIcon		()
+	, m_vIconPos				()
+	, m_vPos					()
+	, m_vPattern				()
+	, m_TutorialFlag			(0)
+	, m_DefinitiveTutorialFlag	(0)
+	, m_DescriptionFlag			(0)
+	, m_bAdvanceCommentFlag		(true)
+	, m_SelectMoveCount			(0)
+	, m_enStartLatestFlag		(0)
+	, m_bDescriptionEnd			(false)
 {
 	//初期化処理関数.
 	Init();
@@ -35,9 +36,16 @@ void CSpeakTutorial::Update()
 		m_enStartLatestFlag = 0;
 	}
 
-	if (m_bAdvanceCommentFlag == true) {
-		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-			if (m_enStartLatestFlag & DescriptionEnd) {
+
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+
+		if (m_bFinishAppearancedAllFont == false) {
+			m_bAppearanceAllFont = true;
+		}
+
+		if (m_bAdvanceCommentFlag == true) {
+			if (m_enStartLatestFlag & DescriptionEnd &&
+				m_bFinishAppearancedAllFont == true) {
 				m_bDescriptionEnd = true;
 				return;
 			}
@@ -46,6 +54,13 @@ void CSpeakTutorial::Update()
 			AdvanceOnceComment();
 		}
 	}
+
+	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+		m_DefinitiveTutorialFlag = m_TutorialFlag;
+	}
+
+	//文字透過処理関数.
+	TransparentFont();
 }
 
 //=======================================.
@@ -67,10 +82,11 @@ void CSpeakTutorial::Render()
 	}
 
 	//テキストの描画.
-	for (unsigned int font = 0; font < m_stSpeakString[m_SpeakNum].length() / 2; font++) {
-		m_pCFontResource->SetAlpha(1.0f, font);
-	}
-	m_pCFontResource->String_Render();
+	//for (unsigned int font = 0; font < m_stSpeakString[m_SpeakNum].length() / 2; font++) {
+	//	m_pCFontResource->SetAlpha(1.0f, font);
+	//}
+	//m_pCFontResource->String_Render();
+	RenderFont();
 
 	//説明用アイコン描画処理関数.
 	RenderDescriptionIcon();
@@ -81,6 +97,10 @@ void CSpeakTutorial::Render()
 //========================================.
 void CSpeakTutorial::AdvanceOnceComment()
 {
+	if (DesicionChangeString() == false) {
+		return;
+	}
+
 	m_SpeakNum++;
 	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
 		m_SpeakNum = 0;
@@ -97,7 +117,8 @@ void CSpeakTutorial::AddSelectMoveCount()
 {
 	//例外処理(選択時以外例外).
 	const unsigned int SELECT_FLAG = SELECT_GHOST_FLAG | SELECT_GIMMICK_FLAG;
-	if (!(m_TutorialFlag & SELECT_FLAG)) {
+	//if (!(m_TutorialFlag & SELECT_FLAG)) {
+	if (!(m_DefinitiveTutorialFlag & SELECT_FLAG)) {
 		return;
 	}
 

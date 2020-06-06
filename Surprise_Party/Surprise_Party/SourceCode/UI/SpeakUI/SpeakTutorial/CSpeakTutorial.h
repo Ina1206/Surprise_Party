@@ -42,7 +42,8 @@ public:
 
 	//============情報取得処理関数=================//.
 	//チュートリアルフラグ.
-	unsigned int GetTutorialFlag() const { return m_TutorialFlag; }
+	unsigned int GetTutorialFlag() const { return m_DefinitiveTutorialFlag; }
+	//unsigned int GetTutorialFlag() const { return m_TutorialFlag; }
 	//コメント進めるフラグ.
 	bool GetAdvanceCommentFlag() const { return m_bAdvanceCommentFlag; }
 	//説明フラグ.
@@ -75,6 +76,7 @@ private:
 	std::vector<D3DXVECTOR3>	m_vPos;						//座標.
 	std::vector<D3DXVECTOR2>	m_vPattern;					//パターン番号.
 	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
+	unsigned int				m_DefinitiveTutorialFlag;	//決定版チュートリアルフラグ.
 	unsigned int				m_DescriptionFlag;			//説明フラグ.
 	bool						m_bAdvanceCommentFlag;		//コメント進めるフラグ.
 	int							m_SelectMoveCount;			//選択移動カウント.

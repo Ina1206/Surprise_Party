@@ -16,7 +16,6 @@ public:
 
 	//======================定数=======================//.
 	const float		STRING_WIDTH_MAX	= 950.0f;		//文章の幅最大数.
-	const float		ALPHA_SPEED			= 0.1f;			//透過値速度.
 	const float		FONT_SCALE			= 50.0f;		//文字の大きさ.
 	const int		FIRST_CHARACTER_NUM = 0;			//一文字目の文章.
 
@@ -51,7 +50,6 @@ private:
 	void Init();									//初期化処理関数.
 	void Release();									//解放処理関数.
 	void LoadSpeakString();							//会話文章読み込み処理関数.
-	void TransparentFont();							//文字透過処理関数.
 	void DecisionSelectString();					//選択文章処理関数.
 	void FindNextString(const int& NextStringNum);	//次の文章を見つける処理関数.
 	void SelectingMove();							//選択中移動処理関数.

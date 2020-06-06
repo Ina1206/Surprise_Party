@@ -29,6 +29,7 @@ public:
 	unsigned int GetTutorialFlag() const { return m_pCSpeakTutorial->GetTutorialFlag(); }
 	unsigned int GetStartLatestFlag() const { return m_pCSpeakTutorial->GetStartLatestFlag(); }
 	bool GetDescriptionEndFlag() const { return m_pCSpeakTutorial->GetDescriptionEndFlag(); }
+	bool GetAppearancedAllFont() const { return m_pCSpeakTutorial->GetAppearancedAllFont(); }
 private:
 	//======================ŠÖ”=========================//.
 	void Init();					//‰Šú‰»ˆ—ŠÖ”.

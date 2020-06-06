@@ -53,13 +53,17 @@ void CSpeakBigGhost::Update()
 	}
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+		//if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 			//文章変更処理関数.
+		if (DesicionChangeString() == true) {
 			ChangeString();
 		}
-		else {
-			m_StringFlag |= TRANSPARENTING_FLAG;
-		}
+		//	m_bAppearanceAllFont = false;
+		//}
+		//else {
+		//	//m_StringFlag |= TRANSPARENTING_FLAG;
+		//	m_bAppearanceAllFont = true;
+		//}
 	}
 	//文字透過処理関数.
 	TransparentFont();
@@ -79,10 +83,11 @@ void CSpeakBigGhost::Render()
 	m_pCSpriteUI->Render();
 
 	//文字の描画.
-	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
-		m_pCFontResource->SetAlpha(m_fFontAlpha, m_ChangingFontNum);
-	}
-	m_pCFontResource->String_Render();
+	RenderFont();
+	//if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
+	//	m_pCFontResource->SetAlpha(m_fFontAlpha, m_ChangingFontNum);
+	//}
+	//m_pCFontResource->String_Render();
 
 	//選択しているとき以外処理しない.
 	if (!(m_StringFlag & SELECT_FLAG)) {
@@ -194,36 +199,36 @@ void CSpeakBigGhost::LoadSpeakString()
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 }
 
-//======================================.
-//		文字透過処理関数.
-//======================================.
-void CSpeakBigGhost::TransparentFont()
-{
-	//例外処理.
-	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
-		return;
-	}
-
-	//次の文字に変更.
-	if (m_fFontAlpha == ALPHA_MAX) {
-		m_ChangingFontNum++;
-		m_fFontAlpha = ALPHA_MIN;
-	}
-	
-	//一気に透過値最大値へ.
-	if (m_StringFlag & TRANSPARENTING_FLAG) {
-		m_fFontAlpha = ALPHA_MAX;
-	}
-
-	m_fFontAlpha += ALPHA_SPEED;
-
-	//上限処理.
-	if (m_fFontAlpha > ALPHA_MAX) {
-		m_fFontAlpha = ALPHA_MAX;
-
-		//ここにSE入れる？.
-	}
-}
+////======================================.
+////		文字透過処理関数.
+////======================================.
+//void CSpeakBigGhost::TransparentFont()
+//{
+//	//例外処理.
+//	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+//		return;
+//	}
+//
+//	//次の文字に変更.
+//	if (m_fFontAlpha == ALPHA_MAX) {
+//		m_ChangingFontNum++;
+//		m_fFontAlpha = ALPHA_MIN;
+//	}
+//	
+//	//一気に透過値最大値へ.
+//	if (m_StringFlag & TRANSPARENTING_FLAG) {
+//		m_fFontAlpha = ALPHA_MAX;
+//	}
+//
+//	m_fFontAlpha += ALPHA_SPEED;
+//
+//	//上限処理.
+//	if (m_fFontAlpha > ALPHA_MAX) {
+//		m_fFontAlpha = ALPHA_MAX;
+//
+//		//ここにSE入れる？.
+//	}
+//}
 
 //======================================.
 //		選択文章処理関数.
@@ -401,9 +406,9 @@ void CSpeakBigGhost::ChangeString()
 		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	}
 
-	m_ChangingFontNum = 0;
-	m_fFontAlpha = 0.0f;
-	m_StringFlag &= ~TRANSPARENTING_FLAG;
+	//m_ChangingFontNum = 0;
+	//m_fFontAlpha = 0.0f;
+	//m_StringFlag &= ~TRANSPARENTING_FLAG;
 }
 
 //===========================================.
