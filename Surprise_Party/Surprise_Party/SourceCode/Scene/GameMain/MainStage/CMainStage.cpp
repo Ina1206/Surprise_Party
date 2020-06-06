@@ -172,14 +172,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		}
 	}
 
-	////全てのフォントを表示し終わると.
-	//if (m_pCDescriptionUIManager != nullptr) {
-	//	if (m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GHOST_FLAG &&
-	//		m_pCDescriptionUIManager->GetAppearancedAllFont() == true) {
-	//		m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetSelectFlag(true);
-	//	}
-	//}
-
 
 	//動的オブジェクトの更新処理関数.
 	m_pCMoveObjectManager->SetCameraPos(m_vCameraPos);
