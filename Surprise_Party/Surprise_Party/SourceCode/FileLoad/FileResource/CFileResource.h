@@ -45,6 +45,7 @@ public:
 		GhostSpeakFirstStage,
 		GhostSpeakStage,
 		SpeakTutorialBigGhost,
+		EndingSpeak,
 	};
 
 	//===================ä÷êî=======================//.

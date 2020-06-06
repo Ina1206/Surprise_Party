@@ -137,6 +137,7 @@ void CFileResource::SpeakLoad()
 		"Data\\File\\Speak\\Test.csv",
 		"Data\\File\\Speak\\SpeakStageNext.csv",
 		"Data\\File\\Speak\\TutorialTest.csv",
+		"Data\\File\\Speak\\EndingSpeak.csv",
 	};
 
 
