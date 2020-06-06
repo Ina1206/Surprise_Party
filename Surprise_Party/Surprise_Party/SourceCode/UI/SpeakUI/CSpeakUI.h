@@ -12,6 +12,9 @@ public:
 	CSpeakUI();
 	virtual ~CSpeakUI();
 
+	//===================定数======================//.
+	const float		ALPHA_MIN = 0.0f;			//透過値最小値.
+
 	//===================関数======================//.
 	virtual void Update() = 0;	//更新処理関数.
 	

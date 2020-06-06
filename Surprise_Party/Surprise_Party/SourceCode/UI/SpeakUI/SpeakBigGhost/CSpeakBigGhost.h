@@ -16,8 +16,6 @@ public:
 
 	//======================定数=======================//.
 	const float		STRING_WIDTH_MAX	= 950.0f;		//文章の幅最大数.
-	const float		ALPHA_MIN			= 0.0f;			//透過値最小値.
-	const float		ALPHA_MAX			= 1.0f;			//透過値最大値.
 	const float		ALPHA_SPEED			= 0.1f;			//透過値速度.
 	const float		FONT_SCALE			= 50.0f;		//文字の大きさ.
 	const int		FIRST_CHARACTER_NUM = 0;			//一文字目の文章.
