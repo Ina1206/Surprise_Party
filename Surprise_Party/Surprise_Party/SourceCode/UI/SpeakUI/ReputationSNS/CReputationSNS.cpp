@@ -4,11 +4,12 @@
 *		SNSでの評判クラス.
 *******************/
 CReputationSNS::CReputationSNS()
-	: m_pCSpriteUI		(nullptr)
-	, m_vCursorPos		(0.0f, 0.0f, 0.0f)
-	, m_fCursorAlpha	(ALPHA_MAX)
-	, m_stArticleDetail	()
-	, m_EndingTypeNum	(0)
+	: m_pCSpriteUI			(nullptr)
+	, m_vCursorPos			(0.0f, 0.0f, 0.0f)
+	, m_fCursorAlpha		(ALPHA_MAX)
+	, m_FlashingCursorCnt	(0)
+	, m_stArticleDetail		()
+	, m_EndingTypeNum		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -25,7 +26,8 @@ CReputationSNS::~CReputationSNS()
 //==========================================.
 void CReputationSNS::Update()
 {
-
+	//カーソル更新処理関数.
+	UpdateCursor();
 }
 
 //==========================================.
@@ -60,6 +62,26 @@ void CReputationSNS::Init()
 void CReputationSNS::Release()
 {
 
+}
+
+//==========================================.
+//		カーソル更新処理関数.
+//==========================================.
+void CReputationSNS::UpdateCursor()
+{
+	m_FlashingCursorCnt++;
+
+	if (m_FlashingCursorCnt > 30) {
+		
+		m_FlashingCursorCnt = 0;
+
+		if (m_fCursorAlpha >= ALPHA_MAX) {
+			m_fCursorAlpha = 0.0f;
+			return;
+		}
+		
+		m_fCursorAlpha = ALPHA_MAX;
+	}
 }
 
 //==========================================.
