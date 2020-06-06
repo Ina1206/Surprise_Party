@@ -43,6 +43,11 @@ void CWhiteScreenFade::Update()
 //=========================================.
 void CWhiteScreenFade::Render()
 {
+	//•`‰æ—áŠOˆ—.
+	if (m_FadeFlag == 0) {
+		return;
+	}
+
 	m_pCSpriteUI->SetPosition(m_vPos);
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
 	CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
@@ -76,6 +81,7 @@ void CWhiteScreenFade::FadeIn()
 
 	if (m_fAlpha > ALPHA_MAX) {
 		m_fAlpha = ALPHA_MAX;
+		m_FadeFlag = FADE_FINISH_FLAG;
 	}
 }
 

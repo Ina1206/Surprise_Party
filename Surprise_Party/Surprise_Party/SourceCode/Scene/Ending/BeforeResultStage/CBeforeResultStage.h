@@ -2,6 +2,7 @@
 #define CBEFORE_RESULT_STAGE_H
 
 #include "..\CEndingStageBase\CEndingStageBase.h"
+#include "..\..\UI\SpeakUI\ReputationSNS\CReputationSNS.h"
 
 /********************************************
 *		結果発表前のステージクラス.
@@ -22,6 +23,8 @@ private:
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
 
+	//========================変数=========================//.
+	std::unique_ptr<CReputationSNS>	m_pCReputationSNS;	//SNS評判処理関数.
 
 };
 

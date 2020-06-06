@@ -14,7 +14,8 @@ public:
 	~CWhiteScreenFade();
 
 	//========================定数=========================//.
-	const unsigned int FADE_IN_FLAG = (1 << 0);		//フェードインフラグ.
+	const unsigned int FADE_IN_FLAG		= (1 << 0);		//フェードインフラグ.
+	const unsigned int FADE_FINISH_FLAG = (1 << 1);		//フェード終了フラグ.
 
 	const float			ALPHA_MIN	= 0;			//透過値最小値.
 	const float			ALPHA_SPEED = 0.009f;		//透過速度.

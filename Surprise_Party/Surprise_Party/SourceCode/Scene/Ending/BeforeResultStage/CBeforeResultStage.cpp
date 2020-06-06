@@ -6,6 +6,7 @@
 *		結果発表前のステージクラス.
 ******************/
 CBeforeResultStage::CBeforeResultStage()
+	: m_pCReputationSNS	(nullptr)
 {
 	//初期化処理関数.
 	Init();
@@ -30,9 +31,16 @@ void CBeforeResultStage::Update()
 	}
 	
 	if (m_pCCameraEnding->GetMoveFlag() & m_pCCameraEnding->CHANGE_STAGE_FLAG) {
+		
+		if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
+			m_pCReputationSNS->Update();
+			return;
+		}
+
 		m_pCWhiteScreenFade->SetFadeFlag(m_pCWhiteScreenFade->FADE_IN_FLAG);
 		m_pCWhiteScreenFade->Update();
 	}
+
 }
 
 //=======================================.
@@ -43,12 +51,16 @@ void CBeforeResultStage::Render()
 	//床の描画処理関数.
 	RenderFloor();
 
-
 	//お化け描画処理関数.
 	RenderGhost();
 
 	//フェード描画処理関数.
 	m_pCWhiteScreenFade->Render();
+
+	//SNSの評判クラス.
+	if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
+		m_pCReputationSNS->Render();
+	}
 }
 
 //=======================================.
@@ -56,7 +68,7 @@ void CBeforeResultStage::Render()
 //=======================================.
 void CBeforeResultStage::Init()
 {
-
+	m_pCReputationSNS.reset(new CReputationSNS());
 }
 
 //=======================================.

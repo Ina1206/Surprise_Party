@@ -1,10 +1,13 @@
 #include "CReputationSNS.h"
 
 /***************************************
-*		SNSでの評判処理関数.
+*		SNSでの評判クラス.
 *******************/
 CReputationSNS::CReputationSNS()
-	: m_stArticleDetail	()
+	: m_pCSpriteUI		(nullptr)
+	, m_vCursorPos		(0.0f, 0.0f, 0.0f)
+	, m_fCursorAlpha	(ALPHA_MAX)
+	, m_stArticleDetail	()
 	, m_EndingTypeNum	(0)
 {
 	//初期化処理関数.
@@ -30,7 +33,16 @@ void CReputationSNS::Update()
 //==========================================.
 void CReputationSNS::Render()
 {
+	//デプスステンシル.
+	CDepth_Stencil* m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
 
+	m_pCDepthStencil->SetDepth(false);
+
+	//カーソル描画処理関数.
+	RenderCursor();
+
+	m_pCDepthStencil->SetDepth(true);
+	
 }
 
 //==========================================.
@@ -38,7 +50,8 @@ void CReputationSNS::Render()
 //==========================================.
 void CReputationSNS::Init()
 {
-
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::CursorSNS);
+	m_vCursorPos = D3DXVECTOR3(50.0f, 250.0f, 0.0f);
 }
 
 //==========================================.
@@ -47,4 +60,17 @@ void CReputationSNS::Init()
 void CReputationSNS::Release()
 {
 
+}
+
+//==========================================.
+//		カーソル描画処理関数.
+//==========================================.
+void CReputationSNS::RenderCursor()
+{
+	//座標.
+	m_pCSpriteUI->SetPosition(m_vCursorPos);
+	//透過値.
+	m_pCSpriteUI->SetAlpha(m_fCursorAlpha);
+	//描画.
+	m_pCSpriteUI->Render();
 }
