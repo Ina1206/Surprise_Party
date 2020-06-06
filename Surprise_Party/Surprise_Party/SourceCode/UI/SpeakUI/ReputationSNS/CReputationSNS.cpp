@@ -54,6 +54,10 @@ void CReputationSNS::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::CursorSNS);
 	m_vCursorPos = D3DXVECTOR3(50.0f, 250.0f, 0.0f);
+
+	m_pCFontResource->SetStartPos(D3DXVECTOR3(5.0f, 25.0f, 0.0f));
+	m_pCFontResource->SetFontScale(90.0f);
+	m_pCFontResource->SetWidthMax(500.0f);
 }
 
 //==========================================.
