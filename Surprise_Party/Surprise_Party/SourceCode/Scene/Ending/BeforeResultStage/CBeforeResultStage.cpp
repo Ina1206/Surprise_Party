@@ -70,7 +70,7 @@ void CBeforeResultStage::Init()
 {
 	m_pCReputationSNS.reset(new CReputationSNS());
 
-	m_pCReputationSNS->DecideString(2);
+	m_pCReputationSNS->DecideString(1);
 }
 
 //=======================================.
