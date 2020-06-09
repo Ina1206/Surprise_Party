@@ -33,6 +33,7 @@ private:
 	void RenderCursor();							//カーソル描画処理関数.
 	void MoveCursor();								//カーソル移動.
 	void DecidePicture(const int& EndingNum);		//写真決定処理関数.
+	void RenderPicture();							//写真描画処理関数.
 
 	//===========================変数=================================//.
 	CSpriteUI*					m_pCSpriteUI;		//スプライトUI.	

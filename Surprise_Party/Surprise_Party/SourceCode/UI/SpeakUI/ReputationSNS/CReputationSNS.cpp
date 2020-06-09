@@ -50,6 +50,9 @@ void CReputationSNS::Render()
 	//•¶š•`‰æˆ—ŠÖ”.
 	RenderFont();
 
+	//Ê^•`‰æˆ—ŠÖ”.
+	RenderPicture();
+
 	m_pCDepthStencil->SetDepth(true);
 	
 }
@@ -68,6 +71,9 @@ void CReputationSNS::DecideString(const int& EndingNum)
 
 	//“Ç‚İ‚İˆ—ŠÖ”.
 	m_pCFontResource->Load(m_stSpeakString[0]);
+
+	//Ê^Œˆ’èˆ—ŠÖ”.
+	DecidePicture(EndingNum);
 
 }
 
@@ -152,5 +158,19 @@ void CReputationSNS::MoveCursor()
 //===========================================.
 void CReputationSNS::DecidePicture(const int& EndingType)
 {
-	
+	//Sprite”Ô†.
+	const int SpriteNum = static_cast<int>(enSpriteUI::PictureSNSRest) + EndingType;
+
+	m_pCPictureUI = m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum));
+
+}
+
+//============================================.
+//		Ê^•`‰æˆ—ŠÖ”.
+//============================================.
+void CReputationSNS::RenderPicture()
+{
+	m_pCPictureUI->SetPosition(D3DXVECTOR3(10.0f, 50.0f, 0.0f));
+	m_pCPictureUI->SetAlpha(ALPHA_MAX);
+	m_pCPictureUI->Render();
 }
