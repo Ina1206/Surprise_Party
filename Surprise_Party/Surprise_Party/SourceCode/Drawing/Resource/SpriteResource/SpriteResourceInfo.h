@@ -82,6 +82,9 @@ enum class enSpriteUI
 	DescriptionBlack,				//説明用黒画面.
 	WhiteScreen,					//白画面.
 	CursorSNS,						//カーソルSNS.
+	PictureSNSFlower,				//SNS用の写真(花).
+	PictureSNSRest,					//SNS用の写真(休憩).
+	PictureSNSSurprise,				//SNS用の写真(驚き).
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.

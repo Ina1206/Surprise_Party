@@ -208,6 +208,9 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\DescriptionBlack.png",				//説明用黒画面.
 		"Data\\Texture\\UI\\Game\\WhiteScreen.png",				//白画面.
 		"Data\\Texture\\UI\\Game\\SNSCursor.png",				//SNS用カーソル.
+		"Data\\Texture\\UI\\Game\\SNSPictureFlower.png",		//SNS用の写真(花).
+		"Data\\Texture\\UI\\Game\\SNSPictureRest.png",			//SNS用の写真(休憩).
+		"Data\\Texture\\UI\\Game\\SNSPictureSurprise.png",		//SNS用の写真(驚き).
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
@@ -517,6 +520,27 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[CursorSNSNum].Base.h = 90.0f;
 	m_pstSpriteUIState[CursorSNSNum].Disp.w = 90.0f;
 	m_pstSpriteUIState[CursorSNSNum].Disp.h = 90.0f;
+
+	//SNS用の写真(花).
+	const int PictureSNSFlowerNum = static_cast<int>(enSpriteUI::PictureSNSFlower);
+	m_pstSpriteUIState[PictureSNSFlowerNum].Base.w = 182.0f;
+	m_pstSpriteUIState[PictureSNSFlowerNum].Base.h = 280.0f;
+	m_pstSpriteUIState[PictureSNSFlowerNum].Disp.w = 280.0f;
+	m_pstSpriteUIState[PictureSNSFlowerNum].Disp.h = 280.0f;
+
+	//SNS用の写真(休憩).
+	const int PictureSNSRest = static_cast<int>(enSpriteUI::PictureSNSRest);
+	m_pstSpriteUIState[PictureSNSRest].Base.w = 122.0f;
+	m_pstSpriteUIState[PictureSNSRest].Base.h = 152.0f;
+	m_pstSpriteUIState[PictureSNSRest].Disp.w = 122.0f;
+	m_pstSpriteUIState[PictureSNSRest].Disp.h = 152.0f;
+
+	//SNS用の写真(驚き).
+	const int PictureSNSSurprise = static_cast<int>(enSpriteUI::PictureSNSSurprise);
+	m_pstSpriteUIState[PictureSNSSurprise].Base.w = 477.0f;
+	m_pstSpriteUIState[PictureSNSSurprise].Base.h = 272.0f;
+	m_pstSpriteUIState[PictureSNSSurprise].Disp.w = 477.0f;
+	m_pstSpriteUIState[PictureSNSSurprise].Disp.h = 272.0f;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
