@@ -5,6 +5,7 @@
 *******************/
 CReputationSNS::CReputationSNS()
 	: m_pCSpriteUI			(nullptr)
+	, m_pCPictureUI			(nullptr)
 	, m_vCursorPos			(0.0f, 0.0f, 0.0f)
 	, m_fCursorAlpha		(ALPHA_MAX)
 	, m_FlashingCursorCnt	(0)
@@ -144,4 +145,12 @@ void CReputationSNS::MoveCursor()
 	m_vCursorPos.x += FONT_SCALE;
 
 	m_vCursorPos.y += ADJUSTMENT_HEIGHT;
+}
+
+//===========================================.
+//		é ê^åàíËèàóùä÷êî.
+//===========================================.
+void CReputationSNS::DecidePicture(const int& EndingType)
+{
+	
 }

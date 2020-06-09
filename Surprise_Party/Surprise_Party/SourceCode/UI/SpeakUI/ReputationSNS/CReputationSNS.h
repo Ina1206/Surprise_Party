@@ -32,9 +32,11 @@ private:
 	void UpdateCursor();							//カーソル更新処理関数.
 	void RenderCursor();							//カーソル描画処理関数.
 	void MoveCursor();								//カーソル移動.
+	void DecidePicture(const int& EndingNum);		//写真決定処理関数.
 
 	//===========================変数=================================//.
 	CSpriteUI*					m_pCSpriteUI;		//スプライトUI.	
+	CSpriteUI*					m_pCPictureUI;		//写真UI.
 	D3DXVECTOR3					m_vCursorPos;		//カーソル座標.
 	float						m_fCursorAlpha;		//カーソル透過値.
 	int							m_FlashingCursorCnt;//カーソル点滅カウント.
