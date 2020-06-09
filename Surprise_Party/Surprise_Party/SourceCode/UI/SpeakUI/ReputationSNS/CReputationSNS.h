@@ -14,7 +14,7 @@ public:
 	~CReputationSNS();
 
 	//===========================定数=================================//.
-	const D3DXVECTOR3	INIT_FONT_POS		= D3DXVECTOR3(50.0f, 250.0f, 0.0f);	//文字列初期座標.
+	const D3DXVECTOR3	INIT_FONT_POS		= D3DXVECTOR3(50.0f, 300.0f, 0.0f);	//文字列初期座標.
 	const float			FONT_SCALE			= 90.0f;							//フォント大きさ.
 	const float			STRING_WIDTH_MAX	= 1000.0f;							//文字列幅最大値.
 	const float			ADJUSTMENT_HEIGHT	= 15.0f;							//カーソル高さ微調整.

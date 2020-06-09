@@ -532,7 +532,7 @@ void CResourceManager::SpriteUIStateSetting()
 	const int PictureSNSFlowerNum = static_cast<int>(enSpriteUI::PictureSNSFlower);
 	m_pstSpriteUIState[PictureSNSFlowerNum].Base.w = 182.0f;
 	m_pstSpriteUIState[PictureSNSFlowerNum].Base.h = 280.0f;
-	m_pstSpriteUIState[PictureSNSFlowerNum].Disp.w = 280.0f;
+	m_pstSpriteUIState[PictureSNSFlowerNum].Disp.w = 182.0f;
 	m_pstSpriteUIState[PictureSNSFlowerNum].Disp.h = 280.0f;
 
 	//SNSópÇÃé ê^(ã¡Ç´).
