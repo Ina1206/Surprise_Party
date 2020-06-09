@@ -485,6 +485,7 @@ void CMainStage::Init()
 	if (m_enStageType == enStageType::Tutorial) {
 		TimeUpMax = 1;
 	}
+	TimeUpMax = 1;
 
 	//前回のステージ初期化.
 	m_enBeforeStageEndingType = enBeforeStageEndigneType::Nothing;

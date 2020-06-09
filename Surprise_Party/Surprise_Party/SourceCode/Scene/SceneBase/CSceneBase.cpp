@@ -1,13 +1,14 @@
 #include "CSceneBase.h"
 
 CSceneBase::CSceneBase()
-	: m_mView		()
-	, m_mProj		()
-	, m_vLightPos	(0.0f, 0.0f, 0.0f)
-	, m_vCameraPos	(0.0f, 0.0f, 0.0f)
-	, m_vBackColor	(0.0f, 0.0f, 0.0f, 0.0f)
-	, m_bChangeScene(false)
-	, m_bPauseFlag	(false)
+	: m_mView			()
+	, m_mProj			()
+	, m_vLightPos		(0.0f, 0.0f, 0.0f)
+	, m_vCameraPos		(0.0f, 0.0f, 0.0f)
+	, m_vBackColor		(0.0f, 0.0f, 0.0f, 0.0f)
+	, m_bChangeScene	(false)
+	, m_bPauseFlag		(false)
+	, m_Evaluation		(0)
 {
 
 }

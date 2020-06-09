@@ -15,8 +15,8 @@ public:
 	~CStageManager();
 
 	//=====================定数=========================//.
-	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.
-	const unsigned int	FINISH_NEXT_GAME	= (1 << 1);		//次がゲームでの終了.
+	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//終了しエンディングへ移動.
+	const unsigned int	FINISH_NEXT_TITLE	= (1 << 1);		//終了しタイトルへ移動.
 	const int			NORMAL_STAGE_NUM	= 0;			//通常ステージ番号.
 
 	//====================関数=========================//.
@@ -27,6 +27,7 @@ public:
 
 	//==============情報獲得処理関数===================//.
 	unsigned int GetFinishFlag() const { return m_FinishFlag; }
+	int	GetAverageEvaluation() const { return m_AllEndingType / 3; }
 
 private:
 	//====================関数=========================//.
@@ -40,6 +41,7 @@ private:
 	std::unique_ptr<CStageFade>					m_pCStageFade;			//ステージフェード.
 	unsigned int								m_FinishFlag;			//終了フラグ.
 	unsigned int								m_bOldTutorialFlag;		//チュートリアルフラグ.
+	int											m_AllEndingType;		//全てのエンディングタイプの合計.
 };
 
 #endif	//#ifndef CSTAGE_MANAGER_H.

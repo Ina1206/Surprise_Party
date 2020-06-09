@@ -23,6 +23,7 @@ CBeforeResultStage::~CBeforeResultStage()
 //=======================================.
 void CBeforeResultStage::Update()
 {
+
 	//ƒJƒƒ‰XVˆ—ŠÖ”.
 	m_pCCameraEnding->Update();
 
@@ -40,6 +41,17 @@ void CBeforeResultStage::Update()
 		m_pCWhiteScreenFade->SetFadeFlag(m_pCWhiteScreenFade->FADE_IN_FLAG);
 		m_pCWhiteScreenFade->Update();
 	}
+
+	if (m_OldEvaluation != INIT_EVALUATION_NUM) {
+		return;
+	}
+
+	if (m_Evaluation != m_OldEvaluation) {
+		//•¶ÍŒˆ’èˆ—ŠÖ”.
+		m_pCReputationSNS->DecideString(m_Evaluation);
+	}
+
+	m_OldEvaluation = m_Evaluation;
 
 }
 
@@ -70,7 +82,6 @@ void CBeforeResultStage::Init()
 {
 	m_pCReputationSNS.reset(new CReputationSNS());
 
-	m_pCReputationSNS->DecideString(1);
 }
 
 //=======================================.

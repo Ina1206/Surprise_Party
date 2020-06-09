@@ -18,6 +18,9 @@ CEnding::~CEnding()
 //=================================.
 void CEnding::UpDate()
 {
+	//•]‰¿’uŠ·ˆ—ŠÖ”.
+	m_pCEndingStageBase->SetEvaluation(m_Evaluation);
+	//XVˆ—ŠÖ”.
 	m_pCEndingStageBase->Update();
 }
 

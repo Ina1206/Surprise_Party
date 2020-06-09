@@ -23,7 +23,11 @@ void CGameMain::UpDate()
 	//シーン管理クラスの更新処理関数.
 	m_pCStageManager->UpDate();
 
+	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_TITLE) {
+		m_bChangeScene = true;
+	}
 	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_ENDING) {
+		m_Evaluation = m_pCStageManager->GetAverageEvaluation();
 		m_bChangeScene = true;
 	}
 }

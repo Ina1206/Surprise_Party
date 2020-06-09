@@ -18,11 +18,18 @@ public:
 	CEndingStageBase();
 	virtual ~CEndingStageBase();
 
+	//===================定数======================//.
+	const int INIT_EVALUATION_NUM = -1;	//初期評価番号.
+
 	//========================関数=============================//.
 	virtual void Update() = 0;								//更新処理関数.
 	virtual void Render() = 0;								//描画処理関数.
 	
 	void RenderInitSetting(const D3DXMATRIX& mProj);		//描画初期設定処理関数.
+
+	//==================情報置換処理関数=======================//.
+	//評価.
+	void SetEvaluation(const int& Evaluation) { m_Evaluation = Evaluation; }
 
 protected:
 	//========================関数=============================//.
@@ -39,8 +46,9 @@ protected:
 	std::unique_ptr<CBigGhost>							m_pCBigGhost;				//ビッグゴーストクラス.
 	std::vector<std::unique_ptr<CGhostBase>>			m_pCGhost;					//お化けクラス.
 	std::unique_ptr<CCameraEnding>						m_pCCameraEnding;			//エンディングカメラ.
-	std::unique_ptr<CWhiteScreenFade>					m_pCWhiteScreenFade;		//白画面のフェード
-
+	std::unique_ptr<CWhiteScreenFade>					m_pCWhiteScreenFade;		//白画面のフェード.
+	int													m_Evaluation;				//評価.
+	int													m_OldEvaluation;			//差分用評価.
 private:
 	//========================関数=============================//.
 	void InitCommonValue();									//共通値の初期化処理関数.

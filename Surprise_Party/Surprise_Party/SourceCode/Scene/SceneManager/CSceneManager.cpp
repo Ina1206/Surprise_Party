@@ -170,7 +170,9 @@ void CSceneManager::ChangeScene()
 		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
 		break;
 	case enSceneType::Ending:
+		const int Evaluation = m_pCSceneBase[NORMAL_SCENE_NUM]->GetEvaluation();
 		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CEnding());
+		m_pCSceneBase[NORMAL_SCENE_NUM]->SetEvaluation(Evaluation);
 		break;
 	}
 

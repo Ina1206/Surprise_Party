@@ -62,18 +62,19 @@ void CReputationSNS::Render()
 //==========================================.
 void CReputationSNS::DecideString(const int& EndingNum)
 {
+	const int m_EndingNum = EndingNum;
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
 	//読み込むファイル番号.
 	const int m_FileNum = static_cast<int>(CFileResource::enSpeakFileType::EndingSpeak);
 	//メイン文字列の番号.
 	const CFileString::enStringType MainStringNum = CFileString::enStringType::MainString;
-	m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(m_FileNum, EndingNum, MainStringNum));
+	m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(m_FileNum, m_EndingNum, MainStringNum));
 
 	//読み込み処理関数.
 	m_pCFontResource->Load(m_stSpeakString[0]);
 
 	//写真決定処理関数.
-	DecidePicture(EndingNum);
+	DecidePicture(m_EndingNum);
 
 }
 
@@ -160,7 +161,7 @@ void CReputationSNS::MoveCursor()
 void CReputationSNS::DecidePicture(const int& EndingType)
 {
 	//Sprite番号.
-	const int SpriteNum = static_cast<int>(enSpriteUI::PictureSNSRest) + EndingType;
+	const int SpriteNum = static_cast<int>(enSpriteUI::PictureSNSRest) + (2 - EndingType);
 
 	m_pCPictureUI = m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum));
 }

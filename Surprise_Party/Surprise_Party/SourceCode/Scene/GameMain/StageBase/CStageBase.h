@@ -35,7 +35,7 @@ public:
 
 	//=====================定数=========================//.
 	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.
-	const unsigned int	FINISH_NEXT_GAME	= (1 << 1);		//次がゲームでの終了.
+	const unsigned int	FINISH_NEXT_TITLE	= (1 << 1);		//次がゲームでの終了.
 
 	const unsigned int TUTORIAL_START		= (1 << 0);		//チュートリアル開始.
 	const unsigned int TUTORIAL_FINISH		= (1 << 1);		//チュートリアル終了

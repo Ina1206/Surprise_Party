@@ -8,6 +8,7 @@ CStageManager::CStageManager()
 	, m_pCStageFade			(nullptr)
 	, m_FinishFlag			(0)
 	, m_bOldTutorialFlag	(false)
+	, m_AllEndingType		(0)
 {
 
 }
@@ -132,6 +133,12 @@ void CStageManager::ChangeStage()
 		return;
 	}
 
+	//3ステージ以上の場合は終了処理.
+	if (m_StageNum >= 3) {
+		m_FinishFlag = FINISH_NEXT_ENDING;
+		return;
+	}
+
 	//ステージの種類変更.
 	switch (static_cast<CStageBase::enStageType>(m_StageType)) {
 	case CStageBase::enStageType::GhostSpeakStage:
@@ -141,6 +148,8 @@ void CStageManager::ChangeStage()
 		break;
 	case CStageBase::enStageType::MainStage:
 		m_enBeforeEndingType = m_pCStageBase[STAGE_TYPE_NUM]->GetBeforeStageEndingType();
+		//ゲームエンディング加算.
+		m_AllEndingType += static_cast<int>(m_enBeforeEndingType);
 		m_StageNum++;
 		m_pCStageBase[STAGE_TYPE_NUM].reset(new CGhostSpeakStage(m_StageNum, m_enBeforeEndingType));
 		break;

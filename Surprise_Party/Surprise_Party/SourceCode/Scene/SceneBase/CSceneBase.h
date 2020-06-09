@@ -12,6 +12,7 @@ public:
 	CSceneBase();
 	virtual ~CSceneBase();
 
+
 	//===================関数======================//.
 	void	RenderInitSetting(const D3DXMATRIX& mProj);	//描画初期設定.
 	void	DebugSceneChange();			//デバッグ用シーン変更処理関数.
@@ -23,9 +24,11 @@ public:
 	D3DXVECTOR4 GetBackColor()		{ return m_vBackColor; }	//後ろの色情報取得処理関数.
 	bool		GetChangeSceneFlag(){ return m_bChangeScene; }	//シーン変更フラグ取得処理関数.
 	bool		GetPauseFlag() const { return m_bPauseFlag; }	//一時停止フラグ.
+	int			GetEvaluation() const { return m_Evaluation; }	//評価.
 
 	//=============情報置換処理関数================//.
 	void SetPauseFlag(const bool& flag) { m_bPauseFlag = flag; }//一時停止フラグ.
+	void SetEvaluation(const int& Num) { m_Evaluation = Num; }	//評価.
 
 protected:
 	//===================関数======================//.
@@ -33,14 +36,14 @@ protected:
 	virtual void Release()	= 0;		//解放処理関数.
 
 	//===================変数======================//.
-	D3DXMATRIX	m_mView;		//ビュー行列.
-	D3DXMATRIX	m_mProj;		//プロジェクション行列.
-	D3DXVECTOR3 m_vLightPos;	//ライト座標.
-	D3DXVECTOR3 m_vCameraPos;	//カメラ座標.
-	D3DXVECTOR4 m_vBackColor;	//後ろの色.
-	bool		m_bChangeScene;	//シーン変更フラグ.
-	bool		m_bPauseFlag;	//一時停止フラグ.
-
+	D3DXMATRIX	m_mView;				//ビュー行列.
+	D3DXMATRIX	m_mProj;				//プロジェクション行列.
+	D3DXVECTOR3 m_vLightPos;			//ライト座標.
+	D3DXVECTOR3 m_vCameraPos;			//カメラ座標.
+	D3DXVECTOR4 m_vBackColor;			//後ろの色.
+	bool		m_bChangeScene;			//シーン変更フラグ.
+	bool		m_bPauseFlag;			//一時停止フラグ.
+	int			m_Evaluation;			//評価.
 private:
 
 };
