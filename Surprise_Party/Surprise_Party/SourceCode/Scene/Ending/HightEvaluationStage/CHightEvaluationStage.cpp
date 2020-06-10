@@ -20,7 +20,11 @@ CHightEvaluationStage::~CHightEvaluationStage()
 //=============================================.
 void CHightEvaluationStage::Update()
 {
-
+	//白画面のフェード.
+	if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
+		return;
+	}
+	m_pCWhiteScreenFade->Update();
 }
 
 //=============================================.
@@ -33,6 +37,11 @@ void CHightEvaluationStage::Render()
 
 	//お化け描画処理関数.
 	RenderGhost();
+
+	//白画面のフェード描画.
+	if (!(m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG)) {
+		m_pCWhiteScreenFade->Render();
+	}
 }
 
 //=============================================.
@@ -40,7 +49,7 @@ void CHightEvaluationStage::Render()
 //=============================================.
 void CHightEvaluationStage::Init()
 {
-
+	m_pCWhiteScreenFade->SetFadeFlag(m_pCWhiteScreenFade->FADE_OUT_FLAG);
 }
 
 //=============================================.
