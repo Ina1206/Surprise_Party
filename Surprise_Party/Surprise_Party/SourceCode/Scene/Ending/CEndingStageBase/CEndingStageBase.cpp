@@ -7,7 +7,6 @@ CEndingStageBase::CEndingStageBase()
 	: m_mView					()
 	, m_mProj					()
 	, m_pCBackstageLight		(nullptr)
-	, m_pCBigGhost				(nullptr)
 	, m_pCGhost					(0)
 	, m_pCCameraEnding			(nullptr)
 	, m_pCWhiteScreenFade		(nullptr)
@@ -76,7 +75,6 @@ void CEndingStageBase::RenderGhost()
 void CEndingStageBase::InitCommonValue()
 {
 	//インスタンス化.
-	m_pCBigGhost.reset(new CBigGhost());
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
 	m_pCCameraEnding.reset(new CCameraEnding());

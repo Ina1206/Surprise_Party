@@ -49,6 +49,7 @@ void CHightEvaluationStage::Render()
 //=============================================.
 void CHightEvaluationStage::Init()
 {
+	//フェードアウトで設定.
 	m_pCWhiteScreenFade->SetFadeFlag(m_pCWhiteScreenFade->FADE_OUT_FLAG);
 }
 

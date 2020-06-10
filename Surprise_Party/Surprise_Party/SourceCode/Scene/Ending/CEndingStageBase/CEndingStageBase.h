@@ -47,7 +47,6 @@ protected:
 	D3DXMATRIX											m_mView;					//ビュー行列.
 	D3DXMATRIX											m_mProj;					//プロジェクション行列.
 	std::unique_ptr<CBackstageLight>					m_pCBackstageLight;			//舞台裏ライトクラス.
-	std::unique_ptr<CBigGhost>							m_pCBigGhost;				//ビッグゴーストクラス.
 	std::vector<std::unique_ptr<CGhostBase>>			m_pCGhost;					//お化けクラス.
 	std::unique_ptr<CCameraEnding>						m_pCCameraEnding;			//エンディングカメラ.
 	std::unique_ptr<CWhiteScreenFade>					m_pCWhiteScreenFade;		//白画面のフェード.
