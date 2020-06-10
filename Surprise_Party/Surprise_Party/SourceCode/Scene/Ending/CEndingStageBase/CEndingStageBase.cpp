@@ -15,6 +15,7 @@ CEndingStageBase::CEndingStageBase()
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
 	, m_Evaluation				(0)
 	, m_OldEvaluation			(INIT_EVALUATION_NUM)
+	, m_bChangeStage			(false)
 {
 	//‹¤’Ê‚Ì’l‚Ì‰Šú‰»ˆ—ŠÖ”.
 	InitCommonValue();

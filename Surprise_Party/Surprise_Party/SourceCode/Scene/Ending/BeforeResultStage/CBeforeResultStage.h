@@ -22,6 +22,7 @@ private:
 	//========================ŠÖ”=========================//.
 	void Init();		//‰Šú‰»ˆ—ŠÖ”.
 	void Release();		//‰ğ•úˆ—ŠÖ”.
+	void DecideString();//•¶ÍŒˆ’èˆ—ŠÖ”.
 
 	//========================•Ï”=========================//.
 	std::unique_ptr<CReputationSNS>	m_pCReputationSNS;	//SNS•]”»ˆ—ŠÖ”.

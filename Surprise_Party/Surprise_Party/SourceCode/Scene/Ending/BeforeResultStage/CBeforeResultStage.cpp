@@ -42,17 +42,8 @@ void CBeforeResultStage::Update()
 		m_pCWhiteScreenFade->Update();
 	}
 
-	if (m_OldEvaluation != INIT_EVALUATION_NUM) {
-		return;
-	}
-
-	if (m_Evaluation != m_OldEvaluation) {
-		//•¶ÍŒˆ’èˆ—ŠÖ”.
-		m_pCReputationSNS->DecideString(m_Evaluation);
-	}
-
-	m_OldEvaluation = m_Evaluation;
-
+	//•¶ÍŒˆ’èˆ—ŠÖ”.
+	DecideString();
 }
 
 //=======================================.
@@ -90,4 +81,21 @@ void CBeforeResultStage::Init()
 void CBeforeResultStage::Release()
 {
 
+}
+
+//=======================================.
+//		•¶ÍŒˆ’èˆ—ŠÖ”.
+//=======================================.
+void CBeforeResultStage::DecideString()
+{
+	if (m_OldEvaluation != INIT_EVALUATION_NUM) {
+		return;
+	}
+
+	if (m_Evaluation != m_OldEvaluation) {
+		//•¶ÍŒˆ’èˆ—ŠÖ”.
+		m_pCReputationSNS->DecideString(m_Evaluation);
+	}
+
+	m_OldEvaluation = m_Evaluation;
 }

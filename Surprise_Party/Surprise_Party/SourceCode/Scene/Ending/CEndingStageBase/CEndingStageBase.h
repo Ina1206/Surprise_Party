@@ -31,6 +31,10 @@ public:
 	//評価.
 	void SetEvaluation(const int& Evaluation) { m_Evaluation = Evaluation; }
 
+	//==================情報取得処理関数=======================//.
+	//ステージ変更フラグ.
+	bool GetChangeStage() const { return m_bChangeStage; }
+
 protected:
 	//========================関数=============================//.
 	virtual void Init() = 0;								//初期化処理関数.
@@ -49,6 +53,7 @@ protected:
 	std::unique_ptr<CWhiteScreenFade>					m_pCWhiteScreenFade;		//白画面のフェード.
 	int													m_Evaluation;				//評価.
 	int													m_OldEvaluation;			//差分用評価.
+	bool												m_bChangeStage;				//ステージ変更フラグ.
 private:
 	//========================関数=============================//.
 	void InitCommonValue();									//共通値の初期化処理関数.
