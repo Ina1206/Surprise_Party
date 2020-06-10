@@ -28,7 +28,11 @@ void CHightEvaluationStage::Update()
 //=============================================.
 void CHightEvaluationStage::Render()
 {
+	//°‚Ì•`‰æˆ—ŠÖ”.
+	RenderFloor();
 
+	//‚¨‰»‚¯•`‰æˆ—ŠÖ”.
+	RenderGhost();
 }
 
 //=============================================.
