@@ -347,6 +347,9 @@
     <Filter Include="SourceCode\UI\SpeakUI\ReputationSNS">
       <UniqueIdentifier>{d52ed314-fa08-4673-8267-9ddd897ceabc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Scene\Ending\HightEvaluationStage">
+      <UniqueIdentifier>{fd696f79-3589-48cf-b486-044060efe5f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -700,6 +703,9 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\ReputationSNS\CReputationSNS.h">
       <Filter>SourceCode\UI\SpeakUI\ReputationSNS</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Ending\HightEvaluationStage\CHightEvaluationStage.h">
+      <Filter>SourceCode\Scene\Ending\HightEvaluationStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1040,6 +1046,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SpeakUI\ReputationSNS\CReputationSNS.cpp">
       <Filter>SourceCode\UI\SpeakUI\ReputationSNS</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Ending\HightEvaluationStage\CHightEvaluationStage.cpp">
+      <Filter>SourceCode\Scene\Ending\HightEvaluationStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
