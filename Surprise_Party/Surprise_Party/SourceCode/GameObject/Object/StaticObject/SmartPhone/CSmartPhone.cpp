@@ -50,9 +50,9 @@ void CSmartPhone::Init()
 {
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::Phone);
 	
-	m_vRot.x = static_cast<float>(D3DXToRadian(0.0f));
-	m_vRot.y = static_cast<float>(D3DXToRadian(0.0f));
-	m_vRot.z = static_cast<float>(D3DXToRadian(0.0f));
+	m_vRot.x = static_cast<float>(D3DXToRadian(-30.0f));
+	m_vRot.y = static_cast<float>(D3DXToRadian(170.0f));
+	m_vRot.z = static_cast<float>(D3DXToRadian(-5.0f));
 }
 
 //============================================.
