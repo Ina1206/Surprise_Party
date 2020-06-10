@@ -6,7 +6,7 @@
 #include "..\..\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h"
 #include "..\..\SpriteEffect\RejoiceEffect\CRejoiceEffect.h"
 #include "..\..\SpriteEffect\QuestionEffect\CQuestionEffect.h"
-#include "..\..\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.h"
+//#include "..\..\GameObject\Object\StaticObject\SmartPhone\CSmartPhone.h"
 
 /******************************************
 *		大きいお化けクラス.
@@ -84,7 +84,7 @@ private:
 	int												m_UsingEffectNum;		//使っているエフェクト番号.
 	int												m_OldEmotionNum;		//前の感情番号.
 
-	std::unique_ptr<CSmartPhone>					m_pCSmartPhone;			//スマートフォンクラス.
+	//std::unique_ptr<CSmartPhone>					m_pCSmartPhone;			//スマートフォンクラス.
 
 	bool											m_bSleepFlag;			//眠りフラグ.
 };

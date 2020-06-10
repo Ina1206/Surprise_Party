@@ -76,13 +76,13 @@ void CCameraEnding::Update()
 
 	if (m_ApprochFlag & APPROCH_GHOST_HEAD_FLAG) {
 		//中間地点まで移動処理関数.
-		//MoveToIntermediatePoint();
+		MoveToIntermediatePoint();
 		return;
 	}
 
 	if (m_ApprochFlag & APPROCH_SMARTPHONE_FLAG) {
 		//下降処理関数.
-		//MoveDown();
+		MoveDown();
 	}
 }
 
@@ -94,9 +94,6 @@ void CCameraEnding::Init()
 	m_Camera.vPos = INIT_CAMERA_POS;
 	m_Camera.vLook = INIT_CAMERA_LOOK;
 	
-	m_Camera.vPos = D3DXVECTOR3(6.0f, 2.7f, 1.3f);
-	m_Camera.vLook = D3DXVECTOR3(6.0f, 2.2f, 5.0f); 
-
 	m_fAngle = ANGLE_MAX;
 
 	m_ApprochFlag = APPROCH_GHOST_HEAD_FLAG;
@@ -147,7 +144,8 @@ void CCameraEnding::MoveApproching()
 	const float INTERMEDIATE_INIT_HEIGHT_RANGE = INTERMEDIATE_POINT_POS.y - INIT_CAMERA_POS.y;
 
 	//注視点から初期のカメラ位置の距離.
-	const float RANGE_FROM_CENTER = sqrtf(pow(INIT_CAMERA_POS.x - m_Camera.vLook.x, 2) + pow(INIT_CAMERA_POS.y - m_Camera.vLook.y, 2));
+	const float RANGE_FROM_CENTER = sqrtf(pow(INIT_CAMERA_POS.x - m_Camera.vLook.x, 2) + pow(INIT_CAMERA_POS.z - m_Camera.vLook.z, 2));
+	//const float RANGE_FROM_CENTER = sqrtf(pow(INIT_CAMERA_POS.x - INTERMEDIATE_POINT_POS.x, 2) + pow(INIT_CAMERA_POS.z - INTERMEDIATE_POINT_POS.z, 2));
 	//引く距離を算出.
 	const float CENTER_RANGE_POS_UNIT = RANGE_FROM_CENTER / INTERMEDIATE_INIT_HEIGHT_RANGE;
 	m_fApprochDistance += MOVE_SPEED * CENTER_RANGE_POS_UNIT;
@@ -155,6 +153,7 @@ void CCameraEnding::MoveApproching()
 	float m_fCenterFromRange;
 	m_fCenterFromRange = RANGE_FROM_CENTER - m_fApprochDistance;
 	if (m_fCenterFromRange < 0.0f) {
+	//if (m_fCenterFromRange < FINISH_CMAERA_POS.x - INTERMEDIATE_POINT_POS.x) {
 		//周辺を回る処理は行かせない.
 		m_Camera.vPos.x = INTERMEDIATE_POINT_POS.x;
 		m_Camera.vPos.z = INTERMEDIATE_POINT_POS.z;
@@ -212,9 +211,14 @@ void CCameraEnding::MoveLook()
 //==============================================.
 void CCameraEnding::MoveDown()
 {
-	m_Camera.vPos.y -= 0.2f;
+	//中間地点から最終地点までの二点間の距離.
+	const D3DXVECTOR3 FINISH_INTERMEDIATE_POS = FINISH_CMAERA_POS - INTERMEDIATE_POINT_POS;
+	const float POS_LENGTH = D3DXVec3Length(&FINISH_INTERMEDIATE_POS);
+	const D3DXVECTOR3 POS_UNIT = FINISH_INTERMEDIATE_POS / POS_LENGTH;
+	
+	m_Camera.vPos += MOVE_DOWN_SPEED * POS_UNIT;
 
-	if (m_Camera.vPos.y < 2.5f) {
-		m_Camera.vPos.y = 2.5f;
+	if (m_Camera.vPos.y < FINISH_CMAERA_POS.y) {
+		m_Camera.vPos = FINISH_CMAERA_POS;
 	}
 }

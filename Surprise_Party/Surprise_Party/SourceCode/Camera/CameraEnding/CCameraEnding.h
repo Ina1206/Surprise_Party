@@ -17,14 +17,17 @@ public:
 	const unsigned int	APPROCH_GHOST_HEAD_FLAG	= (1 << 0);							//お化けの頭に接近フラグ.
 	const unsigned int	APPROCH_SMARTPHONE_FLAG = (1 << 1);							//スマートフォンの接近フラグ.
 	
-	const D3DXVECTOR3	INIT_CAMERA_POS			= D3DXVECTOR3(23.9f, 5.0f, -3.5f);	//カメラ初期座標.
-	const D3DXVECTOR3	INIT_CAMERA_LOOK		= D3DXVECTOR3(5.0f, 2.5f, 5.0f);	//カメラ初期注視点.
-	const D3DXVECTOR3	INTERMEDIATE_POINT_POS	= D3DXVECTOR3(5.1f, 21.8f, 3.9f);	//中間地点座標.
-	const D3DXVECTOR3	INTERMEDIATE_POINT_LOOK	= D3DXVECTOR3(5.7f, -5.0, 5.0f);	//中間地点注視点.
+	const D3DXVECTOR3	INIT_CAMERA_POS			= D3DXVECTOR3(7.3f, 3.0f, -19.1f);	//カメラ初期座標.
+	const D3DXVECTOR3	INIT_CAMERA_LOOK		= D3DXVECTOR3(6.0f, 2.2f, 5.0f);	//カメラ初期注視点.
+	const D3DXVECTOR3	INTERMEDIATE_POINT_POS	= D3DXVECTOR3(3.7f, 19.4f, 10.9f);	//中間地点座標.
+	const D3DXVECTOR3	INTERMEDIATE_POINT_LOOK	= D3DXVECTOR3(6.0f, -20.0f, 1.4f);	//中間地点注視点.
 
-	const float			MOVE_SPEED				= 0.15f;								//移動速度.
-	const float			ANGLE_MIN				= -123.0f;							//角度最小値.
-	const float			ANGLE_MAX				= -18.0f;							//角度最大値.
+	const D3DXVECTOR3	FINISH_CMAERA_POS		= D3DXVECTOR3(5.1f, 1.6f, 8.0f);	//最終カメラ位置座標.
+
+	const float			MOVE_SPEED				= 0.1f;								//移動速度.
+	const float			MOVE_DOWN_SPEED			= 0.2f;								//下降移動速度.
+	const float			ANGLE_MIN				= 110.0f;							//角度最小値.
+	const float			ANGLE_MAX				= 281.0f;							//角度最大値.
 	//===========================関数===============================//.
 	void Update();	//更新処理関数.
 

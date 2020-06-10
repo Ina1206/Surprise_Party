@@ -7,6 +7,7 @@
 ******************/
 CBeforeResultStage::CBeforeResultStage()
 	: m_pCReputationSNS	(nullptr)
+	, m_pCSmartPhone	(nullptr)
 {
 	//初期化処理関数.
 	Init();
@@ -27,9 +28,13 @@ void CBeforeResultStage::Update()
 	//カメラ更新処理関数.
 	m_pCCameraEnding->Update();
 
+	//お化け達の更新処理関数.
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
 		m_pCGhost[ghost]->Update();
 	}
+
+	//スマートフォンの更新処理関数.
+	m_pCSmartPhone->Update();
 	
 	if (m_pCCameraEnding->GetMoveFlag() & m_pCCameraEnding->CHANGE_STAGE_FLAG) {
 		
@@ -61,6 +66,9 @@ void CBeforeResultStage::Render()
 	//お化け描画処理関数.
 	RenderGhost();
 
+	//スマートフォンの描画処理関数.
+	RenderSmartPhone();
+
 	//フェード描画処理関数.
 	m_pCWhiteScreenFade->Render();
 
@@ -76,7 +84,7 @@ void CBeforeResultStage::Render()
 void CBeforeResultStage::Init()
 {
 	m_pCReputationSNS.reset(new CReputationSNS());
-
+	m_pCSmartPhone.reset(new CSmartPhone());
 }
 
 //=======================================.
@@ -102,4 +110,20 @@ void CBeforeResultStage::DecideString()
 	}
 
 	m_OldEvaluation = m_Evaluation;
+}
+
+//========================================.
+//		スマートフォン描画処理関数.
+//========================================.
+void CBeforeResultStage::RenderSmartPhone()
+{
+	//ライト情報.
+	const LIGHT m_Light = m_pCBackstageLight->GetLight();
+	//カメラ位置.
+	const D3DXVECTOR3 m_vCameraPos = m_pCCameraEnding->GetPos();
+
+	m_pCSmartPhone->SetPos(m_vObjLookPos);
+	m_pCSmartPhone->SetCameraPos(m_vCameraPos);
+	m_pCSmartPhone->RenderInitSetting(m_mView, m_mProj, m_Light);
+	m_pCSmartPhone->Render();
 }
