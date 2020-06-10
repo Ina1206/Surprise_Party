@@ -80,6 +80,7 @@ void CEnding::ChangeStage()
 CEndingStageBase*	CEnding::DecideStage()
 {
 	if (m_Evaluation == 0) {
+		//‚•]‰¿ƒNƒ‰ƒX.
 		return new CHightEvaluationStage();
 	}
 
