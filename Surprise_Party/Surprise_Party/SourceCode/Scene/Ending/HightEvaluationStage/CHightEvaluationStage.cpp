@@ -20,6 +20,11 @@ CHightEvaluationStage::~CHightEvaluationStage()
 //=============================================.
 void CHightEvaluationStage::Update()
 {
+	//お化けの更新処理.
+	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
+		m_pCGhost[ghost]->Update();
+	}
+
 	//白画面のフェード.
 	if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
 		return;
@@ -51,6 +56,11 @@ void CHightEvaluationStage::Init()
 {
 	//フェードアウトで設定.
 	m_pCWhiteScreenFade->SetFadeFlag(m_pCWhiteScreenFade->FADE_OUT_FLAG);
+
+	//お化け感情設定.
+	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
+		m_pCGhost[ghost]->SetEmotionNum(static_cast<int>(CGhostBase::enEmotionType::Rejoice));
+	}
 }
 
 //=============================================.
