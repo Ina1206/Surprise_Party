@@ -34,6 +34,7 @@ public:
 	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }			//感情番号.
 	void SetLookAtPos(const D3DXVECTOR3& vPos) { m_vLookAtPos = vPos; }	//見る座標.
 	void SetRot(const D3DXVECTOR3& vRot) { m_vRot = vRot; }
+	void SetChangeBeforePos(const D3DXVECTOR3& vPos) { m_vChangeBeforePos = vPos; }
 protected:
 	//=======================関数==========================//.
 	void MoveUpDown();											//浮遊処理関数.
@@ -41,9 +42,10 @@ protected:
 					  const D3DXVECTOR3& vTargetPos);			//移動角度処理関数.
 
 	//=======================変数==========================//.
-	int				m_EmotionNum;		//感情番号.
-	D3DXVECTOR3		m_vLookAtPos;		//見る座標.
-	D3DXVECTOR3		m_vPrePos;			//座標修正.
+	int				m_EmotionNum;			//感情番号.
+	D3DXVECTOR3		m_vLookAtPos;			//見る座標.
+	D3DXVECTOR3		m_vPrePos;				//座標修正.
+	D3DXVECTOR3		m_vChangeBeforePos;		//変更前の座標.		
 
 private:
 	//=======================関数==========================//.

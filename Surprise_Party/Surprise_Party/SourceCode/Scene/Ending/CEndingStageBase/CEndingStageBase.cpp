@@ -80,17 +80,17 @@ void CEndingStageBase::InitCommonValue()
 	m_pCCameraEnding.reset(new CCameraEnding());
 	m_pCWhiteScreenFade.reset(new CWhiteScreenFade());
 
-	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 5.0f);
+	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 8.0f);
 
 	for (int ghost = 0; ghost < 5; ghost++) {
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);
 
-		const float			RADIAN	= static_cast<float>(D3DXToRadian(122.5f + (ghost * 55.0f)));
-		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.5f) + D3DXVECTOR3(5.0f, 1.5f + ((ghost % 2) * 0.5f), 5.0f);
+		const float			RADIAN	= static_cast<float>(D3DXToRadian(-7.0f + (ghost * 55.0f)));
+		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.5f) + D3DXVECTOR3(5.0f, 1.5f + ((ghost % 2) * 0.5f), 8.0f);
 
 		m_pCGhost[ghost]->SetPos(vPos);
-
+		m_pCGhost[ghost]->SetChangeBeforePos(vPos);
 		//感情番号.
 		const int m_EmotionType = static_cast<int>(CGhostBase::enEmotionType::ViewSmartphone);
 		m_pCGhost[ghost]->SetEmotionNum(m_EmotionType);

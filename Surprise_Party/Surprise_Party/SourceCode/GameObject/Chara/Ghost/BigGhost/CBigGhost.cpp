@@ -197,6 +197,7 @@ void CBigGhost::HaveTroubleEmotion()
 	if (m_ChangeEmotionFlag == true) {
 		m_HaveTroubleActFlag = 0;
 		m_ChangeEmotionFlag = false;
+		m_vPos = WAKE_UP_POS;
 	}
 
 	if (m_HaveTroubleActFlag & (MOVING_ROT_FLAG | MOVING_POS_FLAG)) {
@@ -238,9 +239,13 @@ void CBigGhost::RejoiceEmotion()
 	m_vPos.y += REJOICE_MOVE_SPEED * m_UpDownDirect;
 	m_vPos.x += REJOICE_MOVE_SPEED * m_LeanDirect;
 
-	if (m_vPos.y <= WAKE_UP_POS.y) {
+	//if (m_vPos.y <= WAKE_UP_POS.y) {
+	//	m_UpDownDirect *= CHANGE_DIRECTION;
+	//	m_vPos.y = WAKE_UP_POS.y;
+	//}
+	if (m_vPos.y <= m_vChangeBeforePos.y) {
 		m_UpDownDirect *= CHANGE_DIRECTION;
-		m_vPos.y = WAKE_UP_POS.y;
+		m_vPos.y = m_vChangeBeforePos.y;
 	}
 
 	//角度.
@@ -364,6 +369,15 @@ void CBigGhost::ChangeEffect()
 		m_vPreRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	}
 	m_vRot = WAKE_UP_ROT;
+
+	//変更前の座標(外部編集用変数）.
+	if (m_vChangeBeforePos.y > 0.0f) {
+		m_vPos = m_vChangeBeforePos;
+	}
+	else {
+		m_vChangeBeforePos = WAKE_UP_POS;
+	}
+
 	switch (static_cast<enEmotionType>(m_EmotionNum)) {
 	case enEmotionType::Sleep:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Sleep);
@@ -374,6 +388,7 @@ void CBigGhost::ChangeEffect()
 		break;
 	case enEmotionType::Rejoice:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Rejoice);
+
 		break;
 	case enEmotionType::Question:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
@@ -443,10 +458,7 @@ void CBigGhost::EmotionMove()
 	case enEmotionType::ViewSmartphone:
 		
 		if (m_pCSmartPhone != nullptr) {
-			D3DXVECTOR3 vSmartPhonePos;
-			m_pCSkinMesh->GetPosFromBone("joint11", &vSmartPhonePos);
-			vSmartPhonePos.x += 0.8f;
-			m_pCSmartPhone->SetPos(vSmartPhonePos);
+			m_pCSmartPhone->SetPos(m_vLookAtPos);
 			m_pCSmartPhone->Update();
 		}
 

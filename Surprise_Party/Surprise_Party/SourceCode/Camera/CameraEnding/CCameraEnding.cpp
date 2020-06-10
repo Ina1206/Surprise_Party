@@ -76,13 +76,13 @@ void CCameraEnding::Update()
 
 	if (m_ApprochFlag & APPROCH_GHOST_HEAD_FLAG) {
 		//íÜä‘ínì_Ç‹Ç≈à⁄ìÆèàóùä÷êî.
-		MoveToIntermediatePoint();
+		//MoveToIntermediatePoint();
 		return;
 	}
 
 	if (m_ApprochFlag & APPROCH_SMARTPHONE_FLAG) {
 		//â∫ç~èàóùä÷êî.
-		MoveDown();
+		//MoveDown();
 	}
 }
 
@@ -94,6 +94,9 @@ void CCameraEnding::Init()
 	m_Camera.vPos = INIT_CAMERA_POS;
 	m_Camera.vLook = INIT_CAMERA_LOOK;
 	
+	m_Camera.vPos = D3DXVECTOR3(6.0f, 2.7f, 1.3f);
+	m_Camera.vLook = D3DXVECTOR3(6.0f, 2.2f, 5.0f); 
+
 	m_fAngle = ANGLE_MAX;
 
 	m_ApprochFlag = APPROCH_GHOST_HEAD_FLAG;
