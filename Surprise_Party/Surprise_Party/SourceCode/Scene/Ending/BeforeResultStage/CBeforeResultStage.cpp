@@ -35,6 +35,10 @@ void CBeforeResultStage::Update()
 		
 		if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
 			m_pCReputationSNS->Update();
+			
+			if (m_pCReputationSNS->GetChangeStage() & m_pCReputationSNS->CHANGE_STAGE_FLAG) {
+				m_bChangeStage = true;
+			}
 			return;
 		}
 

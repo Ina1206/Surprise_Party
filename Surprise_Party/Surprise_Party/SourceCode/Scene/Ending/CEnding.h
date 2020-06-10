@@ -5,6 +5,7 @@
 
 #include "BeforeResultStage\CBeforeResultStage.h"
 
+
 /************************************************
 *		エンディングクラス.
 ***********/
@@ -16,16 +17,18 @@ public:
 	~CEnding();
 
 	//========================関数===========================//.
-	void UpDate();		//更新処理関数.
-	void Render();		//描画処理関数.
+	void UpDate();						//更新処理関数.
+	void Render();						//描画処理関数.
 private:
 	//========================関数===========================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
+	void Init();						//初期化処理関数.
+	void Release();						//解放処理関数.
+	void ChangeStage();					//ステージ変更処理関数.
+	CEndingStageBase* DecideStage();	//ステージ決定処理関数.
 
 	//========================変数===========================//.
 	std::unique_ptr<CEndingStageBase>	m_pCEndingStageBase;	//エンディングステージ基底クラス.
-
+	int									m_ChangeStageCnt;		//ステージ変更カウント.
 };
 
 #endif	//#ifndef CENDING_H.

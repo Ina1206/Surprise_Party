@@ -30,6 +30,10 @@ public:
 	void Render();									//描画処理関数.
 	void DecideString(const int& EndingNum);		//文章決定処理関数.
 
+	//=====================情報取得処理関数===========================//.
+	//ステージ変更フラグ.
+	unsigned int GetChangeStage() const { return m_ChangeStageFlag; }
+
 private:
 	//===========================関数=================================//.
 	void Init();									//初期化処理関数.

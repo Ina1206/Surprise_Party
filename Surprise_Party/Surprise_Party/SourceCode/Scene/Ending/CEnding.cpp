@@ -1,7 +1,9 @@
 #include "CEnding.h"
+#include "HightEvaluationStage\CHightEvaluationStage.h"
 
 CEnding::CEnding()
 	: m_pCEndingStageBase	(nullptr)
+	, m_ChangeStageCnt		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -22,6 +24,11 @@ void CEnding::UpDate()
 	m_pCEndingStageBase->SetEvaluation(m_Evaluation);
 	//更新処理関数.
 	m_pCEndingStageBase->Update();
+
+	//ステージ変更処理.
+	if (m_pCEndingStageBase->GetChangeStage() == true) {
+		ChangeStage();
+	}
 }
 
 //==================================.
@@ -49,4 +56,36 @@ void CEnding::Init()
 void CEnding::Release()
 {
 
+}
+
+//==================================.
+//		ステージ変更処理関数.
+//==================================.
+void CEnding::ChangeStage()
+{
+	if (m_ChangeStageCnt > 0) {
+		m_bChangeScene = true;
+		return;
+	}
+
+	//ステージ決定処理関数.
+	m_pCEndingStageBase.reset(DecideStage());
+
+	m_ChangeStageCnt++;
+}
+
+//==================================.
+//		ステージ決定処理関数.
+//==================================.
+CEndingStageBase*	CEnding::DecideStage()
+{
+	if (m_Evaluation == 0) {
+		return new CHightEvaluationStage();
+	}
+
+	if (m_Evaluation == 1) {
+
+	}
+
+	return nullptr;
 }

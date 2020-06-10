@@ -207,7 +207,8 @@ void CReputationSNS::TransparentAll()
 		}
 	}
 
-	if (m_fSpriteUIAlpha[PICTURE_NUM] < 0.0f) {
-		
+	if (m_fSpriteUIAlpha[PICTURE_NUM] <= 0.0f) {
+		//ステージ変更.
+		m_ChangeStageFlag = CHANGE_STAGE_FLAG;
 	}
 }
