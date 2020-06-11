@@ -22,6 +22,14 @@ CEndingSwitchGhost::~CEndingSwitchGhost()
 //===========================================.
 void CEndingSwitchGhost::Update()
 {
+	//エフェクト変更処理関数.
+	ChangeEffect();
+
+	if (m_pCSpriteEffect != nullptr) {
+		m_pCSpriteEffect->SetCenterPos(m_vPos);
+		m_pCSpriteEffect->Update();
+	}
+
 	if (m_EmotionNum == static_cast<int>(enEmotionType::Rejoice)) {
 		//喜び感情行動処理関数.
 		ActRejoiceEmotion();
@@ -34,6 +42,9 @@ void CEndingSwitchGhost::Update()
 
 		//ご機嫌時の行動処理関数.
 		ActGoodFeeling();
+
+		//エフェクト再生管理処理関数.
+		PlayEffectManager();
 		return;
 	}
 
@@ -49,6 +60,11 @@ void CEndingSwitchGhost::Render()
 {
 	//スイッチお化け描画処理関数.
 	RenderSwitchGhost(m_vPos);
+
+	//エフェクト描画処理関数.
+	if (m_pCSpriteEffect != nullptr) {
+		m_pCSpriteEffect->Render(m_mView, m_mProj, m_vCameraPos);
+	}
 }
 
 //===========================================.

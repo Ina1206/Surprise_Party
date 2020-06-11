@@ -1,5 +1,6 @@
 #include "CEndingWorkGhostBase.h"
 #include "..\..\SpriteEffect\RejoiceEffect\CRejoiceEffect.h"
+#include "..\..\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h"
 
 /**************************************************
 *		エンディング働くお化け基底クラス.
@@ -52,6 +53,20 @@ void CEndingWorkGhostBase::ChangeEffect()
 		m_pCSpriteEffect.reset(new CRejoiceEffect());
 		return;
 	}
+
+	//ご機嫌時のエフェクト.
+	if (m_EmotionNum == static_cast<int>(enEmotionType::GoodFeeling)) {
+		m_pCSpriteEffect.reset(new CMoveNoteEffect());
+		//いる座標によって音符の移動角度を変更.
+		if (m_vPos.x < m_vLookAtPos.x) {
+			m_pCSpriteEffect->SetAngle(MOVE_NOTE_ANGLE);
+			return;
+		}
+		//基準の角度と逆の角度に移動.
+		const float INVERSE_NOTE_ANGLE = 180.0f - MOVE_NOTE_ANGLE;
+		m_pCSpriteEffect->SetAngle(INVERSE_NOTE_ANGLE);
+		return;
+	}
 }
 
 //============================================.
@@ -66,6 +81,30 @@ void CEndingWorkGhostBase::ActGoodFeeling()
 		//外側に移動する処理関数.
 		MoveToOutside();
 	}
+}
+
+//============================================.
+//		エフェクト再生管理処理関数.
+//============================================.
+void CEndingWorkGhostBase::PlayEffectManager()
+{
+	//距離計算時の指数.
+	const int Index = 2;
+	//中央と自分の座標の距離.
+	const float m_Length = sqrtf(powf(m_vPos.x - m_vLookAtPos.x, Index) + powf(m_vPos.z - m_vLookAtPos.z, Index));
+	if (m_Length > PLAY_DISTANCE_MAX) {
+		m_pCSpriteEffect->SetPlayFlag(false);
+		return;
+	}
+
+	//再生フラグ設定.
+	if (m_pCSpriteEffect->GetRenderFlag() == true) {
+		m_pCSpriteEffect->SetPlayFlag(false);
+		return;
+	}
+
+	m_pCSpriteEffect->SetPlayFlag(true);
+
 }
 
 //============================================.

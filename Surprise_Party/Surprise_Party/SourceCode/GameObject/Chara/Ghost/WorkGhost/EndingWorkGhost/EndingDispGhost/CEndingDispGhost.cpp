@@ -26,12 +26,15 @@ void CEndingDispGhost::Update()
 	//エフェクト変更処理関数.
 	ChangeEffect();
 
+	if (m_pCSpriteEffect != nullptr) {
+		//エフェクト更新処理関数.
+		m_pCSpriteEffect->SetCenterPos(m_vPos);
+		m_pCSpriteEffect->Update();
+	}
+
 	if (m_EmotionNum == static_cast<int>(enEmotionType::Rejoice)) {
 		//喜び感情行動処理関数.
 		ActRejoiceEmotion();
-		//喜び更新処理関数.
-		m_pCSpriteEffect->SetCenterPos(m_vPos);
-		m_pCSpriteEffect->Update();
 		return;
 	}
 
@@ -41,6 +44,10 @@ void CEndingDispGhost::Update()
 
 		//ご機嫌時の行動処理関数.
 		ActGoodFeeling();
+
+		//エフェクト再生管理処理関数.
+		PlayEffectManager();
+
 		return;
 	}
 
