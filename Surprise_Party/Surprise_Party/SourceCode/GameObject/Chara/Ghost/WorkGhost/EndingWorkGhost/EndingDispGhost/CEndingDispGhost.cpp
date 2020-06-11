@@ -52,7 +52,11 @@ void CEndingDispGhost::Init()
 	m_fScale = SCALE;
 	m_vPrePos.y = PRE_POS_Y;
 
-	m_fAcc = ACC_MAX;
+	//ジャンプ処理準備.
+	m_fAcc		= ACC_MAX;
+	m_fAccSpeed = ACC_SPEED;
+	m_fAccMax	= ACC_MAX;
+	m_fGravity	= GRAVITY;
 }
 
 //============================================.
@@ -68,15 +72,13 @@ void CEndingDispGhost::Release()
 //============================================.
 void CEndingDispGhost::ActRejoiceEmotion()
 {
-	m_fAcc -= ACC_SPEED;
-	m_vPos.y += m_fAcc - GRAVITY;
+	//ジャンプ処理関数.
+	Jump();
 
 	m_vRot.z += ROTATION_SPEED * m_RotationDirect;
 
-	if (m_vPos.y < m_vChangeBeforePos.y) {
-		m_vPos = m_vChangeBeforePos;
+	if (m_vPos.y <= m_vChangeBeforePos.y) {
 		m_bChangeRotationDirect = false;
-		m_fAcc = ACC_MAX;
 		m_vRot.x = 0.0f;
 	}
 

@@ -13,3 +13,18 @@ CEndingWorkGhostBase::~CEndingWorkGhostBase()
 {
 
 }
+
+//==========================================.
+//		ƒWƒƒƒ“ƒvˆ—ŠÖ”.
+//==========================================.
+void CEndingWorkGhostBase::Jump()
+{
+	m_fAcc -= m_fAccSpeed;
+	m_vPos.y += m_fAcc - m_fGravity;
+
+
+	if (m_vPos.y < m_vChangeBeforePos.y) {
+		m_vPos = m_vChangeBeforePos;
+		m_fAcc = m_fAccMax;
+	}
+}
