@@ -21,9 +21,15 @@ CEndingDispGhost::~CEndingDispGhost()
 //===========================================.
 void CEndingDispGhost::Update()
 {
+	//エフェクト変更処理関数.
+	ChangeEffect();
 
 	if (m_EmotionNum == static_cast<int>(enEmotionType::Rejoice)) {
+		//喜び感情行動処理関数.
 		ActRejoiceEmotion();
+		//喜び更新処理関数.
+		m_pCSpriteEffect->SetCenterPos(m_vPos);
+		m_pCSpriteEffect->Update();
 		return;
 	}
 
@@ -40,6 +46,10 @@ void CEndingDispGhost::Render()
 	m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAIT_ANIM_START_POS, m_pAnimCtrl);
 	RenderDispGhost(m_vPos);
 	
+	//スプライトエフェクト描画処理.
+	if (m_pCSpriteEffect != nullptr) {
+		m_pCSpriteEffect->Render(m_mView, m_mProj, m_vCameraPos);
+	}
 }
 
 //===========================================.
