@@ -13,6 +13,10 @@ public:
 	CEndingSwitchGhost();
 	~CEndingSwitchGhost();
 
+	//====================定数======================//.
+	const float	SCALE		= 0.05f;	//大きさ.
+	const float	PRE_POS_Y	= -10.0f;	//初期角度ｙ調整数値.
+
 	//====================関数======================//.
 	void Update();				//更新処理関数.
 	void Render();				//描画処理関数.

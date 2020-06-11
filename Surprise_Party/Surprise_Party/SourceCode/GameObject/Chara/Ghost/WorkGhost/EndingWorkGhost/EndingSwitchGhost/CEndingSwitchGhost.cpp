@@ -42,8 +42,8 @@ void CEndingSwitchGhost::Init()
 	//静的オブジェクトお化け初期化処理関数.
 	InitStaticMeshGhost();
 
-	m_fScale = 0.05f;
-	m_vPrePos.y = -10.0f;
+	m_fScale = SCALE;
+	m_vPrePos.y = PRE_POS_Y;
 
 }
 
