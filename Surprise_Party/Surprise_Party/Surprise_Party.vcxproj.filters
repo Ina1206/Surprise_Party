@@ -353,6 +353,9 @@
     <Filter Include="SourceCode\Scene\Ending\IntermediateEvaluationStage">
       <UniqueIdentifier>{421731e1-7365-45f4-8c58-0f46829ddf2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Scene\Ending\LowEvaluationStage">
+      <UniqueIdentifier>{5c356583-cd95-416d-8196-e91d9e628585}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -712,6 +715,9 @@
     <ClInclude Include="SourceCode\Scene\Ending\IntermediateEvaluationStage\CIntermediateEvaluationStage.h">
       <Filter>SourceCode\Scene\Ending\IntermediateEvaluationStage</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.h">
+      <Filter>SourceCode\Scene\Ending\LowEvaluationStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1058,6 +1064,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Scene\Ending\IntermediateEvaluationStage\CIntermediateEvaluationStage.cpp">
       <Filter>SourceCode\Scene\Ending\IntermediateEvaluationStage</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.cpp">
+      <Filter>SourceCode\Scene\Ending\LowEvaluationStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

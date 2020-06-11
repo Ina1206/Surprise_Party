@@ -87,6 +87,7 @@
     <ClInclude Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.h" />
     <ClInclude Include="SourceCode\Scene\Ending\HightEvaluationStage\CHightEvaluationStage.h" />
     <ClInclude Include="SourceCode\Scene\Ending\IntermediateEvaluationStage\CIntermediateEvaluationStage.h" />
+    <ClInclude Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\CGameMain.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.h" />
     <ClInclude Include="SourceCode\Scene\GameMain\MainStage\CMainStage.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\HightEvaluationStage\CHightEvaluationStage.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\IntermediateEvaluationStage\CIntermediateEvaluationStage.cpp" />
+    <ClCompile Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\CGameMain.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\GhostSpeakStage\CGhostSpeakStage.cpp" />
     <ClCompile Include="SourceCode\Scene\GameMain\MainStage\CMainStage.cpp" />
