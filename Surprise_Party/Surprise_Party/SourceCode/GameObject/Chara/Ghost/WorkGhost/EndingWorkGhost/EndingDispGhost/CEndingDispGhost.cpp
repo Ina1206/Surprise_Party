@@ -53,9 +53,9 @@ void CEndingDispGhost::Init()
 	m_vPrePos.y = PRE_POS_Y;
 
 	//ƒWƒƒƒ“ƒvˆ—€”õ.
-	m_fAcc		= ACC_MAX;
-	m_fAccSpeed = ACC_SPEED;
 	m_fAccMax	= ACC_MAX;
+	m_fAcc		= m_fAccMax;
+	m_fAccSpeed = ACC_SPEED;
 	m_fGravity	= GRAVITY;
 }
 

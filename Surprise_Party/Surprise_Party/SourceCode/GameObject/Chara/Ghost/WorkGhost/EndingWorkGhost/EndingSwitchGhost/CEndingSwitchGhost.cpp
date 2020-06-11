@@ -4,6 +4,8 @@
 *		エンディングスイッチお化けクラス.
 ******************/
 CEndingSwitchGhost::CEndingSwitchGhost()
+	: m_MoveDirect	(1)
+	, m_bSetDirect	(false)
 {
 	//初期化処理関数.
 	Init();
@@ -20,6 +22,12 @@ CEndingSwitchGhost::~CEndingSwitchGhost()
 //===========================================.
 void CEndingSwitchGhost::Update()
 {
+	if (m_EmotionNum == static_cast<int>(enEmotionType::Rejoice)) {
+		//喜び感情行動処理関数.
+		ActRejoiceEmotion();
+		return;
+	}
+
 	//移動角度処理関数.
 	MoveRotation(m_vPos, m_vLookAtPos);
 
@@ -45,6 +53,12 @@ void CEndingSwitchGhost::Init()
 	m_fScale = SCALE;
 	m_vPrePos.y = PRE_POS_Y;
 
+	//ジャンプ処理準備.
+	m_fAccMax = 0.5f;
+	m_fAcc = m_fAccMax;
+	m_fAccSpeed = 0.01f;
+	m_fGravity = 0.25f;
+
 }
 
 //===========================================.
@@ -60,5 +74,35 @@ void CEndingSwitchGhost::Release()
 //===========================================.
 void CEndingSwitchGhost::ActRejoiceEmotion()
 {
+	//初期設定処理関数.
+	SettingInitDirect();
 
+	//ジャンプ処理関数.
+	Jump();
+
+	m_vPos.x += 0.05f * m_MoveDirect;
+
+	if (m_vPos.y <= m_vChangeBeforePos.y) {
+		m_MoveDirect *= CHANGE_DIRECT;
+	}
+
+	if (m_bSetDirect == true) {
+		return;
+	}
+
+}
+
+//===========================================.
+//		初期方向設定処理関数.
+//===========================================.
+void CEndingSwitchGhost::SettingInitDirect()
+{
+	if (m_bSetDirect == true) {
+		return;
+	}
+
+	if (m_vPos.x < m_vLookAtPos.x) {
+		m_MoveDirect *= CHANGE_DIRECT;
+	}
+	m_bSetDirect = true;
 }

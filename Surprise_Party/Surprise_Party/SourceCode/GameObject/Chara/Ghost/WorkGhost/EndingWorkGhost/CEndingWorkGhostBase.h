@@ -13,6 +13,8 @@ public:
 	CEndingWorkGhostBase();
 	virtual ~CEndingWorkGhostBase();
 
+	//========================’è”=============================//.
+	const int	CHANGE_DIRECT = -1;		//•ûŒü•ÏX.
 	
 protected:
 	//========================ŠÖ”=============================//.

@@ -21,7 +21,6 @@ public:
 	const float	ACC_SPEED		= 0.005f;	//加速度加算速度.
 	const float GRAVITY			= 0.1f;		//重力.
 	const float	ROTATION_SPEED	= 0.02f;	//回転速度.
-	const int	CHANGE_DIRECT	= -1;		//方向変更.
 
 	//======================関数=======================//.
 	void Update();				//更新処理関数.

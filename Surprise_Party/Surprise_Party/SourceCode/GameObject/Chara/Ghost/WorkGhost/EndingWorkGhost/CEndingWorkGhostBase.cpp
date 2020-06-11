@@ -24,7 +24,7 @@ void CEndingWorkGhostBase::Jump()
 
 
 	if (m_vPos.y < m_vChangeBeforePos.y) {
-		m_vPos = m_vChangeBeforePos;
+		m_vPos.y = m_vChangeBeforePos.y;
 		m_fAcc = m_fAccMax;
 	}
 }
