@@ -54,3 +54,11 @@ void CEndingSwitchGhost::Release()
 {
 
 }
+
+//===========================================.
+//		Šì‚ÑŠ´îs“®ˆ—‰»”.
+//===========================================.
+void CEndingSwitchGhost::ActRejoiceEmotion()
+{
+
+}
