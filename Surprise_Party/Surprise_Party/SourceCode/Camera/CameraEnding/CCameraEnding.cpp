@@ -143,9 +143,8 @@ void CCameraEnding::MoveApproching()
 	//中間地点から初期位置の距離(上がる距離を基準に移動速度調整).
 	const float INTERMEDIATE_INIT_HEIGHT_RANGE = INTERMEDIATE_POINT_POS.y - INIT_CAMERA_POS.y;
 
-	//注視点から初期のカメラ位置の距離.
-	const float RANGE_FROM_CENTER = sqrtf(pow(INIT_CAMERA_POS.x - m_Camera.vLook.x, 2) + pow(INIT_CAMERA_POS.z - m_Camera.vLook.z, 2));
-	//const float RANGE_FROM_CENTER = sqrtf(pow(INIT_CAMERA_POS.x - INTERMEDIATE_POINT_POS.x, 2) + pow(INIT_CAMERA_POS.z - INTERMEDIATE_POINT_POS.z, 2));
+	//中間地点から初期のカメラ位置の距離.
+	const float RANGE_FROM_CENTER = sqrtf(pow(INIT_CAMERA_POS.x - INTERMEDIATE_POINT_POS.x, 2) + pow(INIT_CAMERA_POS.z - INTERMEDIATE_POINT_POS.z, 2));
 	//引く距離を算出.
 	const float CENTER_RANGE_POS_UNIT = RANGE_FROM_CENTER / INTERMEDIATE_INIT_HEIGHT_RANGE;
 	m_fApprochDistance += MOVE_SPEED * CENTER_RANGE_POS_UNIT;
@@ -153,7 +152,6 @@ void CCameraEnding::MoveApproching()
 	float m_fCenterFromRange;
 	m_fCenterFromRange = RANGE_FROM_CENTER - m_fApprochDistance;
 	if (m_fCenterFromRange < 0.0f) {
-	//if (m_fCenterFromRange < FINISH_CMAERA_POS.x - INTERMEDIATE_POINT_POS.x) {
 		//周辺を回る処理は行かせない.
 		m_Camera.vPos.x = INTERMEDIATE_POINT_POS.x;
 		m_Camera.vPos.z = INTERMEDIATE_POINT_POS.z;
@@ -181,8 +179,9 @@ void CCameraEnding::RotateSurrunding(const float& fCriteriaRange, const float& f
 
 	//ラジアン.
 	const float RADIAN = static_cast<float>(D3DXToRadian(m_fAngle));
-	m_Camera.vPos.x = m_Camera.vLook.x + (cosf(RADIAN) * fCenterRange);
-	m_Camera.vPos.z = m_Camera.vLook.z + (sinf(RADIAN) * fCenterRange);
+	//中間地点を中心として回転する.
+	m_Camera.vPos.x = INTERMEDIATE_POINT_POS.x + (cosf(RADIAN) * fCenterRange);
+	m_Camera.vPos.z = INTERMEDIATE_POINT_POS.z + (sinf(RADIAN) * fCenterRange);
 
 	if (m_fAngle < ANGLE_MIN) {
 		m_fAngle = ANGLE_MIN;
