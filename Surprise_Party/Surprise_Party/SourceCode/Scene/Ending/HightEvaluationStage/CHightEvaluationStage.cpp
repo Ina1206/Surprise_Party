@@ -88,6 +88,7 @@ void CHightEvaluationStage::Init()
 		m_pCGhost[ghost]->SetEmotionNum(static_cast<int>(CGhostBase::enEmotionType::Rejoice));
 	}
 
+	m_pCCameraEnding->SetMoveFlag(m_pCCameraEnding->STOP_FLAG);
 	
 }
 

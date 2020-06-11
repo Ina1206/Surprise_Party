@@ -74,6 +74,13 @@ void CCameraEnding::Update()
 		vLookPos = Tmp;
 	}
 
+	//カメラが移動しないときの座標.
+	if (m_MoveFlag & STOP_FLAG) {
+		m_Camera.vPos = LOOK_AT_GHOSTS_POS;
+		m_Camera.vLook = LOOK_AT_GHOSTS_LOOK;
+		return;
+	}
+
 	if (m_ApprochFlag & APPROCH_GHOST_HEAD_FLAG) {
 		//中間地点まで移動処理関数.
 		MoveToIntermediatePoint();
@@ -158,7 +165,7 @@ void CCameraEnding::MoveApproching()
 
 		//下降移動処理に変更.
 		m_ApprochFlag = APPROCH_SMARTPHONE_FLAG;
-		m_MoveFlag = CHANGE_STAGE_FLAG;
+		m_MoveFlag |= CHANGE_STAGE_FLAG;
 		return;
 	}
 

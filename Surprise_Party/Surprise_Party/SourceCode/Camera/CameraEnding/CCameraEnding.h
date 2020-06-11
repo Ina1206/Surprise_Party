@@ -24,6 +24,9 @@ public:
 
 	const D3DXVECTOR3	FINISH_CMAERA_POS		= D3DXVECTOR3(5.1f, 1.6f, 8.0f);	//最終カメラ位置座標.
 
+	const D3DXVECTOR3	LOOK_AT_GHOSTS_POS		= D3DXVECTOR3(5.8f, 2.3f, -2.3f);	//お化け達を見る位置座標.
+	const D3DXVECTOR3	LOOK_AT_GHOSTS_LOOK		= D3DXVECTOR3(5.2f, 2.7f, 5.1f);	//お化け達を見る注視点座標.
+
 	const float			MOVE_SPEED				= 0.1f;								//移動速度.
 	const float			MOVE_DOWN_SPEED			= 0.2f;								//下降移動速度.
 	const float			ANGLE_MIN				= 110.0f;							//角度最小値.

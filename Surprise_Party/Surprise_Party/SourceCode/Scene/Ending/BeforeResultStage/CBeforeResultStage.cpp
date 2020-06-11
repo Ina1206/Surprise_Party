@@ -85,6 +85,8 @@ void CBeforeResultStage::Init()
 {
 	m_pCReputationSNS.reset(new CReputationSNS());
 	m_pCSmartPhone.reset(new CSmartPhone());
+
+	m_pCCameraEnding->SetMoveFlag(m_pCCameraEnding->MOVE_FLAG);
 }
 
 //=======================================.
