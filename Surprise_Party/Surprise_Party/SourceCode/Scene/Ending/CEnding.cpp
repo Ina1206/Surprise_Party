@@ -1,6 +1,7 @@
 #include "CEnding.h"
 #include "HightEvaluationStage\CHightEvaluationStage.h"
 #include "IntermediateEvaluationStage\CIntermediateEvaluationStage.h"
+#include "LowEvaluationStage\CLowEvaluationStage.h"
 
 CEnding::CEnding()
 	: m_pCEndingStageBase	(nullptr)
@@ -21,7 +22,7 @@ CEnding::~CEnding()
 //=================================.
 void CEnding::UpDate()
 {
-	m_Evaluation = 1;
+	m_Evaluation = 2;
 
 	//•]‰¿’uŠ·ˆ—ŠÖ”.
 	m_pCEndingStageBase->SetEvaluation(m_Evaluation);
@@ -93,5 +94,5 @@ CEndingStageBase*	CEnding::DecideStage()
 		return new CIntermediateEvaluationStage();
 	}
 
-	return nullptr;
+	return new CLowEvaluationStage();
 }
