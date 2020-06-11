@@ -25,6 +25,7 @@ public:
 		Rejoice,		//喜ぶ.
 		Question,		//疑問.
 		Nothing,		//無し.
+		GoodFeeling,	//ご機嫌.
 		ViewSmartphone,	//スマートフォンを見る.
 
 		Max,			//最大値.

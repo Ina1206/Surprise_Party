@@ -1,5 +1,6 @@
 #include "CEnding.h"
 #include "HightEvaluationStage\CHightEvaluationStage.h"
+#include "IntermediateEvaluationStage\CIntermediateEvaluationStage.h"
 
 CEnding::CEnding()
 	: m_pCEndingStageBase	(nullptr)
@@ -20,6 +21,8 @@ CEnding::~CEnding()
 //=================================.
 void CEnding::UpDate()
 {
+	m_Evaluation = 1;
+
 	//評価置換処理関数.
 	m_pCEndingStageBase->SetEvaluation(m_Evaluation);
 	//更新処理関数.
@@ -86,7 +89,8 @@ CEndingStageBase*	CEnding::DecideStage()
 	}
 
 	if (m_Evaluation == 1) {
-
+		//中間評価クラス.
+		return new CIntermediateEvaluationStage();
 	}
 
 	return nullptr;
