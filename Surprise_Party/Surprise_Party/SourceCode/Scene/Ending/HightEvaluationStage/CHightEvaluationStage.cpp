@@ -20,33 +20,13 @@ CHightEvaluationStage::~CHightEvaluationStage()
 //=============================================.
 void CHightEvaluationStage::Update()
 {
+	//カメラの更新処理関数.
 	m_pCCameraEnding->Update();
-
-	//static D3DXVECTOR3 avPos = D3DXVECTOR3(5.0f, 0.0f, 5.0f);
-	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
-	//	avPos.z += 0.3f;
-	//}
-	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-	//	avPos.z -= 0.3f;
-	//}
-	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-	//	avPos.x += 0.3f;
-	//}
-	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-	//	avPos.x -= 0.3f;
-	//}
 
 
 	//お化けの更新処理.
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
 		m_pCGhost[ghost]->Update();
-		//const float			RADIAN = static_cast<float>(D3DXToRadian(-7.0f + (ghost * 55.0f)));
-		//const D3DXVECTOR3	vPos = (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.5f) + D3DXVECTOR3(5.0f, 1.5f + ((ghost % 2) * 0.5f), 8.0f);
-
-		//////if (ghost != 2) {
-		//m_pCGhost[ghost]->SetPos(vPos);
-		////}
-
 	}
 
 
