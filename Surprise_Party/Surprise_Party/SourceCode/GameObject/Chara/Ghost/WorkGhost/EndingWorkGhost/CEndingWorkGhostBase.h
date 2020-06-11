@@ -26,6 +26,8 @@ public:
 	const float			MOVE_NOTE_ANGLE		= 30.0f;							//‰¹•„ˆÚ“®Šp“x.
 	const float			PLAY_DISTANCE_MAX	= 6.0f;								//Ä¶‹——£Å‘å.
 
+	const float			MOVE_DISTANCE_MAX	= 8.0f;								//ˆÚ“®‹——£Å‘å’l.
+
 	const int			CHANGE_DIRECT		= -1;								//•ûŒü•ÏX.
 	
 protected:

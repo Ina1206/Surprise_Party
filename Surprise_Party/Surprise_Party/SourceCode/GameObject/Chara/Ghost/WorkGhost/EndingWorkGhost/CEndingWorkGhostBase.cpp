@@ -112,12 +112,22 @@ void CEndingWorkGhostBase::PlayEffectManager()
 //============================================.
 void CEndingWorkGhostBase::MoveToOutside()
 {
+	//‹——£ŒvŽZŽž‚ÌŽw”.
+	const int Index = 2;
+	//’†‰›‚ÆŽ©•ª‚ÌÀ•W‚Ì‹——£.
+	const float m_Length = sqrtf(powf(m_vPos.x - m_vLookAtPos.x, Index) + powf(m_vPos.z - m_vLookAtPos.z, Index));
+	//Œ©‚¦‚È‚¢‚Æ‚±‚ë‚Ü‚Å—ˆ‚½‚çˆÚ“®ˆ—‚µ‚È‚¢.
+	if (m_Length > MOVE_DISTANCE_MAX) {
+		return;
+	}
+
 	D3DXVECTOR3 vecAxisZ(VECTOR_AXIS_Z);
 	D3DXMATRIX mYaw;
 	D3DXMatrixRotationY(&mYaw, m_vRot.y);
 	D3DXVec3TransformCoord(&vecAxisZ, &vecAxisZ, &mYaw);
 
 	m_vPos -= vecAxisZ * MOVE_SPEED;
+
 }
 
 //============================================.
