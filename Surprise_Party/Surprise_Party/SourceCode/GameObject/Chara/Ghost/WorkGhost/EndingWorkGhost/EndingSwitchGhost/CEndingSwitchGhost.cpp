@@ -85,11 +85,6 @@ void CEndingSwitchGhost::ActRejoiceEmotion()
 	if (m_vPos.y <= m_vChangeBeforePos.y) {
 		m_MoveDirect *= CHANGE_DIRECT;
 	}
-
-	if (m_bSetDirect == true) {
-		return;
-	}
-
 }
 
 //===========================================.
