@@ -42,9 +42,6 @@ void CEndingDispGhost::Init()
 	InitAnimation();
 	m_fScale = SCALE;
 	m_vPrePos.y = PRE_POS_Y;
-
-	//ˆÚ“®Šp“xˆ—ŠÖ”.
-	MoveRotation(m_vPos, m_vLookAtPos);
 }
 
 //============================================.
