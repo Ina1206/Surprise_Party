@@ -32,12 +32,11 @@ private:
 	void Release();				//解放処理関数.
 	void ActRejoiceEmotion();	//喜び感情行動処理関数.
 	void Rotation();			//回転処理関数.
+	void MoveToOuter();			//外側に移動処理関数.
 
 	//======================変数=======================//.
-	int		m_RotationDirect;		//回転方向.
-	bool	m_bChangeRotationDirect;//回転方向変更フラグ.
-
-
+	int			m_RotationDirect;		//回転方向.
+	bool		m_bChangeRotationDirect;//回転方向変更フラグ.
 };
 
 #endif	//#ifndef CENDING_DISP_GHOST_H.

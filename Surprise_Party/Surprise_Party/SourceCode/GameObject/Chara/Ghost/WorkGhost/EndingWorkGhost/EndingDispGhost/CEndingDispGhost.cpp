@@ -6,6 +6,8 @@
 CEndingDispGhost::CEndingDispGhost()
 	: m_RotationDirect			(1)
 	, m_bChangeRotationDirect	(false)
+	//, m_vChangeBeforeRotation	(0.0f, 0.0f, 0.0f)
+	//, m_bMoveToOuter			(false)
 {
 	//初期化処理関数.
 	Init();
@@ -30,6 +32,15 @@ void CEndingDispGhost::Update()
 		//喜び更新処理関数.
 		m_pCSpriteEffect->SetCenterPos(m_vPos);
 		m_pCSpriteEffect->Update();
+		return;
+	}
+
+	if (m_EmotionNum == static_cast<int>(enEmotionType::GoodFeeling)) {
+		//上下移動処理関数.
+		MoveUpDown();
+
+		//ご機嫌時の行動処理関数.
+		ActGoodFeeling();
 		return;
 	}
 
@@ -112,4 +123,24 @@ void CEndingDispGhost::Rotation()
 		m_bChangeRotationDirect = true;
 	}
 
+}
+
+//==============================================.
+//		外側に移動処理関数.
+//==============================================.
+void CEndingDispGhost::MoveToOuter()
+{
+	//if (m_bMoveToOuter == false) {
+	//	//移動角度処理関数.
+	//	MoveRotation(m_vPos, m_vLookAtPos);
+
+	//	m_vChangeBeforeRotation = m_vRot;
+	//	m_bMoveToOuter = true;
+	//}
+
+	//const float RADIAN_MAX = static_cast<float>(D3DXToRadian(180.0f));
+	//m_vRot.y += 0.05f;
+	//if (fabsf(m_vRot.y - m_vChangeBeforeRotation.y) > RADIAN_MAX) {
+	//	m_vRot.y = m_vChangeBeforeRotation.y + RADIAN_MAX;
+	//}
 }

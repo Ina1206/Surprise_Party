@@ -28,6 +28,15 @@ void CEndingSwitchGhost::Update()
 		return;
 	}
 
+	if (m_EmotionNum == static_cast<int>(enEmotionType::GoodFeeling)) {
+		//ã‰ºˆÚ“®ˆ—ŠÖ”.
+		MoveUpDown();
+
+		//‚²‹@Œ™‚Ìs“®ˆ—ŠÖ”.
+		ActGoodFeeling();
+		return;
+	}
+
 	//ˆÚ“®Šp“xˆ—ŠÖ”.
 	MoveRotation(m_vPos, m_vLookAtPos);
 
