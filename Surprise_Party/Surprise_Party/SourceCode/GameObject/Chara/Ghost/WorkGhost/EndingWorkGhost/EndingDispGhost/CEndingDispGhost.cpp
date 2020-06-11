@@ -75,6 +75,15 @@ void CEndingDispGhost::ActRejoiceEmotion()
 	//ジャンプ処理関数.
 	Jump();
 
+	//回転処理関数.
+	Rotation();
+}
+
+//=============================================.
+//		回転処理関数.
+//=============================================.
+void CEndingDispGhost::Rotation()
+{
 	m_vRot.z += ROTATION_SPEED * m_RotationDirect;
 
 	if (m_vPos.y <= m_vChangeBeforePos.y) {
@@ -82,6 +91,7 @@ void CEndingDispGhost::ActRejoiceEmotion()
 		m_vRot.x = 0.0f;
 	}
 
+	//一度変更したら上がるまで処理をしない.
 	if (m_bChangeRotationDirect == true) {
 		return;
 	}

@@ -32,6 +32,7 @@ private:
 	void Init();				//‰Šú‰»ˆ—ŠÖ”.
 	void Release();				//‰ğ•úˆ—ŠÖ”.
 	void ActRejoiceEmotion();	//Šì‚ÑŠ´îs“®ˆ—ŠÖ”.
+	void Rotation();			//‰ñ“]ˆ—ŠÖ”.
 
 	//======================•Ï”=======================//.
 	int		m_RotationDirect;		//‰ñ“]•ûŒü.
