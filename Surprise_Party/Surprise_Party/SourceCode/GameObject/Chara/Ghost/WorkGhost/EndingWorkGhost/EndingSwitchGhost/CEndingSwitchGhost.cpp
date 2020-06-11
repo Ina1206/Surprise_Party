@@ -54,10 +54,10 @@ void CEndingSwitchGhost::Init()
 	m_vPrePos.y = PRE_POS_Y;
 
 	//ジャンプ処理準備.
-	m_fAccMax = 0.5f;
-	m_fAcc = m_fAccMax;
-	m_fAccSpeed = 0.01f;
-	m_fGravity = 0.25f;
+	m_fAccMax	= ACC_MAX;
+	m_fAcc		= m_fAccMax;
+	m_fAccSpeed = ACC_SPEED;
+	m_fGravity	= GRAVITY;
 
 }
 
@@ -80,7 +80,7 @@ void CEndingSwitchGhost::ActRejoiceEmotion()
 	//ジャンプ処理関数.
 	Jump();
 
-	m_vPos.x += 0.05f * m_MoveDirect;
+	m_vPos.x += MOVE_SPEED * m_MoveDirect;
 
 	if (m_vPos.y <= m_vChangeBeforePos.y) {
 		m_MoveDirect *= CHANGE_DIRECT;
