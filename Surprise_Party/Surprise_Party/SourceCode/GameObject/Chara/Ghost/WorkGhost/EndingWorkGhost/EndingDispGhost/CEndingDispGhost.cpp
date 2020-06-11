@@ -40,8 +40,8 @@ void CEndingDispGhost::Init()
 {
 	//アニメーション初期化処理関数.
 	InitAnimation();
-	m_fScale = 0.07f;
-	m_vPrePos.y = -20.0f;
+	m_fScale = SCALE;
+	m_vPrePos.y = PRE_POS_Y;
 
 	//移動角度処理関数.
 	MoveRotation(m_vPos, m_vLookAtPos);

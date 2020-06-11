@@ -13,6 +13,10 @@ public:
 	CEndingDispGhost();
 	~CEndingDispGhost();
 
+	//======================’è”=======================//.
+	const float	SCALE		= 0.07f;	//‘å‚«‚³.
+	const float PRE_POS_Y	= -20.0f;	//Å‰‚Ì’²®‚™À•W.
+
 	//======================ŠÖ”=======================//.
 	void Update();		//XVˆ—ŠÖ”.
 	void Render();		//•`‰æˆ—ŠÖ”.
