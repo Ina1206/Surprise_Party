@@ -126,3 +126,11 @@ void CEndingSwitchGhost::SettingInitDirect()
 	}
 	m_bSetDirect = true;
 }
+
+//===========================================.
+//		¢‚Á‚½Š´îˆ—ŠÖ”.
+//===========================================.
+void CEndingSwitchGhost::ActHaveTrouble()
+{
+
+}

@@ -33,6 +33,7 @@ private:
 	void Release();				//‰ğ•úˆ—ŠÖ”.
 	void ActRejoiceEmotion();	//Šì‚ÑŠ´îs“®ˆ—ŠÖ”.
 	void SettingInitDirect();	//‰Šú•ûŒüİ’èˆ—ŠÖ”.
+	void ActHaveTrouble();		//¢‚Á‚½Š´îˆ—ŠÖ”.
 
 	//====================•Ï”======================//.
 	int		m_MoveDirect;		//ˆÚ“®•ûŒü.
