@@ -34,6 +34,7 @@ public:
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }		//中央座標.
 	void SetPlayFlag(const bool& flag) { m_bPlayFlag = flag; }
 	void SetAngle(const float& angle);										//角度.
+	void SetStartAngle(const float& angle) { m_fStartAngle = angle; }
 
 	//==========情報取得処理関数==============//.
 	int GetSpriteMax() { return m_pCSprite.size(); }						//スプライト最大数.
@@ -70,6 +71,8 @@ protected:
 
 	bool						m_bPlayFlag;		//再生フラグ.
 	bool						m_bRenderFlag;		//描画フラグ.
+
+	float						m_fStartAngle;		//開始座標.
 
 private:
 

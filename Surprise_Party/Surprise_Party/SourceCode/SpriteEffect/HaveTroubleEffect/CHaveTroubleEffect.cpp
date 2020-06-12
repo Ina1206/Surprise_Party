@@ -75,6 +75,8 @@ void CHaveTroubleEffect::Init()
 	}
 	m_fAlphaSpeed	= ALPHA_SPEED;
 	m_fScalingSpeed = SCALING_SPEED;
+
+	m_fStartAngle = START_ANGLE;
 }
 
 //===========================================.
@@ -92,8 +94,6 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 {
 	//初期位置.
 	m_vPos[num] = m_vCenterPos;
-	//角度.
-	m_vRot[num].z = -ROT_WIDTH + ((num % LINE_MAX)* ROT_WIDTH);
 
 	m_fDistance[num] = 0.0f;
 
@@ -107,12 +107,15 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 void CHaveTroubleEffect::Move(const int& num)
 {
 	//角度.
-	const float angle = START_ANGLE + (ANGLE_WIDTH * (num % LINE_MAX));
+	const float angle = m_fStartAngle + (ANGLE_WIDTH * (num % LINE_MAX));
 	//ラジアン.
-	const float radian = angle / CIRCLE_HALF_ANGLE * PI;
+	const float radian = static_cast<float>(D3DXToRadian(angle));
 
 	m_fDistance[num] += MOVE_SPEED;
 
-	m_vPos[num].x = cos(radian) + m_fDistance[num] + m_vCenterPos.x;
-	m_vPos[num].y = sin(radian) + m_fDistance[num] + m_vCenterPos.y;
+	m_vPos[num].x = cos(radian) * m_fDistance[num] + m_vCenterPos.x;
+	m_vPos[num].y = sin(radian) * m_fDistance[num] + m_vCenterPos.y;
+
+
+	m_vRot[num].z = radian - static_cast<float>(D3DXToRadian(ADJUST_ANGLE));
 }

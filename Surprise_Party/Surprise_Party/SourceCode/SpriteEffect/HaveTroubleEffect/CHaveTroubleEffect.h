@@ -25,7 +25,9 @@ public:
 
 	const float			ROT_WIDTH		= 0.3f;								//スプライト角度幅.
 
-	const float			MOVE_SPEED		= 0.03f;							//移動速度.
+	const float			MOVE_SPEED		= 0.05f;							//移動速度.
+
+	const float			ADJUST_ANGLE	= 50.0f;							//微調整の角度
 
 	//=================関数===================//.
 	void Update();							//更新処理関数.
