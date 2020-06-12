@@ -38,7 +38,7 @@ void CGameMain::UpDate()
 void CGameMain::Render()
 {
 	//シーン管理クラスの描画処理関数.
-	m_pCStageManager->Render(m_mView, m_mProj/*, m_vLightPos, m_vCameraPos*/);
+	m_pCStageManager->Render(m_mView, m_mProj);
 }
 
 //========================================.
