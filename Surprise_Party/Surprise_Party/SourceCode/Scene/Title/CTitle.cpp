@@ -49,7 +49,7 @@ void CTitle::Render()
 
 
 	//静的オブジェクトの描画処理関数.
-	//m_pCStaticObjectManager->Render(m_mView, m_mProj, );
+	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
 }
 
 //======================================.
