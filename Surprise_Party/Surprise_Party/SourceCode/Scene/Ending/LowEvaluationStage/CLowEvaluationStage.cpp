@@ -29,11 +29,11 @@ void CLowEvaluationStage::Update()
 		m_pCGhost[ghost]->Update();
 	}
 
-	//PushEnter更新処理関数.
-	UpdatePushEnter();
 
 	//白画面のフェード.
 	if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
+		//PushEnter更新処理関数.
+		UpdatePushEnter();
 		return;
 	}
 	m_pCWhiteScreenFade->Update();
@@ -51,8 +51,10 @@ void CLowEvaluationStage::Render()
 	//お化けの描画.
 	RenderGhost();
 
-	//PushEnter描画処理関数.
-	RenderPushEnter();
+	if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
+		//PushEnter描画処理関数.
+		RenderPushEnter();
+	}
 
 	//白画面のフェード描画.
 	if (!(m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG)) {

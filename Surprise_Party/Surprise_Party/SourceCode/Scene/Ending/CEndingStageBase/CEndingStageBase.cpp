@@ -77,6 +77,10 @@ void CEndingStageBase::RenderGhost()
 //=========================================.
 void CEndingStageBase::UpdatePushEnter()
 {
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+		m_bChangeStage = true;
+	}
+
 	m_fPushEnterUIAlpha += 0.05f * m_AlphaAddDecDirect;
 
 	if (m_fPushEnterUIAlpha > ALPHA_MAX) {
@@ -102,7 +106,11 @@ void CEndingStageBase::RenderPushEnter()
 	m_pCPushEnterUI->SetAlpha(m_fPushEnterUIAlpha);
 	m_pCPushEnterUI->SetScale(PUSH_ENTER_SCALE_MAX);
 	m_pCPushEnterUI->SetPosition(PUSH_ENTER_POS);
+
+	CDepth_Stencil* m_pCDeptshStencil = CDepth_Stencil::GetDepthStencilInstance();
+	m_pCDeptshStencil->SetDepth(false);
 	m_pCPushEnterUI->Render();
+	m_pCDeptshStencil->SetDepth(true);
 	
 }
 
