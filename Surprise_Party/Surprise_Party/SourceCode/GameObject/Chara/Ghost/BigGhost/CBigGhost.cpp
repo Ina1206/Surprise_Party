@@ -286,8 +286,8 @@ void CBigGhost::Sleep()
 //==========================================.
 void CBigGhost::Lean(const int& Direction)
 {
-	const float			fPosLength	= D3DXVec3Length(&(HAVE_TROUBLE_POS - WAKE_UP_POS));
-	const D3DXVECTOR3	vPosUnit	= (HAVE_TROUBLE_POS - WAKE_UP_POS) / fPosLength;
+	const float			fPosLength	= D3DXVec3Length(&(HAVE_TROUBLE_POS - m_vChangeBeforePos));
+	const D3DXVECTOR3	vPosUnit	= (HAVE_TROUBLE_POS - m_vChangeBeforePos) / fPosLength;
 	const float			fRotLength	= D3DXVec3Length(&(HAVE_TROUBLE_ROT - WAKE_UP_ROT));
 	const D3DXVECTOR3	vRotUnit	= (HAVE_TROUBLE_ROT - WAKE_UP_ROT) / fRotLength;
 
@@ -300,7 +300,8 @@ void CBigGhost::Lean(const int& Direction)
 			m_HaveTroubleActFlag &= ~MOVING_ROT_FLAG;
 		}
 		if(m_vPos.y >= HAVE_TROUBLE_POS.y){
-			m_vPos = HAVE_TROUBLE_POS;
+			m_vPos = m_vChangeBeforePos;
+			m_vPos.y = HAVE_TROUBLE_POS.y;
 			m_HaveTroubleActFlag &= ~MOVING_POS_FLAG;
 		}
 		if (m_HaveTroubleActFlag == 0) {
@@ -309,11 +310,11 @@ void CBigGhost::Lean(const int& Direction)
 		return;
 	}
 
-	if (m_vRot.x >= WAKE_UP_ROT.x) {
-		m_vRot = WAKE_UP_ROT;
+	if (m_vRot.x >= m_vChangeBeforePos.x) {
+		m_vRot = m_vChangeBeforePos;
 	}
-	if (m_vPos.y <= WAKE_UP_POS.y) {
-		m_vPos = WAKE_UP_POS;
+	if (m_vPos.y <= m_vChangeBeforePos.y) {
+		m_vPos = m_vChangeBeforePos;
 	}
 }
 
