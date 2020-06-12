@@ -134,16 +134,16 @@ void CSceneManager::Load()
 	m_pCSceneFade.reset(new CSceneFade());
 
 
-	//シーン初期設定.
-	//m_SceneType = static_cast<int>(enSceneType::Title);
-	//m_pCSceneBase.reset(new CTitle());
 
+	//シーン初期設定.
 	m_pCSceneBase.resize(2);
+	m_SceneType = static_cast<int>(enSceneType::Title);
+	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CTitle());
 	//m_SceneType = static_cast<int>(enSceneType::GameMain);
 	//m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
 
-	m_SceneType = static_cast<int>(enSceneType::Ending);
-	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CEnding());
+	//m_SceneType = static_cast<int>(enSceneType::Ending);
+	//m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CEnding());
 
 	m_pCSceneBase[PAUSE_SCENE_NUM].reset(new CPause());
 
