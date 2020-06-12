@@ -23,7 +23,7 @@ public:
 
 	const float	MOVE_SPEED	= 0.02f;	//移動速度.
 
-	const float	DOWN_SPEED	= 0.1f;		//落ちる速度.
+	const float	DOWN_SPEED	= 0.02f;	//落ちる速度.
 
 	//====================関数======================//.
 	void Update();				//更新処理関数.
