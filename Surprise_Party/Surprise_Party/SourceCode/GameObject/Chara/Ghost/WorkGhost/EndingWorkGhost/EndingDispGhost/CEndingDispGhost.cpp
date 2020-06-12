@@ -6,8 +6,7 @@
 CEndingDispGhost::CEndingDispGhost()
 	: m_RotationDirect			(1)
 	, m_bChangeRotationDirect	(false)
-	//, m_vChangeBeforeRotation	(0.0f, 0.0f, 0.0f)
-	//, m_bMoveToOuter			(false)
+	, m_bStartHaveTrouble		(false)
 {
 	//初期化処理関数.
 	Init();
@@ -48,6 +47,12 @@ void CEndingDispGhost::Update()
 		//エフェクト再生管理処理関数.
 		PlayEffectManager();
 
+		return;
+	}
+
+	if (m_EmotionNum == static_cast<int>(enEmotionType::HaveTrounble)) {
+		//困った感情行動処理関数.
+		ActHaveTrouble();
 		return;
 	}
 
@@ -133,21 +138,21 @@ void CEndingDispGhost::Rotation()
 }
 
 //==============================================.
-//		外側に移動処理関数.
+//		困った感情行動処理関数.
 //==============================================.
-void CEndingDispGhost::MoveToOuter()
+void CEndingDispGhost::ActHaveTrouble()
 {
-	//if (m_bMoveToOuter == false) {
-	//	//移動角度処理関数.
-	//	MoveRotation(m_vPos, m_vLookAtPos);
+	if (m_bStartHaveTrouble == false) {
+		//移動角度処理関数.
+		MoveRotation(m_vPos, m_vLookAtPos);
+		m_vChangeBeforeRotation = m_vRot;
+		m_bStartHaveTrouble = true;
+	}
 
-	//	m_vChangeBeforeRotation = m_vRot;
-	//	m_bMoveToOuter = true;
-	//}
-
-	//const float RADIAN_MAX = static_cast<float>(D3DXToRadian(180.0f));
-	//m_vRot.y += 0.05f;
-	//if (fabsf(m_vRot.y - m_vChangeBeforeRotation.y) > RADIAN_MAX) {
-	//	m_vRot.y = m_vChangeBeforeRotation.y + RADIAN_MAX;
-	//}
+	m_vRot.x += SWING_SPEED * m_RotationDirect;
+	
+	//角度最大値.
+	if (fabsf(m_vRot.x - m_vChangeBeforeRotation.x) > static_cast<float>(D3DXToRadian(SWING_ROTATION_MAX))) {
+		m_RotationDirect *= CHANGE_DIRECT;
+	}
 }

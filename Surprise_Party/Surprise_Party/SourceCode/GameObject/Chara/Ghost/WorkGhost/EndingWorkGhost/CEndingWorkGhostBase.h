@@ -27,6 +27,8 @@ public:
 	const float			PLAY_DISTANCE_MAX	= 6.0f;								//再生距離最大.
 
 	const float			MOVE_DISTANCE_MAX	= 8.0f;								//移動距離最大値.
+	const float			SWING_SPEED			= 0.05f;							//揺れる速度.
+	const float			SWING_ROTATION_MAX	= 90.0f;							//揺れる角度最大値.
 
 	const int			CHANGE_DIRECT		= -1;								//方向変更.
 	
@@ -43,6 +45,7 @@ protected:
 	float								m_fAccSpeed;			//加速度加算速度.
 	float								m_fAccMax;				//加速度最大値.
 	float								m_fGravity;				//重力.
+	D3DXVECTOR3							m_vChangeBeforeRotation;//変更前の角度.
 private:
 	//========================関数=============================//.
 	void MoveToOutside();		//外側に移動する処理関数.
@@ -51,7 +54,6 @@ private:
 	//========================変数=============================//.
 	int									m_OldEmotionNum;		//差分用の感情番号.
 	unsigned int						m_MoveToOuterFlag;		//外側を移動するフラグ.
-	D3DXVECTOR3							m_vChangeBeforeRotation;//変更前の角度.
 };
 
 #endif	//#ifndef CENDING_WORK_GHOST_BASE_H.

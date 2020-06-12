@@ -11,9 +11,9 @@ CEndingWorkGhostBase::CEndingWorkGhostBase()
 	, m_fAccSpeed				(0.0f)
 	, m_fAccMax					(0.0f)
 	, m_fGravity				(0.0f)
+	, m_vChangeBeforeRotation	(0.0f, 0.0f, 0.0f)
 	, m_OldEmotionNum			(static_cast<int>(enEmotionType::Nothing))
 	, m_MoveToOuterFlag			(0)
-	, m_vChangeBeforeRotation	(0.0f, 0.0f, 0.0f)
 {
 
 }
