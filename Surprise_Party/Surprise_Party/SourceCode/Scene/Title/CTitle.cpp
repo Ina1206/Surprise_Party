@@ -4,6 +4,7 @@
 *		タイトルクラス.
 ******/
 CTitle::CTitle()
+	: m_pCCameraTitle	(nullptr)
 {
 	//初期化処理関数.
 	Init();
@@ -20,6 +21,8 @@ CTitle::~CTitle()
 //======================================.
 void CTitle::UpDate()
 {
+	//タイトル用カメラの更新処理関数.
+	m_pCCameraTitle->Update();
 }
 
 //======================================.
@@ -27,6 +30,8 @@ void CTitle::UpDate()
 //======================================.
 void CTitle::Render()
 {
+	//カメラ座標.
+	const D3DXVECTOR3 m_vCameraPos = m_pCCameraTitle->GetPos();
 
 }
 
@@ -37,6 +42,8 @@ void CTitle::Init()
 {
 	m_vBackColor = D3DXVECTOR4(0.5f, 0.0f, 0.0f, 1.0f);
 
+	//クラスをインスタンス化.
+	m_pCCameraTitle.reset(new CCameraTitle());
 }
 
 //======================================.
