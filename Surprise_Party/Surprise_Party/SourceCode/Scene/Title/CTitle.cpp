@@ -47,6 +47,9 @@ void CTitle::Render()
 	//ライト情報.
 	const LIGHT	m_Light = m_pCFrontstageLight->GetLight();
 
+	//ビュー行列の設定処理関数.
+	SettingView();
+
 
 	//静的オブジェクトの描画処理関数.
 	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
@@ -77,4 +80,18 @@ void CTitle::Init()
 void CTitle::Release()
 {
 
+}
+
+//=======================================.
+//		ビュー行列の設定処理関数.
+//=======================================.
+void CTitle::SettingView()
+{
+	const D3DXVECTOR3 m_vCameraLook = m_pCCameraTitle->GetLook();
+	const D3DXVECTOR3 m_vCameraPos = m_pCCameraTitle->GetPos();
+
+	const D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
+	D3DXMatrixLookAtLH(
+		&m_mView,								//(out)ビュー計算結果.
+		&m_vCameraPos, &m_vCameraLook, &vUpVec);
 }
