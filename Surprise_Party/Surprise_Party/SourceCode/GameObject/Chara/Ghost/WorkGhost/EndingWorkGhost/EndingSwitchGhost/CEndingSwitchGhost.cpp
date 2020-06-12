@@ -49,6 +49,7 @@ void CEndingSwitchGhost::Update()
 	}
 
 	if (m_EmotionNum == static_cast<int>(enEmotionType::HaveTrounble)) {
+		//¢‚Á‚½Š´îs“®ˆ—ŠÖ”.
 		ActHaveTrouble();
 	}
 
