@@ -20,10 +20,10 @@ public:
 	const int			NORMAL_STAGE_NUM	= 0;			//通常ステージ番号.
 
 	//====================関数=========================//.
-	void Init();																													//初期化処理関数.
-	void UpDate();																													//更新処理関数.
-	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos);		//描画処理関数.
-	void Release();																													//解放処理関数.
+	void Init();													//初期化処理関数.
+	void UpDate();													//更新処理関数.
+	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj);	//描画処理関数.
+	void Release();													//解放処理関数.
 
 	//==============情報獲得処理関数===================//.
 	unsigned int GetFinishFlag() const { return m_FinishFlag; }

@@ -21,7 +21,7 @@ CStageBase::~CStageBase()
 //==========================================.
 //		•`‰æ‰Šúİ’èˆ—ŠÖ”.
 //==========================================.
-void CStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos)
+void CStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj)
 {
 	m_mView			= mView;
 	m_mProj			= mProj;

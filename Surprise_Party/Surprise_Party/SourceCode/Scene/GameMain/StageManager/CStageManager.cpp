@@ -85,12 +85,12 @@ void CStageManager::UpDate()
 //====================================.
 //		描画処理関数.
 //====================================.
-void CStageManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vLightPos, const D3DXVECTOR3& vCameraPos)
+void CStageManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj)
 {
 	const int STAGE_TYPE_NUM = m_pCStageBase.size() - 1;
 
 	//ステージの描画初期設定処理関数.
-	m_pCStageBase[STAGE_TYPE_NUM]->RenderInitSetting(mView, mProj, vCameraPos);
+	m_pCStageBase[STAGE_TYPE_NUM]->RenderInitSetting(mView, mProj);
 	//ステージの描画処理関数.
 	m_pCStageBase[STAGE_TYPE_NUM]->Render();
 

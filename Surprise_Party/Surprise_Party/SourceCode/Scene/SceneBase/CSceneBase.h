@@ -38,8 +38,6 @@ protected:
 	//===================変数======================//.
 	D3DXMATRIX	m_mView;				//ビュー行列.
 	D3DXMATRIX	m_mProj;				//プロジェクション行列.
-	D3DXVECTOR3 m_vLightPos;			//ライト座標.
-	D3DXVECTOR3 m_vCameraPos;			//カメラ座標.
 	D3DXVECTOR4 m_vBackColor;			//後ろの色.
 	bool		m_bChangeScene;			//シーン変更フラグ.
 	bool		m_bPauseFlag;			//一時停止フラグ.
