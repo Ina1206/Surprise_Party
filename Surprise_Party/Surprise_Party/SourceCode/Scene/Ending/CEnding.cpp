@@ -49,8 +49,6 @@ void CEnding::Render()
 //==================================.
 void CEnding::Init()
 {
-	m_vBackColor = D3DXVECTOR4(0.0f, 0.0f, 0.0f ,1.0f);
-
 	m_pCEndingStageBase.reset(new CBeforeResultStage());
 	//m_pCEndingStageBase.reset(new CHightEvaluationStage());
 }

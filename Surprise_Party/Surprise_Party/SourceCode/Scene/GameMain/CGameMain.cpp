@@ -18,8 +18,6 @@ CGameMain::~CGameMain()
 //========================================.
 void CGameMain::UpDate()
 {
-	m_vBackColor = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);
-
 	//シーン管理クラスの更新処理関数.
 	m_pCStageManager->UpDate();
 

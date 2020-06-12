@@ -12,6 +12,8 @@ public:
 	CSceneBase();
 	virtual ~CSceneBase();
 
+	//===================定数======================//.
+	const D3DXVECTOR4	BACK_COLOR	= D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);	//背景の色.
 
 	//===================関数======================//.
 	void	RenderInitSetting(const D3DXMATRIX& mProj);	//描画初期設定.
@@ -38,11 +40,13 @@ protected:
 	//===================変数======================//.
 	D3DXMATRIX	m_mView;				//ビュー行列.
 	D3DXMATRIX	m_mProj;				//プロジェクション行列.
-	D3DXVECTOR4 m_vBackColor;			//後ろの色.
 	bool		m_bChangeScene;			//シーン変更フラグ.
 	bool		m_bPauseFlag;			//一時停止フラグ.
 	int			m_Evaluation;			//評価.
+
 private:
+	//===================変数======================//.
+	D3DXVECTOR4 m_vBackColor;			//後ろの色.
 
 };
 

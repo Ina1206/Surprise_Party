@@ -22,6 +22,9 @@ CSceneBase::~CSceneBase()
 void CSceneBase::RenderInitSetting(const D3DXMATRIX& mProj)
 {
 	m_mProj			= mProj;
+
+	//îwåiêFÇÃê›íË.
+	m_vBackColor = BACK_COLOR;
 }
 
 //===========================================.

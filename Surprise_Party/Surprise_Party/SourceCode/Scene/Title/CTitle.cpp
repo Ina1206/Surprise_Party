@@ -60,8 +60,6 @@ void CTitle::Render()
 //======================================.
 void CTitle::Init()
 {
-	m_vBackColor = D3DXVECTOR4(0.5f, 0.0f, 0.0f, 1.0f);
-
 	//クラスをインスタンス化.
 	m_pCCameraTitle.reset(new CCameraTitle());
 	m_pCFrontstageLight.reset(new CFrontstageLight());
