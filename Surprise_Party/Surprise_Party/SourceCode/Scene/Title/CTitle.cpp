@@ -35,6 +35,10 @@ void CTitle::UpDate()
 	//静的オブジェクトの更新処理関数.
 	m_pCStaticObjectManager->SetCameraPos(m_vCameraPos);
 	m_pCStaticObjectManager->Updata();
+
+	//動的オブジェクトの更新処理関数.
+	m_pCMoveObjectManager->SetCameraPos(m_vCameraPos);
+	m_pCMoveObjectManager->UpDate();
 }
 
 //======================================.
@@ -50,9 +54,14 @@ void CTitle::Render()
 	//ビュー行列の設定処理関数.
 	SettingView();
 
-
+	//スイッチの描画処理関数.
+	m_pCMoveObjectManager->RenderSwitch(m_mView, m_mProj, m_Light);
 	//静的オブジェクトの描画処理関数.
 	m_pCStaticObjectManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
+	//動的オブジェクトの描画処理関数.
+	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_Light);
+	//動的オブジェクト前エフェクトの描画処理関数.
+	m_pCMoveObjectManager->EffectRender();
 }
 
 //======================================.
@@ -60,16 +69,23 @@ void CTitle::Render()
 //======================================.
 void CTitle::Init()
 {
+	const int FILE_NUM = 0;	//ファイル番号.
+	const int STAGE_NUM = 0;//ステージ番号.
+
 	//クラスをインスタンス化.
 	m_pCCameraTitle.reset(new CCameraTitle());
 	m_pCFrontstageLight.reset(new CFrontstageLight());
-	m_pCStaticObjectManager.reset(new CStaticObjectManager(0, 0));
+	m_pCStaticObjectManager.reset(new CStaticObjectManager(FILE_NUM, STAGE_NUM));
+	m_pCMoveObjectManager.reset(new CMoveObjectManager(FILE_NUM, STAGE_NUM));
 
 	//ステージの最大値.
 	const float m_fStageDistanceMax = m_pCStaticObjectManager->GetStageDistanceMax();
 
 	//ステージの最大値設定.
 	m_pCFrontstageLight->SettingAllLightPos(m_fStageDistanceMax);
+
+	//UIを描画させない.
+	m_pCMoveObjectManager->SetRenderUI(false);
 }
 
 //======================================.

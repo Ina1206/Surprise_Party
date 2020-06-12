@@ -84,6 +84,8 @@ public:
 	void SetGimmickCurosrDispFlag(const bool& flag) { m_bGimmickCursorDisp = flag; }
 	//ギミック使われているかフラグ.
 	void SetUsedGimmickFlag(const int& num, const bool& flag) { m_bUsedGimmickFlag[num] = flag; }
+	//UIを描画するかのフラグ.
+	void SetRenderUI(const bool& flag) { m_bRenderUI = flag; }
 
 	//===========情報獲得処理関数=============//.
 	//ギミックアイコン最大数.
@@ -130,6 +132,7 @@ private:
 	std::vector<int>								m_FlowerSwingCnt;		//花瓶の揺れるカウント.
 	std::vector<bool>								m_bUsedGimmickFlag;		//ギミックが使われているフラグ.
 	std::vector<bool>								m_bPlayEffectSound;		//エフェクトと音再生.
+	bool											m_bRenderUI;			//UI描画するかどうかのフラグ.
 };
 
 #endif	//#ifndef CMVOE_OBJECT_MANAGER_H.

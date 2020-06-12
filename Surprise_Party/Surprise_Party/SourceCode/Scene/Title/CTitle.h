@@ -5,6 +5,7 @@
 #include "..\..\Camera\CameraTitle\CCameraTitle.h"
 #include "..\..\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.h"
 #include "..\..\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.h"
+#include "..\..\GameObject\Object\MoveObject\MoveObjectManager\CMoveObjectManager.h"
 
 /**********************************
 *		タイトルクラス.
@@ -29,6 +30,7 @@ protected:
 	std::unique_ptr<CCameraTitle>			m_pCCameraTitle;			//タイトル用カメラクラス.
 	std::unique_ptr<CFrontstageLight>		m_pCFrontstageLight;		//表舞台のライトクラス
 	std::unique_ptr<CStaticObjectManager>	m_pCStaticObjectManager;	//静的オブジェクトの管理クラス.
+	std::unique_ptr<CMoveObjectManager>		m_pCMoveObjectManager;		//動的オブジェクトの管理クラス.
 };
 
 

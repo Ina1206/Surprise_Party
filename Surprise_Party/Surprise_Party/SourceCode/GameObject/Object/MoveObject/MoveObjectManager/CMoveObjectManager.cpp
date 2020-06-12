@@ -26,6 +26,7 @@ CMoveObjectManager::CMoveObjectManager(const int& FileNum, const int& StageNum)
 	, m_AttachedObjMoveFlag	(0)
 	, m_FlowerSwingCnt		(0)
 	, m_bPlayEffectSound	()
+	, m_bRenderUI			(true)
 {
 	//初期化処理関数.
 	Init(FileNum, StageNum);
@@ -123,6 +124,11 @@ void CMoveObjectManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj
 		m_pCMoveObjectBase[stage]->RenderInitSetting(mView, mProj, stLight);
 		//付属オブジェクトの描画処理関数.
 		m_pCMoveObjectBase[stage]->AttachedObjRender();
+	}
+
+	if (m_bRenderUI == false) {
+		//UIを描画させないで処理終了.
+		return;
 	}
 
 	//ギミックカーソル描画処理関数.
