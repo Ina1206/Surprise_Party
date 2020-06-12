@@ -356,6 +356,9 @@
     <Filter Include="SourceCode\Scene\Ending\LowEvaluationStage">
       <UniqueIdentifier>{5c356583-cd95-416d-8196-e91d9e628585}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Camera\CameraTitle">
+      <UniqueIdentifier>{c93abf5e-dbc3-4946-9415-62c22c560455}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -718,6 +721,9 @@
     <ClInclude Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.h">
       <Filter>SourceCode\Scene\Ending\LowEvaluationStage</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Camera\CameraTitle\CCameraTitle.h">
+      <Filter>SourceCode\Camera\CameraTitle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1067,6 +1073,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.cpp">
       <Filter>SourceCode\Scene\Ending\LowEvaluationStage</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Camera\CameraTitle\CCameraTitle.cpp">
+      <Filter>SourceCode\Camera\CameraTitle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
