@@ -71,14 +71,13 @@ void CEndingWorkGhostBase::ChangeEffect()
 
 	if (m_EmotionNum == static_cast<int>(enEmotionType::HaveTrounble)) {
 		m_pCSpriteEffect.reset(new CHaveTroubleEffect());
-		//いる座標によって音符の移動角度を変更.
+		//いる座標によって汗の移動角度を変更.
 		if (m_vPos.x < m_vLookAtPos.x) {
-			const float INVERSE_NOTE_ANGLE = 180.0f - MOVE_NOTE_ANGLE;
-			m_pCSpriteEffect->SetStartAngle(INVERSE_NOTE_ANGLE);
+			m_pCSpriteEffect->SetStartAngle(BASIC_SWAT_ANGLE);
 			return;
 		}
 		//基準の角度と逆の角度に移動.
-		m_pCSpriteEffect->SetStartAngle(MOVE_NOTE_ANGLE);
+		m_pCSpriteEffect->SetStartAngle(INVERSE_SWAT_ANGLE);
 	}
 }
 

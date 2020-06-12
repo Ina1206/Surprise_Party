@@ -30,6 +30,9 @@ public:
 	const float			SWING_SPEED			= 0.05f;							//揺れる速度.
 	const float			SWING_ROTATION_MAX	= 90.0f;							//揺れる角度最大値.
 
+	const float			BASIC_SWAT_ANGLE	= 100.0f;							//基本の汗の角度.
+	const float			INVERSE_SWAT_ANGLE	= 30.0f;							//反対の汗の角度.
+
 	const int			CHANGE_DIRECT		= -1;								//方向変更.
 	
 protected:
