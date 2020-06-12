@@ -15,6 +15,9 @@ CEndingStageBase::CEndingStageBase()
 	, m_bChangeStage			(false)
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
 	, m_pCFloor					(nullptr)
+	, m_pCPushEnterUI			(nullptr)
+	, m_fPushEnterUIAlpha		(0.0f)
+	, m_AlphaAddDecDirect		(1)
 {
 	//‹¤’Ê‚Ì’l‚Ì‰Šú‰»ˆ—ŠÖ”.
 	InitCommonValue();
@@ -67,6 +70,26 @@ void CEndingStageBase::RenderGhost()
 		m_pCGhost[ghost]->SetCameraPos(m_pCCameraEnding->GetPos());
 		m_pCGhost[ghost]->Render();
 	}
+}
+
+//=========================================.
+//		PushEnter‚ÌXVˆ—ŠÖ”.
+//=========================================.
+void CEndingStageBase::UpdatePushEnter()
+{
+	m_fPushEnterUIAlpha += 0.05f * m_AlphaAddDecDirect;
+
+	if (m_fPushEnterUIAlpha > ALPHA_MAX) {
+		m_fPushEnterUIAlpha = ALPHA_MAX;
+		m_AlphaAddDecDirect *= -1;
+		return;
+	}
+
+	if (m_fPushEnterUIAlpha < ALPHA_MIN) {
+		m_fPushEnterUIAlpha = ALPHA_MIN;
+		m_AlphaAddDecDirect *= -1;
+	}
+	
 }
 
 //=========================================.

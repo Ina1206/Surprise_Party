@@ -19,7 +19,9 @@ public:
 	virtual ~CEndingStageBase();
 
 	//===================定数======================//.
-	const int INIT_EVALUATION_NUM = -1;	//初期評価番号.
+	const float	ALPHA_MAX			= 1.0f;	//透過値最大値.
+	const float ALPHA_MIN			= 0.0f;	//透過値最小値.
+	const int	INIT_EVALUATION_NUM = -1;	//初期評価番号.
 
 	//========================関数=============================//.
 	virtual void Update() = 0;								//更新処理関数.
@@ -42,6 +44,7 @@ protected:
 
 	void RenderFloor();										//床の描画処理関数.
 	void RenderGhost();										//お化け描画処理関数.
+	void UpdatePushEnter();									//PushEnterの更新処理関数.
 
 	//========================変数=============================//.
 	D3DXMATRIX											m_mView;					//ビュー行列.
@@ -60,7 +63,10 @@ private:
 	void CreateInstanceFronClass(const int& num);			//クラスからインスタンスを作成する処理関数.
 
 	//========================変数=============================//.
-	std::unique_ptr<CFloor>				m_pCFloor;			//床クラス.
+	std::unique_ptr<CFloor>		m_pCFloor;					//床クラス.
+	CSpriteUI*					m_pCPushEnterUI;			//SpriteUIクラス(PushEnterの文字).
+	float						m_fPushEnterUIAlpha;		//SpriteUIの透過値.
+	int							m_AlphaAddDecDirect;		//透過値の加算減算方向.
 };
 
 #endif	//#ifndef CENDING_STAGE_BASE_H.
