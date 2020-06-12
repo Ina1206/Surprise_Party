@@ -19,8 +19,6 @@ public:
 	virtual ~CEndingStageBase();
 
 	//===================定数======================//.
-	const float	ALPHA_MAX			= 1.0f;	//透過値最大値.
-	const float ALPHA_MIN			= 0.0f;	//透過値最小値.
 	const int	INIT_EVALUATION_NUM = -1;	//初期評価番号.
 
 	//========================関数=============================//.
@@ -45,6 +43,7 @@ protected:
 	void RenderFloor();										//床の描画処理関数.
 	void RenderGhost();										//お化け描画処理関数.
 	void UpdatePushEnter();									//PushEnterの更新処理関数.
+	void RenderPushEnter();									//PushEnterの描画処理関数.
 
 	//========================変数=============================//.
 	D3DXMATRIX											m_mView;					//ビュー行列.
@@ -58,6 +57,12 @@ protected:
 	bool												m_bChangeStage;				//ステージ変更フラグ.
 	D3DXVECTOR3											m_vObjLookPos;				//オブジェクトが見る場所.
 private:
+	//===================定数======================//.
+	const D3DXVECTOR3	PUSH_ENTER_POS			= D3DXVECTOR3(800.0f, 600.0f, 0.0f);//PushEnterの座標.
+	const float			ALPHA_MAX				= 1.0f;								//透過値最大値.
+	const float			ALPHA_MIN				= 0.0f;								//透過値最小値.
+	const float			PUSH_ENTER_SCALE_MAX	= 2.0f;								//PushEnter大きさ.
+
 	//========================関数=============================//.
 	void InitCommonValue();									//共通値の初期化処理関数.
 	void CreateInstanceFronClass(const int& num);			//クラスからインスタンスを作成する処理関数.

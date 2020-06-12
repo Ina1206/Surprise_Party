@@ -93,6 +93,20 @@ void CEndingStageBase::UpdatePushEnter()
 }
 
 //=========================================.
+//		PushEnter‚Ì•`‰æˆ—ŠÖ”.
+//=========================================.
+void CEndingStageBase::RenderPushEnter()
+{
+	CResourceManager* m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
+	m_pCPushEnterUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::PushEnterString);
+	m_pCPushEnterUI->SetAlpha(m_fPushEnterUIAlpha);
+	m_pCPushEnterUI->SetScale(PUSH_ENTER_SCALE_MAX);
+	m_pCPushEnterUI->SetPosition(PUSH_ENTER_POS);
+	m_pCPushEnterUI->Render();
+	
+}
+
+//=========================================.
 //		‹¤’Ê’l‚Ì‰Šú‰»ˆ—ŠÖ”.
 //=========================================.
 void CEndingStageBase::InitCommonValue()
