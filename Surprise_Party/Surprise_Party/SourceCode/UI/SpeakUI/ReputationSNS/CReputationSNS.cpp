@@ -27,8 +27,13 @@ CReputationSNS::~CReputationSNS()
 //==========================================.
 void CReputationSNS::Update()
 {
-	if (m_bFinishAppearancedAllFont == true) {
-		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+		if (m_bAppearanceAllFont == false) {
+			m_bAppearanceAllFont = true;
+			return;
+		}
+
+		if (m_bFinishAppearancedAllFont == true) {
 			//“§‰ßŠJŽn.
 			m_ChangeStageFlag = START_TRANSPARENT_FLAG;
 		}
