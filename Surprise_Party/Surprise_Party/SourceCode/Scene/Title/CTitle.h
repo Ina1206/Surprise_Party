@@ -3,6 +3,7 @@
 
 #include "..\SceneBase\CSceneBase.h"
 #include "..\..\Camera\CameraTitle\CCameraTitle.h"
+#include "..\..\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.h"
 
 /**********************************
 *		タイトルクラス.
@@ -23,7 +24,8 @@ protected:
 	void Release();		//解放処理関数.
 
 	//====================変数========================//.
-	std::unique_ptr<CCameraTitle>	m_pCCameraTitle;	//タイトル用カメラクラス.
+	std::unique_ptr<CCameraTitle>			m_pCCameraTitle;			//タイトル用カメラクラス.
+	std::unique_ptr<CStaticObjectManager>	m_pCStaticObjectManager;	//静的オブジェクトの管理クラス.
 };
 
 
