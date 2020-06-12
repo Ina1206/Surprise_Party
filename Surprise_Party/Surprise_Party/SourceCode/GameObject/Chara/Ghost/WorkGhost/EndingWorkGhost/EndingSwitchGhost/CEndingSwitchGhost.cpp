@@ -136,8 +136,16 @@ void CEndingSwitchGhost::SettingInitDirect()
 //===========================================.
 void CEndingSwitchGhost::ActHaveTrouble()
 {
-	m_vPos.y -= 0.1f;
+	//—‚¿‚éˆ—.
+	m_vPos.y -= DOWN_SPEED;
 	if (m_vPos.y < 0.0f) {
 		m_vPos.y = 0.0f;
+
+		return;
 	}
+
+	//—‚¿‚éŠÔ‰¡ˆÚ“®ˆ—.
+	const float m_Distance = m_vPos.x - m_vLookAtPos.x;
+	const float	m_Direct = m_Distance / fabsf(m_Distance);
+	m_vPos.x += MOVE_SPEED * m_Direct;
 }
