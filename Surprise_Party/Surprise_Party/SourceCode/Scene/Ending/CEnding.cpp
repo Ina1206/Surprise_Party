@@ -22,7 +22,7 @@ CEnding::~CEnding()
 //=================================.
 void CEnding::UpDate()
 {
-	m_Evaluation = 1;
+	m_Evaluation = 0;
 
 	//•]‰¿’uŠ·ˆ—ŠÖ”.
 	m_pCEndingStageBase->SetEvaluation(m_Evaluation);
