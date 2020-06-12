@@ -48,6 +48,10 @@ void CEndingSwitchGhost::Update()
 		return;
 	}
 
+	if (m_EmotionNum == static_cast<int>(enEmotionType::HaveTrounble)) {
+		ActHaveTrouble();
+	}
+
 	//ˆÚ“®Šp“xˆ—ŠÖ”.
 	MoveRotation(m_vPos, m_vLookAtPos);
 
@@ -132,5 +136,8 @@ void CEndingSwitchGhost::SettingInitDirect()
 //===========================================.
 void CEndingSwitchGhost::ActHaveTrouble()
 {
-
+	m_vPos.y -= 0.1f;
+	if (m_vPos.y < 0.0f) {
+		m_vPos.y = 0.0f;
+	}
 }
