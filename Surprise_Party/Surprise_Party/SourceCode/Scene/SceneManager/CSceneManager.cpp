@@ -137,10 +137,10 @@ void CSceneManager::Load()
 
 	//ÉVÅ[Éìèâä˙ê›íË.
 	m_pCSceneBase.resize(2);
-	//m_SceneType = static_cast<int>(enSceneType::Title);
-	//m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CTitle());
-	m_SceneType = static_cast<int>(enSceneType::GameMain);
-	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
+	m_SceneType = static_cast<int>(enSceneType::Title);
+	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CTitle());
+	//m_SceneType = static_cast<int>(enSceneType::GameMain);
+	//m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
 
 	//m_SceneType = static_cast<int>(enSceneType::Ending);
 	//m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CEnding());
