@@ -5,8 +5,9 @@
 #include "..\..\..\GameObject/Object/StaticObject/StaticObjectManager/CStaticObjectManager.h"
 #include "..\..\..\GameObject/Object/MoveObject/MoveObjectManager/CMoveObjectManager.h"
 #include "..\..\..\FileLoad/FileResource/CFileResource.h"
-#include "..\..\..\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageDispGhost\CMainStageDispGhost.h"
-#include "..\..\..\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageSwitchGhost\CMainStageSwitchGhost.h"
+
+#include "..\..\..\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageWorkGhsotManager\CMainStageWorkGhostManager.h"
+
 #include "..\..\..\GameObject/Chara/People/PeopleManager/CPeopleManager.h"
 
 #include "..\..\..\GameObject\Object\StaticObject\Light\FrontstageLight\CFrontstageLight.h"
@@ -75,7 +76,9 @@ private:
 	//===================変数=======================//.
 	std::unique_ptr<CStaticObjectManager>					m_pCStaticObjectManager;	//静的オブジェクト管理クラス.
 	std::unique_ptr<CMoveObjectManager>						m_pCMoveObjectManager;		//動的オブジェクト管理クラス.
-	std::vector<std::unique_ptr<CMainStageWorkGhostBase>>	m_pCWorkGhost;				//働くお化けクラス.
+
+	std::unique_ptr<CMainStageWorkGhostManager>				m_pCWorkghostManager;		//働くお化け管理クラス.
+
 	std::unique_ptr<CPeopleManager>							m_pCPeopleManager;			//人管理クラス.
 
 	std::unique_ptr<CStageMap>								m_pCStageMap;				//ステージマップ.

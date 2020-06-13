@@ -11,7 +11,6 @@ CMainStage::CMainStage()
 CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneType enType)
 	: m_pCStaticObjectManager	(nullptr)
 	, m_pCMoveObjectManager		(nullptr)
-	, m_pCWorkGhost				()
 	, m_pCPeopleManager			(nullptr)
 	, m_pCStageMap				(nullptr)
 	, m_pCMapGhostCursor		(nullptr)
@@ -49,7 +48,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		m_pCCamera->SetTargetPos(m_pCMoveObjectManager->GetGimmickPos());
 	}
 	else {
-		m_pCCamera->SetTargetPos(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos());
+		m_pCCamera->SetTargetPos(m_pCWorkghostManager->GetSelectGhostPos());
 	}
 	m_pCCamera->Update();
 	const D3DXVECTOR3 m_vCameraPos = m_pCCamera->GetPos();
@@ -62,132 +61,84 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	m_pCStaticObjectManager->SetCameraPos(m_vCameraPos);
 	m_pCStaticObjectManager->Updata();
 
-	//お化け.
-	std::vector<D3DXVECTOR3> m_vGhostPos(m_pCWorkGhost.size());							//お化け座標.
-	std::vector<D3DXVECTOR3> m_vGimmickPos = m_pCMoveObjectManager->GetAllGimmickPos();	//ギミック座標.
-	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
+	if (m_enStageType == enStageType::Tutorial) {
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->TUTORIAL_STAGE_FLAG);
+	}
 
-		//ステージ全体の距離取得.
-		m_pCWorkGhost[ghost]->SetStageDistanceMax(m_pCStaticObjectManager->GetStageDistanceMax());
+	if (m_ExplainFlag != 0) {
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->EXPLAINING_FLAG);
+	}
 
-		//ギミックと人の座標取得.
-		m_pCWorkGhost[ghost]->SetSurprisePosInfo(m_vGimmickPos, m_pCPeopleManager->GetHumanPos());
-
-		if (m_enStageType == enStageType::Tutorial) {
-			if (m_ExplainFlag != 0) {
-				//チュートリアルフラグ.
-				m_pCWorkGhost[ghost]->SetTutorialFlag(true);
-
-				//選択決定フラグ設定.
-				if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
-					m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
-				}
-				else {
-					m_pCWorkGhost[ghost]->SetDecideSelectFlag(false);
-				}
-			}
-			else {
-				m_pCWorkGhost[ghost]->SetTutorialFlag(false);
-				m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
-			}
+	if (m_pCDescriptionUIManager != nullptr) {
+		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
+			m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
+		}
+		else {
+			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
 		}
 
-		if (m_pCDescriptionUIManager != nullptr) {
-			if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
-				m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
-				break;
-			}
+		if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
+			m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
+			m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
 		}
-		//お化け更新処理関数.
-		m_pCWorkGhost[ghost]->Update();
-
-		//チュートリアル時コメント一つ進める処理.
-		if (m_pCDescriptionUIManager != nullptr) {
-			if (m_pCWorkGhost[ghost]->GetTutorialAddCommentFlag() == true) {
-				m_pCDescriptionUIManager->SetAdvanceComment();
-			}
-		}
-
-		//お化けの座標取得.
-		m_vGhostPos[ghost] = m_pCWorkGhost[ghost]->GetPos();
-		D3DXVECTOR3 vTargetPos;
-		std::unique_ptr<CMainStageWorkGhostBase> pTmp;
-		//お化けの要素数変換処理.
-		if (ghost < m_pCWorkGhost.size() - 1) {
-			//左から右.
-			vTargetPos = m_pCWorkGhost[ghost + 1]->GetPos();
-			if (m_vGhostPos[ghost].x > vTargetPos.x) {
-				//お化けの変更.
-				pTmp.swap(m_pCWorkGhost[ghost]);
-				m_pCWorkGhost[ghost].swap(m_pCWorkGhost[ghost + 1]);
-				m_pCWorkGhost[ghost + 1].swap(pTmp);
-
-				//カーソルがある時は番号を移動させる.
-				if (m_SelectNum[GHOST_NUM] == ghost) {
-					m_SelectNum[GHOST_NUM] = ghost + 1;
-				}
-			}
-		}
-		if (ghost > 0) {
-			//右から左.
-			vTargetPos = m_pCWorkGhost[ghost - 1]->GetPos();
-			if (m_vGhostPos[ghost].x < vTargetPos.x) {
-				pTmp.swap(m_pCWorkGhost[ghost]);
-				m_pCWorkGhost[ghost].swap(m_pCWorkGhost[ghost - 1]);
-				m_pCWorkGhost[ghost - 1].swap(pTmp);
-
-				if (m_SelectNum[GHOST_NUM] == ghost) {
-					m_SelectNum[GHOST_NUM] = ghost - 1;
-				}
-			}
-		}
-
-		//使用しているギミック設定.
-		if (m_pCWorkGhost[ghost]->GetUseGimmickNum() >= 0) {
-			m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkGhost[ghost]->GetUseGimmickNum(), true);
-		}
-
-		//驚いている人番号取得.
-		m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkGhost[ghost]->GetNearHumanNum());
-
-		//追加ポイント量.
-		m_pCSurpriseGage->AddSurprisePoint(m_pCPeopleManager->GetAddSurprisePoint());
-
-		//ギミックの移動フラグ設定.
-		int UseGimmickNum = m_pCWorkGhost[ghost]->GetUseGimmickNum();
-
-		if (UseGimmickNum < 0) {
-			continue;
-		}
-
-		//オブジェクト下げる処理.
-		if (m_pCWorkGhost[ghost]->GetUpDownFlag() & m_pCWorkGhost[ghost]->DOWN_FLAG) {
-			m_pCMoveObjectManager->SetGimmickMoveFlag(UseGimmickNum, m_pCMoveObjectManager->DOWN_FLAG);
-			continue;
-		}
-
-		//オブジェクト上げる処理.
-		if (m_pCWorkGhost[ghost]->GetUpDownFlag() & m_pCWorkGhost[ghost]->UP_FLAG) {
-			m_pCMoveObjectManager->SetGimmickMoveFlag(UseGimmickNum, m_pCMoveObjectManager->UP_FLAG);
+		else {
+			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
 		}
 	}
 
+	//働くお化け管理クラスの更新処理関数.
+	m_pCWorkghostManager->SetStageDisntaceMax(m_pCStaticObjectManager->GetStageDistanceMax());
+	m_pCWorkghostManager->SetGimmickPos(m_pCMoveObjectManager->GetAllGimmickPos());
+	m_pCWorkghostManager->SetPeoplePos(m_pCPeopleManager->GetHumanPos());
+	m_pCWorkghostManager->Update();
+
+	for (unsigned int ghost = 0; ghost < m_pCWorkghostManager->GetAllGhostNum(); ghost++) {
+		//驚いている人番号取得.
+		//m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkGhost[ghost]->GetNearHumanNum());
+		m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkghostManager->GetNearPeopleNum(ghost));
+	
+		//オブジェクト使用フラグ.
+		const std::tuple<int, bool> tUseObjFlag = std::tuple<int, bool>(m_pCWorkghostManager->GetUseGimmick(ghost));
+		if (std::get<0>(tUseObjFlag) >= 0) {
+			m_pCMoveObjectManager->SetUsedGimmickFlag(std::get<0>(tUseObjFlag), std::get<1>(tUseObjFlag));
+		}
+
+		//コメント進めるフラグ.
+		if (m_pCWorkghostManager->GetTutorialAddCommentFlag(ghost) == true) {
+			m_pCDescriptionUIManager->SetAdvanceComment();
+		}
+
+		//オブジェクト上げ下げフラグ.
+		const std::tuple<int, unsigned int> tUpDownFlag = std::tuple<int, unsigned int>(m_pCWorkghostManager->GetObjUpDownFlag(ghost));
+		if (std::get<1>(tUpDownFlag) != 0) {
+			if (std::get<1>(tUpDownFlag) & m_pCWorkghostManager->OBJ_DOWN_FLAG) {
+				m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->DOWN_FLAG);
+				continue;
+			}
+			m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->UP_FLAG);
+		}
+
+	}
+
+	//追加ポイント量.
+	m_pCSurpriseGage->AddSurprisePoint(m_pCPeopleManager->GetAddSurprisePoint());
 
 	//動的オブジェクトの更新処理関数.
 	m_pCMoveObjectManager->SetCameraPos(m_vCameraPos);
 	m_pCMoveObjectManager->SetSelectionNum(m_SelectNum[GIMMICK_NUM]);
-	m_pCMoveObjectManager->SetGhostPos(m_vGhostPos);
+	//m_pCMoveObjectManager->SetGhostPos(m_vGhostPos);
+	m_pCMoveObjectManager->SetGhostPos(m_pCWorkghostManager->GetAllGhostPos());
 	m_pCMoveObjectManager->UpDate();
 
 	//お化け選択フラグ.
 	if (m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
-		if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSelectFlag() == false) {
+		if (m_pCWorkghostManager->GetSelectGhostFlag() == false) {
 			m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
 		}
 	}
 
 	//ギミック選択フラグ.
-	if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetChangeGimmickSelect() == true) {
+	if (m_pCWorkghostManager->GetChangeGimmickSelectFlag() == true) {
 		m_ObjectSelectFlag = GIMMICK_SELECTION_FLAG;
 
 		//ギミックカーソル表示フラグ設定.
@@ -195,17 +146,14 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	}
 
 	//マップ上のお化けカーソル更新処理関数.
-	m_pCMapGhostCursor->SetCharaPos(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos());
+	m_pCMapGhostCursor->SetCharaPos(m_pCWorkghostManager->GetSelectGhostPos());
 	m_pCMapGhostCursor->UpDate();
-	m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetGhostSelectIcon(true);
 
-	//お化け休憩取得処理.
-	bool GhostRestFlag = false;	//お化け休憩フラグ.
-	if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetMoveFlag() & m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->REST_FLAG) {
-		GhostRestFlag = true;
-	}
+	//お化け休憩フラグ.	
+	bool GhostRestFlag = m_pCWorkghostManager->DecisionSelectRest();	
 	m_pCGameGhostCursor->SetRestFlag(GhostRestFlag);
-	m_pCGameGhostCursor->SetCharacterPos(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos());
+	m_pCGameGhostCursor->SetCharacterPos(m_pCWorkghostManager->GetSelectGhostPos());
+
 	//ゲーム内でのお化けのカーソル更新処理関数.
 	m_pCGameGhostCursor->UpDate();
 
@@ -234,6 +182,8 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_ExplainFlag = 0;
 			//テキスト描画終了.
 			m_bDispTextFlag = false;
+
+			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->EXPLAINING_FLAG);
 			//m_bTutorialCameraMove = 0;
 		}
 	}
@@ -342,15 +292,8 @@ void CMainStage::Render()
 	//マップ上のお化けカーソル描画処理関数.
 	m_pCMapGhostCursor->Render();
 
-
 	//お化けの描画.
-	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
-		//お化け本体の描画処理関数.
-		m_pCWorkGhost[ghost]->SetCameraPos(m_vCameraPos);
-		m_pCWorkGhost[ghost]->RenderInitSetting(m_mView, m_mProj, m_Light);
-		m_pCWorkGhost[ghost]->Render();
-	}
-
+	m_pCWorkghostManager->Render(m_mView, m_mProj, m_Light, m_vCameraPos);
 
 
 	//動くオブジェクトスイッチの描画.
@@ -361,9 +304,7 @@ void CMainStage::Render()
 	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_Light);
 
 	//お化け体力アイコン描画処理関数.
-	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
-		m_pCWorkGhost[ghost]->StrengthIconRender();
-	}
+	m_pCWorkghostManager->RenderIcon();
 
 	//人の描画処理関数.
 	m_pCPeopleManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
@@ -377,7 +318,7 @@ void CMainStage::Render()
 
 	//お化けの選択描画処理関数.
 	if (m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
-		m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SelectRender();
+		m_pCWorkghostManager->RenderSelectUI();
 	}
 
 	//閉店までの時間描画処理関数.
@@ -440,26 +381,14 @@ void CMainStage::Init()
 	int m_column = IntervalRand(mt);
 
 	int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos_OneDay) * 3;
-	for (int stage = 0; stage < m_pCFileResource->GetStageMax(GhostFilenum); stage++) {
-		switch (m_pCFileResource->GetStageNum(GhostFilenum, m_column, stage) - 1) {
-		case 0:
-			m_pCWorkGhost.push_back(nullptr);
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CMainStageDispGhost());
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(D3DXVECTOR3(stage * m_pCStaticObjectManager->OBJECT_WIDTH, 0.0f, 3.5f));
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetInitMovePos();
-			break;
-		case 1:
-			m_pCWorkGhost.push_back(nullptr);
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CMainStageSwitchGhost());
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(D3DXVECTOR3(stage * m_pCStaticObjectManager->OBJECT_WIDTH, 3.5f, 3.5f));
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetInitMovePos();
-			break;
-		}
-	}
+	//お化け管理クラスをインスタンス化.
+	m_pCWorkghostManager.reset(new CMainStageWorkGhostManager());
+	m_pCWorkghostManager->Init(GhostFilenum, m_column, m_pCStaticObjectManager->OBJECT_WIDTH);
 
 	//動的オブジェクトインスタンス化.
 	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum, m_column));
-	m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkGhost.size());
+	//m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkGhost.size());
+	m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkghostManager->GetAllGhostNum());
 	
 	//人管理クラス設定.
 	m_pCPeopleManager.reset(new CPeopleManager());
@@ -570,8 +499,7 @@ void CMainStage::Control()
 	if (m_ObjectSelectFlag & GHOST_SELECTION_FLAG) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			//お化けが驚かしているときのみ.
-			if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetMoveFlag() & 
-				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SURPRISE_FLAG) {
+			if (m_pCWorkghostManager->DecisionSelectSurprise() == true) {
 
 				if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
 					if (!(m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GHOST_FLAG)) {
@@ -586,7 +514,7 @@ void CMainStage::Control()
 					m_pCDescriptionUIManager->SetAdvanceComment();
 				}
 				//選択フラグ.
-				m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetSelectFlag(true);
+				m_pCWorkghostManager->SetSelectFlag(true);
 
 				//お化け選択後行動.
 				m_ObjectSelectFlag = GHOST_ACT_SELECT_FLAG;
@@ -602,11 +530,11 @@ void CMainStage::Control()
 	//移動するギミック決定.
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
 		if (GetAsyncKeyState(VK_BACK) & 0x0001) {
-			m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetSelectStop();
+			m_pCWorkghostManager->SetSelectStop();
 			//お化けの選択に戻る.
 			m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
 			//ギミック選択フラグ.
-			m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetChangeGimmickSelect(false);
+			m_pCWorkghostManager->SetChangeGimmickSelect(false);
 			//ギミックカーソル非表示フラグ設定.
 			m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
 		}
@@ -614,10 +542,10 @@ void CMainStage::Control()
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			if (m_pCMoveObjectManager->GetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM]) == false) {
 				//お化けの種類とギミックの種類があっているときのみ.
-				if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSurpriseObjectType() ==
+				if (m_pCWorkghostManager->GetSurpriseObjectType() ==
 					m_pCMoveObjectManager->GetSurpriseObjectType()) {
-					if (m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetUseGimmickNum() >= 0) {
-						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetUseGimmickNum(), false);
+					if (m_pCWorkghostManager->GetUseGimmickNum() >= 0) {
+						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNum(), false);
 					}
 
 					//チュートリアル時にコメントを進める処理.
@@ -630,11 +558,11 @@ void CMainStage::Control()
 					}
 
 					//移動目的のオブジェクト座標取得.
-					m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetObjectiveGimmickPos(m_pCMoveObjectManager->GetGimmickPos());
+					m_pCWorkghostManager->SetObjectiveGimmickPos(m_pCMoveObjectManager->GetGimmickPos());
 					//お化けの選択に戻る.
 					m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
 					//ギミック選択フラグ.
-					m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->SetChangeGimmickSelect(false);
+					m_pCWorkghostManager->SetChangeGimmickSelect(false);
 					//ギミックカーソル非表示フラグ設定.
 					m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
 
@@ -664,28 +592,11 @@ void CMainStage::Control()
 //========================================.
 void CMainStage::GhostSelect()
 {
-	bool MoveSelectFlag = false;	//お化け選択移動フラグ.
-
-	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
-		m_SelectNum[GHOST_NUM]++;
-
-		if (m_SelectNum[GHOST_NUM] >= static_cast<int>(m_pCWorkGhost.size())) {
-			m_SelectNum[GHOST_NUM] = m_pCWorkGhost.size() - 1;
-		}
-		MoveSelectFlag = true;
-	}
-
-	if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
-		m_SelectNum[GHOST_NUM]--;
-
-		if (m_SelectNum[GHOST_NUM] < 0) {
-			m_SelectNum[GHOST_NUM] = 0;
-		}
-		MoveSelectFlag = true;
-	}
+	//お化け選択移動フラグ.
+	bool MoveSelectFlag = m_pCWorkghostManager->SelectGhost();	
 
 	if (MoveSelectFlag == true) {
-		const int GHOST_TYPE_NUM = static_cast<int>(m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetSurpriseObjectType());
+		const int GHOST_TYPE_NUM = static_cast<int>(m_pCWorkghostManager->GetSurpriseObjectType());
 		
 		if (m_pCSpeakWorkGhost != nullptr) {
 			//お化け選択に関係するすべてのフラグ.
@@ -693,7 +604,7 @@ void CMainStage::GhostSelect()
 			//お化け選択している時のみ設定可能.
 			if (m_ObjectSelectFlag & RELATED_TO_GHOST_ALL_FLAG) {
 				m_pCSpeakWorkGhost->SetGhostTypeNum(GHOST_TYPE_NUM);
-				m_vSelectGhostPos = m_pCWorkGhost[m_SelectNum[GHOST_NUM]]->GetPos();
+				m_vSelectGhostPos = m_pCWorkghostManager->GetSelectGhostPos();
 			}
 		}
 

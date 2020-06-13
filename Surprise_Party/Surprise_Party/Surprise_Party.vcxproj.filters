@@ -359,6 +359,9 @@
     <Filter Include="SourceCode\Camera\CameraTitle">
       <UniqueIdentifier>{c93abf5e-dbc3-4946-9415-62c22c560455}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageWorkGhostManager">
+      <UniqueIdentifier>{ab763d36-4363-496a-8c38-c09fb60d9b2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -724,6 +727,9 @@
     <ClInclude Include="SourceCode\Camera\CameraTitle\CCameraTitle.h">
       <Filter>SourceCode\Camera\CameraTitle</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageWorkGhsotManager\CMainStageWorkGhostManager.h">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageWorkGhostManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1076,6 +1082,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Camera\CameraTitle\CCameraTitle.cpp">
       <Filter>SourceCode\Camera\CameraTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageWorkGhsotManager\CMainStageWorkGhostManager.cpp">
+      <Filter>SourceCode\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhost\MainStageWorkGhostManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
