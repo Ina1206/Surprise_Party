@@ -70,18 +70,24 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	}
 
 	if (m_pCDescriptionUIManager != nullptr) {
+		//お化けを決めるフラグ.
 		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
+			//フラグを立てる.
 			m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
 		}
 		else {
+			//フラグを降ろす.
 			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
 		}
 
+		//選択待機フラグ.
 		if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
 			m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
+			//フラグを立てる.
 			m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
 		}
 		else {
+			//フラグを降ろす.
 			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
 		}
 	}
