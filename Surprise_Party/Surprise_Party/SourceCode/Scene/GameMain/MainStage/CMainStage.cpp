@@ -70,26 +70,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	}
 
 	if (m_pCDescriptionUIManager != nullptr) {
-		//お化けを決めるフラグ.
-		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
-			//フラグを立てる.
-			m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
-		}
-		else {
-			//フラグを降ろす.
-			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
-		}
-
-		//選択待機フラグ.
-		if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
-			m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
-			//フラグを立てる.
-			m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
-		}
-		else {
-			//フラグを降ろす.
-			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
-		}
+		UnloadSetTrueTutrialFlag();
 	}
 
 	//働くお化け管理クラスの更新処理関数.
@@ -192,6 +173,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 			m_bDispTextFlag = false;
 
 			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->EXPLAINING_FLAG);
+			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
 			//m_bTutorialCameraMove = 0;
 		}
 	}
@@ -621,6 +603,38 @@ void CMainStage::GhostSelect()
 			m_pCDescriptionUIManager->SetAddSelectMoveCount();
 		}
 	}
+}
+
+//========================================.
+//	チュートリアルフラグ上げ下げ処理.
+//========================================.
+void CMainStage::UnloadSetTrueTutrialFlag()
+{
+	if (m_ExplainFlag == 0) {
+		return;
+	}
+
+	//お化けを決めるフラグ.
+	if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
+		//フラグを立てる.
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
+	}
+	else {
+		//フラグを降ろす.
+		m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
+	}
+
+	//選択待機フラグ.
+	if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
+		m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
+		//フラグを立てる.
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
+	}
+	else {
+		//フラグを降ろす.
+		m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
+	}
+
 }
 
 //========================================.

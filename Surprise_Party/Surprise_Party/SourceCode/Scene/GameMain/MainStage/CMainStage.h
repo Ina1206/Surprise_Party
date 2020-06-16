@@ -68,6 +68,7 @@ private:
 	void Init();									//初期化処理関数.
 	void Release();									//解放処理関数.
 	void GhostSelect();								//お化け選択処理関数.
+	void UnloadSetTrueTutrialFlag();				//チュートリアルフラグ上げ下げ処理.
 	void GimmickSelect();							//ギミック選択処理関数.
 	template <typename T>
 	void GhostElementSort(T pClass, int array);		//お化け要素数変換処理関数.
