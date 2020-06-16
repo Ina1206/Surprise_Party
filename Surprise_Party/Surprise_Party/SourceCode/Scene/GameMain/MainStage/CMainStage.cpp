@@ -104,8 +104,10 @@ void CMainStage::UpDate(const bool& ControlFlag)
 		}
 
 		//コメント進めるフラグ.
-		if (m_pCWorkghostManager->GetTutorialAddCommentFlag(ghost) == true) {
-			m_pCDescriptionUIManager->SetAdvanceComment();
+		if (m_pCDescriptionUIManager != nullptr) {
+			if (m_pCWorkghostManager->GetTutorialAddCommentFlag(ghost) == true) {
+				m_pCDescriptionUIManager->SetAdvanceComment();
+			}
 		}
 
 		//オブジェクト上げ下げフラグ.
