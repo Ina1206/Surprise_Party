@@ -137,11 +137,19 @@ void CTitle::SettingView()
 //=======================================.
 void CTitle::ChangeScene()
 {
-	if (m_pCTitleUI->GetSelectTypeFlag() & m_pCTitleUI->GAME_START_FLAG) {
+	const unsigned int SelectTypeFlag = m_pCTitleUI->GetSelectTypeFlag();
+
+	if (SelectTypeFlag == 0) {
+		return;
+	}
+
+	//ゲーム開始.
+	if (SelectTypeFlag & m_pCTitleUI->GAME_START_FLAG) {
 		m_bChangeScene = true;
 
 		return;
 	}
 
-	
+	//ゲーム終了.
+	PostQuitMessage(0);
 }
