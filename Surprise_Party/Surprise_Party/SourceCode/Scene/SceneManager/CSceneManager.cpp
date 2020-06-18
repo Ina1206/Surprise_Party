@@ -7,7 +7,7 @@ CSceneManager::CSceneManager()
 	, m_Color			(0.0f, 0.0f, 0.0f, 0.0f)
 	, m_ChangeSceneCnt	(0)
 	, m_SceneType		(0)
-	, m_PausingFlag		(true)
+	, m_PausingFlag		(false)
 {
 
 }
