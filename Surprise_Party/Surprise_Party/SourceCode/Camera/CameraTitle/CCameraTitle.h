@@ -26,6 +26,8 @@ public:
 	const float			MOVE_SPEED_FROM_FRONT	= 0.05f;							//正面から見るカメラ移動速度.
 	const float			MOVE_SPEED_FROM_OBLIQUE = 0.02f;							//斜めから見るカメラ移動速度.
 
+	const float			MOVE_DISTANCE_MAX		= 70.0f;							//移動距離最大値.
+
 	const int			MOVE_TYPE_MAX			= 2;								//移動タイプ最大値.
 
 	//=======================関数==========================//.
