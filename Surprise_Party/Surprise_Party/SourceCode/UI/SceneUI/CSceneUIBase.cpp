@@ -114,6 +114,8 @@ void CSceneUIBase::InitPos()
 	m_vUIPos[CURSOR_NUM] = CURSOR_POS;
 	m_vUIRot[CURSOR_NUM] = CURSOR_ROT;
 
+	//ƒJ[ƒ\ƒ‹.
+	m_pCSpriteUI[CURSOR_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor);
 }
 
 //===========================================.

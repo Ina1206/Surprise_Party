@@ -25,8 +25,6 @@ void CPauseUI::Init()
 		int SpriteNum = static_cast<int>(enSpriteUI::Continue) + sprite;
 		m_pCSpriteUI[sprite] = m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum));
 	}
-	//カーソル.
-	m_pCSpriteUI[CURSOR_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor);
 	//シーンタイトル.
 	m_pCSpriteUI[SCENE_TITLE_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::Pause);
 

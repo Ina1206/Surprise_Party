@@ -138,6 +138,7 @@
     <ClInclude Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\CPauseUI\CPuaseUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\CSceneUIBase.h" />
+    <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\CSpeakUI.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\ReputationSNS\CReputationSNS.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.h" />
@@ -260,6 +261,7 @@
     <ClCompile Include="SourceCode\UI\PlayUI\TutorialBlackScreen\CTutorialBlackScreen.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\CPauseUI\CPauseUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\CSceneUIBase.cpp" />
+    <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\CSpeakUI.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\ReputationSNS\CReputationSNS.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\SpeakBigGhost\CSpeakBigGhost.cpp" />
