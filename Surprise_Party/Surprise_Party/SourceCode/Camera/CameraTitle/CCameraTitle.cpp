@@ -28,18 +28,8 @@ void CCameraTitle::Update()
 	m_Camera.vLook.x += m_fMoveSpeed;
 
 	if (m_fMoveDistance >= MOVE_DISTANCE_MAX) {
-		m_fMoveDistance = 0.0f;
-
-		if (m_fMoveSpeed >= MOVE_SPEED_FROM_FRONT) {
-			m_Camera.vPos = POS_FROM_OBLIQUE;
-			m_Camera.vLook = LOOK_FROM_OBLIQUE;
-			m_fMoveSpeed = MOVE_SPEED_FROM_OBLIQUE;
-			return;
-		}
-
-		m_Camera.vPos = POS_FROM_FRONT;
-		m_Camera.vLook = LOOK_FROM_FRONT;
-		m_fMoveSpeed = MOVE_SPEED_FROM_FRONT;
+		//移動種類変更処理関数.
+		ChangeMoveType();
 	}
 }
 
@@ -48,7 +38,6 @@ void CCameraTitle::Update()
 //==========================================.
 void CCameraTitle::Init()
 {
-	//m_Camera.vPos = D3DXVECTOR3(11.9f, 7.5f, -19.9f);
 	m_Camera.vPos = POS_FROM_FRONT;
 	m_Camera.vLook = LOOK_FROM_FRONT;
 	m_fMoveSpeed = MOVE_SPEED_FROM_FRONT;
@@ -59,5 +48,27 @@ void CCameraTitle::Init()
 //==========================================.
 void CCameraTitle::Release()
 {
+
+}
+
+//==========================================.
+//		移動種類変更処理関数.
+//==========================================.
+void CCameraTitle::ChangeMoveType()
+{
+	m_fMoveDistance = 0.0f;
+
+	//斜めから見るカメラに変更.
+	if (m_fMoveSpeed >= MOVE_SPEED_FROM_FRONT) {
+		m_Camera.vPos = POS_FROM_OBLIQUE;
+		m_Camera.vLook = LOOK_FROM_OBLIQUE;
+		m_fMoveSpeed = MOVE_SPEED_FROM_OBLIQUE;
+		return;
+	}
+
+	//正面から見るカメラに変更.
+	m_Camera.vPos = POS_FROM_FRONT;
+	m_Camera.vLook = LOOK_FROM_FRONT;
+	m_fMoveSpeed = MOVE_SPEED_FROM_FRONT;
 
 }
