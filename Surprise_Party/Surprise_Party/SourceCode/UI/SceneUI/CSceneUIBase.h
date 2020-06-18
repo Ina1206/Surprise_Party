@@ -39,7 +39,9 @@ public:
 
 protected:
 	//===================変数========================//.
-	std::vector<CSpriteUI*>		m_pCSpriteUI;	//スプライトUI.
+	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.
+	int							m_SelectNum;			//選択番号.
+	bool						m_bSelectFinishFlag;	//選択終了フラグ.
 
 private:
 	//===================関数========================//.
@@ -51,9 +53,7 @@ private:
 	std::vector<D3DXVECTOR2>	m_vUV;					//UV座標.
 	std::vector<D3DXVECTOR3>	m_vUIRot;				//角度.
 
-	int							m_SelectNum;			//選択番号.
 	int							m_ChangeCnt;			//変更カウント.
-	bool						m_bSelectFinishFlag;	//選択終了フラグ.
 };
 
 #endif	//#ifndef CSCENE_UI_BASE_H.

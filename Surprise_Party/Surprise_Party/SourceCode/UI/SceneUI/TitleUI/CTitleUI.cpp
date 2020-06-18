@@ -4,6 +4,7 @@
 *		タイトルUIクラス.
 ****************/
 CTitleUI::CTitleUI()
+	: m_SelectTypeFlag	(0)
 {
 	//初期化処理関数.
 	Init();
@@ -12,6 +13,24 @@ CTitleUI::CTitleUI()
 CTitleUI::~CTitleUI()
 {
 
+}
+
+//=====================================.
+//		選択種類フラグ取得処理関数.
+//=====================================.
+unsigned int CTitleUI::GetSelectTypeFlag() const 
+{
+	if (m_bSelectFinishFlag == false) {
+		return 0;
+	}
+
+	//ゲーム開始.
+	if (m_SelectNum == 0) {
+		return GAME_START_FLAG;
+	}
+
+	//ゲーム終了.
+	return GAME_FINISH_FLAG;
 }
 
 //=====================================.

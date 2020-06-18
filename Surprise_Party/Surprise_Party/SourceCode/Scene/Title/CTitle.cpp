@@ -48,6 +48,9 @@ void CTitle::UpDate()
 
 	//タイトルUI更新処理関数.
 	m_pCTitleUI->Update();
+
+	//シーン変更処理関数.
+	ChangeScene();
 }
 
 //======================================.
@@ -127,4 +130,18 @@ void CTitle::SettingView()
 	D3DXMatrixLookAtLH(
 		&m_mView,								//(out)ビュー計算結果.
 		&m_vCameraPos, &m_vCameraLook, &vUpVec);
+}
+
+//=======================================.
+//		シーン変更処理関数.
+//=======================================.
+void CTitle::ChangeScene()
+{
+	if (m_pCTitleUI->GetSelectTypeFlag() & m_pCTitleUI->GAME_START_FLAG) {
+		m_bChangeScene = true;
+
+		return;
+	}
+
+	
 }

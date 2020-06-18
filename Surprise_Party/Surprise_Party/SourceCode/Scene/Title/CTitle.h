@@ -27,6 +27,7 @@ protected:
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
 	void SettingView();	//ビュー行列の設定処理関数.
+	void ChangeScene();	//シーン変更処理関数.
 
 	//====================変数========================//.
 	std::unique_ptr<CCameraTitle>				m_pCCameraTitle;			//タイトル用カメラクラス.
