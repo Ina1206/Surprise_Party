@@ -7,6 +7,7 @@
 #include "..\..\GameObject\Object\StaticObject\StaticObjectManager\CStaticObjectManager.h"
 #include "..\..\GameObject\Object\MoveObject\MoveObjectManager\CMoveObjectManager.h"
 #include "..\..\GameObject\Chara\Ghost\WorkGhost\MainStageWorkGhostBase\MainStageWorkGhsotManager\CMainStageWorkGhostManager.h"
+#include "..\..\UI\SceneUI\TitleUI\CTitleUI.h"
 
 /**********************************
 *		タイトルクラス.
@@ -33,6 +34,7 @@ protected:
 	std::unique_ptr<CStaticObjectManager>		m_pCStaticObjectManager;	//静的オブジェクトの管理クラス.
 	std::unique_ptr<CMoveObjectManager>			m_pCMoveObjectManager;		//動的オブジェクトの管理クラス.
 	std::unique_ptr<CMainStageWorkGhostManager>	m_pCWorkGhostManager;		//働くお化け管理クラス.
+	std::unique_ptr<CTitleUI>					m_pCTitleUI;				//タイトルUI.
 };
 
 

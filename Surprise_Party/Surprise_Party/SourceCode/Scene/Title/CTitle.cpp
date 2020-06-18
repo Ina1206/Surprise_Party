@@ -7,7 +7,9 @@ CTitle::CTitle()
 	: m_pCCameraTitle			(nullptr)
 	, m_pCFrontstageLight		(nullptr)
 	, m_pCStaticObjectManager	(nullptr)
+	, m_pCMoveObjectManager		(nullptr)
 	, m_pCWorkGhostManager		(nullptr)
+	, m_pCTitleUI				(nullptr)
 {
 	//初期化処理関数.
 	Init();
@@ -43,6 +45,9 @@ void CTitle::UpDate()
 
 	//お化け更新処理関数.
 	m_pCWorkGhostManager->Update();
+
+	//タイトルUI更新処理関数.
+	m_pCTitleUI->Update();
 }
 
 //======================================.
@@ -68,6 +73,9 @@ void CTitle::Render()
 	m_pCMoveObjectManager->Render(m_mView, m_mProj, m_Light);
 	//動的オブジェクト前エフェクトの描画処理関数.
 	m_pCMoveObjectManager->EffectRender();
+
+	//タイトルUI描画処理関数.
+	m_pCTitleUI->Render();
 }
 
 //======================================.
@@ -84,7 +92,7 @@ void CTitle::Init()
 	m_pCStaticObjectManager.reset(new CStaticObjectManager(FILE_NUM, STAGE_NUM));
 	m_pCMoveObjectManager.reset(new CMoveObjectManager(FILE_NUM, STAGE_NUM));
 	m_pCWorkGhostManager.reset(new CMainStageWorkGhostManager());
-
+	m_pCTitleUI.reset(new CTitleUI());
 
 	//初期処理関数.
 	m_pCWorkGhostManager->Init(6, STAGE_NUM, m_pCStaticObjectManager->OBJECT_WIDTH);
