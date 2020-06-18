@@ -86,6 +86,7 @@ enum class enSpriteUI
 	PictureSNSFlower,				//SNS用の写真(花).
 	PictureSNSSurprise,				//SNS用の写真(驚き).
 	PushEnterString,				//PushEnter文字.
+	Title,							//タイトル.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.

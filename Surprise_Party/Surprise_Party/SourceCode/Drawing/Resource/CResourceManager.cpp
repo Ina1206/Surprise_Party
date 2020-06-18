@@ -212,6 +212,7 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\SNSPictureFlower.png",		//SNS用の写真(花).
 		"Data\\Texture\\UI\\Game\\SNSPictureSurprise.png",		//SNS用の写真(驚き).
 		"Data\\Texture\\UI\\Game\\PushEnter.png",				//PushEnter文字,
+		"Data\\Texture\\UI\\Game\\Title.png",					//Title.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
@@ -537,6 +538,13 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[PushEnterStringNum].Base.h = 48.0f;
 	m_pstSpriteUIState[PushEnterStringNum].Disp.w = m_pstSpriteUIState[PushEnterStringNum].Base.w;
 	m_pstSpriteUIState[PushEnterStringNum].Disp.h = m_pstSpriteUIState[PushEnterStringNum].Base.h;
+
+	//Title文字.
+	const int TitleNum = static_cast<int>(enSpriteUI::Title);
+	m_pstSpriteUIState[TitleNum].Base.w = 460.0f;
+	m_pstSpriteUIState[TitleNum].Base.h = 160.0f;
+	m_pstSpriteUIState[TitleNum].Disp.w = m_pstSpriteUIState[TitleNum].Base.w;
+	m_pstSpriteUIState[TitleNum].Disp.h = m_pstSpriteUIState[TitleNum].Base.h;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
