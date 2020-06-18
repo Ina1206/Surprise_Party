@@ -529,8 +529,6 @@ void CMain::DestroyD3D()
 HRESULT CMain::LoadMesh()
 {
 
-	//m_CDepth_Stencil.Init(m_pDevice11, m_pContext11);
-
 	_ASSERT_EXPR(m_hWnd != nullptr, L"CMain.cpp無し");
 
 	//シーン管理クラス.
@@ -544,10 +542,8 @@ HRESULT CMain::LoadMesh()
 void CMain::ClearBackBuffer()
 {
 	//画面のクリア.
-	//float ClearColor[4] = { 242.0f/255.0f, 171.0f / 255.0f, 145.0f / 255.0f, 1.0f };		//クリア色(RGBAの順).
 	D3DXVECTOR4 vClearColor = m_pCSceneManager->GetBackColor();
 	float ClearColor[4] = {vClearColor.x , vClearColor.y, vClearColor.z, vClearColor.w};		//クリア色(RGBAの順).
-	//float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };		//クリア色(RGBAの順).
 	
 	//カラーバックバッファ.
 	m_pContext11->ClearRenderTargetView(
