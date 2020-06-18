@@ -3,6 +3,7 @@
 
 #include "..\SceneBase\CSceneBase.h"
 #include "..\..\Drawing\Resource\CResourceManager.h"
+#include "..\..\UI\SceneUI\CPauseUI\CPuaseUI.h"
 
 /****************************************
 *		一時停止クラス.
@@ -18,9 +19,9 @@ public:
 	//const int	UI_MAX				= 4;		//UI最大数.
 	//const int	SELECT_STRING_MAX	= 2;		//選択スプライト.
 	//const int	CURSOR_NUM			= 2;		//カーソル番号.
-	const int	PAUSE_NUM			= 3;		//ポーズ番号.
+	//const int	PAUSE_NUM			= 3;		//ポーズ番号.
 	//const float	SELECT_STRING_WIDHT = 100.0f;	//選択文章幅.
-	const float CHANGE_CNT_MAX		= 10;		//変更カウント最大数.
+	//const float CHANGE_CNT_MAX		= 10;		//変更カウント最大数.
 
 	//const D3DXVECTOR3	SELECT_STRING_POS	= D3DXVECTOR3(700.0f, 400.0f, 0.0f);	//選択文章座標.
 	//const D3DXVECTOR3	CURSOR_POS			= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//カーソル座標.
@@ -41,6 +42,7 @@ private:
 	void Release();		//解放処理関数.
 
 	//=====================定数=====================//.
+	std::unique_ptr<CPauseUI>			m_pCPauseUI;		//ポーズUI.
 	//std::vector<CSpriteUI*>			m_pCSpriteUI;		//スプライトUI.
 	//std::unique_ptr<D3DXVECTOR3[]>	m_vPos;				//座標.
 	//std::unique_ptr<D3DXVECTOR3[]>	m_vRot;				//角度.

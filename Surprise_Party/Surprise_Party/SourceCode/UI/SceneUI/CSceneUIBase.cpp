@@ -4,16 +4,21 @@
 *		シーンUIの基底クラス.
 ****************/
 CSceneUIBase::CSceneUIBase()
-	: m_pCSpriteUI	()
-	, m_vUIPos		()
-	, m_vUV			()
+	: m_pCSpriteUI			()
+	, m_vUIPos				()
+	, m_vUV					()
+	, m_SelectNum			(0)
+	, m_ChangeCnt			(0)
+	, m_bSelectFinishFlag	(false)
 {
-
+	//初期座標設定処理関数.
+	InitPos();
 }
 
 CSceneUIBase::~CSceneUIBase()
 {
-
+	//解放処理関数.
+	Release();
 }
 
 //==========================================.
@@ -21,10 +26,13 @@ CSceneUIBase::~CSceneUIBase()
 //==========================================.
 void CSceneUIBase::Update()
 {
+	m_bSelectFinishFlag = false;
+
 	//決定後の処理.
 	if (m_ChangeCnt > 0) {
 		m_ChangeCnt++;
 
+		//選択終了.
 		if (m_ChangeCnt >= CHANGE_CNT_MAX) {
 			m_bSelectFinishFlag = true;
 			m_vUV[CURSOR_NUM] = NORMAL_UV_POS;
@@ -105,5 +113,13 @@ void CSceneUIBase::InitPos()
 	}
 	m_vUIPos[CURSOR_NUM] = CURSOR_POS;
 	m_vUIRot[CURSOR_NUM] = CURSOR_ROT;
+
+}
+
+//===========================================.
+//		解放処理関数.
+//===========================================.
+void CSceneUIBase::Release()
+{
 
 }

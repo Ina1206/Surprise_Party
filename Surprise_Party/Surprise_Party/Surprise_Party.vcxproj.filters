@@ -365,6 +365,9 @@
     <Filter Include="SourceCode\UI\SceneUI">
       <UniqueIdentifier>{a56270c8-af97-47f1-ade1-f49fe6c64d4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\PauseUI">
+      <UniqueIdentifier>{4cb95f7e-b8e0-4908-9147-32aba5366654}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -736,6 +739,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\CSceneUIBase.h">
       <Filter>SourceCode\UI\SceneUI</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\CPauseUI\CPuaseUI.h">
+      <Filter>SourceCode\UI\SceneUI\PauseUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1094,6 +1100,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\CSceneUIBase.cpp">
       <Filter>SourceCode\UI\SceneUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\CPauseUI\CPauseUI.cpp">
+      <Filter>SourceCode\UI\SceneUI\PauseUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
