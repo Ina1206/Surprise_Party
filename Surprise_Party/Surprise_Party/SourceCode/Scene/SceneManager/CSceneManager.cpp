@@ -59,14 +59,8 @@ void CSceneManager::UpDate()
 		return;
 	}
 
-	if (GetAsyncKeyState(VK_F1) & 0x0001) {
-		if (m_PausingFlag == true) {
-			m_PausingFlag = false;
-		}
-		else {
-			m_PausingFlag = true;
-		}
-	}
+	//ポーズ処理関数.
+	Pause();
 
 	//シーンの更新処理関数.
 	int m_UsingSceneNum = NORMAL_SCENE_NUM;
@@ -177,4 +171,25 @@ void CSceneManager::ChangeScene()
 	}
 
 	m_pCSceneFade->SetShutterFlag(m_pCSceneFade->OPEN_FLAG);
+}
+
+//==========================================.
+//		ポーズ処理関数.
+//==========================================.
+void CSceneManager::Pause()
+{
+	//ゲームメイン以外では処理しない.
+	if (m_SceneType != static_cast<int>(enSceneType::GameMain)) {
+		return;
+	}
+
+	if (GetAsyncKeyState(VK_F1) & 0x0001) {
+		if (m_PausingFlag == true) {
+			m_PausingFlag = false;
+		}
+		else {
+			m_PausingFlag = true;
+		}
+	}
+
 }
