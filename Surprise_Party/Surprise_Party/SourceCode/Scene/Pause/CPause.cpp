@@ -34,6 +34,7 @@ void CPause::UpDate()
 //========================================.
 void CPause::Render()
 {
+	//•`‰æˆ—ŠÖ”.
 	m_pCPauseUI->Render();
 }
 
