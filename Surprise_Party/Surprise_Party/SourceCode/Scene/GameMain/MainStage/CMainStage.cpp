@@ -44,6 +44,7 @@ CMainStage::~CMainStage()
 //===================================.
 void CMainStage::UpDate(const bool& ControlFlag)
 {
+	//カメラの更新処理関数.
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
 		m_pCCamera->SetTargetPos(m_pCMoveObjectManager->GetGimmickPos());
 	}
@@ -61,52 +62,8 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	m_pCStaticObjectManager->SetCameraPos(m_vCameraPos);
 	m_pCStaticObjectManager->Updata();
 
-	if (m_enStageType == enStageType::Tutorial) {
-		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->TUTORIAL_STAGE_FLAG);
-	}
-
-	if (m_ExplainFlag != 0) {
-		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->EXPLAINING_FLAG);
-	}
-
-	if (m_pCDescriptionUIManager != nullptr) {
-		UnloadSetTrueTutrialFlag();
-	}
-
-	//働くお化け管理クラスの更新処理関数.
-	m_pCWorkghostManager->SetStageDisntaceMax(m_pCStaticObjectManager->GetStageDistanceMax());
-	m_pCWorkghostManager->SetGimmickPos(m_pCMoveObjectManager->GetAllGimmickPos());
-	m_pCWorkghostManager->SetPeoplePos(m_pCPeopleManager->GetHumanPos());
-	m_pCWorkghostManager->Update();
-
-	for (unsigned int ghost = 0; ghost < m_pCWorkghostManager->GetAllGhostNum(); ghost++) {
-		//驚いている人番号取得.
-		m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkghostManager->GetNearPeopleNum(ghost));
-	
-		//オブジェクト使用フラグ.
-		const std::tuple<int, bool> tUseObjFlag = std::tuple<int, bool>(m_pCWorkghostManager->GetUseGimmick(ghost));
-		if (std::get<0>(tUseObjFlag) >= 0) {
-			m_pCMoveObjectManager->SetUsedGimmickFlag(std::get<0>(tUseObjFlag), std::get<1>(tUseObjFlag));
-		}
-
-		//コメント進めるフラグ.
-		if (m_pCDescriptionUIManager != nullptr) {
-			if (m_pCWorkghostManager->GetTutorialAddCommentFlag(ghost) == true) {
-				m_pCDescriptionUIManager->SetAdvanceComment();
-			}
-		}
-
-		//オブジェクト上げ下げフラグ.
-		const std::tuple<int, unsigned int> tUpDownFlag = std::tuple<int, unsigned int>(m_pCWorkghostManager->GetObjUpDownFlag(ghost));
-		if (std::get<1>(tUpDownFlag) != 0) {
-			if (std::get<1>(tUpDownFlag) & m_pCWorkghostManager->OBJ_DOWN_FLAG) {
-				m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->DOWN_FLAG);
-				continue;
-			}
-			m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->UP_FLAG);
-		}
-
-	}
+	//働くお化け更新処理関数.
+	UpdateWorkGhost();
 
 	//追加ポイント量.
 	m_pCSurpriseGage->AddSurprisePoint(m_pCPeopleManager->GetAddSurprisePoint());
@@ -114,16 +71,9 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//動的オブジェクトの更新処理関数.
 	m_pCMoveObjectManager->SetCameraPos(m_vCameraPos);
 	m_pCMoveObjectManager->SetSelectionNum(m_SelectNum[GIMMICK_NUM]);
-	//m_pCMoveObjectManager->SetGhostPos(m_vGhostPos);
 	m_pCMoveObjectManager->SetGhostPos(m_pCWorkghostManager->GetAllGhostPos());
 	m_pCMoveObjectManager->UpDate();
 
-	//お化け選択フラグ.
-	if (m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
-		if (m_pCWorkghostManager->GetSelectGhostFlag() == false) {
-			m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
-		}
-	}
 
 	//ギミック選択フラグ.
 	if (m_pCWorkghostManager->GetChangeGimmickSelectFlag() == true) {
@@ -136,14 +86,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//マップ上のお化けカーソル更新処理関数.
 	m_pCMapGhostCursor->SetCharaPos(m_pCWorkghostManager->GetSelectGhostPos());
 	m_pCMapGhostCursor->UpDate();
-
-	//お化け休憩フラグ.	
-	bool GhostRestFlag = m_pCWorkghostManager->DecisionSelectRest();	
-	m_pCGameGhostCursor->SetRestFlag(GhostRestFlag);
-	m_pCGameGhostCursor->SetCharacterPos(m_pCWorkghostManager->GetSelectGhostPos());
-
-	//ゲーム内でのお化けのカーソル更新処理関数.
-	m_pCGameGhostCursor->UpDate();
 
 	//驚きゲージ更新処理関数.
 	m_pCSurpriseGage->Update();
@@ -212,16 +154,14 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	}
 
-	
-
 	//人の更新処理関数.
 	m_pCPeopleManager->Update();
-
 
 	//閉店までの時間更新処理関数.
 	m_pCClosedTime->Update();
 	m_pCClosedTime->GiveBornusTime(m_pCSurpriseGage->GetBornusGetFlag());
 
+	//評価処理関数.
 	m_enBeforeStageEndingType = Evalute();
 
 	//終了処理.
@@ -573,38 +513,6 @@ void CMainStage::GhostSelect()
 }
 
 //========================================.
-//	チュートリアルフラグ上げ下げ処理.
-//========================================.
-void CMainStage::UnloadSetTrueTutrialFlag()
-{
-	if (m_ExplainFlag == 0) {
-		return;
-	}
-
-	//お化けを決めるフラグ.
-	if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
-		//フラグを立てる.
-		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
-	}
-	else {
-		//フラグを降ろす.
-		m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
-	}
-
-	//選択待機フラグ.
-	if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
-		m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
-		//フラグを立てる.
-		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
-	}
-	else {
-		//フラグを降ろす.
-		m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
-	}
-
-}
-
-//========================================.
 //		ギミック選択処理関数.
 //========================================.
 void CMainStage::GimmickSelect()
@@ -664,4 +572,109 @@ CMainStage::enBeforeStageEndigneType CMainStage::Evalute()
 	}
 
 	return enBeforeStageEndigneType::Great;
+}
+
+//===========================================.
+//		働くお化け更新処理関数.
+//===========================================.
+void CMainStage::UpdateWorkGhost()
+{
+	//チュートリアルかどうか.
+	if (m_enStageType == enStageType::Tutorial) {
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->TUTORIAL_STAGE_FLAG);
+	}
+
+	//説明終了.
+	if (m_ExplainFlag != 0) {
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->EXPLAINING_FLAG);
+	}
+
+	if (m_pCDescriptionUIManager != nullptr) {
+		//チュートリアルフラグ上げ下げ処理関数.
+		UnloadSetTrueTutrialFlag();
+	}
+
+	//働くお化け管理クラスの更新処理関数.
+	m_pCWorkghostManager->SetStageDisntaceMax(m_pCStaticObjectManager->GetStageDistanceMax());
+	m_pCWorkghostManager->SetGimmickPos(m_pCMoveObjectManager->GetAllGimmickPos());
+	m_pCWorkghostManager->SetPeoplePos(m_pCPeopleManager->GetHumanPos());
+	m_pCWorkghostManager->Update();
+
+	//他クラスに値参照.
+	for (unsigned int ghost = 0; ghost < m_pCWorkghostManager->GetAllGhostNum(); ghost++) {
+		//驚いている人番号取得.
+		m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkghostManager->GetNearPeopleNum(ghost));
+
+		//オブジェクト使用フラグ.
+		const std::tuple<int, bool> tUseObjFlag = std::tuple<int, bool>(m_pCWorkghostManager->GetUseGimmick(ghost));
+		if (std::get<0>(tUseObjFlag) >= 0) {
+			m_pCMoveObjectManager->SetUsedGimmickFlag(std::get<0>(tUseObjFlag), std::get<1>(tUseObjFlag));
+		}
+
+		//コメント進めるフラグ.
+		if (m_pCDescriptionUIManager != nullptr) {
+			if (m_pCWorkghostManager->GetTutorialAddCommentFlag(ghost) == true) {
+				m_pCDescriptionUIManager->SetAdvanceComment();
+			}
+		}
+
+		//オブジェクト上げ下げフラグ.
+		const std::tuple<int, unsigned int> tUpDownFlag = std::tuple<int, unsigned int>(m_pCWorkghostManager->GetObjUpDownFlag(ghost));
+		if (std::get<1>(tUpDownFlag) != 0) {
+			if (std::get<1>(tUpDownFlag) & m_pCWorkghostManager->OBJ_DOWN_FLAG) {
+				m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->DOWN_FLAG);
+				continue;
+			}
+			m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->UP_FLAG);
+		}
+
+	}
+
+	//お化け選択フラグ.
+	if (m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
+		if (m_pCWorkghostManager->GetSelectGhostFlag() == false) {
+			m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
+		}
+	}
+
+	//お化け休憩フラグ.	
+	bool GhostRestFlag = m_pCWorkghostManager->DecisionSelectRest();
+	m_pCGameGhostCursor->SetRestFlag(GhostRestFlag);
+	m_pCGameGhostCursor->SetCharacterPos(m_pCWorkghostManager->GetSelectGhostPos());
+
+	//ゲーム内でのお化けのカーソル更新処理関数.
+	m_pCGameGhostCursor->UpDate();
+
+}
+
+//========================================.
+//	チュートリアルフラグ上げ下げ処理.
+//========================================.
+void CMainStage::UnloadSetTrueTutrialFlag()
+{
+	if (m_ExplainFlag == 0) {
+		return;
+	}
+
+	//お化けを決めるフラグ.
+	if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == false) {
+		//フラグを立てる.
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
+	}
+	else {
+		//フラグを降ろす.
+		m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->GHOST_DECIDE_FLAG);
+	}
+
+	//選択待機フラグ.
+	if (m_pCDescriptionUIManager->GetAppearancedAllFont() == false &&
+		m_ObjectSelectFlag & GHOST_ACT_SELECT_FLAG) {
+		//フラグを立てる.
+		m_pCWorkghostManager->SetTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
+	}
+	else {
+		//フラグを降ろす.
+		m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
+	}
+
 }
