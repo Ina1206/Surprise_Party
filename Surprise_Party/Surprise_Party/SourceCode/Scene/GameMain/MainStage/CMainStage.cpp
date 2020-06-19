@@ -90,48 +90,15 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//驚きゲージ更新処理関数.
 	m_pCSurpriseGage->Update();
 
-	//チュートリアルまでの処理(ここでお化けとギミックの時は例外の処理を行わなければならない).
-	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
-
-		//フェード中は例外処理.
-		if (ControlFlag == false) {
-			return;
-
-		}
-
-		//説明UI管理クラス.
-		m_pCDescriptionUIManager->SetCenterPos(m_pCSurpriseGage->GetUIPos(), m_pCClosedTime->GetUIPos());
-		m_pCDescriptionUIManager->Update();
-
-		if (GetAsyncKeyState('Q') & 0x8000) {
-			//説明終了ゲームを動かすフラグ.
-			m_ExplainFlag = 0;
-		}
-		
-		if (m_pCDescriptionUIManager->GetDescriptionEndFlag() == true) {
-			m_ExplainFlag = 0;
-			//テキスト描画終了.
-			m_bDispTextFlag = false;
-
-			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->EXPLAINING_FLAG);
-			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
-			//m_bTutorialCameraMove = 0;
-		}
+	//チュートリアル処理関数.
+	if (Tutorial(ControlFlag) == false) {
+		return;
 	}
 
-	if (m_pCDescriptionUIManager != nullptr) {
-		//コメント進めるときは下まで処理しない.
-		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == true) {
-			const unsigned int DESCRIPTION_LAST_FLAG = SeePeople | DescriptionEnd;
-			if (!(m_pCDescriptionUIManager->GetStartLatestFlag() & DESCRIPTION_LAST_FLAG)) {
-				return;
-			}
-		}
-	}
-
-	//操作処理関数.
 	if (ControlFlag == true) {
+		//操作処理関数.
 		Control();
+
 		//説明中例外処理.
 		if (m_ExplainFlag & EXPLAINING_FLAG ){
 			m_pCPeopleManager->SetTutorialFlag(true);
@@ -572,6 +539,54 @@ CMainStage::enBeforeStageEndigneType CMainStage::Evalute()
 	}
 
 	return enBeforeStageEndigneType::Great;
+}
+
+//===========================================.
+//		チュートリアル処理関数.
+//===========================================.
+bool CMainStage::Tutorial(const bool& ControlFlag)
+{
+	//チュートリアルまでの処理(ここでお化けとギミックの時は例外の処理を行わなければならない).
+	if (m_enStageType == enStageType::Tutorial && (m_ExplainFlag & EXPLAINING_FLAG)) {
+
+		//フェード中は例外処理.
+		if (ControlFlag == false) {
+			return false;
+
+		}
+
+		//説明UI管理クラス.
+		m_pCDescriptionUIManager->SetCenterPos(m_pCSurpriseGage->GetUIPos(), m_pCClosedTime->GetUIPos());
+		m_pCDescriptionUIManager->Update();
+
+		if (GetAsyncKeyState('Q') & 0x8000) {
+			//説明終了ゲームを動かすフラグ.
+			m_ExplainFlag = 0;
+		}
+
+		if (m_pCDescriptionUIManager->GetDescriptionEndFlag() == true) {
+			m_ExplainFlag = 0;
+			//テキスト描画終了.
+			m_bDispTextFlag = false;
+
+			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->EXPLAINING_FLAG);
+			m_pCWorkghostManager->UnloadTutorialFlag(m_pCWorkghostManager->SELECT_WAIT_FLAG);
+			//m_bTutorialCameraMove = 0;
+		}
+	}
+
+	if (m_pCDescriptionUIManager != nullptr) {
+		//コメント進めるときは下まで処理しない.
+		if (m_pCDescriptionUIManager->GetAdvanceCommentFlag() == true) {
+			const unsigned int DESCRIPTION_LAST_FLAG = SeePeople | DescriptionEnd;
+			if (!(m_pCDescriptionUIManager->GetStartLatestFlag() & DESCRIPTION_LAST_FLAG)) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+
 }
 
 //===========================================.

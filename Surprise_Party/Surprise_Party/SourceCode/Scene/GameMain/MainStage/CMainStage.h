@@ -72,6 +72,7 @@ private:
 	template <typename T>
 	void GhostElementSort(T pClass, int array);		//お化け要素数変換処理関数.
 	enBeforeStageEndigneType Evalute();				//評価処理関数.
+	bool Tutorial(const bool& ControlFlag);			//チュートリアル処理関数.
 	void UpdateWorkGhost();							//働くお化け更新処理関数.
 	void UnloadSetTrueTutrialFlag();				//チュートリアルフラグ上げ下げ処理.
 
