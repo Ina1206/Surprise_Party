@@ -108,8 +108,6 @@ void CMoveObjectManager::UpDate()
 	for (unsigned int icon = 0; icon < m_pCGimmickIcon.size(); icon++) {
 		//ギミックアイコンの更新処理関数.
 		m_pCGimmickIcon[icon]->UpDate();
-
-		m_bUsedGimmickFlag[icon] = false;
 	}
 }
 

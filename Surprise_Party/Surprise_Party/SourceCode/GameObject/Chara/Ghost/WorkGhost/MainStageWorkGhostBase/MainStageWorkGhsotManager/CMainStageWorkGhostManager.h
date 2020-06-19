@@ -52,6 +52,8 @@ public:
 	void SetTutorialFlag(const unsigned int& flag) { m_TutorialFlag |= flag; }
 	//チュートリアルフラグを降ろす.
 	void UnloadTutorialFlag(const unsigned int& flag) { m_TutorialFlag &= ~flag; }
+	//使用しているギミック番号.
+	void SetUseGimmickNum(const int& ghostNum, const int& gimmickNum) { m_pCWorkGhost[ghostNum]->SetUseGimmickNum(gimmickNum); }
 
 	//=================情報取得処理関数================//.
 	//近くにいる人の番号.
@@ -63,7 +65,8 @@ public:
 	//選択しているお化けの座標.
 	D3DXVECTOR3 GetSelectGhostPos() const { return m_vWorkGhostPos[m_SelectNum]; }
 	//オブジェクトの上げ下げフラグ.
-	std::tuple<int, unsigned int> GetObjUpDownFlag(const int& ghostNum) const { return m_tObjUpDownFlag[ghostNum]; }
+	//std::tuple<int, unsigned int> GetObjUpDownFlag(const int& ghostNum) const { return m_tObjUpDownFlag[ghostNum]; }
+	unsigned int GetUpDownFlag(const int& ghostNum) { return m_UpDownFlag[ghostNum]; }
 	//使用しているギミック.
 	std::tuple<int, bool> GetUseGimmick(const int& ghostNum) const { return m_tUseGimmick[ghostNum]; }
 	//チュートリアル時にコメントを増やすフラグ.
@@ -75,7 +78,7 @@ public:
 	//驚かすオブジェクトタイプ.
 	CGameObject::enSurpriseObjectType GetSurpriseObjectType() const { return m_pCWorkGhost[m_SelectNum]->GetSurpriseObjectType(); }
 	//使用ギミック番号.
-	int GetUseGimmickNum() const { return m_pCWorkGhost[m_SelectNum]->GetUseGimmickNum(); }
+	int GetUseGimmickNum(const int& ghostNum) const { return m_pCWorkGhost[ghostNum]->GetUseGimmickNum(); }
 
 
 private:
@@ -88,12 +91,13 @@ private:
 	std::vector<D3DXVECTOR3>								m_vPeoplePos;			//人の座標.
 	std::vector<D3DXVECTOR3>								m_vWorkGhostPos;		//働くお化けの座標.
 
-	std::vector<std::tuple<int, unsigned int>>				m_tObjUpDownFlag;		//オブジェクト上げ下げ処理.
+	//std::vector<std::tuple<int, unsigned int>>				m_tObjUpDownFlag;		//オブジェクト上げ下げ処理.
 	std::vector<std::tuple<int, bool>>						m_tUseGimmick;			//使用しているギミック.
 	
-	float													m_fStageDistanceMax;	//ステージの距離最大値.
-	
+	std::vector<unsigned int>								m_UpDownFlag;			//上げ下げフラグ.
 	unsigned int											m_TutorialFlag;			//チュートリアルフラグ.
+	
+	float													m_fStageDistanceMax;	//ステージの距離最大値.
 
 	int														m_SelectNum;			//お化けの選択番号.
 };

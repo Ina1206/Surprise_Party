@@ -254,6 +254,20 @@ void CMainStage::Init()
 	//m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkGhost.size());
 	m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkghostManager->GetAllGhostNum());
 	
+	const std::vector<D3DXVECTOR3> m_vGimmickPos = m_pCMoveObjectManager->GetAllGimmickPos();
+	const std::vector<D3DXVECTOR3> m_vWorkGhostPos = m_pCWorkghostManager->GetAllGhostPos();
+	const float			GIMMICK_UP_DECISION = 0.1f;								//ギミックの上に乗っているかの判定差分.
+	for (unsigned int gimmick = 0; gimmick < m_vGimmickPos.size(); gimmick++) {
+		for (unsigned int ghost = 0; ghost < m_vWorkGhostPos.size(); ghost++) {
+			if (fabsf(m_vWorkGhostPos[ghost].x - m_vGimmickPos[gimmick].x) < GIMMICK_UP_DECISION) {
+				//m_UseGimmickNum = gimmick;
+				m_pCWorkghostManager->SetUseGimmickNum(ghost, gimmick);	
+				m_pCMoveObjectManager->SetUsedGimmickFlag(gimmick, true);
+			}
+		}
+	}
+
+
 	//人管理クラス設定.
 	m_pCPeopleManager.reset(new CPeopleManager());
 	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleOder) /*+ FileNum*/ * 3, 12, m_pCFileResource->GetStageMax(GhostFilenum) * m_pCMoveObjectManager->OBJECT_WIDTH);
@@ -408,9 +422,12 @@ void CMainStage::Control()
 				//お化けの種類とギミックの種類があっているときのみ.
 				if (m_pCWorkghostManager->GetSurpriseObjectType() ==
 					m_pCMoveObjectManager->GetSurpriseObjectType()) {
-					if (m_pCWorkghostManager->GetUseGimmickNum() >= 0) {
-						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNum(), false);
+					if (m_pCWorkghostManager->GetUseGimmickNum(m_SelectNum[GHOST_NUM]) >= 0) {
+						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNum(m_SelectNum[GHOST_NUM]), false);
 					}
+					m_pCMoveObjectManager->SetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM], true);
+					m_pCWorkghostManager->SetUseGimmickNum(m_SelectNum[GHOST_NUM], m_SelectNum[GIMMICK_NUM]);
+						//m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNum(), false);
 
 					//チュートリアル時にコメントを進める処理.
 					if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
@@ -623,7 +640,7 @@ void CMainStage::UpdateWorkGhost()
 		//オブジェクト使用フラグ.
 		const std::tuple<int, bool> tUseObjFlag = std::tuple<int, bool>(m_pCWorkghostManager->GetUseGimmick(ghost));
 		if (std::get<0>(tUseObjFlag) >= 0) {
-			m_pCMoveObjectManager->SetUsedGimmickFlag(std::get<0>(tUseObjFlag), std::get<1>(tUseObjFlag));
+			//m_pCMoveObjectManager->SetUsedGimmickFlag(std::get<0>(tUseObjFlag), std::get<1>(tUseObjFlag));
 		}
 
 		//コメント進めるフラグ.
@@ -634,13 +651,22 @@ void CMainStage::UpdateWorkGhost()
 		}
 
 		//オブジェクト上げ下げフラグ.
-		const std::tuple<int, unsigned int> tUpDownFlag = std::tuple<int, unsigned int>(m_pCWorkghostManager->GetObjUpDownFlag(ghost));
-		if (std::get<1>(tUpDownFlag) != 0) {
-			if (std::get<1>(tUpDownFlag) & m_pCWorkghostManager->OBJ_DOWN_FLAG) {
-				m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->DOWN_FLAG);
+		//const std::tuple<int, unsigned int> tUpDownFlag = std::tuple<int, unsigned int>(m_pCWorkghostManager->GetObjUpDownFlag(ghost));
+		//if (std::get<1>(tUpDownFlag) != 0) {
+		//	if (std::get<1>(tUpDownFlag) & m_pCWorkghostManager->OBJ_DOWN_FLAG) {
+		//		m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->DOWN_FLAG);
+		//		continue;
+		//	}
+		//	m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->UP_FLAG);
+		//}
+		const unsigned int UpDownFlag = m_pCWorkghostManager->GetUpDownFlag(ghost);
+		const int	GimmickNum = m_pCWorkghostManager->GetUseGimmickNum(ghost);
+		if (UpDownFlag != 0 && GimmickNum >= 0) {
+			if (UpDownFlag & m_pCWorkghostManager->OBJ_DOWN_FLAG) {
+				m_pCMoveObjectManager->SetGimmickMoveFlag(GimmickNum, m_pCMoveObjectManager->DOWN_FLAG);
 				continue;
 			}
-			m_pCMoveObjectManager->SetGimmickMoveFlag(std::get<0>(tUseObjFlag), m_pCMoveObjectManager->UP_FLAG);
+			m_pCMoveObjectManager->SetGimmickMoveFlag(GimmickNum, m_pCMoveObjectManager->UP_FLAG);
 		}
 
 	}

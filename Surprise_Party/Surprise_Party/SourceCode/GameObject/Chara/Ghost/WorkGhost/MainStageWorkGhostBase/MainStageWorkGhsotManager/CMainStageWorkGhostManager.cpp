@@ -7,8 +7,9 @@ CMainStageWorkGhostManager::CMainStageWorkGhostManager()
 	: m_pCWorkGhost			()
 	, m_vGimmickPos			()
 	, m_vPeoplePos			()
-	, m_tObjUpDownFlag		()
+	//, m_tObjUpDownFlag		()
 	, m_tUseGimmick			()
+	, m_UpDownFlag			()
 	, m_fStageDistanceMax	(0.0f)
 	, m_TutorialFlag		(0)
 	, m_SelectNum			(0)
@@ -33,21 +34,24 @@ void CMainStageWorkGhostManager::Init(const int& StageType, const int& StageNum,
 		case 0:
 			m_pCWorkGhost.push_back(nullptr);
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CMainStageDispGhost());
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(D3DXVECTOR3(stage * PosWidth, 0.0f, 3.5f));
+			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 0.0f, 3.5f));
+			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(m_vWorkGhostPos[m_pCWorkGhost.size() - 1]);
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetInitMovePos();
 			break;
 		case 1:
 			m_pCWorkGhost.push_back(nullptr);
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1].reset(new CMainStageSwitchGhost());
-			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(D3DXVECTOR3(stage * PosWidth, 3.5f, 3.5f));
+			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 3.5f, 3.5f));
+			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetPos(m_vWorkGhostPos[m_pCWorkGhost.size() - 1]);
 			m_pCWorkGhost[m_pCWorkGhost.size() - 1]->SetInitMovePos();
 			break;
 		}
 	}
 	//お化けの座標.
-	m_vWorkGhostPos.resize(m_pCWorkGhost.size());
+	//m_vWorkGhostPos.resize(m_pCWorkGhost.size());
 	//上げ下げフラグ.
-	m_tObjUpDownFlag.resize(m_pCWorkGhost.size());
+	//m_tObjUpDownFlag.resize(m_pCWorkGhost.size());
+	m_UpDownFlag.resize(m_pCWorkGhost.size());
 	//使用ギミック.
 	m_tUseGimmick.resize(m_pCWorkGhost.size());
 
@@ -137,19 +141,22 @@ void CMainStageWorkGhostManager::Update()
 		int UseGimmickNum = m_pCWorkGhost[ghost]->GetUseGimmickNum();
 
 		if (UseGimmickNum < 0) {
-			m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, 0);
+			//m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, 0);
+			m_UpDownFlag[ghost] = 0;
 			continue;
 		}
 
 		//オブジェクト下げる処理.
 		if (m_pCWorkGhost[ghost]->GetUpDownFlag() & m_pCWorkGhost[ghost]->DOWN_FLAG) {
-			m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, OBJ_DOWN_FLAG);
+			//m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, OBJ_DOWN_FLAG);
+			m_UpDownFlag[ghost] = OBJ_DOWN_FLAG;
 			continue;
 		}
 
 		//オブジェクト上げる処理.
 		if (m_pCWorkGhost[ghost]->GetUpDownFlag() & m_pCWorkGhost[ghost]->UP_FLAG) {
-			m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, OBJ_UP_FLAG);
+			//m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, OBJ_UP_FLAG);
+			m_UpDownFlag[ghost] = OBJ_UP_FLAG;
 		}
 	}
 

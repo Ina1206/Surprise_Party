@@ -187,12 +187,15 @@ HRESULT CMainStageWorkGhostBase::SurpriseActDecide()
 	}
 
 	//‚¨‰»‚¯‚ªƒMƒ~ƒbƒN‚Ìã‚É‚¢‚é‚©‚Ç‚¤‚©‚Ìˆ—.
-	m_UseGimmickNum = -1;
-	for (unsigned int gimmick = 0; gimmick < m_vGimmickPos.size(); gimmick++) {
-		if (fabsf(m_vPos.x - m_vGimmickPos[gimmick].x) < GIMMICK_UP_DECISION) {
-			m_SurpriseFlag |= GIMMICK_TOP_FLAG;
-			m_UseGimmickNum = gimmick;
-		}
+	//m_UseGimmickNum = -1;
+	//for (unsigned int gimmick = 0; gimmick < m_vGimmickPos.size(); gimmick++) {
+	//	if (fabsf(m_vPos.x - m_vGimmickPos[gimmick].x) < GIMMICK_UP_DECISION) {
+	//		m_SurpriseFlag |= GIMMICK_TOP_FLAG;
+	//		m_UseGimmickNum = gimmick;
+	//	}
+	//}
+	if (m_UseGimmickNum >= 0) {
+		m_SurpriseFlag |= GIMMICK_TOP_FLAG;
 	}
 
 	if (!(m_SurpriseFlag & SURPRISE_ACT_FLAG)) {
