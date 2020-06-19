@@ -81,7 +81,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 	for (unsigned int ghost = 0; ghost < m_pCWorkghostManager->GetAllGhostNum(); ghost++) {
 		//驚いている人番号取得.
-		//m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkGhost[ghost]->GetNearHumanNum());
 		m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkghostManager->GetNearPeopleNum(ghost));
 	
 		//オブジェクト使用フラグ.
@@ -239,38 +238,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 //===================================.
 void CMainStage::Render()
 {
-	{
-	//	static bool	m_ControlFlag = true;
-	//	if (m_ControlFlag == true) {
-	//		if (GetAsyncKeyState('1') & 0x8000) {
-	//			m_stLight.fIntensity -= 0.1f;
-	//		}
-
-	//		if (GetAsyncKeyState('2') & 0x8000) {
-	//			m_stLight.fIntensity += 0.1f;
-	//		}
-	//	}
-	//	else {
-	//		if (GetAsyncKeyState('1') & 0x8000) {
-	//			m_stLight.m_fLightWidth -= 0.1f;
-	//		}
-
-	//		if (GetAsyncKeyState('2') & 0x8000) {
-	//			m_stLight.m_fLightWidth += 0.1f;
-	//		}
-
-	//	}
-
-	//	if (GetAsyncKeyState(VK_F1) & 0x8000) {
-	//		if (m_ControlFlag == true) {
-	//			m_ControlFlag = false;
-	//		}
-	//		else {
-	//			m_ControlFlag = true;
-	//		}
-	//	}
-	}
-
 	//ライト情報.
 	const LIGHT m_Light = m_pCFrontstageLight->GetLight();
 	//カメラ座標.
