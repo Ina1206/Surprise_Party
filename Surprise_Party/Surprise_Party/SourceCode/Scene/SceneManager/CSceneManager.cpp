@@ -46,7 +46,6 @@ void CSceneManager::UpDate()
 
 	//フェード中はシーン関係の処理をさせない.
 	if (m_pCSceneFade->GetShutterFlag() == 0) {
-		m_pCSceneBase[NORMAL_SCENE_NUM]->SetStartFlag(m_pCSceneBase[NORMAL_SCENE_NUM]->START_GAME_FLAG);
 		//return;
 	}
 

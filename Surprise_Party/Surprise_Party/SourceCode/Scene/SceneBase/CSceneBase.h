@@ -34,7 +34,6 @@ public:
 	//=============情報置換処理関数================//.
 	void SetPauseFlag(const bool& flag) { m_bPauseFlag = flag; }					//一時停止フラグ.
 	void SetEvaluation(const int& Num) { m_Evaluation = Num; }						//評価.
-	void SetStartFlag(const unsigned int& Flag) { m_StartFlag = Flag; }				//開始フラグ.
 
 protected:
 	//===================関数======================//.
@@ -47,7 +46,6 @@ protected:
 	bool			m_bChangeScene;			//シーン変更フラグ.
 	bool			m_bPauseFlag;			//一時停止フラグ.
 	int				m_Evaluation;			//評価.
-	unsigned int	m_StartFlag;			//開始フラグ.
 
 private:
 	//===================変数======================//.
