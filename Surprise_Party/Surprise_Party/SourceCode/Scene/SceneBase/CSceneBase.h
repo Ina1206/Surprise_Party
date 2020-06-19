@@ -15,8 +15,6 @@ public:
 	//===================定数======================//.
 	const D3DXVECTOR4	BACK_COLOR			= D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);	//背景の色.
 
-	const unsigned int	INIT_SETTED_FLAG	= (1 << 0);								//初期設定後フラグ.
-	const unsigned int	START_GAME_FLAG		= (1 << 1);								//ゲーム開始フラグ.
 
 	//===================関数======================//.
 	void	RenderInitSetting(const D3DXMATRIX& mProj);								//描画初期設定.

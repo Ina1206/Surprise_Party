@@ -8,6 +8,7 @@ CSceneManager::CSceneManager()
 	, m_ChangeSceneCnt	(0)
 	, m_SceneType		(0)
 	, m_PausingFlag		(false)
+	, m_StartFlag		(0)
 {
 
 }
@@ -45,8 +46,11 @@ void CSceneManager::UpDate()
 	}
 
 	//フェード中はシーン関係の処理をさせない.
-	if (m_pCSceneFade->GetShutterFlag() == 0) {
-		//return;
+	if (m_pCSceneFade->GetShutterFlag() != 0) {
+		if (m_StartFlag & INIT_SETTED_FLAG) {
+			return;
+		}
+		m_StartFlag = INIT_SETTED_FLAG;
 	}
 
 #ifdef _DEBUG

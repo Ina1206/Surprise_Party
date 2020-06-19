@@ -32,8 +32,10 @@ public:
 	};
 
 	//===================定数======================//.
-	const int NORMAL_SCENE_NUM	= 0;		//通常シーン番号(タイトル、ゲームメイン、クリア画面).
-	const int PAUSE_SCENE_NUM	= 1;		//一時停止シーン番号.
+	const unsigned int	INIT_SETTED_FLAG	= (1 << 0);	//初期設定後フラグ.
+	const unsigned int	START_GAME_FLAG		= (1 << 1);	//ゲーム開始フラグ.
+	const int			NORMAL_SCENE_NUM	= 0;		//通常シーン番号(タイトル、ゲームメイン、クリア画面).
+	const int			PAUSE_SCENE_NUM		= 1;		//一時停止シーン番号.
 
 	//===================関数======================//.
 	void Init(HWND hWnd,LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pDevice11, ID3D11DeviceContext*	pContext11);//初期化処理関数.
@@ -63,6 +65,7 @@ private:
 
 	std::unique_ptr<CSceneFade>					m_pCSceneFade;			//シーンフェードクラス.
 	bool										m_PausingFlag;			//一時停止フラグ.
+	unsigned int								m_StartFlag;			//開始フラグ.
 };
 
 #endif	//#ifndef CSCENE_MANAGER_H.
