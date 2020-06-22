@@ -371,6 +371,9 @@
     <Filter Include="SourceCode\UI\SceneUI\TitleUI">
       <UniqueIdentifier>{7e909c08-78a4-4448-9fa7-afaa3d73c08d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SpeakUI\NextSpeakCurosr">
+      <UniqueIdentifier>{2620af8a-a648-4951-9a4c-04d7abf5034c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -748,6 +751,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.h">
       <Filter>SourceCode\UI\SceneUI\TitleUI</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SpeakUI\NextSpeakCursor\CNextSpeakCursor.h">
+      <Filter>SourceCode\UI\SpeakUI\NextSpeakCurosr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1112,6 +1118,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.cpp">
       <Filter>SourceCode\UI\SceneUI\TitleUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SpeakUI\NextSpeakCursor\CNextSpeakCursor.cpp">
+      <Filter>SourceCode\UI\SpeakUI\NextSpeakCurosr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
