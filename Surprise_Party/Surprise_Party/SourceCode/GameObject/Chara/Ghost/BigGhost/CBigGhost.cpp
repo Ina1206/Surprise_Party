@@ -106,7 +106,12 @@ void CBigGhost::Update()
 void CBigGhost::Render()
 {
 	//ビッグゴーストの描画.
-	m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
+	if (m_bPauseFlag == false) {
+		m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
+	}
+	else {
+		m_pCSkinMesh->SetAnimSpeed(PAUSE_ANIM_SPEED);
+	}
 	m_pCSkinMesh->SetScale(0.1f);
 	m_pCSkinMesh->SetPosition(m_vPos);
 	m_pCSkinMesh->SetRotation(m_vRot);

@@ -125,6 +125,7 @@ void CGhostSpeakStage::Render()
 	m_pCFloor->Render();
 
 	//‘å‚«‚¢‚¨‰»‚¯•`‰æ.
+	m_pCBigGhost->SetPauseFlag(m_bPauseFlag);
 	m_pCBigGhost->SetCameraPos(m_vCameraPos);
 	m_pCBigGhost->RenderInitSetting(m_mView, m_mProj, m_Light);
 	m_pCBigGhost->Render();
