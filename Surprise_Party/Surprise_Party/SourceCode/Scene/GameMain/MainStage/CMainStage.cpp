@@ -69,6 +69,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	m_pCSurpriseGage->AddSurprisePoint(m_pCPeopleManager->GetAddSurprisePoint());
 
 	//動的オブジェクトの更新処理関数.
+	m_pCMoveObjectManager->SetSurpriseObjToGhost(m_pCWorkghostManager->GetSurpriseObjectType());
 	m_pCMoveObjectManager->SetCameraPos(m_vCameraPos);
 	m_pCMoveObjectManager->SetSelectionNum(m_SelectNum[GIMMICK_NUM]);
 	m_pCMoveObjectManager->SetGhostPos(m_pCWorkghostManager->GetAllGhostPos());

@@ -7,27 +7,29 @@ CMoveObjectManager::CMoveObjectManager()
 }
 
 CMoveObjectManager::CMoveObjectManager(const int& FileNum, const int& StageNum)
-	: m_mView				()
-	, m_mProj				()
-	, m_pCMoveObjectBase	()
-	, m_vMoveObjectPos		()
-	, m_vAttachObjPos		()
-	, m_vAttachRot			()
-	, m_pCFileResource		(nullptr)
-	, m_pCGimmickIcon		()
-	, m_pCMapGimmicKCursor	(nullptr)
-	, m_SelectionNum		(0)
-	, m_pCGameGimmickCursor	(nullptr)
-	, m_vGhostPos			()
-	, m_GhostMax			(0)
-	, m_ObjeMoveFlag		(NOT_MOVE_FALG)
-	, m_bGimmickCursorDisp	(false)
-	, m_DispPaintingMax		(0)
-	, m_AttachedObjMoveFlag	(0)
-	, m_FlowerSwingCnt		(0)
-	, m_bPlayEffectSound	()
-	, m_bRenderUI			(true)
-	, m_bPauseFlag			(false)
+	: m_mView					()
+	, m_mProj					()
+	, m_pCMoveObjectBase		()
+	, m_vMoveObjectPos			()
+	, m_vAttachObjPos			()
+	, m_vAttachRot				()
+	, m_pCFileResource			(nullptr)
+	, m_pCGimmickIcon			()
+	, m_pCMapGimmicKCursor		(nullptr)
+	, m_SelectionNum			(0)
+	, m_pCGameGimmickCursor		(nullptr)
+	, m_enSurpriseObjectType	()
+	, m_enGhostSurpriseObjType	()
+	, m_vGhostPos				()
+	, m_GhostMax				(0)
+	, m_ObjeMoveFlag			(NOT_MOVE_FALG)
+	, m_bGimmickCursorDisp		(false)
+	, m_DispPaintingMax			(0)
+	, m_AttachedObjMoveFlag		(0)
+	, m_FlowerSwingCnt			(0)
+	, m_bPlayEffectSound		()
+	, m_bRenderUI				(true)
+	, m_bPauseFlag				(false)
 {
 	//初期化処理関数.
 	Init(FileNum, StageNum);
@@ -108,7 +110,13 @@ void CMoveObjectManager::UpDate()
 	m_pCMapGimmicKCursor->UpDate();
 	//ゲーム内UI.
 	m_pCGameGimmickCursor->SetCharacterPos(m_vMoveObjectPos[m_SelectionNum]);
-	m_pCGameGimmickCursor->SetUnSelectableFlag(m_bUsedGimmickFlag[m_SelectionNum]);
+	//使用出来ないカーソルフラグ.
+	bool m_bNotUseGimmickFlag = false;
+	if (m_bUsedGimmickFlag[m_SelectionNum] == true ||
+		m_enSurpriseObjectType[m_SelectionNum] != m_enGhostSurpriseObjType) {
+		m_bNotUseGimmickFlag = true;
+	}
+	m_pCGameGimmickCursor->SetUnSelectableFlag(m_bNotUseGimmickFlag);
 	m_pCGameGimmickCursor->UpDate();
 	
 	for (unsigned int icon = 0; icon < m_pCGimmickIcon.size(); icon++) {

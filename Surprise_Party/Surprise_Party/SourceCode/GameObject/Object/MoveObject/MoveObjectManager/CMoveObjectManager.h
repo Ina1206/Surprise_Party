@@ -88,6 +88,8 @@ public:
 	void SetRenderUI(const bool& flag) { m_bRenderUI = flag; }
 	//ポーズフラグ.
 	void SetPauseFlag(const bool& flag) { m_bPauseFlag = flag; }
+	//働くお化けの驚かすオブジェクトの種類.
+	void SetSurpriseObjToGhost(const CGameObject::enSurpriseObjectType& Type) { m_enGhostSurpriseObjType = Type; }
 
 	//===========情報獲得処理関数=============//.
 	//ギミックアイコン最大数.
@@ -111,31 +113,32 @@ private:
 	void Table_VaseFlowerMove(int objNum);											//机と花瓶の移動処理関数.
 
 	//=================変数===================//.
-	D3DXMATRIX										m_mView;				//ビュー行列.
-	D3DXMATRIX										m_mProj;				//プロジェクション行列.
-	std::vector<CMoveObjectBase*>					m_pCMoveObjectBase;		//移動オブジェクト.
-	std::vector<D3DXVECTOR3>						m_vMoveObjectPos;		//移動オブジェクト座標.
-	std::vector<D3DXVECTOR3>						m_vAttachObjPos;		//付属オブジェクト座標.
-	std::vector<D3DXVECTOR3>						m_vAttachRot;			//付属オブジェクトの角度.
-	std::vector<int>								m_enMoveObjectType;		//移動オブジェクトタイプ.
-	CFileResource*									m_pCFileResource;		//読み込みクラス.
-	D3DXVECTOR3										m_vCameraPos;			//カメラ座標.
-	std::vector <std::unique_ptr<CGimmickIcon>>		m_pCGimmickIcon;		//ギミックアイコンクラス.
-	std::unique_ptr<CMapGimmickCursor>				m_pCMapGimmicKCursor;	//マップ上のギミックカーソル.
-	int												m_SelectionNum;			//選択している番号.
-	std::unique_ptr<CGameGimmickCursor>				m_pCGameGimmickCursor;	//ギミックカーソルクラス.
-	std::vector<CGameObject::enSurpriseObjectType>	m_enSurpriseObjectType;	//驚かすオブジェクト種類.
-	std::vector<D3DXVECTOR3>						m_vGhostPos;			//お化け座標.
-	int												m_GhostMax;				//お化け最大数.
-	std::vector<unsigned int>						m_ObjeMoveFlag;			//上下フラグ.
-	bool											m_bGimmickCursorDisp;	//ギミックカーソル表示フラグ.
-	unsigned int									m_DispPaintingMax;		//絵画最大数.		
-	std::vector<unsigned int>						m_AttachedObjMoveFlag;	//付属オブジェクト移動フラグ.
-	std::vector<int>								m_FlowerSwingCnt;		//花瓶の揺れるカウント.
-	std::vector<bool>								m_bUsedGimmickFlag;		//ギミックが使われているフラグ.
-	std::vector<bool>								m_bPlayEffectSound;		//エフェクトと音再生.
-	bool											m_bRenderUI;			//UI描画するかどうかのフラグ.
-	bool											m_bPauseFlag;			//ポーズフラグ.
+	D3DXMATRIX										m_mView;					//ビュー行列.
+	D3DXMATRIX										m_mProj;					//プロジェクション行列.
+	std::vector<CMoveObjectBase*>					m_pCMoveObjectBase;			//移動オブジェクト.
+	std::vector<D3DXVECTOR3>						m_vMoveObjectPos;			//移動オブジェクト座標.
+	std::vector<D3DXVECTOR3>						m_vAttachObjPos;			//付属オブジェクト座標.
+	std::vector<D3DXVECTOR3>						m_vAttachRot;				//付属オブジェクトの角度.
+	std::vector<int>								m_enMoveObjectType;			//移動オブジェクトタイプ.
+	CFileResource*									m_pCFileResource;			//読み込みクラス.
+	D3DXVECTOR3										m_vCameraPos;				//カメラ座標.
+	std::vector <std::unique_ptr<CGimmickIcon>>		m_pCGimmickIcon;			//ギミックアイコンクラス.
+	std::unique_ptr<CMapGimmickCursor>				m_pCMapGimmicKCursor;		//マップ上のギミックカーソル.
+	int												m_SelectionNum;				//選択している番号.
+	std::unique_ptr<CGameGimmickCursor>				m_pCGameGimmickCursor;		//ギミックカーソルクラス.
+	std::vector<CGameObject::enSurpriseObjectType>	m_enSurpriseObjectType;		//驚かすオブジェクト種類.
+	CGameObject::enSurpriseObjectType				m_enGhostSurpriseObjType;	//お化けの驚かすオブジェクトタイプ.
+	std::vector<D3DXVECTOR3>						m_vGhostPos;				//お化け座標.
+	int												m_GhostMax;					//お化け最大数.
+	std::vector<unsigned int>						m_ObjeMoveFlag;				//上下フラグ.
+	bool											m_bGimmickCursorDisp;		//ギミックカーソル表示フラグ.
+	unsigned int									m_DispPaintingMax;			//絵画最大数.		
+	std::vector<unsigned int>						m_AttachedObjMoveFlag;		//付属オブジェクト移動フラグ.
+	std::vector<int>								m_FlowerSwingCnt;			//花瓶の揺れるカウント.
+	std::vector<bool>								m_bUsedGimmickFlag;			//ギミックが使われているフラグ.
+	std::vector<bool>								m_bPlayEffectSound;			//エフェクトと音再生.
+	bool											m_bRenderUI;				//UI描画するかどうかのフラグ.
+	bool											m_bPauseFlag;				//ポーズフラグ.
 };
 
 #endif	//#ifndef CMVOE_OBJECT_MANAGER_H.
