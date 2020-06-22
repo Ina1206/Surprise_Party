@@ -56,6 +56,8 @@ public:
 	void SetUseGimmickNum(const int& ghostNum, const int& gimmickNum) { m_pCWorkGhost[ghostNum]->SetUseGimmickNum(gimmickNum); }
 	//選択しているお化けの使用しているギミック番号.
 	void SetUseGimmickNumToSelectGhost(const int& gimmickNum) { m_pCWorkGhost[m_SelectNum]->SetUseGimmickNum(gimmickNum); }
+	//ポーズフラグ.
+	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
 
 	//=================情報取得処理関数================//.
 	//近くにいる人の番号.
@@ -103,6 +105,8 @@ private:
 	float													m_fStageDistanceMax;	//ステージの距離最大値.
 
 	int														m_SelectNum;			//お化けの選択番号.
+
+	bool													m_bPauseFlag;			//ポーズフラグ.
 };
 
 #endif	//#ifndef CMAINSTAGE_WORKGHOST_MANAGER_H.

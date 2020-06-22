@@ -13,6 +13,7 @@ CMainStageWorkGhostManager::CMainStageWorkGhostManager()
 	, m_fStageDistanceMax	(0.0f)
 	, m_TutorialFlag		(0)
 	, m_SelectNum			(0)
+	, m_bPauseFlag			(false)
 {
 }
 
@@ -171,6 +172,8 @@ void CMainStageWorkGhostManager::Update()
 void CMainStageWorkGhostManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& Light, const D3DXVECTOR3& vCameraPos)
 {
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
+		//ポーズフラグ.
+		m_pCWorkGhost[ghost]->SetPauseFlag(m_bPauseFlag);
 		//お化け本体の描画処理関数.
 		m_pCWorkGhost[ghost]->SetCameraPos(vCameraPos);
 		m_pCWorkGhost[ghost]->RenderInitSetting(mView, mProj, Light);

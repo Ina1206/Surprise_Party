@@ -11,12 +11,13 @@ public:
 	virtual ~CGhostBase();
 
 	//=======================定数==========================//.
-	const float			ANGLE_SPEED		= 0.08f;							//角度追加速度.
-	const float			ANGLE_MAX		= 360.0f;							//角度最大値.
-	const float			ANGLE_MIN		= 0.0f;								//角度最小値.
-	const float			UP_DOWN_SPEED	= 0.01f;							//上下移動の速度.
-	const float			VERTICAL_WIDTH	= 2.5f;								//縦の幅.
-	const D3DXVECTOR3	SKY_DIRECT		= D3DXVECTOR3(0.0f, 1.0f, 0.0f);	//空方向.
+	const float			ANGLE_SPEED			= 0.08f;							//角度追加速度.
+	const float			ANGLE_MAX			= 360.0f;							//角度最大値.
+	const float			ANGLE_MIN			= 0.0f;								//角度最小値.
+	const float			UP_DOWN_SPEED		= 0.01f;							//上下移動の速度.
+	const float			VERTICAL_WIDTH		= 2.5f;								//縦の幅.
+	const D3DXVECTOR3	SKY_DIRECT			= D3DXVECTOR3(0.0f, 1.0f, 0.0f);	//空方向.
+	const float			PAUSE_ANIM_SPEED	= 0.0f;								//一時停止アニメーション速度.
 
 	//================列挙隊===================//.
 	enum class enEmotionType {
@@ -32,10 +33,11 @@ public:
 	};
 
 	//===========情報置換処理関数==============//.
-	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }			//感情番号.
-	void SetLookAtPos(const D3DXVECTOR3& vPos) { m_vLookAtPos = vPos; }	//見る座標.
-	void SetRot(const D3DXVECTOR3& vRot) { m_vRot = vRot; }
+	void SetEmotionNum(const int& Num) { m_EmotionNum = Num; }							//感情番号.
+	void SetLookAtPos(const D3DXVECTOR3& vPos) { m_vLookAtPos = vPos; }					//見る座標.
+	void SetRot(const D3DXVECTOR3& vRot) { m_vRot = vRot; }								
 	void SetChangeBeforePos(const D3DXVECTOR3& vPos) { m_vChangeBeforePos = vPos; }
+	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }						//ポーズフラグ.
 protected:
 	//=======================関数==========================//.
 	void MoveUpDown();											//浮遊処理関数.
@@ -47,6 +49,7 @@ protected:
 	D3DXVECTOR3		m_vLookAtPos;			//見る座標.
 	D3DXVECTOR3		m_vPrePos;				//座標修正.
 	D3DXVECTOR3		m_vChangeBeforePos;		//変更前の座標.		
+	bool			m_bPauseFlag;			//ポーズフラグ.
 
 private:
 	//=======================関数==========================//.

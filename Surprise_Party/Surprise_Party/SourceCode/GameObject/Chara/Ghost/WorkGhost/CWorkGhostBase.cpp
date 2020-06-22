@@ -38,27 +38,18 @@ void CWorkGhostBase::InitAnimation()
 //========================================.
 void CWorkGhostBase::RenderDispGhost(const D3DXVECTOR3& vPos)
 {
+	//アニメーション速度.
+	if (m_bPauseFlag == true) {
+		m_pCSkinMesh->SetAnimSpeed(PAUSE_ANIM_SPEED);
+	}
+
 	//座標.
 	m_pCSkinMesh->SetPosition(vPos);
 	//大きさ.
 	m_pCSkinMesh->SetScale(m_fScale);
-	////角度.
-	//static bool flag = false;
-	//if (GetAsyncKeyState('2') & 0x0001) {
-	//	if (flag == false) {
-	//		flag = true;
-	//	}
-	//	else {
-	//		flag = false;
-	//	}
-	//}
-	//if (flag == false) {
-		m_pCSkinMesh->SetRotation(m_vRot);
-	//}
-	//else {
-
-	//	m_pCSkinMesh->SetRot(m_mPoint);
-	//}
+	//角度.
+	m_pCSkinMesh->SetRotation(m_vRot);
+	//初めの角度.
 	m_pCSkinMesh->SetPrePos(m_vPrePos);
 	//描画.
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);

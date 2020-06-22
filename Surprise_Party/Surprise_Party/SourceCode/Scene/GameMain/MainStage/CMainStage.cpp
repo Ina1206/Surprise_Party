@@ -156,6 +156,8 @@ void CMainStage::Render()
 	//マップ上のお化けカーソル描画処理関数.
 	m_pCMapGhostCursor->Render();
 
+	//ポーズフラグ.
+	m_pCWorkghostManager->SetPauseFlag(m_bPauseFlag);
 	//お化けの描画.
 	m_pCWorkghostManager->Render(m_mView, m_mProj, m_Light, m_vCameraPos);
 
