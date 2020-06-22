@@ -249,6 +249,19 @@ bool CMainStageWorkGhostManager::SelectGhost()
 }
 
 //================================================.
+//		使用ギミック番号取得処理関数.
+//================================================.
+//int CMainStageWorkGhostManager::GetUseGimmickNum(const int& ghostNum /*= -1*/) const 
+//{
+//	if (ghostNum < 0) {
+//		//指定の番号が無い場合は選択しているお化けのもの.
+//		return m_pCWorkGhost[m_SelectNum]->GetUseGimmickNum();
+//	}
+//
+//	return m_pCWorkGhost[ghostNum]->GetUseGimmickNum();
+//}
+
+//================================================.
 //		解放処理関数.
 //================================================.
 void CMainStageWorkGhostManager::Release()

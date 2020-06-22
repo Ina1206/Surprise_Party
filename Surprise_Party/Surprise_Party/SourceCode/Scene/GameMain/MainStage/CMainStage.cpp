@@ -422,11 +422,12 @@ void CMainStage::Control()
 				//お化けの種類とギミックの種類があっているときのみ.
 				if (m_pCWorkghostManager->GetSurpriseObjectType() ==
 					m_pCMoveObjectManager->GetSurpriseObjectType()) {
-					if (m_pCWorkghostManager->GetUseGimmickNum(m_SelectNum[GHOST_NUM]) >= 0) {
-						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNum(m_SelectNum[GHOST_NUM]), false);
+					if (m_pCWorkghostManager->GetUseGimmickNumToSelectGhost() >= 0) {
+						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNumToSelectGhost(), false);
 					}
 					m_pCMoveObjectManager->SetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM], true);
-					m_pCWorkghostManager->SetUseGimmickNum(m_SelectNum[GHOST_NUM], m_SelectNum[GIMMICK_NUM]);
+					m_pCWorkghostManager->SetUseGimmickNumToSelectGhost(m_SelectNum[GIMMICK_NUM]);
+					//m_pCWorkghostManager->SetUseGimmickNum(m_SelectNum[GHOST_NUM], m_SelectNum[GIMMICK_NUM]);
 						//m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNum(), false);
 
 					//チュートリアル時にコメントを進める処理.

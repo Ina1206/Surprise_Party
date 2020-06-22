@@ -54,6 +54,8 @@ public:
 	void UnloadTutorialFlag(const unsigned int& flag) { m_TutorialFlag &= ~flag; }
 	//使用しているギミック番号.
 	void SetUseGimmickNum(const int& ghostNum, const int& gimmickNum) { m_pCWorkGhost[ghostNum]->SetUseGimmickNum(gimmickNum); }
+	//選択しているお化けの使用しているギミック番号.
+	void SetUseGimmickNumToSelectGhost(const int& gimmickNum) { m_pCWorkGhost[m_SelectNum]->SetUseGimmickNum(gimmickNum); }
 
 	//=================情報取得処理関数================//.
 	//近くにいる人の番号.
@@ -78,8 +80,9 @@ public:
 	//驚かすオブジェクトタイプ.
 	CGameObject::enSurpriseObjectType GetSurpriseObjectType() const { return m_pCWorkGhost[m_SelectNum]->GetSurpriseObjectType(); }
 	//使用ギミック番号.
-	int GetUseGimmickNum(const int& ghostNum) const { return m_pCWorkGhost[ghostNum]->GetUseGimmickNum(); }
-
+	int GetUseGimmickNum(const int& ghostNum) const { return m_pCWorkGhost[ghostNum]->GetUseGimmickNum(); };
+	//選択しているおばけの使用ギミック番号.
+	int GetUseGimmickNumToSelectGhost() const { return m_pCWorkGhost[m_SelectNum]->GetUseGimmickNum(); }
 
 private:
 	//=======================関数======================//.

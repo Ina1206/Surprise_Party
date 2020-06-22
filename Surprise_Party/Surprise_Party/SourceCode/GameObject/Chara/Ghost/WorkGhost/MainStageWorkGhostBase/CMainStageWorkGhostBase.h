@@ -91,7 +91,7 @@ public:
 		m_enSurpriseObjectType = enType;
 	}
 	//使っているギミック番号.
-	void SetUsingGimmickNum(const int& GimmickNum) { m_UsingGimmickNum = GimmickNum; }
+	//void SetUsingGimmickNum(const int& GimmickNum) { m_UsingGimmickNum = GimmickNum; }
 	//選択中止設定.
 	void SetSelectStop() { m_MoveFlag |= SELECT_STOP_FLAG; }
 	//チュートリアルフラグ.
@@ -121,7 +121,7 @@ public:
 	//近くにいる人の番号.
 	std::vector<int> GetNearHumanNum() { return m_NearHumanNum; }
 	//使っているギミック番号.
-	int GetUsingGimmickNum() { return m_UsingGimmickNum; }
+	//int GetUsingGimmickNum() { return m_UsingGimmickNum; }
 	//チュートリアル時のコメント一つ増やすフラグ.
 	bool GetTutorialAddCommentFlag() const { return m_bTutorialCommentAddFlag; }
 
@@ -191,7 +191,7 @@ private:
 	int									m_UseGimmickNum;			//使うギミック番号.
 	int									m_OldStrengthType;			//体力種類.
 	int									m_SurpriseRestTime;			//驚き休憩時間.
-	int									m_UsingGimmickNum;			//使っている番号.
+	//int									m_UsingGimmickNum;			//使っている番号.
 
 	bool								m_bLimitationRest;			//限界休憩フラグ.
 	bool								m_bTutorialCommentAddFlag;	//チュートリアルコメント進めるフラグ.

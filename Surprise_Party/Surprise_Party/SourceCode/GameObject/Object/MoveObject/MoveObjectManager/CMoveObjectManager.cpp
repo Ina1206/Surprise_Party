@@ -67,6 +67,11 @@ void CMoveObjectManager::UpDate()
 				}
 			}
 
+			//上にお化けがいない場合強制的に上にあげる.
+			if (m_bUsedGimmickFlag[allObj] == false) {
+				m_ObjeMoveFlag[allObj] = UP_FLAG;
+			}
+
 			//移動処理.
 			const unsigned int UP_DOWN_FLAG = DOWN_FLAG | UP_FLAG;
 			if (m_ObjeMoveFlag[allObj] & UP_DOWN_FLAG) {
@@ -334,12 +339,15 @@ void CMoveObjectManager::PaintingUpDown(int objNum)
 	//上げる処理.
 	if (m_ObjeMoveFlag[objNum] & UP_FLAG) {
 		m_vMoveObjectPos[objNum].y += PAINTING_MOVE_SPEED;
-		//元の位置に戻す.
-		if (m_vMoveObjectPos[objNum].y >= STANDERD_PAINTING_POS.y) {
-			m_vMoveObjectPos[objNum].y = STANDERD_PAINTING_POS.y;
-			m_bPlayEffectSound[objNum] = true;
-		}
 	}
+
+	if (m_vMoveObjectPos[objNum].y < STANDERD_PAINTING_POS.y) {
+		return;
+	}
+
+	//元の位置に戻す.
+	m_vMoveObjectPos[objNum].y = STANDERD_PAINTING_POS.y;
+	m_bPlayEffectSound[objNum] = true;
 
 	//フラグを降ろす.
 	m_ObjeMoveFlag[objNum] &= ~m_ObjeMoveFlag[objNum];
