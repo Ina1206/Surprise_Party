@@ -62,9 +62,10 @@ void CSpeakBigGhost::Update()
 	//文字透過処理関数.
 	TransparentFont();
 
-	if (m_bFinishAppearancedAllFont == true) {
-		//m_pCNextSpeakCursor->SetStartPos(D3DXVECTOR3(10.0f, 0.0f))
-	}
+	//次の文章のカーソル更新処理.
+	m_pCNextSpeakCursor->SetDispFlag(m_bFinishAppearancedAllFont);
+	m_pCNextSpeakCursor->SetStartPos(D3DXVECTOR3(1000.0f, 800.0f, 0.0f));
+	m_pCNextSpeakCursor->Update();
 
 	//選択中移動処理関数.
 	if (m_StringFlag & SELECT_FLAG) {
@@ -84,7 +85,6 @@ void CSpeakBigGhost::Render()
 	RenderFont();
 
 	//次の会話分のカーソル描画.
-	m_pCNextSpeakCursor->RenderInit(m_mView, m_mProj, m_vCameraPos);
 	m_pCNextSpeakCursor->Render();
 
 	//選択しているとき以外処理しない.

@@ -198,6 +198,7 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\CloseString.png",				//Close文字.
 		"Data\\Texture\\UI\\Game\\extended_notification.png",	//延長通知.
 		"Data\\Texture\\UI\\Game\\TextBox.png",					//テキストボックス.
+		"Data\\Texture\\UI\\Game\\CursorUp.png",				//次の会話文のカーソル.
 		"Data\\Texture\\UI\\Game\\PauseTitle.png",				//ポーズ.
 		"Data\\Texture\\UI\\Game\\ToGame.png",					//続ける.
 		"Data\\Texture\\UI\\Game\\ToTitle.png",					//終わる.
@@ -471,6 +472,13 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[TextBoxNum].Base.h = 187.0f;
 	m_pstSpriteUIState[TextBoxNum].Disp.w = m_pstSpriteUIState[TextBoxNum].Base.w * 1.5f;
 	m_pstSpriteUIState[TextBoxNum].Disp.h = m_pstSpriteUIState[TextBoxNum].Base.h * 1.5f;
+
+	//次の会話文のカーソル.
+	int NextSpeakCursorNum = static_cast<int>(enSpriteUI::NextSpeakCursor);
+	m_pstSpriteUIState[NextSpeakCursorNum].Base.w = 74.0f;
+	m_pstSpriteUIState[NextSpeakCursorNum].Base.h = 73.0f;
+	m_pstSpriteUIState[NextSpeakCursorNum].Disp.w = m_pstSpriteUIState[NextSpeakCursorNum].Base.w;
+	m_pstSpriteUIState[NextSpeakCursorNum].Disp.h = m_pstSpriteUIState[NextSpeakCursorNum].Base.h;
 
 	//ポーズ時の文字.
 	int PauseStringNum = static_cast<int>(enSpriteUI::Pause);

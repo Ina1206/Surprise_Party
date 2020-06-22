@@ -72,6 +72,7 @@ enum class enSpriteUI
 	CloseString,					//Close文字.
 	ExtendedNotification,			//延長通知.
 	TextBox,						//テキストボックス.
+	NextSpeakCursor,				//次の会話分のカーソル.
 	Pause,							//ポーズ.
 	Continue,						//続ける.
 	NextTitle,						//終わる.

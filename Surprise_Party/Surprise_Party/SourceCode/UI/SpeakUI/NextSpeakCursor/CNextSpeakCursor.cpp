@@ -4,7 +4,7 @@
 *		次の会話のカーソルクラス.
 *****************/
 CNextSpeakCursor::CNextSpeakCursor()
-	: m_pCSprite	(nullptr)
+	: m_pCSpriteUI	(nullptr)
 	, m_vStartPos	(0.0f, 0.0f, 0.0f)
 	, m_bDispFlag	(false)
 {
@@ -29,12 +29,12 @@ void CNextSpeakCursor::Update()
 		return;
 	}
 
-	m_fAcc -= 0.05f;
-	if (m_vPos.y < m_vStartPos.y) {
-		m_fAcc = 1.0f;
-	}
+	//m_fAcc -= 0.05f;
+	//if (m_vPos.y < m_vStartPos.y) {
+	//	m_fAcc = 1.0f;
+	//}
 
-	m_vPos.y += m_fAcc - 0.5f;
+	//m_vPos.y += m_fAcc - 0.5f;
 }
 
 //========================================.
@@ -47,11 +47,13 @@ void CNextSpeakCursor::Render()
 		return;
 	}
 
-	m_pCSprite->SetAlpha(m_fAlpha);
-	m_pCSprite->SetColor(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	m_pCSprite->SetPosition(m_vPos);
-	m_pCSprite->SetScale(D3DXVECTOR3(m_fScale, m_fScale, m_fScale));
-	m_pCSprite->Render(m_mView, m_mProj, m_vCameraPos);
+	m_pCSpriteUI->SetAlpha(m_fAlpha);
+	//m_pCSpriteUI->SetColor(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pCSpriteUI->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pCSpriteUI->SetScale(m_fScale);
+	m_pCDepthStencil->SetDepth(false);
+	m_pCSpriteUI->Render();
+	m_pCDepthStencil->SetDepth(true);
 }
 
 //========================================.
@@ -59,7 +61,8 @@ void CNextSpeakCursor::Render()
 //========================================.
 void CNextSpeakCursor::Init()
 {
-	m_pCSprite = m_pCResourceManager->GetSprite(enSprite::Cursol);
+	//m_pCSprite = m_pCResourceManager->GetSprite(enSprite::Cursol);
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::NextSpeakCursor);
 
 	m_fAcc = 1.0f;
 
