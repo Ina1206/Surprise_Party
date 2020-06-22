@@ -10,6 +10,7 @@ CSpeakBigGhost::CSpeakBigGhost(const int& StageNum, const int& BeforeEndingTypeN
 	: m_mView				()
 	, m_mProj				()
 	, m_vCameraPos			()
+	, m_pCNextSpeakCursor	(nullptr)
 	, m_pCSpriteUI			(nullptr)
 	, m_pCSprite			()
 	, m_vSelectPos			()
@@ -53,20 +54,17 @@ void CSpeakBigGhost::Update()
 	}
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-		//if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 			//文章変更処理関数.
 		if (DesicionChangeString() == true) {
 			ChangeString();
 		}
-		//	m_bAppearanceAllFont = false;
-		//}
-		//else {
-		//	//m_StringFlag |= TRANSPARENTING_FLAG;
-		//	m_bAppearanceAllFont = true;
-		//}
 	}
 	//文字透過処理関数.
 	TransparentFont();
+
+	if (m_bFinishAppearancedAllFont == true) {
+		//m_pCNextSpeakCursor->SetStartPos(D3DXVECTOR3(10.0f, 0.0f))
+	}
 
 	//選択中移動処理関数.
 	if (m_StringFlag & SELECT_FLAG) {
@@ -84,10 +82,10 @@ void CSpeakBigGhost::Render()
 
 	//文字の描画.
 	RenderFont();
-	//if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
-	//	m_pCFontResource->SetAlpha(m_fFontAlpha, m_ChangingFontNum);
-	//}
-	//m_pCFontResource->String_Render();
+
+	//次の会話分のカーソル描画.
+	m_pCNextSpeakCursor->RenderInit(m_mView, m_mProj, m_vCameraPos);
+	m_pCNextSpeakCursor->Render();
 
 	//選択しているとき以外処理しない.
 	if (!(m_StringFlag & SELECT_FLAG)) {
@@ -144,6 +142,8 @@ void CSpeakBigGhost::Init()
 		m_pCSprite[ui] = m_pCResourceManager->GetSprite(static_cast<enSprite>(SpriteNum));
 	}
 
+	//次の会話文のカーソルのインスタンス化.
+	m_pCNextSpeakCursor.reset(new CNextSpeakCursor());
 	
 	for (unsigned int ui = 0; ui < m_pCSprite.size(); ui++) {
 		m_fSelectScale[ui] = 1.0f;

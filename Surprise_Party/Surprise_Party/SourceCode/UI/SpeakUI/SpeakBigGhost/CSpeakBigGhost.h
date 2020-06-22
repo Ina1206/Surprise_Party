@@ -2,6 +2,7 @@
 #define CSPEAK_BIG_GHOST_H
 
 #include "..\CSpeakUI.h"
+#include "..\NextSpeakCursor\CNextSpeakCursor.h"
 
 /**********************************************
 *		ビッグゴーストがしゃべるクラス.
@@ -59,29 +60,31 @@ private:
 	void SettingFontProperty();						//フォントプロパティ設定.
 
 	//======================変数========================//.
-	D3DXMATRIX					m_mView;			//ビュー行列.
-	D3DXMATRIX					m_mProj;			//プロジェクション行列.
-	D3DXVECTOR3					m_vCameraPos;		//カメラ座標.
+	D3DXMATRIX							m_mView;			//ビュー行列.
+	D3DXMATRIX							m_mProj;			//プロジェクション行列.
+	D3DXVECTOR3							m_vCameraPos;		//カメラ座標.
 
-	CSpriteUI*					m_pCSpriteUI;		//スプライトUI.
-	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
-	std::vector<D3DXVECTOR3>	m_vSelectPos;		//座標.
-	std::vector<D3DXVECTOR3>	m_vSelectRot;		//角度.
-	std::vector<float>			m_fSelectAlpha;		//透過値.
-	std::vector<float>			m_fSelectScale;		//大きさ.
+	std::unique_ptr<CNextSpeakCursor>	m_pCNextSpeakCursor;//次の会話文章カーソルクラス.
 
-	std::vector<int>			m_EmotionNum;		//感情番号.
-	unsigned int				m_StringFlag;		//文章フラグ.
-	int							m_SelectNum;		//選択番号.
-	int							m_SelectCnt;		//選択カウント.
+	CSpriteUI*							m_pCSpriteUI;		//スプライトUI.
+	std::vector<CSprite*>				m_pCSprite;			//スプライトクラス.
+	std::vector<D3DXVECTOR3>			m_vSelectPos;		//座標.
+	std::vector<D3DXVECTOR3>			m_vSelectRot;		//角度.
+	std::vector<float>					m_fSelectAlpha;		//透過値.
+	std::vector<float>					m_fSelectScale;		//大きさ.
 
-	unsigned int				m_FinishFlag;		//終了フラグ.
-	bool						m_bTutorialFlag;	//チュートリアルフラグ.
+	std::vector<int>					m_EmotionNum;		//感情番号.
+	unsigned int						m_StringFlag;		//文章フラグ.
+	int									m_SelectNum;		//選択番号.
+	int									m_SelectCnt;		//選択カウント.
 
-	bool						m_bControlFlag;		//操作フラグ.
-	int							m_StageNum;			//ステージ番号.
-	int							m_LoadFileNum;		//読み込みファイル番号.
-	int							m_EndingTypeNum;	//エンディングタイプ番号.
+	unsigned int						m_FinishFlag;		//終了フラグ.
+	bool								m_bTutorialFlag;	//チュートリアルフラグ.
+
+	bool								m_bControlFlag;		//操作フラグ.
+	int									m_StageNum;			//ステージ番号.
+	int									m_LoadFileNum;		//読み込みファイル番号.
+	int									m_EndingTypeNum;	//エンディングタイプ番号.
 };
 
 
