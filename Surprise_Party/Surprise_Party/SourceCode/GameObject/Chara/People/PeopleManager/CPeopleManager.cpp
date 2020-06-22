@@ -15,6 +15,7 @@ CPeopleManager::CPeopleManager()
 	, m_SurpriseHumanNum	()
 	, m_AddSurprisePoint	(0)
 	, m_pCPeopleIcon		()
+	, m_bPauseFlag			(false)
 {
 
 }
@@ -104,6 +105,8 @@ void CPeopleManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, co
 	//人の描画処理.
 	for (unsigned int human = 0; human < m_CreateHumanMax; human++) {
 		if (m_bDispFlag[human] == true) {
+			//ポーズフラグ.
+			m_pCPeopleBase[human]->SetPauseFlag(m_bPauseFlag);
 			//描画時に必要な値取得.
 			m_pCPeopleBase[human]->SetCameraPos(vCameraPos);
 			m_pCPeopleBase[human]->RenderInitSetting(mView, mProj, stLight);

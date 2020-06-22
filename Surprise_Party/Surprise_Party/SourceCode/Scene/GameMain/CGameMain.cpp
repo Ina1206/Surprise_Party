@@ -35,6 +35,8 @@ void CGameMain::UpDate()
 //========================================.
 void CGameMain::Render()
 {
+	//ポーズフラグ.
+	m_pCStageManager->SetPauseFlag(m_bPauseFlag);
 	//シーン管理クラスの描画処理関数.
 	m_pCStageManager->Render(m_mView, m_mProj);
 }

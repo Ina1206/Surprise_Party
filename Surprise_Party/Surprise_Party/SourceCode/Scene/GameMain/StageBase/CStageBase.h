@@ -61,6 +61,8 @@ public:
 	//===============情報置換処理関数====================//.
 	//チュートリアルフラグ.
 	void SetTutorialFlag(const unsigned int& flag) { m_TutorialFlag = flag; }
+	//ポーズフラグ.
+	void SetPauseFlag(const bool& bflag) { m_bPauseFlag = bflag; }
 
 protected:
 	//=====================関数=========================//.
@@ -80,6 +82,8 @@ protected:
 	unsigned int					m_TutorialFlag;				//チュートリアルフラグ.
 
 	std::unique_ptr<CCameraBase>	m_pCCamera;					//カメラクラス.
+
+	bool							m_bPauseFlag;				//ポーズフラグ.
 };
 
 #endif	//#ifndef CSTAGE_BASE_H.

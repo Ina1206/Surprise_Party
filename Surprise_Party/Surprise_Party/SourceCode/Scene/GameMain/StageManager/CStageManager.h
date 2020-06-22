@@ -29,6 +29,9 @@ public:
 	unsigned int GetFinishFlag() const { return m_FinishFlag; }
 	int	GetAverageEvaluation() const { return m_AllEndingType / 3; }
 
+	//==============情報置換処理関数===================//.
+	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
+
 private:
 	//====================関数=========================//.
 	void ChangeStage();								//ステージ変更処理関数.
@@ -42,6 +45,7 @@ private:
 	unsigned int								m_FinishFlag;			//終了フラグ.
 	unsigned int								m_bOldTutorialFlag;		//チュートリアルフラグ.
 	int											m_AllEndingType;		//全てのエンディングタイプの合計.
+	bool										m_bPauseFlag;			//ポーズフラグ.
 };
 
 #endif	//#ifndef CSTAGE_MANAGER_H.

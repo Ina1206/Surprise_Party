@@ -9,6 +9,7 @@ CStageManager::CStageManager()
 	, m_FinishFlag			(0)
 	, m_bOldTutorialFlag	(false)
 	, m_AllEndingType		(0)
+	, m_bPauseFlag			(false)
 {
 
 }
@@ -88,6 +89,9 @@ void CStageManager::UpDate()
 void CStageManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj)
 {
 	const int STAGE_TYPE_NUM = m_pCStageBase.size() - 1;
+
+	//ポーズフラグ.
+	m_pCStageBase[STAGE_TYPE_NUM]->SetPauseFlag(m_bPauseFlag);
 
 	//ステージの描画初期設定処理関数.
 	m_pCStageBase[STAGE_TYPE_NUM]->RenderInitSetting(mView, mProj);

@@ -9,6 +9,7 @@ CStageBase::CStageBase()
 	, m_FinishFlag		(0)
 	, m_TutorialFlag	(false)
 	, m_pCCamera		(nullptr)
+	, m_bPauseFlag		(false)
 {
 
 }

@@ -171,6 +171,7 @@ void CMainStage::Render()
 	m_pCWorkghostManager->RenderIcon();
 
 	//人の描画処理関数.
+	m_pCPeopleManager->SetPauseFlag(m_bPauseFlag);
 	m_pCPeopleManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
 
 	//動くオブジェクトのエフェクト描画.

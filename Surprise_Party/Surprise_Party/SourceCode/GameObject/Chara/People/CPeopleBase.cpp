@@ -18,6 +18,7 @@ CPeopleBase::CPeopleBase()
 	, m_HumanNearNum	(FAR_NUM)
 	, m_SurpriseHumanMax(0)
 	, m_bTutorialFlag	(false)
+	, m_bPauseFlag		(false)
 {
 	m_vRot = PERSON_ROT;
 }
@@ -53,6 +54,12 @@ void CPeopleBase::Render()
 	else {
 		m_pCSkinMesh->SetAnimSpeed(m_fAnimSpeed);
 	}
+	
+	//ƒ|[ƒYŽž.
+	if (m_bPauseFlag == true) {
+		m_pCSkinMesh->SetAnimSpeed(PAUSE_ANIM_SPEED);
+	}
+
 	//•`‰æ.
 	m_pCSkinMesh->SetAlphaDepth(true);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight, m_pAnimCtrl);

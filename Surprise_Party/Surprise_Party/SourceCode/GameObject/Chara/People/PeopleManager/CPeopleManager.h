@@ -35,6 +35,8 @@ public:
 	void SetNowHumanSurprise(const std::vector<int>& HumanNum);
 	//チュートリアルフラグ.
 	void SetTutorialFlag(const bool& bFlag) { m_pCPeopleBase[0]->SetTutorialFlag(bFlag); }
+	//ポーズフラグ.
+	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
 
 	//===========情報獲得処理関数============//.
 	//人の座標取得.
@@ -66,6 +68,8 @@ private:
 	int											m_AddSurprisePoint;	//追加驚きポイント.
 
 	std::vector<std::unique_ptr<CPeopleIcon>>	m_pCPeopleIcon;		//人のアイコン.
+
+	bool										m_bPauseFlag;		//ポーズフラグ.
 };
 
 

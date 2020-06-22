@@ -18,6 +18,7 @@ public:
 	const int			FAR_NUM				= -1;								//遠い人番号.
 	const float			ACCELERATION_SPEED	= 0.02f;							//加速速度.
 	const float			BASE_ANIM_SPEED		= 0.02f;							//基本アニメーション速度.
+	const float			PAUSE_ANIM_SPEED	= 0.0f;								//ポーズ時のアニメーション速度.
 	const float			SCALE				= 0.1f;								//人の大きさ.
 	const int			DECREMENT_POINT		= 1;								//ポイント減少.
 	const float			ADD_ANIM_SPEED		= 0.005f;							//追加アニメーション速度.
@@ -56,6 +57,8 @@ public:
 	void SetSurpriseHumanMax(const int& Max) { m_SurpriseHumanMax = Max; }
 	//チュートリアルフラグ.
 	void SetTutorialFlag(const bool& bFlag) { m_bTutorialFlag = bFlag; }
+	//ポーズフラグ.
+	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
 
 	//=============情報獲得処理関数==============//.
 	//追加ポイント量.
@@ -92,6 +95,7 @@ private:
 	int							m_HumanNearNum;		//近づいたときの人間番号.
 	int							m_SurpriseHumanMax;	//驚いた人最大数.
 	bool						m_bTutorialFlag;	//チュートリアルフラグ.
+	bool						m_bPauseFlag;		//ポーズフラグ.
 };
 
 #endif	//#ifndef CPEOPLE_BASE_H.

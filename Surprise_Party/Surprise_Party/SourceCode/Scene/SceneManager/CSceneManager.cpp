@@ -68,9 +68,13 @@ void CSceneManager::UpDate()
 
 	//シーンの更新処理関数.
 	int m_UsingSceneNum = NORMAL_SCENE_NUM;
+	for (unsigned int scene = 0; scene < m_pCSceneBase.size(); scene++) {
+		m_pCSceneBase[scene]->SetPauseFlag(m_PausingFlag);
+	}
+	//m_pCSceneBase[m_UsingSceneNum]->SetPauseFlag(m_PausingFlag);
 	if (m_PausingFlag == true) {
 		m_UsingSceneNum = PAUSE_SCENE_NUM;
-		m_pCSceneBase[m_UsingSceneNum]->SetPauseFlag(m_PausingFlag);
+		//m_pCSceneBase[m_UsingSceneNum]->SetPauseFlag(m_PausingFlag);
 	}
 	m_pCSceneBase[m_UsingSceneNum]->UpDate();
 	m_PausingFlag = m_pCSceneBase[m_UsingSceneNum]->GetPauseFlag();
