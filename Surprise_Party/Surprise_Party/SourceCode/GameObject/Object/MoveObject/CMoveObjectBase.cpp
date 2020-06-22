@@ -10,6 +10,8 @@ CMoveObjectBase::CMoveObjectBase()
 	, m_vAttachedObjPos		()
 	, m_vAttachedObjRot		()
 	, m_bMoveObjectEffect	(false)
+	, m_bPauseFlag			(false)
+	, m_pCSpriteEffect		()
 {
 	m_vEffectPos = D3DXVECTOR3(0.0f, 0.1f, -3.0f);
 }
@@ -25,8 +27,12 @@ CMoveObjectBase::~CMoveObjectBase()
 void CMoveObjectBase::EffectRender()
 {
 	if (m_EffectHandle != EFFECT_HANDLE_DEFAULT_VALUE) {
+		//ƒ|[ƒY.
+		m_pCEffect->Pause(m_EffectHandle, m_bPauseFlag);
+		//‘å‚«‚³.
 		D3DXVECTOR3 vEffectScale = D3DXVECTOR3(m_fEffectScale, m_fEffectScale, m_fEffectScale);
 		m_pCEffect->SetScale(m_EffectHandle, vEffectScale);
+		//•`‰æ.
 		m_pCEffect->Render(m_mView, m_mProj);
 	}
 

@@ -27,6 +27,7 @@ CMoveObjectManager::CMoveObjectManager(const int& FileNum, const int& StageNum)
 	, m_FlowerSwingCnt		(0)
 	, m_bPlayEffectSound	()
 	, m_bRenderUI			(true)
+	, m_bPauseFlag			(false)
 {
 	//初期化処理関数.
 	Init(FileNum, StageNum);
@@ -164,6 +165,8 @@ void CMoveObjectManager::RenderSwitch(const D3DXMATRIX& mView, const D3DXMATRIX&
 void CMoveObjectManager::EffectRender() 
 {
 	for (int stage = 0; stage < static_cast<int>(enMoveObjectType::Max); stage++) {
+		//ポーズフラグ.
+		m_pCMoveObjectBase[stage]->SetPauseFlag(m_bPauseFlag);
 		//エフェクト描画処理関数.
 		m_pCMoveObjectBase[stage]->EffectRender();
 	}

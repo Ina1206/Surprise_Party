@@ -86,6 +86,8 @@ public:
 	void SetUsedGimmickFlag(const int& num, const bool& flag) { m_bUsedGimmickFlag[num] = flag; }
 	//UIを描画するかのフラグ.
 	void SetRenderUI(const bool& flag) { m_bRenderUI = flag; }
+	//ポーズフラグ.
+	void SetPauseFlag(const bool& flag) { m_bPauseFlag = flag; }
 
 	//===========情報獲得処理関数=============//.
 	//ギミックアイコン最大数.
@@ -133,6 +135,7 @@ private:
 	std::vector<bool>								m_bUsedGimmickFlag;		//ギミックが使われているフラグ.
 	std::vector<bool>								m_bPlayEffectSound;		//エフェクトと音再生.
 	bool											m_bRenderUI;			//UI描画するかどうかのフラグ.
+	bool											m_bPauseFlag;			//ポーズフラグ.
 };
 
 #endif	//#ifndef CMVOE_OBJECT_MANAGER_H.

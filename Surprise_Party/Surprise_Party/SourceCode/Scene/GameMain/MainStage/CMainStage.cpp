@@ -175,6 +175,7 @@ void CMainStage::Render()
 	m_pCPeopleManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
 
 	//動くオブジェクトのエフェクト描画.
+	m_pCMoveObjectManager->SetPauseFlag(m_bPauseFlag);
 	m_pCMoveObjectManager->EffectRender();
 	
 	//ゲーム内でのお化けのカーソル描画処理関数.

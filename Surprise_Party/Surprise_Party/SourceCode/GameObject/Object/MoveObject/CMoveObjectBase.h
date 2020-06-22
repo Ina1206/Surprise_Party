@@ -30,7 +30,8 @@ public:
 	void SetAttachedObjRot(const int objNum, const D3DXVECTOR3& vRot) { m_vAttachedObjRot[objNum] = vRot; }
 	//オブジェクトが動いたときのエフェクトフラグ.
 	void SetMoveObjectEffect(const bool& flag) { m_bMoveObjectEffect = flag; }
-
+	//ポーズフラグ.
+	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
 protected:
 	//==============関数===============//.
 	void Hit();											//当たり判定処理関数.
@@ -46,6 +47,8 @@ protected:
 	std::vector<D3DXVECTOR3>	m_vAttachedObjPos;		//付属オブジェクト座標.
 	std::vector<D3DXVECTOR3>	m_vAttachedObjRot;		//付属オブジェクト角度.
 	bool						m_bMoveObjectEffect;	//オブジェクトが動いたときのエフェクトフラグ.
+
+	bool						m_bPauseFlag;			//ポーズフラグ.
 
 	std::vector<std::unique_ptr<CSpriteEffectBase>> m_pCSpriteEffect;
 
