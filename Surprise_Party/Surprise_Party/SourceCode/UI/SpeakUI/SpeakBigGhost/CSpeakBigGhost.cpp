@@ -59,6 +59,13 @@ void CSpeakBigGhost::Update()
 			ChangeString();
 		}
 	}
+
+	//I—¹‚Íˆ—‚ğI—¹.
+	if (m_FinishFlag != 0) {
+		m_ChangingFontNum = m_pCFontResource->GetStrLength();
+		return;
+	}
+
 	//•¶š“§‰ßˆ—ŠÖ”.
 	TransparentFont();
 
