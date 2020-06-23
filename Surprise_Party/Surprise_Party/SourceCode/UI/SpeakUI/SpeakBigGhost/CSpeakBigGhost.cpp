@@ -67,7 +67,7 @@ void CSpeakBigGhost::Update()
 	if (m_ChangingFontNum > 0) {
 		D3DXVECTOR3 vFontPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
 		vFontPos.x += FONT_SCALE;
-		m_pCNextSpeakCursor->SetStartPos(/*D3DXVECTOR3(1000.0f, 800.0f, 0.0f)*/vFontPos);
+		m_pCNextSpeakCursor->SetStartPos(vFontPos);
 	}
 	m_pCNextSpeakCursor->Update();
 
