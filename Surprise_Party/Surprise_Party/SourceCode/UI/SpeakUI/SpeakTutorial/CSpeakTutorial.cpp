@@ -16,6 +16,7 @@ CSpeakTutorial::CSpeakTutorial()
 	, m_SelectMoveCount			(0)
 	, m_enStartLatestFlag		(0)
 	, m_bDescriptionEnd			(false)
+	, m_pCNextSpeakCursor		(nullptr)
 {
 	//初期化処理関数.
 	Init();
@@ -61,6 +62,19 @@ void CSpeakTutorial::Update()
 
 	//文字透過処理関数.
 	TransparentFont();
+
+	//次の文章カーソル更新処理.
+	bool bDispFlag = false;
+	if (m_bFinishAppearancedAllFont == true && m_bAdvanceCommentFlag == true) {
+		bDispFlag = true;
+	}
+	m_pCNextSpeakCursor->SetDispFlag(bDispFlag);
+	if (m_ChangingFontNum > 0) {
+		D3DXVECTOR3 vFontPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
+		vFontPos.x += 40.0f;
+		m_pCNextSpeakCursor->SetStartPos(vFontPos);
+	}
+	m_pCNextSpeakCursor->Update();
 }
 
 //=======================================.
@@ -82,14 +96,13 @@ void CSpeakTutorial::Render()
 	}
 
 	//テキストの描画.
-	//for (unsigned int font = 0; font < m_stSpeakString[m_SpeakNum].length() / 2; font++) {
-	//	m_pCFontResource->SetAlpha(1.0f, font);
-	//}
-	//m_pCFontResource->String_Render();
 	RenderFont();
 
 	//説明用アイコン描画処理関数.
 	RenderDescriptionIcon();
+
+	//次の文章カーソル描画処理関数.
+	m_pCNextSpeakCursor->Render();
 }
 
 //========================================.
@@ -159,6 +172,8 @@ void CSpeakTutorial::Init()
 	m_pCFontResource->SetStartPos(vFontPos);
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 
+	//次の文章カーソルクラスのインスタンス化.
+	m_pCNextSpeakCursor.reset(new CNextSpeakCursor());
 }
 
 //========================================.

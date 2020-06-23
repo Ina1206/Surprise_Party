@@ -2,6 +2,7 @@
 #define CSPEAK_TUTORIAL_H
 
 #include "..\CSpeakUI.h"
+#include "..\NextSpeakCursor\CNextSpeakCursor.h"
 
 //=================定数=======================//.
 const unsigned int SELECT_GHOST_FLAG			= (1 << 0);	//お化け選択フラグ.
@@ -52,6 +53,7 @@ public:
 	unsigned int GetStartLatestFlag() const { return m_enStartLatestFlag; }
 	//終了フラグ.
 	bool GetDescriptionEndFlag() const { return m_bDescriptionEnd; }
+
 	//============情報置換処理関数=================//.
 	//コメント進めるフラグ.
 	void SetAdvanceCommentFlag(const bool& bFlag) { m_bAdvanceCommentFlag = bFlag; }
@@ -70,18 +72,20 @@ private:
 	void PeopleIconSetting(const int& IconMax);		//人々のアイコン設定処理関数.
 
 	//==================変数=======================//.
-	std::vector<CSpriteUI*>		m_pCSpriteUI;				//スプライトUI.
-	std::vector<CSpriteUI*>		m_pCDescriptionIcon;		//説明用アイコン.
-	std::vector<D3DXVECTOR3>	m_vIconPos;					//アイコン座標.
-	std::vector<D3DXVECTOR3>	m_vPos;						//座標.
-	std::vector<D3DXVECTOR2>	m_vPattern;					//パターン番号.
-	unsigned int				m_TutorialFlag;				//チュートリアルフラグ.
-	unsigned int				m_DefinitiveTutorialFlag;	//決定版チュートリアルフラグ.
-	unsigned int				m_DescriptionFlag;			//説明フラグ.
-	bool						m_bAdvanceCommentFlag;		//コメント進めるフラグ.
-	int							m_SelectMoveCount;			//選択移動カウント.
-	unsigned int				m_enStartLatestFlag;		//開始直前フラグ.
-	bool						m_bDescriptionEnd;			//終了フラグ.
+	std::vector<CSpriteUI*>				m_pCSpriteUI;				//スプライトUI.
+	std::vector<CSpriteUI*>				m_pCDescriptionIcon;		//説明用アイコン.
+	std::vector<D3DXVECTOR3>			m_vIconPos;					//アイコン座標.
+	std::vector<D3DXVECTOR3>			m_vPos;						//座標.
+	std::vector<D3DXVECTOR2>			m_vPattern;					//パターン番号.
+	unsigned int						m_TutorialFlag;				//チュートリアルフラグ.
+	unsigned int						m_DefinitiveTutorialFlag;	//決定版チュートリアルフラグ.
+	unsigned int						m_DescriptionFlag;			//説明フラグ.
+	bool								m_bAdvanceCommentFlag;		//コメント進めるフラグ.
+	int									m_SelectMoveCount;			//選択移動カウント.
+	unsigned int						m_enStartLatestFlag;		//開始直前フラグ.
+	bool								m_bDescriptionEnd;			//終了フラグ.
+
+	std::unique_ptr<CNextSpeakCursor>	m_pCNextSpeakCursor;		//次の文章カーソル.
 };
 
 #endif	//#ifndef CSPEAK_TUTORIAL_H.
