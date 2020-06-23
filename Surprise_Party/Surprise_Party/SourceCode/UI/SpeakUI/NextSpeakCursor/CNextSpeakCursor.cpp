@@ -29,12 +29,12 @@ void CNextSpeakCursor::Update()
 		return;
 	}
 	m_vPos.x = m_vStartPos.x;
-	//m_fAcc -= 0.05f;
-	//if (m_vPos.y < m_vStartPos.y) {
-	//	m_fAcc = 1.0f;
-	//}
+	m_fAcc -= 0.05f;
+	if (m_vPos.y > m_vStartPos.y) {
+		m_fAcc = 1.5f;
+	}
 
-	//m_vPos.y += m_fAcc - 0.5f;
+	m_vPos.y -= m_fAcc - 0.5f;
 }
 
 //========================================.
@@ -64,7 +64,7 @@ void CNextSpeakCursor::Init()
 	//m_pCSprite = m_pCResourceManager->GetSprite(enSprite::Cursol);
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::NextSpeakCursor);
 
-	m_fAcc = 1.0f;
+	m_fAcc = 1.5f;
 
 	m_fAlpha = ALPHA_MAX;
 	m_fScale = 1.0f;
