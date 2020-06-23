@@ -13,6 +13,12 @@ public:
 	CNextSpeakCursor();
 	~CNextSpeakCursor();
 
+	//=================定数====================//.
+	const float	ACC_MAX		= 1.5f;		//加速度最大値.
+	const float	ACC_SPEED	= 0.05f;	//加速度減速速度.
+	const float GRAVITY		= 0.5f;		//重力.
+	const float SCALE_MAX	= 1.0f;		//大きさ最大値.
+
 	//=================関数====================//.
 	void Update();				//更新処理関数.
 	void Render();				//描画処理関数.

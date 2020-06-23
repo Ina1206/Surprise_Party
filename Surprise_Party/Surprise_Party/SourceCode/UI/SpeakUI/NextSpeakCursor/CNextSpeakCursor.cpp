@@ -28,13 +28,15 @@ void CNextSpeakCursor::Update()
 		m_vPos = m_vStartPos;
 		return;
 	}
+
+	//ã‰ºˆÚ“®.
 	m_vPos.x = m_vStartPos.x;
-	m_fAcc -= 0.05f;
+	m_fAcc -= ACC_SPEED;
 	if (m_vPos.y > m_vStartPos.y) {
-		m_fAcc = 1.5f;
+		m_fAcc = ACC_MAX;
 	}
 
-	m_vPos.y -= m_fAcc - 0.5f;
+	m_vPos.y -= m_fAcc - GRAVITY;
 }
 
 //========================================.
@@ -48,7 +50,6 @@ void CNextSpeakCursor::Render()
 	}
 
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
-	//m_pCSpriteUI->SetColor(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
 	m_pCSpriteUI->SetPosition(m_vPos);
 	m_pCSpriteUI->SetScale(m_fScale);
 	m_pCDepthStencil->SetDepth(false);
@@ -61,13 +62,12 @@ void CNextSpeakCursor::Render()
 //========================================.
 void CNextSpeakCursor::Init()
 {
-	//m_pCSprite = m_pCResourceManager->GetSprite(enSprite::Cursol);
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::NextSpeakCursor);
 
-	m_fAcc = 1.5f;
+	m_fAcc = ACC_MAX;
 
 	m_fAlpha = ALPHA_MAX;
-	m_fScale = 1.0f;
+	m_fScale = SCALE_MAX;
 }
 
 //========================================.
