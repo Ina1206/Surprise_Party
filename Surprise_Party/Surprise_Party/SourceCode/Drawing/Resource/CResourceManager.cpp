@@ -198,7 +198,7 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\CloseString.png",				//Close文字.
 		"Data\\Texture\\UI\\Game\\extended_notification.png",	//延長通知.
 		"Data\\Texture\\UI\\Game\\TextBox.png",					//テキストボックス.
-		"Data\\Texture\\UI\\Game\\CursorUp.png",				//次の会話文のカーソル.
+		"Data\\Texture\\UI\\Game\\SpeakCursor.png",				//次の会話文のカーソル.
 		"Data\\Texture\\UI\\Game\\PauseTitle.png",				//ポーズ.
 		"Data\\Texture\\UI\\Game\\ToGame.png",					//続ける.
 		"Data\\Texture\\UI\\Game\\ToTitle.png",					//終わる.
