@@ -477,8 +477,8 @@ void CResourceManager::SpriteUIStateSetting()
 	int NextSpeakCursorNum = static_cast<int>(enSpriteUI::NextSpeakCursor);
 	m_pstSpriteUIState[NextSpeakCursorNum].Base.w = 74.0f;
 	m_pstSpriteUIState[NextSpeakCursorNum].Base.h = 73.0f;
-	m_pstSpriteUIState[NextSpeakCursorNum].Disp.w = m_pstSpriteUIState[NextSpeakCursorNum].Base.w;
-	m_pstSpriteUIState[NextSpeakCursorNum].Disp.h = m_pstSpriteUIState[NextSpeakCursorNum].Base.h;
+	m_pstSpriteUIState[NextSpeakCursorNum].Disp.w = 40.0f;
+	m_pstSpriteUIState[NextSpeakCursorNum].Disp.h = 40.0f;
 
 	//É|Å[ÉYéûÇÃï∂éö.
 	int PauseStringNum = static_cast<int>(enSpriteUI::Pause);

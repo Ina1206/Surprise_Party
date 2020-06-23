@@ -28,7 +28,7 @@ void CNextSpeakCursor::Update()
 		m_vPos = m_vStartPos;
 		return;
 	}
-
+	m_vPos.x = m_vStartPos.x;
 	//m_fAcc -= 0.05f;
 	//if (m_vPos.y < m_vStartPos.y) {
 	//	m_fAcc = 1.0f;
@@ -48,8 +48,8 @@ void CNextSpeakCursor::Render()
 	}
 
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
-	//m_pCSpriteUI->SetColor(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	m_pCSpriteUI->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	//m_pCSpriteUI->SetColor(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
+	m_pCSpriteUI->SetPosition(m_vPos);
 	m_pCSpriteUI->SetScale(m_fScale);
 	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();

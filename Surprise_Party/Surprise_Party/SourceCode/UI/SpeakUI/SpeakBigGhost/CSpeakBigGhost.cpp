@@ -64,7 +64,11 @@ void CSpeakBigGhost::Update()
 
 	//次の文章のカーソル更新処理.
 	m_pCNextSpeakCursor->SetDispFlag(m_bFinishAppearancedAllFont);
-	m_pCNextSpeakCursor->SetStartPos(D3DXVECTOR3(1000.0f, 800.0f, 0.0f));
+	if (m_ChangingFontNum > 0) {
+		D3DXVECTOR3 vFontPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
+		vFontPos.x += FONT_SCALE;
+		m_pCNextSpeakCursor->SetStartPos(/*D3DXVECTOR3(1000.0f, 800.0f, 0.0f)*/vFontPos);
+	}
 	m_pCNextSpeakCursor->Update();
 
 	//選択中移動処理関数.
