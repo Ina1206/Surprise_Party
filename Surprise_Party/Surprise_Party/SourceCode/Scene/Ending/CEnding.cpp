@@ -22,8 +22,6 @@ CEnding::~CEnding()
 //=================================.
 void CEnding::UpDate()
 {
-	m_Evaluation = 0;
-
 	//•]‰¿’uŠ·ˆ—ŠÖ”.
 	m_pCEndingStageBase->SetEvaluation(m_Evaluation);
 	//XVˆ—ŠÖ”.
@@ -50,7 +48,6 @@ void CEnding::Render()
 void CEnding::Init()
 {
 	m_pCEndingStageBase.reset(new CBeforeResultStage());
-	//m_pCEndingStageBase.reset(new CHightEvaluationStage());
 }
 
 //==================================.
