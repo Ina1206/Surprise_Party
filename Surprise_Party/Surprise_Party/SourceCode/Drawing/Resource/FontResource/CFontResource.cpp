@@ -186,7 +186,7 @@ void CFontResource::Release()
 	//ƒtƒHƒ“ƒg“Ç‚İ‚İ‰ğ•ú.
 	DESIGNVECTOR design;
 	RemoveFontResourceEx(
-		TEXT("Data\\Font\\APJapanesefontF.ttf"),
+		TEXT("Data\\Font\\SNsanafonmaru.ttf"),
 		FR_PRIVATE,
 		&design);
 }

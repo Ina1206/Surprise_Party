@@ -282,7 +282,9 @@ void CSpeakBigGhost::DecisionSelectString()
 		}
 		//次の文章が数字の時選択.
 		if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
-			m_StringFlag |= SELECT_FLAG;
+			if (!(m_StringFlag & EVALUTION_FLAG)) {
+				m_StringFlag |= SELECT_FLAG;
+			}
 		}
 		//次の文章が評価内容の場合.
 		const int NextSelectStringNum = atoi(m_stSelectString[NextCharacterNum].c_str());
@@ -395,6 +397,12 @@ void CSpeakBigGhost::ChangeString()
 
 	//終了処理.
 	if (m_stSpeakString[m_SpeakNum] == "finish") {
+		//評価時は次のステージへ.
+		if (m_StringFlag & EVALUTION_FLAG) {
+			m_FinishFlag = FINISH_NEXT_GAME;
+			return;
+		}
+		//それ以外はタイトルへ.
 		m_FinishFlag = FINISH_NEXT_TITLE;
 		return;
 	}
@@ -447,10 +455,26 @@ void CSpeakBigGhost::FindEvalutionString()
 				break;
 			}
 
-			//評価し終わった時の処理.
-			if (atoi(m_stSelectString[str].c_str()) == 0) {
+			//3日目のみ違う文章にする.
+			if (m_StageNum >= 3) {
+				if (atoi(m_stSelectString[str].c_str()) == 8) {
+					m_SpeakNum = str;
+					break;
+				}
+				continue;
+			}
+
+			//次のステージに向けてのコメント探索.
+			const int SELECT_NUM = m_EndingTypeNum + 1 + 3;
+			if (atoi(m_stSelectString[str].c_str()) == SELECT_NUM) {
 				m_SpeakNum = str;
-				m_StringFlag &= ~EVALUTION_FLAG | ~IN_EVALUTION_FLAG;
+				break;
+			}
+
+			//評価し終わった時の処理.
+			if (atoi(m_stSelectString[str].c_str()) == 7) {
+				m_SpeakNum = str;
+				m_StringFlag &=  ~IN_EVALUTION_FLAG;
 				break;
 			}
 
