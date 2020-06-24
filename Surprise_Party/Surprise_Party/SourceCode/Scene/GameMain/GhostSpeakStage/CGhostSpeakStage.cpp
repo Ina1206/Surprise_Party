@@ -8,7 +8,6 @@ CGhostSpeakStage::CGhostSpeakStage()
 
 CGhostSpeakStage::CGhostSpeakStage(int stageNum, CGhostSpeakStage::enBeforeStageEndigneType enBeforeStageEndingType)	
 	: m_pCFontResource		(nullptr)
-	, changestr				()
 	, m_pCFloor				(nullptr)
 	, m_pCBigGhost			(nullptr)
 	, m_pCSpeakBigGhost		(nullptr)
@@ -37,11 +36,8 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 
 
 	if (GetAsyncKeyState('Q') & 0x8000) {
-		//const bool OldTutorialFlag = m_pCSpeakBigGhost->GetTutorialFlag();
 		if (m_TutorialFlag != TUTORIAL_FINISH) {
-			//if (OldTutorialFlag == true) {
-				m_TutorialFlag = TUTORIAL_START;
-			//}
+			m_TutorialFlag = TUTORIAL_START;
 			return;
 		}
 	}
@@ -54,8 +50,6 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	m_pCBigGhost->Update();
 
 	if (SLEEP_BIGGHOST_FLAG == true) {
-		//カメラ移動処理関数.
-		//CameraMove();
 		if (m_bOldSleepBigGhost != SLEEP_BIGGHOST_FLAG) {
 			//カメラ移動開始.
 			m_pCCamera->SetMoveFlag(m_pCCamera->MOVE_FLAG);
@@ -173,7 +167,6 @@ void CGhostSpeakStage::Init()
 //=========================================.
 void CGhostSpeakStage::Release()
 {
-	//m_pCFontResource->Destroy();
 }
 
 //=========================================.
