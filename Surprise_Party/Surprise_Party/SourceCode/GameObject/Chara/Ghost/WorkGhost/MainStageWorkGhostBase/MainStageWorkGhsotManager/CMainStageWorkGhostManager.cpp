@@ -7,8 +7,6 @@ CMainStageWorkGhostManager::CMainStageWorkGhostManager()
 	: m_pCWorkGhost			()
 	, m_vGimmickPos			()
 	, m_vPeoplePos			()
-	//, m_tObjUpDownFlag		()
-	, m_tUseGimmick			()
 	, m_UpDownFlag			()
 	, m_fStageDistanceMax	(0.0f)
 	, m_TutorialFlag		(0)
@@ -48,13 +46,8 @@ void CMainStageWorkGhostManager::Init(const int& StageType, const int& StageNum,
 			break;
 		}
 	}
-	//お化けの座標.
-	//m_vWorkGhostPos.resize(m_pCWorkGhost.size());
-	//上げ下げフラグ.
-	//m_tObjUpDownFlag.resize(m_pCWorkGhost.size());
+
 	m_UpDownFlag.resize(m_pCWorkGhost.size());
-	//使用ギミック.
-	m_tUseGimmick.resize(m_pCWorkGhost.size());
 
 }
 
@@ -131,11 +124,6 @@ void CMainStageWorkGhostManager::Update()
 					m_SelectNum = ghost - 1;
 				}
 			}
-		}
-
-		//使用しているギミック設定.
-		if (m_pCWorkGhost[ghost]->GetUseGimmickNum() >= 0) {
-			m_tUseGimmick[ghost] = std::tuple<int, bool>(m_pCWorkGhost[ghost]->GetUseGimmickNum(), true);
 		}
 
 		//ギミックの移動フラグ設定.
