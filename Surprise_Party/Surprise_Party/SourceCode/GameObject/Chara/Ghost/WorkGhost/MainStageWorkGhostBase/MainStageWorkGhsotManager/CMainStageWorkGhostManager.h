@@ -85,7 +85,10 @@ public:
 
 private:
 	//=======================関数======================//.
-	void Release();		//解放処理関数.
+	bool Tutorial(const int& GhostNum);			//チュートリアル処理関数.
+	void ChangeElementNum(const int& GhostNum);	//要素数変更処理関数.
+	void UpDownObuject(const int& GhostNum);	//オブジェクト上下処理.
+	void Release();								//解放処理関数.
 
 	//====================変数=========================//.
 	std::vector<std::unique_ptr<CMainStageWorkGhostBase>>	m_pCWorkGhost;			//働くお化け.

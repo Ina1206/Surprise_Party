@@ -68,85 +68,22 @@ void CMainStageWorkGhostManager::Update()
 		//ギミックと人の座標取得.
 		m_pCWorkGhost[ghost]->SetSurprisePosInfo(m_vGimmickPos, m_vPeoplePos);
 
+		//チュートリアル処理関数(trueがかえってくれば処理終了).
 		if (m_TutorialFlag & TUTORIAL_STAGE_FLAG) {
-			if (m_TutorialFlag & EXPLAINING_FLAG) {
-				//チュートリアルフラグ.
-				m_pCWorkGhost[ghost]->SetTutorialFlag(true);
-
-				//選択決定フラグ設定.
-				if (m_TutorialFlag & GHOST_DECIDE_FLAG) {
-					m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
-				}
-				else {
-					m_pCWorkGhost[ghost]->SetDecideSelectFlag(false);
-				}
-			}
-			else {
-				m_pCWorkGhost[ghost]->SetTutorialFlag(false);
-				m_pCWorkGhost[ghost]->SetDecideSelectFlag(true);
-			}
-			if (m_TutorialFlag & SELECT_WAIT_FLAG) {
-				break;
-			}
+			if (Tutorial(ghost)) break;
 		}
+
 		//お化け更新処理関数.
 		m_pCWorkGhost[ghost]->Update();
 
 		//お化けの座標取得.
 		m_vWorkGhostPos[ghost] = m_pCWorkGhost[ghost]->GetPos();
-		D3DXVECTOR3 vTargetPos;
-		std::unique_ptr<CMainStageWorkGhostBase> pTmp;
-		//お化けの要素数変換処理.
-		if (ghost < m_pCWorkGhost.size() - 1) {
-			//左から右.
-			vTargetPos = m_pCWorkGhost[ghost + 1]->GetPos();
-			if (m_vWorkGhostPos[ghost].x > vTargetPos.x) {
-				//お化けの変更.
-				pTmp.swap(m_pCWorkGhost[ghost]);
-				m_pCWorkGhost[ghost].swap(m_pCWorkGhost[ghost + 1]);
-				m_pCWorkGhost[ghost + 1].swap(pTmp);
 
-				//カーソルがある時は番号を移動させる.
-				if (m_SelectNum == ghost) {
-					m_SelectNum = ghost + 1;
-				}
-			}
-		}
-		if (ghost > 0) {
-			//右から左.
-			vTargetPos = m_pCWorkGhost[ghost - 1]->GetPos();
-			if (m_vWorkGhostPos[ghost].x < vTargetPos.x) {
-				pTmp.swap(m_pCWorkGhost[ghost]);
-				m_pCWorkGhost[ghost].swap(m_pCWorkGhost[ghost - 1]);
-				m_pCWorkGhost[ghost - 1].swap(pTmp);
+		//要素数変更処理関数.
+		ChangeElementNum(ghost);
 
-				if (m_SelectNum == ghost) {
-					m_SelectNum = ghost - 1;
-				}
-			}
-		}
-
-		//ギミックの移動フラグ設定.
-		int UseGimmickNum = m_pCWorkGhost[ghost]->GetUseGimmickNum();
-
-		if (UseGimmickNum < 0) {
-			//m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, 0);
-			m_UpDownFlag[ghost] = 0;
-			continue;
-		}
-
-		//オブジェクト下げる処理.
-		if (m_pCWorkGhost[ghost]->GetUpDownFlag() & m_pCWorkGhost[ghost]->DOWN_FLAG) {
-			//m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, OBJ_DOWN_FLAG);
-			m_UpDownFlag[ghost] = OBJ_DOWN_FLAG;
-			continue;
-		}
-
-		//オブジェクト上げる処理.
-		if (m_pCWorkGhost[ghost]->GetUpDownFlag() & m_pCWorkGhost[ghost]->UP_FLAG) {
-			//m_tObjUpDownFlag[ghost] = std::tuple<int, unsigned int>(UseGimmickNum, OBJ_UP_FLAG);
-			m_UpDownFlag[ghost] = OBJ_UP_FLAG;
-		}
+		//オブジェクト上下処理関数.
+		UpDownObuject(ghost);
 	}
 
 	//お化けアイコンが選ばれているフラグ.
@@ -240,17 +177,112 @@ bool CMainStageWorkGhostManager::SelectGhost()
 }
 
 //================================================.
-//		使用ギミック番号取得処理関数.
+//		チュートリアル処理関数.
 //================================================.
-//int CMainStageWorkGhostManager::GetUseGimmickNum(const int& ghostNum /*= -1*/) const 
-//{
-//	if (ghostNum < 0) {
-//		//指定の番号が無い場合は選択しているお化けのもの.
-//		return m_pCWorkGhost[m_SelectNum]->GetUseGimmickNum();
-//	}
-//
-//	return m_pCWorkGhost[ghostNum]->GetUseGimmickNum();
-//}
+bool CMainStageWorkGhostManager::Tutorial(const int& GhostNum)
+{
+	//選択待機時は処理を終了させる.
+	if (m_TutorialFlag & SELECT_WAIT_FLAG) {
+		return true;
+	}
+
+	if (m_TutorialFlag & EXPLAINING_FLAG) {
+		//チュートリアルフラグ.
+		m_pCWorkGhost[GhostNum]->SetTutorialFlag(true);
+
+		//選択決定フラグ設定.
+		if (m_TutorialFlag & GHOST_DECIDE_FLAG) {
+			m_pCWorkGhost[GhostNum]->SetDecideSelectFlag(true);
+			return false;
+		}
+		m_pCWorkGhost[GhostNum]->SetDecideSelectFlag(false);
+		
+		return false;
+	}
+
+	//説明終了後.
+	m_pCWorkGhost[GhostNum]->SetTutorialFlag(false);
+	m_pCWorkGhost[GhostNum]->SetDecideSelectFlag(true);
+
+	return false;
+}
+
+//================================================.
+//		要素数変換処理関数.
+//================================================.
+void CMainStageWorkGhostManager::ChangeElementNum(const int& GhostNum) 
+{
+		
+	D3DXVECTOR3 vTargetPos;							//目標座標.
+	std::unique_ptr<CMainStageWorkGhostBase> pTmp;	//変更用変数.
+
+
+	const int GHOST_MAX_NUM = m_pCWorkGhost.size() - 1;
+	if (GhostNum < GHOST_MAX_NUM) {
+		
+		//右のお化けの番号.
+		const int RightGhostNum = GhostNum + 1;
+
+		//左から右.
+		vTargetPos = m_pCWorkGhost[RightGhostNum]->GetPos();
+		if (m_vWorkGhostPos[GhostNum].x > vTargetPos.x) {
+			//お化けの変更.
+			pTmp.swap(m_pCWorkGhost[GhostNum]);
+			m_pCWorkGhost[GhostNum].swap(m_pCWorkGhost[RightGhostNum]);
+			m_pCWorkGhost[RightGhostNum].swap(pTmp);
+	
+			//カーソルがある時は番号を移動させる.
+			if (m_SelectNum == GhostNum) {
+				m_SelectNum = RightGhostNum;
+			}
+		}
+	}
+
+	if (GhostNum > 0) {
+	
+		//左のお化けの番号.
+		const int LeftGhostNum = GhostNum - 1;
+		
+		//右から左.
+		vTargetPos = m_pCWorkGhost[LeftGhostNum]->GetPos();
+		if (m_vWorkGhostPos[GhostNum].x < vTargetPos.x) {
+			pTmp.swap(m_pCWorkGhost[GhostNum]);
+			m_pCWorkGhost[GhostNum].swap(m_pCWorkGhost[LeftGhostNum]);
+			m_pCWorkGhost[LeftGhostNum].swap(pTmp);
+	
+			if (m_SelectNum == GhostNum) {
+				m_SelectNum = LeftGhostNum;
+			}
+		}
+	}
+
+}
+
+//================================================.
+//		オブジェクト上下処理関数.
+//================================================.
+void CMainStageWorkGhostManager::UpDownObuject(const int& GhostNum)
+{
+	//ギミックの移動フラグ設定.
+	int UseGimmickNum = m_pCWorkGhost[GhostNum]->GetUseGimmickNum();
+
+	if (UseGimmickNum < 0) {
+		m_UpDownFlag[GhostNum] = 0;
+		return;
+	}
+
+	//オブジェクト下げる処理.
+	if (m_pCWorkGhost[GhostNum]->GetUpDownFlag() & m_pCWorkGhost[GhostNum]->DOWN_FLAG) {
+		m_UpDownFlag[GhostNum] = OBJ_DOWN_FLAG;
+		return;
+	}
+
+	//オブジェクト上げる処理.
+	if (m_pCWorkGhost[GhostNum]->GetUpDownFlag() & m_pCWorkGhost[GhostNum]->UP_FLAG) {
+		m_UpDownFlag[GhostNum] = OBJ_UP_FLAG;
+	}
+
+}
 
 //================================================.
 //		解放処理関数.
