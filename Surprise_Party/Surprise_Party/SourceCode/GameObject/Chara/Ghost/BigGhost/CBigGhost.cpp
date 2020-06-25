@@ -14,7 +14,6 @@ CBigGhost::CBigGhost()
 	, m_pCSpriteEffect		()
 	, m_UsingEffectNum		(0)
 	, m_OldEmotionNum		(0)
-	//, m_pCSmartPhone		(nullptr)
 	, m_bSleepFlag			(true)
 {
 	//初期化処理関数.
@@ -80,10 +79,6 @@ void CBigGhost::Update()
 	//	m_ChangeEmotionFlag = true;
 	//}
 
-	//HaveTroubleEmotion();
-	//RejoiceEmotion();
-	//WakeUp();
-	//Sleep();
 
 	//エフェクト変更処理関数.
 	if (m_EmotionNum != m_OldEmotionNum) {
@@ -119,12 +114,6 @@ void CBigGhost::Render()
 	m_pCSkinMesh->SetPrePos(m_vPrePos);
 	m_pCSkinMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
-	//if (m_pCSmartPhone != nullptr) {
-	//	m_pCSmartPhone->RenderInitSetting(m_mView, m_mProj, m_stLight);
-	//	m_pCSmartPhone->SetCameraPos(m_vCameraPos);
-	//	m_pCSmartPhone->Render();
-	//}
-
 	//エフェクト描画.
 	if (m_UsingEffectNum < static_cast<int>(m_pCSpriteEffect.size())) {
 		m_pCSpriteEffect[m_UsingEffectNum]->Render(m_mView, m_mProj, m_vCameraPos);
@@ -141,10 +130,6 @@ void CBigGhost::Init()
 	m_vRot = SLEEP_ROT;
 
 	m_fAnimSpeed = SLEEP_ANIM_SPEED;
-
-	//m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
-	//m_vPos = WAKE_UP_POS;
-	//m_vRot = WAKE_UP_ROT;
 
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.emplace_back(new CSleepEffect());
@@ -244,10 +229,6 @@ void CBigGhost::RejoiceEmotion()
 	m_vPos.y += REJOICE_MOVE_SPEED * m_UpDownDirect;
 	m_vPos.x += REJOICE_MOVE_SPEED * m_LeanDirect;
 
-	//if (m_vPos.y <= WAKE_UP_POS.y) {
-	//	m_UpDownDirect *= CHANGE_DIRECTION;
-	//	m_vPos.y = WAKE_UP_POS.y;
-	//}
 	if (m_vPos.y <= m_vChangeBeforePos.y) {
 		m_UpDownDirect *= CHANGE_DIRECTION;
 		m_vPos.y = m_vChangeBeforePos.y;
@@ -405,12 +386,9 @@ void CBigGhost::ChangeEffect()
 		m_vPrePos.z = 10.0f;
 		m_vPreRot = WAKE_UP_ROT;
 
-		//if (m_pCSmartPhone == nullptr) {
-		//	m_pCSmartPhone.reset(new CSmartPhone());
-		//}
-
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
+
 		break;
 	default:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
@@ -463,16 +441,9 @@ void CBigGhost::EmotionMove()
 		break;
 	case enEmotionType::ViewSmartphone:
 		
-		//if (m_pCSmartPhone != nullptr) {
-		//	m_pCSmartPhone->SetPos(m_vLookAtPos);
-		//	m_pCSmartPhone->Update();
-		//}
-
 		break;
 	case enEmotionType::Nothing:
 		MoveUpDown();
-		//通常座標.
-		//m_vRot = WAKE_UP_ROT;
 		break;
 	}
 
