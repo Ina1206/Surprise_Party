@@ -389,6 +389,9 @@ void CBigGhost::ChangeEffect()
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
 
+		m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
+		m_pCSkinMesh->ChangeAnimSet_StartPos(0, -1.0);
+
 		break;
 	default:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
@@ -408,6 +411,11 @@ void CBigGhost::ChangeEffect()
 //============================================.
 void CBigGhost::EmotionMove()
 {
+	if (static_cast<enEmotionType>(m_UsingEffectNum) != enEmotionType::Sleep) {
+		m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAKE_UP_ANIM_POS);
+		m_fAnimSpeed = WAKE_UPING_SPEED;
+	}
+
 	D3DXVECTOR3 vCenterPos;	//エフェクト出す中心座標.
 
 	switch (static_cast<enEmotionType>(m_UsingEffectNum)) {

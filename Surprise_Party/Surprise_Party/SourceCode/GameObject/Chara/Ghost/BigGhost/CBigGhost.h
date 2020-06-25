@@ -28,6 +28,7 @@ public:
 	const D3DXVECTOR3	HAVE_TROUBLE_ROT	= D3DXVECTOR3(-2.4f, 0.0f, 0.0f);	//困る感情の角度.
 	const float			SLEEP_ANIM_SPEED	= 0.02f;							//寝てる時のアニメーション速度.
 	const float			WAKE_UP_ANIM_SPEED	= 0.0f;								//起きる時のアニメーション速度.
+	const double		WAKE_UP_ANIM_POS	= -1.0;								//起きているときのアニメーション位置.
 	const float			WAKE_UPING_SPEED	= 0.03f;							//起きる速度.
 	const int			WAKE_UP_TIMING		= 600;								//起きるタイミング.
 	const float			HAVE_TROUBLE_SPEED	= 0.025f;							//困る感情行動速度.
