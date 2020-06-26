@@ -171,6 +171,8 @@ void CSceneManager::ChangeScene()
 		break;
 	}
 
+	m_StartFlag = 0;
+	//フェード開ける処理.
 	m_pCSceneFade->SetShutterFlag(m_pCSceneFade->OPEN_FLAG);
 }
 
