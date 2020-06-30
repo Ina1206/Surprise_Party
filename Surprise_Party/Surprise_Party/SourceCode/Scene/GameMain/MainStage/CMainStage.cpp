@@ -204,8 +204,8 @@ void CMainStage::Render()
 	//働くお化け会話クラス.
 	if (m_pCSpeakWorkGhost != nullptr) {
 		//お化けの選択に関係する全てのフラグ.
-		const unsigned int RELATED_TO_GHOST_ALL_FLAG = SELECT_GHOST_FLAG | GHOST_ACT_SELECT_FLAG;
-		if (m_vCameraPos.x == m_vSelectGhostPos.x ||
+		const unsigned int RELATED_TO_GHOST_ALL_FLAG = SELECT_GHOST_FLAG | GIMMICK_SELECTION_FLAG;
+		if (m_vCameraPos.x == m_vSelectGhostPos.x &&
 			m_ObjectSelectFlag & RELATED_TO_GHOST_ALL_FLAG) {
 			m_pCSpeakWorkGhost->Render();
 		}
