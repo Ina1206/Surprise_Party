@@ -16,6 +16,7 @@ CPeopleManager::CPeopleManager()
 	, m_AddSurprisePoint	(0)
 	, m_pCPeopleIcon		()
 	, m_bPauseFlag			(false)
+	, m_bNotRenderIcon		(false)
 {
 
 }
@@ -113,6 +114,11 @@ void CPeopleManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, co
 			//描画処理関数.
 			m_pCPeopleBase[human]->Render();
 		}
+	}
+
+	//アイコンは描画しないようにする処理.
+	if (m_bNotRenderIcon == true) {
+		return;
 	}
 
 	//人のアイコン描画処理.

@@ -65,6 +65,7 @@ void CCameraGameMainStage::LookAtPeople()
 		m_Camera.vLook.x = m_Camera.vPos.x;
 		return;
 	}
+	m_bNotRenderMap = true;
 
 	//Œ©ã‚°‚é‚½‚ß‚ÉÀ•WˆÚ“®ˆ—ŠÖ”.
 	MovePosLookUp();
@@ -81,11 +82,11 @@ void CCameraGameMainStage::LookAtGhost()
 {
 	//Œ»İ‘I‘ğ‚µ‚Ä‚¢‚é‚¨‰»‚¯‚Ì‚Æ‚±‚ë‚ÖƒJƒƒ‰‚ğ–ß‚·.
 	const D3DXVECTOR3 vSelectGhostPos = m_vTargetPos;
-	m_Camera.vPos = CAMERA_START_POS;
-	m_Camera.vPos.x = vSelectGhostPos.x;
-	m_Camera.vLook = CAMERA_START_LOOK;
-	m_Camera.vLook.x = vSelectGhostPos.x;
-
+	m_Camera.vPos		= CAMERA_START_POS;
+	m_Camera.vPos.x		= vSelectGhostPos.x;
+	m_Camera.vLook		= CAMERA_START_LOOK;
+	m_Camera.vLook.x	= vSelectGhostPos.x;
+	m_bNotRenderMap		= false;
 }
 
 //=================================================.

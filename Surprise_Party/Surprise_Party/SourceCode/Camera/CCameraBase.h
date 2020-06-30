@@ -31,7 +31,8 @@ public:
 	D3DXVECTOR3 GetLook() const { return m_Camera.vLook; }
 	//移動フラグ.
 	unsigned int GetMoveFlag() const { return m_MoveFlag; }
-
+	//マップを描画しないためのフラグ.
+	bool GetNotRenderMap() const { return m_bNotRenderMap; }
 
 	//=================情報置換処理関数====================//.
 	//移動フラグ.
@@ -67,7 +68,8 @@ protected:
 	unsigned int	m_MoveFlag;		//移動フラグ.
 	D3DXVECTOR3		m_vTargetPos;	//相手の座標.
 	CAMERA			m_OldCamera;	//差分用変数.
-	int				m_bCanSkip;		//スキップカウント.
+	bool			m_bCanSkip;		//スキップカウント.
+	bool			m_bNotRenderMap;//マップを描画しないためのフラグ.
 };
 
 #endif	//#ifndef CCAMERA_BASE_H.

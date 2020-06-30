@@ -151,16 +151,17 @@ void CMainStage::Render()
 	//カメラ座標.
 	const D3DXVECTOR3 m_vCameraPos = m_pCCamera->GetPos();
 
-	//ステージマップの描画.
-	m_pCStageMap->Render();
+	if (m_pCCamera->GetNotRenderMap() == false) {
+		//ステージマップの描画.
+		m_pCStageMap->Render();
 
-	//マップ上のお化けカーソル描画処理関数.
-	m_pCMapGhostCursor->Render();
+		//マップ上のお化けカーソル描画処理関数.
+		m_pCMapGhostCursor->Render();
 
-	//お化けの描画.
-	m_pCWorkghostManager->SetPauseFlag(m_bPauseFlag);
-	m_pCWorkghostManager->Render(m_mView, m_mProj, m_Light, m_vCameraPos);
-
+		//お化けの描画.
+		m_pCWorkghostManager->SetPauseFlag(m_bPauseFlag);
+		m_pCWorkghostManager->Render(m_mView, m_mProj, m_Light, m_vCameraPos);
+	}
 
 	//動くオブジェクトスイッチの描画.
 	m_pCMoveObjectManager->RenderSwitch(m_mView, m_mProj, m_Light);
@@ -173,10 +174,16 @@ void CMainStage::Render()
 	m_pCWorkghostManager->RenderIcon();
 
 	//人の描画処理関数.
+	m_pCPeopleManager->SetNotRenderIcon(m_pCCamera->GetNotRenderMap());
 	m_pCPeopleManager->SetPauseFlag(m_bPauseFlag);
 	m_pCPeopleManager->Render(m_mView, m_mProj, m_vCameraPos, m_Light);
 
 	//動くオブジェクトのエフェクト描画.
+	bool m_bUIRender = true;
+	if (m_pCCamera->GetNotRenderMap() == true) {
+		m_bUIRender = false;
+	}
+	m_pCMoveObjectManager->SetRenderUI(m_bUIRender);
 	m_pCMoveObjectManager->SetPauseFlag(m_bPauseFlag);
 	m_pCMoveObjectManager->EffectRender();
 	

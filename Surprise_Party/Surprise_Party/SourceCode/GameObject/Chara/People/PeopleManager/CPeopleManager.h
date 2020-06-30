@@ -37,12 +37,14 @@ public:
 	void SetTutorialFlag(const bool& bFlag) { m_pCPeopleBase[0]->SetTutorialFlag(bFlag); }
 	//ポーズフラグ.
 	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
+	//アイコン描画しないフラグ.
+	void SetNotRenderIcon(const bool& bFlag) { m_bNotRenderIcon = bFlag; }
 
 	//===========情報獲得処理関数============//.
 	//人の座標取得.
-	std::vector<D3DXVECTOR3> GetHumanPos() { return m_vHumanPos; }
+	std::vector<D3DXVECTOR3> GetHumanPos() const { return m_vHumanPos; }
 	//追加ポイント量.
-	int GetAddSurprisePoint() { return m_AddSurprisePoint; }
+	int GetAddSurprisePoint() const { return m_AddSurprisePoint; }
 
 private:
 	//=================関数==================//.
@@ -70,6 +72,7 @@ private:
 	std::vector<std::unique_ptr<CPeopleIcon>>	m_pCPeopleIcon;		//人のアイコン.
 
 	bool										m_bPauseFlag;		//ポーズフラグ.
+	bool										m_bNotRenderIcon;	//アイコン描画しないフラグ.
 };
 
 
