@@ -51,8 +51,11 @@ public:
 	void Render();		//描画処理科数.
 
 	//===========情報取得処理関数==============//.
-	bool GetSleepFlag() const { return m_bSleepFlag; }	//眠りフラグ.
+	bool GetSleepFlag() const { return m_bSleepFlag; }				//眠りフラグ.
+	bool GetSkipFlag() const { return m_bSkipFlag; }				//スキップフラグ.
 
+	//===========情報置換処理関数==============//.
+	void SetSkipFlag(const bool& bFlag) { m_bSkipFlag = bFlag; }	//スキップフラグ.
 
 private:
 	//=================関数====================//.
@@ -88,6 +91,7 @@ private:
 	//std::unique_ptr<CSmartPhone>					m_pCSmartPhone;			//スマートフォンクラス.
 
 	bool											m_bSleepFlag;			//眠りフラグ.
+	bool											m_bSkipFlag;			//スキップフラグ.
 };
 
 

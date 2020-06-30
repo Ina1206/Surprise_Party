@@ -18,6 +18,7 @@ public:
 	const unsigned int CHANGE_STAGE_FLAG	= (1 << 2);		//ステージ変更フラグ.
 	const unsigned int PEOPLE_LOOK_FLAG		= (1 << 3);		//人を見るフラグ.
 	const unsigned int GHOST_LOOK_FLAG		= (1 << 4);		//お化けを見るフラグ.
+	const unsigned int SKIP_FLAG			= (1 << 5);		//スキップフラグ.
 
 	//=======================関数==========================//.
 	virtual void Update() = 0;		//更新処理関数.
@@ -37,6 +38,8 @@ public:
 	void SetMoveFlag(const unsigned int& Flag) { m_MoveFlag = Flag; }
 	//相手の座標.
 	void SetTargetPos(const D3DXVECTOR3& vPos) { m_vTargetPos = vPos; }
+	//スキップ可能処理.
+	void SetCanSkip() { m_bCanSkip = true; }
 
 protected:
 	//=======================関数==========================//.
@@ -64,6 +67,7 @@ protected:
 	unsigned int	m_MoveFlag;		//移動フラグ.
 	D3DXVECTOR3		m_vTargetPos;	//相手の座標.
 	CAMERA			m_OldCamera;	//差分用変数.
+	int				m_bCanSkip;		//スキップカウント.
 };
 
 #endif	//#ifndef CCAMERA_BASE_H.

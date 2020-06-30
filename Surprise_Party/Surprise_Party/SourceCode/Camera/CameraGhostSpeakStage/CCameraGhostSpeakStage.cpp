@@ -20,6 +20,10 @@ CCameraGhostSpeakStage::~CCameraGhostSpeakStage()
 //===============================================.
 void CCameraGhostSpeakStage::Update()
 {
+	//一回スキップしていたら処理終了.
+	if (m_bCanSkip == false) {
+		return;
+	}
 
 	if (m_MoveFlag & STOP_FLAG) {
 		return;
@@ -81,15 +85,20 @@ void CCameraGhostSpeakStage::Move()
 //===============================================.
 void CCameraGhostSpeakStage::GetCloserUpperLimit()
 {
-	if (m_Camera.vPos.x > SPEAK_START_POS.x) {
-		m_Camera.vPos = SPEAK_START_POS;
-		m_Camera.vLook = SPEAK_START_LOOK;
-		m_MoveFlag = STOP_FLAG;
-		m_MoveCameraDirection = FAR_AWAY_CAMERA_DIRECT;
+	if (m_MoveFlag & SKIP_FLAG) {
+		m_Camera.vPos	= SPEAK_START_POS;
+		m_Camera.vLook	= SPEAK_START_LOOK;
+		m_bCanSkip		= false;
 	}
 
-	if (m_Camera.vLook.x > SPEAK_START_LOOK.x) {
-		m_Camera.vLook = SPEAK_START_LOOK;
+	if (m_Camera.vPos.x >= SPEAK_START_POS.x ||
+		m_Camera.vLook.x >= SPEAK_START_LOOK.x) {
+
+		m_Camera.vPos			= SPEAK_START_POS;
+		m_Camera.vLook			= SPEAK_START_LOOK;
+		m_MoveFlag				= STOP_FLAG;
+		m_MoveCameraDirection	= FAR_AWAY_CAMERA_DIRECT;
+		m_bCanSkip				= false;
 	}
 
 }
@@ -99,14 +108,16 @@ void CCameraGhostSpeakStage::GetCloserUpperLimit()
 //===============================================.
 void CCameraGhostSpeakStage::FarAwayUpperLimit()
 {
-	if (m_Camera.vPos.x < INIT_CAMERA_POS.x) {
-		m_Camera.vPos = INIT_CAMERA_POS;
-		m_Camera.vLook = INIT_CAMERA_LOOK;
-		m_MoveFlag = STOP_FLAG | CHANGE_STAGE_FLAG;
+	if (m_MoveFlag & SKIP_FLAG) {
+		m_Camera.vPos	= INIT_CAMERA_POS;
+		m_Camera.vLook	= INIT_CAMERA_LOOK;
 	}
 
-	if (m_Camera.vLook.x < INIT_CAMERA_LOOK.x) {
-		m_Camera.vLook = INIT_CAMERA_LOOK;
+	if (m_Camera.vPos.x <= INIT_CAMERA_POS.x ||
+		m_Camera.vLook.x <= INIT_CAMERA_LOOK.x) {
+		m_Camera.vPos	= INIT_CAMERA_POS;
+		m_Camera.vLook	= INIT_CAMERA_LOOK;
+		m_MoveFlag		= STOP_FLAG | CHANGE_STAGE_FLAG;
 	}
 
 }

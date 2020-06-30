@@ -15,6 +15,7 @@ CBigGhost::CBigGhost()
 	, m_UsingEffectNum		(0)
 	, m_OldEmotionNum		(0)
 	, m_bSleepFlag			(true)
+	, m_bSkipFlag			(false)
 {
 	//初期化処理関数.
 	Init();
@@ -138,7 +139,7 @@ void CBigGhost::Init()
 	m_pCSpriteEffect.emplace_back(new CQuestionEffect());
 
 
-	m_EmotionNum = static_cast<int>(enEmotionType::Sleep);
+	m_EmotionNum = static_cast<int>(enEmotionType::WakeUp);
 	m_OldEmotionNum = m_EmotionNum;
 }
 
@@ -155,6 +156,12 @@ void CBigGhost::Release()
 //==========================================.
 void CBigGhost::WakeUp()
 {
+	//スキップした場合.
+	if (m_bSkipFlag == true) {
+		m_WakeUpCnt = WAKE_UP_TIMING;
+		m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
+	}
+
 	//起きるまでの待機.
 	m_WakeUpCnt++;
 	if (m_WakeUpCnt <= WAKE_UP_TIMING) {
@@ -328,6 +335,7 @@ void CBigGhost::FallDown(const int& Direction)
 			m_WakeUpCnt = 0;
 			m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
 			m_bSleepFlag = false;
+			m_bSkipFlag = false;
 		}
 		return;
 	}
@@ -336,11 +344,13 @@ void CBigGhost::FallDown(const int& Direction)
 		m_vRot = SLEEP_ROT;
 		m_vPos = SLEEP_POS;
 		m_bSleepFlag = true;
+		m_bSkipFlag = false;
 	}
 	if (m_vPos.y <= SLEEP_POS.y) {
 		m_vPos = SLEEP_POS;
 		m_vRot = SLEEP_ROT;
 		m_bSleepFlag = true;
+		m_bSkipFlag = false;
 	}
 }
 
@@ -367,6 +377,7 @@ void CBigGhost::ChangeEffect()
 
 	switch (static_cast<enEmotionType>(m_EmotionNum)) {
 	case enEmotionType::Sleep:
+	case enEmotionType::WakeUp:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Sleep);
 		break;
 	case enEmotionType::HaveTrounble:
@@ -421,13 +432,20 @@ void CBigGhost::EmotionMove()
 	switch (static_cast<enEmotionType>(m_UsingEffectNum)) {
 	case enEmotionType::Sleep:
 		vCenterPos = m_vPos;
-		if (m_bSleepFlag == true) {
+		if (m_EmotionNum == static_cast<int>(enEmotionType::WakeUp)) {
 			//起床処理関数.
 			WakeUp();
 			break;
 		}
 		//寝る処理関数.
 		Sleep();
+		//if (m_bSleepFlag == true) {
+		//	//起床処理関数.
+		//	WakeUp();
+		//	break;
+		//}
+		////寝る処理関数.
+		//Sleep();
 		break;
 	case enEmotionType::HaveTrounble:
 		//困る感情処理関数.

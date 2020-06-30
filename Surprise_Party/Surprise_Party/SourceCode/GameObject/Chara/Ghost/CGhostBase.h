@@ -28,6 +28,7 @@ public:
 		Nothing,		//無し.
 		GoodFeeling,	//ご機嫌.
 		ViewSmartphone,	//スマートフォンを見る.
+		WakeUp,			//起きる.
 
 		Max,			//最大値.
 	};

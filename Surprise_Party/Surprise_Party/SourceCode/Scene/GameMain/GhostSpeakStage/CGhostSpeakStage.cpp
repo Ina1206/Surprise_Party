@@ -50,9 +50,22 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	m_pCBigGhost->Update();
 
 	if (SLEEP_BIGGHOST_FLAG == true) {
+		if (m_pCBigGhost->GetSkipFlag() == true) {
+			return;
+		}
+
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			m_pCBigGhost->SetSkipFlag(true);
+			m_pCCamera->SetMoveFlag(m_pCCamera->SKIP_FLAG);
+		}
+	}
+
+	if (SLEEP_BIGGHOST_FLAG == true) {
 		if (m_bOldSleepBigGhost != SLEEP_BIGGHOST_FLAG) {
 			//カメラ移動開始.
 			m_pCCamera->SetMoveFlag(m_pCCamera->MOVE_FLAG);
+			//スキップカウント初期化処理関数.
+			m_pCCamera->SetCanSkip();
 		}
 		m_bOldSleepBigGhost = SLEEP_BIGGHOST_FLAG;
 	
