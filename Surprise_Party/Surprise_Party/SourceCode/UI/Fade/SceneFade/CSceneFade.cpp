@@ -5,6 +5,7 @@ CSceneFade::CSceneFade()
 	, m_vPos			(0.0f, 0.0f, 0.0f)
 	, m_ShutterFlag		(0)
 	, m_WaitChangeCnt	(0)
+	, m_fMoveSpeed		(0.0f)
 {
 	//初期化処理関数.
 	Init();
@@ -24,6 +25,9 @@ void CSceneFade::Update()
 	if (m_ShutterFlag == 0) {
 		return;
 	}
+
+	//移動速度の加速処理.
+	m_fMoveSpeed += ADD_MOVE_SPEED;
 
 	if (m_ShutterFlag & CLOSE_FLAG) {
 		//シャッター下げる処理関数.
@@ -69,7 +73,8 @@ void CSceneFade::Release()
 //=====================================.
 void CSceneFade::ShutterDown()
 {
-	m_vPos.y += SHUTTER_MOVE_SPEED;
+	m_vPos.y += m_fMoveSpeed;
+	//m_vPos.y += SHUTTER_MOVE_SPEED;
 
 	if (m_vPos.y >= SHUTTER_INIT_POS.y) {
 		m_vPos.y = SHUTTER_INIT_POS.y;
@@ -81,6 +86,7 @@ void CSceneFade::ShutterDown()
 	if (m_WaitChangeCnt >= WAIT_CHANGE_SCENE_TIME) {
 		m_ShutterFlag = CHANGE_SCENE_FLAG;
 		m_WaitChangeCnt = 0;
+		m_fMoveSpeed = 0.0f;
 	}
 }
 
@@ -89,12 +95,13 @@ void CSceneFade::ShutterDown()
 //=====================================.
 void CSceneFade::ShutterUp()
 {
-
-	m_vPos.y -= SHUTTER_MOVE_SPEED;
+	m_vPos.y -= m_fMoveSpeed;
+	//m_vPos.y -= SHUTTER_MOVE_SPEED;
 
 	//上げる処理終了.
 	if (m_vPos.y <= SHUTTER_HEIGHT_MIN) {
 		m_vPos.y = SHUTTER_HEIGHT_MIN;
 		m_ShutterFlag = 0;
+		m_fMoveSpeed = 0.0f;
 	}
 }
