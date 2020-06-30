@@ -78,8 +78,13 @@ void CSpeakBigGhost::Update()
 	}
 	m_pCNextSpeakCursor->Update();
 
-	//選択中移動処理関数.
+
 	if (m_StringFlag & SELECT_FLAG) {
+		//全文出し終わるまで操作不可.
+		if (m_bFinishAppearancedAllFont == false) {
+			return;
+		}
+		//選択中移動処理関数.
 		SelectingMove();
 	}
 }
@@ -99,9 +104,10 @@ void CSpeakBigGhost::Render()
 	m_pCNextSpeakCursor->Render();
 
 	//選択しているとき以外処理しない.
-	if (!(m_StringFlag & SELECT_FLAG)) {
+	if (!(m_StringFlag & SELECT_FLAG) || m_bFinishAppearancedAllFont == false) {
 		return;
 	}
+
 	for (unsigned int ui = 0; ui < m_pCSprite.size(); ui++) {
 		m_pCSprite[ui]->SetAlpha(m_fSelectAlpha[ui]);
 		m_pCSprite[ui]->SetScale(D3DXVECTOR3(m_fSelectScale[ui], m_fSelectScale[ui], m_fSelectScale[ui]));
