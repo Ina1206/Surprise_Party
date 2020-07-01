@@ -23,21 +23,21 @@ public:
 	const float	ROTATION_SPEED	= 0.02f;	//回転速度.
 
 	//======================関数=======================//.
-	void Update();				//更新処理関数.
-	void Render();				//描画処理関数.
+	void Update();							//更新処理関数.
+	void Render();							//描画処理関数.
 
 private:
 	//======================関数=======================//.
-	void Init();				//初期化処理関数.
-	void Release();				//解放処理関数.
-	void ActRejoiceEmotion();	//喜び感情行動処理関数.
-	void Rotation();			//回転処理関数.
-	void ActHaveTrouble();		//困った感情行動処理関数.
+	void Init();							//初期化処理関数.
+	void Release();							//解放処理関数.
+	void ActRejoiceEmotion();				//喜び感情行動処理関数.
+	void Rotation();						//回転処理関数.
+	void ActHaveTrouble();					//困った感情行動処理関数.
 
 	//======================変数=======================//.
-	int			m_RotationDirect;		//回転方向.
-	bool		m_bChangeRotationDirect;//回転方向変更フラグ.
-	bool		m_bStartHaveTrouble;	//困るの開始フラグ.
+	int			m_RotationDirect;			//回転方向.
+	bool		m_bChangeRotationDirect;	//回転方向変更フラグ.
+	bool		m_bStartHaveTrouble;		//困るの開始フラグ.
 };
 
 #endif	//#ifndef CENDING_DISP_GHOST_H.

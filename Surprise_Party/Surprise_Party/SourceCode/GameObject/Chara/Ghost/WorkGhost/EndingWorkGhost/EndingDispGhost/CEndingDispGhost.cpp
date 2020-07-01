@@ -84,7 +84,7 @@ void CEndingDispGhost::Init()
 {
 	//アニメーション初期化処理関数.
 	InitAnimation();
-	m_fScale = SCALE;
+	m_fScale	= SCALE;
 	m_vPrePos.y = PRE_POS_Y;
 
 	//ジャンプ処理準備.
@@ -148,7 +148,7 @@ void CEndingDispGhost::ActHaveTrouble()
 		//移動角度処理関数.
 		MoveRotation(m_vPos, m_vLookAtPos);
 		m_vChangeBeforeRotation = m_vRot;
-		m_bStartHaveTrouble = true;
+		m_bStartHaveTrouble		= true;
 	}
 
 	m_vRot.x += SWING_SPEED * m_RotationDirect;
