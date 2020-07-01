@@ -233,7 +233,8 @@ void CMainStage::Init()
 	int FileNum = 0;
 
 	//オブジェクトファイル番号.
-	int ObjFileNum = static_cast<int>(CFileResource::enStageType::OneDay) + m_StageNum;
+	int ObjFileNum = static_cast<int>(CFileResource::enStageType::ObjectPos) + m_StageNum;
+	//int ObjFileNum = static_cast<int>(CFileResource::enStageType::OneDay) + m_StageNum;
 
 	//読み込みクラスアドレス取得.
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
@@ -255,7 +256,7 @@ void CMainStage::Init()
 	std::uniform_int_distribution<> IntervalRand(0, 2);
 	int m_column = IntervalRand(mt);
 
-	int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos_OneDay) * 3;
+	int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos) * 3;
 	//お化け管理クラスをインスタンス化.
 	m_pCWorkghostManager.reset(new CMainStageWorkGhostManager());
 	m_pCWorkghostManager->Init(GhostFilenum, m_column, m_pCStaticObjectManager->OBJECT_WIDTH);

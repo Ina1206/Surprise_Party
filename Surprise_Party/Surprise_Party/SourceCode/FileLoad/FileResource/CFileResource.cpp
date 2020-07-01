@@ -1,5 +1,8 @@
 #include "CFileResource.h"
 
+/*****************************************
+*		ファイル読み込みクラス.
+********/
 CFileResource::CFileResource()
 	: m_pCStageFileNumber	()
 	, m_pCStatusFileNumber	()
@@ -75,15 +78,6 @@ void CFileResource::StageLoad()
 		"Data\\File\\StageFile\\ObjectMap\\TestNum_Part1.csv",
 		"Data\\File\\StageFile\\ObjectMap\\TestNum_Part2.csv",
 		"Data\\File\\StageFile\\ObjectMap\\TestNum_Part3.csv",
-
-		//"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part1.csv",
-		//"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part2.csv",
-		//"Data\\File\\StageFile\\ObjectMap\\Second_Day\\TestNum_Part3.csv",
-
-		//"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part1.csv",
-		//"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part2.csv",
-		//"Data\\File\\StageFile\\ObjectMap\\Third_Day\\TestNum_Part3.csv",
-
 		//人.
 		"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_FirstDay.csv",
 		"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_SecondDay.csv",
@@ -92,14 +86,6 @@ void CFileResource::StageLoad()
 		"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part1.csv",
 		"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part2.csv",
 		"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part3.csv",
-
-		//"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part1.csv",
-		//"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part2.csv",
-		//"Data\\File\\StageFile\\GhostMap\\Second_Day\\TestGhostNum_Part3.csv",
-		//
-		//"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part1.csv",
-		//"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part2.csv",
-		//"Data\\File\\StageFile\\GhostMap\\Third_Day\\TestGhostNum_Part3.csv",
 	};
 
 	//ステージのファイルの読み込み処理.

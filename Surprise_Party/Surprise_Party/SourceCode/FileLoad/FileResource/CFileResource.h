@@ -19,18 +19,12 @@ public:
 	//==================列挙体======================//.
 	//ステージ種類.
 	enum class enStageType {
-		OneDay,				//1日目.
-		//TwoDay,				//2日目.
-		//ThreeDay,			//3日目.
+		ObjectPos,			//オブジェクト座標.
 		PeopleOder,			//人が入る順番.
-		//PeopleOder,			//人が入る順番.
-		//PeopleOder,			//人が入る順番.
-		GhostPos_OneDay,	//お化けの位置1日目.
-		//GhostPos_TwoDay,	//お化けの位置2日目.
-		//GhostPos_ThreeDay,	//お化けの位置3日目.
+		GhostPos,			//お化けの位置1日目.
 
-		Max,		//最大値.
-		Start = OneDay,
+		Max,				//最大値.
+		Start = ObjectPos,
 	};
 	//ステータス必要キャラ.
 	enum class enStatusCharaType {
