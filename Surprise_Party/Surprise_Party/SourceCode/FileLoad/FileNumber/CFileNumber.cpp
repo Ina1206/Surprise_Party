@@ -1,5 +1,8 @@
 #include "CFileNumber.h"
 
+/*************************************
+*	数値のファイル読み込みクラス.
+*********/
 CFileNumber::CFileNumber()
 	: m_strvec		()
 	, m_veclineData	()
@@ -19,12 +22,11 @@ CFileNumber::~CFileNumber()
 //========================================.
 HRESULT CFileNumber::Init(const char* pFileName)
 {
+	//ファイル読み込みまとめ処理関数.
 	FileInput(pFileName);
-	//if (FAILED(DataArrage())) {
-	//	return E_FAIL;
-	//}
 
 	for (unsigned int splite = 0; splite < m_strLinevec.size(); splite++) {
+		//データ分解処理関数.
 		if (FAILED(DataSplita(m_strLinevec[splite], ','))) {
 			return E_FAIL;
 		}
@@ -33,10 +35,12 @@ HRESULT CFileNumber::Init(const char* pFileName)
 		}
 	}
 
+	//行と列に分けて整理処理関数.
 	if (FAILED(DataArrage())) {
 		return E_FAIL;
 	}
 
+	//閉じる処理関数.
 	Close();
 
 	return S_OK;
@@ -47,16 +51,16 @@ HRESULT CFileNumber::Init(const char* pFileName)
 //========================================.
 HRESULT CFileNumber::DataSplita(std::string input, char delimiter)
 {
-		std::stringstream str(input);
-		std::string filed;
+	std::stringstream str(input);
+	std::string filed;
 
-		//コンマで区切る.
-		while (std::getline(str, filed, delimiter)) {
-			//アルファベットと空白以外の文字列を通す.
-			if (!(std::any_of(filed.cbegin(), filed.cend(), isalpha) || filed == "")) {
-				m_strvec.push_back(filed);
-			}
+	//コンマで区切る.
+	while (std::getline(str, filed, delimiter)) {
+		//アルファベットと空白以外の文字列を通す.
+		if (!(std::any_of(filed.cbegin(), filed.cend(), isalpha) || filed == "")) {
+			m_strvec.push_back(filed);
 		}
+	}
 
 	return S_OK;
 }

@@ -4,7 +4,7 @@
 #include "..\FileLoadBase\CFileLoad.h"
 
 /*************************************
-*	数値のファイル読み込み.
+*	数値のファイル読み込みクラス.
 *********/
 class CFileNumber
 	: public CFile
