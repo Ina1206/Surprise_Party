@@ -37,10 +37,10 @@ public:
 	
 protected:
 	//========================関数=============================//.
-	void Jump();				//ジャンプ処理関数.
-	void ChangeEffect();		//エフェクト変更処理関数.
-	void ActGoodFeeling();		//ご機嫌時の行動処理関数.
-	void PlayEffectManager();	//エフェクト再生管理処理関数.
+	void Jump();												//ジャンプ処理関数.
+	void ChangeEffect();										//エフェクト変更処理関数.
+	void ActGoodFeeling();										//ご機嫌時の行動処理関数.
+	void PlayEffectManager();									//エフェクト再生管理処理関数.
 
 	//========================変数=============================//.
 	std::unique_ptr<CSpriteEffectBase>	m_pCSpriteEffect;		//スプライトエフェクト.
@@ -51,8 +51,8 @@ protected:
 	D3DXVECTOR3							m_vChangeBeforeRotation;//変更前の角度.
 private:
 	//========================関数=============================//.
-	void MoveToOutside();		//外側に移動する処理関数.
-	void FaceOutside();			//外側を向く処理関数.
+	void MoveToOutside();										//外側に移動する処理関数.
+	void FaceOutside();											//外側を向く処理関数.
 
 	//========================変数=============================//.
 	int									m_OldEmotionNum;		//差分用の感情番号.

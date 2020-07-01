@@ -152,9 +152,10 @@ void CEndingWorkGhostBase::FaceOutside()
 		MoveRotation(m_vPos, m_vLookAtPos);
 
 		m_vChangeBeforeRotation = m_vRot;
-		m_MoveToOuterFlag = FACE_OUTSIDE;
+		m_MoveToOuterFlag		= FACE_OUTSIDE;
 	}
 
+	//ŠO‘¤‚ğŒü‚­ˆ—.
 	const float RADIAN_MAX = static_cast<float>(D3DXToRadian(LOOK_BACK_ROT_MAX));
 	m_vRot.y += LOOK_BACK_SPEED;
 	if (fabsf(m_vRot.y - m_vChangeBeforeRotation.y) > RADIAN_MAX) {
