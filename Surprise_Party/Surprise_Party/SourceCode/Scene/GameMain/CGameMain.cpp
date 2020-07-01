@@ -23,6 +23,7 @@ void CGameMain::UpDate()
 
 	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_TITLE) {
 		m_bChangeScene = true;
+		m_bTitle = true;
 	}
 	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_ENDING) {
 		m_Evaluation = m_pCStageManager->GetAverageEvaluation();

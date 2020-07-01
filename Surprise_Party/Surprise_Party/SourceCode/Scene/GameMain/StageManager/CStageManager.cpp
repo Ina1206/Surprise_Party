@@ -81,6 +81,9 @@ void CStageManager::UpDate()
 	if (m_pCStageBase[STAGE_TYPE_NUM]->GetFinishFlag() & m_pCStageBase[STAGE_TYPE_NUM]->FINISH_NEXT_ENDING) {
 		m_FinishFlag = FINISH_NEXT_ENDING;
 	}
+	if (m_pCStageBase[STAGE_TYPE_NUM]->GetFinishFlag() & m_pCStageBase[STAGE_TYPE_NUM]->FINISH_NEXT_TITLE) {
+		m_FinishFlag = FINISH_NEXT_TITLE;
+	}
 }
 
 //====================================.

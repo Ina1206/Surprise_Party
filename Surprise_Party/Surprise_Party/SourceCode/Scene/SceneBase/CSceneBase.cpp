@@ -7,6 +7,7 @@ CSceneBase::CSceneBase()
 	, m_bChangeScene	(false)
 	, m_bPauseFlag		(false)
 	, m_Evaluation		(0)
+	, m_bTitle			(false)
 {
 
 }

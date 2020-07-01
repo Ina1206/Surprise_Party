@@ -157,6 +157,11 @@ void CSceneManager::ChangeScene()
 		m_SceneType = static_cast<int>(enSceneType::Start);
 	}
 
+	//ƒ^ƒCƒgƒ‹‚ÉˆÚ“®.
+	if (m_pCSceneBase[NORMAL_SCENE_NUM]->GetTitleFlag() == true) {
+		m_SceneType = static_cast<int>(enSceneType::Title);
+	}
+
 	switch (static_cast<enSceneType>(m_SceneType)) {
 	case enSceneType::Title:
 		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CTitle());

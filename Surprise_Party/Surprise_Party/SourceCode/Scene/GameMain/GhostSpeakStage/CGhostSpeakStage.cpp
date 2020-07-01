@@ -78,7 +78,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 				return;
 			}
 			//エンディングに進む.
-			m_FinishFlag = FINISH_NEXT_ENDING;
+			m_FinishFlag = FINISH_NEXT_TITLE;
 		}
 
 		return;
