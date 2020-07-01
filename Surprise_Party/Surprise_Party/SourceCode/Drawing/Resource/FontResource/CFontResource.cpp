@@ -73,6 +73,7 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 	if (static_cast<int>(m_pCFont.size()) < m_StrLength) {
 		//メモリ確保.
 		m_pCFont.reserve(m_StrLength);
+		//前回のフォント最大値.
 		const int m_StartPos = m_pCFont.size();
 		for (int size = m_StartPos; size <= m_StrLength; size++) {
 			m_pCFont.push_back(nullptr);
