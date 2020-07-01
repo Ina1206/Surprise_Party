@@ -1,5 +1,8 @@
 #include "CBigGhost.h"
 
+/******************************************
+*		大きいお化けクラス.
+**********/
 CBigGhost::CBigGhost()
 	: m_pCSkinMesh			(nullptr)
 	, m_dCntAnimSpeed		(0.0)
@@ -32,55 +35,6 @@ CBigGhost::~CBigGhost()
 //==========================================.
 void CBigGhost::Update()
 {
-	//static bool flag = false;
-	//if (GetAsyncKeyState(VK_F2) & 0x0001) {
-	//	if (flag == false) {
-	//		flag = true;
-	//	}
-	//	else {
-	//		flag = false;
-	//	}
-	//}
-
-	//D3DXVECTOR3 vChange;
-	//if (flag == false) {
-	//	vChange = m_vPos;
-	//}
-	//else {
-	//	vChange = m_vRot;
-	//}
-
-	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-	//	vChange.x += 0.01f;
-	//}
-	//if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-	//	vChange.x -= 0.01f;
-	//}
-	//if (GetAsyncKeyState(VK_UP) & 0x8000) {
-	//	vChange.y += 0.01f;
-	//}
-	//if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-	//	vChange.y -= 0.01f;
-	//}
-	//if (GetAsyncKeyState('Z') & 0x8000) {
-	//	vChange.z += 0.01f;
-	//}
-	//if (GetAsyncKeyState('X') & 0x8000) {
-	//	vChange.z -= 0.01f;
-	//}
-
-	//if (flag == false) {
-	//	m_vPos = vChange;
-	//}
-	//else {
-	//	m_vRot = vChange;
-	//}
-
-	//if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-	//	m_ChangeEmotionFlag = true;
-	//}
-
-
 	//エフェクト変更処理関数.
 	if (m_EmotionNum != m_OldEmotionNum) {
 		ChangeEffect();
@@ -108,7 +62,7 @@ void CBigGhost::Render()
 	else {
 		m_pCSkinMesh->SetAnimSpeed(PAUSE_ANIM_SPEED);
 	}
-	m_pCSkinMesh->SetScale(0.1f);
+	m_pCSkinMesh->SetScale(SCALE);
 	m_pCSkinMesh->SetPosition(m_vPos);
 	m_pCSkinMesh->SetRotation(m_vRot);
 	m_pCSkinMesh->SetPreRot(m_vPreRot);
@@ -126,11 +80,13 @@ void CBigGhost::Render()
 //==========================================.
 void CBigGhost::Init()
 {
-	m_pCSkinMesh = m_pCResourceManager->GetSkinMesh(enSkinMeshType::BigGhost);
-	m_vPos = SLEEP_POS;
-	m_vRot = SLEEP_ROT;
-
-	m_fAnimSpeed = SLEEP_ANIM_SPEED;
+	//お化けの初期設定.
+	m_pCSkinMesh	= m_pCResourceManager->GetSkinMesh(enSkinMeshType::BigGhost);
+	m_vPos			= SLEEP_POS;
+	m_vRot			= SLEEP_ROT;
+	m_fAnimSpeed	= SLEEP_ANIM_SPEED;
+	m_EmotionNum	= static_cast<int>(enEmotionType::WakeUp);
+	m_OldEmotionNum = m_EmotionNum;
 
 	//エフェクト初期化処理.
 	m_pCSpriteEffect.emplace_back(new CSleepEffect());
@@ -138,9 +94,6 @@ void CBigGhost::Init()
 	m_pCSpriteEffect.emplace_back(new CRejoiceEffect());
 	m_pCSpriteEffect.emplace_back(new CQuestionEffect());
 
-
-	m_EmotionNum = static_cast<int>(enEmotionType::WakeUp);
-	m_OldEmotionNum = m_EmotionNum;
 }
 
 //==========================================.
@@ -178,10 +131,10 @@ void CBigGhost::WakeUp()
 	}
 
 	//倒れる処理関数.
-	FallDown(1);
+	FallDown(WAKE_UP_DIRECT);
 
 	//鼻提灯最小の時のアニメーション.
-	m_pCSkinMesh->ChangeAnimSet_StartPos(m_AnimNum, 1.1);
+	m_pCSkinMesh->ChangeAnimSet_StartPos(m_AnimNum, WAKE_UP_ANIM_POS);
 
 }
 
@@ -192,9 +145,9 @@ void CBigGhost::HaveTroubleEmotion()
 {
 	//感情変更処理.
 	if (m_ChangeEmotionFlag == true) {
-		m_HaveTroubleActFlag = 0;
-		m_ChangeEmotionFlag = false;
-		m_vPos = WAKE_UP_POS;
+		m_HaveTroubleActFlag	= 0;
+		m_ChangeEmotionFlag		= false;
+		m_vPos					= WAKE_UP_POS;
 	}
 
 	if (m_HaveTroubleActFlag & (MOVING_ROT_FLAG | MOVING_POS_FLAG)) {
@@ -208,8 +161,8 @@ void CBigGhost::HaveTroubleEmotion()
 		m_vRot.y += HAVE_TROUBLE_SPEED * m_LeanDirect;
 		m_vRot.z += HAVE_TROUBLE_SPEED * m_LeanDirect;
 		if (fabsf(m_vRot.y) > HAVE_TROUBLE_ROT_MAX) {
+			//方向変更.
 			m_LeanDirect *= CHANGE_DIRECTION;
-
 		}
 		return;
 	}
@@ -236,16 +189,17 @@ void CBigGhost::RejoiceEmotion()
 	m_vPos.y += REJOICE_MOVE_SPEED * m_UpDownDirect;
 	m_vPos.x += REJOICE_MOVE_SPEED * m_LeanDirect;
 
+	//位置.
 	if (m_vPos.y <= m_vChangeBeforePos.y) {
 		m_UpDownDirect *= CHANGE_DIRECTION;
-		m_vPos.y = m_vChangeBeforePos.y;
+		m_vPos.y		= m_vChangeBeforePos.y;
 	}
 
 	//角度.
-	m_vRot.y += 0.01f * m_LeanDirect;
+	m_vRot.y += REJOICE_ROT_SPEED * m_LeanDirect;
 	if (fabsf(m_vRot.y) > REJOICE_ROT_MAX) {
-		m_LeanDirect *= CHANGE_DIRECTION;
-		m_UpDownDirect *= CHANGE_DIRECTION;
+		m_LeanDirect	*= CHANGE_DIRECTION;
+		m_UpDownDirect	*= CHANGE_DIRECTION;
 	}
 
 	
@@ -256,10 +210,10 @@ void CBigGhost::RejoiceEmotion()
 //==========================================.
 void CBigGhost::QuestionEmotion()
 {
-	m_vRot.z -= 0.02f;
+	m_vRot.z -= QUESTION_LEAN_SPEED;
 
 	//傾き最小値.
-	const float LEAN_ROT_MIN = static_cast<float>(D3DXToRadian(-30.0f));
+	const float LEAN_ROT_MIN = static_cast<float>(D3DXToRadian(QUESTION_LEAN_MIN));
 	if (m_vRot.z < LEAN_ROT_MIN) {
 		m_vRot.z = LEAN_ROT_MIN;
 	}
@@ -271,7 +225,8 @@ void CBigGhost::QuestionEmotion()
 void CBigGhost::Sleep()
 {
 	m_fAnimSpeed = SLEEP_ANIM_SPEED;
-	FallDown(-1);
+	//倒れる処理関数.
+	FallDown(SLEEP_DIRECT);
 }
 
 //==========================================.
@@ -279,23 +234,26 @@ void CBigGhost::Sleep()
 //==========================================.
 void CBigGhost::Lean(const int& Direction)
 {
-	const float			fPosLength	= D3DXVec3Length(&(HAVE_TROUBLE_POS - m_vChangeBeforePos));
-	const D3DXVECTOR3	vPosUnit	= (HAVE_TROUBLE_POS - m_vChangeBeforePos) / fPosLength;
-	const float			fRotLength	= D3DXVec3Length(&(HAVE_TROUBLE_ROT - WAKE_UP_ROT));
-	const D3DXVECTOR3	vRotUnit	= (HAVE_TROUBLE_ROT - WAKE_UP_ROT) / fRotLength;
+	//座標.
+	const float			fPosLength	= D3DXVec3Length(&(HAVE_TROUBLE_POS - m_vChangeBeforePos));	//長さ.
+	const D3DXVECTOR3	vPosUnit	= (HAVE_TROUBLE_POS - m_vChangeBeforePos) / fPosLength;		//比率.
+	//角度.
+	const float			fRotLength	= D3DXVec3Length(&(HAVE_TROUBLE_ROT - WAKE_UP_ROT));		//長さ.
+	const D3DXVECTOR3	vRotUnit	= (HAVE_TROUBLE_ROT - WAKE_UP_ROT) / fRotLength;			//比率.
 
 	m_vRot += LEAN_SPEED * vRotUnit * static_cast<float>(Direction);
 	m_vPos += LEAN_SPEED * vPosUnit * static_cast<float>(Direction);
 
-	if (Direction >= 1) {
+	//倒れるとき.
+	if (Direction >= FALL_DOWN_DIRECTION) {
 		if (m_vRot.x <= HAVE_TROUBLE_ROT.x) {
-			m_vRot = HAVE_TROUBLE_ROT;
-			m_HaveTroubleActFlag &= ~MOVING_ROT_FLAG;
+			m_HaveTroubleActFlag	&= ~MOVING_ROT_FLAG;
+			m_vRot	= HAVE_TROUBLE_ROT;
 		}
 		if(m_vPos.y >= HAVE_TROUBLE_POS.y){
-			m_vPos = m_vChangeBeforePos;
-			m_vPos.y = HAVE_TROUBLE_POS.y;
 			m_HaveTroubleActFlag &= ~MOVING_POS_FLAG;
+			m_vPos		= m_vChangeBeforePos;
+			m_vPos.y	= HAVE_TROUBLE_POS.y;
 		}
 		if (m_HaveTroubleActFlag == 0) {
 			m_HaveTroubleActFlag = SWING_FLAG;
@@ -303,6 +261,7 @@ void CBigGhost::Lean(const int& Direction)
 		return;
 	}
 
+	//元の態勢に戻るとき.
 	if (m_vRot.x >= m_vChangeBeforePos.x) {
 		m_vRot = m_vChangeBeforePos;
 	}
@@ -326,31 +285,26 @@ void CBigGhost::FallDown(const int& Direction)
 	m_vPos += WAKE_UPING_SPEED * vPosUnit * static_cast<float>(Direction);
 	m_vRot += WAKE_UPING_SPEED * vRotUnit * static_cast<float>(Direction);
 
-	if (Direction >= 1) {
-		if (m_vPos.y >= WAKE_UP_POS.y) {
-			m_vPos = WAKE_UP_POS;
-		}
-		if (m_vRot.y > WAKE_UP_ROT.y) {
-			m_vRot = WAKE_UP_ROT;
-			m_WakeUpCnt = 0;
-			m_UsingEffectNum = static_cast<int>(enEmotionType::Nothing);
-			m_bSleepFlag = false;
-			m_bSkipFlag = false;
+	//起きる方向の時.
+	if (Direction >= WAKE_UP_DIRECT) {
+		if (m_vRot.y > WAKE_UP_ROT.y ||
+			m_vPos.y >= WAKE_UP_POS.y) {
+			m_vRot				= WAKE_UP_ROT;
+			m_WakeUpCnt			= 0;
+			m_UsingEffectNum	= static_cast<int>(enEmotionType::Nothing);
+			m_bSleepFlag		= false;
+			m_bSkipFlag			= false;
 		}
 		return;
 	}
 
-	if (m_vRot.y < SLEEP_ROT.y) {
-		m_vRot = SLEEP_ROT;
-		m_vPos = SLEEP_POS;
-		m_bSleepFlag = true;
-		m_bSkipFlag = false;
-	}
-	if (m_vPos.y <= SLEEP_POS.y) {
-		m_vPos = SLEEP_POS;
-		m_vRot = SLEEP_ROT;
-		m_bSleepFlag = true;
-		m_bSkipFlag = false;
+	//眠る方向の時.
+	if (m_vPos.y <= SLEEP_POS.y ||
+		m_vRot.y < SLEEP_ROT.y) {
+		m_vPos			= SLEEP_POS;
+		m_vRot			= SLEEP_ROT;
+		m_bSleepFlag	= true;
+		m_bSkipFlag		= false;
 	}
 }
 
@@ -361,9 +315,9 @@ void CBigGhost::ChangeEffect()
 {
 	//初期化.
 	if (m_EmotionNum != static_cast<int>(enEmotionType::ViewSmartphone)) {
-		m_vPos = WAKE_UP_POS;
-		m_vPrePos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		m_vPreRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vPos		= WAKE_UP_POS;
+		m_vPrePos	= BASE_PRE_POS;
+		m_vPreRot	= BASE_PRE_ROT;
 	}
 	m_vRot = WAKE_UP_ROT;
 
@@ -394,14 +348,15 @@ void CBigGhost::ChangeEffect()
 	case enEmotionType::ViewSmartphone:
 		//移動角度処理関数.
 		MoveRotation(m_vPos, m_vLookAtPos);
-		m_vPrePos.z = 10.0f;
-		m_vPreRot = WAKE_UP_ROT;
+
+		m_vPrePos.z = VIEW_PRE_POS_Y;
+		m_vPreRot	= WAKE_UP_ROT;
 
 		m_bSleepFlag = true;
 		m_UsingEffectNum = static_cast<int>(enEmotionType::ViewSmartphone);
 
 		m_fAnimSpeed = WAKE_UP_ANIM_SPEED;
-		m_pCSkinMesh->ChangeAnimSet_StartPos(0, -1.0);
+		m_pCSkinMesh->ChangeAnimSet_StartPos(m_AnimNum, WAKE_UP_ANIM_POS);
 
 		break;
 	default:
@@ -423,11 +378,12 @@ void CBigGhost::ChangeEffect()
 void CBigGhost::EmotionMove()
 {
 	if (static_cast<enEmotionType>(m_UsingEffectNum) != enEmotionType::Sleep) {
-		m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAKE_UP_ANIM_POS);
+		m_pCSkinMesh->ChangeAnimSet_StartPos(m_AnimNum, WAKE_UP_ANIM_POS);
 		m_fAnimSpeed = WAKE_UPING_SPEED;
 	}
 
 	D3DXVECTOR3 vCenterPos;	//エフェクト出す中心座標.
+	m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 
 	switch (static_cast<enEmotionType>(m_UsingEffectNum)) {
 	case enEmotionType::Sleep:
@@ -439,36 +395,26 @@ void CBigGhost::EmotionMove()
 		}
 		//寝る処理関数.
 		Sleep();
-		//if (m_bSleepFlag == true) {
-		//	//起床処理関数.
-		//	WakeUp();
-		//	break;
-		//}
-		////寝る処理関数.
-		//Sleep();
 		break;
 	case enEmotionType::HaveTrounble:
 		//困る感情処理関数.
 		HaveTroubleEmotion();
-		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::Rejoice:
 		//喜ぶ感情処理関数.
 		RejoiceEmotion();
-		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::Question:
 		//疑問感情処理関数.
 		QuestionEmotion();
 		//上下移動処理関数.
 		MoveUpDown();
-
-		m_pCSkinMesh->GetPosFromBone("joint12", &vCenterPos);
 		break;
 	case enEmotionType::ViewSmartphone:
 		
 		break;
 	case enEmotionType::Nothing:
+		//上下移動処理関数.
 		MoveUpDown();
 		break;
 	}
