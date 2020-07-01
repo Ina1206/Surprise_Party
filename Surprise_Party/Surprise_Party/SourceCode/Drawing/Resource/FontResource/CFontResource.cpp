@@ -73,7 +73,8 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 	if (static_cast<int>(m_pCFont.size()) < m_StrLength) {
 		//メモリ確保.
 		m_pCFont.reserve(m_StrLength);
-		for (int size = 0; size <= m_StrLength; size++) {
+		const int m_StartPos = m_pCFont.size();
+		for (int size = m_StartPos; size <= m_StrLength; size++) {
 			m_pCFont.push_back(nullptr);
 		}
 	}
@@ -93,7 +94,6 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 	//幅、高さ.
 	int widh, hight;
 	widh = hight = 0;
-	const float	WIDTH_MAX = WND_W - 150.0f;
 
 	//文字のテクスチャ作成.
 	bool bLineFeed = false;
@@ -167,6 +167,10 @@ void CFontResource::String_Render()
 //===================================.
 void CFontResource::Destroy()
 {
+	//フォントが作成されてなければ処理終了.
+	if (m_pCFont.size() <= 0) {
+		return;
+	}
 	//要素数の初期化.
 	m_pCFont.clear();
 	m_pCFont.shrink_to_fit();

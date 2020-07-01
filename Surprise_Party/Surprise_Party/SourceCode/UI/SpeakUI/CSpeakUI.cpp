@@ -11,6 +11,8 @@ CSpeakUI::CSpeakUI()
 	, m_bFinishAppearancedAllFont	(false)
 {
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
+	//前のデータを削除.
+	m_pCFontResource->Destroy();
 }
 
 CSpeakUI::~CSpeakUI()
