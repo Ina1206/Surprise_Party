@@ -15,7 +15,6 @@ public:
 	//==================定数=======================//.
 	const float		ALPHA_MAX = 1.0f;		//透過値最大数.
 	const float		SCALE_MAX = 1.0f;		//大きさ最大値.
-	//const int		FONT_SIZE = 500;			//フォントの大きさ.
 
 	CFont();
 	~CFont();
@@ -114,9 +113,9 @@ private:
 	float					m_Alpha;				//アルファ値.
 	float					m_fScale;				//大きさ.
 	D3DXVECTOR3				m_vRot;					//角度.
-	TEXTMETRIC	TM;
-	GLYPHMETRICS GM;
-	BYTE* ptr;
+	TEXTMETRIC				TM;
+	GLYPHMETRICS			GM;
+	BYTE*					ptr;
 };
 
 #endif	//#ifndef CFONT_H.

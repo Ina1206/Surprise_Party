@@ -7,19 +7,19 @@ const char SHADER_NAME[] = "Data\\Shader\\SpriteUI.hlsl";
 
 //コンストラクタ.
 CFont::CFont()
-	: m_pVertexShader(nullptr)
-	, m_pVertexLayout(nullptr)
-	, m_pPixelShader(nullptr)
-	, m_pConstantBuffer(nullptr)
-	, m_pVertexBuffer(nullptr)
-	, m_pSampleLinear(nullptr)
-	, m_pTexture(nullptr)
-	, m_AnimCount(0)
-	, m_UV(0.0f, 0.0f)
-	, m_vPos()
-	, m_Alpha(ALPHA_MAX)	//0:透明,1:完全不透明.
-	, m_fScale(SCALE_MAX)
-	, m_vRot(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
+	: m_pVertexShader	(nullptr)
+	, m_pVertexLayout	(nullptr)
+	, m_pPixelShader	(nullptr)
+	, m_pConstantBuffer	(nullptr)
+	, m_pVertexBuffer	(nullptr)
+	, m_pSampleLinear	(nullptr)
+	, m_pTexture		(nullptr)
+	, m_AnimCount		(0)
+	, m_UV				(0.0f, 0.0f)
+	, m_vPos			()
+	, m_Alpha			(ALPHA_MAX)
+	, m_fScale			(SCALE_MAX)
+	, m_vRot			(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
 {
 }
 
@@ -277,8 +277,8 @@ HRESULT CFont::InitModel()
 		//頂点座標(x,y,z).				UV座標(u,v).
 		D3DXVECTOR3(0.0f,    h, 0.0f),	D3DXVECTOR2(0.0f,    v),//頂点１(左下).
 		D3DXVECTOR3(0.0f, 0.0f, 0.0f),	D3DXVECTOR2(0.0f, 0.0f),//頂点２(左上).
-		D3DXVECTOR3(w,    h, 0.0f),	D3DXVECTOR2(u,    v),//頂点３(右下).
-		D3DXVECTOR3(w, 0.0f, 0.0f),	D3DXVECTOR2(u, 0.0f)	//頂点４(右上).
+		D3DXVECTOR3(   w,    h, 0.0f),	D3DXVECTOR2(   u,    v),//頂点３(右下).
+		D3DXVECTOR3(   w, 0.0f, 0.0f),	D3DXVECTOR2(   u, 0.0f)	//頂点４(右上).
 	};
 	//最大要素数を算出する.
 	UINT uVerMax = sizeof(vertices) / sizeof(vertices[0]);
