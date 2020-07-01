@@ -26,20 +26,20 @@ public:
 	const float	DOWN_SPEED	= 0.02f;	//落ちる速度.
 
 	//====================関数======================//.
-	void Update();				//更新処理関数.
-	void Render();				//描画処理関数.
+	void Update();						//更新処理関数.
+	void Render();						//描画処理関数.
 
 private:
 	//====================関数======================//.
-	void Init();				//初期化処理関数.
-	void Release();				//解放処理関数.
-	void ActRejoiceEmotion();	//喜び感情行動処理関数.
-	void SettingInitDirect();	//初期方向設定処理関数.
-	void ActHaveTrouble();		//困った感情処理関数.
+	void Init();						//初期化処理関数.
+	void Release();						//解放処理関数.
+	void ActRejoiceEmotion();			//喜び感情行動処理関数.
+	void SettingInitDirect();			//初期方向設定処理関数.
+	void ActHaveTrouble();				//困った感情処理関数.
 
 	//====================変数======================//.
-	int		m_MoveDirect;		//移動方向.
-	bool	m_bSetDirect;		//方向を設定したフラグ.
+	int		m_MoveDirect;				//移動方向.
+	bool	m_bSetDirect;				//方向を設定したフラグ.
 
 
 };
