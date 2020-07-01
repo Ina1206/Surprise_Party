@@ -4,7 +4,7 @@
 #include "..\FileLoadBase\CFileLoad.h"
 
 /************************************
-*		•¶Í“Ç‚İæ‚èˆ—ŠÖ”.
+*		•¶Í“Ç‚İæ‚èƒNƒ‰ƒX.
 *********/
 class CFileString
 	: public CFile

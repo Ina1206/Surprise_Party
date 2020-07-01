@@ -1,7 +1,7 @@
 #include "CFileString.h"
 
 /************************************
-*		文章読み取り処理関数.
+*		文章読み取りクラス.
 *********/
 CFileString::CFileString()
 	: m_strvec		()
@@ -22,9 +22,11 @@ CFileString::~CFileString()
 //=========================================.
 HRESULT CFileString::Init(const char* pFileName)
 {
+	//ファイルの読み込みまとめ処理関数.
 	FileInput(pFileName);
 
 	for (unsigned int splite = 0; splite < m_strLinevec.size(); splite++) {
+		//データ分解処理関数.
 		if (FAILED(DataSplita(m_strLinevec[splite], ','))) {
 			return E_FAIL;
 		}
@@ -33,10 +35,12 @@ HRESULT CFileString::Init(const char* pFileName)
 		}
 	}
 
+	//行と列に分ける処理関数.
 	if (FAILED(DataArrage())) {
 		return E_FAIL;
 	}
 
+	//ファイルを閉じる処理関数.
 	Close();
 	
 	return S_OK;
