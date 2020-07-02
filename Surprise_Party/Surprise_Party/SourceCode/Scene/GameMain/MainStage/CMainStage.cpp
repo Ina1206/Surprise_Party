@@ -231,10 +231,9 @@ void CMainStage::Init()
 {
 	//全体的にファイル番号.
 	const int FileNum = 0;
-	//const int StageNum = 0;
 
 	//オブジェクトファイル番号.
-	int ObjFileNum = static_cast<int>(CFileResource::enStageType::ObjectPos)/* + m_StageNum*/;
+	const int ObjFileNum = static_cast<int>(CFileResource::enStageType::ObjectPos);
 
 	//読み込みクラスアドレス取得.
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
@@ -244,7 +243,7 @@ void CMainStage::Init()
 	//ステージの長さ最大数.
 	float m_fStageDistanceMax = m_pCStaticObjectManager->GetStageDistanceMax();
 
-	int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos) /** 3*/;
+	const int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos);
 	//お化け管理クラスをインスタンス化.
 	m_pCWorkghostManager.reset(new CMainStageWorkGhostManager());
 	m_pCWorkghostManager->Init(GhostFilenum, m_StageNum, m_pCStaticObjectManager->OBJECT_WIDTH);
@@ -267,8 +266,9 @@ void CMainStage::Init()
 
 
 	//人管理クラス設定.
+	const int PeopleFileNum = static_cast<int>(CFileResource::enStageType::PeopleComeOder);
 	m_pCPeopleManager.reset(new CPeopleManager());
-	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleComeOder) /*+ FileNum*/ /** 3*/, m_StageNum, 12,m_fStageDistanceMax);
+	m_pCPeopleManager->Init( PeopleFileNum, m_StageNum, 12, m_fStageDistanceMax);
 	
 	//====UI系のインスタンス化====.
 	//ステージ.
