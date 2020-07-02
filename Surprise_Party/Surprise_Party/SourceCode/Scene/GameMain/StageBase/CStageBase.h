@@ -17,9 +17,9 @@ public:
 	//===================列挙体========================//.
 	//前回のステージのエンディングタイプ.
 	enum class enBeforeStageEndigneType {
-		Great = 0,	//素晴らしい.
+		Bad = 0,	//悪い.
 		Good,		//良い.
-		Bad,		//悪い.
+		Great,		//素晴らしい.
 		Nothing,	//なし.
 	};
 	//ステージ種類.

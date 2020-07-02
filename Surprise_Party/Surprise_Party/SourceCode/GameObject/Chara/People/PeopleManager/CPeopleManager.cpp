@@ -37,14 +37,14 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 	//人のクラスをインスタンス化する最大数.
 	m_CreateHumanMax = max;
 	
-	std::random_device rnd;
-	std::mt19937 mt(rnd());
-	std::uniform_int_distribution<> IntervalRand(0, 2);
-	int m_column = IntervalRand(mt);
+	//std::random_device rnd;
+	//std::mt19937 mt(rnd());
+	//std::uniform_int_distribution<> IntervalRand(0, 2);
+	//int m_column = IntervalRand(mt);
 
 	//人の種類番号取得.
 	for (int people = 0; people < m_pCFileResource->GetStageMax(FileNum, 0); people++) {
-		m_HumanAppOrder.push_back(m_pCFileResource->GetStageNum(FileNum, m_column, people) - 1);
+		m_HumanAppOrder.push_back(m_pCFileResource->GetStageNum(FileNum, /*m_column*/0, people) - 1);
 	}
 
 	//人と人のアイコンのインスタンス化.

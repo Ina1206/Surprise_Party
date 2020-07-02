@@ -98,7 +98,7 @@ void CTitle::Init()
 	m_pCTitleUI.reset(new CTitleUI());
 
 	//初期処理関数.
-	m_pCWorkGhostManager->Init(6, STAGE_NUM, m_pCStaticObjectManager->OBJECT_WIDTH);
+	m_pCWorkGhostManager->Init(/*6*/0, STAGE_NUM, m_pCStaticObjectManager->OBJECT_WIDTH);
 
 	//ステージの最大値.
 	const float m_fStageDistanceMax = m_pCStaticObjectManager->GetStageDistanceMax();
