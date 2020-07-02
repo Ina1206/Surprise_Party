@@ -252,6 +252,13 @@ void CMainStage::Init()
 	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum, m_StageNum));
 	m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkghostManager->GetAllGhostNum());
 	
+
+	//人管理クラス設定.
+	const int PeopleFileNum = static_cast<int>(CFileResource::enStageType::PeopleComeOder);
+	m_pCPeopleManager.reset(new CPeopleManager());
+	m_pCPeopleManager->Init( PeopleFileNum, m_StageNum, 12, m_fStageDistanceMax);
+	
+	//ギミックの上にお化けがいるかの判定処理.
 	const std::vector<D3DXVECTOR3> m_vGimmickPos = m_pCMoveObjectManager->GetAllGimmickPos();
 	const std::vector<D3DXVECTOR3> m_vWorkGhostPos = m_pCWorkghostManager->GetAllGhostPos();
 	const float			GIMMICK_UP_DECISION = 0.1f;								//ギミックの上に乗っているかの判定差分.
@@ -264,12 +271,6 @@ void CMainStage::Init()
 		}
 	}
 
-
-	//人管理クラス設定.
-	const int PeopleFileNum = static_cast<int>(CFileResource::enStageType::PeopleComeOder);
-	m_pCPeopleManager.reset(new CPeopleManager());
-	m_pCPeopleManager->Init( PeopleFileNum, m_StageNum, 12, m_fStageDistanceMax);
-	
 	//====UI系のインスタンス化====.
 	//ステージ.
 	m_pCStageMap.reset(new CStageMap());
