@@ -256,7 +256,7 @@ void CMainStage::Init()
 	//人管理クラス設定.
 	const int PeopleFileNum = static_cast<int>(CFileResource::enStageType::PeopleComeOder);
 	m_pCPeopleManager.reset(new CPeopleManager());
-	m_pCPeopleManager->Init( PeopleFileNum, m_StageNum, 12, m_fStageDistanceMax);
+	m_pCPeopleManager->Init( PeopleFileNum, m_StageNum, m_fStageDistanceMax);
 	
 	//ギミックの上にお化けがいるかの判定処理.
 	const std::vector<D3DXVECTOR3> m_vGimmickPos = m_pCMoveObjectManager->GetAllGimmickPos();

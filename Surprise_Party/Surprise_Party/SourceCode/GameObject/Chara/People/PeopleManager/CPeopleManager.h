@@ -22,7 +22,7 @@ public:
 	const int			HUMAN_TYPE_MAX		= 2;									//人間種類最大数.
 
 	//=================関数==================//.
-	void Init(int FileNum, int StageNum, int max, float StageMax);					//初期化処理関数.
+	void Init(int FileNum, int StageNum, float StageMax);							//初期化処理関数.
 	void Update();																	//更新処理関数.
 	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, 
 				const D3DXVECTOR3& vCameraPos, const LIGHT& stLight);				//描画処理関数.
@@ -47,31 +47,33 @@ public:
 
 private:
 	//=================関数==================//.
-	void Release();		//解放処理関数.
-	void HumanApp();	//人の表示処理関数.
-	void HumanMove();	//人の移動処理関数.
+	void Release();								//解放処理関数.
+	void HumanApp();							//人の表示処理関数.
+	void HumanMove();							//人の移動処理関数.
+	void CreatHuman(const int& HumanNum);		//人を作成処理関数.
 
 	//=================変数==================//.
-	CFileResource*								m_pCFileResource;	//ファイル読み込みクラス.
+	CFileResource*								m_pCFileResource;		//ファイル読み込みクラス.
 
-	std::vector<int>							m_HumanAppOrder;	//人を出す順番.
-	std::vector<CPeopleBase*>					m_pCPeopleBase;		//人のクラス.
-	std::vector<bool>							m_bDispFlag;		//表示フラグ.
-	std::vector<D3DXVECTOR3>					m_vHumanPos;		//人の座標.
-	float										m_fStageDistanceMax;//ステージ最大数.
-	unsigned int								m_CreateHumanMax;	//作成最大数.
-	std::vector<bool>							m_bSurpriseFlag;	//驚いたフラグ.
+	std::vector<int>							m_HumanAppOrder;		//人を出す順番.
+	std::vector<CPeopleBase*>					m_pCPeopleBase;			//人のクラス.
+	std::vector<bool>							m_bDispFlag;			//表示フラグ.
+	std::vector<D3DXVECTOR3>					m_vHumanPos;			//人の座標.
+	std::vector<int>							m_DisplayableHumanNum;	//表示可能番号
+	float										m_fStageDistanceMax;	//ステージ最大数.
+	std::vector<bool>							m_bSurpriseFlag;		//驚いたフラグ.
 
-	unsigned int								m_DispCnt;			//表示カウント.
-	unsigned int								m_AppHumanNum;		//現れる人間の番号.
 
-	std::vector<int>							m_SurpriseHumanNum;	//驚いている人番号.
-	int											m_AddSurprisePoint;	//追加驚きポイント.
+	unsigned int								m_DispCnt;				//表示カウント.
+	unsigned int								m_AppHumanNum;			//現れる人間の番号.
 
-	std::vector<std::unique_ptr<CPeopleIcon>>	m_pCPeopleIcon;		//人のアイコン.
+	std::vector<int>							m_SurpriseHumanNum;		//驚いている人番号.
+	int											m_AddSurprisePoint;		//追加驚きポイント.
 
-	bool										m_bPauseFlag;		//ポーズフラグ.
-	bool										m_bNotRenderIcon;	//アイコン描画しないフラグ.
+	std::vector<std::unique_ptr<CPeopleIcon>>	m_pCPeopleIcon;			//人のアイコン.
+
+	bool										m_bPauseFlag;			//ポーズフラグ.
+	bool										m_bNotRenderIcon;		//アイコン描画しないフラグ.
 };
 
 

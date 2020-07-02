@@ -7,8 +7,8 @@ CPeopleManager::CPeopleManager()
 	, m_pCPeopleBase		()
 	, m_bDispFlag			()
 	, m_vHumanPos			()
+	, m_DisplayableHumanNum	()
 	, m_fStageDistanceMax	(0.0f)
-	, m_CreateHumanMax		(0)
 	, m_bSurpriseFlag		()
 	, m_DispCnt				(DISP_TIME)
 	, m_AppHumanNum			(0)
@@ -30,42 +30,21 @@ CPeopleManager::~CPeopleManager()
 //=======================================.
 //		初期化処理関数.
 //=======================================.
-void CPeopleManager::Init(int FileNum, int StageNum, int max, float StageMax)
+void CPeopleManager::Init(int FileNum, int StageNum, float StageMax)
 {
 	//ファイルの読み込みアドレス取得.
 	m_pCFileResource = CFileResource::GetResourceInstance();
-	//人のクラスをインスタンス化する最大数.
-	m_CreateHumanMax = max;
+	//ステージの長さ最大値を設定.
+	m_fStageDistanceMax = StageMax;
 	
-	//std::random_device rnd;
-	//std::mt19937 mt(rnd());
-	//std::uniform_int_distribution<> IntervalRand(0, 2);
-	//int m_column = IntervalRand(mt);
-
 	//人の種類番号取得.
-	for (int people = 0; people < m_pCFileResource->GetStageMax(FileNum, 0); people++) {
-		m_HumanAppOrder.push_back(m_pCFileResource->GetStageNum(FileNum, /*m_column*/0, people) - 1);
+	for (int people = 0; people < m_pCFileResource->GetStageMax(FileNum, StageNum); people++) {
+		m_HumanAppOrder.push_back(m_pCFileResource->GetStageNum(FileNum, StageNum, people) - 1);
 	}
 
-	//人と人のアイコンのインスタンス化.
-	for (int people = 0; people < max; people++) {
-		m_pCPeopleBase.push_back(nullptr);
-		m_bDispFlag.push_back(false);
-		m_pCPeopleIcon.push_back(nullptr);
-
-		//偶数：女の子、奇数：男の子.
-		if (people % 2 == 0) {
-			m_pCPeopleBase[m_pCPeopleBase.size() - 1] = new CGirl();
-			m_pCPeopleBase[m_pCPeopleBase.size() - 1]->SetStageMax(StageMax);
-
-			m_pCPeopleIcon[m_pCPeopleIcon.size() - 1].reset(new CGirlIcon());
-			
-			continue;
-		}
-		m_pCPeopleBase[m_pCPeopleBase.size() - 1] = new CBoy();
-		m_pCPeopleBase[m_pCPeopleBase.size() - 1]->SetStageMax(StageMax);
-
-		m_pCPeopleIcon[m_pCPeopleIcon.size() - 1].reset(new CBoyIcon());
+	//人を作成処理関数.
+	for (int people = 0; people < 10; people++) {
+		CreatHuman(people);
 	}
 
 	//人の座標要素数取得.
@@ -73,8 +52,6 @@ void CPeopleManager::Init(int FileNum, int StageNum, int max, float StageMax)
 	//驚くフラグ要素数取得.
 	m_bSurpriseFlag.resize(m_pCPeopleBase.size());
 
-	//ステージの長さ最大値を設定.
-	m_fStageDistanceMax = StageMax;
 }
 
 //=======================================.
@@ -107,16 +84,20 @@ void CPeopleManager::Update()
 void CPeopleManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight)
 {
 	//人の描画処理.
-	for (unsigned int human = 0; human < m_CreateHumanMax; human++) {
-		if (m_bDispFlag[human] == true) {
-			//ポーズフラグ.
-			m_pCPeopleBase[human]->SetPauseFlag(m_bPauseFlag);
-			//描画時に必要な値取得.
-			m_pCPeopleBase[human]->SetCameraPos(vCameraPos);
-			m_pCPeopleBase[human]->RenderInitSetting(mView, mProj, stLight);
-			//描画処理関数.
-			m_pCPeopleBase[human]->Render();
+	for (unsigned int human = 0; human < m_pCPeopleBase.size(); human++) {
+		
+		if (m_bDispFlag[human] == false) {
+			//描画しない.
+			continue;
 		}
+
+		//ポーズフラグ.
+		m_pCPeopleBase[human]->SetPauseFlag(m_bPauseFlag);
+		//描画時に必要な値取得.
+		m_pCPeopleBase[human]->SetCameraPos(vCameraPos);
+		m_pCPeopleBase[human]->RenderInitSetting(mView, mProj, stLight);
+		//描画処理関数.
+		m_pCPeopleBase[human]->Render();
 	}
 
 	//アイコンは描画しないようにする処理.
@@ -165,9 +146,7 @@ void CPeopleManager::SetNowHumanSurprise(const std::vector<int>& HumanNum)
 //=======================================.
 void CPeopleManager::Release()
 {
-	for (int human = m_CreateHumanMax - 1; human >= 0; human--) {
-		SAFE_DELETE(m_pCPeopleBase[human]);
-	}
+
 }
 
 //=======================================.
@@ -175,21 +154,36 @@ void CPeopleManager::Release()
 //=======================================.
 void CPeopleManager::HumanApp()
 {
-	//出現させる処理.
 	if (m_DispCnt == DISP_TIME) {
-		for (unsigned int human = m_HumanAppOrder[m_AppHumanNum]; human < m_CreateHumanMax; human += 2) {
-			//人がいないときは終了.
+		//作成フラグ.
+		bool m_bCreatFlag = true;
+
+		for (unsigned int people = 0; people < m_pCPeopleBase.size(); people++) {
 			if (m_HumanAppOrder[m_AppHumanNum] < 0) {
+				//待ち時間なので作成しない.
+				m_bCreatFlag = false;
 				break;
 			}
 
-			if (m_bDispFlag[human] == false) {
-				m_pCPeopleBase[human]->SetPos(INIT_POS);
-				m_bDispFlag[human] = true;
-				m_pCPeopleBase[human]->SetDispFlag(true);
+			if (m_HumanAppOrder[m_AppHumanNum] != m_DisplayableHumanNum[people]) {
+				continue;
+			}
+
+			//出現させる処理.
+			if (m_bDispFlag[people] == false) {
+				m_pCPeopleBase[people]->SetPos(INIT_POS);
+				m_bDispFlag[people] = true;
+				m_pCPeopleBase[people]->SetDispFlag(true);
+				m_bCreatFlag = false;
 				break;
 			}
 		}
+
+		//人を作成処理関数.
+		if (m_bCreatFlag == true) {
+			CreatHuman(m_AppHumanNum);
+		}
+
 		m_AppHumanNum++;
 		m_DispCnt = 0;
 	}
@@ -203,15 +197,45 @@ void CPeopleManager::HumanApp()
 //=======================================.
 void CPeopleManager::HumanMove()
 {
-	for (unsigned int human = 0; human < m_CreateHumanMax; human++) {
-		if (m_bDispFlag[human] == true) {
-
-			//更新処理関数.
-			m_pCPeopleBase[human]->Update();
-			//表示フラグ取得処理.
-			m_bDispFlag[human] = m_pCPeopleBase[human]->GetDispFlag();
-			//人の座標取得.
-			m_vHumanPos[human] = m_pCPeopleBase[human]->GetPos();
+	for (unsigned int human = 0; human < m_pCPeopleBase.size(); human++) {
+		
+		if (m_bDispFlag[human] == false) {
+			//移動させない.
+			continue;
 		}
+
+		//更新処理関数.
+		m_pCPeopleBase[human]->Update();
+		//表示フラグ取得処理.
+		m_bDispFlag[human] = m_pCPeopleBase[human]->GetDispFlag();
+		//人の座標取得.
+		m_vHumanPos[human] = m_pCPeopleBase[human]->GetPos();
 	}
+}
+
+//========================================.
+//		人を作成処理関数.
+//========================================.
+void CPeopleManager::CreatHuman(const int& HumanNum)
+{
+	m_bDispFlag.push_back(false);
+	m_DisplayableHumanNum.push_back(m_HumanAppOrder[HumanNum]);
+	//人の座標要素数取得.
+	m_vHumanPos.push_back(INIT_POS);
+	//驚くフラグ要素数取得.
+	m_bSurpriseFlag.push_back(false);
+
+	//女.
+	if (m_HumanAppOrder[HumanNum] == 0) {
+		m_pCPeopleBase.emplace_back(new CGirl());
+		m_pCPeopleBase[m_pCPeopleBase.size() - 1]->SetStageMax(m_fStageDistanceMax);
+		m_pCPeopleIcon.emplace_back(new CGirlIcon());
+		return;
+	}
+
+	//男.
+	m_pCPeopleBase.emplace_back(new CBoy());
+	m_pCPeopleBase[m_pCPeopleBase.size() - 1]->SetStageMax(m_fStageDistanceMax);
+	m_pCPeopleIcon.emplace_back(new CBoyIcon());
+
 }
