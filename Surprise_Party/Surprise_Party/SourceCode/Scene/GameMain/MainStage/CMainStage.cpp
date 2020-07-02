@@ -420,6 +420,9 @@ void CMainStage::Control()
 	//移動するギミック決定.
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
 		if (GetAsyncKeyState(VK_BACK) & 0x0001) {
+			if (m_ExplainFlag != 0) {
+				return;
+			}
 			m_pCWorkghostManager->SetSelectStop();
 			//お化けの選択に戻る.
 			m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
