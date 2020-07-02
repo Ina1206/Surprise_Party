@@ -420,6 +420,7 @@ void CMainStage::Control()
 	//ˆÚ“®‚·‚éƒMƒ~ƒbƒNŒˆ’è.
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
 		if (GetAsyncKeyState(VK_BACK) & 0x0001) {
+			//à–¾’†‚Íˆ—‚µ‚Ä‚Ù‚µ‚­‚È‚¢.
 			if (m_ExplainFlag != 0) {
 				return;
 			}
