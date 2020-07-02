@@ -80,8 +80,8 @@ void CEnding::ChangeStage()
 CEndingStageBase*	CEnding::DecideStage()
 {
 	if (m_Evaluation == 0) {
-		//高評価クラス.
-		return new CHightEvaluationStage();
+		//低評価クラス.
+		return new CLowEvaluationStage();
 	}
 
 	if (m_Evaluation == 1) {
@@ -89,5 +89,6 @@ CEndingStageBase*	CEnding::DecideStage()
 		return new CIntermediateEvaluationStage();
 	}
 
-	return new CLowEvaluationStage();
+	//高評価クラス.
+	return new CHightEvaluationStage();
 }

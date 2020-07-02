@@ -168,7 +168,7 @@ void CReputationSNS::MoveCursor()
 void CReputationSNS::DecidePicture(const int& EndingType)
 {
 	//Spriteî‘çÜ.
-	const int SpriteNum = static_cast<int>(enSpriteUI::PictureSNSRest) + (2 - EndingType);
+	const int SpriteNum = static_cast<int>(enSpriteUI::PictureSNSRest) + EndingType;
 
 	m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum)));
 	m_vSpriteUIPos.push_back(D3DXVECTOR3(350.0f, 5.0f, 0.0f));
