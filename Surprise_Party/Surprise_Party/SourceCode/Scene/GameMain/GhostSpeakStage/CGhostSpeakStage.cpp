@@ -34,12 +34,17 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	//大きいお化け寝るフラグ.
 	const bool SLEEP_BIGGHOST_FLAG = m_pCBigGhost->GetSleepFlag();
 
-
+	//チュートリアルに進む処理.
 	if (GetAsyncKeyState('Q') & 0x8000) {
 		if (m_TutorialFlag != TUTORIAL_FINISH) {
 			m_TutorialFlag = TUTORIAL_START;
 			return;
 		}
+	}
+	//メインステージに進む処理.
+	if (GetAsyncKeyState('W') & 0x8000) {
+		m_bChangeStageFlag = true;
+		return;
 	}
 
 	if (SLEEP_BIGGHOST_FLAG == false) {
