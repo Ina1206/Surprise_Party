@@ -231,7 +231,7 @@ void CMainStage::Init()
 {
 	//全体的にファイル番号.
 	const int FileNum = 0;
-	const int StageNum = 0;
+	//const int StageNum = 0;
 
 	//オブジェクトファイル番号.
 	int ObjFileNum = static_cast<int>(CFileResource::enStageType::ObjectPos)/* + m_StageNum*/;
@@ -239,7 +239,7 @@ void CMainStage::Init()
 	//読み込みクラスアドレス取得.
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
 	
-	m_pCStaticObjectManager.reset(new CStaticObjectManager(ObjFileNum, StageNum));
+	m_pCStaticObjectManager.reset(new CStaticObjectManager(ObjFileNum, m_StageNum));
 
 	//ステージの長さ最大数.
 	float m_fStageDistanceMax = m_pCStaticObjectManager->GetStageDistanceMax();
@@ -247,10 +247,10 @@ void CMainStage::Init()
 	int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos) /** 3*/;
 	//お化け管理クラスをインスタンス化.
 	m_pCWorkghostManager.reset(new CMainStageWorkGhostManager());
-	m_pCWorkghostManager->Init(GhostFilenum, StageNum, m_pCStaticObjectManager->OBJECT_WIDTH);
+	m_pCWorkghostManager->Init(GhostFilenum, m_StageNum, m_pCStaticObjectManager->OBJECT_WIDTH);
 
 	//動的オブジェクトインスタンス化.
-	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum, StageNum));
+	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum, m_StageNum));
 	m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkghostManager->GetAllGhostNum());
 	
 	const std::vector<D3DXVECTOR3> m_vGimmickPos = m_pCMoveObjectManager->GetAllGimmickPos();
@@ -268,8 +268,7 @@ void CMainStage::Init()
 
 	//人管理クラス設定.
 	m_pCPeopleManager.reset(new CPeopleManager());
-	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleComeOder) /*+ FileNum*/ /** 3*/, 12, m_pCFileResource->GetStageMax(GhostFilenum, 0) * m_pCMoveObjectManager->OBJECT_WIDTH);
-	m_pCPeopleManager->SetStageDistanceMax(m_fStageDistanceMax);
+	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleComeOder) /*+ FileNum*/ /** 3*/, 12, m_pCFileResource->GetStageMax(GhostFilenum, m_StageNum) * m_pCMoveObjectManager->OBJECT_WIDTH);
 
 	//====UI系のインスタンス化====.
 	//ステージ.

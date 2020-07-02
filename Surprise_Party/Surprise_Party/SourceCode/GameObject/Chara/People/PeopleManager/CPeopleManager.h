@@ -27,8 +27,6 @@ public:
 	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight);	//描画処理関数.
 	
 	//===========情報置換処理関数============//.
-	//ステージ距離最大値.
-	void SetStageDistanceMax(const float& fStageDistanceMax) { m_fStageDistanceMax = fStageDistanceMax; }
 	//驚いたフラグ.
 	void SetSurpriseFlag(const int& SurpriseHumanNum, const bool& bFlag) { m_bSurpriseFlag[SurpriseHumanNum] = bFlag; }
 	//驚いている人番号.

@@ -72,6 +72,9 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 	m_vHumanPos.resize(m_pCPeopleBase.size());
 	//驚くフラグ要素数取得.
 	m_bSurpriseFlag.resize(m_pCPeopleBase.size());
+
+	//ステージの長さ最大値を設定.
+	m_fStageDistanceMax = StageMax;
 }
 
 //=======================================.
