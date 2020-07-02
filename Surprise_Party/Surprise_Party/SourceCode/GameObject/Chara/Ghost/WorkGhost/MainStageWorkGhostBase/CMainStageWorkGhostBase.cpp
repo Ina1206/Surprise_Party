@@ -131,6 +131,9 @@ void CMainStageWorkGhostBase::SelectUpdate()
 			//選択終了.
 			m_bSelectFlag = false;
 
+			//アイコンの表情戻す.
+			m_pCGhostIcon->SetSelectedFlag(false);
+
 			//全てのフラグ.
 			unsigned int ACT_ALL_FLAG = m_pCAct_Selection->MOVE_FLAG | m_pCAct_Selection->REST_FLAG;
 			if (m_pCAct_Selection->GetGhostActFlag() & ACT_ALL_FLAG) {
@@ -139,8 +142,6 @@ void CMainStageWorkGhostBase::SelectUpdate()
 				//選択後の行動.
 				m_MoveFlag |= SELECT_ACT_FLAG;
 
-				//アイコンの表情戻す.
-				m_pCGhostIcon->SetSelectedFlag(false);
 
 				//チュートリアル時コメント一つ増やすフラグ.
 				m_bTutorialCommentAddFlag = true;
