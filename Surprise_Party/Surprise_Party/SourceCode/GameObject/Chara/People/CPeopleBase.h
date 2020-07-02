@@ -77,6 +77,7 @@ protected:
 	float								m_fWalkAnimSpeed;	//歩きアニメーション速度.
 	float								m_fStageMax;		//ステージ最大距離.
 	float								m_fMoveSpeed;		//移動速度.
+	float								m_fInitMoveSpeed;	//初期移動速度.
 	int									m_SurpriseQuantity;	//驚きポイント量.
 	LPD3DXANIMATIONCONTROLLER			m_pAnimCtrl;		//アニメーションコントローラ.
 	bool								m_bSurpriseFlag;	//驚くフラグ.

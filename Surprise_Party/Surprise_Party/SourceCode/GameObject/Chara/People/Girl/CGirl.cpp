@@ -61,7 +61,8 @@ void CGirl::Init()
 	m_fScale			= SCALE;
 
 	//ステータス数値取得.
-	m_fMoveSpeed		= m_pCFileResource->GetStatusNum(static_cast<int>(enCharacterType::Human), static_cast<int>(enHumanType::Girl), static_cast<int>(enStatus::MoveSpeed));
+	m_fInitMoveSpeed	= m_pCFileResource->GetStatusNum(static_cast<int>(enCharacterType::Human), static_cast<int>(enHumanType::Girl), static_cast<int>(enStatus::MoveSpeed));
+	m_fMoveSpeed		= m_fInitMoveSpeed;
 	m_SurpriseQuantity	= static_cast<int>(m_pCFileResource->GetStatusNum(static_cast<int>(enCharacterType::Human), static_cast<int>(enHumanType::Girl), static_cast<int>(enStatus::Scared)));
 	
 	//一時停止間隔設定処理.
