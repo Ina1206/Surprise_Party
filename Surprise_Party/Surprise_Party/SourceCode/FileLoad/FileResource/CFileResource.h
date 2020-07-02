@@ -56,7 +56,7 @@ public:
 	//ステータスのマップチップの取得.
 	float GetStatusNum(int fileNum, int column, int line) { return m_pCStatusFileNumber[fileNum]->GetDataNum(column, line); }
 	//ステージの最大.
-	int GetStageMax(int fileNum) { return m_pCStageFileNumber[fileNum]->GetLineMax(); }
+	int GetStageMax(const int& fileNum, const int& column) { return m_pCStageFileNumber[fileNum]->GetLineMax(column); }
 	//会話文章.
 	std::string GetSpeakString(const int& fileNum, const int& column, const CFileString::enStringType& line) { return m_pCSpeakFileString[fileNum]->GetData(column, line); }
 	int	GetSringMax(const int& fileNum) const { return m_pCSpeakFileString[fileNum]->GetColumnMax(); }

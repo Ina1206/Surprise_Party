@@ -194,14 +194,14 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 	m_pCFileResource = CFileResource::GetResourceInstance();
 
 	unsigned int objNum = 0;	//オブジェクト番号.
-	unsigned int objMax = m_pCFileResource->GetStageMax(FileNum) * static_cast<int>(enMoveObjectType::Max);
-	unsigned int stageMax = m_pCFileResource->GetStageMax(FileNum);
+	unsigned int objMax = m_pCFileResource->GetStageMax(FileNum, 0) * static_cast<int>(enMoveObjectType::Max);
+	unsigned int stageMax = m_pCFileResource->GetStageMax(FileNum, 0);
 	unsigned int obj = 0;
 
 	//座標設定処理.
 	for (unsigned int stage = 0; stage < objMax; stage++) {
 		//各オブジェクト区切りのステージマップ数.
-		int stagenum = stage - (stageMax - m_pCFileResource->GetStageMax(FileNum));
+		int stagenum = stage - (stageMax - m_pCFileResource->GetStageMax(FileNum, 0));
 		//オブジェクト番号.
 		objNum = m_pCFileResource->GetStageNum(FileNum, StageNum, stagenum) - MOVEOBJECT_START_NUM;
 		if (obj == objNum) {
@@ -230,7 +230,7 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 			m_pCGimmickIcon.push_back(nullptr);
 			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1].reset(new CGimmickIcon(objNum));
 			//ステージの距離最大値取得.
-			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1]->SetStageMax(m_pCFileResource->GetStageMax(FileNum) * OBJECT_WIDTH);
+			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1]->SetStageMax(m_pCFileResource->GetStageMax(FileNum, 0) * OBJECT_WIDTH);
 			//ギミックアイコン座標取得.
 			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1]->SetCharaPos(m_vMoveObjectPos[m_pCGimmickIcon.size() - 1]);
 			//ギミックアイコン1回だけ更新させる.
@@ -243,7 +243,7 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 				m_DispPaintingMax = m_vMoveObjectPos.size();
 			}
 			obj++;
-			stageMax += m_pCFileResource->GetStageMax(FileNum);
+			stageMax += m_pCFileResource->GetStageMax(FileNum, 0);
 		}
 	}
 	//上下フラグ要素数設定.
@@ -268,7 +268,7 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 
 	//ギミックカーソルインスタンス化.
 	m_pCMapGimmicKCursor.reset(new CMapGimmickCursor());
-	m_pCMapGimmicKCursor->SetStageMax(m_pCFileResource->GetStageMax(FileNum) * OBJECT_WIDTH);
+	m_pCMapGimmicKCursor->SetStageMax(m_pCFileResource->GetStageMax(FileNum, 0) * OBJECT_WIDTH);
 
 	//ゲーム内でのギミックカーソルインスタンス化.
 	m_pCGameGimmickCursor.reset(new CGameGimmickCursor());

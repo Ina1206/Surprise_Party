@@ -43,7 +43,7 @@ void CPeopleManager::Init(int FileNum, int max, float StageMax)
 	int m_column = IntervalRand(mt);
 
 	//l‚Ìí—Ş”Ô†æ“¾.
-	for (int people = 0; people < m_pCFileResource->GetStageMax(FileNum); people++) {
+	for (int people = 0; people < m_pCFileResource->GetStageMax(FileNum, 0); people++) {
 		m_HumanAppOrder.push_back(m_pCFileResource->GetStageNum(FileNum, m_column, people) - 1);
 	}
 

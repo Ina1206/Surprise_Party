@@ -28,7 +28,7 @@ void CMainStageWorkGhostManager::Init(const int& StageType, const int& StageNum,
 {
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
 
-	for (int stage = 0; stage < m_pCFileResource->GetStageMax(StageType); stage++) {
+	for (int stage = 0; stage < m_pCFileResource->GetStageMax(StageType, 0); stage++) {
 		switch (m_pCFileResource->GetStageNum(StageType, StageNum, stage) - 1) {
 		case 0:
 			m_pCWorkGhost.push_back(nullptr);

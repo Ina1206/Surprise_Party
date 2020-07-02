@@ -17,8 +17,7 @@ public:
 
 	//==============î•ñæ“¾ˆ—ŠÖ”==================//.
 	float GetDataNum(int column, int line) { return m_veclineData[column][line]; }
-	int GetLineMax() { return 0; }
-	//int GetLineMax(const int& column) { return static_cast<int>(m_veclineData[column].size()); }
+	int GetLineMax(const int& column) { return static_cast<int>(m_veclineData[column].size()); }
 	//int GetLineMax(const int& column) { return m_lineMax[column]; }
 private:
 	HRESULT DataArrage();												//s‚Æ—ñ‚É•ª‚¯‚Ä®—ˆ—ŠÖ”.
