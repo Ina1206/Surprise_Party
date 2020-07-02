@@ -76,19 +76,10 @@ void CFileResource::StageLoad()
 	std::vector<std::string> m_FileName = {
 		//オブジェクトマップ.
 		"Data\\File\\StageFile\\ObjectPos.csv",
-		//"Data\\File\\StageFile\\ObjectMap\\TestNum_Part1.csv",
-		//"Data\\File\\StageFile\\ObjectMap\\TestNum_Part2.csv",
-		//"Data\\File\\StageFile\\ObjectMap\\TestNum_Part3.csv",
 		//人.
 		"Data\\File\\StageFile\\PeopleComeOrder.csv",	
-		//"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_FirstDay.csv",
-		//"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_SecondDay.csv",
-		//"Data\\File\\StageFile\\PeopleOrder\\TestPeopleNum_ThirdDay.csv",
 		//お化けマップ.
 		"Data\\File\\StageFile\\GhostPos.csv",
-		//"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part1.csv",
-		//"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part2.csv",
-		//"Data\\File\\StageFile\\GhostMap\\TestGhostNum_Part3.csv",
 	};
 
 	//ステージのファイルの読み込み処理.
