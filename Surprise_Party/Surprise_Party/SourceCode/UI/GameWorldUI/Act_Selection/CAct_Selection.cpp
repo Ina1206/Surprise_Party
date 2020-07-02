@@ -198,7 +198,9 @@ void CAct_Selection::CloseMove()
 void CAct_Selection::Control()
 {
 	if (GetAsyncKeyState(VK_BACK) & 0x0001) {
-		m_MoveFlag = CLOSE_MOVE;
+		if (m_bTutorialFlag == false) {
+			m_MoveFlag = CLOSE_MOVE;
+		}
 	}
 
 	if (m_bTutorialFlag == true) {
