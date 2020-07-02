@@ -230,40 +230,27 @@ void CMainStage::Render()
 void CMainStage::Init()
 {
 	//全体的にファイル番号.
-	int FileNum = 0;
+	const int FileNum = 0;
+	const int StageNum = 0;
 
 	//オブジェクトファイル番号.
 	int ObjFileNum = static_cast<int>(CFileResource::enStageType::ObjectPos) + m_StageNum;
-	//int ObjFileNum = static_cast<int>(CFileResource::enStageType::OneDay) + m_StageNum;
 
 	//読み込みクラスアドレス取得.
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
-
-	//静的オブジェクトインスタンス化.
-	std::random_device rnda;
-	std::mt19937 mta(rnda());
-	std::uniform_int_distribution<> IntervalRand4(0, 2);
-	int m_columna = IntervalRand4(mta);
 	
-	m_pCStaticObjectManager.reset(new CStaticObjectManager(ObjFileNum, m_columna));
+	m_pCStaticObjectManager.reset(new CStaticObjectManager(ObjFileNum, StageNum));
 
 	//ステージの長さ最大数.
 	float m_fStageDistanceMax = m_pCStaticObjectManager->GetStageDistanceMax();
 
-	//お化け設定.
-	std::random_device rnd;
-	std::mt19937 mt(rnd());
-	std::uniform_int_distribution<> IntervalRand(0, 2);
-	int m_column = IntervalRand(mt);
-
 	int GhostFilenum = static_cast<int>(CFileResource::enStageType::GhostPos) * 3;
 	//お化け管理クラスをインスタンス化.
 	m_pCWorkghostManager.reset(new CMainStageWorkGhostManager());
-	m_pCWorkghostManager->Init(GhostFilenum, m_column, m_pCStaticObjectManager->OBJECT_WIDTH);
+	m_pCWorkghostManager->Init(GhostFilenum, StageNum, m_pCStaticObjectManager->OBJECT_WIDTH);
 
 	//動的オブジェクトインスタンス化.
-	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum, m_column));
-	//m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkGhost.size());
+	m_pCMoveObjectManager.reset(new CMoveObjectManager(ObjFileNum, StageNum));
 	m_pCMoveObjectManager->SetGhostElementCount(m_pCWorkghostManager->GetAllGhostNum());
 	
 	const std::vector<D3DXVECTOR3> m_vGimmickPos = m_pCMoveObjectManager->GetAllGimmickPos();
@@ -272,7 +259,6 @@ void CMainStage::Init()
 	for (unsigned int gimmick = 0; gimmick < m_vGimmickPos.size(); gimmick++) {
 		for (unsigned int ghost = 0; ghost < m_vWorkGhostPos.size(); ghost++) {
 			if (fabsf(m_vWorkGhostPos[ghost].x - m_vGimmickPos[gimmick].x) < GIMMICK_UP_DECISION) {
-				//m_UseGimmickNum = gimmick;
 				m_pCWorkghostManager->SetUseGimmickNum(ghost, gimmick);	
 				m_pCMoveObjectManager->SetUsedGimmickFlag(gimmick, true);
 			}
@@ -282,7 +268,7 @@ void CMainStage::Init()
 
 	//人管理クラス設定.
 	m_pCPeopleManager.reset(new CPeopleManager());
-	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleOder) /*+ FileNum*/ * 3, 12, m_pCFileResource->GetStageMax(GhostFilenum) * m_pCMoveObjectManager->OBJECT_WIDTH);
+	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleComeOder) /*+ FileNum*/ * 3, 12, m_pCFileResource->GetStageMax(GhostFilenum) * m_pCMoveObjectManager->OBJECT_WIDTH);
 	m_pCPeopleManager->SetStageDistanceMax(m_fStageDistanceMax);
 
 	//====UI系のインスタンス化====.

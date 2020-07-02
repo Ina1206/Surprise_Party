@@ -20,7 +20,7 @@ public:
 	//ステージ種類.
 	enum class enStageType {
 		ObjectPos,			//オブジェクト座標.
-		PeopleOder,			//人が入る順番.
+		PeopleComeOder,		//人が入る順番.
 		GhostPos,			//お化けの位置1日目.
 
 		Max,				//最大値.
