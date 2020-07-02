@@ -268,7 +268,7 @@ void CMainStage::Init()
 
 	//人管理クラス設定.
 	m_pCPeopleManager.reset(new CPeopleManager());
-	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleComeOder) /*+ FileNum*/ /** 3*/, 12,m_fStageDistanceMax);
+	m_pCPeopleManager->Init(static_cast<int>(CFileResource::enStageType::PeopleComeOder) /*+ FileNum*/ /** 3*/, m_StageNum, 12,m_fStageDistanceMax);
 	
 	//====UI系のインスタンス化====.
 	//ステージ.

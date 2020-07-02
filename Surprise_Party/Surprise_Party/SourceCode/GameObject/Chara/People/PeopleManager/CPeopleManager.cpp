@@ -30,7 +30,7 @@ CPeopleManager::~CPeopleManager()
 //=======================================.
 //		初期化処理関数.
 //=======================================.
-void CPeopleManager::Init(int FileNum, int max, float StageMax)
+void CPeopleManager::Init(int FileNum, int StageNum, int max, float StageMax)
 {
 	//ファイルの読み込みアドレス取得.
 	m_pCFileResource = CFileResource::GetResourceInstance();

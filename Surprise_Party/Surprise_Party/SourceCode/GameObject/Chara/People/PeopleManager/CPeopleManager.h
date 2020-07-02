@@ -22,9 +22,10 @@ public:
 	const int			HUMAN_TYPE_MAX		= 2;									//人間種類最大数.
 
 	//=================関数==================//.
-	void Init(int FileNum, int max, float StageMax);	//初期化処理関数.
-	void Update();										//更新処理関数.
-	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const D3DXVECTOR3& vCameraPos, const LIGHT& stLight);	//描画処理関数.
+	void Init(int FileNum, int StageNum, int max, float StageMax);					//初期化処理関数.
+	void Update();																	//更新処理関数.
+	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, 
+				const D3DXVECTOR3& vCameraPos, const LIGHT& stLight);				//描画処理関数.
 	
 	//===========情報置換処理関数============//.
 	//驚いたフラグ.

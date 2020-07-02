@@ -45,7 +45,7 @@ void CStaticObjectManager::Updata()
 	int num = 0;
 
 	int checkStageNum = 0;
-	for (int stage = 0; stage < m_pCFileResource->GetStageMax(m_Filenum, 0) * COLUMN_MAX; stage++) {
+	for (int stage = 0; stage < m_pCFileResource->GetStageMax(m_Filenum, m_Stagenum) * COLUMN_MAX; stage++) {
 		//壁に合わせて表示場所を決める.
 		if (stage % COLUMN_MAX == 0) {
 			checkStageNum = stage;
@@ -159,7 +159,7 @@ void CStaticObjectManager::WallAndFloorSetting()
 	D3DXVECTOR3 vInitPos;
 	int stagenum = 0;
 	//床と壁の座標設定.
-	for (int stage = 0; stage < m_pCFileResource->GetStageMax(m_Filenum, 0) * COLUMN_MAX; stage++) {
+	for (int stage = 0; stage < m_pCFileResource->GetStageMax(m_Filenum, m_Stagenum) * COLUMN_MAX; stage++) {
 		if (stage % COLUMN_MAX == 0) {
 			//列番号.
 			stagenum = stage / COLUMN_MAX;
@@ -175,7 +175,7 @@ void CStaticObjectManager::WallAndFloorSetting()
 	}
 
 	//ステージの距離最大数計算.
-	m_fStageDistanceMax = m_pCFileResource->GetStageMax(m_Filenum, 0) * OBJECT_WIDTH;
+	m_fStageDistanceMax = m_pCFileResource->GetStageMax(m_Filenum, m_Stagenum) * OBJECT_WIDTH;
 }
 
 //====================================.
@@ -185,14 +185,14 @@ void CStaticObjectManager::OtherObjectSetting()
 {
 	//他のオブジェクトのインスタンス化と座標設定.
 	//各オブジェクトのステージ最大数.
-	int stageMax = m_pCFileResource->GetStageMax(m_Filenum, 0);
+	int stageMax = m_pCFileResource->GetStageMax(m_Filenum, m_Stagenum);
 	//オブジェクト数分ステージ数.
 	int objMax = stageMax * static_cast<int>(enStaticObjectType::ObjMax);
 	int obj = 0;
 	m_BeforeObjMax.push_back(m_vOtherObjectPos.size());
 
 	for (int stage = 0; stage < objMax; stage++) {
-		int stagenum = stage - (stageMax - m_pCFileResource->GetStageMax(m_Filenum, 0));
+		int stagenum = stage - (stageMax - m_pCFileResource->GetStageMax(m_Filenum, m_Stagenum));
 		int objNum = m_pCFileResource->GetStageNum(m_Filenum, m_Stagenum, stagenum) - 1;
 		if (objNum == obj) {
 			//オブジェクト番号ごとに設定.
@@ -210,7 +210,7 @@ void CStaticObjectManager::OtherObjectSetting()
 		//オブジェクトのステージ最大数になると次のオブジェクトへ.
 		if (stage >= stageMax - 1) {
 			obj++;
-			stageMax += m_pCFileResource->GetStageMax(m_Filenum, 0);
+			stageMax += m_pCFileResource->GetStageMax(m_Filenum, m_Stagenum);
 			m_BeforeObjMax.push_back(m_vOtherObjectPos.size());
 		}
 	}
