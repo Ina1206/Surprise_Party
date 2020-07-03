@@ -70,7 +70,10 @@ HRESULT CFileNumber::DataSplita(std::string input, char delimiter)
 			LineMax++;
 		}
 	}
-	m_lineMax.push_back(LineMax);
+
+	if (LineMax > 0) {
+		m_lineMax.push_back(LineMax);
+	}
 
 	return S_OK;
 }
@@ -81,7 +84,7 @@ HRESULT CFileNumber::DataSplita(std::string input, char delimiter)
 HRESULT	CFileNumber::DataArrage()
 {
 	//—ñ‚ÌÅ‘å”.
-	m_ColumneMax = static_cast<int>(m_strLinevec.size());
+	m_ColumneMax = static_cast<int>(m_lineMax.size());
 
 	m_veclineData.resize(m_ColumneMax);
 	for (int column = 0; column < m_ColumneMax; column++) {
