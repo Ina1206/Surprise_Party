@@ -51,11 +51,21 @@ HRESULT CFileNumber::DataSplita(std::string input, char delimiter)
 	std::stringstream str(input);
 	std::string filed;
 	int LineMax = 0;
-
+	
 	//コンマで区切る.
 	while (std::getline(str, filed, delimiter)) {
-		//アルファベットと空白以外の文字列を通す.
-		if (!(std::any_of(filed.cbegin(), filed.cend(), isalpha) || filed == "")) {
+
+		//空白は除外.
+		if (filed == "") {
+			continue;
+		}
+		//全角文字は除外.
+		if (IsDBCSLeadByte(filed.front()) != 0) {
+			continue;
+		}
+
+		//アルファベット文字列を通す.
+		if (!(std::any_of(filed.cbegin(), filed.cend(), isalpha))) {
 			m_strvec.push_back(filed);
 			LineMax++;
 		}
