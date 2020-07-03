@@ -98,6 +98,7 @@ void CFileResource::StatusLoad()
 	std::vector<std::string> m_FileName = {
 		"Data\\File\\CharaStatus\\GhostStatus.csv",
 		"Data\\File\\CharaStatus\\PeopleStatus.csv",
+		"Data\\File\\CharaStatus\\StageStatus.csv",
 	};
 
 	//ステータスのファイルの読み込み処理.

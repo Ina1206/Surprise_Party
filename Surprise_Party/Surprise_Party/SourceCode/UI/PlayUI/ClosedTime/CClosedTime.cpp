@@ -6,11 +6,12 @@ CClosedTime::CClosedTime()
 
 }
 
-CClosedTime::CClosedTime(int MaxTime)
-	: m_TimeUpToClose	(MaxTime)
+CClosedTime::CClosedTime(const int& StageNum)
+	: m_TimeUpToClose	(0)
 	, m_TimeReduceCnt	(0)
 	, m_GiveBornusTime	(false)
 	, m_bClosedFlag		(false)
+	, m_StageNum		(StageNum)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -104,6 +105,8 @@ void CClosedTime::Init()
 		m_vUIPos[time].x += TIME_INTERVAL * (time - TIME_START_NUM);
 	}
 
+	//ãŒÀŠÔİ’è.
+	//m_TimeUpToClose = static_cast<int>()
 
 	//ŠÔŒvZˆ—ŠÖ”.
 	TitmeCalc();

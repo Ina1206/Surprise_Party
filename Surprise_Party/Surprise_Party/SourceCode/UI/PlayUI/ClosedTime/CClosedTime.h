@@ -11,7 +11,7 @@ class CClosedTime
 {
 public:
 	CClosedTime();
-	CClosedTime(int MaxTime);
+	CClosedTime(const int& StageNum);
 	~CClosedTime();
 
 	//====================定数=====================//.
@@ -57,6 +57,7 @@ private:
 	int		m_TimeReduceCnt;				//時間減らすカウント.
 	bool 	m_GiveBornusTime;				//追加時間与えるフラグ.
 	bool	m_bClosedFlag;					//閉店フラグ.
+	int		m_StageNum;						//ステージ番号.
 };
 
 #endif	//#ifndef CCLOSED_TIME_H.

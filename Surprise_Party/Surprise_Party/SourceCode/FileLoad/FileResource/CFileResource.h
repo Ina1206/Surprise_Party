@@ -30,6 +30,7 @@ public:
 	enum class enStatusCharaType {
 		Ghost = 0,		//お化け.
 		People,			//人.
+		Stage,			//ステージ.
 
 		Max,			//最大値.
 		Start = Ghost,
