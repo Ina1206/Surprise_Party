@@ -35,7 +35,7 @@ public:
 	const unsigned int	UP_FLAG				= (1 << 1);							//上げるフラグ.
 
 	const float			COLOR_MAX			= 255.0f;							//色の最大値.
-	const float			ADJUSTMENT_WIDTH	= 0.1f;								//幅調整.
+	const float			ADJUSTMENT_WIDTH	= 0.2f;								//幅調整.
 	const float			NEAR_SENTER_ADJUST	= 5.0f;								//近づく判定中央差分.
 	//const float			GIMMICK_UP_DECISION = 0.1f;								//ギミックの上に乗っているかの判定差分.
 	const float			SURPRISE_POS_ADJUST = 2.5f;								//驚く場所の差分.

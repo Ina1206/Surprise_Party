@@ -441,7 +441,7 @@ void CMainStageWorkGhostBase::MoveGimmick()
 	}
 
 	//ˆÚ“®•ûŒü.
-	int MoveDirection = static_cast<int>((m_vObjectiveGimmickPos.x - m_vPos.x) / fabsf(m_vPos.x - m_vObjectiveGimmickPos.x));
+	int MoveDirection = static_cast<int>((m_vObjectiveGimmickPos.x - m_vPos.x ) / fabsf(m_vObjectiveGimmickPos.x - m_vPos.x));
 
 	//Šp“xˆÚ“®.
 	m_vRot.y -= ROT_SPEED * MoveDirection;
