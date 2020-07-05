@@ -295,7 +295,8 @@ void CMainStage::Init()
 	//前回のステージ初期化.
 	m_enBeforeStageEndingType = enBeforeStageEndigneType::Nothing;
 
-	m_pCClosedTime.reset(new CClosedTime(/*TimeUpMax * TIME_DELIMITER*/));
+	m_pCClosedTime.reset(new CClosedTime(m_StageNum));
+	//m_pCClosedTime.reset(new CClosedTime(/*TimeUpMax * TIME_DELIMITER*/));
 	//驚きゲージ.
 	//ステージごとに驚きゲージの最大数を増やす.
 	int SurpriseGageMax = START_SUPRISE_GAGE_MAX + (SURPRISE_GAGE_ADD * m_StageNum);

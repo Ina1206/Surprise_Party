@@ -1,4 +1,5 @@
 #include "CClosedTime.h"
+#include "..\..\FileLoad\FileResource\CFileResource.h"
 
 CClosedTime::CClosedTime()
 	: CClosedTime(0)
@@ -106,7 +107,10 @@ void CClosedTime::Init()
 	}
 
 	//ãŒÀŠÔİ’è.
-	//m_TimeUpToClose = static_cast<int>()
+	const int FileNum = static_cast<int>(CFileResource::enStatusCharaType::Stage);
+	const int StatusTypeNum = 0;
+	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
+	m_TimeUpToClose = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, StatusTypeNum));
 
 	//ŠÔŒvZˆ—ŠÖ”.
 	TitmeCalc();
