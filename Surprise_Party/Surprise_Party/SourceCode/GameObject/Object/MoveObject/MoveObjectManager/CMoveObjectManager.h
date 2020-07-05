@@ -68,6 +68,7 @@ public:
 	void Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight);		//描画処理関数.
 	void RenderSwitch(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, const LIGHT& stLight);	//スイッチの描画処理関数.
 	void EffectRender();																		//エフェクトの描画処理関数.
+	int  FindSelectGimmickNumByType(const int& GimmickType, const int& GimmickNum);										//種類別ギミック番号を見つける処理関数.
 
 	//===========情報置換処理関数=============//.
 	//カメラの位置.
@@ -97,11 +98,15 @@ public:
 	//選択されているギミックの場所.
 	D3DXVECTOR3 GetGimmickPos() { return m_vMoveObjectPos[m_SelectionNum]; }
 	//ギミックの種類.
-	CGameObject::enSurpriseObjectType GetSurpriseObjectType() { return m_enSurpriseObjectType[m_SelectionNum]; }
+	CGameObject::enSurpriseObjectType GetSurpriseObjectType(const int& SelectNum) { return m_enSurpriseObjectType[SelectNum]; }
 	//ギミックの座標.
 	std::vector<D3DXVECTOR3> GetAllGimmickPos() { return m_vMoveObjectPos; }
 	//ギミック使われているかフラグ.
 	bool GetUsedGimmickFlag(const int& num) { return m_bUsedGimmickFlag[num]; }
+	//ギミック番号を取得.
+	int GetGimmickNumByType(const int& Type, const int&num) { return m_GimmickNumByType[Type][num]; }
+	//種類ごとの最大値.
+	int GetGimmickMaxByType(const int& Type) { return static_cast<int>(m_GimmickNumByType[Type].size()); }
 
 private:
 	//=================関数===================//.
@@ -139,6 +144,7 @@ private:
 	std::vector<bool>								m_bPlayEffectSound;			//エフェクトと音再生.
 	bool											m_bRenderUI;				//UI描画するかどうかのフラグ.
 	bool											m_bPauseFlag;				//ポーズフラグ.
+	std::vector<std::vector<int>>					m_GimmickNumByType;			//タイプ別ギミック番号.				
 };
 
 #endif	//#ifndef CMVOE_OBJECT_MANAGER_H.

@@ -379,6 +379,9 @@ void CMainStage::Control()
 				//選択フラグ.
 				m_pCWorkghostManager->SetSelectFlag(true);
 
+				//ギミック番号取得.
+				m_SelectNum[GIMMICK_NUM] = m_pCWorkghostManager->GetUseGimmickNumToSelectGhost();
+
 				//お化け選択後行動.
 				m_ObjectSelectFlag = GHOST_ACT_SELECT_FLAG;
 
@@ -407,40 +410,39 @@ void CMainStage::Control()
 		}
 
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-			if (m_pCMoveObjectManager->GetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM]) == false) {
-				//お化けの種類とギミックの種類があっているときのみ.
-				if (m_pCWorkghostManager->GetSurpriseObjectType() ==
-					m_pCMoveObjectManager->GetSurpriseObjectType()) {
-					//使用するギミック番号の変更.
-					if (m_pCWorkghostManager->GetUseGimmickNumToSelectGhost() >= 0) {
-						m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNumToSelectGhost(), false);
-					}
-					m_pCMoveObjectManager->SetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM], true);
-					m_pCWorkghostManager->SetUseGimmickNumToSelectGhost(m_SelectNum[GIMMICK_NUM]);
+			if (m_pCMoveObjectManager->GetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM]) == true) {
+				//ギミックが使用されていたら処理しない.
+				return;
+			}
 
-					//チュートリアル時にコメントを進める処理.
-					if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
-						//例外処理.
-						if (!(m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GIMMICK_FLAG)) {
-							return;
-						}
-						m_pCDescriptionUIManager->SetAdvanceComment();
-					}
+			//使用するギミック番号の変更.
+			if (m_pCWorkghostManager->GetUseGimmickNumToSelectGhost() >= 0) {
+				m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNumToSelectGhost(), false);
+			}
+			m_pCMoveObjectManager->SetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM], true);
+			m_pCWorkghostManager->SetUseGimmickNumToSelectGhost(m_SelectNum[GIMMICK_NUM]);
 
-					//移動目的のオブジェクト座標取得.
-					m_pCWorkghostManager->SetObjectiveGimmickPos(m_pCMoveObjectManager->GetGimmickPos());
-					//お化けの選択に戻る.
-					m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
-					//ギミック選択フラグ.
-					m_pCWorkghostManager->SetChangeGimmickSelect(false);
-					//ギミックカーソル非表示フラグ設定.
-					m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
-
-					if (m_ExplainFlag & EXPLAINING_FLAG) {
-						//ギミック説明終了.
-						m_ExplainFlag |= EXPLAINED_GIMMICK_FLAG;
-					}
+			//チュートリアル時にコメントを進める処理.
+			if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
+				//例外処理.
+				if (!(m_pCDescriptionUIManager->GetTutorialFlag() & DECIDE_GIMMICK_FLAG)) {
+					return;
 				}
+				m_pCDescriptionUIManager->SetAdvanceComment();
+			}
+
+			//移動目的のオブジェクト座標取得.
+			m_pCWorkghostManager->SetObjectiveGimmickPos(m_pCMoveObjectManager->GetGimmickPos());
+			//お化けの選択に戻る.
+			m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
+			//ギミック選択フラグ.
+			m_pCWorkghostManager->SetChangeGimmickSelect(false);
+			//ギミックカーソル非表示フラグ設定.
+			m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
+
+			if (m_ExplainFlag & EXPLAINING_FLAG) {
+				//ギミック説明終了.
+				m_ExplainFlag |= EXPLAINED_GIMMICK_FLAG;
 			}
 		}
 	}
@@ -490,22 +492,32 @@ void CMainStage::GhostSelect()
 //========================================.
 void CMainStage::GimmickSelect()
 {
-	bool MoveSelectFlag = false;		//選択移動フラグ.
+	//選択移動フラグ.
+	bool MoveSelectFlag = false;					
+	//ギミックタイプ番号.
+	const int GimmickType = static_cast<int>(m_pCWorkghostManager->GetSurpriseObjectType());
+	//ギミック変更番号.
+	int	ChangeSelectNum = m_pCMoveObjectManager->FindSelectGimmickNumByType(GimmickType, m_SelectNum[GIMMICK_NUM]);
+
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
-		m_SelectNum[GIMMICK_NUM]++;
-		if (m_SelectNum[GIMMICK_NUM] >= m_pCMoveObjectManager->GetGimmickIconMax()) {
-			m_SelectNum[GIMMICK_NUM] = m_pCMoveObjectManager->GetGimmickIconMax() - 1;
+		//最大値の手前の数値.
+		const int BeforeGimmickMax = m_pCMoveObjectManager->GetGimmickMaxByType(GimmickType) - 1;
+		//同じギミックに選択を移動する処理.
+		if (ChangeSelectNum < BeforeGimmickMax) {
+			ChangeSelectNum++;
+			m_SelectNum[GIMMICK_NUM] = m_pCMoveObjectManager->GetGimmickNumByType(GimmickType, ChangeSelectNum);
+			MoveSelectFlag = true;
 		}
-		MoveSelectFlag = true;
 	}
 
 	if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
-		m_SelectNum[GIMMICK_NUM]--;
-		if (m_SelectNum[GIMMICK_NUM] < 0) {
-			m_SelectNum[GIMMICK_NUM] = 0;
+		//同じギミックに選択を移動する処理.
+		if (ChangeSelectNum > 0) {
+			ChangeSelectNum--;
+			m_SelectNum[GIMMICK_NUM] = m_pCMoveObjectManager->GetGimmickNumByType(GimmickType, ChangeSelectNum);
+			MoveSelectFlag = true;
 		}
-		MoveSelectFlag = true;
 	}
 
 	if (MoveSelectFlag == true) {

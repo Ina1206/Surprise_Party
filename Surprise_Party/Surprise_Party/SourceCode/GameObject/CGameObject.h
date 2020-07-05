@@ -21,6 +21,7 @@ public:
 	enum class enSurpriseObjectType {
 		Disp,		//現れる.
 		Switch,		//スイッチ.
+		Max			//最大数.
 	};
 
 	//================関数===================//.

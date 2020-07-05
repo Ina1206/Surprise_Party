@@ -30,6 +30,7 @@ CMoveObjectManager::CMoveObjectManager(const int& FileNum, const int& StageNum)
 	, m_bPlayEffectSound		()
 	, m_bRenderUI				(true)
 	, m_bPauseFlag				(false)
+	, m_GimmickNumByType		(0)
 {
 	//初期化処理関数.
 	Init(FileNum, StageNum);
@@ -186,6 +187,20 @@ void CMoveObjectManager::EffectRender()
 }
 
 //======================================.
+//	種類別ギミック番号を見つける処理関数.
+//======================================.
+int CMoveObjectManager::FindSelectGimmickNumByType(const int& GimmickType,const int& GimmickNum)
+{
+	//ギミック番号を検索する.
+	auto itr = std::find(m_GimmickNumByType[GimmickType].cbegin(), m_GimmickNumByType[GimmickType].cend(), GimmickNum);
+	if (itr != m_GimmickNumByType[GimmickType].cend()) {
+		return std::distance(m_GimmickNumByType[GimmickType].cbegin(), itr);
+	}
+
+	return 0;
+}
+
+//======================================.
 //		初期化処理関数.
 //======================================.
 void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
@@ -276,6 +291,13 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 
 	//ギミック要素数並べ替え処理関数.
 	GimmickSort();
+
+	//タイプ別オブジェクト番号.
+	m_GimmickNumByType.resize(static_cast<int>(CGameObject::enSurpriseObjectType::Max));
+	for (unsigned int obj = 0; obj < m_pCGimmickIcon.size(); obj++) {
+		const int GimmickTypeNum = static_cast<int>(m_enSurpriseObjectType[obj]);
+		m_GimmickNumByType[GimmickTypeNum].push_back(obj);
+	}
 }
 
 //======================================.
