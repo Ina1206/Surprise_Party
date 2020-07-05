@@ -1,4 +1,5 @@
 #include "CSurpriseGage.h"
+#include "..\..\FileLoad\FileResource\CFileResource.h"
 
 CSurpriseGage::CSurpriseGage()
 	: CSurpriseGage(0)
@@ -6,12 +7,13 @@ CSurpriseGage::CSurpriseGage()
 
 }
 
-CSurpriseGage::CSurpriseGage(int SurprisePointMax)
+CSurpriseGage::CSurpriseGage(const int& StageNum)
 	: m_SurprisePoint		(0)
-	, m_SurprisePointMax	(SurprisePointMax)
+	, m_SurprisePointMax	(0)
 	, m_bSurprisePointMax	(false)
 	, m_bBorusGetFlag		(false)
 	, m_EvalutionFlag		(0)
+	, m_StageNum			(StageNum)
 {
 	//初期化処理関数.
 	Init();
@@ -82,6 +84,12 @@ void CSurpriseGage::Init()
 	m_pCSpriteUI[GAGE_NUM]			= m_pCResourceManager->GetSpriteUI(enSpriteUI::Gage);
 	m_pCSpriteUI[STAMP_NUM]			= m_pCResourceManager->GetSpriteUI(enSpriteUI::ThankYouStamp);
 	m_pCSpriteUI[INFOM_NUM]			= m_pCResourceManager->GetSpriteUI(enSpriteUI::ExtendedNotification);
+
+	//驚かしポイント最大値の設定処理.
+	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
+	const int FileNum		= static_cast<int>(CFileResource::enStatusCharaType::Stage);	//ファイル番号.
+	const int StatusTypeNum = 1;															//ステータスタイプの番号.
+	m_SurprisePointMax = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, StatusTypeNum));
 }
 
 //======================================.

@@ -286,9 +286,7 @@ void CMainStage::Init()
 	m_pCClosedTime.reset(new CClosedTime(m_StageNum));
 
 	//驚きゲージ.
-	//ステージごとに驚きゲージの最大数を増やす.
-	int SurpriseGageMax = START_SUPRISE_GAGE_MAX + (SURPRISE_GAGE_ADD * m_StageNum);
-	m_pCSurpriseGage.reset(new CSurpriseGage(SurpriseGageMax));
+	m_pCSurpriseGage.reset(new CSurpriseGage(m_StageNum));
 
 	//初めはお化けの選択から.
 	m_ObjectSelectFlag = GHOST_SELECTION_FLAG;

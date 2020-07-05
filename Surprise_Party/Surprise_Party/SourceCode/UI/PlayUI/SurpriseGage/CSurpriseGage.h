@@ -8,7 +8,7 @@ class CSurpriseGage
 {
 public:
 	CSurpriseGage();
-	CSurpriseGage(int SurprisePointMax);
+	CSurpriseGage(const int& StageNum);
 	~CSurpriseGage();
 
 	//===================定数======================//.
@@ -60,6 +60,7 @@ private:
 	bool			m_bSurprisePointMax;//驚きポイント最大数になったフラグ.
 	bool			m_bBorusGetFlag;	//ボーナス取得フラグ.
 	unsigned int 	m_EvalutionFlag;	//評価フラグ.
+	int				m_StageNum;			//ステージ番号.
 };
 
 
