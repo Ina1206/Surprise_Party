@@ -97,7 +97,9 @@ int CPeopleBase::GetAddPointQuantity(int NearNo)
 void CPeopleBase::DispDecision()
 {
 	if (m_vPos.x > m_fStageMax) {
-		m_bDisp = false;
+		m_bDisp				= false;
+		m_fWalkAnimSpeed	= m_fAnimSpeed;
+		m_fMoveSpeed		= m_fInitMoveSpeed;
 	}
 }
 
