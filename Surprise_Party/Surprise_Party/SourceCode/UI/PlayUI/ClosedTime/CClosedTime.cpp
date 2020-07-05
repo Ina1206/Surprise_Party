@@ -59,7 +59,7 @@ void CClosedTime::GiveBornusTime(const bool& flag)
 	}
 
 	if (m_GiveBornusTime == false) {
-		m_TimeUpToClose += TIME_REDUCE_DELIMITER * BONUS_TIME_ADD;
+		m_TimeUpToClose += BONUS_TIME_ADD;
 
 		m_GiveBornusTime = true;
 	}

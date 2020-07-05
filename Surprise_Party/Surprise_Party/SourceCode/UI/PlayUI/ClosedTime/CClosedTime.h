@@ -23,7 +23,7 @@ public:
 	const int			NUM_RANK_DELIMITER		= 10;	//数値区切り.
 	const int			TIME_REDUCE_DELIMITER	= 60;	//時間減らす区切り.
 	const int			TIME_MIN				= 0;	//時間最小値.
-	const int			BONUS_TIME_ADD			= 1;	//ボーナス追加時間.
+	const int			BONUS_TIME_ADD			= 30;	//ボーナス追加時間.
 
 	const D3DXVECTOR2	TREE_PATTARN_NO			= D3DXVECTOR2(1.0f, 0.0f);	//木の板のパターン番号.
 	const D3DXVECTOR2	COLON_PATTARN_NO		= D3DXVECTOR2(10.0f, 0.0f);	//コロンパターン番号.
