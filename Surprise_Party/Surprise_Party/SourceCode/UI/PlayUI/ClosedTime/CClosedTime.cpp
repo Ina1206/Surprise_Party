@@ -1,6 +1,9 @@
 #include "CClosedTime.h"
 #include "..\..\FileLoad\FileResource\CFileResource.h"
 
+/************************************
+*	•Â“XŽžŠÔUIƒNƒ‰ƒX.
+*********/
 CClosedTime::CClosedTime()
 	: CClosedTime(0)
 {
