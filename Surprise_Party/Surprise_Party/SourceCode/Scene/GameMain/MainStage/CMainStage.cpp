@@ -279,24 +279,12 @@ void CMainStage::Init()
 	m_pCMapGhostCursor->SetStageMax(m_fStageDistanceMax);
 	//ゲーム内お化けのカーソル.
 	m_pCGameGhostCursor.reset(new CGameGhostCursor());
-	//閉店までの時間.
-	////ステージごとに制限時間を伸ばす.
-	//int TimeUpMax = START_TIME_UP_MAX + (ADD_TIME_UP * m_StageNum);
-	////Good,Greatだとボーナスで制限時間を追加.
-	//if (m_enBeforeStageEndingType == enBeforeStageEndigneType::Great) {
-	//	TimeUpMax += BENEFITS_PREVIOS_RESULT;
-	//}
-	////チュートリアルは別.
-	//if (m_enStageType == enStageType::Tutorial) {
-	//	TimeUpMax = 1;
-	//}
-	//TimeUpMax = 1;
-
 	//前回のステージ初期化.
 	m_enBeforeStageEndingType = enBeforeStageEndigneType::Nothing;
 
+	//閉店までの時間.
 	m_pCClosedTime.reset(new CClosedTime(m_StageNum));
-	//m_pCClosedTime.reset(new CClosedTime(/*TimeUpMax * TIME_DELIMITER*/));
+
 	//驚きゲージ.
 	//ステージごとに驚きゲージの最大数を増やす.
 	int SurpriseGageMax = START_SUPRISE_GAGE_MAX + (SURPRISE_GAGE_ADD * m_StageNum);
