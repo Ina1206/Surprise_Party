@@ -2,6 +2,7 @@
 #define CPEOPLE_ICON_H
 
 #include "..\CIcon.h"
+#include "..\..\SpriteUIEffect\ShockingEffect\CShockingEffect.h"
 
 /*********************************
 *		人のアイコンクラス.
@@ -24,15 +25,20 @@ public:
 
 	//===================関数=====================//.
 	void UpDate();			//更新処理関数.
-	void SurpriseAct();		//驚き行動処理関数.
+	void RenderEffect();	//エフェクト描画処理関数.
 
 protected:
+	//===================関数=====================//.
+	void SurpriseAct();		//驚き行動処理関数.
+
 	//===================変数=====================//.
 	bool m_bSurpriseFlag;	//驚きフラグ.
 
 private:
 	//===================変数=====================//.
-	float		m_fAcc;		//加速度.
+	float								m_fAcc;				//加速度.
+
+	std::unique_ptr<CShockingEffect>	m_pCShockingEffect;	//衝撃クラス.
 };
 
 #endif	//#ifndef CPEOPLE_ICON_H.

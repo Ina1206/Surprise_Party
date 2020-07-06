@@ -109,6 +109,7 @@ void CPeopleManager::Render(const D3DXMATRIX& mView, const D3DXMATRIX& mProj, co
 	for (unsigned int icon = 0; icon < m_pCPeopleIcon.size(); icon++) {
 		if (m_bDispFlag[icon] == true) {
 			m_pCPeopleIcon[icon]->Render();
+			m_pCPeopleIcon[icon]->RenderEffect();
 		}
 	}
 }

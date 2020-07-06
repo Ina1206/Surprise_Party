@@ -34,7 +34,9 @@ void CShockingEffect::Render()
 	m_pCSpriteUI->SetPosition(m_vPos);
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
 	m_pCSpriteUI->SetScale(m_fScale);
+	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
+	m_pCDepthStencil->SetDepth(true);
 }
 
 //======================================.

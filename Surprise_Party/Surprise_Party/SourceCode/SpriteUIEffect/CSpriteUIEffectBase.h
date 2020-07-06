@@ -2,7 +2,8 @@
 #define CSPRITEUI_EFFECT_BASE_H
 
 #include "..\Global.h"
-#include "..\..\Drawing\Resource\CResourceManager.h"
+#include "..\Drawing\Resource\CResourceManager.h"
+#include "..\Drawing\Sprite\CDepth_Stencil.h"
 
 /*****************************************
 *	スプライトUIエフェクト基底クラス.
@@ -26,6 +27,7 @@ public:
 protected:
 	//====================変数========================//.
 	CResourceManager*	m_pCResourceManager;	//読み込み管理クラス.
+	CDepth_Stencil*		m_pCDepthStencil;		//デプスステンシル.
 };
 
 #endif	//#ifndef CSPRITEUI_EFFECT_BASE_H.

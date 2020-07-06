@@ -3,8 +3,9 @@
 CPeopleIcon::CPeopleIcon()
 	: m_bSurpriseFlag		(false)
 	, m_fAcc				(0.0f)
+	, m_pCShockingEffect	(nullptr)
 {
-
+	m_pCShockingEffect.reset(new CShockingEffect());
 }
 
 CPeopleIcon::~CPeopleIcon()
@@ -26,6 +27,18 @@ void CPeopleIcon::UpDate()
 
 	//驚き行動処理関数.
 	SurpriseAct();
+
+	//衝撃エフェクト更新処理関数.
+	m_pCShockingEffect->SetCenterPos(m_vPos);
+	m_pCShockingEffect->Update();
+}
+
+//=====================================.
+//		エフェクト描画処理関数.
+//=====================================.
+void CPeopleIcon::RenderEffect()
+{
+	m_pCShockingEffect->Render();
 }
 
 //=====================================.
