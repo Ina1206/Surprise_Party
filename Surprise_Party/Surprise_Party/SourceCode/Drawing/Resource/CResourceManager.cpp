@@ -570,8 +570,8 @@ void CResourceManager::SpriteUIStateSetting()
 	const int ShockingSignNum = static_cast<int>(enSpriteUI::ShockingSign);
 	m_pstSpriteUIState[ShockingSignNum].Base.w = 800.0f;
 	m_pstSpriteUIState[ShockingSignNum].Base.h = 800.0f;
-	m_pstSpriteUIState[ShockingSignNum].Disp.w = m_pstSpriteUIState[ShockingSignNum].Base.w;
-	m_pstSpriteUIState[ShockingSignNum].Disp.h = m_pstSpriteUIState[ShockingSignNum].Base.h;
+	m_pstSpriteUIState[ShockingSignNum].Disp.w = 40.0f;
+	m_pstSpriteUIState[ShockingSignNum].Disp.h = 40.0f;
 
 	//‚¨‰»‚¯.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
