@@ -132,6 +132,7 @@ void CPeopleManager::SetNowHumanSurprise(const std::vector<int>& HumanNum)
 		m_bSurpriseFlag[HumanNum[human]] = true;
 		//‹Á‚¢‚½ƒtƒ‰ƒOŽæ“¾.
 		m_pCPeopleBase[HumanNum[human]]->SetSurpriseFlag(m_bSurpriseFlag[HumanNum[human]]);
+		m_pCPeopleIcon[HumanNum[human]]->SetSurpriseFlag(m_bSurpriseFlag[HumanNum[human]]);
 
 		//‹ß‚­‚Ìl”Ô†Žæ“¾.
 		m_pCPeopleBase[HumanNum[human]]->SetHumanNearNum(human);
