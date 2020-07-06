@@ -16,7 +16,7 @@ public:
 	const unsigned int	SURPRISE_ACT		= (1 << 1);							//驚く行動.
 	const D3DXVECTOR3	PERSON_ROT			= D3DXVECTOR3(0.0f, -1.5f, 0.0f);	//人の角度.
 	const int			FAR_NUM				= -1;								//遠い人番号.
-	const float			ACCELERATION_SPEED	= 0.02f;							//加速速度.
+	const float			ACCELERATION_SPEED	= 0.005f;							//加速速度.
 	const float			BASE_ANIM_SPEED		= 0.02f;							//基本アニメーション速度.
 	const float			PAUSE_ANIM_SPEED	= 0.0f;								//ポーズ時のアニメーション速度.
 	const float			SCALE				= 0.1f;								//人の大きさ.
