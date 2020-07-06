@@ -4,6 +4,7 @@
 *	スプライトUIエフェクト基底クラス.
 ******************/
 CSpriteUIEffectBase::CSpriteUIEffectBase()
+	: m_pCResourceManager	(CResourceManager::GetResourceManagerInstance())
 {
 
 }
