@@ -90,6 +90,7 @@ enum class enSpriteUI
 	Title,							//タイトル.
 	StartString,					//開始文字.
 	FinishString,					//終了文字.
+	ShockingSign,					//衝撃的符号.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
