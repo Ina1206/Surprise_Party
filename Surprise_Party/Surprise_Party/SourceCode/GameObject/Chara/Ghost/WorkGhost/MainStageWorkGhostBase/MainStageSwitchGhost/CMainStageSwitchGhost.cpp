@@ -221,6 +221,7 @@ void CMainStageSwitchGhost::ReturnMove()
 	if (fabsf(m_vPos.x - m_vMovePos.x) > DISTANCE_ADJUSTMENT) {
 		//ˆÚ“®Šp“xˆ—ŠÖ”.
 		MoveRotation(m_vOldPos, m_vMovePos);
+		m_vRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		return;
 	}
 
