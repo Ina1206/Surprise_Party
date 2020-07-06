@@ -8,7 +8,8 @@ CShockingEffect::CShockingEffect()
 	, m_fAlpha	(ALPHA_MAX)
 	, m_fScale	(SCALE_MAX)
 {
-
+	//‰Šú‰»ˆ—ŠÖ”.
+	Init();
 }
 
 CShockingEffect::~CShockingEffect()
@@ -28,6 +29,14 @@ void CShockingEffect::Update()
 //		•`‰æˆ—ŠÖ”.
 //=====================================.
 void CShockingEffect::Render()
+{
+
+}
+
+//======================================.
+//		‰Šú‰»ˆ—ŠÖ”.
+//======================================.
+void CShockingEffect::Init()
 {
 
 }
