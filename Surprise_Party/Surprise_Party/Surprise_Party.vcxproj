@@ -108,6 +108,7 @@
     <ClInclude Include="SourceCode\SpriteEffect\SmokeEffect\CSmokeEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.h" />
     <ClInclude Include="SourceCode\SpriteUIEffect\CSpriteUIEffectBase.h" />
+    <ClInclude Include="SourceCode\SpriteUIEffect\ShockingEffect\CShockingEffect.h" />
     <ClInclude Include="SourceCode\UI\CUI.h" />
     <ClInclude Include="SourceCode\UI\Fade\CFade.h" />
     <ClInclude Include="SourceCode\UI\Fade\SceneFade\CSceneFade.h" />
@@ -233,6 +234,7 @@
     <ClCompile Include="SourceCode\SpriteEffect\SmokeEffect\CSmokeEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteUIEffect\CSpriteUIEffectBase.cpp" />
+    <ClCompile Include="SourceCode\SpriteUIEffect\ShockingEffect\CShockingEffect.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\CFade.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\SceneFade\CSceneFade.cpp" />
     <ClCompile Include="SourceCode\UI\Fade\StageFade\CStageFade.cpp" />
