@@ -6,8 +6,8 @@
 CShockingEffect::CShockingEffect()
 	: m_pCSpriteUI	(nullptr)
 	, m_vPos		(0.0f, 0.0f, 0.0f)
-	, m_fAlpha		(ALPHA_MAX)
 	, m_fScale		(SCALE_MAX)
+	, m_bDispFlag	(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -24,6 +24,12 @@ CShockingEffect::~CShockingEffect()
 void CShockingEffect::Update()
 {
 	m_vPos = m_vCenterPos;
+	m_vPos.y -= SIGN_DISP_HIGHT;
+
+	if (m_bDispFlag == false) {
+		m_bDispFlag = true;
+		return;
+	}
 }
 
 //=====================================.
@@ -32,8 +38,6 @@ void CShockingEffect::Update()
 void CShockingEffect::Render()
 {
 	m_pCSpriteUI->SetPosition(m_vPos);
-	m_pCSpriteUI->SetAlpha(m_fAlpha);
-	m_pCSpriteUI->SetScale(m_fScale);
 	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
 	m_pCDepthStencil->SetDepth(true);

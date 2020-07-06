@@ -21,6 +21,7 @@ void CPeopleIcon::UpDate()
 	//ゲーム内からマップ内に座標変換処理関数.
 	GameMapConversion();
 
+
 	if (m_bSurpriseFlag == false) {
 		return;
 	}
@@ -38,6 +39,10 @@ void CPeopleIcon::UpDate()
 //=====================================.
 void CPeopleIcon::RenderEffect()
 {
+	if (m_bSurpriseFlag == false) {
+		return;
+	}
+
 	m_pCShockingEffect->Render();
 }
 
