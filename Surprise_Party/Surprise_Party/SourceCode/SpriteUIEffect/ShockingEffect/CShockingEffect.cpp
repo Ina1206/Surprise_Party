@@ -4,6 +4,9 @@
 *		衝撃エフェクトクラス.
 ****************/
 CShockingEffect::CShockingEffect()
+	: m_vPos	(0.0f, 0.0f, 0.0f)
+	, m_fAlpha	(ALPHA_MAX)
+	, m_fScale	(SCALE_MAX)
 {
 
 }

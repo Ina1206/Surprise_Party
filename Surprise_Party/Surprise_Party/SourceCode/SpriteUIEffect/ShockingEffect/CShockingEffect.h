@@ -19,7 +19,9 @@ public:
 
 private:
 	//======================•Ï”============================//.
-	
+	D3DXVECTOR3 m_vPos;		//À•W.
+	float		m_fAlpha;	//“§‰ß’l.
+	float		m_fScale;	//‘å‚«‚³.
 
 };
 
