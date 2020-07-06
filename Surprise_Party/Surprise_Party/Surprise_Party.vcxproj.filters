@@ -374,6 +374,9 @@
     <Filter Include="SourceCode\UI\SpeakUI\NextSpeakCurosr">
       <UniqueIdentifier>{2620af8a-a648-4951-9a4c-04d7abf5034c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\SpriteEffect\ShockingEffect">
+      <UniqueIdentifier>{9ebfc529-5c62-4b3c-826c-e5bc5ecf56c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -754,6 +757,9 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\NextSpeakCursor\CNextSpeakCursor.h">
       <Filter>SourceCode\UI\SpeakUI\NextSpeakCurosr</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\SpriteEffect\ShockingEffect\CShockingEffect.h">
+      <Filter>SourceCode\SpriteEffect\ShockingEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1121,6 +1127,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SpeakUI\NextSpeakCursor\CNextSpeakCursor.cpp">
       <Filter>SourceCode\UI\SpeakUI\NextSpeakCurosr</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\SpriteEffect\ShockingEffect\CShockingEffect.cpp">
+      <Filter>SourceCode\SpriteEffect\ShockingEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -104,6 +104,7 @@
     <ClInclude Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\QuestionEffect\CQuestionEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.h" />
+    <ClInclude Include="SourceCode\SpriteEffect\ShockingEffect\CShockingEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\SmokeEffect\CSmokeEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\QuestionEffect\CQuestionEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\RejoiceEffect\CRejoiceEffect.cpp" />
+    <ClCompile Include="SourceCode\SpriteEffect\ShockingEffect\CShockingEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\SleepEffect\CSleepEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\SmokeEffect\CSmokeEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\SurpriseEffect\CSurpriseEffect.cpp" />
