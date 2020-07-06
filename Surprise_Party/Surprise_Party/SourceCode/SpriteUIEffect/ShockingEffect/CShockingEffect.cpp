@@ -4,9 +4,10 @@
 *		衝撃エフェクトクラス.
 ****************/
 CShockingEffect::CShockingEffect()
-	: m_vPos	(0.0f, 0.0f, 0.0f)
-	, m_fAlpha	(ALPHA_MAX)
-	, m_fScale	(SCALE_MAX)
+	: m_pCSpriteUI	(nullptr)
+	, m_vPos		(0.0f, 0.0f, 0.0f)
+	, m_fAlpha		(ALPHA_MAX)
+	, m_fScale		(SCALE_MAX)
 {
 	//初期化処理関数.
 	Init();
@@ -22,7 +23,7 @@ CShockingEffect::~CShockingEffect()
 //=====================================.
 void CShockingEffect::Update()
 {
-
+	m_vPos = m_vCenterPos;
 }
 
 //=====================================.
@@ -30,7 +31,10 @@ void CShockingEffect::Update()
 //=====================================.
 void CShockingEffect::Render()
 {
-
+	m_pCSpriteUI->SetPosition(m_vPos);
+	m_pCSpriteUI->SetAlpha(m_fAlpha);
+	m_pCSpriteUI->SetScale(m_fScale);
+	m_pCSpriteUI->Render();
 }
 
 //======================================.
@@ -38,5 +42,5 @@ void CShockingEffect::Render()
 //======================================.
 void CShockingEffect::Init()
 {
-
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::ShockingSign);
 }

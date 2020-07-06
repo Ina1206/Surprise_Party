@@ -25,6 +25,7 @@ private:
 	void Init();	//初期化処理関数.
 
 	//======================変数============================//.
+	CSpriteUI*	m_pCSpriteUI;	//スプライトUI.
 	D3DXVECTOR3 m_vPos;			//座標.
 	D3DXVECTOR3 m_vCenterPos;	//中央の座標.
 	float		m_fAlpha;		//透過値.
