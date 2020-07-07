@@ -1,5 +1,4 @@
 #include "CSurpriseGage.h"
-#include "..\..\FileLoad\FileResource\CFileResource.h"
 
 CSurpriseGage::CSurpriseGage()
 	: CSurpriseGage(0)
@@ -8,7 +7,8 @@ CSurpriseGage::CSurpriseGage()
 }
 
 CSurpriseGage::CSurpriseGage(const int& StageNum)
-	: m_SurprisePoint		(0)
+	: m_pCFileResource		(CFileResource::GetResourceInstance())
+	, m_SurprisePoint		(0)
 	, m_SurprisePointMax	(0)
 	, m_bSurprisePointMax	(false)
 	, m_bBorusGetFlag		(false)
@@ -38,7 +38,10 @@ void CSurpriseGage::Update()
 		StampDisp();
 	}
 
-	if (m_SurprisePoint >= m_SurprisePointMax * GET_BONUS_POINT_RATIO) {
+	const int FileNum = static_cast<int>(CFileResource::enStatusCharaType::Stage);
+	const int Status = static_cast<int>(enScoreType::BornasTime);
+	const int BornasTimeIndication = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, Status));
+	if (m_SurprisePoint >= BornasTimeIndication) {
 		//通知移動処理関数.
 		InfomMove();
 		
@@ -86,9 +89,8 @@ void CSurpriseGage::Init()
 	m_pCSpriteUI[INFOM_NUM]			= m_pCResourceManager->GetSpriteUI(enSpriteUI::ExtendedNotification);
 
 	//驚かしポイント最大値の設定処理.
-	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
 	const int FileNum		= static_cast<int>(CFileResource::enStatusCharaType::Stage);	//ファイル番号.
-	const int StatusTypeNum = 1;															//ステータスタイプの番号.
+	const int StatusTypeNum = static_cast<int>(enScoreType::GageMax);															//ステータスタイプの番号.
 	m_SurprisePointMax = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, StatusTypeNum));
 }
 
@@ -151,12 +153,15 @@ void CSurpriseGage::InfomMove()
 //==========================================.
 void CSurpriseGage::EvalutionSurprisePoint()
 {
-	if (m_SurprisePoint < m_SurprisePointMax / 3.0f) {
+	const int FileNum = static_cast<int>(CFileResource::enStatusCharaType::Stage);
+	const int LowScore = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, static_cast<int>(enScoreType::LowScore)));
+	if (m_SurprisePoint < LowScore) {
 		m_EvalutionFlag = BAD_FLAG;
 		return;
 	}
 
-	if (m_SurprisePoint < m_SurprisePointMax  * GET_BONUS_POINT_RATIO) {
+	const int MediumScore = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, static_cast<int>(enScoreType::MediumScore)));
+	if (m_SurprisePoint < MediumScore) {
 		m_EvalutionFlag = GOOD_FLAG;
 		return;
 	}

@@ -2,6 +2,7 @@
 #define CSURPRISE_GAGE_H
 
 #include "..\CPlayUI.h"
+#include "..\..\FileLoad\FileResource\CFileResource.h"
 
 class CSurpriseGage
 	: public CPlayUI
@@ -34,6 +35,18 @@ public:
 	const unsigned int GOOD_FLAG			= (1 << 1);	//Goodフラグ.
 	const unsigned int GREAT_FLAG			= (1 << 2);	//Greatフラグ.
 
+	//==================列挙体=====================//.
+	//スコア種類.
+	enum class enScoreType {
+		GageMax = 1,	//ゲージ最大値.
+		HightScore,		//高スコア.
+		MediumScore,	//中スコア.
+		LowScore,		//低スコア.
+		BornasTime,		//ボーナスタイム.
+
+		Max,
+	};
+
 	//===================関数======================//.
 	void Update();						//更新処理関数.
 	void AddSurprisePoint(int Point);	//驚きポイント追加処理関数.
@@ -55,6 +68,7 @@ private:
 	void EvalutionSurprisePoint();		//驚きポイント評価処理関数.
 
 	//===================変数======================//.
+	CFileResource*	m_pCFileResource;	//ファイル読み込みクラス.	
 	int				m_SurprisePoint;	//驚かしポイント.
 	int				m_SurprisePointMax;	//驚かしポイント最大数.
 	bool			m_bSurprisePointMax;//驚きポイント最大数になったフラグ.
