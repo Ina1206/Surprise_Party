@@ -65,8 +65,6 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	//働くお化け更新処理関数.
 	UpdateWorkGhost();
 
-	//追加ポイント量.
-	m_pCSurpriseGage->AddSurprisePoint(m_pCPeopleManager->GetAddSurprisePoint());
 
 	//動的オブジェクトの更新処理関数.
 	m_pCMoveObjectManager->SetSurpriseObjToGhost(m_pCWorkghostManager->GetSurpriseObjectType());
@@ -636,6 +634,8 @@ void CMainStage::UpdateWorkGhost()
 	for (unsigned int ghost = 0; ghost < m_pCWorkghostManager->GetAllGhostNum(); ghost++) {
 		//驚いている人番号取得.
 		m_pCPeopleManager->SetNowHumanSurprise(m_pCWorkghostManager->GetNearPeopleNum(ghost));
+		//追加ポイント量.
+		m_pCSurpriseGage->AddSurprisePoint(m_pCPeopleManager->GetAddSurprisePoint());
 
 		//コメント進めるフラグ.
 		if (m_pCDescriptionUIManager != nullptr) {
