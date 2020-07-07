@@ -235,6 +235,14 @@ void CMainStageWorkGhostManager::ChangeElementNum(const int& GhostNum)
 			if (m_SelectNum == GhostNum) {
 				m_SelectNum = RightGhostNum;
 			}
+
+			if (fabs(m_SelectNum - RightGhostNum) != 0) {
+				return;
+			}
+			//右にカーソルがある場合は選択番号変更.
+			if (m_SelectNum == RightGhostNum) {
+				m_SelectNum = GhostNum;
+			}
 		}
 	}
 
@@ -252,6 +260,13 @@ void CMainStageWorkGhostManager::ChangeElementNum(const int& GhostNum)
 	
 			if (m_SelectNum == GhostNum) {
 				m_SelectNum = LeftGhostNum;
+			}
+			if (fabs(m_SelectNum - LeftGhostNum) != 0) {
+				return;
+			}
+			//左にカーソルがある場合は選択番号変更.
+			if (m_SelectNum == LeftGhostNum) {
+				m_SelectNum = GhostNum;
 			}
 		}
 	}
