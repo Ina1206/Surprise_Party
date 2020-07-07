@@ -388,7 +388,7 @@ void CMainStageWorkGhostBase::RestAct()
 		m_fStrength += m_fRecoverySpeed;
 		//復活.
 		if (m_fStrength >= m_fStrengthMax) {
-			m_fStrength = m_fStrengthMax;
+			m_fStrength = m_fStrengthMax;;
 			m_RestFlag = RESURRECTION_FLAG;
 		}
 	}
@@ -544,11 +544,16 @@ void CMainStageWorkGhostBase::UpdateFutigueEffect()
 	const int FutigueEffectFaceType = static_cast<int>(CGhostIcon::enFaceType::Bad_Face);
 
 	//疲労エフェクト更新処理.
-	if (m_pCGhostIcon->GetFaceType() == FutigueEffectFaceType) {
+	if ((m_pCGhostIcon->GetFaceType() == FutigueEffectFaceType) && !(m_ActType & REST_FLAG)) {
 		m_pCFatigue->SetCenterPos(m_vEffectCenterPos); {
 			if (m_pCFatigue->GetDispFlag() == false && !(m_SurpriseFlag & SURPRISE_ACT_FLAG))
 				m_pCFatigue->SetDispFlag(true);
 		}
 		m_pCFatigue->Update();
+		return;
+	}
+
+	if (m_pCFatigue->GetDispFlag() == true) {
+		m_pCFatigue->SetDispFlag(false);
 	}
 }

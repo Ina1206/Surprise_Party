@@ -100,8 +100,11 @@ void CMainStageSwitchGhost::Render()
 	//デバッグ用球体描画処理関数.
 	DebugHitSphereRender();
 
+	
 	//疲労エフェクト描画処理.
-	m_pCFatigue->Render(m_mView, m_mProj, m_vCameraPos);
+	if (m_pCFatigue->GetDispFlag() == true) {
+		m_pCFatigue->Render(m_mView, m_mProj, m_vCameraPos);
+	}
 }
 
 //==================================.

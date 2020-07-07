@@ -105,7 +105,9 @@ void CMainStageDispGhost::Render()
 	DebugHitSphereRender();
 
 	//疲労エフェクト描画.
-	m_pCFatigue->Render(m_mView, m_mProj, m_vCameraPos);
+	if (m_pCFatigue->GetDispFlag() == true) {
+		m_pCFatigue->Render(m_mView, m_mProj, m_vCameraPos);
+	}
 
 }
 

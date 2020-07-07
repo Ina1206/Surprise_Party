@@ -234,6 +234,7 @@ void CMainStageWorkGhostManager::ChangeElementNum(const int& GhostNum)
 			//ƒJ[ƒ\ƒ‹‚ª‚ ‚é‚Í”Ô†‚ğˆÚ“®‚³‚¹‚é.
 			if (m_SelectNum == GhostNum) {
 				m_SelectNum = RightGhostNum;
+				return;
 			}
 
 			if (fabs(m_SelectNum - RightGhostNum) != 0) {
@@ -260,6 +261,7 @@ void CMainStageWorkGhostManager::ChangeElementNum(const int& GhostNum)
 	
 			if (m_SelectNum == GhostNum) {
 				m_SelectNum = LeftGhostNum;
+				return;
 			}
 			if (fabs(m_SelectNum - LeftGhostNum) != 0) {
 				return;
