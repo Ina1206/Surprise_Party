@@ -4,6 +4,7 @@ CPeopleIcon::CPeopleIcon()
 	: m_bSurpriseFlag		(false)
 	, m_fAcc				(0.0f)
 	, m_pCShockingEffect	(nullptr)
+	, m_bJumpFlag			(false)
 {
 	m_pCShockingEffect.reset(new CShockingEffect());
 }
@@ -21,8 +22,9 @@ void CPeopleIcon::UpDate()
 	//ゲーム内からマップ内に座標変換処理関数.
 	GameMapConversion();
 
-
-	if (m_bSurpriseFlag == false) {
+	//驚きジャンプ判定処理関数.
+	if (DecisionSurpriseJump() == false) {
+		//ジャンプしない場合処理終了.
 		return;
 	}
 
@@ -56,7 +58,22 @@ void CPeopleIcon::SurpriseAct()
 
 	if (m_vPos.y >= START_POS.y) {
 		m_vPos.y = START_POS.y;
-		m_fAcc = 0.0f;
-		m_bSurpriseFlag = false;
+		m_bJumpFlag = false;
 	}
+}
+
+//======================================.
+//		驚きジャンプ判定処理関数.
+//======================================.
+bool CPeopleIcon::DecisionSurpriseJump()
+{
+	if (m_bSurpriseFlag == false) {
+		if (m_bJumpFlag == false) {
+			m_fAcc = 0.0f;
+			return false;
+		}
+	}
+	m_bJumpFlag = true;
+	return true;
+
 }

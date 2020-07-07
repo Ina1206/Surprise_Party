@@ -14,6 +14,7 @@ public:
 	//=================定数======================//.
 	const unsigned int	SURPRISE_PRE		= (1 << 0);							//驚く準備.
 	const unsigned int	SURPRISE_ACT		= (1 << 1);							//驚く行動.
+	const unsigned int	SURPRISE_REST_FLAG	= (1 << 2);							//驚くの休憩フラグ.
 	const D3DXVECTOR3	PERSON_ROT			= D3DXVECTOR3(0.0f, -1.5f, 0.0f);	//人の角度.
 	const int			FAR_NUM				= -1;								//遠い人番号.
 	const float			ACCELERATION_SPEED	= 0.005f;							//加速速度.
@@ -22,8 +23,9 @@ public:
 	const float			SCALE				= 0.1f;								//人の大きさ.
 	const int			DECREMENT_POINT		= 1;								//ポイント減少.
 	const float			ADD_ANIM_SPEED		= 0.005f;							//追加アニメーション速度.
-	const D3DXVECTOR3 EFFECT_POS_ADJUSTMENT = D3DXVECTOR3(0.0f, 4.0f, -0.5f);	//エフェクト座標調整.
+	const D3DXVECTOR3	EFFECT_POS_ADJUSTMENT = D3DXVECTOR3(0.0f, 4.0f, -0.5f);	//エフェクト座標調整.
 	const int			TUTORIAL_ANIM_NO	= 3;								//チュートリアル時アニメーション番号.
+	const int			SURPRISE_REST_MAX	= 90;								//驚き休憩最大値.
 
 	//================列挙体=====================//.
 	//人の種類.
@@ -59,10 +61,16 @@ public:
 	void SetTutorialFlag(const bool& bFlag) { m_bTutorialFlag = bFlag; }
 	//ポーズフラグ.
 	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
+	//驚き行動フラグ初期化処理.
+	void SetInitSurpriseActFlag() { m_SurpriseActFlag = 0; }
 
 	//=============情報獲得処理関数==============//.
 	//追加ポイント量.
 	int GetAddPointQuantity(int NearNo);
+	//驚くフラグ.
+	bool GetSurpriseFlag() { return m_bSurpriseFlag; }
+	//驚き行動フラグ.
+	unsigned int GetSurpriseActFlag() { return m_SurpriseActFlag; }
 
 protected:
 	//=================関数======================//.
@@ -70,6 +78,7 @@ protected:
 	void AnimCtrlCreat();							//アニメーションコントローラ作成処理関数.
 	void HumanMove();								//人の移動処理関数.
 	void SurpriseAnimChange(int surpriseAnimNo);	//驚きアニメーション変更処理関数.
+	void SurpriseRest();							//驚き休憩処理関数.
 
 	//=================変数======================//.
 	CDX9SkinMesh*						m_pCSkinMesh;		//スキンメッシュ.
@@ -97,6 +106,7 @@ private:
 	int							m_SurpriseHumanMax;	//驚いた人最大数.
 	bool						m_bTutorialFlag;	//チュートリアルフラグ.
 	bool						m_bPauseFlag;		//ポーズフラグ.
+	int							m_RestCnt;			//休憩カウント.
 };
 
 #endif	//#ifndef CPEOPLE_BASE_H.

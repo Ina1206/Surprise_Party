@@ -20,6 +20,7 @@ CPeopleBase::CPeopleBase()
 	, m_SurpriseHumanMax(0)
 	, m_bTutorialFlag	(false)
 	, m_bPauseFlag		(false)
+	, m_RestCnt			(0)
 {
 	m_vRot = PERSON_ROT;
 }
@@ -137,6 +138,12 @@ void CPeopleBase::HumanMove()
 void CPeopleBase::SurpriseAnimChange(int surpriseAnimNo)
 {
 	if (m_SurpriseActFlag != 0) {
+		//‹Á‚«‹xŒe’†‚Íˆ—I—¹.
+		if (m_SurpriseActFlag & SURPRISE_REST_FLAG) {
+			m_bSurpriseFlag = false;
+			return;
+		}
+
 		//‹Á‚­s“®I—¹ˆ—.
 		if (m_bSurpriseFlag == false) {
 			m_SurpriseActFlag &= ~SURPRISE_ACT;
@@ -162,6 +169,7 @@ void CPeopleBase::SurpriseAnimChange(int surpriseAnimNo)
 			m_pCSkinMesh->ChangeAnimSet(m_AnimNo, m_pAnimCtrl);
 			m_AnimTime = 0.0;
 			m_bSurpriseFlag = false;
+			m_SurpriseActFlag = SURPRISE_REST_FLAG;
 
 			//‘¬“x‰Á‘¬ˆ—ŠÖ”.
 			SpeedAcceleration();
@@ -183,4 +191,21 @@ void CPeopleBase::SpeedAcceleration()
 
 	//‰“‚­‚Él‚ª‚¢‚é”Ô†‚É–ß‚·.
 	m_HumanNearNum = FAR_NUM;
+}
+
+//===========================================.
+//		‹Á‚«‹xŒeˆ—ŠÖ”.
+//===========================================.
+void CPeopleBase::SurpriseRest()
+{
+	//‹xŒe’†‚Å‚Í‚È‚©‚Á‚½‚çˆ—I—¹.
+	if (!(m_SurpriseActFlag & SURPRISE_REST_FLAG)) {
+		return;
+	}
+
+	m_RestCnt++;
+	if (m_RestCnt > SURPRISE_REST_MAX) {
+		m_RestCnt			= 0;
+		m_SurpriseActFlag	= 0;
+	}
 }

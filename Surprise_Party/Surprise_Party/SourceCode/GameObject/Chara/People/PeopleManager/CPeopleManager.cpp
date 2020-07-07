@@ -74,6 +74,7 @@ void CPeopleManager::Update()
 	for (unsigned int icon = 0; icon < m_pCPeopleIcon.size(); icon++) {
 		m_pCPeopleIcon[icon]->SetStageMax(m_fStageDistanceMax);
 		m_pCPeopleIcon[icon]->SetCharaPos(m_pCPeopleBase[icon]->GetPos());
+		m_pCPeopleIcon[icon]->SetSurpriseFlag(m_pCPeopleBase[icon]->GetSurpriseFlag());
 		m_pCPeopleIcon[icon]->UpDate();
 	}
 }
@@ -127,13 +128,17 @@ void CPeopleManager::SetNowHumanSurprise(const std::vector<int>& HumanNum)
 	}
 
 	for (unsigned int human = 0; human < HumanNum.size(); human++) {
+		//‹xŒe’†‚Í‰ÁŽZ‚µ‚È‚¢.
+		if (m_pCPeopleBase[HumanNum[human]]->GetSurpriseActFlag() & m_pCPeopleBase[HumanNum[human]]->SURPRISE_REST_FLAG) {
+			continue;
+		}
+
 		//’Ç‰Áƒ|ƒCƒ“ƒg—Ê.
 		m_AddSurprisePoint += m_pCPeopleBase[HumanNum[human]]->GetAddPointQuantity(human);
 
-		m_bSurpriseFlag[HumanNum[human]] = true;
 		//‹Á‚¢‚½ƒtƒ‰ƒOŽæ“¾.
+		m_bSurpriseFlag[HumanNum[human]] = true;
 		m_pCPeopleBase[HumanNum[human]]->SetSurpriseFlag(m_bSurpriseFlag[HumanNum[human]]);
-		m_pCPeopleIcon[HumanNum[human]]->SetSurpriseFlag(m_bSurpriseFlag[HumanNum[human]]);
 
 		//‹ß‚­‚Ìl”Ô†Žæ“¾.
 		m_pCPeopleBase[HumanNum[human]]->SetHumanNearNum(human);

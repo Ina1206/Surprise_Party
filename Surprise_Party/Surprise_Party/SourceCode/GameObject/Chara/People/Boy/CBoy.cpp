@@ -26,6 +26,9 @@ void CBoy::Update()
 	//驚きアニメーション変更処理関数.
 	SurpriseAnimChange(static_cast<int>(enBoyAnim::Surprise));
 
+	//驚き休憩処理関数.
+	SurpriseRest();
+
 	//驚きエフェクト更新処理関数.
 	m_vEffectCenterPos = m_vPos + EFFECT_POS_ADJUSTMENT;
 	m_pCSurpriseEffect->Update();

@@ -30,6 +30,9 @@ void CGirl::Update()
 	//驚きアニメーション変更処理関数.
 	SurpriseAnimChange(static_cast<int>(enGirlAnimType::Rejoice));
 
+	//驚き休憩処理関数.
+	SurpriseRest();
+
 	//一時停止処理関数.
 	SearchMotion();
 
