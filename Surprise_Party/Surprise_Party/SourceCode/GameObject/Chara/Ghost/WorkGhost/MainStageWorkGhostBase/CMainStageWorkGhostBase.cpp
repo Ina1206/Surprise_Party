@@ -385,7 +385,13 @@ void CMainStageWorkGhostBase::RestAct()
 
 	//‰ñ•œ’†ˆ—.
 	if (m_RestFlag & IN_REST_FLAG) {
-		m_fStrength += m_fRecoverySpeed;
+		//”æ˜J‰ñ•œ‘¬“x‚Ì’²®.
+		float RecoverySpeed = 1.0f;
+		if (m_bLimitationRest == true) {
+			RecoverySpeed = 4.0f;
+		}
+		m_fStrength += m_fRecoverySpeed / RecoverySpeed;
+
 		//•œŠˆ.
 		if (m_fStrength >= m_fStrengthMax) {
 			m_fStrength = m_fStrengthMax;;
