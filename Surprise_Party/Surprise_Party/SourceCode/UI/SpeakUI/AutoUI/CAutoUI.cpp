@@ -4,6 +4,9 @@
 *		自動再生時のUIクラス.
 ************/
 CAutoUI::CAutoUI()
+	: m_pCSpriteUI			(nullptr)
+	, m_FlashingFlag		(0)
+	, m_TransparentDirect	(1)
 {
 	//初期化処理関数.
 	Init();
@@ -20,7 +23,24 @@ CAutoUI::~CAutoUI()
 //=================================.
 void CAutoUI::Update()
 {
+	m_fAlpha += ALPHA_SPEED * m_TransparentDirect;
 
+	//消えていく処理の時.
+	if (m_FlashingFlag & DISAPPEAR_FLAG) {
+		if (m_fAlpha < ALPHA_MIN) {
+			m_fAlpha = ALPHA_MIN;
+			m_FlashingFlag = APPEAR_FLAG;
+			m_TransparentDirect *= CHANGE_DIRECT;
+		}
+		return;
+	}
+
+	//現れる処理の時.
+	if (m_fAlpha > ALPHA_MAX) {
+		m_fAlpha = ALPHA_MAX;
+		m_FlashingFlag = DISAPPEAR_FLAG;
+		m_TransparentDirect *= CHANGE_DIRECT;
+	}
 }
 
 //=================================.
@@ -28,9 +48,14 @@ void CAutoUI::Update()
 //=================================.
 void CAutoUI::Render()
 {
+	//透過値.
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
-	m_pCSpriteUI->SetPosition(m_vPos);
+	//座標.
+	m_pCSpriteUI->SetPosition(POS);
+	//描画.
+	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
+	m_pCDepthStencil->SetDepth(true);
 }
 
 //=================================.
@@ -39,7 +64,8 @@ void CAutoUI::Render()
 void CAutoUI::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::AutoString);
-	m_vPos = D3DXVECTOR3(500.0f, 200.0f, 0.0f);
+	m_TransparentDirect *= CHANGE_DIRECT;
+	m_FlashingFlag = DISAPPEAR_FLAG;
 }
 
 //=================================.
