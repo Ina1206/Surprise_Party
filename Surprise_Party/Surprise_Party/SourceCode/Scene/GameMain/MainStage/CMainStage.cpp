@@ -414,12 +414,6 @@ void CMainStage::Control()
 				return;
 			}
 
-			//使用するギミック番号の変更.
-			if (m_pCWorkghostManager->GetUseGimmickNumToSelectGhost() >= 0) {
-				m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNumToSelectGhost(), false);
-			}
-			m_pCMoveObjectManager->SetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM], true);
-			m_pCWorkghostManager->SetUseGimmickNumToSelectGhost(m_SelectNum[GIMMICK_NUM]);
 
 			//チュートリアル時にコメントを進める処理.
 			if (m_pCDescriptionUIManager != nullptr && m_ExplainFlag != 0) {
@@ -429,6 +423,13 @@ void CMainStage::Control()
 				}
 				m_pCDescriptionUIManager->SetAdvanceComment();
 			}
+
+			//使用するギミック番号の変更.
+			if (m_pCWorkghostManager->GetUseGimmickNumToSelectGhost() >= 0) {
+				m_pCMoveObjectManager->SetUsedGimmickFlag(m_pCWorkghostManager->GetUseGimmickNumToSelectGhost(), false);
+			}
+			m_pCMoveObjectManager->SetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM], true);
+			m_pCWorkghostManager->SetUseGimmickNumToSelectGhost(m_SelectNum[GIMMICK_NUM]);
 
 			//移動目的のオブジェクト座標取得.
 			m_pCWorkghostManager->SetObjectiveGimmickPos(m_pCMoveObjectManager->GetGimmickPos());
