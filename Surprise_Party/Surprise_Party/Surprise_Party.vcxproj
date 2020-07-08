@@ -141,6 +141,7 @@
     <ClInclude Include="SourceCode\UI\SceneUI\CPauseUI\CPuaseUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\CSceneUIBase.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.h" />
+    <ClInclude Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\CSpeakUI.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\NextSpeakCursor\CNextSpeakCursor.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\ReputationSNS\CReputationSNS.h" />
@@ -267,6 +268,7 @@
     <ClCompile Include="SourceCode\UI\SceneUI\CPauseUI\CPauseUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\CSceneUIBase.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.cpp" />
+    <ClCompile Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\CSpeakUI.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\NextSpeakCursor\CNextSpeakCursor.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\ReputationSNS\CReputationSNS.cpp" />

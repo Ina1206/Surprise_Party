@@ -380,6 +380,9 @@
     <Filter Include="SourceCode\SpriteUIEffect\ShockingEffect">
       <UniqueIdentifier>{50d52ad0-e09a-47e1-8415-466e88653abc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SpeakUI\AutoUI">
+      <UniqueIdentifier>{99a89557-612b-4562-8c6b-387c73fa5323}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -766,6 +769,9 @@
     <ClInclude Include="SourceCode\SpriteUIEffect\ShockingEffect\CShockingEffect.h">
       <Filter>SourceCode\SpriteUIEffect\ShockingEffect</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.h">
+      <Filter>SourceCode\UI\SpeakUI\AutoUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1139,6 +1145,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\SpriteUIEffect\ShockingEffect\CShockingEffect.cpp">
       <Filter>SourceCode\SpriteUIEffect\ShockingEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.cpp">
+      <Filter>SourceCode\UI\SpeakUI\AutoUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
