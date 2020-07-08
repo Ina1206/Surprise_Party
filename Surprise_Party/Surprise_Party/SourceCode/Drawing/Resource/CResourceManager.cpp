@@ -553,8 +553,8 @@ void CResourceManager::SpriteUIStateSetting()
 
 	//Title•¶Žš.
 	const int TitleNum = static_cast<int>(enSpriteUI::Title);
-	m_pstSpriteUIState[TitleNum].Base.w = 460.0f;
-	m_pstSpriteUIState[TitleNum].Base.h = 160.0f;
+	m_pstSpriteUIState[TitleNum].Base.w = 450.0f;
+	m_pstSpriteUIState[TitleNum].Base.h = 276.0f;
 	m_pstSpriteUIState[TitleNum].Disp.w = m_pstSpriteUIState[TitleNum].Base.w;
 	m_pstSpriteUIState[TitleNum].Disp.h = m_pstSpriteUIState[TitleNum].Base.h;
 

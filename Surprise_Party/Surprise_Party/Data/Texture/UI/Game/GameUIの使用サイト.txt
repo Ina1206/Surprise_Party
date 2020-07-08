@@ -25,6 +25,7 @@ AnswerNo
 AnswerYes
 DispPaintGhostComment.png
 SwitchGhostComment.png
+Auto.png
 
 古いシャッター（テクスチャー）のフリー素材 URL:https://www.pakutaso.com/20150254049post-5191.html
 Shutter.jpg
@@ -58,3 +59,6 @@ flower.png
 
 文字画メーカー URL:http://www.mojimaru.com/mojiga/
 PushEnter.png
+
+COOLTEXT	URL:https://ja.cooltext.com/
+Title.png
