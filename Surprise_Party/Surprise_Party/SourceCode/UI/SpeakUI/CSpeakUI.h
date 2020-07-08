@@ -13,8 +13,11 @@ public:
 	virtual ~CSpeakUI();
 
 	//===================定数======================//.
-	const float		ALPHA_MIN = 0.0f;			//透過値最小値.
-	const float		ALPHA_SPEED = 0.1f;			//透過値速度.
+	const unsigned int	AUTO_FLAG			= (1 << 0);		//自動再生フラグ.
+	const unsigned int	AUTO_SUSPEND_FLAG	= (1 << 1);		//一時停止フラグ.
+
+	const float			ALPHA_MIN			= 0.0f;			//透過値最小値.
+	const float			ALPHA_SPEED			= 0.1f;			//透過値速度.
 
 	//==================列挙体=====================//.
 	//ステータスの種類.
@@ -47,7 +50,7 @@ protected:
 	bool						m_bAppearanceAllFont;			//全ての文字出現フラグ.
 	bool						m_bFinishAppearancedAllFont;	//全ての文字出現終了フラグ.
 	float						m_fFontAlpha;					//文字透過値.
-	bool						m_bAutoFlag;					//自動再生フラグ.
+	unsigned int				m_AutoFlag;						//自動再生フラグ.
 	int							m_AutoWaitCnt;					//自動再生待機カウント.
 };
 

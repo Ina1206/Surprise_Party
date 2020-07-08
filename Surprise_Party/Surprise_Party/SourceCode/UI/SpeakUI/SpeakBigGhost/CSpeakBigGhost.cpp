@@ -55,11 +55,11 @@ void CSpeakBigGhost::Update()
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		//•¶Í•ÏXˆ—ŠÖ”.
-		if (DesicionChangeString() == true && m_bAutoFlag == false) {
+		if (DesicionChangeString() == true && m_AutoFlag == 0) {
 			ChangeString();
 		}
 	}
-
+	
 	//©“®Ä¶ˆ—ŠÖ”.
 	if (AutomaticReproducing() == true) {
 		//•¶Í•ÏXˆ—ŠÖ”.

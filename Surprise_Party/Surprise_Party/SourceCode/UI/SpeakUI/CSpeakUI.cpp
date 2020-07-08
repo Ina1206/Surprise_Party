@@ -10,7 +10,7 @@ CSpeakUI::CSpeakUI()
 	, m_ChangingFontNum				(0)
 	, m_bAppearanceAllFont			(false)
 	, m_bFinishAppearancedAllFont	(false)
-	, m_bAutoFlag					(false)
+	, m_AutoFlag					(0)
 	, m_AutoWaitCnt					(0)
 {
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
@@ -95,24 +95,32 @@ bool CSpeakUI::DesicionChangeString()
 //=======================================.
 bool CSpeakUI::AutomaticReproducing()
 {
+	//自動再生の変更処理.
 	if (GetAsyncKeyState('Z') & 0x0001) {
-		if (m_bAutoFlag == false) {
-			m_bAutoFlag = true;
-			return true;
+		if (m_AutoFlag == 0) {
+			m_AutoFlag = AUTO_FLAG;
+			return false;
 		}
 
-		m_bAutoFlag = false;
+		m_AutoFlag = 0;
 		return false;
 	}
 
-	if (m_bAutoFlag == false) {
+	//一時停止中はオートフラグの処理をしない.
+	if (m_AutoFlag & AUTO_SUSPEND_FLAG) {
+		return false;
+	}
+
+	if (m_AutoFlag == 0) {
+		return false;
+	}
+
+	//文字が全てで終わるまで再生しない処理.
+	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
 		return false;
 	}
 	
-	if (DesicionChangeString() == false) {
-		return false;
-	}
-
+	//全て出ても少し待ってから再生する処理.
 	const int FileNum		= static_cast<int>(CFileResource::enStatusCharaType::GhostSpeak);			//ファイル番号.
 	const int StatusNum		= static_cast<int>(enStatusType::AutoWaitSpeed);							//ステータス番号.
 	const int AutoWaitMax	= static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, StatusNum, 0));	//自動再生待機最大値.
@@ -121,6 +129,10 @@ bool CSpeakUI::AutomaticReproducing()
 		return false;
 	}
 	m_AutoWaitCnt = 0;
+
+	if (DesicionChangeString() == false) {
+		return false;
+	}
 
 	return true;
 }
