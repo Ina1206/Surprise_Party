@@ -52,6 +52,8 @@ public:
 	void SetTutorialFlag(const bool& flag) { m_bTutorialFlag = flag; }
 	//決定フラグ.
 	void SetDecideFlag(const bool& flag) { m_bDecideFlag = flag; }
+	//選択肢を閉じるフラグ.
+	void SetCloseMoveFlag() { m_MoveFlag = CLOSE_MOVE; }
 
 	//==============情報取得処理関数=================//.
 	//選択フラグ.
@@ -77,7 +79,7 @@ private:
 	std::vector<float>			m_fMoveDistance;//移動速度.
 	std::vector<int>			m_Direction;	//方向.
 	bool						m_bSelectFlag;	//選択フラグ.
-	int							m_MoveFlag;		//移動フラグ.
+	unsigned int				m_MoveFlag;		//移動フラグ.
 	int							m_SelectNum;	//選択番号.
 	int							m_GhostActFlag;	//お化け行動フラグ.
 	bool						m_bTutorialFlag;//チュートリアルフラグ.

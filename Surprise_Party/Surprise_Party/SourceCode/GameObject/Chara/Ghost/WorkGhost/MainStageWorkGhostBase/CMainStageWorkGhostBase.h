@@ -90,8 +90,6 @@ public:
 	void SetSurpriseObjectType(const CGameObject::enSurpriseObjectType& enType) {
 		m_enSurpriseObjectType = enType;
 	}
-	//使っているギミック番号.
-	//void SetUsingGimmickNum(const int& GimmickNum) { m_UsingGimmickNum = GimmickNum; }
 	//選択中止設定.
 	void SetSelectStop() { m_MoveFlag |= SELECT_STOP_FLAG; }
 	//チュートリアルフラグ.
@@ -120,8 +118,6 @@ public:
 	unsigned int GetUpDownFlag() { return m_UpDownObjectFlag; }
 	//近くにいる人の番号.
 	std::vector<int> GetNearHumanNum() { return m_NearHumanNum; }
-	//使っているギミック番号.
-	//int GetUsingGimmickNum() { return m_UsingGimmickNum; }
 	//チュートリアル時のコメント一つ増やすフラグ.
 	bool GetTutorialAddCommentFlag() const { return m_bTutorialCommentAddFlag; }
 

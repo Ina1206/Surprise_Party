@@ -96,19 +96,22 @@ void CMainStageWorkGhostBase::SelectUpdate()
 	//体力無いときに自動休憩処理.
 	if (m_fStrength <= 0.0f) {
 		if (m_MoveFlag & SURPRISE_FLAG) {
-			//驚かすフラグから休憩フラグへ.
-			m_MoveFlag &= ~SURPRISE_FLAG;
 			m_MoveFlag |= REST_FLAG;
 			//驚かす行動停止.	
 			m_SurpriseFlag &= ~SURPRISE_ACT_FLAG;
 
 			m_bLimitationRest = true;
-			return;
+
+			//選択肢を閉じ終わったら.
+			if (m_pCAct_Selection->GetSelectFlag() == false) {
+				//驚かすフラグから休憩フラグへ.
+				m_MoveFlag &= ~SURPRISE_FLAG;
+				return;
+			}
 		}
 	}
 
-	if (m_MoveFlag & REST_FLAG &&
-		m_bLimitationRest == true) {
+	if (m_MoveFlag & REST_FLAG && m_bLimitationRest == true) {
 		RestAct();
 	}
 
@@ -125,6 +128,11 @@ void CMainStageWorkGhostBase::SelectUpdate()
 		m_pCAct_Selection->UpDate();
 		//アイコンの表情変更.
 		m_pCGhostIcon->SetSelectedFlag(true);
+
+		//選択肢を閉じる.
+		if (m_bLimitationRest == true) {
+			m_pCAct_Selection->SetCloseMoveFlag();
+		}
 
 		//選択から戻る処理.
 		if (m_pCAct_Selection->GetSelectFlag() == false) {

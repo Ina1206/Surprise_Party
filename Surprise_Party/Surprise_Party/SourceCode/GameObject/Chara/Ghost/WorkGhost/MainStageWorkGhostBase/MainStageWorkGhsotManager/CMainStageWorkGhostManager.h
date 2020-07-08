@@ -82,6 +82,8 @@ public:
 	int GetUseGimmickNum(const int& ghostNum) const { return m_pCWorkGhost[ghostNum]->GetUseGimmickNum(); };
 	//選択しているおばけの使用ギミック番号.
 	int GetUseGimmickNumToSelectGhost() const { return m_pCWorkGhost[m_SelectNum]->GetUseGimmickNum(); }
+	//選択しているお化けの休憩フラグ.
+	bool GetRestSelectGhostFlag() const;
 
 private:
 	//=======================関数======================//.

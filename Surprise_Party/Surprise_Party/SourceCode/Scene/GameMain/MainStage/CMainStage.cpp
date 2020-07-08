@@ -393,7 +393,8 @@ void CMainStage::Control()
 
 	//ˆÚ“®‚·‚éƒMƒ~ƒbƒNŒˆ’è.
 	if (m_ObjectSelectFlag & GIMMICK_SELECTION_FLAG) {
-		if (GetAsyncKeyState(VK_BACK) & 0x0001) {
+		if ((GetAsyncKeyState(VK_BACK) & 0x0001) || 
+			m_pCWorkghostManager->GetRestSelectGhostFlag() == true) {
 			//à–¾’†‚Íˆ—‚µ‚Ä‚Ù‚µ‚­‚È‚¢.
 			if (m_ExplainFlag != 0) {
 				return;

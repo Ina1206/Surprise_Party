@@ -181,6 +181,17 @@ bool CMainStageWorkGhostManager::SelectGhost()
 }
 
 //================================================.
+//	選択しているお化けの休憩フラグ取得処理関数.
+//================================================.
+bool CMainStageWorkGhostManager::GetRestSelectGhostFlag() const
+{
+	if (m_pCWorkGhost[m_SelectNum]->GetMoveFlag() & m_pCWorkGhost[m_SelectNum]->REST_FLAG) {
+		return true;
+	}
+	return false;
+}
+
+//================================================.
 //		チュートリアル処理関数.
 //================================================.
 bool CMainStageWorkGhostManager::Tutorial(const int& GhostNum)
