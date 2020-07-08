@@ -54,10 +54,16 @@ void CSpeakBigGhost::Update()
 	}
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-			//文章変更処理関数.
-		if (DesicionChangeString() == true) {
+		//文章変更処理関数.
+		if (DesicionChangeString() == true && m_bAutoFlag == false) {
 			ChangeString();
 		}
+	}
+
+	//自動再生処理関数.
+	if (AutomaticReproducing() == true) {
+		//文章変更処理関数.
+		ChangeString();
 	}
 
 	//終了時は処理を終了.
@@ -185,7 +191,6 @@ void CSpeakBigGhost::Release()
 //=====================================.
 void CSpeakBigGhost::LoadSpeakString()
 {
-	CFileResource*	m_pCFileReosource = CFileResource::GetResourceInstance();
 
 	//ステージが初回では無ければ読み込むファイルを別物とする.
 	if (m_StageNum > 0) {
@@ -193,12 +198,12 @@ void CSpeakBigGhost::LoadSpeakString()
 	}
 
 	//ファイル内全ての文章の数.
-	const int AllStringInFile = m_pCFileReosource->GetSringMax(m_LoadFileNum);
+	const int AllStringInFile = m_pCFileResource->GetSringMax(m_LoadFileNum);
 	//ファイルの中の全文章設定.
 	for (int splite = 0; splite < AllStringInFile; splite++) {
-		m_stSpeakString.push_back(m_pCFileReosource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::MainString));
-		m_stSelectString.push_back(m_pCFileReosource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::SelectString));
-		m_EmotionNum.push_back(atoi(m_pCFileReosource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::EmotionNum).c_str()));
+		m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::MainString));
+		m_stSelectString.push_back(m_pCFileResource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::SelectString));
+		m_EmotionNum.push_back(atoi(m_pCFileResource->GetSpeakString(m_LoadFileNum, splite, CFileString::enStringType::EmotionNum).c_str()));
 	}
 
 	//int型からstring型へ.

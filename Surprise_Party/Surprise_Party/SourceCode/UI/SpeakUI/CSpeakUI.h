@@ -16,6 +16,13 @@ public:
 	const float		ALPHA_MIN = 0.0f;			//透過値最小値.
 	const float		ALPHA_SPEED = 0.1f;			//透過値速度.
 
+	//==================列挙体=====================//.
+	//ステータスの種類.
+	enum class enStatusType {
+		FontSpeed,			//フォント生成速度.
+		AutoWaitSpeed,		//自動再生待機時間.
+	};
+
 	//===================関数======================//.
 	virtual void Update() = 0;	//更新処理関数.
 
@@ -28,8 +35,10 @@ protected:
 	void RenderFont();							//文字描画処理関数.
 	void TransparentFont();						//文字透過処理関数.
 	bool DesicionChangeString();				//文章変更判定処理関数.
+	bool AutomaticReproducing();				//自動再生処理関数.
 
 	//===================変数======================//.
+	CFileResource*				m_pCFileResource;				//ファイル読み込みクラス.
 	CFontResource*				m_pCFontResource;				//フォント読み込みクラス.
 	std::vector<std::string>	m_stSpeakString;				//会話文章.
 	std::vector<std::string>	m_stSelectString;				//選択文章.
@@ -38,7 +47,7 @@ protected:
 	bool						m_bAppearanceAllFont;			//全ての文字出現フラグ.
 	bool						m_bFinishAppearancedAllFont;	//全ての文字出現終了フラグ.
 	float						m_fFontAlpha;					//文字透過値.
-	
+	bool						m_bAutoFlag;					//自動再生フラグ.
 };
 
 

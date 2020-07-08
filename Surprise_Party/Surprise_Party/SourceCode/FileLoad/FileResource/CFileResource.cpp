@@ -99,6 +99,7 @@ void CFileResource::StatusLoad()
 		"Data\\File\\CharaStatus\\GhostStatus.csv",
 		"Data\\File\\CharaStatus\\PeopleStatus.csv",
 		"Data\\File\\CharaStatus\\StageStatus.csv",
+		"Data\\File\\CharaStatus\\GhostSpeakStatus.csv",
 	};
 
 	//ステータスのファイルの読み込み処理.

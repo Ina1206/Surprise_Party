@@ -157,7 +157,6 @@ void CSpeakTutorial::Init()
 		m_vPos.push_back(D3DXVECTOR3(10.0f + (10.0f * speak), 400.0f - (250.0f * speak), 0.0f));
 	}
 	
-	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
 	//ì«Ç›çûÇﬁÉtÉ@ÉCÉãî‘çÜ.
 	const int LoadFileNum = static_cast<int>(CFileResource::enSpeakFileType::SpeakTutorialBigGhost);
 	for (int file = 0; file < m_pCFileResource->GetSringMax(LoadFileNum); file++) {

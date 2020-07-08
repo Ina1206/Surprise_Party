@@ -31,6 +31,7 @@ public:
 		Ghost = 0,		//お化け.
 		People,			//人.
 		Stage,			//ステージ.
+		GhostSpeak,		//お化け会話.
 
 		Max,			//最大値.
 		Start = Ghost,

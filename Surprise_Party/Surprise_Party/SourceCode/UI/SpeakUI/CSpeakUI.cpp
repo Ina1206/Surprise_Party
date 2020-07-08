@@ -1,7 +1,8 @@
 #include "CSpeakUI.h"
 
 CSpeakUI::CSpeakUI()
-	: m_pCFontResource				(nullptr)
+	: m_pCFileResource				(CFileResource::GetResourceInstance())
+	, m_pCFontResource				(nullptr)
 	, m_stSpeakString				()
 	, m_stSelectString				()
 	, m_SpeakNum					(0)
@@ -9,6 +10,7 @@ CSpeakUI::CSpeakUI()
 	, m_ChangingFontNum				(0)
 	, m_bAppearanceAllFont			(false)
 	, m_bFinishAppearancedAllFont	(false)
+	, m_bAutoFlag					(false)
 {
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
 	//前のデータを削除.
@@ -49,7 +51,11 @@ void CSpeakUI::TransparentFont()
 		m_fFontAlpha = ALPHA_MIN;
 	}
 
-	m_fFontAlpha += ALPHA_SPEED;
+	const int	FileNum			= static_cast<int>(CFileResource::enStatusCharaType::GhostSpeak);
+	const int	StatusNum		= static_cast<int>(enStatusType::FontSpeed);
+	const int	FontDispSpeed	= static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, StatusNum, 0));
+	const float AlphaSpeed		= ALPHA_MAX / FontDispSpeed;
+	m_fFontAlpha += AlphaSpeed;
 
 	//一気に透過値最大値へ.
 	if (m_bAppearanceAllFont == true) {
@@ -79,6 +85,33 @@ bool CSpeakUI::DesicionChangeString()
 	m_bAppearanceAllFont = false;
 	m_ChangingFontNum = 0;
 	m_bFinishAppearancedAllFont = false;
+
+	return true;
+}
+
+//=======================================.
+//		自動再生処理関数.
+//=======================================.
+bool CSpeakUI::AutomaticReproducing()
+{
+	if (GetAsyncKeyState('Z') & 0x8000) {
+		if (m_bAutoFlag == false) {
+			m_bAutoFlag = true;
+			return true;
+		}
+
+		m_bAutoFlag = false;
+		return false;
+	}
+
+	if (m_bAutoFlag == false) {
+		return false;
+	}
+	
+	if (DesicionChangeString() == false) {
+		return false;
+	}
+
 
 	return true;
 }
