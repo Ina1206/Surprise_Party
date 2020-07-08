@@ -38,6 +38,9 @@ public:
 	bool GetSelectFinishFlag() const { return m_bSelectFinishFlag; }
 
 protected:
+	//===================関数========================//.
+	void Control();		//操作処理関数.
+
 	//===================変数========================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.
 	int							m_SelectNum;			//選択番号.

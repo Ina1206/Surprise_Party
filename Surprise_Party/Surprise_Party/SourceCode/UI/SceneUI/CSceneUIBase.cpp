@@ -26,8 +26,38 @@ CSceneUIBase::~CSceneUIBase()
 //==========================================.
 void CSceneUIBase::Update()
 {
-	m_bSelectFinishFlag = false;
 
+	//‘€ìˆ—ŠÖ”.
+	Control();
+}
+
+//==========================================.
+//		•`‰æˆ—ŠÖ”.
+//==========================================.
+void CSceneUIBase::Render()
+{
+	for (unsigned int sprite = 0; sprite < m_pCSpriteUI.size(); sprite++) {
+		//UVÀ•Wİ’è.
+		m_pCSpriteUI[sprite]->SetPattern(m_vUV[sprite]);
+		//Šp“x.
+		m_pCSpriteUI[sprite]->SetRotation(m_vUIRot[sprite]);
+		//À•W.
+		m_pCSpriteUI[sprite]->SetPosition(m_vUIPos[sprite]);
+		//•`‰æ.
+		CDepth_Stencil* m_pCDepthStenceil = CDepth_Stencil::GetDepthStencilInstance();
+		m_pCDepthStenceil->SetDepth(false);
+		m_pCSpriteUI[sprite]->Render();
+		m_pCDepthStenceil->SetDepth(true);
+	}
+
+}
+
+//==========================================.
+//		‘€ìˆ—ŠÖ”.
+//==========================================.
+void CSceneUIBase::Control()
+{
+	m_bSelectFinishFlag = false;
 	//Œˆ’èŒã‚Ìˆ—.
 	if (m_ChangeCnt > 0) {
 		m_ChangeCnt++;
@@ -64,27 +94,6 @@ void CSceneUIBase::Update()
 
 
 	m_vUIPos[CURSOR_NUM].y = CURSOR_POS.y + (SELECT_STRING_WIDHT * m_SelectNum);
-
-}
-
-//==========================================.
-//		•`‰æˆ—ŠÖ”.
-//==========================================.
-void CSceneUIBase::Render()
-{
-	for (unsigned int sprite = 0; sprite < m_pCSpriteUI.size(); sprite++) {
-		//UVÀ•Wİ’è.
-		m_pCSpriteUI[sprite]->SetPattern(m_vUV[sprite]);
-		//Šp“x.
-		m_pCSpriteUI[sprite]->SetRotation(m_vUIRot[sprite]);
-		//À•W.
-		m_pCSpriteUI[sprite]->SetPosition(m_vUIPos[sprite]);
-		//•`‰æ.
-		CDepth_Stencil* m_pCDepthStenceil = CDepth_Stencil::GetDepthStencilInstance();
-		m_pCDepthStenceil->SetDepth(false);
-		m_pCSpriteUI[sprite]->Render();
-		m_pCDepthStenceil->SetDepth(true);
-	}
 
 }
 
