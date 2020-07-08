@@ -4,6 +4,7 @@
 #include "..\CUI.h"
 #include "..\..\Drawing\Resource\FontResource\CFontResource.h"
 #include "..\..\FileLoad\FileResource\CFileResource.h"
+#include "AutoUI\CAutoUI.h"
 
 class CSpeakUI
 	: public CUI
@@ -50,7 +51,11 @@ protected:
 	bool						m_bAppearanceAllFont;			//全ての文字出現フラグ.
 	bool						m_bFinishAppearancedAllFont;	//全ての文字出現終了フラグ.
 	float						m_fFontAlpha;					//文字透過値.
+	std::unique_ptr<CAutoUI>	m_pCAutoUI;						//自動再生時のUI.
 	unsigned int				m_AutoFlag;						//自動再生フラグ.
+private:
+
+	//===================変数======================//.
 	int							m_AutoWaitCnt;					//自動再生待機カウント.
 };
 

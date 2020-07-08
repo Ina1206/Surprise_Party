@@ -38,6 +38,7 @@ void CAutoUI::Render()
 //=================================.
 void CAutoUI::Init()
 {
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::AutoString);
 	m_vPos = D3DXVECTOR3(500.0f, 200.0f, 0.0f);
 }
 

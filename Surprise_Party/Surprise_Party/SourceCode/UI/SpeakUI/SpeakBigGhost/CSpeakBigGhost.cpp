@@ -117,6 +117,11 @@ void CSpeakBigGhost::Render()
 	//次の会話分のカーソル描画.
 	m_pCNextSpeakCursor->Render();
 
+	//自動再生時のUI描画処理関数.
+	if (m_AutoFlag & m_AutoFlag) {
+		m_pCAutoUI->Render();
+	}
+
 	//選択しているとき以外処理しない.
 	if (!(m_StringFlag & SELECT_FLAG) || m_bFinishAppearancedAllFont == false) {
 		return;

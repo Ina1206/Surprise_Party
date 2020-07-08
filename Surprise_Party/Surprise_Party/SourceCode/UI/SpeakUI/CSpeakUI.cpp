@@ -10,12 +10,15 @@ CSpeakUI::CSpeakUI()
 	, m_ChangingFontNum				(0)
 	, m_bAppearanceAllFont			(false)
 	, m_bFinishAppearancedAllFont	(false)
+	, m_pCAutoUI					(nullptr)
 	, m_AutoFlag					(0)
 	, m_AutoWaitCnt					(0)
 {
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
 	//前のデータを削除.
 	m_pCFontResource->Destroy();
+	//自動再生時のUIクラスインスタンス化.
+	m_pCAutoUI.reset(new CAutoUI());
 }
 
 CSpeakUI::~CSpeakUI()
@@ -114,6 +117,9 @@ bool CSpeakUI::AutomaticReproducing()
 	if (!(m_AutoFlag & AUTO_FLAG)) {
 		return false;
 	}
+
+	//自動再生時のUI更新処理関数.
+	m_pCAutoUI->Update();
 
 	//文字が全てで終わるまで再生しない処理.
 	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
