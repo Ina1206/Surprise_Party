@@ -136,9 +136,5 @@ bool CSpeakUI::AutomaticReproducing()
 	}
 	m_AutoWaitCnt = 0;
 
-	if (DesicionChangeString() == false) {
-		return false;
-	}
-
 	return true;
 }

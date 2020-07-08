@@ -207,6 +207,8 @@ void CSpeakBigGhost::UpdateSpeakString()
 	//©“®Ä¶ˆ—ŠÖ”.
 	if (AutomaticReproducing() == true) {
 		//•¶Í•ÏXˆ—ŠÖ”.
+		DesicionChangeString();
+		//•¶Í•ÏXˆ—ŠÖ”.
 		ChangeString();
 		return;
 	}

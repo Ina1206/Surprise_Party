@@ -37,24 +37,46 @@ void CSpeakTutorial::Update()
 		m_enStartLatestFlag = 0;
 	}
 
+	if (m_bDescriptionEnd == true) {
+		return;
+	}
 
-	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+	if (!(m_AutoFlag & AUTO_FLAG)) {
+		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 
-		if (m_bFinishAppearancedAllFont == false) {
-			m_bAppearanceAllFont = true;
-		}
+			if (m_bFinishAppearancedAllFont == false) {
+				m_bAppearanceAllFont = true;
+			}
 
-		if (m_bAdvanceCommentFlag == true) {
+			//説明終了処理.
 			if (m_enStartLatestFlag & DescriptionEnd &&
 				m_bFinishAppearancedAllFont == true) {
 				m_bDescriptionEnd = true;
-				return;
 			}
 
-			//コメント一回進める処理.
-			AdvanceOnceComment();
+			if (m_bAdvanceCommentFlag == true) {
+
+				//コメント一回進める処理.
+				AdvanceOnceComment();
+			}
 		}
 	}
+
+	//自動再生処理関数.
+	if (AutomaticReproducing() == true) {
+		//説明終了処理.
+		if (m_enStartLatestFlag & DescriptionEnd) {
+			m_bDescriptionEnd = true;
+		}
+		//コメントを一回進める処理関数.
+		AdvanceOnceComment();
+	}
+	//if (m_bAdvanceCommentFlag == false) {
+	//	m_AutoFlag |= AUTO_SUSPEND_FLAG;
+	//}
+	//else {
+	//	m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
+	//}
 
 	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 		m_DefinitiveTutorialFlag = m_TutorialFlag;
@@ -103,6 +125,11 @@ void CSpeakTutorial::Render()
 
 	//次の文章カーソル描画処理関数.
 	m_pCNextSpeakCursor->Render();
+
+	//自動再生時のUI描画処理関数.
+	if (m_AutoFlag & AUTO_FLAG) {
+		m_pCAutoUI->Render();
+	}
 }
 
 //========================================.
@@ -116,7 +143,8 @@ void CSpeakTutorial::AdvanceOnceComment()
 
 	m_SpeakNum++;
 	if (static_cast<unsigned int>(m_SpeakNum) >= m_stSpeakString.size()) {
-		m_SpeakNum = 0;
+		m_SpeakNum = m_stSpeakString.size() - 1;
+
 	}
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum], true);
 	//チュートリアル探索処理関数.
@@ -191,9 +219,11 @@ void CSpeakTutorial::FindTutorial()
 	m_DescriptionFlag = 0;
 	if (m_stSelectString[m_SpeakNum] == "0") {
 		m_bAdvanceCommentFlag = true;
+		m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
 		return;
 	}
 
+	m_AutoFlag |= AUTO_SUSPEND_FLAG;
 	if (m_stSelectString[m_SpeakNum] == "GhostSelect") {
 		m_TutorialFlag = SELECT_GHOST_FLAG;
 		//コメント進めるの停止.
@@ -224,6 +254,7 @@ void CSpeakTutorial::FindTutorial()
 		return;
 	}
 
+	m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
 	//説明内容検索処理関数.
 	FindDescription();
 
