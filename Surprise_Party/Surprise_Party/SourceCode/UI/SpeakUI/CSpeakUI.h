@@ -48,6 +48,7 @@ protected:
 	bool						m_bFinishAppearancedAllFont;	//全ての文字出現終了フラグ.
 	float						m_fFontAlpha;					//文字透過値.
 	bool						m_bAutoFlag;					//自動再生フラグ.
+	int							m_AutoWaitCnt;					//自動再生待機カウント.
 };
 
 

@@ -11,6 +11,7 @@ CSpeakUI::CSpeakUI()
 	, m_bAppearanceAllFont			(false)
 	, m_bFinishAppearancedAllFont	(false)
 	, m_bAutoFlag					(false)
+	, m_AutoWaitCnt					(0)
 {
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
 	//前のデータを削除.
@@ -94,7 +95,7 @@ bool CSpeakUI::DesicionChangeString()
 //=======================================.
 bool CSpeakUI::AutomaticReproducing()
 {
-	if (GetAsyncKeyState('Z') & 0x8000) {
+	if (GetAsyncKeyState('Z') & 0x0001) {
 		if (m_bAutoFlag == false) {
 			m_bAutoFlag = true;
 			return true;
@@ -112,6 +113,14 @@ bool CSpeakUI::AutomaticReproducing()
 		return false;
 	}
 
+	const int FileNum		= static_cast<int>(CFileResource::enStatusCharaType::GhostSpeak);			//ファイル番号.
+	const int StatusNum		= static_cast<int>(enStatusType::AutoWaitSpeed);							//ステータス番号.
+	const int AutoWaitMax	= static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, StatusNum, 0));	//自動再生待機最大値.
+	m_AutoWaitCnt++;
+	if (m_AutoWaitCnt < AutoWaitMax) {
+		return false;
+	}
+	m_AutoWaitCnt = 0;
 
 	return true;
 }
