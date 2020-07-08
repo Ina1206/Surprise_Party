@@ -14,7 +14,7 @@ public:
 	~CAutoUI();
 
 	//=======================定数==========================//.
-	const D3DXVECTOR3	POS				= D3DXVECTOR3(1070.0f, 665.0f, 0.0f);	//表示座標.
+	const D3DXVECTOR3	POS				= D3DXVECTOR3(900.0f, 665.0f, 0.0f);	//表示座標.
 	const unsigned int	APPEAR_FLAG		= (1 << 0);								//現れるフラグ.
 	const unsigned int	DISAPPEAR_FLAG	= (1 << 1);								//消えるフラグ.
 	const float			ALPHA_SPEED		= 0.02f;								//透過速度.

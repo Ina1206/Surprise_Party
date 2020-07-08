@@ -576,9 +576,9 @@ void CResourceManager::SpriteUIStateSetting()
 
 	//é©ìÆçƒê∂ï∂éö.
 	const int AutoStringNum = static_cast<int>(enSpriteUI::AutoString);
-	m_pstSpriteUIState[AutoStringNum].Base.w = 350.0f;
+	m_pstSpriteUIState[AutoStringNum].Base.w = 550.0f;
 	m_pstSpriteUIState[AutoStringNum].Base.h = 90.0f;
-	m_pstSpriteUIState[AutoStringNum].Disp.w = 125.0f;
+	m_pstSpriteUIState[AutoStringNum].Disp.w = 275.0f;
 	m_pstSpriteUIState[AutoStringNum].Disp.h = 45.0f;
 
 	//Ç®âªÇØ.
