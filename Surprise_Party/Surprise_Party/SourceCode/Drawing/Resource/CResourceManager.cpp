@@ -213,7 +213,6 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\SNSPictureFlower.png",		//SNS用の写真(花).
 		"Data\\Texture\\UI\\Game\\SNSPictureSurprise.png",		//SNS用の写真(驚き).
 		"Data\\Texture\\UI\\Game\\PushEnter.png",				//PushEnter文字,
-		"Data\\Texture\\UI\\Game\\Title.png",					//Title.
 		"Data\\Texture\\UI\\Game\\Start.png",					//ゲーム開始文字.
 		"Data\\Texture\\UI\\Game\\End.png",						//終了文字.
 		"Data\\Texture\\UI\\Map\\ShockingSign.png",				//衝撃的符号.
@@ -223,6 +222,7 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
 		"Data\\Texture\\UI\\Game\\GhostCursor.png",				//お化けカーソル.
 		"Data\\Texture\\UI\\Game\\balloon.png",					//吹き出し.
+		"Data\\Texture\\UI\\Game\\Title.png",					//Title.
 	};
 }
 
@@ -551,13 +551,6 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[PushEnterStringNum].Disp.w = m_pstSpriteUIState[PushEnterStringNum].Base.w;
 	m_pstSpriteUIState[PushEnterStringNum].Disp.h = m_pstSpriteUIState[PushEnterStringNum].Base.h;
 
-	//Title文字.
-	const int TitleNum = static_cast<int>(enSpriteUI::Title);
-	m_pstSpriteUIState[TitleNum].Base.w = 450.0f;
-	m_pstSpriteUIState[TitleNum].Base.h = 276.0f;
-	m_pstSpriteUIState[TitleNum].Disp.w = m_pstSpriteUIState[TitleNum].Base.w;
-	m_pstSpriteUIState[TitleNum].Disp.h = m_pstSpriteUIState[TitleNum].Base.h;
-
 	//開始文字番号.
 	const int StartNum = static_cast<int>(enSpriteUI::StartString);
 	for (int StringNum = StartNum; StringNum <= static_cast<int>(enSpriteUI::FinishString); StringNum++) {
@@ -625,6 +618,15 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[BalloonNum].Stride.h = m_pstSpriteUIState[BalloonNum].Base.h / 2.0f;
 	m_pstSpriteUIState[BalloonNum].Disp.w = 300.0f;
 	m_pstSpriteUIState[BalloonNum].Disp.h = 300.0f;
+
+	//Title文字.
+	const int TitleNum = static_cast<int>(enSpriteUI::Title);
+	m_pstSpriteUIState[TitleNum].Base.w = 450.0f;
+	m_pstSpriteUIState[TitleNum].Base.h = 276.0f;
+	m_pstSpriteUIState[TitleNum].Stride.w = m_pstSpriteUIState[TitleNum].Base.w;
+	m_pstSpriteUIState[TitleNum].Stride.h = m_pstSpriteUIState[TitleNum].Base.h / 2.0f;
+	m_pstSpriteUIState[TitleNum].Disp.w = m_pstSpriteUIState[TitleNum].Base.w;
+	m_pstSpriteUIState[TitleNum].Disp.h = m_pstSpriteUIState[TitleNum].Base.h / 2.0f;
 
 	//全てのスプライトの1コマ当たりのサイズ.
 	for (int spriteui = 0; spriteui < static_cast<int>(enSpriteUI::SingleSpriteMax); spriteui++) {

@@ -87,7 +87,6 @@ enum class enSpriteUI
 	PictureSNSFlower,				//SNS用の写真(花).
 	PictureSNSSurprise,				//SNS用の写真(驚き).
 	PushEnterString,				//PushEnter文字.
-	Title,							//タイトル.
 	StartString,					//開始文字.
 	FinishString,					//終了文字.
 	ShockingSign,					//衝撃的符号.
@@ -98,6 +97,7 @@ enum class enSpriteUI
 	TreeBord,						//木の板.
 	GhostCursor,					//お化けカーソル.
 	Balloon,						//吹き出し.
+	Title,							//タイトル.
 
 	Max,							//最大数.
 	Start,							//開始.
