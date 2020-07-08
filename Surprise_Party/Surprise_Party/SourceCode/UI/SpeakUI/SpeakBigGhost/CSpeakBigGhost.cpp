@@ -53,18 +53,26 @@ void CSpeakBigGhost::Update()
 		m_StringFlag &= ~TUTORIAL_FLAG;
 	}
 
-	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-		//文章変更処理関数.
-		if (DesicionChangeString() == true && m_AutoFlag == 0) {
-			ChangeString();
-		}
-	}
+	//if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+	//	//文章変更処理関数.
+	//	if (DesicionChangeString() == true && !(m_AutoFlag & AUTO_FLAG )) {
+	//		ChangeString();
+	//	}
+	//	//全ての自動再生フラグ.
+	//	const int AllAutoFlag = AUTO_FLAG | AUTO_SUSPEND_FLAG;
+	//	if (m_AutoFlag & AllAutoFlag) {
+	//		m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
+	//	}
+	//}
+	//
+	////自動再生処理関数.
+	//if (AutomaticReproducing() == true) {
+	//	//文章変更処理関数.
+	//	ChangeString();
+	//}
 	
-	//自動再生処理関数.
-	if (AutomaticReproducing() == true) {
-		//文章変更処理関数.
-		ChangeString();
-	}
+	//会話文更新処理関数.
+	UpdateSpeakString();
 
 	//終了時は処理を終了.
 	if (m_FinishFlag != 0) {
@@ -187,6 +195,38 @@ void CSpeakBigGhost::Release()
 }
 
 //=====================================.
+//		会話文更新処理関数.
+//=====================================.
+void CSpeakBigGhost::UpdateSpeakString()
+{
+	//自動再生処理関数.
+	if (AutomaticReproducing() == true) {
+		//文章変更処理関数.
+		ChangeString();
+		return;
+	}
+
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+		//全ての自動再生フラグ.
+		const int AllAutoFlag = AUTO_FLAG | AUTO_SUSPEND_FLAG;
+		if (m_AutoFlag & AllAutoFlag) {
+			m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
+			return;
+		}
+
+		if (m_AutoFlag & AUTO_FLAG) {
+			return;
+		}
+		
+		//文章変更処理関数.
+		if (DesicionChangeString() == true) {
+			ChangeString();
+		}
+	}
+
+}
+
+//=====================================.
 //		会話文章読み込み処理関数.
 //=====================================.
 void CSpeakBigGhost::LoadSpeakString()
@@ -271,6 +311,7 @@ void CSpeakBigGhost::DecisionSelectString()
 				if (std::to_string(m_SelectNum) == m_stSpeakString[str]) {
 					m_SpeakNum = str;
 					m_StringFlag &= ~SELECT_FLAG;
+					m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
 					break;
 				}
 				continue;
@@ -278,6 +319,7 @@ void CSpeakBigGhost::DecisionSelectString()
 			//選択分岐が無い場合.
 			m_SpeakNum = str;
 			m_StringFlag &= ~SELECT_FLAG;
+			m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
 			break;
 		}
 	}
@@ -295,6 +337,7 @@ void CSpeakBigGhost::DecisionSelectString()
 		if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
 			if (!(m_StringFlag & EVALUTION_FLAG)) {
 				m_StringFlag |= SELECT_FLAG;
+				m_AutoFlag |= AUTO_SUSPEND_FLAG;
 			}
 		}
 		//次の文章が評価内容の場合.

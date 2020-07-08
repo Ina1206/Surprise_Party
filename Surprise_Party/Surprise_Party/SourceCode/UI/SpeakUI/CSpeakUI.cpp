@@ -97,7 +97,7 @@ bool CSpeakUI::AutomaticReproducing()
 {
 	//©“®Ä¶‚Ì•ÏXˆ—.
 	if (GetAsyncKeyState('Z') & 0x0001) {
-		if (m_AutoFlag == 0) {
+		if (!(m_AutoFlag & AUTO_FLAG)) {
 			m_AutoFlag = AUTO_FLAG;
 			return false;
 		}
@@ -111,7 +111,7 @@ bool CSpeakUI::AutomaticReproducing()
 		return false;
 	}
 
-	if (m_AutoFlag == 0) {
+	if (!(m_AutoFlag & AUTO_FLAG)) {
 		return false;
 	}
 

@@ -50,6 +50,7 @@ private:
 	//======================関数========================//.
 	void Init();									//初期化処理関数.
 	void Release();									//解放処理関数.
+	void UpdateSpeakString();						//会話文更新処理関数.
 	void LoadSpeakString();							//会話文章読み込み処理関数.
 	void DecisionSelectString();					//選択文章処理関数.
 	void FindNextString(const int& NextStringNum);	//次の文章を見つける処理関数.
