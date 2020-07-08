@@ -38,7 +38,10 @@ void CMainStageSwitchGhost::Update()
 
 	if (m_MoveFlag & SURPRISE_FLAG) {
 		//‹Á‚©‚·s“®‚ğŒˆ‚ß‚éˆ—ŠÖ”.
-		SurpriseActDecide();
+		if (SurpriseActDecide() == false) {
+			//‹Á‚©‚³‚È‚©‚Á‚½‚çíœ.
+			m_NearHumanNum.clear();
+		}
 
 		if (m_SurpriseFlag & SURPRISE_ACT_FLAG) {
 
@@ -59,6 +62,8 @@ void CMainStageSwitchGhost::Update()
 
 	if (!(m_MoveFlag & SURPRISE_FLAG)) {
 		if (m_bChangeGimmickSelect == false) {
+			m_vMovePos = m_vPos;
+			m_UpDownObjectFlag = UP_FLAG;
 			if (m_PushSwitchActFlag == 0) {
 				ReturnMove();
 			}

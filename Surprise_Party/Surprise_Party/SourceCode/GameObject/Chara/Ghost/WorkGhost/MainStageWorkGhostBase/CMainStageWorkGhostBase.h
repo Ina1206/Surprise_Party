@@ -125,7 +125,7 @@ protected:
 	//===============関数=================//.
 	void	SelectUpdate();									//選択更新処理関数.
 	void	GhostIconUpdate();								//お化けアイコン更新処理関数.
-	HRESULT	SurpriseActDecide();							//驚かす行動を決める処理関数.
+	bool	SurpriseActDecide();							//驚かす行動を決める処理関数.
 	HRESULT SurpriseHit();									//驚かす当たり判定処理関数.
 	void	DebugHitSphereRender();							//デバッグ用球体描画処理関数.
 	void	StrengthIconUpdate();							//体力アイコン更新処理関数.
@@ -163,6 +163,7 @@ protected:
 	D3DXVECTOR3							m_vStrengthIconPos;		//体力アイコン座標.
 	float								m_fMoveFinishHight;		//移動終了後の高さ.
 	bool								m_bNowHumanSurprise;	//現在人が驚くフラグ.
+	std::vector<int>					m_NearHumanNum;			//近くにいる人の番号.
 	D3DXVECTOR3							m_vEffectCenterPos;		//エフェクト中心座標.
 
 	std::unique_ptr<CSurpriseEffect>	m_pCFatigue;			//疲労エフェクト.
@@ -181,13 +182,11 @@ private:
 	std::vector<D3DXVECTOR3>			m_vHumanPos;				//人の座標.
 	D3DXVECTOR3							m_vSurprisePos;				//驚く場所.
 	std::vector<CDX9Mesh*>				m_pCHitSphere;				//当たり判定用スフィア.
-	std::vector<int>					m_NearHumanNum;				//近くにいる人の番号.
 	bool								m_bHumanSurpriseFlag;		//人が驚くフラグ.
 	int									m_SurpriseHumanNum;			//驚いた人番号.
 	int									m_UseGimmickNum;			//使うギミック番号.
 	int									m_OldStrengthType;			//体力種類.
 	int									m_SurpriseRestTime;			//驚き休憩時間.
-	//int									m_UsingGimmickNum;			//使っている番号.
 
 	bool								m_bLimitationRest;			//限界休憩フラグ.
 	bool								m_bTutorialCommentAddFlag;	//チュートリアルコメント進めるフラグ.

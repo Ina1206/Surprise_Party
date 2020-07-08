@@ -28,13 +28,13 @@ CMainStageWorkGhostBase::CMainStageWorkGhostBase()
 	, m_vStrengthIconPos		(0.0f, 0.0f, 0.0f)
 	, m_fMoveFinishHight		(0.0f)
 	, m_bNowHumanSurprise		(false)
+	, m_NearHumanNum			()
 	, m_vEffectCenterPos		(0.0f, 0.0f, 0.0f)
 	, m_pCFatigue				(nullptr)
 	, m_MoveDirection			(0)
 	, m_vGimmickPos				()
 	, m_vHumanPos				()
 	, m_pCHitSphere				(2)
-	, m_NearHumanNum			()
 	, m_RestFlag				(REST_PREPARAT_FLAG)
 	, m_OldStrengthType			(0)
 	, m_SurpriseRestTime		(0)
@@ -106,6 +106,11 @@ void CMainStageWorkGhostBase::SelectUpdate()
 			if (m_pCAct_Selection->GetSelectFlag() == false) {
 				//驚かすフラグから休憩フラグへ.
 				m_MoveFlag &= ~SURPRISE_FLAG;
+				
+				//近くにいた人の番号も削除.
+				if (m_NearHumanNum.size() > 0) {
+					m_NearHumanNum.clear();
+				}
 				return;
 			}
 		}
@@ -183,13 +188,18 @@ void CMainStageWorkGhostBase::SelectUpdate()
 //==========================================.
 //		驚かす行動を決める処理関数.
 //==========================================.
-HRESULT CMainStageWorkGhostBase::SurpriseActDecide()
+bool CMainStageWorkGhostBase::SurpriseActDecide()
 {
 	//驚かし休憩処理.
 	if (m_SurpriseFlag & SURPRISE_REST_FLAG) {
 		if (m_SurpriseRestTime <= SURPRISE_REST_MAX) {
 			m_SurpriseRestTime++;
-			return E_FAIL;
+			
+			if (m_NearHumanNum.size() > 0) {
+				return false;
+			}
+			
+			return true;
 		}
 		m_SurpriseRestTime = 0;
 		m_SurpriseFlag &= ~SURPRISE_REST_FLAG;
@@ -204,7 +214,11 @@ HRESULT CMainStageWorkGhostBase::SurpriseActDecide()
 
 		//お化けがギミックの上にいなければ終了.
 		if (!(m_SurpriseFlag & GIMMICK_TOP_FLAG)) {
-			return E_FAIL;
+			if (m_NearHumanNum.size() > 0) {
+				return false;
+			}
+
+			return true;
 		}
 
 		//人がお化けの近くにいるかどうか.
@@ -217,8 +231,12 @@ HRESULT CMainStageWorkGhostBase::SurpriseActDecide()
 		//人が近くにいなければ終了.
 		if (!(m_SurpriseFlag & HUMAN_NEAR_FLAG)) {
 			//人番号初期化.
-			std::vector<int>().swap(m_NearHumanNum);
-			return E_FAIL;
+			//std::vector<int>().swap(m_NearHumanNum);
+			if (m_NearHumanNum.size() > 0) {
+				return false;
+			}
+
+			return true;
 		}
 
 		//驚かす.
@@ -259,7 +277,7 @@ HRESULT CMainStageWorkGhostBase::SurpriseActDecide()
 
 	}
 
-	return S_OK;
+	return true;
 }
 
 //==========================================.
