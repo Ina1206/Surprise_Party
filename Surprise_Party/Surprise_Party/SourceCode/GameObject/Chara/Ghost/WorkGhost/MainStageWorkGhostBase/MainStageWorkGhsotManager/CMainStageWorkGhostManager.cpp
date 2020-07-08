@@ -29,24 +29,26 @@ void CMainStageWorkGhostManager::Init(const int& StageType, const int& StageNum,
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
 
 	for (int stage = 0; stage < m_pCFileResource->GetStageMax(StageType, 0); stage++) {
-		//óvëfêî.
-		const int ElementNum = static_cast<int>(m_pCWorkGhost.size() - 1);
-		switch (m_pCFileResource->GetStageNum(StageType, StageNum, stage) - 1) {
+		const int CharaPosNum = m_pCFileResource->GetStageNum(StageType, StageNum, stage) - 1;
+		if (CharaPosNum < 0 || CharaPosNum > 1) {
+			continue;
+		}
+
+		switch (CharaPosNum) {
 		case 0:
-			m_pCWorkGhost.push_back(nullptr);
-			m_pCWorkGhost[ElementNum].reset(new CMainStageDispGhost());
+			//èâä˙ê›íË.
+			m_pCWorkGhost.emplace_back(new CMainStageDispGhost());
 			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 0.0f, 3.5f));
-			m_pCWorkGhost[ElementNum]->SetPos(m_vWorkGhostPos[m_pCWorkGhost.size() - 1]);
-			m_pCWorkGhost[ElementNum]->SetInitMovePos();
 			break;
 		case 1:
-			m_pCWorkGhost.push_back(nullptr);
-			m_pCWorkGhost[ElementNum].reset(new CMainStageSwitchGhost());
+			m_pCWorkGhost.emplace_back(new CMainStageSwitchGhost());
 			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 3.5f, 3.5f));
-			m_pCWorkGhost[ElementNum]->SetPos(m_vWorkGhostPos[m_pCWorkGhost.size() - 1]);
-			m_pCWorkGhost[ElementNum]->SetInitMovePos();
 			break;
 		}
+		//óvëfêî.
+		const int ElementNum = static_cast<int>(m_pCWorkGhost.size() - 1);
+		m_pCWorkGhost[ElementNum]->SetPos(m_vWorkGhostPos[ElementNum]);
+		m_pCWorkGhost[ElementNum]->SetInitMovePos();
 	}
 
 	m_UpDownFlag.resize(m_pCWorkGhost.size());
