@@ -127,14 +127,18 @@ void CMainStageDispGhost::Init()
 
 	m_fAnimSpeed = SURPRISE_ANIM_SPEED;
 
+	//ステータス設定.
+	const int FileNum	= static_cast<int>(CFileResource::enStatusCharaType::Ghost);	//ファイル番号.
+	m_GhostType			= static_cast<int>(enGhostType::DispGhost);						//お化けの種類.
+
 	//体力.
-	m_fStrength = m_pCFileResource->GetStatusNum(static_cast<int>(enCharacterType::Ghost), static_cast<int>(enGhostType::DispGhost), static_cast<int>(enStatus::Strength));
+	m_fStrength = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::Strength));
 	m_fStrengthMax = m_fStrength;
 	//速度.
-	m_fMoveSpeed = m_pCFileResource->GetStatusNum(static_cast<int>(enCharacterType::Ghost), static_cast<int>(enGhostType::DispGhost), static_cast<int>(enStatus::MoveSpeed));
+	m_fMoveSpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::MoveSpeed));
 	m_fMoveSpeedMax = m_fMoveSpeed;
 	//回復速度.
-	m_fRecoverySpeed = m_pCFileResource->GetStatusNum(static_cast<int>(enCharacterType::Ghost), static_cast<int>(enGhostType::DispGhost), static_cast<int>(enStatus::RecoverySpeed));
+	m_fRecoverySpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::RecoverySpeed));
 
 	//行動選択クラスインスタンス化.
 	m_pCAct_Selection.reset(new CAct_Selection());

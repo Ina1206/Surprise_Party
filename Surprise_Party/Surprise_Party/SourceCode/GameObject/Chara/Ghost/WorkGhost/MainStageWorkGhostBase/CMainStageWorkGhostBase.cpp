@@ -31,6 +31,7 @@ CMainStageWorkGhostBase::CMainStageWorkGhostBase()
 	, m_NearHumanNum			()
 	, m_vEffectCenterPos		(0.0f, 0.0f, 0.0f)
 	, m_pCFatigue				(nullptr)
+	, m_GhostType				(0)
 	, m_MoveDirection			(0)
 	, m_vGimmickPos				()
 	, m_vHumanPos				()
@@ -190,7 +191,11 @@ void CMainStageWorkGhostBase::SurpriseActDecide()
 {
 	//驚かし休憩処理.
 	if (m_SurpriseFlag & SURPRISE_REST_FLAG) {
-		if (m_SurpriseRestTime <= SURPRISE_REST_MAX) {
+		const int FileNum			= static_cast<int>(CFileResource::enStatusCharaType::Ghost);							//ファイル番号.
+		const int StrengthType		= m_pCGhostIcon->GetFaceType() + 4;														//表情番号.
+		const int SurpriseRestMax	= static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_GhostType, StrengthType));	//驚く休憩時間最大値.
+
+		if (m_SurpriseRestTime <= SurpriseRestMax) {
 			m_SurpriseRestTime++;
 
 			//お化けの近くにいる人番号を削除処理関数.		

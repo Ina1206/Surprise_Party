@@ -168,6 +168,8 @@ protected:
 
 	std::unique_ptr<CSurpriseEffect>	m_pCFatigue;			//疲労エフェクト.
 
+	int									m_GhostType;			//お化けのタイプ.
+
 private:
 	//===============関数===================//.
 	void  SelectAfterActivity();								//選択後の行動処理関数.

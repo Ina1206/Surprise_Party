@@ -127,16 +127,16 @@ void CMainStageSwitchGhost::Init()
 	m_enSurpriseObjectType = enSurpriseObjectType::Switch;
 
 	//ステータス設定.
-	const int CHARA_TYPE = static_cast<int>(enCharacterType::Ghost);	//キャラクタタイプ.
-	const int GHOST_TYPE = static_cast<int>(enGhostType::SwitchGhost);	//お化けタイプ.
+	const int FileNum	= static_cast<int>(CFileResource::enStatusCharaType::Ghost);	//キャラクタタイプ.
+	m_GhostType			= static_cast<int>(enGhostType::SwitchGhost);					//お化けの種類.
 	//体力.
-	m_fStrength = m_pCFileResource->GetStatusNum(CHARA_TYPE, GHOST_TYPE, static_cast<int>(enStatus::Strength));
+	m_fStrength = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::Strength));
 	m_fStrengthMax = m_fStrength;
 	//移動速度.
-	m_fMoveSpeed = m_pCFileResource->GetStatusNum(CHARA_TYPE, GHOST_TYPE, static_cast<int>(enStatus::MoveSpeed));
+	m_fMoveSpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::MoveSpeed));
 	m_fMoveSpeedMax = m_fMoveSpeed;
 	//回復速度.
-	m_fRecoverySpeed = m_pCFileResource->GetStatusNum(CHARA_TYPE, GHOST_TYPE, static_cast<int>(enStatus::RecoverySpeed));
+	m_fRecoverySpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::RecoverySpeed));
 
 	//マップ上でのお化けアイコンインスタンス化.
 	m_pCGhostIcon.reset(new CGhostIcon());
