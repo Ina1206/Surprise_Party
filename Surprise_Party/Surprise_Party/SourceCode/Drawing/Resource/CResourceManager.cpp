@@ -217,6 +217,7 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Game\\Start.png",					//ゲーム開始文字.
 		"Data\\Texture\\UI\\Game\\End.png",						//終了文字.
 		"Data\\Texture\\UI\\Map\\ShockingSign.png",				//衝撃的符号.
+		"Data\\Texture\\UI\\Game\\AutoString.png",				//自動再生文字.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
 		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
@@ -572,6 +573,13 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[ShockingSignNum].Base.h = 800.0f;
 	m_pstSpriteUIState[ShockingSignNum].Disp.w = 40.0f;
 	m_pstSpriteUIState[ShockingSignNum].Disp.h = 40.0f;
+
+	//自動再生文字.
+	const int AutoStringNum = static_cast<int>(enSpriteUI::AutoString);
+	m_pstSpriteUIState[AutoStringNum].Base.w = 350.0f;
+	m_pstSpriteUIState[AutoStringNum].Base.h = 90.0f;
+	m_pstSpriteUIState[AutoStringNum].Disp.w = 125.0f;
+	m_pstSpriteUIState[AutoStringNum].Disp.h = 45.0f;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
