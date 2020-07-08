@@ -107,10 +107,8 @@ void CMainStageWorkGhostBase::SelectUpdate()
 				//驚かすフラグから休憩フラグへ.
 				m_MoveFlag &= ~SURPRISE_FLAG;
 				
-				//近くにいた人の番号も削除.
-				if (m_NearHumanNum.size() > 0) {
-					m_NearHumanNum.clear();
-				}
+				//お化けの近くにいる人番号を削除処理関数.		
+				ClearNearHumanOfGhost();
 				return;
 			}
 		}
@@ -188,18 +186,17 @@ void CMainStageWorkGhostBase::SelectUpdate()
 //==========================================.
 //		驚かす行動を決める処理関数.
 //==========================================.
-bool CMainStageWorkGhostBase::SurpriseActDecide()
+void CMainStageWorkGhostBase::SurpriseActDecide()
 {
 	//驚かし休憩処理.
 	if (m_SurpriseFlag & SURPRISE_REST_FLAG) {
 		if (m_SurpriseRestTime <= SURPRISE_REST_MAX) {
 			m_SurpriseRestTime++;
-			
-			if (m_NearHumanNum.size() > 0) {
-				return false;
-			}
-			
-			return true;
+
+			//お化けの近くにいる人番号を削除処理関数.		
+			ClearNearHumanOfGhost();
+
+			return;
 		}
 		m_SurpriseRestTime = 0;
 		m_SurpriseFlag &= ~SURPRISE_REST_FLAG;
@@ -214,11 +211,9 @@ bool CMainStageWorkGhostBase::SurpriseActDecide()
 
 		//お化けがギミックの上にいなければ終了.
 		if (!(m_SurpriseFlag & GIMMICK_TOP_FLAG)) {
-			if (m_NearHumanNum.size() > 0) {
-				return false;
-			}
-
-			return true;
+			//お化けの近くにいる人番号を削除処理関数.		
+			ClearNearHumanOfGhost();
+			return;
 		}
 
 		//人がお化けの近くにいるかどうか.
@@ -230,13 +225,9 @@ bool CMainStageWorkGhostBase::SurpriseActDecide()
 
 		//人が近くにいなければ終了.
 		if (!(m_SurpriseFlag & HUMAN_NEAR_FLAG)) {
-			//人番号初期化.
-			//std::vector<int>().swap(m_NearHumanNum);
-			if (m_NearHumanNum.size() > 0) {
-				return false;
-			}
-
-			return true;
+			//お化けの近くにいる人番号を削除処理関数.		
+			ClearNearHumanOfGhost();
+			return;
 		}
 
 		//驚かす.
@@ -277,7 +268,7 @@ bool CMainStageWorkGhostBase::SurpriseActDecide()
 
 	}
 
-	return true;
+	return;
 }
 
 //==========================================.
@@ -334,16 +325,22 @@ void CMainStageWorkGhostBase::SelectAfterActivity()
 				return;
 			}
 
-			//ギミック移動処理関数.
 			if (m_MoveFlag & MOVE_FLAG) {
+				//お化けの近くにいる人番号を削除処理関数.		
+				ClearNearHumanOfGhost();
+
+				//ギミック移動処理関数.
 				MoveGimmick();
 			}
 		}
 		return;
 	}
 
-	//休憩処理関数.
 	if (m_MoveFlag & MOVE_FLAG) {
+		//お化けの近くにいる人番号を削除処理関数.		
+		ClearNearHumanOfGhost();
+
+		//休憩処理関数.
 		RestAct();
 	}
 
@@ -587,5 +584,15 @@ void CMainStageWorkGhostBase::UpdateFutigueEffect()
 
 	if (m_pCFatigue->GetDispFlag() == true) {
 		m_pCFatigue->SetDispFlag(false);
+	}
+}
+
+//=============================================.
+//	お化けの近くにいる人番号を削除処理関数.
+//=============================================.
+void CMainStageWorkGhostBase::ClearNearHumanOfGhost()
+{
+	if (m_NearHumanNum.size() > 0) {
+		m_NearHumanNum.clear();
 	}
 }

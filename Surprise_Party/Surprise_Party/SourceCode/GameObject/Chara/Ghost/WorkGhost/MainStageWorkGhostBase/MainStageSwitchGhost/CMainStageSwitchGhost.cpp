@@ -38,10 +38,7 @@ void CMainStageSwitchGhost::Update()
 
 	if (m_MoveFlag & SURPRISE_FLAG) {
 		//‹Á‚©‚·s“®‚ğŒˆ‚ß‚éˆ—ŠÖ”.
-		if (SurpriseActDecide() == false) {
-			//‹Á‚©‚³‚È‚©‚Á‚½‚çíœ.
-			m_NearHumanNum.clear();
-		}
+		SurpriseActDecide();
 
 		if (m_SurpriseFlag & SURPRISE_ACT_FLAG) {
 

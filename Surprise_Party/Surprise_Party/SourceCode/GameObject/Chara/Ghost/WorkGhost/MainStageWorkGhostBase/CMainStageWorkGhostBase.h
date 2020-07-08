@@ -125,7 +125,7 @@ protected:
 	//===============関数=================//.
 	void	SelectUpdate();									//選択更新処理関数.
 	void	GhostIconUpdate();								//お化けアイコン更新処理関数.
-	bool	SurpriseActDecide();							//驚かす行動を決める処理関数.
+	void	SurpriseActDecide();							//驚かす行動を決める処理関数.
 	HRESULT SurpriseHit();									//驚かす当たり判定処理関数.
 	void	DebugHitSphereRender();							//デバッグ用球体描画処理関数.
 	void	StrengthIconUpdate();							//体力アイコン更新処理関数.
@@ -175,6 +175,7 @@ private:
 	void  MoveGimmick();										//ギミック移動処理関数.
 	void  RestMove(float* pfVar, float fSpped, float fMax);		//休憩移動処理関数.
 	void  Resurrection(float* pfVar, float fSpeed, float fMin);	//回復処理関数.
+	void  ClearNearHumanOfGhost();								//お化けの近くにいる人番号を削除処理関数.
 
 	//===============変数===================//.
 	int									m_MoveDirection;			//移動方向.
