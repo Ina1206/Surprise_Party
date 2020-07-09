@@ -4,19 +4,21 @@
 *		シーン変更用カーソルUIクラス.
 *****************/
 CChangeSceneCursorUI::CChangeSceneCursorUI()
-	: m_pCSpriteUI			(nullptr)
-	, m_vUV					(0.0f, 0.0f)
-	, m_vPrePos				(0.0f, 0.0f, 0.0f)
-	, m_bSelectFinishFlag	(false)
-	, m_bControlFlag		(false)
-	, m_ChangeCnt			(0)
-	, m_SelectNum			(0)
-	, m_fAngle				(0)
-	, m_fAcc				(0.0f)
-	, m_vJumpBeforePos		(0.0f, 0.0f, 0.0f)
-	, m_MaxJump				(1)
-	, m_JumpCnt				(0)
-	, m_MoveDirect			(RIGHT_DIRECT_NUM)
+	: m_pCSpriteUI				(nullptr)
+	, m_vUV						(0.0f, 0.0f)
+	, m_vPrePos					(0.0f, 0.0f, 0.0f)
+	, m_bSelectFinishFlag		(false)
+	, m_bControlFlag			(false)
+	, m_ChangeCnt				(0)
+	, m_SelectNum				(0)
+	, m_fAngle					(0)
+	, m_fAcc					(0.0f)
+	, m_vJumpBeforePos			(0.0f, 0.0f, 0.0f)
+	, m_MaxJump					(1)
+	, m_JumpCnt					(0)
+	, m_MoveDirect				(RIGHT_DIRECT_NUM)
+	, m_vChangeDirectBeforeRot	(0.0f, 0.0f, 0.0f)
+	, m_MoveType				(0)
 {
 	//初期化処理関数.
 	Init();
@@ -34,11 +36,8 @@ CChangeSceneCursorUI::~CChangeSceneCursorUI()
 void CChangeSceneCursorUI::Update()
 {
 	if (m_bControlFlag == false) {
-		////上下浮遊処理関数.
-		//UpDownFloat();
-
-		//Jump();
-
+		//移動処理関数.
+		Move();
 		return;
 	}
 
@@ -70,15 +69,17 @@ void CChangeSceneCursorUI::Render()
 //======================================.
 void CChangeSceneCursorUI::Init()
 {
+	//スプライトUIの情報取得.
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::GhostCursor);
+
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor);
-	m_vPos = D3DXVECTOR3(WND_W / 2.0f, WND_H / 2.0f, 0.0f);
+	//端っこに設定.
+	m_vPos = D3DXVECTOR3(-SpriteState.Disp.w / 2.0f, WND_H / 2.0f, 0.0f);
 	m_vRot = RIGHT_CURSOR_ROT;
 	m_vUV = NORMAL_UV_POS;
 
 	m_vJumpBeforePos = m_vPos;
 
-	//スプライトUIの情報取得.
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::GhostCursor);
 	//y軸回転時に回転軸を中央に持ってくる為.
 	m_vPrePos = D3DXVECTOR3(-SpriteState.Disp.w / 2.0f, 0.0f, 0.0f);
 }
@@ -89,6 +90,45 @@ void CChangeSceneCursorUI::Init()
 void CChangeSceneCursorUI::Release()
 {
 
+}
+
+//======================================.
+//		移動処理関数.
+//======================================.
+void CChangeSceneCursorUI::Move()
+{
+	switch (static_cast<enMoveType>(m_MoveType)) {
+	case enMoveType::StartMove:
+
+		break;
+	case enMoveType::Surprise:
+
+		break;
+	case enMoveType::LeftTitleFetch:
+
+		break;
+	case enMoveType::LeftTitleCarry:
+
+		break;
+	case enMoveType::RightTitleFetch:
+
+		break;
+	case enMoveType::RightTitleCarry:
+
+		break;
+	case enMoveType::Rejoice:
+
+		break;
+	case enMoveType::SelectFetch:
+
+		break;
+	case enMoveType::SelectCarry:
+
+		break;
+	case enMoveType::BecomeCursor:
+
+		break;
+	}
 }
 
 //======================================.

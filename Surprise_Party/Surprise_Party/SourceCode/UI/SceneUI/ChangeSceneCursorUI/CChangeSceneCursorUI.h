@@ -14,26 +14,41 @@ public:
 	~CChangeSceneCursorUI();
 
 	//===================定数======================//.	
-	const D3DXVECTOR3	CONTROL_CURSOR_POS	= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//カーソル座標.
-	
-	const D3DXVECTOR3	RIGHT_CURSOR_ROT	= D3DXVECTOR3(0.0f, 3.0f, 0.0f);		//カーソル角度.
-	const D3DXVECTOR3	LEFT_CURSOR_ROT		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//カーソル角度.
-	const D3DXVECTOR2	NORMAL_UV_POS		= D3DXVECTOR2(0.0f, 0.0f);				//通常UV座標.
-	const D3DXVECTOR2	ENTER_UV_POS		= D3DXVECTOR2(0.0f, 1.0f);				//決定時のUV座標.
+	const D3DXVECTOR3	CONTROL_CURSOR_POS		= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//カーソル座標.
+						
+	const D3DXVECTOR3	RIGHT_CURSOR_ROT		= D3DXVECTOR3(0.0f, 3.0f, 0.0f);		//カーソル角度.
+	const D3DXVECTOR3	LEFT_CURSOR_ROT			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//カーソル角度.
+	const D3DXVECTOR2	NORMAL_UV_POS			= D3DXVECTOR2(0.0f, 0.0f);				//通常UV座標.
+	const D3DXVECTOR2	ENTER_UV_POS			= D3DXVECTOR2(0.0f, 1.0f);				//決定時のUV座標.
+						
+	const int			CHANGE_CNT_MAX			= 10;									//変更カウント最大数.
+	const int			SELECT_MAX				= 2;									//選択肢最大数.
+						
+	const float			ANGLE_MAX				= 360.0f;								//角度最大値.
+	const float			FLOATING_SPEED			= 0.1f;									//浮遊速度.
+	const float			FLOATING_DISTANCE		= 1.5f;									//浮遊距離.
+						
+	const float			ADD_ACC_SPEED			= 0.5f;									//加速度加算速度.
+	const float			GRAVITY					= 5.0f;									//重力.
+						
+	const int			RIGHT_DIRECT_NUM		= 1;									//右に移動方向番号.
+	const int			CHANGE_DIRECT			= -1;									//方向変更.
+	const float			ROTATION_SPEED			= 0.1f;									//回転速度.
 
-	const int			CHANGE_CNT_MAX		= 10;									//変更カウント最大数.
-	const int			SELECT_MAX			= 2;									//選択肢最大数.
-
-	const float			ANGLE_MAX			= 360.0f;								//角度最大値.
-	const float			FLOATING_SPEED		= 0.1f;									//浮遊速度.
-	const float			FLOATING_DISTANCE	= 1.5f;									//浮遊距離.
-
-	const float			ADD_ACC_SPEED		= 0.5f;									//加速度加算速度.
-	const float			GRAVITY				= 5.0f;									//重力.
-
-	const int			RIGHT_DIRECT_NUM	= 1;									//右に移動方向番号.
-	const int			CHANGE_DIRECT		= -1;									//方向変更.
-	const float			ROTATION_SPEED		= 0.1f;									//回転速度.
+	//==================列挙体=====================//.
+	//移動種類.
+	enum class enMoveType {
+		StartMove = 0,		//開始時の移動.
+		Surprise,			//驚くフラグ.
+		LeftTitleFetch,		//左のタイトルを取りに行く.
+		LeftTitleCarry,		//左のタイトルを運ぶ.
+		RightTitleFetch,	//右のタイトルを取りに行く.
+		RightTitleCarry,	//右のタイトルを運ぶ.
+		Rejoice,			//喜ぶ.
+		SelectFetch,		//選択肢取りに行く.
+		SelectCarry,		//選択肢運ぶ.
+		BecomeCursor,		//カーソルになる.
+	};
 
 	//===================関数======================//.
 	void Update();		//更新処理関数.
@@ -55,6 +70,7 @@ private:
 	//===================関数======================//.
 	void Init();				//初期化処理関数.
 	void Release();				//解放処理関数.
+	void Move();				//移動処理関数.
 	void Control();				//操作処理関数.
 	void UpDownFloat();			//上下浮遊処理関数.
 	bool Jump();				//ジャンプ処理関数.
@@ -62,8 +78,8 @@ private:
 
 	//===================変数======================//.
 	CSpriteUI*	m_pCSpriteUI;				//スプライトUI.
-	D3DXVECTOR2 m_vUV;						//UV座標.
-	D3DXVECTOR3 m_vPrePos;					//事前の座標.
+	D3DXVECTOR2	m_vUV;						//UV座標.
+	D3DXVECTOR3	m_vPrePos;					//事前の座標.
 	bool		m_bChangeWaitFlag;			//変更待機フラグ.
 	bool		m_bSelectFinishFlag;		//選択終了フラグ.
 	bool		m_bControlFlag;				//操作フラグ.
@@ -71,11 +87,13 @@ private:
 	int			m_SelectNum;				//選択番号.
 	float		m_fAngle;					//角度.
 	float		m_fAcc;						//加速度.
-	D3DXVECTOR3 m_vJumpBeforePos;			//ジャンプ前の座標.
+	D3DXVECTOR3	m_vJumpBeforePos;			//ジャンプ前の座標.
 	int			m_MaxJump;					//ジャンプ最大値.
 	int			m_JumpCnt;					//ジャンプカウント.
 	int			m_MoveDirect;				//移動方向.
-	D3DXVECTOR3 m_vChangeDirectBeforeRot;	//方向変更前の角度.
+	D3DXVECTOR3	m_vChangeDirectBeforeRot;	//方向変更前の角度.
+	D3DXVECTOR3	m_vTitleCarryStartPos;		//タイトル運びはじめの座標.
+	int			m_MoveType;					//移動フラグ.
 };
 
 #endif	//#ifndef CCHANGE_SCENE_CURSOR_H
