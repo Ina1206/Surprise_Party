@@ -32,7 +32,8 @@ public:
 						
 	const float			ADD_ACC_SPEED			= 0.5f;									//加速度加算速度.
 	const float			GRAVITY					= 5.0f;									//重力.
-						
+	const int			MOVE_WAIT_MAX			= 30;									//移動待機カウント最大.
+
 	const int			RIGHT_DIRECT_NUM		= 1;									//右に移動方向番号.
 	const int			CHANGE_DIRECT			= -1;									//方向変更.
 	const float			ROTATION_SPEED			= 0.1f;									//回転速度.

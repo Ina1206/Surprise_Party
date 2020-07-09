@@ -391,7 +391,7 @@ bool CChangeSceneCursorUI::Jump()
 		
 		m_MoveWaitCnt++;
 
-		if (m_MoveWaitCnt > 30) {
+		if (m_MoveWaitCnt > MOVE_WAIT_MAX) {
 			m_MoveWaitCnt = 0;
 			m_fAcc = 0.0f;
 			m_JumpCnt = 0;
