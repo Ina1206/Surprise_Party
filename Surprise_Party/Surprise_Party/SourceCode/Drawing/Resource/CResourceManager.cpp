@@ -485,8 +485,8 @@ void CResourceManager::SpriteUIStateSetting()
 	//ポーズ時の文字.
 	int PauseStringNum = static_cast<int>(enSpriteUI::Pause);
 	for(int pause = PauseStringNum; pause <= static_cast<int>(enSpriteUI::NextTitle); pause++){
-		m_pstSpriteUIState[pause].Base.w = 500.0f;
-		m_pstSpriteUIState[pause].Base.h = 218.0f;
+		m_pstSpriteUIState[pause].Base.w = 350.0f;
+		m_pstSpriteUIState[pause].Base.h = 90.0f;
 		m_pstSpriteUIState[pause].Disp.w = m_pstSpriteUIState[pause].Base.w;
 		m_pstSpriteUIState[pause].Disp.h = m_pstSpriteUIState[pause].Base.h;
 	}
@@ -554,8 +554,8 @@ void CResourceManager::SpriteUIStateSetting()
 	//開始文字番号.
 	const int StartNum = static_cast<int>(enSpriteUI::StartString);
 	for (int StringNum = StartNum; StringNum <= static_cast<int>(enSpriteUI::FinishString); StringNum++) {
-		m_pstSpriteUIState[StringNum].Base.w = 536.0f;
-		m_pstSpriteUIState[StringNum].Base.h = 218.0f;
+		m_pstSpriteUIState[StringNum].Base.w = 340.0f;
+		m_pstSpriteUIState[StringNum].Base.h = 90.0f;
 		m_pstSpriteUIState[StringNum].Disp.w = m_pstSpriteUIState[StringNum].Base.w;
 		m_pstSpriteUIState[StringNum].Disp.h = m_pstSpriteUIState[StringNum].Base.h;
 	}

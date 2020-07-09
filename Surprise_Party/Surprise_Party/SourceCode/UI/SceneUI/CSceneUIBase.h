@@ -20,6 +20,7 @@ public:
 	const D3DXVECTOR3	INIT_ROT			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//初期角度.
 	const D3DXVECTOR2	INIT_UV				= D3DXVECTOR2(0.0f, 0.0f);				//初期UV座標.
 	const int			UI_MAX				= 4;									//UI最大数.
+	const int			SELECT_STRING_MAX	= 2;									//選択スプライト.
 
 	//===================関数========================//.
 	virtual void Update() = 0;										//更新処理関数.

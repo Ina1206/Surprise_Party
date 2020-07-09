@@ -129,7 +129,8 @@ void CSceneUIBase::ControlSelectStringPos()
 	//‰Šú‰».
 	for (int sprite = 0; sprite < SELECT_STRING_MAX; sprite++) {
 		m_vUIPos[sprite]	= SELECT_STRING_POS;
-		m_vUIPos[sprite].y += SELECT_STRING_WIDHT * sprite;
+		SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::StartString);
+		m_vUIPos[sprite].y += SpriteState.Disp.h * sprite;
 	}
 
 }
