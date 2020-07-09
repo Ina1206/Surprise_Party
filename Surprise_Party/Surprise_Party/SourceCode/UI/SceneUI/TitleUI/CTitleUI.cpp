@@ -86,24 +86,36 @@ void CTitleUI::Init()
 	const int CURSOR_NUM = static_cast<int>(m_pCSpriteUI.size()) - 1;
 	m_vUIPos[CURSOR_NUM] = CURSOR_POS;
 
-	//タイトル.
-	for (int title = 0; title < TITLE_MAX; title++) {
-		const int TitleNum = title + SELECT_STRING_MAX;
-		D3DXVECTOR2 TitleUV = INIT_UV;
-		TitleUV.y += 1.0f * title;
-		m_vUV[TitleNum] = TitleUV;
-	}
+	//タイトル所化処理関数.
+	InitTitle();
 
 	//操作待機フラグに設定.
 	m_ControlFlag = CONTROL_WAIT_FLAG;
 }
 
 //=======================================.
-//		タイトル座標の初期化処理関数.
+//		タイトル初期化処理関数.
 //=======================================.
-void CTitleUI::InitTitlePos()
+void CTitleUI::InitTitle()
 {
+	//タイトル番号開始番号.
+	const int TitleStartNum = SELECT_STRING_MAX;
 
+	for (int title = 0; title < TITLE_MAX; title++) {
+		const int TitleNum = title + TitleStartNum;
+
+		D3DXVECTOR2 TitleUV = INIT_UV;
+		TitleUV.y += 1.0f * title;
+		m_vUV[TitleNum] = TitleUV;
+
+		m_vUIPos[TitleNum] = TITLE_POS;
+		m_vUIPos[TitleNum].x = WND_W;
+		
+		if (title == 0) {
+			SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
+			m_vUIPos[TitleNum].x = -ss.Stride.w;
+		}
+	}
 }
 
 //=======================================.

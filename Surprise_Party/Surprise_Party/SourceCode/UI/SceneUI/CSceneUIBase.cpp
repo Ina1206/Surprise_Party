@@ -74,6 +74,8 @@ void CSceneUIBase::Control(const bool& bChangeWaitFlag)
 		if (m_SelectNum < 0) {
 			m_SelectNum = 0;
 			//SE.
+
+			return;
 		}
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
@@ -81,6 +83,8 @@ void CSceneUIBase::Control(const bool& bChangeWaitFlag)
 		if (m_SelectNum >= SELECT_STRING_MAX) {
 			m_SelectNum = SELECT_STRING_MAX - 1;
 			//SE.
+
+			return;
 		}
 	}
 
