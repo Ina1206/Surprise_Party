@@ -6,6 +6,7 @@
 CChangeSceneCursorUI::CChangeSceneCursorUI()
 	: m_pCSpriteUI			(nullptr)
 	, m_vUV					(0.0f, 0.0f)
+	, m_vPrePos				(0.0f, 0.0f, 0.0f)
 	, m_bSelectFinishFlag	(false)
 	, m_bControlFlag		(false)
 	, m_ChangeCnt			(0)
@@ -13,6 +14,7 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	, m_fAngle				(0)
 	, m_fAcc				(0.0f)
 	, m_vJumpBeforePos		(0.0f, 0.0f, 0.0f)
+	, m_MoveDirect			(RIGHT_DIRECT_NUM)
 {
 	//初期化処理関数.
 	Init();
@@ -33,7 +35,26 @@ void CChangeSceneCursorUI::Update()
 		////上下浮遊処理関数.
 		//UpDownFloat();
 
-		Jump();
+		//Jump();
+
+		static bool aa = false;
+		static int OldDirect = m_MoveDirect;
+
+		if (m_MoveDirect != OldDirect) {
+			aa = false;
+		}
+		OldDirect = m_MoveDirect;
+
+		if(GetAsyncKeyState('O') & 0x0001){
+			if (aa == false) {
+				aa = true;
+				m_vChangeDirectBeforeRot = m_vRot;
+			}
+		}
+		if (aa == true) {
+			ChangeMoveDirect();
+		}
+
 		return;
 	}
 
@@ -49,6 +70,7 @@ void CChangeSceneCursorUI::Render()
 	m_pCSpriteUI->SetPosition(m_vPos);
 	m_pCSpriteUI->SetRotation(m_vRot);
 	m_pCSpriteUI->SetPattern(m_vUV);
+	m_pCSpriteUI->SetPrePos(m_vPrePos);
 	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
 	m_pCDepthStencil->SetDepth(true);
@@ -65,6 +87,11 @@ void CChangeSceneCursorUI::Init()
 	m_vUV = NORMAL_UV_POS;
 
 	m_vJumpBeforePos = m_vPos;
+
+	//スプライトUIの情報取得.
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::GhostCursor);
+	//y軸回転時に回転軸を中央に持ってくる為.
+	m_vPrePos = D3DXVECTOR3(-SpriteState.Disp.w / 2.0f, 0.0f, 0.0f);
 }
 
 //======================================.
@@ -155,5 +182,30 @@ void CChangeSceneCursorUI::Jump()
 	if (m_vPos.y > m_vJumpBeforePos.y) {
 		m_vPos.y = m_vJumpBeforePos.y;
 		m_fAcc = 0.0f;
+	}
+}
+
+//=======================================.
+//		移動方向変更処理関数.
+//=======================================.
+void CChangeSceneCursorUI::ChangeMoveDirect()
+{
+	m_vRot.y -= ROTATION_SPEED * m_MoveDirect;
+	
+	//右と左の方向の差分.
+	const float DIFFERENCE_LEFT_RIGHT_ROT = fabsf(RIGHT_CURSOR_ROT.y - LEFT_CURSOR_ROT.y);
+
+	if (fabsf(m_vRot.y - m_vChangeDirectBeforeRot.y) > DIFFERENCE_LEFT_RIGHT_ROT) {
+		//移動方向変更.
+		m_MoveDirect *= CHANGE_DIRECT;
+		
+		//右方向.
+		if (m_MoveDirect == RIGHT_DIRECT_NUM) {
+			m_vRot = RIGHT_CURSOR_ROT;
+			return;
+		}
+
+		//左方向.
+		m_vRot = LEFT_CURSOR_ROT;
 	}
 }

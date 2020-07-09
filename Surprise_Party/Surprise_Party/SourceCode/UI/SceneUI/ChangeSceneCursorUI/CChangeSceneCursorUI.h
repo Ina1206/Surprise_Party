@@ -31,6 +31,10 @@ public:
 	const float			ADD_ACC_SPEED		= 0.5f;									//加速度加算速度.
 	const float			GRAVITY				= 5.0f;									//重力.
 
+	const int			RIGHT_DIRECT_NUM	= 1;									//右に移動方向番号.
+	const int			CHANGE_DIRECT		= -1;									//方向変更.
+	const float			ROTATION_SPEED		= 0.1f;									//回転速度.
+
 	//===================関数======================//.
 	void Update();		//更新処理関数.
 	void Render();		//描画処理関数.
@@ -49,23 +53,27 @@ public:
 
 private:
 	//===================関数======================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
-	void Control();		//操作処理関数.
-	void UpDownFloat();	//上下浮遊処理関数.
-	void Jump();		//ジャンプ処理関数.
+	void Init();				//初期化処理関数.
+	void Release();				//解放処理関数.
+	void Control();				//操作処理関数.
+	void UpDownFloat();			//上下浮遊処理関数.
+	void Jump();				//ジャンプ処理関数.
+	void ChangeMoveDirect();	//移動方向変更処理関数.
 
 	//===================変数======================//.
-	CSpriteUI*	m_pCSpriteUI;			//スプライトUI.
-	D3DXVECTOR2 m_vUV;					//UV座標.
-	bool		m_bChangeWaitFlag;		//変更待機フラグ.
-	bool		m_bSelectFinishFlag;	//選択終了フラグ.
-	bool		m_bControlFlag;			//操作フラグ.
-	int			m_ChangeCnt;			//変更カウント.
-	int			m_SelectNum;			//選択番号.
-	float		m_fAngle;				//角度.
-	float		m_fAcc;					//加速度.
-	D3DXVECTOR3 m_vJumpBeforePos;		//ジャンプ前の座標.
+	CSpriteUI*	m_pCSpriteUI;				//スプライトUI.
+	D3DXVECTOR2 m_vUV;						//UV座標.
+	D3DXVECTOR3 m_vPrePos;					//事前の座標.
+	bool		m_bChangeWaitFlag;			//変更待機フラグ.
+	bool		m_bSelectFinishFlag;		//選択終了フラグ.
+	bool		m_bControlFlag;				//操作フラグ.
+	int			m_ChangeCnt;				//変更カウント.
+	int			m_SelectNum;				//選択番号.
+	float		m_fAngle;					//角度.
+	float		m_fAcc;						//加速度.
+	D3DXVECTOR3 m_vJumpBeforePos;			//ジャンプ前の座標.
+	int			m_MoveDirect;				//移動方向.
+	D3DXVECTOR3 m_vChangeDirectBeforeRot;	//方向変更前の角度.
 };
 
 #endif	//#ifndef CCHANGE_SCENE_CURSOR_H
