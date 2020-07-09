@@ -32,9 +32,20 @@ void CPauseUI::Init()
 	for (int sprite = 0; sprite < SELECT_STRING_MAX; sprite++) {
 		//選択文章.
 		int SpriteNum = static_cast<int>(enSpriteUI::Continue) + sprite;
-		m_pCSpriteUI[sprite] = m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum));
+		m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum)));
 	}
 	//シーンタイトル.
-	m_pCSpriteUI[SCENE_TITLE_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::Pause);
+	m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Pause));
 
+	//要素数初期化処理関数.
+	InitElementCounts();
+
+	//操作時選択座標設定処理関数.
+	ControlSelectStringPos();
+
+	//カーソル初期設定処理関数.
+	InitCursor();
+	//カーソル番号.
+	const int CURSOR_NUM = static_cast<int>(m_pCSpriteUI.size()) - 1;
+	m_vUIPos[CURSOR_NUM] = CURSOR_POS;
 }

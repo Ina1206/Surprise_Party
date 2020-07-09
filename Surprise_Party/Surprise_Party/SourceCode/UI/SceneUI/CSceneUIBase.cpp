@@ -11,8 +11,7 @@ CSceneUIBase::CSceneUIBase()
 	, m_ChangeCnt			(0)
 	, m_bSelectFinishFlag	(false)
 {
-	//初期座標設定処理関数.
-	InitPos();
+
 }
 
 CSceneUIBase::~CSceneUIBase()
@@ -49,6 +48,9 @@ void CSceneUIBase::Control(const bool& bChangeWaitFlag)
 {
 	m_bSelectFinishFlag = false;
 
+	//カーソル番号.
+	const int CursorNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
+
 	//決定後の処理.
 	if (m_ChangeCnt > 0) {
 		if (bChangeWaitFlag == true) {
@@ -57,7 +59,7 @@ void CSceneUIBase::Control(const bool& bChangeWaitFlag)
 			//選択終了.
 			if (m_ChangeCnt >= CHANGE_CNT_MAX) {
 				m_bSelectFinishFlag = true;
-				m_vUV[CURSOR_NUM] = NORMAL_UV_POS;
+				m_vUV[CursorNum] = NORMAL_UV_POS;
 				m_ChangeCnt = 0;
 			}
 			return;
@@ -83,44 +85,56 @@ void CSceneUIBase::Control(const bool& bChangeWaitFlag)
 	}
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-		m_vUV[CURSOR_NUM] = ENTER_UV_POS;
+		m_vUV[CursorNum] = ENTER_UV_POS;
 		//SE.
 		m_ChangeCnt++;
 	}
 
 
-	m_vUIPos[CURSOR_NUM].y = CURSOR_POS.y + (SELECT_STRING_WIDHT * m_SelectNum);
+	m_vUIPos[CursorNum].y = CURSOR_POS.y + (SELECT_STRING_WIDHT * m_SelectNum);
 
 }
 
 //==========================================.
-//		初期座標設定処理関数.
+//		要素数初期化処理関数.
 //==========================================.
-void CSceneUIBase::InitPos()
+void CSceneUIBase::InitElementCounts()
 {
-	//要素数設定.
-	m_pCSpriteUI.resize(UI_MAX);
 	m_vUIPos.resize(m_pCSpriteUI.size());
 	m_vUIRot.resize(m_pCSpriteUI.size());
 	m_vUV.resize(m_pCSpriteUI.size());
 
-	//初期化.
-	for (unsigned int sprite = 0; sprite < m_pCSpriteUI.size(); sprite++) {
-		m_vUV[sprite] = INIT_UV;
-		m_vUIRot[sprite] = INIT_ROT;
-
-		if (static_cast<int>(sprite) < SELECT_STRING_MAX) {
-			m_vUIPos[sprite] = SELECT_STRING_POS;
-			m_vUIPos[sprite].y += SELECT_STRING_WIDHT * sprite;
-			continue;
-		}
-		m_vUIPos[sprite] = INIT_POS;
+	//初期値設定.
+	for (unsigned int ui = 0; ui < m_pCSpriteUI.size(); ui++) {
+		m_vUIPos[ui]	= INIT_POS;
+		m_vUIRot[ui]	= INIT_ROT;
+		m_vUV[ui]		= INIT_UV;
 	}
-	m_vUIPos[CURSOR_NUM] = CURSOR_POS;
-	m_vUIRot[CURSOR_NUM] = CURSOR_ROT;
+}
 
+//==========================================.
+//		操作時選択文章座標設定処理関数.
+//==========================================.
+void CSceneUIBase::ControlSelectStringPos()
+{
+	//初期化.
+	for (int sprite = 0; sprite < SELECT_STRING_MAX; sprite++) {
+		m_vUIPos[sprite]	= SELECT_STRING_POS;
+		m_vUIPos[sprite].y += SELECT_STRING_WIDHT * sprite;
+	}
+
+}
+
+//===========================================.
+//		カーソル初期設定処理関数.
+//===========================================.
+void CSceneUIBase::InitCursor()
+{
 	//カーソル.
-	m_pCSpriteUI[CURSOR_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor);
+	m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor));
+	m_vUIPos.push_back(INIT_POS);
+	m_vUIRot.push_back(CURSOR_ROT);
+	m_vUV.push_back(NORMAL_UV_POS);
 }
 
 //===========================================.

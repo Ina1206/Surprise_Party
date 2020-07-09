@@ -25,9 +25,8 @@ public:
 	const float			SELECT_STRING_WIDHT = 100.0f;								//選択文章幅.
 	const int			UI_MAX				= 4;									//UI最大数.
 	const int			SELECT_STRING_MAX	= 2;									//選択スプライト.
-	const int			CURSOR_NUM			= 2;									//カーソル番号.
+	//const int			CURSOR_NUM			= 2;									//カーソル番号.
 	const int			CHANGE_CNT_MAX		= 10;									//変更カウント最大数.
-	const int			SCENE_TITLE_NUM		= 3;									//シーンタイトル番号.
 
 	//===================関数========================//.
 	virtual void Update() = 0;							//更新処理関数.
@@ -40,22 +39,23 @@ public:
 protected:
 	//===================関数========================//.
 	void Control(const bool& bChangeWaitFlag);			//操作処理関数.
+	void InitElementCounts();							//要素数初期化処理関数.
+	void ControlSelectStringPos();						//操作時選択文章座標設定処理関数.
+	void InitCursor();									//カーソル初期設定処理関数.
 
 	//===================変数========================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.
 	int							m_SelectNum;			//選択番号.
 	bool						m_bSelectFinishFlag;	//選択終了フラグ.
-
-private:
-	//===================関数========================//.
-	void InitPos();										//初期座標設定処理関数.
-	void Release();										//解放処理関数.
-
-	//===================変数========================//.
 	std::vector<D3DXVECTOR3>	m_vUIPos;				//座標.
 	std::vector<D3DXVECTOR2>	m_vUV;					//UV座標.
 	std::vector<D3DXVECTOR3>	m_vUIRot;				//角度.
 
+private:
+	//===================関数========================//.
+	void Release();										//解放処理関数.
+
+	//===================変数========================//.
 	int							m_ChangeCnt;			//変更カウント.
 };
 

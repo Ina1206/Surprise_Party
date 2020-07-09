@@ -5,6 +5,7 @@
 ****************/
 CTitleUI::CTitleUI()
 	: m_SelectTypeFlag	(0)
+	, m_ControlFlag		(0)
 {
 	//初期化処理関数.
 	Init();
@@ -20,6 +21,8 @@ CTitleUI::~CTitleUI()
 //=====================================.
 void CTitleUI::Update()
 {
+
+
 	//操作処理関数.
 	Control(false);
 }
@@ -48,10 +51,19 @@ unsigned int CTitleUI::GetSelectTypeFlag() const
 void CTitleUI::Init()
 {
 	for (int spriteNum = 0; spriteNum < SELECT_STRING_MAX; spriteNum++) {
-		int StartString = static_cast<int>(enSpriteUI::StartString);
-		enSpriteUI m_enSpriteUI = static_cast<enSpriteUI>(StartString + spriteNum);
+		const int StartString = static_cast<int>(enSpriteUI::StartString);
+		const enSpriteUI m_enSpriteUI = static_cast<enSpriteUI>(StartString + spriteNum);
 
-		m_pCSpriteUI[spriteNum] = m_pCResourceManager->GetSpriteUI(m_enSpriteUI);
+		m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(m_enSpriteUI));
 	}
-	m_pCSpriteUI[SCENE_TITLE_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::Title);
+	m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Title));
+
+	//要素数初期化処理関数.
+	InitElementCounts();
+
+	//操作時選択文章座標設定処理関数.
+	ControlSelectStringPos();
+
+	//カーソル初期設定座標処理関数.
+	InitCursor();
 }

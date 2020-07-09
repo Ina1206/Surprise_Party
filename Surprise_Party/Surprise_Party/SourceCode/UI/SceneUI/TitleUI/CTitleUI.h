@@ -13,8 +13,12 @@ public:
 	CTitleUI();
 	~CTitleUI();
 	//======================定数=======================//.
-	const unsigned int GAME_START_FLAG = (1 << 0);		//ゲームスタートフラグ.
-	const unsigned int GAME_FINISH_FLAG = (1 << 1);		//ゲーム終了フラグ.	
+	//m_SelectTypeFlag.
+	const unsigned int GAME_START_FLAG		= (1 << 0);		//ゲームスタートフラグ.
+	const unsigned int GAME_FINISH_FLAG		= (1 << 1);		//ゲーム終了フラグ.	
+	//m_ControlFlag.
+	const unsigned int CONTROL_WAIT_FLAG	= (1 << 0);		//操作待機フラグ.
+	const unsigned int CONTROL_FLAG			= (1 << 1);		//操作フラグ.
 
 	//======================関数=======================//.
 	void Update();	//更新処理関数.
@@ -28,6 +32,7 @@ private:
 
 	//======================変数=======================//.
 	unsigned int m_SelectTypeFlag;	//選択種類フラグ.
+	unsigned int m_ControlFlag;		//操作フラグ.
 
 };
 
