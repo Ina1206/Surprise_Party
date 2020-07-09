@@ -15,7 +15,7 @@ public:
 	virtual ~CSceneUIBase();
 
 	//===================定数========================//.
-	const D3DXVECTOR3	SELECT_STRING_POS	= D3DXVECTOR3(700.0f, 400.0f, 0.0f);	//選択文章座標.
+	const D3DXVECTOR3	SELECT_STRING_POS	= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//選択文章座標.
 	const D3DXVECTOR3	INIT_POS			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//初期座標.
 	const D3DXVECTOR3	INIT_ROT			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//初期角度.
 	const D3DXVECTOR2	INIT_UV				= D3DXVECTOR2(0.0f, 0.0f);				//初期UV座標.
