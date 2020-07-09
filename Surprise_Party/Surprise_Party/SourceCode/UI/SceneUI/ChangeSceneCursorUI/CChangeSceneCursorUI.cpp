@@ -67,10 +67,15 @@ void CChangeSceneCursorUI::Update()
 //======================================.
 void CChangeSceneCursorUI::Render()
 {
-	m_pCSpriteUI->SetPosition(m_vPos);
-	m_pCSpriteUI->SetRotation(m_vRot);
-	m_pCSpriteUI->SetPattern(m_vUV);
+	//事前座標.
 	m_pCSpriteUI->SetPrePos(m_vPrePos);
+	//座標.
+	m_pCSpriteUI->SetPosition(m_vPos);
+	//角度.
+	m_pCSpriteUI->SetRotation(m_vRot);
+	//UV座標.
+	m_pCSpriteUI->SetPattern(m_vUV);
+	//描画.
 	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
 	m_pCDepthStencil->SetDepth(true);
