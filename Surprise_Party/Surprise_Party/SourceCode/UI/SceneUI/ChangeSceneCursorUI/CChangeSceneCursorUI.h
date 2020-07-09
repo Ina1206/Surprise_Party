@@ -58,7 +58,7 @@ private:
 	void Control();				//操作処理関数.
 	void UpDownFloat();			//上下浮遊処理関数.
 	void Jump();				//ジャンプ処理関数.
-	void ChangeMoveDirect();	//移動方向変更処理関数.
+	bool ChangeMoveDirect();	//移動方向変更処理関数.
 
 	//===================変数======================//.
 	CSpriteUI*	m_pCSpriteUI;				//スプライトUI.

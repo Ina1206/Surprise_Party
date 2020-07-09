@@ -193,7 +193,7 @@ void CChangeSceneCursorUI::Jump()
 //=======================================.
 //		ˆÚ“®•ûŒü•ÏXˆ—ŠÖ”.
 //=======================================.
-void CChangeSceneCursorUI::ChangeMoveDirect()
+bool CChangeSceneCursorUI::ChangeMoveDirect()
 {
 	m_vRot.y -= ROTATION_SPEED * m_MoveDirect;
 	
@@ -207,10 +207,13 @@ void CChangeSceneCursorUI::ChangeMoveDirect()
 		//‰E•ûŒü.
 		if (m_MoveDirect == RIGHT_DIRECT_NUM) {
 			m_vRot = RIGHT_CURSOR_ROT;
-			return;
+			return true;
 		}
 
 		//¶•ûŒü.
 		m_vRot = LEFT_CURSOR_ROT;
+		return true;
 	}
+
+	return false;
 }
