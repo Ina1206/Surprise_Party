@@ -109,9 +109,9 @@ void CTitleUI::ControlTitlePos()
 	const int TitleStartNum = SELECT_STRING_MAX;
 	for (int title = 0; title < TITLE_MAX; title++) {
 		const int TitleNum = title + TitleStartNum;
-		D3DXVECTOR3 vPos = D3DXVECTOR3(100.0f, 200.0f, 0.0f) + a;
+		D3DXVECTOR3 vPos = D3DXVECTOR3(40.5f, 90.8f, 0.0f) + a;
 		SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
-		vPos.x += ss.Stride.w * title;
+		vPos.x += (ss.Stride.w ) * title;
 		m_vUIPos[TitleNum] = vPos;
 	}
 }
