@@ -17,8 +17,13 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	, m_MaxJump					(1)
 	, m_JumpCnt					(0)
 	, m_MoveDirect				(RIGHT_DIRECT_NUM)
+	, m_bChangeDirect			(false)
 	, m_vChangeDirectBeforeRot	(0.0f, 0.0f, 0.0f)
+	, m_MoveWaitCnt				(0)
+	, m_vCarryStartPos			(0.0f, 0.0f, 0.0f)
+	, m_CarryFlag				(0)
 	, m_MoveType				(0)
+	, m_OutSidePos				(false)
 {
 	//初期化処理関数.
 	Init();
@@ -37,7 +42,7 @@ void CChangeSceneCursorUI::Update()
 {
 	if (m_bControlFlag == false) {
 		//移動処理関数.
-		Move();
+		Act();
 		return;
 	}
 
@@ -71,6 +76,7 @@ void CChangeSceneCursorUI::Init()
 {
 	//スプライトUIの情報取得.
 	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::GhostCursor);
+	m_OutSidePos = -SpriteState.Disp.w / 2.0f;
 
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor);
 	//端っこに設定.
@@ -93,18 +99,47 @@ void CChangeSceneCursorUI::Release()
 }
 
 //======================================.
-//		移動処理関数.
+//		行動処理関数.
 //======================================.
-void CChangeSceneCursorUI::Move()
+void CChangeSceneCursorUI::Act()
 {
 	switch (static_cast<enMoveType>(m_MoveType)) {
 	case enMoveType::StartMove:
-
+		//上下浮遊処理関数.
+		UpDownFloat();
+		//移動処理関数(画面中央まで).
+		if (Move(WND_W / 2.0f) == true) {
+			m_vChangeDirectBeforeRot = m_vRot;
+			m_vJumpBeforePos = m_vPos;
+			m_MoveType++;
+		}
 		break;
 	case enMoveType::Surprise:
-
+		if (m_bChangeDirect == false) {
+			//移動方向変更処理関数.
+			m_bChangeDirect = ChangeMoveDirect();
+			break;
+		}
+		m_vUV = SURPRISE_UV_POS;
+		//ジャンプ処理関数.
+		if (Jump() == true) {
+			m_vUV = HAVE_TROUBLE_UV_POS;
+			m_bChangeDirect = false;
+			m_MoveType++;
+		}
 		break;
 	case enMoveType::LeftTitleFetch:
+		//上下浮遊処理関数.
+		UpDownFloat();
+
+		//移動処理関数.
+		if (Move(m_OutSidePos) == true) {
+			if (ChangeMoveDirect() == true) {
+				m_vPos = m_vCarryStartPos;
+				m_vPos.x += m_OutSidePos;
+				m_MoveType++;
+			}
+		}
 
 		break;
 	case enMoveType::LeftTitleCarry:
@@ -189,6 +224,26 @@ void CChangeSceneCursorUI::Control()
 }
 
 //======================================.
+//		移動処理関数.
+//======================================.
+bool CChangeSceneCursorUI::Move(const float& MoveDistanceMax) 
+{
+	m_vPos.x += 1.5f * m_MoveDirect;
+	
+	//例外処理.
+	if (MoveDistanceMax < m_OutSidePos) {
+		return false;
+	}
+
+	if (fabsf(MoveDistanceMax - m_vPos.x) <= 1.5f) {
+		m_vPos.x = MoveDistanceMax;
+		return true;
+	}
+
+	return false;
+}
+
+//======================================.
 //		上下浮遊処理関数.
 //======================================.
 void CChangeSceneCursorUI::UpDownFloat()
@@ -205,6 +260,18 @@ void CChangeSceneCursorUI::UpDownFloat()
 //=======================================.
 bool CChangeSceneCursorUI::Jump()
 {
+	//移動待機.
+	if (m_MoveWaitCnt > 0) {
+		
+		m_MoveWaitCnt++;
+
+		if (m_MoveWaitCnt > 30) {
+			m_MoveWaitCnt = 0;
+			return true;
+		}
+		return false;
+	}
+
 	m_fAcc += ADD_ACC_SPEED;
 
 	m_vPos.y += m_fAcc - GRAVITY;
@@ -213,9 +280,11 @@ bool CChangeSceneCursorUI::Jump()
 
 		//ジャンプ最大数.
 		m_JumpCnt++;
-		if (m_JumpCnt > m_MaxJump) {
+		if (m_JumpCnt >= m_MaxJump) {
 			m_MaxJump++;
-			return true;
+			//移動待機カウント加算.
+			m_MoveWaitCnt++;
+			return false;
 		}
 
 		m_fAcc = 0.0f;

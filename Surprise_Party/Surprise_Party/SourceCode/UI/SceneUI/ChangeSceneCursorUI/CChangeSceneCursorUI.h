@@ -20,7 +20,9 @@ public:
 	const D3DXVECTOR3	LEFT_CURSOR_ROT			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//カーソル角度.
 	const D3DXVECTOR2	NORMAL_UV_POS			= D3DXVECTOR2(0.0f, 0.0f);				//通常UV座標.
 	const D3DXVECTOR2	ENTER_UV_POS			= D3DXVECTOR2(0.0f, 1.0f);				//決定時のUV座標.
-						
+	const D3DXVECTOR2	HAVE_TROUBLE_UV_POS		= D3DXVECTOR2(1.0f, 0.0f);				//困ったUV座標.
+	const D3DXVECTOR2	SURPRISE_UV_POS			= D3DXVECTOR2(1.0f, 1.0f);				//驚きUV座標.
+
 	const int			CHANGE_CNT_MAX			= 10;									//変更カウント最大数.
 	const int			SELECT_MAX				= 2;									//選択肢最大数.
 						
@@ -34,6 +36,10 @@ public:
 	const int			RIGHT_DIRECT_NUM		= 1;									//右に移動方向番号.
 	const int			CHANGE_DIRECT			= -1;									//方向変更.
 	const float			ROTATION_SPEED			= 0.1f;									//回転速度.
+
+	const unsigned int	LEFT_TITLE_CARRY_FLAG	= (1 << 0);								//左のタイトル運ぶフラグ.
+	const unsigned int	RIGHT_TITLE_CARRY_FLAG	= (1 << 1);								//右のタイトル運ぶフラグ.
+	const unsigned int	SELECT_CARRY_FLAG		= (1 << 2);								//選択肢運ぶフラグ.
 
 	//==================列挙体=====================//.
 	//移動種類.
@@ -59,41 +65,57 @@ public:
 	void SetChangeWaitFlag(const bool& bFlag) { m_bChangeWaitFlag = bFlag; }
 	//操作フラグ.
 	void SetControlFlag(const bool& bFlag) { m_bControlFlag = bFlag; }
+	//タイトル運び初めの座標.
+	void SetCarryStartPos(const D3DXVECTOR3& vPos) { m_vCarryStartPos = vPos; }
 
 	//=============情報取得処理関数================//.
 	//選択終了フラグ.
 	bool GetSelectFinishFlag() const { return m_bSelectFinishFlag; }
 	//選択番号.
 	int	GetSelectNum()const { return m_SelectNum; }
+	//運ぶフラグ.
+	unsigned int GetCarryFlag() const { return m_CarryFlag; }
 
 private:
 	//===================関数======================//.
-	void Init();				//初期化処理関数.
-	void Release();				//解放処理関数.
-	void Move();				//移動処理関数.
-	void Control();				//操作処理関数.
-	void UpDownFloat();			//上下浮遊処理関数.
-	bool Jump();				//ジャンプ処理関数.
-	bool ChangeMoveDirect();	//移動方向変更処理関数.
+	void Init();							//初期化処理関数.
+	void Release();							//解放処理関数.
+	void Act();								//行動処理関数.
+	void Control();							//操作処理関数.
+	bool Move(const float& MoveDistanceMax);//移動処理関数.
+	void UpDownFloat();						//上下浮遊処理関数.
+	bool Jump();							//ジャンプ処理関数.
+	bool ChangeMoveDirect();				//移動方向変更処理関数.
 
 	//===================変数======================//.
-	CSpriteUI*	m_pCSpriteUI;				//スプライトUI.
-	D3DXVECTOR2	m_vUV;						//UV座標.
-	D3DXVECTOR3	m_vPrePos;					//事前の座標.
-	bool		m_bChangeWaitFlag;			//変更待機フラグ.
-	bool		m_bSelectFinishFlag;		//選択終了フラグ.
-	bool		m_bControlFlag;				//操作フラグ.
-	int			m_ChangeCnt;				//変更カウント.
-	int			m_SelectNum;				//選択番号.
-	float		m_fAngle;					//角度.
-	float		m_fAcc;						//加速度.
-	D3DXVECTOR3	m_vJumpBeforePos;			//ジャンプ前の座標.
-	int			m_MaxJump;					//ジャンプ最大値.
-	int			m_JumpCnt;					//ジャンプカウント.
-	int			m_MoveDirect;				//移動方向.
-	D3DXVECTOR3	m_vChangeDirectBeforeRot;	//方向変更前の角度.
-	D3DXVECTOR3	m_vTitleCarryStartPos;		//タイトル運びはじめの座標.
-	int			m_MoveType;					//移動フラグ.
+	CSpriteUI*		m_pCSpriteUI;				//スプライトUI.
+	D3DXVECTOR2		m_vUV;						//UV座標.
+	D3DXVECTOR3		m_vPrePos;					//事前の座標.
+	bool			m_bChangeWaitFlag;			//変更待機フラグ.
+	bool			m_bSelectFinishFlag;		//選択終了フラグ.
+	bool			m_bControlFlag;				//操作フラグ.
+	int				m_ChangeCnt;				//変更カウント.
+	int				m_SelectNum;				//選択番号.
+	
+	float			m_fAngle;					//角度.
+
+	float			m_fAcc;						//加速度.
+	D3DXVECTOR3		m_vJumpBeforePos;			//ジャンプ前の座標.
+	int				m_MaxJump;					//ジャンプ最大値.
+	int				m_JumpCnt;					//ジャンプカウント.
+
+	int				m_MoveDirect;				//移動方向.
+	bool			m_bChangeDirect;			//方向変更フラグ.
+	D3DXVECTOR3		m_vChangeDirectBeforeRot;	//方向変更前の角度.
+	int				m_MoveWaitCnt;				//移動待機フラグ.
+	
+	D3DXVECTOR3		m_vCarryStartPos;			//タイトル運びはじめの座標.
+	unsigned int	m_CarryFlag;				//運ぶフラグ.
+	float			m_fCarryDisntace;			//運ぶ距離.
+	
+	int				m_MoveType;					//移動フラグ.
+
+	float			m_OutSidePos;				//画面外のx座標.
 };
 
 #endif	//#ifndef CCHANGE_SCENE_CURSOR_H

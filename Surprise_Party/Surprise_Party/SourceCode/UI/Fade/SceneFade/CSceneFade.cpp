@@ -56,7 +56,7 @@ void CSceneFade::Render()
 void CSceneFade::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Shutter);
-
+	m_ShutterFlag = OPEN_FLAG;
 	m_vPos = SHUTTER_INIT_POS;
 }
 
