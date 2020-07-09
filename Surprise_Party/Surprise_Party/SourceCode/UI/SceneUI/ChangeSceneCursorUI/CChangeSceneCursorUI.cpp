@@ -14,6 +14,8 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	, m_fAngle				(0)
 	, m_fAcc				(0.0f)
 	, m_vJumpBeforePos		(0.0f, 0.0f, 0.0f)
+	, m_MaxJump				(1)
+	, m_JumpCnt				(0)
 	, m_MoveDirect			(RIGHT_DIRECT_NUM)
 {
 	//初期化処理関数.
@@ -36,24 +38,6 @@ void CChangeSceneCursorUI::Update()
 		//UpDownFloat();
 
 		//Jump();
-
-		static bool aa = false;
-		static int OldDirect = m_MoveDirect;
-
-		if (m_MoveDirect != OldDirect) {
-			aa = false;
-		}
-		OldDirect = m_MoveDirect;
-
-		if(GetAsyncKeyState('O') & 0x0001){
-			if (aa == false) {
-				aa = true;
-				m_vChangeDirectBeforeRot = m_vRot;
-			}
-		}
-		if (aa == true) {
-			ChangeMoveDirect();
-		}
 
 		return;
 	}
@@ -179,15 +163,25 @@ void CChangeSceneCursorUI::UpDownFloat()
 //=======================================.
 //		ジャンプ処理関数.
 //=======================================.
-void CChangeSceneCursorUI::Jump()
+bool CChangeSceneCursorUI::Jump()
 {
 	m_fAcc += ADD_ACC_SPEED;
 
 	m_vPos.y += m_fAcc - GRAVITY;
 	if (m_vPos.y > m_vJumpBeforePos.y) {
 		m_vPos.y = m_vJumpBeforePos.y;
+
+		//ジャンプ最大数.
+		m_JumpCnt++;
+		if (m_JumpCnt > m_MaxJump) {
+			m_MaxJump++;
+			return true;
+		}
+
 		m_fAcc = 0.0f;
 	}
+
+	return false;
 }
 
 //=======================================.

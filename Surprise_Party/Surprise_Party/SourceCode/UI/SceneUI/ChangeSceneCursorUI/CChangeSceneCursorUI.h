@@ -57,7 +57,7 @@ private:
 	void Release();				//解放処理関数.
 	void Control();				//操作処理関数.
 	void UpDownFloat();			//上下浮遊処理関数.
-	void Jump();				//ジャンプ処理関数.
+	bool Jump();				//ジャンプ処理関数.
 	bool ChangeMoveDirect();	//移動方向変更処理関数.
 
 	//===================変数======================//.
@@ -72,6 +72,8 @@ private:
 	float		m_fAngle;					//角度.
 	float		m_fAcc;						//加速度.
 	D3DXVECTOR3 m_vJumpBeforePos;			//ジャンプ前の座標.
+	int			m_MaxJump;					//ジャンプ最大値.
+	int			m_JumpCnt;					//ジャンプカウント.
 	int			m_MoveDirect;				//移動方向.
 	D3DXVECTOR3 m_vChangeDirectBeforeRot;	//方向変更前の角度.
 };
