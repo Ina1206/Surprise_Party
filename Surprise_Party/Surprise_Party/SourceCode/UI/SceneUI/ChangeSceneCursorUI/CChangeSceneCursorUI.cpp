@@ -7,8 +7,12 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	: m_pCSpriteUI			(nullptr)
 	, m_vUV					(0.0f, 0.0f)
 	, m_bSelectFinishFlag	(false)
+	, m_bControlFlag		(false)
 	, m_ChangeCnt			(0)
 	, m_SelectNum			(0)
+	, m_fAngle				(0)
+	, m_fAcc				(0.0f)
+	, m_vJumpBeforePos		(0.0f, 0.0f, 0.0f)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -25,6 +29,14 @@ CChangeSceneCursorUI::~CChangeSceneCursorUI()
 //======================================.
 void CChangeSceneCursorUI::Update()
 {
+	if (m_bControlFlag == false) {
+		////ã‰º•‚—Vˆ—ŠÖ”.
+		//UpDownFloat();
+
+		Jump();
+		return;
+	}
+
 	//‘€ìˆ—ŠÖ”.
 	Control();
 }
@@ -51,6 +63,8 @@ void CChangeSceneCursorUI::Init()
 	m_vPos = D3DXVECTOR3(WND_W / 2.0f, WND_H / 2.0f, 0.0f);
 	m_vRot = RIGHT_CURSOR_ROT;
 	m_vUV = NORMAL_UV_POS;
+
+	m_vJumpBeforePos = m_vPos;
 }
 
 //======================================.
@@ -116,4 +130,30 @@ void CChangeSceneCursorUI::Control()
 	m_vPos.x = CONTROL_CURSOR_POS.x;
 	m_vPos.y = CONTROL_CURSOR_POS.y + (SpriteState.Disp.h * m_SelectNum);
 
+}
+
+//======================================.
+//		ã‰º•‚—Vˆ—ŠÖ”.
+//======================================.
+void CChangeSceneCursorUI::UpDownFloat()
+{
+	m_fAngle+= FLOATING_SPEED;
+	if (m_fAngle > static_cast<float>(D3DXToRadian(ANGLE_MAX))) {
+		m_fAngle = 0.0f;
+	}
+	m_vPos.y += sin(m_fAngle) * FLOATING_DISTANCE;
+}
+
+//=======================================.
+//		ƒWƒƒƒ“ƒvˆ—ŠÖ”.
+//=======================================.
+void CChangeSceneCursorUI::Jump()
+{
+	m_fAcc += ADD_ACC_SPEED;
+
+	m_vPos.y += m_fAcc - GRAVITY;
+	if (m_vPos.y > m_vJumpBeforePos.y) {
+		m_vPos.y = m_vJumpBeforePos.y;
+		m_fAcc = 0.0f;
+	}
 }

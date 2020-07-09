@@ -21,6 +21,7 @@ void CPauseUI::Update()
 {
 	//カーソルの更新処理関数.
 	m_pCCursor->SetChangeWaitFlag(true);
+	m_pCCursor->SetControlFlag(true);
 	m_pCCursor->Update();
 }
 

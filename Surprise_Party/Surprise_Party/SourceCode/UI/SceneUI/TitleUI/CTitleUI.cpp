@@ -21,19 +21,22 @@ CTitleUI::~CTitleUI()
 //=====================================.
 void CTitleUI::Update()
 {
+	//操作処理関数.
+	m_pCCursor->SetChangeWaitFlag(false);
+	m_pCCursor->Update();
+
 	if (m_ControlFlag & CONTROL_WAIT_FLAG) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			//操作時タイトル座標設定処理関数.
 			ControlTitlePos();
 			
 			m_ControlFlag = CONTROL_FLAG;
+			
+			m_pCCursor->SetControlFlag(true);
 		}
 		return;
 	}
 
-	//操作処理関数.
-	m_pCCursor->SetChangeWaitFlag(false);
-	m_pCCursor->Update();
 }
 
 //=====================================.
