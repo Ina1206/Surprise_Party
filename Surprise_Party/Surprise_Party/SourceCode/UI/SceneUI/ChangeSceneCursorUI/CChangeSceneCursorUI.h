@@ -90,14 +90,15 @@ public:
 
 private:
 	//===================関数======================//.
-	void Init();							//初期化処理関数.
-	void Release();							//解放処理関数.
-	void Act();								//行動処理関数.
-	void Control();							//操作処理関数.
-	bool Move(const float& MoveDistanceMax);//移動処理関数.
-	void UpDownFloat();						//上下浮遊処理関数.
-	bool Jump();							//ジャンプ処理関数.
-	bool ChangeMoveDirect();				//移動方向変更処理関数.
+	void Init();											//初期化処理関数.
+	void Release();											//解放処理関数.
+	void Act();												//行動処理関数.
+	void Control();											//操作処理関数.
+	bool Move(const float& MoveDistanceMax);				//移動処理関数.
+	bool MoveToDestination(const D3DXVECTOR3& vTargetPos);	//目的地への移動処理関数.
+	void UpDownFloat();										//上下浮遊処理関数.
+	bool Jump();											//ジャンプ処理関数.
+	bool ChangeMoveDirect();								//移動方向変更処理関数.
 
 	//===================変数======================//.
 	CSpriteUI*		m_pCSpriteUI;				//スプライトUI.
@@ -120,6 +121,7 @@ private:
 	bool			m_bChangeDirect;			//方向変更フラグ.
 	D3DXVECTOR3		m_vChangeDirectBeforeRot;	//方向変更前の角度.
 	int				m_MoveWaitCnt;				//移動待機フラグ.
+	bool			m_bArrivalFlga;				//到着フラグ.
 	
 	D3DXVECTOR3		m_vCarryStartPos;			//タイトル運びはじめの座標.
 	unsigned int	m_CarryFlag;				//運ぶフラグ.

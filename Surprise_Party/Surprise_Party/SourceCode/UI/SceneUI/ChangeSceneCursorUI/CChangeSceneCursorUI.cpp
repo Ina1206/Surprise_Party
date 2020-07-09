@@ -20,6 +20,7 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	, m_bChangeDirect			(false)
 	, m_vChangeDirectBeforeRot	(0.0f, 0.0f, 0.0f)
 	, m_MoveWaitCnt				(0)
+	, m_bArrivalFlga			(false)
 	, m_vCarryStartPos			(0.0f, 0.0f, 0.0f)
 	, m_CarryFlag				(0)
 	, m_FetchFlag				(0)
@@ -183,13 +184,46 @@ void CChangeSceneCursorUI::Act()
 		if (m_CarryFlag == 0) {
 			m_MoveType++;
 			m_FetchFlag = 0;
+			m_vUV = NORMAL_UV_POS;
+			m_bArrivalFlga = false;
 		}
 
 		break;
 	case enMoveType::Rejoice:
+	{
+		const D3DXVECTOR3	vTargetPos = D3DXVECTOR3(WND_W / 2.0f, WND_H / 2.0f, 0.0f);
 
+		if (m_bArrivalFlga == false) {
+			m_vJumpBeforePos = m_vPos;
+		}
+
+		if (MoveToDestination(vTargetPos) == true) {
+			m_vUV = ENTER_UV_POS;
+			if (Jump() == true) {
+				m_MoveType++;
+				m_FetchFlag = SELECT_FEATCH_FLAG;
+				m_vUV = NORMAL_UV_POS;
+				m_vChangeDirectBeforeRot = m_vRot;
+			}
+		}
+	}
 		break;
 	case enMoveType::SelectFetch:
+		if (m_bChangeDirect == false) {
+			m_bChangeDirect = ChangeMoveDirect();
+			break;
+		}
+
+		if (Move(WND_W - m_OutSidePos) == true) {
+			if (ChangeMoveDirect() == true) {
+				m_vPos = m_vCarryStartPos;
+				m_vPos.x -= m_OutSidePos;
+				m_fCarryDisntace = 0.0f;
+				m_FetchFlag = 0;
+				m_CarryFlag = SELECT_CARRY_FLAG;
+				m_MoveType++;
+			}
+		}
 
 		break;
 	case enMoveType::SelectCarry:
@@ -279,6 +313,29 @@ bool CChangeSceneCursorUI::Move(const float& MoveDistanceMax)
 }
 
 //======================================.
+//		ñ⁄ìIínÇ÷ÇÃà⁄ìÆèàóùä÷êî.
+//======================================.
+bool CChangeSceneCursorUI::MoveToDestination(const D3DXVECTOR3& vTargetPos)
+{
+	if (m_bArrivalFlga == true) {
+		return true;
+	}
+
+	const D3DXVECTOR3	vTargetGhostPos = vTargetPos - m_vPos;	//2ì_ä‘ÇÃãóó£.
+	const float			fLength = D3DXVec3Length(&vTargetGhostPos);	//í∑Ç≥.
+	const D3DXVECTOR3	vUnit = vTargetGhostPos / fLength;			//äÑçá.
+
+	m_vPos += 3.5f * vUnit;
+
+	if (fabsf(vTargetPos.x - m_vPos.x) <= 3.5f) {
+		m_bArrivalFlga = true;
+		return true;
+	}
+
+	return false;
+}
+
+//======================================.
 //		è„â∫ïÇóVèàóùä÷êî.
 //======================================.
 void CChangeSceneCursorUI::UpDownFloat()
@@ -302,6 +359,8 @@ bool CChangeSceneCursorUI::Jump()
 
 		if (m_MoveWaitCnt > 30) {
 			m_MoveWaitCnt = 0;
+			m_fAcc = 0.0f;
+			m_JumpCnt = 0;
 			return true;
 		}
 		return false;
