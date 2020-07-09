@@ -37,9 +37,15 @@ public:
 	const int			CHANGE_DIRECT			= -1;									//方向変更.
 	const float			ROTATION_SPEED			= 0.1f;									//回転速度.
 
+	//m_CarryFlag.
 	const unsigned int	LEFT_TITLE_CARRY_FLAG	= (1 << 0);								//左のタイトル運ぶフラグ.
 	const unsigned int	RIGHT_TITLE_CARRY_FLAG	= (1 << 1);								//右のタイトル運ぶフラグ.
 	const unsigned int	SELECT_CARRY_FLAG		= (1 << 2);								//選択肢運ぶフラグ.
+
+	//m_FetchFlag.
+	const unsigned int	LEFT_TITLE_FETCH_FLAG	= (1 << 0);								//左のタイトルを取りに行くフラグ.
+	const unsigned int	RIGHT_TITLE_FETCH_FLAG	= (1 << 1);								//右のタイトルを取りに行くフラグ.
+	const unsigned int	SELECT_FEATCH_FLAG		= (1 << 2);								//選択肢を取りに行くフラグ.
 
 	//==================列挙体=====================//.
 	//移動種類.
@@ -67,6 +73,8 @@ public:
 	void SetControlFlag(const bool& bFlag) { m_bControlFlag = bFlag; }
 	//タイトル運び初めの座標.
 	void SetCarryStartPos(const D3DXVECTOR3& vPos) { m_vCarryStartPos = vPos; }
+	//運ぶ行動終了.
+	void SetFinishCarry() { m_CarryFlag = 0; }
 
 	//=============情報取得処理関数================//.
 	//選択終了フラグ.
@@ -75,6 +83,10 @@ public:
 	int	GetSelectNum()const { return m_SelectNum; }
 	//運ぶフラグ.
 	unsigned int GetCarryFlag() const { return m_CarryFlag; }
+	//取りに行くフラグ.
+	unsigned int GetFetchFlag() const { return m_FetchFlag; }
+	//運んでいる時の距離.
+	float GetCarryDistance() const { return m_fCarryDisntace; }
 
 private:
 	//===================関数======================//.
@@ -111,6 +123,7 @@ private:
 	
 	D3DXVECTOR3		m_vCarryStartPos;			//タイトル運びはじめの座標.
 	unsigned int	m_CarryFlag;				//運ぶフラグ.
+	unsigned int	m_FetchFlag;				//取りに行くフラグ.
 	float			m_fCarryDisntace;			//運ぶ距離.
 	
 	int				m_MoveType;					//移動フラグ.

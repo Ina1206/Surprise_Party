@@ -37,11 +37,14 @@ private:
 	void Init();									//初期化処理関数.
 	void InitTitle();								//タイトル初期化処理関数.
 	void ControlTitlePos();							//操作時タイトル座標設定処理関数.
+	void MoveString();								//文章移動処理関数.
+	void PreparingMoveString();						//文章移動準備処理関数.
 
 	//======================変数=======================//.
 	unsigned int				m_SelectTypeFlag;	//選択種類フラグ.
 	unsigned int				m_ControlFlag;		//操作フラグ.
 	std::vector<D3DXVECTOR3>	m_vTitleLastPos;	//タイトル最終座標.
+	std::vector<D3DXVECTOR3>	m_vBeforeMovePos;	//移動前座標.
 
 };
 

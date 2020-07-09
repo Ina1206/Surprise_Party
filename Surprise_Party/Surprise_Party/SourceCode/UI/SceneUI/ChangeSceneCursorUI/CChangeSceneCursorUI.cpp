@@ -22,6 +22,8 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	, m_MoveWaitCnt				(0)
 	, m_vCarryStartPos			(0.0f, 0.0f, 0.0f)
 	, m_CarryFlag				(0)
+	, m_FetchFlag				(0)
+	, m_fCarryDisntace			(0.0f)
 	, m_MoveType				(0)
 	, m_OutSidePos				(false)
 {
@@ -125,6 +127,7 @@ void CChangeSceneCursorUI::Act()
 		if (Jump() == true) {
 			m_vUV = HAVE_TROUBLE_UV_POS;
 			m_bChangeDirect = false;
+			m_FetchFlag = LEFT_TITLE_FETCH_FLAG;
 			m_MoveType++;
 		}
 		break;
@@ -137,18 +140,50 @@ void CChangeSceneCursorUI::Act()
 			if (ChangeMoveDirect() == true) {
 				m_vPos = m_vCarryStartPos;
 				m_vPos.x += m_OutSidePos;
+				m_fCarryDisntace = 0.0f;
+				m_CarryFlag = LEFT_TITLE_CARRY_FLAG;
 				m_MoveType++;
 			}
 		}
 
 		break;
 	case enMoveType::LeftTitleCarry:
+		//ˆÚ“®ˆ—ŠÖ”.
+		Move(-1000.0f);
+
+		m_fCarryDisntace = m_vPos.x - m_vCarryStartPos.x;
+
+		if (m_CarryFlag == 0) {
+			m_MoveType++;
+			m_FetchFlag = RIGHT_TITLE_FETCH_FLAG;
+		}
 
 		break;
 	case enMoveType::RightTitleFetch:
+		//ã‰º•‚—Vˆ—ŠÖ”.
+		UpDownFloat();
 
+		//ˆÚ“®ˆ—ŠÖ”.
+		if (Move(WND_W - m_OutSidePos) == true) {
+			if (ChangeMoveDirect() == true) {
+				m_vPos = m_vCarryStartPos;
+				m_vPos.x -= m_OutSidePos;
+				m_fCarryDisntace = 0.0f;
+				m_CarryFlag = RIGHT_TITLE_CARRY_FLAG;
+				m_MoveType++;
+			}
+		}
 		break;
 	case enMoveType::RightTitleCarry:
+		//ˆÚ“®ˆ—ŠÖ”.
+		Move(-1000.0f);
+
+		m_fCarryDisntace = m_vPos.x - m_vCarryStartPos.x;
+
+		if (m_CarryFlag == 0) {
+			m_MoveType++;
+			m_FetchFlag = 0;
+		}
 
 		break;
 	case enMoveType::Rejoice:
@@ -228,14 +263,14 @@ void CChangeSceneCursorUI::Control()
 //======================================.
 bool CChangeSceneCursorUI::Move(const float& MoveDistanceMax) 
 {
-	m_vPos.x += 1.5f * m_MoveDirect;
+	m_vPos.x += 3.5f * m_MoveDirect;
 	
 	//—áŠOˆ—.
 	if (MoveDistanceMax < m_OutSidePos) {
 		return false;
 	}
 
-	if (fabsf(MoveDistanceMax - m_vPos.x) <= 1.5f) {
+	if (fabsf(MoveDistanceMax - m_vPos.x) <= 3.5f) {
 		m_vPos.x = MoveDistanceMax;
 		return true;
 	}

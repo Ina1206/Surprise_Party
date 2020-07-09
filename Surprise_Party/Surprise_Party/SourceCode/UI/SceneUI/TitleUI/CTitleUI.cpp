@@ -21,6 +21,9 @@ CTitleUI::~CTitleUI()
 //=====================================.
 void CTitleUI::Update()
 {
+	//文章移動処理関数.
+	MoveString();
+
 	//操作処理関数.
 	m_pCCursor->SetChangeWaitFlag(false);
 	m_pCCursor->Update();
@@ -75,11 +78,13 @@ void CTitleUI::Init()
 		m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Title));
 	}
 
+	m_vBeforeMovePos.resize(m_pCSpriteUI.size());
+
 	//要素数初期化処理関数.
 	InitElementCounts();
 
 	//操作時選択文章座標設定処理関数.
-	ControlSelectStringPos();
+	//ControlSelectStringPos();
 
 	//操作時タイトル座標設定処理関数.
 	ControlTitlePos();
@@ -113,6 +118,8 @@ void CTitleUI::InitTitle()
 			SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
 			m_vUIPos[TitleNum].x = -ss.Stride.w;
 		}
+
+		m_vBeforeMovePos[TitleNum] = m_vUIPos[TitleNum];
 	}
 }
 
@@ -142,4 +149,59 @@ void CTitleUI::ControlTitlePos()
 		m_vUIPos[TitleNum] = m_vTitleLastPos[title];
 	}
 
+}
+
+//========================================.
+//		文章移動処理関数.
+//========================================.
+void CTitleUI::MoveString()
+{
+
+	if (m_pCCursor->GetCarryFlag() == 0) {
+		//文章移動準備処理関数.
+		PreparingMoveString();
+		return;
+	}
+
+	int MoveStringNum = 0;
+	if (m_pCCursor->GetCarryFlag() & m_pCCursor->LEFT_TITLE_CARRY_FLAG) {
+		MoveStringNum = 2;
+	}
+	else{
+		MoveStringNum = 3;
+	}
+
+	m_vUIPos[MoveStringNum].x = m_vBeforeMovePos[MoveStringNum].x + m_pCCursor->GetCarryDistance();
+
+	if (fabsf(m_vUIPos[MoveStringNum].x - m_vTitleLastPos[MoveStringNum - SELECT_STRING_MAX].x) < 1.0f) {
+		m_vUIPos[MoveStringNum] = m_vTitleLastPos[MoveStringNum - SELECT_STRING_MAX];
+		m_pCCursor->SetFinishCarry();
+	}
+}
+
+//=========================================.
+//		文章移動準備処理関数.
+//=========================================.
+void CTitleUI::PreparingMoveString() 
+{
+	const unsigned int FetchFlag = m_pCCursor->GetFetchFlag();
+	if (m_pCCursor->GetFetchFlag() == 0) {
+		return;
+	}
+	
+	D3DXVECTOR3 GhostCursorCarryPos(0.0f, 0.0f, 0.0f);
+	int FetchStringNum = 0;
+	if (FetchFlag & m_pCCursor->LEFT_TITLE_FETCH_FLAG) {
+		FetchStringNum = 2;
+		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
+	}
+	else {
+		FetchStringNum = 3;
+		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
+		//追加座標.
+		const float Add_Pos = (m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title).Disp.w / 3) * 2;
+		GhostCursorCarryPos.x += Add_Pos;
+	}
+
+	m_pCCursor->SetCarryStartPos(GhostCursorCarryPos);
 }
