@@ -14,13 +14,17 @@ public:
 	~CTitleUI();
 	//======================定数=======================//.
 	//m_SelectTypeFlag.
-	const unsigned int	GAME_START_FLAG		= (1 << 0);		//ゲームスタートフラグ.
-	const unsigned int	GAME_FINISH_FLAG	= (1 << 1);		//ゲーム終了フラグ.	
+	const unsigned int	GAME_START_FLAG		= (1 << 0);							//ゲームスタートフラグ.
+	const unsigned int	GAME_FINISH_FLAG	= (1 << 1);							//ゲーム終了フラグ.	
 	//m_ControlFlag.
-	const unsigned int	CONTROL_WAIT_FLAG	= (1 << 0);		//操作待機フラグ.
-	const unsigned int	CONTROL_FLAG		= (1 << 1);		//操作フラグ.
+	const unsigned int	CONTROL_WAIT_FLAG	= (1 << 0);							//操作待機フラグ.
+	const unsigned int	CONTROL_FLAG		= (1 << 1);							//操作フラグ.
 
-	const int			TITLE_MAX			= 2;			//タイトル最大値.
+	const D3DXVECTOR3	TITLE_POS			= D3DXVECTOR3(40.5f, 90.8f, 0.0f);	//タイトル座標.
+
+	const int			TITLE_MAX			= 2;								//タイトル最大値.
+
+
 
 	//======================関数=======================//.
 	void Update();							//更新処理関数.

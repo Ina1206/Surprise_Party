@@ -90,28 +90,12 @@ void CTitleUI::Init()
 //=======================================.
 void CTitleUI::ControlTitlePos()
 {
-	static D3DXVECTOR3 a(0.0f, 0.0f, 0.0f);
-
-	if (GetAsyncKeyState('L') & 0x8000) {
-		a.x += 2.1f;
-	}
-	if (GetAsyncKeyState('J') & 0x8000) {
-		a.x -= 2.1f;
-	}
-	if (GetAsyncKeyState('I') & 0x8000) {
-		a.y += 2.1f;
-	}
-	if (GetAsyncKeyState('K') & 0x8000) {
-		a.y -= 2.1f;
-	}
-
 	//É^ÉCÉgÉãî‘çÜ.
 	const int TitleStartNum = SELECT_STRING_MAX;
 	for (int title = 0; title < TITLE_MAX; title++) {
-		const int TitleNum = title + TitleStartNum;
-		D3DXVECTOR3 vPos = D3DXVECTOR3(40.5f, 90.8f, 0.0f) + a;
+		const int TitleNum = title + TitleStartNum;;
 		SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
-		vPos.x += (ss.Stride.w ) * title;
-		m_vUIPos[TitleNum] = vPos;
+		m_vUIPos[TitleNum] = TITLE_POS;
+		m_vUIPos[TitleNum].x += (ss.Stride.w ) * title;
 	}
 }
