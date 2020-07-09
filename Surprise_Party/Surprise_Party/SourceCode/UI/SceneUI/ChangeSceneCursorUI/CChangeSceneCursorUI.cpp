@@ -48,7 +48,7 @@ void CChangeSceneCursorUI::Render()
 void CChangeSceneCursorUI::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor);
-	m_vPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vPos = D3DXVECTOR3(WND_W / 2.0f, WND_H / 2.0f, 0.0f);
 	m_vRot = RIGHT_CURSOR_ROT;
 	m_vUV = NORMAL_UV_POS;
 }
@@ -113,7 +113,7 @@ void CChangeSceneCursorUI::Control()
 
 	//‘I‘ðŽˆ‚Ì•¶Žš‚Ìî•ñŽæ“¾.
 	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::StartString);
-	m_vPos.x = CURSOR_POS.x;
-	m_vPos.y = CURSOR_POS.y + (SpriteState.Disp.h * m_SelectNum);
+	m_vPos.x = CONTROL_CURSOR_POS.x;
+	m_vPos.y = CONTROL_CURSOR_POS.y + (SpriteState.Disp.h * m_SelectNum);
 
 }

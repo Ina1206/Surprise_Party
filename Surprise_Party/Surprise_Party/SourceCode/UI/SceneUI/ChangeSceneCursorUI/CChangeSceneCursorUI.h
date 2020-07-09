@@ -14,7 +14,8 @@ public:
 	~CChangeSceneCursorUI();
 
 	//===================定数======================//.	
-	const D3DXVECTOR3	CURSOR_POS			= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//カーソル座標.
+	const D3DXVECTOR3	CONTROL_CURSOR_POS	= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//カーソル座標.
+	
 	const D3DXVECTOR3	RIGHT_CURSOR_ROT	= D3DXVECTOR3(0.0f, 3.0f, 0.0f);		//カーソル角度.
 	const D3DXVECTOR3	LEFT_CURSOR_ROT		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//カーソル角度.
 	const D3DXVECTOR2	NORMAL_UV_POS		= D3DXVECTOR2(0.0f, 0.0f);				//通常UV座標.
