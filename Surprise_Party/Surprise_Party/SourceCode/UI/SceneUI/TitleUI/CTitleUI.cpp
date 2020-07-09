@@ -21,7 +21,15 @@ CTitleUI::~CTitleUI()
 //=====================================.
 void CTitleUI::Update()
 {
-	ControlTitlePos();
+	if (m_ControlFlag & CONTROL_WAIT_FLAG) {
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			//操作時タイトル座標設定処理関数.
+			ControlTitlePos();
+			
+			m_ControlFlag = CONTROL_FLAG;
+		}
+		return;
+	}
 
 	//操作処理関数.
 	Control(false);
@@ -69,6 +77,9 @@ void CTitleUI::Init()
 	//操作時選択文章座標設定処理関数.
 	ControlSelectStringPos();
 
+	//操作時タイトル座標設定処理関数.
+	ControlTitlePos();
+
 	//カーソル初期設定座標処理関数.
 	InitCursor();
 	//カーソル番号.
@@ -81,8 +92,18 @@ void CTitleUI::Init()
 		D3DXVECTOR2 TitleUV = INIT_UV;
 		TitleUV.y += 1.0f * title;
 		m_vUV[TitleNum] = TitleUV;
-
 	}
+
+	//操作待機フラグに設定.
+	m_ControlFlag = CONTROL_WAIT_FLAG;
+}
+
+//=======================================.
+//		タイトル座標の初期化処理関数.
+//=======================================.
+void CTitleUI::InitTitlePos()
+{
+
 }
 
 //=======================================.
@@ -92,10 +113,23 @@ void CTitleUI::ControlTitlePos()
 {
 	//タイトル番号.
 	const int TitleStartNum = SELECT_STRING_MAX;
-	for (int title = 0; title < TITLE_MAX; title++) {
-		const int TitleNum = title + TitleStartNum;;
-		SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
-		m_vUIPos[TitleNum] = TITLE_POS;
-		m_vUIPos[TitleNum].x += (ss.Stride.w ) * title;
+	
+	if (m_ControlFlag == 0) {
+
+		//タイトルの最終座標を設定.
+		for (int title = 0; title < TITLE_MAX; title++) {
+			SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
+			m_vTitleLastPos.push_back(TITLE_POS);
+			m_vTitleLastPos[title].x += (ss.Stride.w ) * title;
+		}
+
+		return;
 	}
+
+	//タイトルの位置に設定.
+	for (int title = 0; title < TITLE_MAX; title++) {
+		const int TitleNum = title + TitleStartNum;
+		m_vUIPos[TitleNum] = m_vTitleLastPos[title];
+	}
+
 }

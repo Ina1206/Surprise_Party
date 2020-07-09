@@ -35,11 +35,13 @@ public:
 private:
 	//======================関数=======================//.
 	void Init();							//初期化処理関数.
+	void InitTitlePos();					//タイトル座標の初期化処理関数.
 	void ControlTitlePos();					//操作時タイトル座標設定処理関数.
 
 	//======================変数=======================//.
-	unsigned int m_SelectTypeFlag;			//選択種類フラグ.
-	unsigned int m_ControlFlag;				//操作フラグ.
+	unsigned int				m_SelectTypeFlag;			//選択種類フラグ.
+	unsigned int				m_ControlFlag;				//操作フラグ.
+	std::vector<D3DXVECTOR3>	m_vTitleLastPos;			//タイトル最終座標.
 
 };
 
