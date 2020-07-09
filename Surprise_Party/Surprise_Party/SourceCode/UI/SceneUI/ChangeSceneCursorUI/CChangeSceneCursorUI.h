@@ -14,7 +14,7 @@ public:
 	~CChangeSceneCursorUI();
 
 	//===================定数======================//.	
-	const D3DXVECTOR3	CONTROL_CURSOR_POS		= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//カーソル座標.
+	const D3DXVECTOR3	CONTROL_CURSOR_POS		= D3DXVECTOR3(750.0f, 450.0f, 0.0f);	//カーソル座標.
 						
 	const D3DXVECTOR3	RIGHT_CURSOR_ROT		= D3DXVECTOR3(0.0f, 3.0f, 0.0f);		//カーソル角度.
 	const D3DXVECTOR3	LEFT_CURSOR_ROT			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//カーソル角度.
@@ -36,6 +36,8 @@ public:
 	const int			RIGHT_DIRECT_NUM		= 1;									//右に移動方向番号.
 	const int			CHANGE_DIRECT			= -1;									//方向変更.
 	const float			ROTATION_SPEED			= 0.1f;									//回転速度.
+
+	const float			MOVE_SPEED				= 5.0f;									//移動速度.
 
 	//m_CarryFlag.
 	const unsigned int	LEFT_TITLE_CARRY_FLAG	= (1 << 0);								//左のタイトル運ぶフラグ.

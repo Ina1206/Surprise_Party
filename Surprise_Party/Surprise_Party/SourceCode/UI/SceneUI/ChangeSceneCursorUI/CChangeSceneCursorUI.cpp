@@ -195,7 +195,10 @@ void CChangeSceneCursorUI::Act()
 
 		if (m_bArrivalFlga == false) {
 			m_vJumpBeforePos = m_vPos;
+			//上下移動処理関数.
+			UpDownFloat();
 		}
+
 
 		if (MoveToDestination(vTargetPos) == true) {
 			m_vUV = ENTER_UV_POS;
@@ -214,6 +217,9 @@ void CChangeSceneCursorUI::Act()
 			break;
 		}
 
+		//上下移動処理関数.
+		UpDownFloat();
+
 		if (Move(WND_W - m_OutSidePos) == true) {
 			if (ChangeMoveDirect() == true) {
 				m_vPos = m_vCarryStartPos;
@@ -227,9 +233,32 @@ void CChangeSceneCursorUI::Act()
 
 		break;
 	case enMoveType::SelectCarry:
+		//移動処理関数.
+		Move(-1000.0f);
+
+		m_fCarryDisntace = m_vPos.x - m_vCarryStartPos.x;
+
+		if (m_CarryFlag == 0) {
+			m_MoveType++;
+			m_FetchFlag = 0;
+			m_vUV = NORMAL_UV_POS;
+			m_bArrivalFlga = false;
+		}
 
 		break;
 	case enMoveType::BecomeCursor:
+		if (m_bArrivalFlga == false) {
+			//上下移動処理関数.
+			UpDownFloat();
+			m_vChangeDirectBeforeRot = m_vRot;
+		}
+
+		if (MoveToDestination(CONTROL_CURSOR_POS) == true) {
+			if (ChangeMoveDirect() == true) {
+				m_bControlFlag = true;
+				
+			}
+		}
 
 		break;
 	}
@@ -241,6 +270,7 @@ void CChangeSceneCursorUI::Act()
 void CChangeSceneCursorUI::Control()
 {
 	m_bSelectFinishFlag = false;
+	m_vRot = RIGHT_CURSOR_ROT;
 
 	//決定後の処理.
 	if (m_ChangeCnt > 0) {
@@ -259,6 +289,8 @@ void CChangeSceneCursorUI::Control()
 		m_bSelectFinishFlag = true;
 		return;
 	}
+
+	m_vUV = NORMAL_UV_POS;
 
 	if (GetAsyncKeyState(VK_UP) & 0x0001) {
 		m_SelectNum--;
@@ -297,14 +329,15 @@ void CChangeSceneCursorUI::Control()
 //======================================.
 bool CChangeSceneCursorUI::Move(const float& MoveDistanceMax) 
 {
-	m_vPos.x += 3.5f * m_MoveDirect;
+	m_vPos.x += MOVE_SPEED * m_MoveDirect;
 	
 	//例外処理.
 	if (MoveDistanceMax < m_OutSidePos) {
 		return false;
 	}
 
-	if (fabsf(MoveDistanceMax - m_vPos.x) <= 3.5f) {
+	//1フレームの移動速度内の距離が微調整.
+	if (fabsf(MoveDistanceMax - m_vPos.x) <= MOVE_SPEED) {
 		m_vPos.x = MoveDistanceMax;
 		return true;
 	}
@@ -325,9 +358,10 @@ bool CChangeSceneCursorUI::MoveToDestination(const D3DXVECTOR3& vTargetPos)
 	const float			fLength = D3DXVec3Length(&vTargetGhostPos);	//長さ.
 	const D3DXVECTOR3	vUnit = vTargetGhostPos / fLength;			//割合.
 
-	m_vPos += 3.5f * vUnit;
+	m_vPos += MOVE_SPEED * vUnit;
 
-	if (fabsf(vTargetPos.x - m_vPos.x) <= 3.5f) {
+	//1フレームの移動速度内の距離が微調整.
+	if (fabsf(vTargetPos.x - m_vPos.x) <= MOVE_SPEED) {
 		m_bArrivalFlga = true;
 		return true;
 	}

@@ -39,6 +39,7 @@ private:
 	void ControlTitlePos();							//操作時タイトル座標設定処理関数.
 	void MoveString();								//文章移動処理関数.
 	void PreparingMoveString();						//文章移動準備処理関数.
+	void InitSelect();								//選択初期化処理関数.
 
 	//======================変数=======================//.
 	unsigned int				m_SelectTypeFlag;	//選択種類フラグ.

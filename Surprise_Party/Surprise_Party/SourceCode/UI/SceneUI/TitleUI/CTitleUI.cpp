@@ -32,7 +32,10 @@ void CTitleUI::Update()
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			//操作時タイトル座標設定処理関数.
 			ControlTitlePos();
-			
+
+			//操作時選択文章座標設定処理関数.
+			ControlSelectStringPos();
+
 			m_ControlFlag = CONTROL_FLAG;
 			
 			m_pCCursor->SetControlFlag(true);
@@ -83,8 +86,8 @@ void CTitleUI::Init()
 	//要素数初期化処理関数.
 	InitElementCounts();
 
-	//操作時選択文章座標設定処理関数.
-	//ControlSelectStringPos();
+	//選択初期化処理関数.
+	InitSelect();
 
 	//操作時タイトル座標設定処理関数.
 	ControlTitlePos();
@@ -166,16 +169,32 @@ void CTitleUI::MoveString()
 	int MoveStringNum = 0;
 	if (m_pCCursor->GetCarryFlag() & m_pCCursor->LEFT_TITLE_CARRY_FLAG) {
 		MoveStringNum = 2;
+		m_vUIPos[MoveStringNum].x = m_vBeforeMovePos[MoveStringNum].x + m_pCCursor->GetCarryDistance();
+	}
+	else if(m_pCCursor->GetCarryFlag() & m_pCCursor->RIGHT_TITLE_CARRY_FLAG){
+		MoveStringNum = 3;
+		m_vUIPos[MoveStringNum].x = m_vBeforeMovePos[MoveStringNum].x + m_pCCursor->GetCarryDistance();
 	}
 	else{
-		MoveStringNum = 3;
+		for (int string = MoveStringNum; string < SELECT_STRING_MAX; string++) {
+			m_vUIPos[string].x = m_vBeforeMovePos[string].x + m_pCCursor->GetCarryDistance();
+		}
 	}
 
-	m_vUIPos[MoveStringNum].x = m_vBeforeMovePos[MoveStringNum].x + m_pCCursor->GetCarryDistance();
-
-	if (fabsf(m_vUIPos[MoveStringNum].x - m_vTitleLastPos[MoveStringNum - SELECT_STRING_MAX].x) < 1.0f) {
-		m_vUIPos[MoveStringNum] = m_vTitleLastPos[MoveStringNum - SELECT_STRING_MAX];
-		m_pCCursor->SetFinishCarry();
+	if (MoveStringNum == 0)
+	{
+		if (m_vUIPos[MoveStringNum].x < SELECT_STRING_POS.x) {
+			for (int string = MoveStringNum; string < SELECT_STRING_MAX; string++) {
+				m_vUIPos[MoveStringNum].x = SELECT_STRING_POS.x;
+				m_pCCursor->SetFinishCarry();
+			}
+		}
+	}
+	else {
+		if (fabsf(m_vUIPos[MoveStringNum].x - m_vTitleLastPos[MoveStringNum - SELECT_STRING_MAX].x) < 1.0f) {
+			m_vUIPos[MoveStringNum] = m_vTitleLastPos[MoveStringNum - SELECT_STRING_MAX];
+			m_pCCursor->SetFinishCarry();
+		}
 	}
 }
 
@@ -195,13 +214,34 @@ void CTitleUI::PreparingMoveString()
 		FetchStringNum = 2;
 		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
 	}
-	else {
+	else if(FetchFlag & m_pCCursor->RIGHT_TITLE_CARRY_FLAG){
 		FetchStringNum = 3;
 		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
 		//追加座標.
 		const float Add_Pos = (m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title).Disp.w / 3) * 2;
 		GhostCursorCarryPos.x += Add_Pos;
 	}
+	else {
+		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
+		SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::FinishString);
+		GhostCursorCarryPos.y += SpriteState.Disp.h / 2.0f;
+		GhostCursorCarryPos.x += SpriteState.Disp.w;
+		
+	}
 
 	m_pCCursor->SetCarryStartPos(GhostCursorCarryPos);
+}
+
+//==========================================.
+//		選択初期化処理関数.
+//==========================================.
+void CTitleUI::InitSelect()
+{
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::StartString);
+	for (int select = 0; select < SELECT_STRING_MAX; select++) {
+		m_vUIPos[select] = SELECT_STRING_POS;
+		m_vUIPos[select].x = WND_W;
+		m_vUIPos[select].y += select * SpriteState.Disp.h;
+		m_vBeforeMovePos[select] = m_vUIPos[select];
+	}
 }
