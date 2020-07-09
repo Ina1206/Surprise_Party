@@ -30,8 +30,8 @@ public:
 	const int			SCENE_TITLE_NUM		= 3;									//シーンタイトル番号.
 
 	//===================関数========================//.
-	void Update();		//更新処理関数.
-	void Render();		//描画処理関数.
+	virtual void Update() = 0;							//更新処理関数.
+	void Render();										//描画処理関数.
 
 	//=============情報取得処理関数==================//.
 	//選択終了フラグ.
@@ -39,7 +39,7 @@ public:
 
 protected:
 	//===================関数========================//.
-	void Control();		//操作処理関数.
+	void Control(const bool& bChangeWaitFlag);			//操作処理関数.
 
 	//===================変数========================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.
@@ -48,8 +48,8 @@ protected:
 
 private:
 	//===================関数========================//.
-	void InitPos();		//初期座標設定処理関数.
-	void Release();		//解放処理関数.
+	void InitPos();										//初期座標設定処理関数.
+	void Release();										//解放処理関数.
 
 	//===================変数========================//.
 	std::vector<D3DXVECTOR3>	m_vUIPos;				//座標.

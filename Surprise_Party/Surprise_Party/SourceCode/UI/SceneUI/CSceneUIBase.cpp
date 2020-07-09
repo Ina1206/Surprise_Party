@@ -22,16 +22,6 @@ CSceneUIBase::~CSceneUIBase()
 }
 
 //==========================================.
-//		更新処理関数.
-//==========================================.
-void CSceneUIBase::Update()
-{
-
-	//操作処理関数.
-	Control();
-}
-
-//==========================================.
 //		描画処理関数.
 //==========================================.
 void CSceneUIBase::Render()
@@ -55,19 +45,25 @@ void CSceneUIBase::Render()
 //==========================================.
 //		操作処理関数.
 //==========================================.
-void CSceneUIBase::Control()
+void CSceneUIBase::Control(const bool& bChangeWaitFlag)
 {
 	m_bSelectFinishFlag = false;
+
 	//決定後の処理.
 	if (m_ChangeCnt > 0) {
-		m_ChangeCnt++;
+		if (bChangeWaitFlag == true) {
+			m_ChangeCnt++;
 
-		//選択終了.
-		if (m_ChangeCnt >= CHANGE_CNT_MAX) {
-			m_bSelectFinishFlag = true;
-			m_vUV[CURSOR_NUM] = NORMAL_UV_POS;
-			m_ChangeCnt = 0;
+			//選択終了.
+			if (m_ChangeCnt >= CHANGE_CNT_MAX) {
+				m_bSelectFinishFlag = true;
+				m_vUV[CURSOR_NUM] = NORMAL_UV_POS;
+				m_ChangeCnt = 0;
+			}
+			return;
 		}
+
+		m_bSelectFinishFlag = true;
 		return;
 	}
 

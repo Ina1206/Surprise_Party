@@ -17,6 +17,9 @@ public:
 	const unsigned int GAME_FINISH_FLAG = (1 << 1);		//ゲーム終了フラグ.	
 
 	//======================関数=======================//.
+	void Update();	//更新処理関数.
+
+	//================情報取得処理関数=================//.
 	unsigned int GetSelectTypeFlag() const;	//選択種類のフラグを取得処理関数.
 	
 private:
