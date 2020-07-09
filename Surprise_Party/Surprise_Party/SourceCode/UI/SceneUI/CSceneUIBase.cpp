@@ -133,7 +133,7 @@ void CSceneUIBase::InitCursor()
 	//ƒJ[ƒ\ƒ‹.
 	m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor));
 	m_vUIPos.push_back(INIT_POS);
-	m_vUIRot.push_back(CURSOR_ROT);
+	m_vUIRot.push_back(RIGHT_CURSOR_ROT);
 	m_vUV.push_back(NORMAL_UV_POS);
 }
 
