@@ -37,7 +37,9 @@ void CChangeSceneCursorUI::Render()
 	m_pCSpriteUI->SetPosition(m_vPos);
 	m_pCSpriteUI->SetRotation(m_vRot);
 	m_pCSpriteUI->SetPattern(m_vUV);
+	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
+	m_pCDepthStencil->SetDepth(true);
 }
 
 //======================================.

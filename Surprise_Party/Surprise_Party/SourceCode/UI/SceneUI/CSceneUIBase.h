@@ -32,10 +32,8 @@ public:
 
 protected:
 	//===================関数========================//.
-	void Control(const bool& bChangeWaitFlag);						//操作処理関数.
 	void InitElementCounts();										//要素数初期化処理関数.
 	void ControlSelectStringPos();									//操作時選択文章座標設定処理関数.
-	void InitCursor();												//カーソル初期設定処理関数.
 
 	//===================変数========================//.
 	std::vector<CSpriteUI*>					m_pCSpriteUI;			//スプライトUI.
@@ -48,8 +46,6 @@ private:
 	//===================関数========================//.
 	void Release();													//解放処理関数.
 
-	////===================変数========================//.
-	//int							m_ChangeCnt;						//変更カウント.
 };
 
 #endif	//#ifndef CSCENE_UI_BASE_H.

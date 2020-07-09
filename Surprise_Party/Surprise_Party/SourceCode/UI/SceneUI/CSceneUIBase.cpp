@@ -9,9 +9,6 @@ CSceneUIBase::CSceneUIBase()
 	, m_vUV					()
 	, m_vUIRot				()
 	, m_pCCursor			(nullptr)
-	//, m_SelectNum			(0)
-	//, m_ChangeCnt			(0)
-	//, m_bSelectFinishFlag	(false)
 {
 	m_pCCursor.reset(new CChangeSceneCursorUI());
 }
@@ -47,64 +44,6 @@ void CSceneUIBase::Render()
 }
 
 //==========================================.
-//		操作処理関数.
-//==========================================.
-void CSceneUIBase::Control(const bool& bChangeWaitFlag)
-{
-	//m_bSelectFinishFlag = false;
-
-	////カーソル番号.
-	//const int CursorNum = static_cast<int>(m_pCSpriteUI.size()) - 1;
-
-	////決定後の処理.
-	//if (m_ChangeCnt > 0) {
-	//	if (bChangeWaitFlag == true) {
-	//		m_ChangeCnt++;
-
-	//		//選択終了.
-	//		if (m_ChangeCnt >= CHANGE_CNT_MAX) {
-	//			m_bSelectFinishFlag = true;
-	//			m_vUV[CursorNum] = NORMAL_UV_POS;
-	//			m_ChangeCnt = 0;
-	//		}
-	//		return;
-	//	}
-
-	//	m_bSelectFinishFlag = true;
-	//	return;
-	//}
-
-	//if (GetAsyncKeyState(VK_UP) & 0x0001) {
-	//	m_SelectNum--;
-	//	if (m_SelectNum < 0) {
-	//		m_SelectNum = 0;
-	//		//SE.
-
-	//		return;
-	//	}
-	//}
-	//if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
-	//	m_SelectNum++;
-	//	if (m_SelectNum >= SELECT_STRING_MAX) {
-	//		m_SelectNum = SELECT_STRING_MAX - 1;
-	//		//SE.
-
-	//		return;
-	//	}
-	//}
-
-	//if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-	//	m_vUV[CursorNum] = ENTER_UV_POS;
-	//	//SE.
-	//	m_ChangeCnt++;
-	//}
-
-
-	//m_vUIPos[CursorNum].y = CURSOR_POS.y + (SELECT_STRING_WIDHT * m_SelectNum);
-
-}
-
-//==========================================.
 //		要素数初期化処理関数.
 //==========================================.
 void CSceneUIBase::InitElementCounts()
@@ -133,18 +72,6 @@ void CSceneUIBase::ControlSelectStringPos()
 		m_vUIPos[sprite].y += SpriteState.Disp.h * sprite;
 	}
 
-}
-
-//===========================================.
-//		カーソル初期設定処理関数.
-//===========================================.
-void CSceneUIBase::InitCursor()
-{
-	////カーソル.
-	//m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor));
-	//m_vUIPos.push_back(INIT_POS);
-	//m_vUIRot.push_back(RIGHT_CURSOR_ROT);
-	//m_vUV.push_back(NORMAL_UV_POS);
 }
 
 //===========================================.
