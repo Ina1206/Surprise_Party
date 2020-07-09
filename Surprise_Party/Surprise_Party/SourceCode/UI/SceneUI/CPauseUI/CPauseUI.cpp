@@ -20,7 +20,10 @@ CPauseUI::~CPauseUI()
 void CPauseUI::Update()
 {
 	//操作処理関数.
-	Control(true);
+	//Control(true);
+
+	m_pCCursor->SetChangeWaitFlag(true);
+	m_pCCursor->Update();
 }
 
 //=====================================.
@@ -43,9 +46,9 @@ void CPauseUI::Init()
 	//操作時選択座標設定処理関数.
 	ControlSelectStringPos();
 
-	//カーソル初期設定処理関数.
-	InitCursor();
-	//カーソル番号.
-	const int CURSOR_NUM = static_cast<int>(m_pCSpriteUI.size()) - 1;
-	m_vUIPos[CURSOR_NUM] = CURSOR_POS;
+	////カーソル初期設定処理関数.
+	//InitCursor();
+	////カーソル番号.
+	//const int CURSOR_NUM = static_cast<int>(m_pCSpriteUI.size()) - 1;
+	//m_vUIPos[CURSOR_NUM] = CURSOR_POS;
 }

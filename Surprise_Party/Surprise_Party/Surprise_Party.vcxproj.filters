@@ -383,6 +383,9 @@
     <Filter Include="SourceCode\UI\SpeakUI\AutoUI">
       <UniqueIdentifier>{99a89557-612b-4562-8c6b-387c73fa5323}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI">
+      <UniqueIdentifier>{0059cee4-2e2c-41c1-901b-77a4ada16b67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -772,6 +775,9 @@
     <ClInclude Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.h">
       <Filter>SourceCode\UI\SpeakUI\AutoUI</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI\CChangeSceneCursorUI.h">
+      <Filter>SourceCode\UI\SceneUI\ChangeSceneCursorUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1148,6 +1154,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.cpp">
       <Filter>SourceCode\UI\SpeakUI\AutoUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI\CChangeSceneCursorUI.cpp">
+      <Filter>SourceCode\UI\SceneUI\ChangeSceneCursorUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

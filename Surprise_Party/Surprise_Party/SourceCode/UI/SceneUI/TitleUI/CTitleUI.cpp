@@ -32,7 +32,9 @@ void CTitleUI::Update()
 	}
 
 	//操作処理関数.
-	Control(false);
+	//Control(false);
+	m_pCCursor->SetChangeWaitFlag(false);
+	m_pCCursor->Update();
 }
 
 //=====================================.
@@ -40,12 +42,13 @@ void CTitleUI::Update()
 //=====================================.
 unsigned int CTitleUI::GetSelectTypeFlag() const 
 {
-	if (m_bSelectFinishFlag == false) {
+	if (m_pCCursor->GetSelectFinishFlag() == false) {
 		return 0;
 	}
 
 	//ゲーム開始.
-	if (m_SelectNum == 0) {
+	if (m_pCCursor->GetSelectNum() == 0) {
+	//if (m_SelectNum == 0) {
 		return GAME_START_FLAG;
 	}
 
@@ -81,10 +84,10 @@ void CTitleUI::Init()
 	ControlTitlePos();
 
 	//カーソル初期設定座標処理関数.
-	InitCursor();
-	//カーソル番号.
-	const int CURSOR_NUM = static_cast<int>(m_pCSpriteUI.size()) - 1;
-	m_vUIPos[CURSOR_NUM] = CURSOR_POS;
+	//InitCursor();
+	////カーソル番号.
+	//const int CURSOR_NUM = static_cast<int>(m_pCSpriteUI.size()) - 1;
+	//m_vUIPos[CURSOR_NUM] = CURSOR_POS;
 
 	//タイトル所化処理関数.
 	InitTitle();
