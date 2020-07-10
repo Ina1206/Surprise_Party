@@ -150,7 +150,7 @@ void CStageManager::ChangeStage()
 	switch (static_cast<CStageBase::enStageType>(m_StageType)) {
 	case CStageBase::enStageType::GhostSpeakStage:
 		//次のステージへ.
-		m_AllEndingType = 2;
+		m_AllEndingType = 3;
 		m_pCStageBase[STAGE_TYPE_NUM].reset(new CMainStage(m_AllEndingType, CStageBase::enStageType::GhostSpeakStage , m_enBeforeEndingType));
 		m_bOldTutorialFlag = 0;
 		break;
