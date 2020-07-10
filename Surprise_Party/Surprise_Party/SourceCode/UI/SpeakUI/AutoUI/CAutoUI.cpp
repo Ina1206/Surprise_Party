@@ -72,7 +72,7 @@ void CAutoUI::Init()
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::AutoString);
 	m_TransparentDirect *= CHANGE_DIRECT;
 	m_FlashingFlag = DISAPPEAR_FLAG;
-
+	m_vPos.x -= m_pCResourceManager->GetSpriteUIState(enSpriteUI::AutoString).Disp.w;
 }
 
 //=================================.
