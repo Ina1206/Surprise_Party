@@ -83,14 +83,14 @@ void CChangeSceneCursorUI::Init()
 
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::GhostCursor);
 	//端っこに設定.
-	m_vPos = D3DXVECTOR3(-SpriteState.Disp.w / 2.0f, WND_H / 2.0f, 0.0f);
+	m_vPos = D3DXVECTOR3(m_OutSidePos, SCREEN_CENTER_POS.y, 0.0f);
 	m_vRot = RIGHT_CURSOR_ROT;
 	m_vUV = NORMAL_UV_POS;
 
 	m_vJumpBeforePos = m_vPos;
 
 	//y軸回転時に回転軸を中央に持ってくる為.
-	m_vPrePos = D3DXVECTOR3(-SpriteState.Disp.w / 2.0f, 0.0f, 0.0f);
+	m_vPrePos = D3DXVECTOR3(m_OutSidePos, 0.0f, 0.0f);
 }
 
 //======================================.
@@ -108,157 +108,52 @@ void CChangeSceneCursorUI::Act()
 {
 	switch (static_cast<enMoveType>(m_MoveType)) {
 	case enMoveType::StartMove:
-		//上下浮遊処理関数.
-		UpDownFloat();
-		//移動処理関数(画面中央まで).
-		if (Move(WND_W / 2.0f) == true) {
-			m_vChangeDirectBeforeRot = m_vRot;
-			m_vJumpBeforePos = m_vPos;
-			m_MoveType++;
-		}
+		//開始時の移動処理関数.
+		MoveStart();
+
 		break;
 	case enMoveType::Surprise:
-		if (m_bChangeDirect == false) {
-			//移動方向変更処理関数.
-			m_bChangeDirect = ChangeMoveDirect();
-			break;
-		}
-		m_vUV = SURPRISE_UV_POS;
-		//ジャンプ処理関数.
-		if (Jump() == true) {
-			m_vUV = HAVE_TROUBLE_UV_POS;
-			m_bChangeDirect = false;
-			m_FetchFlag = LEFT_TITLE_FETCH_FLAG;
-			m_MoveType++;
-		}
+		//驚き処理関数.
+		Surprise();
+
 		break;
 	case enMoveType::LeftTitleFetch:
-		//上下浮遊処理関数.
-		UpDownFloat();
-
-		//移動処理関数.
-		if (Move(m_OutSidePos) == true) {
-			if (ChangeMoveDirect() == true) {
-				m_vPos = m_vCarryStartPos;
-				m_vPos.x += m_OutSidePos;
-				m_fCarryDisntace = 0.0f;
-				m_CarryFlag = LEFT_TITLE_CARRY_FLAG;
-				m_MoveType++;
-			}
-		}
+		//左タイトル文章取りに行く処理関数.
+		LeftTitleFetch();
 
 		break;
 	case enMoveType::LeftTitleCarry:
-		//移動処理関数.
-		Move(-1000.0f);
-
-		m_fCarryDisntace = m_vPos.x - m_vCarryStartPos.x;
-
-		if (m_CarryFlag == 0) {
-			m_MoveType++;
-			m_FetchFlag = RIGHT_TITLE_FETCH_FLAG;
-		}
+		//左タイトル文章運ぶ処理関数.
+		LeftTitleCarry();
 
 		break;
 	case enMoveType::RightTitleFetch:
-		//上下浮遊処理関数.
-		UpDownFloat();
+		//右タイトル文章取りに行く処理関数.
+		RightTitleFetch();
 
-		//移動処理関数.
-		if (Move(WND_W - m_OutSidePos) == true) {
-			if (ChangeMoveDirect() == true) {
-				m_vPos = m_vCarryStartPos;
-				m_vPos.x -= m_OutSidePos;
-				m_fCarryDisntace = 0.0f;
-				m_CarryFlag = RIGHT_TITLE_CARRY_FLAG;
-				m_MoveType++;
-			}
-		}
 		break;
 	case enMoveType::RightTitleCarry:
-		//移動処理関数.
-		Move(-1000.0f);
-
-		m_fCarryDisntace = m_vPos.x - m_vCarryStartPos.x;
-
-		if (m_CarryFlag == 0) {
-			m_MoveType++;
-			m_FetchFlag = 0;
-			m_vUV = NORMAL_UV_POS;
-			m_bArrivalFlga = false;
-		}
+		//右タイトル文章取りに行く処理関数.
+		RightTitleCarry();
 
 		break;
 	case enMoveType::Rejoice:
-	{
-		const D3DXVECTOR3	vTargetPos = D3DXVECTOR3(WND_W / 2.0f, WND_H / 2.0f, 0.0f);
-
-		if (m_bArrivalFlga == false) {
-			m_vJumpBeforePos = m_vPos;
-			//上下移動処理関数.
-			UpDownFloat();
-		}
-
-
-		if (MoveToDestination(vTargetPos) == true) {
-			m_vUV = ENTER_UV_POS;
-			if (Jump() == true) {
-				m_MoveType++;
-				m_FetchFlag = SELECT_FEATCH_FLAG;
-				m_vUV = NORMAL_UV_POS;
-				m_vChangeDirectBeforeRot = m_vRot;
-			}
-		}
-	}
+		//喜び処理関数.
+		Rejoice();
 		break;
 	case enMoveType::SelectFetch:
-		if (m_bChangeDirect == false) {
-			m_bChangeDirect = ChangeMoveDirect();
-			break;
-		}
-
-		//上下移動処理関数.
-		UpDownFloat();
-
-		if (Move(WND_W - m_OutSidePos) == true) {
-			if (ChangeMoveDirect() == true) {
-				m_vPos = m_vCarryStartPos;
-				m_vPos.x -= m_OutSidePos;
-				m_fCarryDisntace = 0.0f;
-				m_FetchFlag = 0;
-				m_CarryFlag = SELECT_CARRY_FLAG;
-				m_MoveType++;
-			}
-		}
+		//選択肢を取りに行く処理関数.
+		SelectFetch();
 
 		break;
 	case enMoveType::SelectCarry:
-		//移動処理関数.
-		Move(-1000.0f);
-
-		m_fCarryDisntace = m_vPos.x - m_vCarryStartPos.x;
-
-		if (m_CarryFlag == 0) {
-			m_MoveType++;
-			m_FetchFlag = 0;
-			m_vUV = NORMAL_UV_POS;
-			m_bArrivalFlga = false;
-		}
+		//選択肢を運ぶ処理関数.
+		SelectCarry();
 
 		break;
 	case enMoveType::BecomeCursor:
-		if (m_bArrivalFlga == false) {
-			//上下移動処理関数.
-			UpDownFloat();
-			m_vChangeDirectBeforeRot = m_vRot;
-		}
-
-		if (MoveToDestination(CONTROL_CURSOR_POS) == true) {
-			if (ChangeMoveDirect() == true) {
-				m_bControlFlag = true;
-				
-			}
-		}
+		//カーソルになる処理関数.
+		BecomeCursor();
 
 		break;
 	}
@@ -354,7 +249,7 @@ bool CChangeSceneCursorUI::MoveToDestination(const D3DXVECTOR3& vTargetPos)
 		return true;
 	}
 
-	const D3DXVECTOR3	vTargetGhostPos = vTargetPos - m_vPos;	//2点間の距離.
+	const D3DXVECTOR3	vTargetGhostPos = vTargetPos - m_vPos;		//2点間の距離.
 	const float			fLength = D3DXVec3Length(&vTargetGhostPos);	//長さ.
 	const D3DXVECTOR3	vUnit = vTargetGhostPos / fLength;			//割合.
 
@@ -447,4 +342,216 @@ bool CChangeSceneCursorUI::ChangeMoveDirect()
 	}
 
 	return false;
+}
+
+//========================================.
+//		運び移動処理関数.
+//========================================.
+void CChangeSceneCursorUI::CarryMove()
+{
+	//例外処理用数値.
+	const float ExceptionHandlingNumber = -1000.0f;
+	//移動処理関数.
+	Move(ExceptionHandlingNumber);
+
+	m_fCarryDisntace = m_vPos.x - m_vCarryStartPos.x;
+}
+
+//=========================================.
+//		文章を取りに行く処理関数.
+//=========================================.
+bool CChangeSceneCursorUI::FetchString(const float& MoveDistanceMax)
+{
+	//上下浮遊処理関数.
+	UpDownFloat();
+
+	//移動処理関数.
+	if (Move(MoveDistanceMax) == true) {
+		if (ChangeMoveDirect() == true) {
+			m_vPos = m_vCarryStartPos;
+			m_fCarryDisntace = 0.0f;
+			m_MoveType++;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+//==========================================.
+//		開始時の移動処理関数.
+//==========================================.
+void CChangeSceneCursorUI::MoveStart()
+{
+	//上下浮遊処理関数.
+	UpDownFloat();
+	//移動処理関数(画面中央まで).
+	if (Move(SCREEN_CENTER_POS.x) == true) {
+		m_vChangeDirectBeforeRot = m_vRot;
+		m_vJumpBeforePos = m_vPos;
+		m_MoveType++;
+	}
+}
+
+//==========================================.
+//		驚き処理関数.
+//==========================================.
+void CChangeSceneCursorUI::Surprise()
+{
+	if (m_bChangeDirect == false) {
+		//移動方向変更処理関数.
+		m_bChangeDirect = ChangeMoveDirect();
+		return;
+	}
+
+	m_vUV = SURPRISE_UV_POS;
+	
+	//ジャンプ処理関数.
+	if (Jump() == true) {
+		m_vUV = HAVE_TROUBLE_UV_POS;
+		m_bChangeDirect = false;
+		m_FetchFlag = LEFT_TITLE_FETCH_FLAG;
+		m_MoveType++;
+	}
+
+}
+
+//==========================================.
+//		左タイトル文章取りに行く処理関数.
+//==========================================.
+void CChangeSceneCursorUI::LeftTitleFetch()
+{
+	//文章を取りに行く処理関数.
+	if (FetchString(m_OutSidePos) == true) {
+		m_vPos.x += m_OutSidePos;
+		m_CarryFlag = LEFT_TITLE_CARRY_FLAG;
+	}
+
+}
+
+//==========================================.
+//		左タイトル文章運ぶ処理関数.
+//==========================================.
+void CChangeSceneCursorUI::LeftTitleCarry()
+{
+	//運び移動処理関数.
+	CarryMove();
+
+	if (m_CarryFlag == 0) {
+		m_MoveType++;
+		m_FetchFlag = RIGHT_TITLE_FETCH_FLAG;
+	}
+}
+
+//==========================================.
+//		右タイトル文章取りに行く処理関数.
+//==========================================.
+void CChangeSceneCursorUI::RightTitleFetch()
+{
+	//文章を取りに行く処理関数.
+	if (FetchString(WND_W - m_OutSidePos) == true) {
+		m_vPos.x -= m_OutSidePos;
+		m_CarryFlag = RIGHT_TITLE_CARRY_FLAG;
+	}
+
+}
+
+//==========================================.
+//		右タイトル文章取りに行く処理関数.
+//==========================================.
+void CChangeSceneCursorUI::RightTitleCarry()
+{
+	//運び移動処理関数.
+	CarryMove();
+
+	if (m_CarryFlag == 0) {
+		m_MoveType++;
+		m_FetchFlag = 0;
+		m_vUV = NORMAL_UV_POS;
+		m_bArrivalFlga = false;
+	}
+}
+
+//==========================================.
+//		喜び処理関数.
+//==========================================.
+void CChangeSceneCursorUI::Rejoice()
+{
+	if (m_bArrivalFlga == false) {
+		m_vJumpBeforePos = m_vPos;
+		//上下移動処理関数.
+		UpDownFloat();
+	}
+
+	//目的地への移動処理関数.
+	if (MoveToDestination(SCREEN_CENTER_POS) == true) {
+		m_vUV = ENTER_UV_POS;
+		//ジャンプ処理関数.
+		if (Jump() == true) {
+			m_MoveType++;
+			m_FetchFlag = SELECT_FEATCH_FLAG;
+			m_vUV = NORMAL_UV_POS;
+			m_vChangeDirectBeforeRot = m_vRot;
+		}
+	}
+
+}
+
+//==========================================.
+//		選択肢を取りに行く処理関数.
+//==========================================.
+void CChangeSceneCursorUI::SelectFetch()
+{
+	//移動変更処理関数.
+	if (m_bChangeDirect == false) {
+		m_bChangeDirect = ChangeMoveDirect();
+		return;
+	}
+
+	//文章を取りに行く処理関数.
+	if (FetchString(WND_W - m_OutSidePos) == true) {
+		m_FetchFlag = 0;
+		m_vPos.x -= m_OutSidePos;
+		m_CarryFlag = SELECT_CARRY_FLAG;
+	}
+
+
+}
+
+//==========================================.
+//		選択肢を運ぶ処理関数.
+//==========================================.
+void CChangeSceneCursorUI::SelectCarry()
+{
+	//運び移動処理関数.
+	CarryMove();
+
+	if (m_CarryFlag == 0) {
+		m_MoveType++;
+		m_FetchFlag = 0;
+		m_vUV = NORMAL_UV_POS;
+		m_bArrivalFlga = false;
+	}
+}
+
+//==========================================.
+//		カーソルになる処理関数.
+//==========================================.
+void CChangeSceneCursorUI::BecomeCursor()
+{
+	if (m_bArrivalFlga == false) {
+		//上下移動処理関数.
+		UpDownFloat();
+		m_vChangeDirectBeforeRot = m_vRot;
+	}
+
+	//目的地への移動処理関数.
+	if (MoveToDestination(CONTROL_CURSOR_POS) == true) {
+		//移動方向変更処理関数.
+		if (ChangeMoveDirect() == true) {
+			m_bControlFlag = true;
+		}
+	}
+
+
 }
