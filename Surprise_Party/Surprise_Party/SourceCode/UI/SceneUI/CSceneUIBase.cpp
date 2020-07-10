@@ -38,6 +38,8 @@ void CSceneUIBase::Render()
 		m_pCDepthStenceil->SetDepth(true);
 	}
 
+	//‚Ù‚©‚Ì‚à‚Ì•`‰æˆ—ŠÖ”.
+	RenderOther();
 	//ƒJ[ƒ\ƒ‹‚Ì•`‰æ.
 	m_pCCursor->Render();
 

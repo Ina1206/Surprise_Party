@@ -2,6 +2,7 @@
 #define CTITLE_UI_H
 
 #include "..\CSceneUIBase.h"
+#include "TitleStringUI\CTitleStringUI.h"
 
 /*************************************
 *		タイトルUIクラス.
@@ -20,12 +21,6 @@ public:
 	const unsigned int	CONTROL_WAIT_FLAG	= (1 << 0);							//操作待機フラグ.
 	const unsigned int	CONTROL_FLAG		= (1 << 1);							//操作フラグ.
 
-	const D3DXVECTOR3	TITLE_POS			= D3DXVECTOR3(40.5f, 90.8f, 0.0f);	//タイトル座標.
-
-	const int			TITLE_MAX			= 2;								//タイトル最大値.
-
-
-
 	//======================関数=======================//.
 	void Update();									//更新処理関数.
 
@@ -35,17 +30,19 @@ public:
 private:
 	//======================関数=======================//.
 	void Init();									//初期化処理関数.
-	void InitTitle();								//タイトル初期化処理関数.
-	void ControlTitlePos();							//操作時タイトル座標設定処理関数.
 	void MoveString();								//文章移動処理関数.
 	void PreparingMoveString();						//文章移動準備処理関数.
 	void InitSelect();								//選択初期化処理関数.
+	void RenderOther();								//ほかのもの描画処理関数.
 
 	//======================変数=======================//.
-	unsigned int				m_SelectTypeFlag;	//選択種類フラグ.
-	unsigned int				m_ControlFlag;		//操作フラグ.
-	std::vector<D3DXVECTOR3>	m_vTitleLastPos;	//タイトル最終座標.
-	std::vector<D3DXVECTOR3>	m_vBeforeMovePos;	//移動前座標.
+	unsigned int					m_SelectTypeFlag;	//選択種類フラグ.
+	unsigned int					m_ControlFlag;		//操作フラグ.
+	std::vector<D3DXVECTOR3>		m_vTitleLastPos;	//タイトル最終座標.
+	std::vector<D3DXVECTOR3>		m_vBeforeMovePos;	//移動前座標.
+
+	std::unique_ptr<CTitleStringUI> m_pCTitleStringUI;	//タイトル文章UIクラスs.
+
 
 };
 

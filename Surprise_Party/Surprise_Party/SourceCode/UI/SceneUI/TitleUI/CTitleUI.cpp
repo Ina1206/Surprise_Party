@@ -28,17 +28,20 @@ void CTitleUI::Update()
 	m_pCCursor->SetChangeWaitFlag(false);
 	m_pCCursor->Update();
 
+	//タイトル更新処理関数.
+	m_pCTitleStringUI->Update();
+
 	if (m_ControlFlag & CONTROL_WAIT_FLAG) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-			//操作時タイトル座標設定処理関数.
-			ControlTitlePos();
-
 			//操作時選択文章座標設定処理関数.
 			ControlSelectStringPos();
 
 			m_ControlFlag = CONTROL_FLAG;
 			
 			m_pCCursor->SetControlFlag(true);
+
+			//操作フラグに変更.
+			m_pCTitleStringUI->SetMoveFlag(m_pCTitleStringUI->CONTROL_FLAG);
 		}
 		return;
 	}
@@ -76,11 +79,6 @@ void CTitleUI::Init()
 		m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(m_enSpriteUI));
 	}
 
-	//タイトル.
-	for (int title = 0; title < TITLE_MAX; title++) {
-		m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Title));
-	}
-
 	m_vBeforeMovePos.resize(m_pCSpriteUI.size());
 
 	//要素数初期化処理関数.
@@ -89,69 +87,11 @@ void CTitleUI::Init()
 	//選択初期化処理関数.
 	InitSelect();
 
-	//操作時タイトル座標設定処理関数.
-	ControlTitlePos();
-
-	//タイトル所化処理関数.
-	InitTitle();
-
 	//操作待機フラグに設定.
 	m_ControlFlag = CONTROL_WAIT_FLAG;
-}
 
-//=======================================.
-//		タイトル初期化処理関数.
-//=======================================.
-void CTitleUI::InitTitle()
-{
-	//タイトル番号開始番号.
-	const int TitleStartNum = SELECT_STRING_MAX;
-
-	for (int title = 0; title < TITLE_MAX; title++) {
-		const int TitleNum = title + TitleStartNum;
-
-		D3DXVECTOR2 TitleUV = INIT_UV;
-		TitleUV.y += 1.0f * title;
-		m_vUV[TitleNum] = TitleUV;
-
-		m_vUIPos[TitleNum] = TITLE_POS;
-		m_vUIPos[TitleNum].x = WND_W;
-		
-		if (title == 0) {
-			SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
-			m_vUIPos[TitleNum].x = -ss.Stride.w;
-		}
-
-		m_vBeforeMovePos[TitleNum] = m_vUIPos[TitleNum];
-	}
-}
-
-//=======================================.
-//		操作時タイトル座標設定処理関数.
-//=======================================.
-void CTitleUI::ControlTitlePos()
-{
-	//タイトル番号.
-	const int TitleStartNum = SELECT_STRING_MAX;
-	
-	if (m_ControlFlag == 0) {
-
-		//タイトルの最終座標を設定.
-		for (int title = 0; title < TITLE_MAX; title++) {
-			SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title);
-			m_vTitleLastPos.push_back(TITLE_POS);
-			m_vTitleLastPos[title].x += (ss.Stride.w ) * title;
-		}
-
-		return;
-	}
-
-	//タイトルの位置に設定.
-	for (int title = 0; title < TITLE_MAX; title++) {
-		const int TitleNum = title + TitleStartNum;
-		m_vUIPos[TitleNum] = m_vTitleLastPos[title];
-	}
-
+	//タイトル文章インスタンス化.
+	m_pCTitleStringUI.reset(new CTitleStringUI());
 }
 
 //========================================.
@@ -166,14 +106,30 @@ void CTitleUI::MoveString()
 		return;
 	}
 
+	//タイトル文字の移動処理.
+	const unsigned int CARRY_TITLE_ALL_FLAG = m_pCCursor->LEFT_TITLE_CARRY_FLAG | m_pCCursor->RIGHT_TITLE_CARRY_FLAG;
+	if (m_pCCursor->GetCarryFlag() & CARRY_TITLE_ALL_FLAG) {
+		//誤差範囲を設定(1フレームごとのPlayerの移動速度を基準).
+		m_pCTitleStringUI->SetErrorRange(m_pCCursor->MOVE_SPEED);
+		//移動フラグを設定.
+		m_pCTitleStringUI->SetMoveFlag(m_pCTitleStringUI->MOVE_FLAG);
+		//移動距離を設定.
+		m_pCTitleStringUI->SetMoveDistance(m_pCCursor->GetCarryDistance());
+
+		//移動停止処理.
+		if (m_pCTitleStringUI->GetStopMoveFlag() == true) {
+			m_pCTitleStringUI->SetMoveFlag(0);
+			//次の文章番号へ.
+			m_pCTitleStringUI->SetChangeNextStringNum();
+			//運ぶの終了.
+			m_pCCursor->SetFinishCarry();
+		}
+	}
+
 	int MoveStringNum = 0;
 	if (m_pCCursor->GetCarryFlag() & m_pCCursor->LEFT_TITLE_CARRY_FLAG) {
-		MoveStringNum = 2;
-		m_vUIPos[MoveStringNum].x = m_vBeforeMovePos[MoveStringNum].x + m_pCCursor->GetCarryDistance();
 	}
 	else if(m_pCCursor->GetCarryFlag() & m_pCCursor->RIGHT_TITLE_CARRY_FLAG){
-		MoveStringNum = 3;
-		m_vUIPos[MoveStringNum].x = m_vBeforeMovePos[MoveStringNum].x + m_pCCursor->GetCarryDistance();
 	}
 	else{
 		for (int string = MoveStringNum; string < SELECT_STRING_MAX; string++) {
@@ -183,12 +139,6 @@ void CTitleUI::MoveString()
 
 	if (MoveStringNum == 0)
 	{
-		if (m_vUIPos[MoveStringNum].x < SELECT_STRING_POS.x) {
-			for (int string = MoveStringNum; string < SELECT_STRING_MAX; string++) {
-				m_vUIPos[MoveStringNum].x = SELECT_STRING_POS.x;
-				m_pCCursor->SetFinishCarry();
-			}
-		}
 	}
 	else {
 		if (fabsf(m_vUIPos[MoveStringNum].x - m_vTitleLastPos[MoveStringNum - SELECT_STRING_MAX].x) < 1.0f) {
@@ -211,15 +161,8 @@ void CTitleUI::PreparingMoveString()
 	D3DXVECTOR3 GhostCursorCarryPos(0.0f, 0.0f, 0.0f);
 	int FetchStringNum = 0;
 	if (FetchFlag & m_pCCursor->LEFT_TITLE_FETCH_FLAG) {
-		FetchStringNum = 2;
-		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
 	}
 	else if(FetchFlag & m_pCCursor->RIGHT_TITLE_CARRY_FLAG){
-		FetchStringNum = 3;
-		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
-		//追加座標.
-		const float Add_Pos = (m_pCResourceManager->GetSpriteUIState(enSpriteUI::Title).Disp.w / 3) * 2;
-		GhostCursorCarryPos.x += Add_Pos;
 	}
 	else {
 		GhostCursorCarryPos = m_vUIPos[FetchStringNum];
@@ -227,6 +170,15 @@ void CTitleUI::PreparingMoveString()
 		GhostCursorCarryPos.y += SpriteState.Disp.h / 2.0f;
 		GhostCursorCarryPos.x += SpriteState.Disp.w;
 		
+	}
+
+	//タイトルの移動準備処理.
+	const unsigned int FETCH_TITLE_ALL_FLAG = m_pCCursor->LEFT_TITLE_FETCH_FLAG | m_pCCursor->RIGHT_TITLE_FETCH_FLAG;
+	if (m_pCCursor->GetFetchFlag() & FETCH_TITLE_ALL_FLAG) {
+		//取りに行くフラグ.
+		m_pCTitleStringUI->SetMoveFlag(m_pCTitleStringUI->FETCH_FLAG);
+		//お化けが行くべき座標を設定.
+		GhostCursorCarryPos = m_pCTitleStringUI->GetFetchGhostPos();
 	}
 
 	m_pCCursor->SetCarryStartPos(GhostCursorCarryPos);
@@ -244,4 +196,13 @@ void CTitleUI::InitSelect()
 		m_vUIPos[select].y += select * SpriteState.Disp.h;
 		m_vBeforeMovePos[select] = m_vUIPos[select];
 	}
+}
+
+//=========================================.
+//		他の物描画処理関数.
+//=========================================.
+void CTitleUI::RenderOther()
+{
+	//タイトルの描画.
+	m_pCTitleStringUI->Render();
 }

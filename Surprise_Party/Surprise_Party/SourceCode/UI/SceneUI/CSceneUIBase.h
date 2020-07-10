@@ -34,6 +34,7 @@ protected:
 	//===================関数========================//.
 	void InitElementCounts();										//要素数初期化処理関数.
 	void ControlSelectStringPos();									//操作時選択文章座標設定処理関数.
+	virtual void RenderOther() = 0;										//ほかのもの描画処理関数.
 
 	//===================変数========================//.
 	std::vector<CSpriteUI*>					m_pCSpriteUI;			//スプライトUI.
