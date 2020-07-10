@@ -386,6 +386,9 @@
     <Filter Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI">
       <UniqueIdentifier>{0059cee4-2e2c-41c1-901b-77a4ada16b67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\TitleUI\TitleStringUI">
+      <UniqueIdentifier>{75999721-45ee-4773-a01e-705fe2715cfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -778,6 +781,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI\CChangeSceneCursorUI.h">
       <Filter>SourceCode\UI\SceneUI\ChangeSceneCursorUI</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\TitleStringUI\CTitleStringUI.h">
+      <Filter>SourceCode\UI\SceneUI\TitleUI\TitleStringUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1157,6 +1163,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI\CChangeSceneCursorUI.cpp">
       <Filter>SourceCode\UI\SceneUI\ChangeSceneCursorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\TitleStringUI\CTitleStringUI.cpp">
+      <Filter>SourceCode\UI\SceneUI\TitleUI\TitleStringUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
