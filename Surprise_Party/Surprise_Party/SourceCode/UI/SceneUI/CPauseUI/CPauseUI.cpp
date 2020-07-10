@@ -23,6 +23,10 @@ void CPauseUI::Update()
 	m_pCCursor->SetChangeWaitFlag(true);
 	m_pCCursor->SetControlFlag(true);
 	m_pCCursor->Update();
+
+	//選択肢の更新処理関数.
+	m_pCSelectStringUI->SetMoveFlag(m_pCSelectStringUI->CONTROL_FLAG);
+	m_pCSelectStringUI->Update();
 }
 
 //=====================================.
@@ -30,26 +34,18 @@ void CPauseUI::Update()
 //=====================================.
 void CPauseUI::Init()
 {
-	//スプライト設定.
-	for (int sprite = 0; sprite < SELECT_STRING_MAX; sprite++) {
-		//選択文章.
-		int SpriteNum = static_cast<int>(enSpriteUI::Continue) + sprite;
-		m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum)));
-	}
 	//シーンタイトル.
-	m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Pause));
+	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Pause);
 
-	//要素数初期化処理関数.
-	InitElementCounts();
-
-	//操作時選択座標設定処理関数.
-	ControlSelectStringPos();
+	//選択肢UIクラスインスタンス化.
+	m_pCSelectStringUI.reset(new CSelectStringUI(false));
 }
 
 //====================================.
-//		ほかの物描画処理関数.
+//		シーンタイトル描画処理関数.
 //====================================.
-void CPauseUI::RenderOther()
+void CPauseUI::RenderSceneTitle()
 {
-
+	m_pCSpriteUI->SetPosition(PAUSE_POS);
+	m_pCSpriteUI->Render();
 }

@@ -141,6 +141,7 @@
     <ClInclude Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI\CChangeSceneCursorUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\CPauseUI\CPuaseUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\CSceneUIBase.h" />
+    <ClInclude Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\TitleStringUI\CTitleStringUI.h" />
     <ClInclude Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.h" />
@@ -270,6 +271,7 @@
     <ClCompile Include="SourceCode\UI\SceneUI\ChangeSceneCursorUI\CChangeSceneCursorUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\CPauseUI\CPauseUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\CSceneUIBase.cpp" />
+    <ClCompile Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\TitleStringUI\CTitleStringUI.cpp" />
     <ClCompile Include="SourceCode\UI\SpeakUI\AutoUI\CAutoUI.cpp" />

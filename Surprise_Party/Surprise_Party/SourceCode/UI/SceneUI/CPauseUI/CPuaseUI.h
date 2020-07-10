@@ -14,16 +14,15 @@ public:
 	~CPauseUI();
 
 	//=======================定数============================//.
-	const int PAUSE_TITLE_NUM	= 2;	//ポーズタイトル番号.
-
+	const D3DXVECTOR3 PAUSE_POS	= D3DXVECTOR3(100.0f, 50.0f, 0.0f);	//ポーズタイトル座標.
 
 	//=======================関数============================//.
-	void Update();		//更新処理関数.
+	void Update();						//更新処理関数.
 
 private:
 	//=======================関数============================//.
-	void Init();		//初期化処理関数.
-	void RenderOther();	//ほかのもの描画.
+	void Init();						//初期化処理関数.
+	void RenderSceneTitle();			//シーンタイトル描画処理関数.
 
 };
 

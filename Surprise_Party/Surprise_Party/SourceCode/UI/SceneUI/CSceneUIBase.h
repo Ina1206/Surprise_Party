@@ -3,6 +3,7 @@
 
 #include "..\CUI.h"
 #include "ChangeSceneCursorUI\CChangeSceneCursorUI.h"
+#include "SelectStringUI\CSelectStringUI.h"
 
 /*****************************************
 *		シーンUIの基底クラス.
@@ -14,14 +15,6 @@ public:
 	CSceneUIBase();
 	virtual ~CSceneUIBase();
 
-	//===================定数========================//.
-	const D3DXVECTOR3	SELECT_STRING_POS	= D3DXVECTOR3(800.0f, 450.0f, 0.0f);	//選択文章座標.
-	const D3DXVECTOR3	INIT_POS			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//初期座標.
-	const D3DXVECTOR3	INIT_ROT			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//初期角度.
-	const D3DXVECTOR2	INIT_UV				= D3DXVECTOR2(0.0f, 0.0f);				//初期UV座標.
-	const int			UI_MAX				= 4;									//UI最大数.
-	const int			SELECT_STRING_MAX	= 2;									//選択スプライト.
-
 	//===================関数========================//.
 	virtual void Update() = 0;										//更新処理関数.
 	void Render();													//描画処理関数.
@@ -32,16 +25,12 @@ public:
 
 protected:
 	//===================関数========================//.
-	void InitElementCounts();										//要素数初期化処理関数.
-	void ControlSelectStringPos();									//操作時選択文章座標設定処理関数.
-	virtual void RenderOther() = 0;										//ほかのもの描画処理関数.
+	virtual void RenderSceneTitle() = 0;							//シーンタイトル描画処理関数.
 
 	//===================変数========================//.
-	std::vector<CSpriteUI*>					m_pCSpriteUI;			//スプライトUI.
-	std::vector<D3DXVECTOR3>				m_vUIPos;				//座標.
-	std::vector<D3DXVECTOR2>				m_vUV;					//UV座標.
-	std::vector<D3DXVECTOR3>				m_vUIRot;				//角度.
+	CSpriteUI*								m_pCSpriteUI;			//スプライトUI.
 	std::unique_ptr<CChangeSceneCursorUI>	m_pCCursor;				//カーソルクラス.
+	std::unique_ptr<CSelectStringUI>		m_pCSelectStringUI;		//選択文章UIクラス.
 
 private:
 	//===================関数========================//.

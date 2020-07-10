@@ -32,16 +32,13 @@ private:
 	void Init();									//初期化処理関数.
 	void MoveString();								//文章移動処理関数.
 	void PreparingMoveString();						//文章移動準備処理関数.
-	void InitSelect();								//選択初期化処理関数.
-	void RenderOther();								//ほかのもの描画処理関数.
+	void RenderSceneTitle();						//シーンタイトル描画処理関数.
 
 	//======================変数=======================//.
 	unsigned int					m_SelectTypeFlag;	//選択種類フラグ.
 	unsigned int					m_ControlFlag;		//操作フラグ.
-	std::vector<D3DXVECTOR3>		m_vTitleLastPos;	//タイトル最終座標.
-	std::vector<D3DXVECTOR3>		m_vBeforeMovePos;	//移動前座標.
 
-	std::unique_ptr<CTitleStringUI> m_pCTitleStringUI;	//タイトル文章UIクラスs.
+	std::unique_ptr<CTitleStringUI> m_pCTitleStringUI;	//タイトル文章UIクラス.
 
 
 };
