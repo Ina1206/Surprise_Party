@@ -7,6 +7,7 @@ CAutoUI::CAutoUI()
 	: m_pCSpriteUI			(nullptr)
 	, m_FlashingFlag		(0)
 	, m_TransparentDirect	(1)
+	, m_bTutorialFlag		(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -23,6 +24,11 @@ CAutoUI::~CAutoUI()
 //=================================.
 void CAutoUI::Update()
 {
+	m_vPos = NORMAL_POS;
+	if (m_bTutorialFlag == true) {
+		m_vPos = TUTORIAL_POS;
+	}
+
 	m_fAlpha += ALPHA_SPEED * m_TransparentDirect;
 
 	//Á‚¦‚Ä‚¢‚­ˆ—‚ÌŽž.
@@ -51,7 +57,7 @@ void CAutoUI::Render()
 	//“§‰ß’l.
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
 	//À•W.
-	m_pCSpriteUI->SetPosition(POS);
+	m_pCSpriteUI->SetPosition(m_vPos);
 	//•`‰æ.
 	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
@@ -66,6 +72,7 @@ void CAutoUI::Init()
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::AutoString);
 	m_TransparentDirect *= CHANGE_DIRECT;
 	m_FlashingFlag = DISAPPEAR_FLAG;
+
 }
 
 //=================================.

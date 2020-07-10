@@ -118,7 +118,7 @@ void CSpeakBigGhost::Render()
 	m_pCNextSpeakCursor->Render();
 
 	//©“®Ä¶‚ÌUI•`‰æˆ—ŠÖ”.
-	if (m_AutoFlag & m_AutoFlag) {
+	if (m_AutoFlag & AUTO_FLAG && !(m_AutoFlag & AUTO_SUSPEND_FLAG)) {
 		m_pCAutoUI->Render();
 	}
 

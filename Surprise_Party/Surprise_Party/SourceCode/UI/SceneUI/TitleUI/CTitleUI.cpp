@@ -28,12 +28,6 @@ void CTitleUI::Update()
 	m_pCCursor->SetChangeWaitFlag(false);
 	m_pCCursor->Update();
 
-	//タイトル更新処理関数.
-	m_pCTitleStringUI->Update();
-
-	//選択肢UI更新処理関数.
-	m_pCSelectStringUI->Update();
-
 	if (m_ControlFlag & CONTROL_WAIT_FLAG) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			m_ControlFlag = CONTROL_FLAG;
@@ -44,8 +38,13 @@ void CTitleUI::Update()
 			m_pCSelectStringUI->SetMoveFlag(m_pCSelectStringUI->CONTROL_FLAG);
 			
 		}
-		return;
 	}
+
+	//タイトル更新処理関数.
+	m_pCTitleStringUI->Update();
+
+	//選択肢UI更新処理関数.
+	m_pCSelectStringUI->Update();
 
 }
 

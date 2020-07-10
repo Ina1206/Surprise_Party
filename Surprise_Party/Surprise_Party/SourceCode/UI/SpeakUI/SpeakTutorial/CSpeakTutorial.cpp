@@ -127,7 +127,7 @@ void CSpeakTutorial::Render()
 	m_pCNextSpeakCursor->Render();
 
 	//自動再生時のUI描画処理関数.
-	if (m_AutoFlag & AUTO_FLAG) {
+	if (m_AutoFlag & AUTO_FLAG && !(m_AutoFlag & AUTO_SUSPEND_FLAG)) {
 		m_pCAutoUI->Render();
 	}
 }
@@ -201,6 +201,9 @@ void CSpeakTutorial::Init()
 
 	//次の文章カーソルクラスのインスタンス化.
 	m_pCNextSpeakCursor.reset(new CNextSpeakCursor());
+
+	//チュートリアルフラグ設定.
+	m_pCAutoUI->SetTutorialFlag(true);
 }
 
 //========================================.
