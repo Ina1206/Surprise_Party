@@ -93,6 +93,7 @@ enum class enSpriteUI
 	ShockingSign,					//衝撃的符号.
 	AutoString,						//自動再生文字.
 	Shout,							//叫び.
+	SurpriseDegree,					//驚かし度.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
