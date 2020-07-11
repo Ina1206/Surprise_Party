@@ -1,18 +1,18 @@
 #ifndef CSURPRISE_RAGREE_STRING_H
 #define CSURPRISE_RAGREE_STRING_H
 
-#include "..\SurpriseRegreeBase\CSurpriseRegreeBase.h"
+#include "..\SurpriseDegreeBase\CSurpriseDegreeBase.h"
 
 /**********************************************
 *		驚かし度文章クラス.
 *******************/
-class CSurpriseRegreeString
-	: public CSurpriseRegreeBase
+class CSurpriseDegreeString
+	: public CSurpriseDegreeBase
 {
 public:
 	
-	CSurpriseRegreeString();
-	~CSurpriseRegreeString();
+	CSurpriseDegreeString();
+	~CSurpriseDegreeString();
 
 	//========================関数================================//.
 	void Update();		//更新処理関数.

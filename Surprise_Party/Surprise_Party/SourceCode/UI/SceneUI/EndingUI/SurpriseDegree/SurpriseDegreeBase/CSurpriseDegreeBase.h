@@ -6,12 +6,12 @@
 /****************************************
 *		驚かし度の基底クラス.
 **********************/
-class CSurpriseRegreeBase
+class CSurpriseDegreeBase
 	: public CUI
 {
 public:
-	CSurpriseRegreeBase();
-	virtual ~CSurpriseRegreeBase();
+	CSurpriseDegreeBase();
+	virtual ~CSurpriseDegreeBase();
 
 	//===================定数====================//.
 	const D3DXVECTOR3 EATCH_SCALE_MAX = D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//それぞれの大きさ最大値.

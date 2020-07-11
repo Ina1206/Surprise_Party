@@ -142,8 +142,8 @@
     <ClInclude Include="SourceCode\UI\SceneUI\CPauseUI\CPuaseUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\CSceneUIBase.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.h" />
-    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase\CSurpriseRegreeBase.h" />
-    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeString\CSurpriesRagreeString.h" />
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.h" />
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString\CSurpriesDegreeString.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\TitleStringUI\CTitleStringUI.h" />
@@ -275,8 +275,8 @@
     <ClCompile Include="SourceCode\UI\SceneUI\CPauseUI\CPauseUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\CSceneUIBase.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.cpp" />
-    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase\CSurpriseRegreeBase.cpp" />
-    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeString\CSurpriseRegreeString.cpp" />
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.cpp" />
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString\CSurpriseDegreeString.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\TitleStringUI\CTitleStringUI.cpp" />

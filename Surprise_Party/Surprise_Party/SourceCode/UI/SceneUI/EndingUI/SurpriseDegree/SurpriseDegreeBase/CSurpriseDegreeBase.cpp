@@ -1,16 +1,16 @@
-#include "CSurpriseRegreeBase.h"
+#include "CSurpriseDegreeBase.h"
 
 /****************************************
 *		‹Á‚©‚µ“x‚ÌŠî’êƒNƒ‰ƒX.
 **********************/
-CSurpriseRegreeBase::CSurpriseRegreeBase()
+CSurpriseDegreeBase::CSurpriseDegreeBase()
 	: m_pCSpriteUI		(nullptr)
 	, m_vEatchSizeScale	(EATCH_SCALE_MAX)
 {
 
 }
 
-CSurpriseRegreeBase::~CSurpriseRegreeBase()
+CSurpriseDegreeBase::~CSurpriseDegreeBase()
 {
 
 }
@@ -18,7 +18,7 @@ CSurpriseRegreeBase::~CSurpriseRegreeBase()
 //========================================.
 //		•`‰æˆ—ŠÖ”.
 //========================================.
-void CSurpriseRegreeBase::Render()
+void CSurpriseDegreeBase::Render()
 {
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
 	m_pCSpriteUI->SetEachSizeScale(m_vEatchSizeScale);

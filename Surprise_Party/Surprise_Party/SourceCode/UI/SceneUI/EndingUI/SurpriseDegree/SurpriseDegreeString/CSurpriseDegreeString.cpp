@@ -1,15 +1,15 @@
-#include "CSurpriesRagreeString.h"
+#include "CSurpriesDegreeString.h"
 
 /**********************************************
 *		驚かし度文章クラス.
 *******************/
-CSurpriseRegreeString::CSurpriseRegreeString()
+CSurpriseDegreeString::CSurpriseDegreeString()
 {
 	//初期化処理関数.
 	Init();
 }
 
-CSurpriseRegreeString::~CSurpriseRegreeString()
+CSurpriseDegreeString::~CSurpriseDegreeString()
 {
 	//解放処理関数.
 	Release();
@@ -18,7 +18,7 @@ CSurpriseRegreeString::~CSurpriseRegreeString()
 //==================================================.
 //		更新処理関数.
 //==================================================.
-void CSurpriseRegreeString::Update()
+void CSurpriseDegreeString::Update()
 {
 
 }
@@ -26,7 +26,7 @@ void CSurpriseRegreeString::Update()
 //==================================================.
 //		初期化処理関数.
 //==================================================.
-void CSurpriseRegreeString::Init()
+void CSurpriseDegreeString::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::SurpriseDegree);
 }
@@ -34,7 +34,7 @@ void CSurpriseRegreeString::Init()
 //==================================================.
 //		解放処理関数.
 //==================================================.
-void CSurpriseRegreeString::Release()
+void CSurpriseDegreeString::Release()
 {
 
 }

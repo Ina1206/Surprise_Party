@@ -398,11 +398,11 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree">
       <UniqueIdentifier>{505dc0d5-db8f-48d9-9649-461fa60be3fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseRegreeBase">
-      <UniqueIdentifier>{29ebd393-8f8f-4bb9-8969-df3ed0e129ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString">
       <UniqueIdentifier>{83264553-b391-42f0-942f-ac3321392c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase">
+      <UniqueIdentifier>{29ebd393-8f8f-4bb9-8969-df3ed0e129ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -805,11 +805,11 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI</Filter>
     </ClInclude>
-    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase\CSurpriseRegreeBase.h">
-      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseRegreeBase</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeString\CSurpriesRagreeString.h">
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString\CSurpriesDegreeString.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.h">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1200,11 +1200,11 @@
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI</Filter>
     </ClCompile>
-    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase\CSurpriseRegreeBase.cpp">
-      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseRegreeBase</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeString\CSurpriseRegreeString.cpp">
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString\CSurpriseDegreeString.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.cpp">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
