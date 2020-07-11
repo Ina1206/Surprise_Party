@@ -50,22 +50,33 @@ public:
 private:
 	//===================関数=======================//.
 	void ChangeScene();									//シーン変更処理関数.
+	void NextScene();									//次のシーンに進む処理関数.
 	void Pause();										//ポーズ処理化数.
+	void FlyToScene();									//シーンに飛ぶ処理関数.
+	void RenderDebugFont();								//デバッグ用フォント描画処理関数.
 
 	//===================変数=======================//.
-	HWND										m_hWnd;					//ウィンドウハンドル.
+	HWND										m_hWnd;						//ウィンドウハンドル.
 	LPDIRECT3DDEVICE9							m_pDevice9;
-	ID3D11Device*								m_pDevice11;			//デバイスオブジェクト.
-	ID3D11DeviceContext*						m_pContext11;			//デバイスコンテキスト.
+	ID3D11Device*								m_pDevice11;				//デバイスオブジェクト.
+	ID3D11DeviceContext*						m_pContext11;				//デバイスコンテキスト.
+	CDepth_Stencil*								m_pCDepthStencil;			//デプスステンシル.
 
-	std::vector<std::unique_ptr<CSceneBase>>	m_pCSceneBase;			//シーンクラス.
+	std::vector<std::unique_ptr<CSceneBase>>	m_pCSceneBase;				//シーンクラス.
 	D3DXVECTOR4									m_Color;
-	int											m_ChangeSceneCnt;		//シーン変更カウント.
-	int											m_SceneType;			//シーン種類.
+	int											m_ChangeSceneCnt;			//シーン変更カウント.
+	int											m_SceneType;				//シーン種類.
 
-	std::unique_ptr<CSceneFade>					m_pCSceneFade;			//シーンフェードクラス.
-	bool										m_PausingFlag;			//一時停止フラグ.
-	unsigned int								m_StartFlag;			//開始フラグ.
+	std::unique_ptr<CSceneFade>					m_pCSceneFade;				//シーンフェードクラス.
+	bool										m_PausingFlag;				//一時停止フラグ.
+	unsigned int								m_StartFlag;				//開始フラグ.
+
+	CDebugText*									m_pCDebugText;				//デバッグテキスト.
+	int											m_FlyToSceneNum;			//変更するシーン番号.
+	int											m_FlyToSceneMax;			//変更するデバッグ用のシーン最大数.
+	bool										m_bFlyToSceneFlag;			//シーンに飛ぶフラグ.
+
+	int											m_FlyToSceneEvaluation;		//シーンに飛ぶ場合の評価.
 };
 
 #endif	//#ifndef CSCENE_MANAGER_H.

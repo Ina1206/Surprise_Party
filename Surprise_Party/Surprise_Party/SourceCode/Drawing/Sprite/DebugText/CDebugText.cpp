@@ -37,7 +37,7 @@ HRESULT CDebugText::Init(ID3D11DeviceContext* pContext11,
 {
 	m_fAlpha = vColor.w;
 	m_vColor = vColor;
-	m_fScale = Scale / 25.0f;
+	m_fScale = Scale;
 
 	//95文字分繰り返し.
 	for (int i = 0; i < 95; i++) {
@@ -415,8 +415,12 @@ void CDebugText::RenderFont(int FontIndex, int x, int y)
 {
 	//ワールド変換.
 	D3DXMATRIX mWorld;
+	D3DXMATRIX mScale;
 	D3DXMatrixIdentity(&mWorld);
-	D3DXMatrixTranslation(&mWorld, static_cast<FLOAT>(x), static_cast<FLOAT>(y), -100.0f);
+	D3DXMatrixTranslation(&mWorld, static_cast<FLOAT>(x * m_fScale), static_cast<FLOAT>(y * m_fScale), -100.0f);
+	D3DXMatrixScaling( &mScale, m_fScale, m_fScale, m_fScale);	
+
+	mWorld = mScale * mWorld;
 
 	//シェーダのコンスタントバッファに各種データを渡す.
 	D3D11_MAPPED_SUBRESOURCE	pData;

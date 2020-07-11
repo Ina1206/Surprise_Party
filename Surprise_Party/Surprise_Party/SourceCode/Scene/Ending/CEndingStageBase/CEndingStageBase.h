@@ -8,6 +8,7 @@
 #include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
 #include "..\..\Camera\CameraEnding\CCameraEnding.h"
 #include "..\..\UI\Fade\WhiteScreenFade\CWhiteScreenFade.h"
+#include "..\..\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.h"
 
 /*******************************************
 *		エンディングステージ基底クラス.
@@ -40,22 +41,24 @@ protected:
 	virtual void Init() = 0;								//初期化処理関数.
 	virtual void Release() = 0;								//解放処理関数.
 
+	void UpdateCommonUI();									//共通のUIの更新処理関数.
 	void RenderFloor();										//床の描画処理関数.
 	void RenderGhost();										//お化け描画処理関数.
+	void RenderCommonUI();									//共通のUIの描画処理関数.
 	void UpdatePushEnter();									//PushEnterの更新処理関数.
 	void RenderPushEnter();									//PushEnterの描画処理関数.
 
 	//========================変数=============================//.
-	D3DXMATRIX											m_mView;					//ビュー行列.
-	D3DXMATRIX											m_mProj;					//プロジェクション行列.
-	std::unique_ptr<CBackstageLight>					m_pCBackstageLight;			//舞台裏ライトクラス.
-	std::vector<std::unique_ptr<CGhostBase>>			m_pCGhost;					//お化けクラス.
-	std::unique_ptr<CCameraEnding>						m_pCCameraEnding;			//エンディングカメラ.
-	std::unique_ptr<CWhiteScreenFade>					m_pCWhiteScreenFade;		//白画面のフェード.
-	int													m_Evaluation;				//評価.
-	int													m_OldEvaluation;			//差分用評価.
-	bool												m_bChangeStage;				//ステージ変更フラグ.
-	D3DXVECTOR3											m_vObjLookPos;				//オブジェクトが見る場所.
+	D3DXMATRIX									m_mView;					//ビュー行列.
+	D3DXMATRIX									m_mProj;					//プロジェクション行列.
+	std::unique_ptr<CBackstageLight>			m_pCBackstageLight;			//舞台裏ライトクラス.
+	std::vector<std::unique_ptr<CGhostBase>>	m_pCGhost;					//お化けクラス.
+	std::unique_ptr<CCameraEnding>				m_pCCameraEnding;			//エンディングカメラ.
+	std::unique_ptr<CWhiteScreenFade>			m_pCWhiteScreenFade;		//白画面のフェード.
+	int											m_Evaluation;				//評価.
+	int											m_OldEvaluation;			//差分用評価.
+	bool										m_bChangeStage;				//ステージ変更フラグ.
+	D3DXVECTOR3									m_vObjLookPos;				//オブジェクトが見る場所.
 private:
 	//===================定数======================//.
 	const D3DXVECTOR3	PUSH_ENTER_POS			= D3DXVECTOR3(800.0f, 600.0f, 0.0f);//PushEnterの座標.
@@ -64,14 +67,15 @@ private:
 	const float			PUSH_ENTER_SCALE_MAX	= 2.0f;								//PushEnter大きさ.
 
 	//========================関数=============================//.
-	void InitCommonValue();									//共通値の初期化処理関数.
-	void CreateInstanceFronClass(const int& num);			//クラスからインスタンスを作成する処理関数.
+	void InitCommonValue();												//共通値の初期化処理関数.
+	void CreateInstanceFronClass(const int& num);						//クラスからインスタンスを作成する処理関数.
 
 	//========================変数=============================//.
-	std::unique_ptr<CFloor>		m_pCFloor;					//床クラス.
-	CSpriteUI*					m_pCPushEnterUI;			//SpriteUIクラス(PushEnterの文字).
-	float						m_fPushEnterUIAlpha;		//SpriteUIの透過値.
-	int							m_AlphaAddDecDirect;		//透過値の加算減算方向.
+	std::unique_ptr<CSurpriseDegreeManager> m_pCSurpriseDegreeManager;	//驚かし度の管理クラス.
+	std::unique_ptr<CFloor>					m_pCFloor;					//床クラス.
+	CSpriteUI*								m_pCPushEnterUI;			//SpriteUIクラス(PushEnterの文字).
+	float									m_fPushEnterUIAlpha;		//SpriteUIの透過値.
+	int										m_AlphaAddDecDirect;		//透過値の加算減算方向.
 };
 
 #endif	//#ifndef CENDING_STAGE_BASE_H.

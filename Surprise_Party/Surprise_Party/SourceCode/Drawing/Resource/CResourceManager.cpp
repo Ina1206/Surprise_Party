@@ -98,6 +98,9 @@ HRESULT CResourceManager::Load(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Devi
 	//初期化処理関数.
 	m_pCFont->Init(pDevice11, pContext11);
 
+	//デバッグテキスト初期化処理関数.
+	InitDebugText(pContext11);
+
 	return S_OK;
 }
 
@@ -752,4 +755,20 @@ HRESULT CResourceManager::InitSphere()
 	m_pCHitSphere->m_Sphere.fRadius = fRadius;
 
 	return S_OK;
+}
+
+//===========================================.
+//		デバッグテキスト初期化処理関数.
+//===========================================.
+void CResourceManager::InitDebugText(ID3D11DeviceContext* pContext11)
+{
+	//m_pCDebugText = std::make_unique<CDebugText>();
+	m_pCDebugText.reset(new CDebugText());
+
+	//色.
+	const D3DXVECTOR4 vColor = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	//初期化処理関数.
+	if (FAILED(m_pCDebugText->Init(pContext11, WND_W, WND_H, 2.0f, vColor))) {
+		return;
+	}
 }

@@ -5,6 +5,7 @@
 #include "ObjectResource/CObjectResource.h"
 #include "EffectResource/CResourceEffect.h"
 #include "FontResource/CFontResource.h"
+#include "../Sprite\DebugText/CDebugText.h"
 #include <tuple>
 
 /*******************************************
@@ -28,6 +29,7 @@ public:
 	CEffect*		GetEffect(CResourceEffect::enEffect enEffect) { return m_pCEffect->GetEffect(enEffect); }
 	CFontResource*	GetFont() { return m_pCFont.get(); }
 	SPRITE_STATE	GetSpriteUIState(const enSpriteUI& enSpriteUIType) { return m_pstSpriteUIState[static_cast<int>(enSpriteUIType)]; }
+	CDebugText*		GetDebugText() { return m_pCDebugText.get(); }
 
 	//===================シングルトン====================//.
 	static CResourceManager* GetResourceManagerInstance()
@@ -45,6 +47,7 @@ private:
 	void	SpriteStateSetting();							//スプライト情報構造体設定処理関数.
 	void	SpriteUIStateSetting();							//スプライトUI情報構造体設定処理関数.
 	HRESULT InitSphere();									//当たり判定用スフィア作成処理関数.
+	void	InitDebugText(ID3D11DeviceContext* pContext11);	//デバッグテキスト初期化処理関数.
 
 	//=====================変数===========================//.
 	std::unique_ptr<CSprite_Resource<CSprite, enSprite>>			m_pCSprite;				//スプライトクラス.
@@ -53,6 +56,7 @@ private:
 	std::unique_ptr<CObjectResource<CDX9SkinMesh, enSkinMeshType>>	m_pCSkinMesh;			//スキンメッシュクラス.
 	std::unique_ptr<CResourceEffect>								m_pCEffect;				//エフェクトクラス.
 	std::unique_ptr<CFontResource>									m_pCFont;				//フォントクラス.
+	std::unique_ptr<CDebugText>										m_pCDebugText;			//デバッグテキストクラス.
 
 	std::vector<std::string>										m_vSpriteFileName;		//スプライトのファイル名.
 	std::vector<std::string>										m_vSpriteUIFileNmae;	//スプライトUIのファイル名.

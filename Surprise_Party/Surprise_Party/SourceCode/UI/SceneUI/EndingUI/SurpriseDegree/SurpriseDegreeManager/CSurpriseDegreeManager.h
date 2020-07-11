@@ -21,8 +21,9 @@ private:
 	void Init();		//初期化処理関数.
 
 	//==========================変数============================//.
-	
-
+	std::vector<std::unique_ptr<CSurpriseDegreeBase>>	m_pCSurpriseDegreeBase;	//驚かし度UIクラス.
+	bool												m_bAllDispFlag;			//全てを表示したフラグ.
+	int													m_UpdateUINum;			//更新しているUI番号.
 };
 
 #endif	//#ifndef CSURPRISE_DEGREE_MANAGER_H.

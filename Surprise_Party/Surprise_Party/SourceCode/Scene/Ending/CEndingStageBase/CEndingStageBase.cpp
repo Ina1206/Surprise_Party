@@ -42,6 +42,14 @@ void CEndingStageBase::RenderInitSetting( const D3DXMATRIX& mProj)
 }
 
 //=========================================.
+//		共通のUIの更新処理関数.
+//=========================================.
+void CEndingStageBase::UpdateCommonUI()
+{
+	m_pCSurpriseDegreeManager->Update();
+}
+
+//=========================================.
 //		床の描画処理関数.
 //=========================================.
 void CEndingStageBase::RenderFloor()
@@ -70,6 +78,14 @@ void CEndingStageBase::RenderGhost()
 		m_pCGhost[ghost]->SetCameraPos(m_pCCameraEnding->GetPos());
 		m_pCGhost[ghost]->Render();
 	}
+}
+
+//=========================================.
+//		共通のUIの描画処理関数.
+//=========================================.
+void CEndingStageBase::RenderCommonUI()
+{
+	m_pCSurpriseDegreeManager->Render();
 }
 
 //=========================================.
@@ -120,6 +136,7 @@ void CEndingStageBase::RenderPushEnter()
 void CEndingStageBase::InitCommonValue()
 {
 	//インスタンス化.
+	m_pCSurpriseDegreeManager = std::make_unique<CSurpriseDegreeManager>();
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
 	m_pCCameraEnding.reset(new CCameraEnding());

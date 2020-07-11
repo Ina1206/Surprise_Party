@@ -20,6 +20,9 @@ CHightEvaluationStage::~CHightEvaluationStage()
 //=============================================.
 void CHightEvaluationStage::Update()
 {
+	//共通のUIの更新処理関数.
+	UpdateCommonUI();
+
 	//カメラの更新処理関数.
 	m_pCCameraEnding->Update();
 
@@ -54,6 +57,9 @@ void CHightEvaluationStage::Render()
 		m_pCWhiteScreenFade->Render();
 		return;
 	}
+
+	//共通のUIの描画処理関数.
+	RenderCommonUI();
 
 	//PushEnter描画処理関数.
 	RenderPushEnter();
