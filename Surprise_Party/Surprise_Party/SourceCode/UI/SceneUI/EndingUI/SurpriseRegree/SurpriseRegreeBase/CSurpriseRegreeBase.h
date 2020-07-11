@@ -21,14 +21,12 @@ public:
 	void Render();					//描画処理関数.
 	
 protected:
-	//===================関数====================//.
-	virtual void Init() = 0;		//初期化処理関数.
-	
+
 	//===================変数====================//.
 	CSpriteUI*	m_pCSpriteUI;		//スプライトUI.
 	D3DXVECTOR3 m_vEatchSizeScale;	//それぞれの大きさ.
 
 private:
-}
+};
 
 #endif	//#ifndef CSURPRSEI_REGREE_BASE_H.
