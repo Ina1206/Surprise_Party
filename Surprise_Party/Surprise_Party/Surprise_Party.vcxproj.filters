@@ -395,6 +395,12 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI">
       <UniqueIdentifier>{e4a93c39-92b9-4379-9b17-107328c27cb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree">
+      <UniqueIdentifier>{505dc0d5-db8f-48d9-9649-461fa60be3fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase">
+      <UniqueIdentifier>{29ebd393-8f8f-4bb9-8969-df3ed0e129ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -796,6 +802,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase\CSurpriseRegreeBase.h">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1184,6 +1193,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase\CSurpriseRegreeBase.cpp">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseRegree\SurpriseRegreeBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
