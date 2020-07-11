@@ -91,6 +91,10 @@ enum class enSpriteUI
 	FinishString,					//終了文字.
 	ShockingSign,					//衝撃的符号.
 	AutoString,						//自動再生文字.
+	Shout,							//叫び.
+	HightEvaluationString,			//高評価時の文字.
+	IntermediateEvaluationString,	//中間評価の文字.
+	LowEvaluationString,			//低評価の文字.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.

@@ -10,6 +10,7 @@ GhostCursor.png
 ThankYouStamp.png
 Arrow.png	
 QuestionMark.png
+Shout.png
 
 ロゴ作成	URL:http://lightbox.on.coocan.jp/html/fontImage.php
 ActMoveString.png
@@ -62,3 +63,6 @@ PushEnter.png
 
 COOLTEXT	URL:https://ja.cooltext.com/
 Title.png
+HightEvaluationString.png
+IntermediateEvaluationString.png
+LowEvaluationString.png

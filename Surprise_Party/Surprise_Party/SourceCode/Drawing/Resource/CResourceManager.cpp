@@ -180,49 +180,53 @@ void CResourceManager::SpriteFileNameSetting()
 void CResourceManager::SpriteUIFileNameSetting()
 {
 	m_vSpriteUIFileNmae = {
-		"Data\\Texture\\UI\\Map\\Stage.png",					//ステージ全体のマップ.
-		"Data\\Texture\\UI\\Map\\Girl_Icon.png",				//女の子のアイコン.
-		"Data\\Texture\\UI\\Map\\Boy_Icon.png",					//男の子のアイコン.
-		"Data\\Texture\\UI\\Map\\DispButton.png",				//現れるボタンアイコン.
-		"Data\\Texture\\UI\\Map\\SwitchButton.png",				//スイッチアイコン."
-		"Data\\Texture\\UI\\Map\\PushButton.png",				//ボタン押したとき.
-		"Data\\Texture\\UI\\Game\\TimeUpToClosed.png", 			//閉店までの文字.
-		"Data\\Texture\\UI\\Game\\Bar.png",						//ゲージの下地.
-		"Data\\Texture\\UI\\Game\\Blue_Bar.png",				//ゲージ.
-		"Data\\Texture\\UI\\Game\\ThankYouStamp.png",			//満員御礼ハンコ.
-		"Data\\Texture\\UI\\Game\\Shutter.jpg",					//シャッター.
-		"Data\\Texture\\UI\\Game\\BlackCurtain.jpg",			//黒カーテン.
-		"Data\\Texture\\UI\\Game\\SignBoard.png",				//看板.
-		"Data\\Texture\\UI\\Game\\PreparingString.png",			//準備中文字.
-		"Data\\Texture\\UI\\Game\\OpenString.png",				//Open文字.
-		"Data\\Texture\\UI\\Game\\CloseString.png",				//Close文字.
-		"Data\\Texture\\UI\\Game\\extended_notification.png",	//延長通知.
-		"Data\\Texture\\UI\\Game\\TextBox.png",					//テキストボックス.
-		"Data\\Texture\\UI\\Game\\SpeakCursor.png",				//次の会話文のカーソル.
-		"Data\\Texture\\UI\\Game\\PauseTitle.png",				//ポーズ.
-		"Data\\Texture\\UI\\Game\\ToGame.png",					//続ける.
-		"Data\\Texture\\UI\\Game\\ToTitle.png",					//終わる.
-		"Data\\Texture\\UI\\Game\\BigGhostIcon.png",			//ビッグゴーストアイコン.
-		"Data\\Texture\\UI\\Game\\DispPaintGhostComment.png",	//現れるお化けコメント.
-		"Data\\Texture\\UI\\Game\\SwitchGhostComment.png",		//スイッチお化けコメント.
-		"Data\\Texture\\UI\\Game\\Arrow.png",					//矢印.
-		"Data\\Texture\\UI\\DescriptionBlack.png",				//説明用黒画面.
-		"Data\\Texture\\UI\\Game\\WhiteScreen.png",				//白画面.
-		"Data\\Texture\\UI\\Game\\SNSCursor.png",				//SNS用カーソル.
-		"Data\\Texture\\UI\\Game\\SNSPictureRest.png",			//SNS用の写真(休憩).
-		"Data\\Texture\\UI\\Game\\SNSPictureFlower.png",		//SNS用の写真(花).
-		"Data\\Texture\\UI\\Game\\SNSPictureSurprise.png",		//SNS用の写真(驚き).
-		"Data\\Texture\\UI\\Game\\PushEnter.png",				//PushEnter文字,
-		"Data\\Texture\\UI\\Game\\Start.png",					//ゲーム開始文字.
-		"Data\\Texture\\UI\\Game\\End.png",						//終了文字.
-		"Data\\Texture\\UI\\Map\\ShockingSign.png",				//衝撃的符号.
-		"Data\\Texture\\UI\\Game\\AutoString.png",				//自動再生文字.
-		"Data\\Texture\\UI\\Map\\GhostIcon.png",				//お化けのアイコン.
-		"Data\\Texture\\UI\\Game\\Time.png",					//時間.
-		"Data\\Texture\\UI\\Game\\TreeBord.png",				//木の板.
-		"Data\\Texture\\UI\\Game\\GhostCursor.png",				//お化けカーソル.
-		"Data\\Texture\\UI\\Game\\balloon.png",					//吹き出し.
-		"Data\\Texture\\UI\\Game\\Title.png",					//Title.
+		"Data\\Texture\\UI\\Map\\Stage.png",						//ステージ全体のマップ.
+		"Data\\Texture\\UI\\Map\\Girl_Icon.png",					//女の子のアイコン.
+		"Data\\Texture\\UI\\Map\\Boy_Icon.png",						//男の子のアイコン.
+		"Data\\Texture\\UI\\Map\\DispButton.png",					//現れるボタンアイコン.
+		"Data\\Texture\\UI\\Map\\SwitchButton.png",					//スイッチアイコン."
+		"Data\\Texture\\UI\\Map\\PushButton.png",					//ボタン押したとき.
+		"Data\\Texture\\UI\\Game\\TimeUpToClosed.png", 				//閉店までの文字.
+		"Data\\Texture\\UI\\Game\\Bar.png",							//ゲージの下地.
+		"Data\\Texture\\UI\\Game\\Blue_Bar.png",					//ゲージ.
+		"Data\\Texture\\UI\\Game\\ThankYouStamp.png",				//満員御礼ハンコ.
+		"Data\\Texture\\UI\\Game\\Shutter.jpg",						//シャッター.
+		"Data\\Texture\\UI\\Game\\BlackCurtain.jpg",				//黒カーテン.
+		"Data\\Texture\\UI\\Game\\SignBoard.png",					//看板.
+		"Data\\Texture\\UI\\Game\\PreparingString.png",				//準備中文字.
+		"Data\\Texture\\UI\\Game\\OpenString.png",					//Open文字.
+		"Data\\Texture\\UI\\Game\\CloseString.png",					//Close文字.
+		"Data\\Texture\\UI\\Game\\extended_notification.png",		//延長通知.
+		"Data\\Texture\\UI\\Game\\TextBox.png",						//テキストボックス.
+		"Data\\Texture\\UI\\Game\\SpeakCursor.png",					//次の会話文のカーソル.
+		"Data\\Texture\\UI\\Game\\PauseTitle.png",					//ポーズ.
+		"Data\\Texture\\UI\\Game\\ToGame.png",						//続ける.
+		"Data\\Texture\\UI\\Game\\ToTitle.png",						//終わる.
+		"Data\\Texture\\UI\\Game\\BigGhostIcon.png",				//ビッグゴーストアイコン.
+		"Data\\Texture\\UI\\Game\\DispPaintGhostComment.png",		//現れるお化けコメント.
+		"Data\\Texture\\UI\\Game\\SwitchGhostComment.png",			//スイッチお化けコメント.
+		"Data\\Texture\\UI\\Game\\Arrow.png",						//矢印.
+		"Data\\Texture\\UI\\DescriptionBlack.png",					//説明用黒画面.
+		"Data\\Texture\\UI\\Game\\WhiteScreen.png",					//白画面.
+		"Data\\Texture\\UI\\Game\\SNSCursor.png",					//SNS用カーソル.
+		"Data\\Texture\\UI\\Game\\SNSPictureRest.png",				//SNS用の写真(休憩).
+		"Data\\Texture\\UI\\Game\\SNSPictureFlower.png",			//SNS用の写真(花).
+		"Data\\Texture\\UI\\Game\\SNSPictureSurprise.png",			//SNS用の写真(驚き).
+		"Data\\Texture\\UI\\Game\\PushEnter.png",					//PushEnter文字,
+		"Data\\Texture\\UI\\Game\\Start.png",						//ゲーム開始文字.
+		"Data\\Texture\\UI\\Game\\End.png",							//終了文字.
+		"Data\\Texture\\UI\\Map\\ShockingSign.png",					//衝撃的符号.
+		"Data\\Texture\\UI\\Game\\AutoString.png",					//自動再生文字.
+		"Data\\Texture\\UI\\Game\\Shout.png",						//叫び.
+		"Data\\Texture\\UI\\Game\\HightEvaluationString.png",		//高評価時の文字.
+		"Data\\Texture\\UI\\Game\\IntermediateEvaluationString.png",//中間評価時の文字.
+		"Data\\Texture\\UI\\Game\\LowEvaluationString.png",			//低評価時の文字.
+		"Data\\Texture\\UI\\Map\\GhostIcon.png",					//お化けのアイコン.
+		"Data\\Texture\\UI\\Game\\Time.png",						//時間.
+		"Data\\Texture\\UI\\Game\\TreeBord.png",					//木の板.
+		"Data\\Texture\\UI\\Game\\GhostCursor.png",					//お化けカーソル.
+		"Data\\Texture\\UI\\Game\\balloon.png",						//吹き出し.
+		"Data\\Texture\\UI\\Game\\Title.png",						//Title.
 	};
 }
 
@@ -573,6 +577,34 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[AutoStringNum].Base.h = 90.0f;
 	m_pstSpriteUIState[AutoStringNum].Disp.w = 275.0f;
 	m_pstSpriteUIState[AutoStringNum].Disp.h = 45.0f;
+
+	//叫び.
+	const int ShoutNum = static_cast<int>(enSpriteUI::Shout);
+	m_pstSpriteUIState[ShoutNum].Base.w = 375.0f;
+	m_pstSpriteUIState[ShoutNum].Base.h = 294.0f;
+	m_pstSpriteUIState[ShoutNum].Disp.w = m_pstSpriteUIState[ShoutNum].Base.w;
+	m_pstSpriteUIState[ShoutNum].Disp.h = m_pstSpriteUIState[ShoutNum].Base.h;
+
+	//高評価時の文字.
+	const int HightEvaluationStringNum = static_cast<int>(enSpriteUI::HightEvaluationString);
+	m_pstSpriteUIState[HightEvaluationStringNum].Base.w = 914.0f;
+	m_pstSpriteUIState[HightEvaluationStringNum].Base.h = 198.0f;
+	m_pstSpriteUIState[HightEvaluationStringNum].Disp.w = m_pstSpriteUIState[HightEvaluationStringNum].Base.w;
+	m_pstSpriteUIState[HightEvaluationStringNum].Disp.h = m_pstSpriteUIState[HightEvaluationStringNum].Base.h;
+
+	//中間評価時の文字.
+	const int IntermediateEvaluationStringNum = static_cast<int>(enSpriteUI::IntermediateEvaluationString);
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.w = 836.0f;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.h = 192.0f;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Disp.w = m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.w;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Disp.h = m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.h;
+
+	//低評価時の文字.
+	const int LowEvaluationStringNum = static_cast<int>(enSpriteUI::LowEvaluationString);
+	m_pstSpriteUIState[LowEvaluationStringNum].Base.w = 455.0f;
+	m_pstSpriteUIState[LowEvaluationStringNum].Base.h = 187.0f;
+	m_pstSpriteUIState[LowEvaluationStringNum].Disp.w = m_pstSpriteUIState[LowEvaluationStringNum].Base.w;
+	m_pstSpriteUIState[LowEvaluationStringNum].Disp.h = m_pstSpriteUIState[LowEvaluationStringNum].Base.h;
 
 	//お化け.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
