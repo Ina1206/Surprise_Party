@@ -218,15 +218,15 @@ void CResourceManager::SpriteUIFileNameSetting()
 		"Data\\Texture\\UI\\Map\\ShockingSign.png",					//è’åÇìIïÑçÜ.
 		"Data\\Texture\\UI\\Game\\AutoString.png",					//é©ìÆçƒê∂ï∂éö.
 		"Data\\Texture\\UI\\Game\\Shout.png",						//ã©Ç—.
-		"Data\\Texture\\UI\\Game\\HightEvaluationString.png",		//çÇï]âøéûÇÃï∂éö.
-		"Data\\Texture\\UI\\Game\\IntermediateEvaluationString.png",//íÜä‘ï]âøéûÇÃï∂éö.
-		"Data\\Texture\\UI\\Game\\LowEvaluationString.png",			//í·ï]âøéûÇÃï∂éö.
 		"Data\\Texture\\UI\\Map\\GhostIcon.png",					//Ç®âªÇØÇÃÉAÉCÉRÉì.
 		"Data\\Texture\\UI\\Game\\Time.png",						//éûä‘.
 		"Data\\Texture\\UI\\Game\\TreeBord.png",					//ñÿÇÃî¬.
 		"Data\\Texture\\UI\\Game\\GhostCursor.png",					//Ç®âªÇØÉJÅ[É\Éã.
 		"Data\\Texture\\UI\\Game\\balloon.png",						//êÅÇ´èoÇµ.
 		"Data\\Texture\\UI\\Game\\Title.png",						//Title.
+		"Data\\Texture\\UI\\Game\\HightEvaluationString.png",		//çÇï]âøéûÇÃï∂éö.
+		"Data\\Texture\\UI\\Game\\IntermediateEvaluationString.png",//íÜä‘ï]âøéûÇÃï∂éö.
+		"Data\\Texture\\UI\\Game\\LowEvaluationString.png",			//í·ï]âøéûÇÃï∂éö.
 	};
 }
 
@@ -332,14 +332,18 @@ void CResourceManager::SpriteStateSetting()
 	for (int sprite = 0; sprite < static_cast<int>(enSprite::SingleSpriteMax); sprite++) {
 		m_pstSpriteState[sprite].Stride.w = m_pstSpriteState[sprite].Base.w;
 		m_pstSpriteState[sprite].Stride.h = m_pstSpriteState[sprite].Base.h;
+		m_pstSpriteState[sprite].Frame.w = 1;
+		m_pstSpriteState[sprite].Frame.h = 1;
 	}
 
 	//ëÃóÕÉAÉCÉRÉì.
 	int StrengthIconNum = static_cast<int>(enSprite::Strenght_Icon);
 	m_pstSpriteState[StrengthIconNum].Base.w = 618.0f;
 	m_pstSpriteState[StrengthIconNum].Base.h = 405.0f;
-	m_pstSpriteState[StrengthIconNum].Stride.w = m_pstSpriteState[StrengthIconNum].Base.w / 6.0f;
-	m_pstSpriteState[StrengthIconNum].Stride.h = m_pstSpriteState[StrengthIconNum].Base.h / 4.0f;
+	m_pstSpriteState[StrengthIconNum].Frame.w = 6.0f;
+	m_pstSpriteState[StrengthIconNum].Frame.h = 4.0f;
+	m_pstSpriteState[StrengthIconNum].Stride.w = m_pstSpriteState[StrengthIconNum].Base.w / m_pstSpriteState[StrengthIconNum].Frame.w;
+	m_pstSpriteState[StrengthIconNum].Stride.h = m_pstSpriteState[StrengthIconNum].Base.h / m_pstSpriteState[StrengthIconNum].Frame.h;
 	m_pstSpriteState[StrengthIconNum].Disp.w = 1.0f;
 	m_pstSpriteState[StrengthIconNum].Disp.h = 1.0f;
 
@@ -348,8 +352,10 @@ void CResourceManager::SpriteStateSetting()
 	for (int note = NoteNum; note <= static_cast<int>(enSprite::sixteen_part_note); note++) {
 		m_pstSpriteState[note].Base.w = 1321.0f;
 		m_pstSpriteState[note].Base.h = 1321.0f;
-		m_pstSpriteState[note].Stride.w = m_pstSpriteState[note].Base.w / 3.0f;
-		m_pstSpriteState[note].Stride.h = m_pstSpriteState[note].Base.h / 3.0f;
+		m_pstSpriteState[note].Frame.w = 3.0f;
+		m_pstSpriteState[note].Frame.h = 3.0f;
+		m_pstSpriteState[note].Stride.w = m_pstSpriteState[note].Base.w / m_pstSpriteState[note].Frame.w;
+		m_pstSpriteState[note].Stride.h = m_pstSpriteState[note].Base.h / m_pstSpriteState[note].Frame.w;
 		m_pstSpriteState[note].Disp.w = 2.0f;
 		m_pstSpriteState[note].Disp.h = 2.0f;
 	}
@@ -358,8 +364,10 @@ void CResourceManager::SpriteStateSetting()
 	int FlowerNum = static_cast<int>(enSprite::Flower);
 	m_pstSpriteState[FlowerNum].Base.w = 960.0f;
 	m_pstSpriteState[FlowerNum].Base.h = 960.0f;
-	m_pstSpriteState[FlowerNum].Stride.w = m_pstSpriteState[FlowerNum].Base.w / 2.0f;
-	m_pstSpriteState[FlowerNum].Stride.h = m_pstSpriteState[FlowerNum].Base.h / 2.0f;
+	m_pstSpriteState[FlowerNum].Frame.w = 2.0f;
+	m_pstSpriteState[FlowerNum].Frame.h = 2.0f;
+	m_pstSpriteState[FlowerNum].Stride.w = m_pstSpriteState[FlowerNum].Base.w / m_pstSpriteState[FlowerNum].Frame.w;
+	m_pstSpriteState[FlowerNum].Stride.h = m_pstSpriteState[FlowerNum].Base.h / m_pstSpriteState[FlowerNum].Frame.h;
 	m_pstSpriteState[FlowerNum].Disp.w = 1.5f;
 	m_pstSpriteState[FlowerNum].Disp.h = 1.5f;
 }
@@ -585,33 +593,15 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[ShoutNum].Disp.w = m_pstSpriteUIState[ShoutNum].Base.w;
 	m_pstSpriteUIState[ShoutNum].Disp.h = m_pstSpriteUIState[ShoutNum].Base.h;
 
-	//çÇï]âøéûÇÃï∂éö.
-	const int HightEvaluationStringNum = static_cast<int>(enSpriteUI::HightEvaluationString);
-	m_pstSpriteUIState[HightEvaluationStringNum].Base.w = 914.0f;
-	m_pstSpriteUIState[HightEvaluationStringNum].Base.h = 198.0f;
-	m_pstSpriteUIState[HightEvaluationStringNum].Disp.w = m_pstSpriteUIState[HightEvaluationStringNum].Base.w;
-	m_pstSpriteUIState[HightEvaluationStringNum].Disp.h = m_pstSpriteUIState[HightEvaluationStringNum].Base.h;
-
-	//íÜä‘ï]âøéûÇÃï∂éö.
-	const int IntermediateEvaluationStringNum = static_cast<int>(enSpriteUI::IntermediateEvaluationString);
-	m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.w = 836.0f;
-	m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.h = 192.0f;
-	m_pstSpriteUIState[IntermediateEvaluationStringNum].Disp.w = m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.w;
-	m_pstSpriteUIState[IntermediateEvaluationStringNum].Disp.h = m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.h;
-
-	//í·ï]âøéûÇÃï∂éö.
-	const int LowEvaluationStringNum = static_cast<int>(enSpriteUI::LowEvaluationString);
-	m_pstSpriteUIState[LowEvaluationStringNum].Base.w = 455.0f;
-	m_pstSpriteUIState[LowEvaluationStringNum].Base.h = 187.0f;
-	m_pstSpriteUIState[LowEvaluationStringNum].Disp.w = m_pstSpriteUIState[LowEvaluationStringNum].Base.w;
-	m_pstSpriteUIState[LowEvaluationStringNum].Disp.h = m_pstSpriteUIState[LowEvaluationStringNum].Base.h;
 
 	//Ç®âªÇØ.
 	int GhostIconNum = static_cast<int>(enSpriteUI::Ghost_Icon);
 	m_pstSpriteUIState[GhostIconNum].Base.w = 3580.0f;
 	m_pstSpriteUIState[GhostIconNum].Base.h = 3580.0f;
-	m_pstSpriteUIState[GhostIconNum].Stride.w = m_pstSpriteUIState[GhostIconNum].Base.w / 3.0f;
-	m_pstSpriteUIState[GhostIconNum].Stride.h = m_pstSpriteUIState[GhostIconNum].Base.h / 3.0f;
+	m_pstSpriteUIState[GhostIconNum].Frame.w = 3.0f;
+	m_pstSpriteUIState[GhostIconNum].Frame.h = 3.0f;
+	m_pstSpriteUIState[GhostIconNum].Stride.w = m_pstSpriteUIState[GhostIconNum].Base.w / m_pstSpriteUIState[GhostIconNum].Frame.w;
+	m_pstSpriteUIState[GhostIconNum].Stride.h = m_pstSpriteUIState[GhostIconNum].Base.h / m_pstSpriteUIState[GhostIconNum].Frame.h;
 	m_pstSpriteUIState[GhostIconNum].Disp.w = 64.0f;
 	m_pstSpriteUIState[GhostIconNum].Disp.h = 64.0f;
 
@@ -619,7 +609,9 @@ void CResourceManager::SpriteUIStateSetting()
 	int TimeNum = static_cast<int>(enSpriteUI::Time);
 	m_pstSpriteUIState[TimeNum].Base.w = 1020.0f;
 	m_pstSpriteUIState[TimeNum].Base.h = 120.0f;
-	m_pstSpriteUIState[TimeNum].Stride.w = m_pstSpriteUIState[TimeNum].Base.w / 11.5f;
+	m_pstSpriteUIState[TimeNum].Frame.w = 11.5f;
+	m_pstSpriteUIState[TimeNum].Frame.h = 1;
+	m_pstSpriteUIState[TimeNum].Stride.w = m_pstSpriteUIState[TimeNum].Base.w / m_pstSpriteUIState[TimeNum].Frame.w;
 	m_pstSpriteUIState[TimeNum].Stride.h = m_pstSpriteUIState[TimeNum].Base.h;
 	m_pstSpriteUIState[TimeNum].Disp.w = 50.0f;
 	m_pstSpriteUIState[TimeNum].Disp.h = 50.0f;
@@ -628,8 +620,10 @@ void CResourceManager::SpriteUIStateSetting()
 	int TreeBordNum = static_cast<int>(enSpriteUI::TreeBord);
 	m_pstSpriteUIState[TreeBordNum].Base.w = 3318.0f;
 	m_pstSpriteUIState[TreeBordNum].Base.h = 2305.0f;
-	m_pstSpriteUIState[TreeBordNum].Stride.w = m_pstSpriteUIState[TreeBordNum].Base.w / 3.0f;
-	m_pstSpriteUIState[TreeBordNum].Stride.h = m_pstSpriteUIState[TreeBordNum].Base.h / 3.0f;
+	m_pstSpriteUIState[TreeBordNum].Frame.w = 3.0f;
+	m_pstSpriteUIState[TreeBordNum].Frame.h = 3.0f;
+	m_pstSpriteUIState[TreeBordNum].Stride.w = m_pstSpriteUIState[TreeBordNum].Base.w / m_pstSpriteUIState[TreeBordNum].Frame.w;
+	m_pstSpriteUIState[TreeBordNum].Stride.h = m_pstSpriteUIState[TreeBordNum].Base.h / m_pstSpriteUIState[TreeBordNum].Frame.h;
 	m_pstSpriteUIState[TreeBordNum].Disp.w = 300.0f;
 	m_pstSpriteUIState[TreeBordNum].Disp.h = 150.0f;
 
@@ -637,8 +631,10 @@ void CResourceManager::SpriteUIStateSetting()
 	int GhostCursor = static_cast<int>(enSpriteUI::GhostCursor);
 	m_pstSpriteUIState[GhostCursor].Base.w = 1600.0f;
 	m_pstSpriteUIState[GhostCursor].Base.h = 1600.0f;
-	m_pstSpriteUIState[GhostCursor].Stride.w = m_pstSpriteUIState[GhostCursor].Base.w / 2.0f;
-	m_pstSpriteUIState[GhostCursor].Stride.h = m_pstSpriteUIState[GhostCursor].Base.h / 2.0f;
+	m_pstSpriteUIState[GhostCursor].Frame.w = 2.0f;
+	m_pstSpriteUIState[GhostCursor].Frame.h = 2.0f;
+	m_pstSpriteUIState[GhostCursor].Stride.w = m_pstSpriteUIState[GhostCursor].Base.w / m_pstSpriteUIState[GhostCursor].Frame.w;
+	m_pstSpriteUIState[GhostCursor].Stride.h = m_pstSpriteUIState[GhostCursor].Base.h / m_pstSpriteUIState[GhostCursor].Frame.h;
 	m_pstSpriteUIState[GhostCursor].Disp.w =100.0f;
 	m_pstSpriteUIState[GhostCursor].Disp.h =100.0f;
 
@@ -646,8 +642,10 @@ void CResourceManager::SpriteUIStateSetting()
 	int BalloonNum = static_cast<int>(enSpriteUI::Balloon);
 	m_pstSpriteUIState[BalloonNum].Base.w = 1755.0f;
 	m_pstSpriteUIState[BalloonNum].Base.h = 1754.0f;
-	m_pstSpriteUIState[BalloonNum].Stride.w = m_pstSpriteUIState[BalloonNum].Base.w / 2.0f;
-	m_pstSpriteUIState[BalloonNum].Stride.h = m_pstSpriteUIState[BalloonNum].Base.h / 2.0f;
+	m_pstSpriteUIState[BalloonNum].Frame.w = 2.0f;
+	m_pstSpriteUIState[BalloonNum].Frame.h = 2.0f;
+	m_pstSpriteUIState[BalloonNum].Stride.w = m_pstSpriteUIState[BalloonNum].Base.w / m_pstSpriteUIState[BalloonNum].Frame.w;
+	m_pstSpriteUIState[BalloonNum].Stride.h = m_pstSpriteUIState[BalloonNum].Base.h / m_pstSpriteUIState[BalloonNum].Frame.h;
 	m_pstSpriteUIState[BalloonNum].Disp.w = 300.0f;
 	m_pstSpriteUIState[BalloonNum].Disp.h = 300.0f;
 
@@ -655,15 +653,52 @@ void CResourceManager::SpriteUIStateSetting()
 	const int TitleNum = static_cast<int>(enSpriteUI::Title);
 	m_pstSpriteUIState[TitleNum].Base.w = 680.0f;
 	m_pstSpriteUIState[TitleNum].Base.h = 400.0f;
+	m_pstSpriteUIState[TitleNum].Frame.w = 1.0f;
+	m_pstSpriteUIState[TitleNum].Frame.h = 2.0f;
 	m_pstSpriteUIState[TitleNum].Stride.w = m_pstSpriteUIState[TitleNum].Base.w;
-	m_pstSpriteUIState[TitleNum].Stride.h = m_pstSpriteUIState[TitleNum].Base.h / 2.0f;
+	m_pstSpriteUIState[TitleNum].Stride.h = m_pstSpriteUIState[TitleNum].Base.h / m_pstSpriteUIState[TitleNum].Frame.h;
 	m_pstSpriteUIState[TitleNum].Disp.w = m_pstSpriteUIState[TitleNum].Base.w;
-	m_pstSpriteUIState[TitleNum].Disp.h = m_pstSpriteUIState[TitleNum].Base.h / 2.0f;
+	m_pstSpriteUIState[TitleNum].Disp.h = m_pstSpriteUIState[TitleNum].Stride.h;
 
+	//çÇï]âøéûÇÃï∂éö.
+	const int HightEvaluationStringNum = static_cast<int>(enSpriteUI::HightEvaluationString);
+	m_pstSpriteUIState[HightEvaluationStringNum].Base.w = 720.0f;
+	m_pstSpriteUIState[HightEvaluationStringNum].Base.h = 180.0f;
+	m_pstSpriteUIState[HightEvaluationStringNum].Frame.w = 4.0f;
+	m_pstSpriteUIState[HightEvaluationStringNum].Frame.h = 1.0f;
+	m_pstSpriteUIState[HightEvaluationStringNum].Stride.w = m_pstSpriteUIState[HightEvaluationStringNum].Base.w / m_pstSpriteUIState[HightEvaluationStringNum].Frame.w;
+	m_pstSpriteUIState[HightEvaluationStringNum].Stride.h = m_pstSpriteUIState[HightEvaluationStringNum].Base.h;
+	m_pstSpriteUIState[HightEvaluationStringNum].Disp.w = m_pstSpriteUIState[HightEvaluationStringNum].Stride.w;
+	m_pstSpriteUIState[HightEvaluationStringNum].Disp.h = m_pstSpriteUIState[HightEvaluationStringNum].Base.h;
+
+	//íÜä‘ï]âøéûÇÃï∂éö.
+	const int IntermediateEvaluationStringNum = static_cast<int>(enSpriteUI::IntermediateEvaluationString);
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.w = 720.0f;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.h = 180.0f;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Frame.w = 4.0f;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Frame.h = 1.0f;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Stride.w = m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.w / m_pstSpriteUIState[IntermediateEvaluationStringNum].Frame.w;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Stride.h = m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.h;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Disp.w = m_pstSpriteUIState[IntermediateEvaluationStringNum].Stride.w;
+	m_pstSpriteUIState[IntermediateEvaluationStringNum].Disp.h = m_pstSpriteUIState[IntermediateEvaluationStringNum].Base.h;
+
+	//í·ï]âøéûÇÃï∂éö.
+	const int LowEvaluationStringNum = static_cast<int>(enSpriteUI::LowEvaluationString);
+	m_pstSpriteUIState[LowEvaluationStringNum].Base.w = 360.0f;
+	m_pstSpriteUIState[LowEvaluationStringNum].Base.h = 180.0f;
+	m_pstSpriteUIState[LowEvaluationStringNum].Frame.w = 2.0f;
+	m_pstSpriteUIState[LowEvaluationStringNum].Frame.h = 1.0f;
+	m_pstSpriteUIState[LowEvaluationStringNum].Stride.w = m_pstSpriteUIState[LowEvaluationStringNum].Base.w / m_pstSpriteUIState[LowEvaluationStringNum].Stride.w;
+	m_pstSpriteUIState[LowEvaluationStringNum].Stride.h = m_pstSpriteUIState[LowEvaluationStringNum].Base.h;
+	m_pstSpriteUIState[LowEvaluationStringNum].Disp.w = m_pstSpriteUIState[LowEvaluationStringNum].Stride.w;
+	m_pstSpriteUIState[LowEvaluationStringNum].Disp.h = m_pstSpriteUIState[LowEvaluationStringNum].Base.h;
+	
 	//ëSÇƒÇÃÉXÉvÉâÉCÉgÇÃ1ÉRÉ}ìñÇΩÇËÇÃÉTÉCÉY.
 	for (int spriteui = 0; spriteui < static_cast<int>(enSpriteUI::SingleSpriteMax); spriteui++) {
 		m_pstSpriteUIState[spriteui].Stride.w = m_pstSpriteUIState[spriteui].Base.w;
 		m_pstSpriteUIState[spriteui].Stride.h = m_pstSpriteUIState[spriteui].Base.h;
+		m_pstSpriteUIState[spriteui].Frame.w = 1.0f;
+		m_pstSpriteUIState[spriteui].Frame.h = 1.0f;
 	}
 }
 

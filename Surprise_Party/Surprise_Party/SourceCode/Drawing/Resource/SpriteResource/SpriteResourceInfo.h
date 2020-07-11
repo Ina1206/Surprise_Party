@@ -18,9 +18,10 @@ struct WHSIZE_FLOAT
 //スプライト毎の構造体.
 struct SPRITE_STATE
 {
-	WHSIZE_FLOAT	Disp;	//表示幅高さ.
-	WHSIZE_FLOAT	Base;	//元画像幅高さ.
-	WHSIZE_FLOAT	Stride;	//1コマ当たりの幅高さ.
+	WHSIZE_FLOAT	Disp;		//表示幅高さ.
+	WHSIZE_FLOAT	Base;		//元画像幅高さ.
+	WHSIZE_FLOAT	Stride;		//1コマ当たりの幅高さ.
+	WHSIZE_FLOAT	Frame;		//コマ数.
 };
 
 //スプライト種類の列挙体.
@@ -92,9 +93,6 @@ enum class enSpriteUI
 	ShockingSign,					//衝撃的符号.
 	AutoString,						//自動再生文字.
 	Shout,							//叫び.
-	HightEvaluationString,			//高評価時の文字.
-	IntermediateEvaluationString,	//中間評価の文字.
-	LowEvaluationString,			//低評価の文字.
 
 	Ghost_Icon,						//お化けアイコン.
 	Time,							//時間.
@@ -102,6 +100,9 @@ enum class enSpriteUI
 	GhostCursor,					//お化けカーソル.
 	Balloon,						//吹き出し.
 	Title,							//タイトル.
+	HightEvaluationString,			//高評価時の文字.
+	IntermediateEvaluationString,	//中間評価の文字.
+	LowEvaluationString,			//低評価の文字.
 
 	Max,							//最大数.
 	Start,							//開始.
