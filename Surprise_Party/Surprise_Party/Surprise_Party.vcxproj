@@ -143,6 +143,7 @@
     <ClInclude Include="SourceCode\UI\SceneUI\CSceneUIBase.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.h" />
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString\CSurpriesDegreeString.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.h" />
@@ -276,6 +277,7 @@
     <ClCompile Include="SourceCode\UI\SceneUI\CSceneUIBase.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.cpp" />
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeString\CSurpriseDegreeString.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\TitleUI\CTitleUI.cpp" />

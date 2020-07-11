@@ -404,6 +404,9 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase">
       <UniqueIdentifier>{29ebd393-8f8f-4bb9-8969-df3ed0e129ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager">
+      <UniqueIdentifier>{6ff78178-fab6-4b0a-b8ae-31b016e7a225}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -811,6 +814,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.h">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1205,6 +1211,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.cpp">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
