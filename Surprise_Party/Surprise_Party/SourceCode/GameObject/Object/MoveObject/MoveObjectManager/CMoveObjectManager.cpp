@@ -104,6 +104,11 @@ void CMoveObjectManager::UpDate()
 		}
 	}
 
+	//初期時にオブジェクトの上にいない場合は例外処理.
+	if (m_SelectionNum < 0) {
+		m_SelectionNum = 0;
+	}
+
 	//カーソル更新処理.
 	//マップUI.
 	m_pCGimmickIcon[m_SelectionNum]->SetSelectingFlag();
