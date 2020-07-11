@@ -392,6 +392,9 @@
     <Filter Include="SourceCode\UI\SceneUI\SelectStringUI">
       <UniqueIdentifier>{949cd349-08a3-42e0-9c4b-37b45c9265ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI">
+      <UniqueIdentifier>{e4a93c39-92b9-4379-9b17-107328c27cb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -790,6 +793,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.h">
       <Filter>SourceCode\UI\SceneUI\SelectStringUI</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.h">
+      <Filter>SourceCode\UI\SceneUI\EndingUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1175,6 +1181,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\SelectStringUI\CSelectStringUI.cpp">
       <Filter>SourceCode\UI\SceneUI\SelectStringUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.cpp">
+      <Filter>SourceCode\UI\SceneUI\EndingUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
