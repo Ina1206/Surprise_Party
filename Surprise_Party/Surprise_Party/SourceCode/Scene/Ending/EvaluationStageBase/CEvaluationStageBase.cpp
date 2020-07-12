@@ -11,6 +11,9 @@ CEvaluationStageBase::CEvaluationStageBase()
 CEvaluationStageBase::CEvaluationStageBase(const int& EvaluationNum)
 	: CEndingStageBase				(EvaluationNum)
 	, m_pCSurpriseDegreeManager		(nullptr)
+	, m_pCPushEnterUI				(nullptr)
+	, m_fPushEnterUIAlpha			(0.0f)
+	, m_AlphaAddDecDirect			(1.0f)
 {
 	//UI‚Ì‰Šú‰»ˆ—ŠÖ”.
 	InitUI();
