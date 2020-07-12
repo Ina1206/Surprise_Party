@@ -6,10 +6,17 @@
 *		驚かし度の管理クラス.
 ********************/
 CSurpriseDegreeManager::CSurpriseDegreeManager()
+	: CSurpriseDegreeManager(0)
+{
+
+}
+
+CSurpriseDegreeManager::CSurpriseDegreeManager(const int& EvaluationNum)
 	: m_pCSurpriseDegreeBase()
 	, m_bAllDispFlag		(false)
 	, m_UpdateUINum			(0)
 	, m_bDisplayAllAtOnce	(false)
+	, m_EvaluationNum		(EvaluationNum)
 {
 	//初期化処理関数.
 	Init();
@@ -31,12 +38,8 @@ void CSurpriseDegreeManager::Update()
 	}
 
 	if (m_bDisplayAllAtOnce == true) {
-		for (unsigned int UI = 0; UI < m_pCSurpriseDegreeBase.size(); UI++) {
-			m_pCSurpriseDegreeBase[UI]->SetDipslayNum(UI);
-			m_pCSurpriseDegreeBase[UI]->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
-			m_pCSurpriseDegreeBase[UI]->Update();
-			m_bAllDispFlag = true;
-		}
+		//一気に表示する処理関数.
+		DisplayAllAtOnce();
 		return;
 	}
 
@@ -73,7 +76,20 @@ void CSurpriseDegreeManager::Init()
 	m_pCSurpriseDegreeBase.emplace_back(std::make_unique<CSurpriseDegreeString>());
 
 	//叫びのUI構築.
-	for (int sprite = 0; sprite < 3; sprite++) {
+	for (int sprite = 0; sprite <= m_EvaluationNum; sprite++) {
 		m_pCSurpriseDegreeBase.emplace_back(std::make_unique<CShout>());
+	}
+}
+
+//==============================================.
+//			一気に表示する処理関数.
+//==============================================.
+void CSurpriseDegreeManager::DisplayAllAtOnce()
+{
+	for (unsigned int UI = 0; UI < m_pCSurpriseDegreeBase.size(); UI++) {
+		m_pCSurpriseDegreeBase[UI]->SetDipslayNum(UI);
+		m_pCSurpriseDegreeBase[UI]->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
+		m_pCSurpriseDegreeBase[UI]->Update();
+		m_bAllDispFlag = true;
 	}
 }

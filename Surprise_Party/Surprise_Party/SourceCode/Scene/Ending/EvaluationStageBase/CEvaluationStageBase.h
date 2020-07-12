@@ -11,6 +11,7 @@ class CEvaluationStageBase
 {
 public:
 	CEvaluationStageBase();
+	CEvaluationStageBase(const int& EvaluationNum);
 	~CEvaluationStageBase();
 	
 	//======================ä÷êî=========================//.

@@ -4,7 +4,15 @@
 *		中間評価ステージクラス.
 ********************/
 CIntermediateEvaluationStage::CIntermediateEvaluationStage()
+	: CIntermediateEvaluationStage(0)
 {
+
+}
+
+CIntermediateEvaluationStage::CIntermediateEvaluationStage(const int& EvaluationNum)
+	: CEvaluationStageBase	(EvaluationNum)
+{
+	m_Evaluation = EvaluationNum;
 	//初期化処理関数.
 	Init();
 }

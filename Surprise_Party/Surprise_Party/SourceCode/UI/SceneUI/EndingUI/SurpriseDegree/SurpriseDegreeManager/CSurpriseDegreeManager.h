@@ -10,6 +10,7 @@ class CSurpriseDegreeManager
 {
 public:
 	CSurpriseDegreeManager();
+	CSurpriseDegreeManager(const int& EvaluationNum);
 	~CSurpriseDegreeManager();
 
 	//==========================関数============================//.
@@ -26,13 +27,15 @@ public:
 
 private:
 	//==========================関数============================//.
-	void Init();		//初期化処理関数.
+	void Init();				//初期化処理関数.
+	void DisplayAllAtOnce();	//一気に表示する処理関数.
 
 	//==========================変数============================//.
 	std::vector<std::unique_ptr<CSurpriseDegreeBase>>	m_pCSurpriseDegreeBase;	//驚かし度UIクラス.
 	bool												m_bAllDispFlag;			//全てを表示したフラグ.
 	int													m_UpdateUINum;			//更新しているUI番号.
 	bool												m_bDisplayAllAtOnce;	//一気に表示フラグ.
+	int													m_EvaluationNum;		//評価番号.
 };
 
 #endif	//#ifndef CSURPRISE_DEGREE_MANAGER_H.

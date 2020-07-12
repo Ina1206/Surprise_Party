@@ -24,6 +24,7 @@ void CEnding::UpDate()
 {
 	//評価置換処理関数.
 	m_pCEndingStageBase->SetEvaluation(m_Evaluation);
+
 	//更新処理関数.
 	m_pCEndingStageBase->Update();
 
@@ -81,14 +82,14 @@ CEndingStageBase*	CEnding::DecideStage()
 {
 	if (m_Evaluation == 0) {
 		//低評価クラス.
-		return new CLowEvaluationStage();
+		return new CLowEvaluationStage(m_Evaluation);
 	}
 
 	if (m_Evaluation == 1) {
 		//中間評価クラス.
-		return new CIntermediateEvaluationStage();
+		return new CIntermediateEvaluationStage(m_Evaluation);
 	}
 
 	//高評価クラス.
-	return new CHightEvaluationStage();
+	return new CHightEvaluationStage(m_Evaluation);
 }

@@ -11,6 +11,7 @@ class CIntermediateEvaluationStage
 {
 public:
 	CIntermediateEvaluationStage();
+	CIntermediateEvaluationStage(const int& EvaluationNum);
 	~CIntermediateEvaluationStage();
 
 private:

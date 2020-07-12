@@ -11,6 +11,7 @@ class CLowEvaluationStage
 {
 public:
 	CLowEvaluationStage();
+	CLowEvaluationStage(const int& EvaluationNum);
 	~CLowEvaluationStage();
 
 private:

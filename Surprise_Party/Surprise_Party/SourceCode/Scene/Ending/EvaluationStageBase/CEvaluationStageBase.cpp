@@ -8,6 +8,12 @@ CEvaluationStageBase::CEvaluationStageBase()
 
 }
 
+CEvaluationStageBase::CEvaluationStageBase(const int& EvaluationNum)
+	: CEndingStageBase	(EvaluationNum)
+{
+
+}
+
 CEvaluationStageBase::~CEvaluationStageBase()
 {
 

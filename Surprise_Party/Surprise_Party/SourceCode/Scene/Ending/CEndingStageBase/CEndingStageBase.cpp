@@ -4,13 +4,19 @@
 *		エンディングステージ基底クラス.
 *****************/
 CEndingStageBase::CEndingStageBase()
+	: CEndingStageBase(0)
+{
+
+}
+
+CEndingStageBase::CEndingStageBase(const int& EvaluationNum)
 	: m_mView					()
 	, m_mProj					()
 	, m_pCBackstageLight		(nullptr)
 	, m_pCGhost					(0)
 	, m_pCCameraEnding			(nullptr)
 	, m_pCWhiteScreenFade		(nullptr)
-	, m_Evaluation				(0)
+	, m_Evaluation				(EvaluationNum)
 	, m_OldEvaluation			(INIT_EVALUATION_NUM)
 	, m_bChangeStage			(false)
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
@@ -154,7 +160,7 @@ void CEndingStageBase::RenderPushEnter()
 void CEndingStageBase::InitCommonValue()
 {
 	//インスタンス化.
-	m_pCSurpriseDegreeManager = std::make_unique<CSurpriseDegreeManager>();
+	m_pCSurpriseDegreeManager = std::make_unique<CSurpriseDegreeManager>(m_Evaluation);
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
 	m_pCCameraEnding.reset(new CCameraEnding());

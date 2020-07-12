@@ -17,6 +17,7 @@ class CEndingStageBase
 {
 public:
 	CEndingStageBase();
+	CEndingStageBase(const int& EvaluationNum);
 	virtual ~CEndingStageBase();
 
 	//===================’è”======================//.

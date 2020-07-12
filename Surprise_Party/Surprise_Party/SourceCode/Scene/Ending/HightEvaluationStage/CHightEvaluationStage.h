@@ -11,6 +11,7 @@ class CHightEvaluationStage
 {
 public:
 	CHightEvaluationStage();
+	CHightEvaluationStage(const int& EvaluationNum);
 	~CHightEvaluationStage();
 
 private:

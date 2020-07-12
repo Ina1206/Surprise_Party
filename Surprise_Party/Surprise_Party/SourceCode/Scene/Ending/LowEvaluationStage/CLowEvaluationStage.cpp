@@ -5,6 +5,13 @@
 *****************/
 CLowEvaluationStage::CLowEvaluationStage()
 {
+
+}
+
+CLowEvaluationStage::CLowEvaluationStage(const int& EvaluationNum)
+	: CEvaluationStageBase	(EvaluationNum)
+{
+	m_Evaluation = EvaluationNum;
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
 }

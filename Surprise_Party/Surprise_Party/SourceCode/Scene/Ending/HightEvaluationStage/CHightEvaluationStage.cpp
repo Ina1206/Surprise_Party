@@ -4,7 +4,15 @@
 *			高評価ステージクラス.
 *******************/
 CHightEvaluationStage::CHightEvaluationStage()
+	: CHightEvaluationStage(0)
 {
+
+}
+
+CHightEvaluationStage::CHightEvaluationStage(const int& EvaluationNum)
+	: CEvaluationStageBase	(EvaluationNum)
+{
+	m_Evaluation = EvaluationNum;
 	//初期化処理関数.
 	Init();
 }
