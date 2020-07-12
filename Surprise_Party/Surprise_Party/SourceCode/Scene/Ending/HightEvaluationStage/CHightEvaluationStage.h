@@ -1,21 +1,17 @@
 #ifndef CHIGHT_EVALUATION_STAGE_H
 #define CHIGHT_EVALUATION_STAGE_H
 
-#include "..\CEndingStageBase\CEndingStageBase.h"
+#include "..\EvaluationStageBase\CEvaluationStageBase.h"
 
 /**************************************************
 *			高評価ステージクラス.
 ********************/
 class CHightEvaluationStage
-	: public CEndingStageBase
+	: public CEvaluationStageBase
 {
 public:
 	CHightEvaluationStage();
 	~CHightEvaluationStage();
-
-	//========================関数============================//.
-	void Update();		//更新処理関数.
-	void Render();		//描画処理関数.
 
 private:
 	//========================関数============================//.

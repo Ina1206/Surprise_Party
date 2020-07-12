@@ -87,6 +87,7 @@
     <ClInclude Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.h" />
     <ClInclude Include="SourceCode\Scene\Ending\CEnding.h" />
     <ClInclude Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.h" />
+    <ClInclude Include="SourceCode\Scene\Ending\EvaluationStageBase\CEvaluationStageBase.h" />
     <ClInclude Include="SourceCode\Scene\Ending\HightEvaluationStage\CHightEvaluationStage.h" />
     <ClInclude Include="SourceCode\Scene\Ending\IntermediateEvaluationStage\CIntermediateEvaluationStage.h" />
     <ClInclude Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="SourceCode\Scene\Ending\BeforeResultStage\CBeforeResultStage.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\CEnding.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\CEndingStageBase\CEndingStageBase.cpp" />
+    <ClCompile Include="SourceCode\Scene\Ending\EvaluationStageBase\CEvaluationStageBase.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\HightEvaluationStage\CHightEvaluationStage.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\IntermediateEvaluationStage\CIntermediateEvaluationStage.cpp" />
     <ClCompile Include="SourceCode\Scene\Ending\LowEvaluationStage\CLowEvaluationStage.cpp" />

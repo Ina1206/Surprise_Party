@@ -1,21 +1,17 @@
 #ifndef CINTERMEDIATE_EVALUATION_STAGE_H
 #define CINTERMEDIATE_EVALUATION_STAGE_H
 
-#include "..\CEndingStageBase\CEndingStageBase.h"
+#include "..\EvaluationStageBase\CEvaluationStageBase.h"
 
 /***********************************************
 *		中間評価ステージクラス.
 ********************/
 class CIntermediateEvaluationStage
-	: public CEndingStageBase
+	: public CEvaluationStageBase
 {
 public:
 	CIntermediateEvaluationStage();
 	~CIntermediateEvaluationStage();
-
-	//=========================関数==============================//.
-	void Update();		//更新処理関数.
-	void Render();		//描画処理関数.
 
 private:
 	//=========================関数==============================//.

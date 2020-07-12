@@ -407,6 +407,9 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager">
       <UniqueIdentifier>{6ff78178-fab6-4b0a-b8ae-31b016e7a225}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Scene\Ending\EvaluationSatgeBase">
+      <UniqueIdentifier>{46f16b51-a662-4bf5-b74e-2a777017af3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -817,6 +820,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Ending\EvaluationStageBase\CEvaluationStageBase.h">
+      <Filter>SourceCode\Scene\Ending\EvaluationSatgeBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1214,6 +1220,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Ending\EvaluationStageBase\CEvaluationStageBase.cpp">
+      <Filter>SourceCode\Scene\Ending\EvaluationSatgeBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

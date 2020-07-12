@@ -14,6 +14,9 @@ public:
 	CSurpriseDegreeString();
 	~CSurpriseDegreeString();
 
+	//========================定数================================//.
+	const D3DXVECTOR3 POS = D3DXVECTOR3(0.0f, 560.0f, 0.0f);	//表示座標.
+
 	//========================関数================================//.
 	void Update();		//更新処理関数.
 
