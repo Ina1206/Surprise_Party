@@ -762,8 +762,7 @@ HRESULT CResourceManager::InitSphere()
 //===========================================.
 void CResourceManager::InitDebugText(ID3D11DeviceContext* pContext11)
 {
-	//m_pCDebugText = std::make_unique<CDebugText>();
-	m_pCDebugText.reset(new CDebugText());
+	m_pCDebugText = std::make_unique<CDebugText>();
 
 	//êF.
 	const D3DXVECTOR4 vColor = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
