@@ -8,7 +8,6 @@
 #include "..\..\GameObject\Object\StaticObject\Light\BackstageLight\CBackstageLight.h"
 #include "..\..\Camera\CameraEnding\CCameraEnding.h"
 #include "..\..\UI\Fade\WhiteScreenFade\CWhiteScreenFade.h"
-#include "..\..\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.h"
 
 /*******************************************
 *		エンディングステージ基底クラス.

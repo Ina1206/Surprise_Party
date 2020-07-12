@@ -11,9 +11,10 @@ CEvaluationStageBase::CEvaluationStageBase()
 CEvaluationStageBase::CEvaluationStageBase(const int& EvaluationNum)
 	: CEndingStageBase				(EvaluationNum)
 	, m_pCSurpriseDegreeManager		(nullptr)
+	, m_pCEvaluationUIManager		(nullptr)
 	, m_pCPushEnterUI				(nullptr)
 	, m_fPushEnterUIAlpha			(0.0f)
-	, m_AlphaAddDecDirect			(1.0f)
+	, m_AlphaAddDecDirect			(1)
 {
 	//UIの初期化処理関数.
 	InitUI();
@@ -91,6 +92,7 @@ void CEvaluationStageBase::Render()
 void CEvaluationStageBase::InitUI()
 {
 	m_pCSurpriseDegreeManager = std::make_unique<CSurpriseDegreeManager>(m_Evaluation);
+	m_pCEvaluationUIManager = std::make_unique<CEvaluationUIManager>(m_Evaluation);
 }
 
 //=========================================.
@@ -114,6 +116,16 @@ void CEvaluationStageBase::UpdateCommonUI()
 
 	if (m_UpdateFlag & EVALUATION_STRING_FLAG) {
 
+		m_pCEvaluationUIManager->SetDispAllAtOnce(m_bDisplayAllAtOnce);
+
+		//評価UI更新処理関数.
+		m_pCEvaluationUIManager->Update();
+
+		if(m_pCEvaluationUIManager->GetFinishedAllDispFlag() == true){
+			//PushEnter表示フラグ.
+			m_UpdateFlag = GHOST_FLAG | PUSH_ENTER_FLAG;
+		}
+
 	}
 }
 
@@ -123,6 +135,7 @@ void CEvaluationStageBase::UpdateCommonUI()
 void CEvaluationStageBase::RenderCommonUI()
 {
 	m_pCSurpriseDegreeManager->Render();
+	m_pCEvaluationUIManager->Render();
 }
 
 

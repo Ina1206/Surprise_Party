@@ -2,6 +2,8 @@
 #define CEVALUATION_STAGE_BASE_H
 
 #include "..\CEndingStageBase\CEndingStageBase.h"
+#include "..\..\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.h"
+#include "..\..\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIManager\CEvaluationUIManager.h"
 
 /**********************************************
 *		評価ステージ基底クラス.
@@ -36,6 +38,7 @@ private:
 
 	//========================変数=============================//.
 	std::unique_ptr<CSurpriseDegreeManager> m_pCSurpriseDegreeManager;	//驚かし度の管理クラス.
+	std::unique_ptr<CEvaluationUIManager>	m_pCEvaluationUIManager;	//評価UI管理クラス.
 	CSpriteUI*								m_pCPushEnterUI;			//SpriteUIクラス(PushEnterの文字).
 	float									m_fPushEnterUIAlpha;		//SpriteUIの透過値.
 	int										m_AlphaAddDecDirect;		//透過値の加算減算方向.
