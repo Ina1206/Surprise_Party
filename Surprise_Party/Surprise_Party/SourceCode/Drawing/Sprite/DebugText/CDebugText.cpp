@@ -353,7 +353,7 @@ void CDebugText::SetBlend(bool EnableAlpha)
 }
 
 //レンダリング関数.
-void CDebugText::Render(const char* text, int x, int y)
+void CDebugText::Render(const char* text, float x, float y)
 {
 	//ビュートランスフォーム.
 	D3DXVECTOR3 vEye (0.0f, 0.0f, -1.0f);
@@ -406,18 +406,18 @@ void CDebugText::Render(const char* text, int x, int y)
 
 		//フォントレンダリング.
 		RenderFont(index, x, y);
-		x += static_cast<int>(m_fKerning[index]);
+		x += m_fKerning[index];
 	}
 }
 
 //フォントレンダリング関数.
-void CDebugText::RenderFont(int FontIndex, int x, int y)
+void CDebugText::RenderFont(int FontIndex, float x, float y)
 {
 	//ワールド変換.
 	D3DXMATRIX mWorld;
 	D3DXMATRIX mScale;
 	D3DXMatrixIdentity(&mWorld);
-	D3DXMatrixTranslation(&mWorld, static_cast<FLOAT>(x * m_fScale), static_cast<FLOAT>(y * m_fScale), -100.0f);
+	D3DXMatrixTranslation(&mWorld, x * m_fScale, y * m_fScale, -100.0f);
 	D3DXMatrixScaling( &mScale, m_fScale, m_fScale, m_fScale);	
 
 	mWorld = mScale * mWorld;

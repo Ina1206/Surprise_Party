@@ -42,10 +42,10 @@ public:
 	void SetBlend(bool EnableAlpha);
 
 	//レンダリング関数.
-	void Render(const char* text, int x, int y);
+	void Render(const char* text, float x, float y);
 
 	//フォントレンダリング関数.
-	void RenderFont(int FontIndex, int x, int y);
+	void RenderFont(int FontIndex, float x, float y);
 
 	static CDebugText* GetDebugTextInstance() 
 	{

@@ -306,9 +306,9 @@ void CSceneManager::RenderDebugFont()
 	//•`‰æˆ—.
 	m_pCDepthStencil->SetDepth(false);
 	for (int Scene = 0; Scene < SceneMax; Scene++) {
-		m_pCDebugText->Render(stSceneName[Scene].c_str(), 50, 200 + (30 * Scene));
+		m_pCDebugText->Render(stSceneName[Scene].c_str(), 50.0f, 200.0f + (30.0f * Scene));
 	}
-	m_pCDebugText->Render(stSceneName[CursorNum].c_str(), 20, 200 + (30 * m_FlyToSceneNum));
+	m_pCDebugText->Render(stSceneName[CursorNum].c_str(), 20.0f, 200.0f + (30.0f * m_FlyToSceneNum));
 	m_pCDepthStencil->SetDepth(true);
 
 	m_FlyToSceneMax = SceneMax;
