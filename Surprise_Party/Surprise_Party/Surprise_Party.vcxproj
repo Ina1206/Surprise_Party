@@ -144,6 +144,7 @@
     <ClInclude Include="SourceCode\UI\SceneUI\CSceneUIBase.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIBase\CEvaluationUIBase.h" />
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIManager\CEvaluationUIManager.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\HightEvaluationString\CHightEvaluationString.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\Shout\CShout.h" />
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="SourceCode\UI\SceneUI\CSceneUIBase.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\CEndingUI.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIBase\CEvaluationUIBase.cpp" />
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIManager\CEvaluationUIManager.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\HightEvaluationString\CHightEvaluationString.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\Shout\CShout.cpp" />
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\SurpriseDegreeBase\CSurpriseDegreeBase.cpp" />

@@ -11,7 +11,8 @@ CHightEvaluationString::CHightEvaluationString()
 
 CHightEvaluationString::~CHightEvaluationString()
 {
-
+	//‰ğ•úˆ—ŠÖ”.
+	Release();
 }
 
 //=========================================.
@@ -44,4 +45,12 @@ void CHightEvaluationString::Init()
 
 	//—v‘f”‚Ì‰Šú‰»ˆ—ŠÖ”.
 	InitElementCount();
+}
+
+//=========================================.
+//		‰ğ•úˆ—ŠÖ”.
+//=========================================.
+void CHightEvaluationString::Release()
+{
+
 }
