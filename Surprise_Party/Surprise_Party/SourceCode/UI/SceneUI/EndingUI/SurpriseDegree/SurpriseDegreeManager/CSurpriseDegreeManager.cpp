@@ -27,6 +27,14 @@ void CSurpriseDegreeManager::Update()
 		return;
 	}
 	m_pCSurpriseDegreeBase[m_UpdateUINum]->Update();
+
+	if (m_pCSurpriseDegreeBase[m_UpdateUINum]->GetDispFlag() == true) {
+		m_UpdateUINum++;
+	}
+
+	if (m_UpdateUINum > static_cast<int>(m_pCSurpriseDegreeBase.size())) {
+		m_bAllDispFlag = true;
+	}
 }
 
 //=============================================.

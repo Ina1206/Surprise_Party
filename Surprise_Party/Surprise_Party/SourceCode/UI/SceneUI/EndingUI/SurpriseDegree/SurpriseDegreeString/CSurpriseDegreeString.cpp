@@ -41,7 +41,7 @@ void CSurpriseDegreeString::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::SurpriseDegree);
 	m_vEatchSizeScale = EATCH_SCALE_MAX;
-	m_vPos = POS;
+	m_vPos = INIT_POS;
 }
 
 //==================================================.

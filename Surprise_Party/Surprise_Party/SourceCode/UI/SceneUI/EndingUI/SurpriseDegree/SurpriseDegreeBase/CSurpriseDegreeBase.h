@@ -20,11 +20,16 @@ public:
 	virtual void Update() = 0;		//更新処理関数.
 	void Render();					//描画処理関数.
 	
+	//=============情報取得処理関数==============//.
+	//表示フラグ.
+	bool GetDispFlag() const { return m_bDispFlag; }
+
 protected:
 
 	//===================変数====================//.
 	CSpriteUI*	m_pCSpriteUI;		//スプライトUI.
 	D3DXVECTOR3 m_vEatchSizeScale;	//それぞれの大きさ.
+	bool		m_bDispFlag;		//表示フラグ.
 
 private:
 };

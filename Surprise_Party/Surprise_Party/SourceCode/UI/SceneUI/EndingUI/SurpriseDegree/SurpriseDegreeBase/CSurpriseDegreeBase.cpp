@@ -6,6 +6,7 @@
 CSurpriseDegreeBase::CSurpriseDegreeBase()
 	: m_pCSpriteUI		(nullptr)
 	, m_vEatchSizeScale	(EATCH_SCALE_MAX)
+	, m_bDispFlag		(false)
 {
 
 }

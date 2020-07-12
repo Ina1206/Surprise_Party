@@ -16,6 +16,9 @@ public:
 	void Update();		//XVˆ—ŠÖ”.
 	void Render();		//•`‰æˆ—ŠÖ”.
 
+	//====================î•ñæ“¾ˆ—ŠÖ”======================//.
+	bool GetAllDispFlag() const { return m_bAllDispFlag; }
+
 private:
 	//==========================ŠÖ”============================//.
 	void Init();		//‰Šú‰»ˆ—ŠÖ”.
