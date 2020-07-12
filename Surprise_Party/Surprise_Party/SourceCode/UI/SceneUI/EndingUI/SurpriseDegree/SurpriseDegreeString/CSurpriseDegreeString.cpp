@@ -20,18 +20,11 @@ CSurpriseDegreeString::~CSurpriseDegreeString()
 //==================================================.
 void CSurpriseDegreeString::Update()
 {
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		m_vPos.y -= 0.5f;
-	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		m_vPos.y += 0.5f;
-	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		m_vPos.x -= 0.5f;
-	}
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		m_vPos.x += 0.5f;
-	}
+	//ˆÚ“®ˆ—ŠÖ”.
+	Move();
+
+	//“§‰ßˆ—ŠÖ”.
+	Transparent();
 }
 
 //==================================================.
@@ -42,6 +35,8 @@ void CSurpriseDegreeString::Init()
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::SurpriseDegree);
 	m_vEatchSizeScale = EATCH_SCALE_MAX;
 	m_vPos = INIT_POS;
+
+	m_fAlpha = ALPHA_MIN;
 }
 
 //==================================================.
@@ -50,4 +45,35 @@ void CSurpriseDegreeString::Init()
 void CSurpriseDegreeString::Release()
 {
 
+}
+
+//==================================================.
+//		ˆÚ“®ˆ—ŠÖ”.
+//==================================================.
+void CSurpriseDegreeString::Move()
+{
+	m_vPos.y += MOVE_SPEED;
+
+	if (m_vPos.y >= FINISH_POS.y) {
+		m_vPos = FINISH_POS;
+	}
+}
+
+//===================================================.
+//		“§‰ßˆ—ŠÖ”.
+//===================================================.
+void CSurpriseDegreeString::Transparent()
+{
+	//‹——£.
+	const float DISTANCE = FINISH_POS.y - INIT_POS.y;
+	//ŽžŠÔ.
+	const float TIME = DISTANCE / MOVE_SPEED;
+	//‘¬“x.
+	const float SPEED = ALPHA_MAX / TIME;
+	//“§‰ßˆ—.
+	m_fAlpha += SPEED;
+	if (m_fAlpha > ALPHA_MAX) {
+		m_fAlpha = ALPHA_MAX;
+		m_bDispFlag = true;
+	}
 }

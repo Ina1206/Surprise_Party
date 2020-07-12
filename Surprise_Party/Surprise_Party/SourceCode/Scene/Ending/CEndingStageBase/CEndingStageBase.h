@@ -20,7 +20,11 @@ public:
 	virtual ~CEndingStageBase();
 
 	//===================定数======================//.
-	const int	INIT_EVALUATION_NUM = -1;	//初期評価番号.
+	const int			INIT_EVALUATION_NUM		= -1;		//初期評価番号.
+	const unsigned int	SURPRISE_DEGREE_FLAG	= (1 << 0);	//驚かし度フラグ.
+	const unsigned int	EVALUATION_STRING_FLAG	= (1 << 1);	//評価文字.
+	const unsigned int	GHOST_FLAG				= (1 << 2);	//お化けフラグ.
+	const unsigned int	PUSH_ENTER_FLAG			= (1 << 3);	//PushEnterフラグ.
 
 	//========================関数=============================//.
 	virtual void Update() = 0;								//更新処理関数.
@@ -59,6 +63,8 @@ protected:
 	int											m_OldEvaluation;			//差分用評価.
 	bool										m_bChangeStage;				//ステージ変更フラグ.
 	D3DXVECTOR3									m_vObjLookPos;				//オブジェクトが見る場所.
+	unsigned int								m_UpdateFlag;				//更新フラグ.
+
 private:
 	//===================定数======================//.
 	const D3DXVECTOR3	PUSH_ENTER_POS			= D3DXVECTOR3(800.0f, 600.0f, 0.0f);//PushEnterの座標.

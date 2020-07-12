@@ -14,6 +14,7 @@ CEndingStageBase::CEndingStageBase()
 	, m_OldEvaluation			(INIT_EVALUATION_NUM)
 	, m_bChangeStage			(false)
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
+	, m_UpdateFlag				(0)
 	, m_pCFloor					(nullptr)
 	, m_pCPushEnterUI			(nullptr)
 	, m_fPushEnterUIAlpha		(0.0f)
@@ -46,7 +47,20 @@ void CEndingStageBase::RenderInitSetting( const D3DXMATRIX& mProj)
 //=========================================.
 void CEndingStageBase::UpdateCommonUI()
 {
-	m_pCSurpriseDegreeManager->Update();
+	if (m_UpdateFlag & SURPRISE_DEGREE_FLAG) {
+		//驚かし度のUI更新処理関数.
+		m_pCSurpriseDegreeManager->Update();
+		
+		if (m_pCSurpriseDegreeManager->GetAllDispFlag() == true) {
+			//お化けと評価文字更新処理フラグ.
+			m_UpdateFlag = EVALUATION_STRING_FLAG | GHOST_FLAG;
+		}
+		return;
+	}
+
+	if (m_UpdateFlag & EVALUATION_STRING_FLAG) {
+		
+	}
 }
 
 //=========================================.
@@ -158,6 +172,9 @@ void CEndingStageBase::InitCommonValue()
 		m_pCGhost[ghost]->SetEmotionNum(m_EmotionType);
 
 		m_pCGhost[ghost]->SetLookAtPos(m_vObjLookPos);
+
+		//一度だけ更新処理を行う.
+		m_pCGhost[ghost]->Update();
 	}
 
 }

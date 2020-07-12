@@ -14,7 +14,8 @@ public:
 	virtual ~CSurpriseDegreeBase();
 
 	//===================定数====================//.
-	const D3DXVECTOR3 EATCH_SCALE_MAX = D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//それぞれの大きさ最大値.
+	const D3DXVECTOR3	EATCH_SCALE_MAX = D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//それぞれの大きさ最大値.
+	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
 
 	//===================関数====================//.
 	virtual void Update() = 0;		//更新処理関数.

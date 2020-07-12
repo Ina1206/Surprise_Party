@@ -32,7 +32,7 @@ void CSurpriseDegreeManager::Update()
 		m_UpdateUINum++;
 	}
 
-	if (m_UpdateUINum > static_cast<int>(m_pCSurpriseDegreeBase.size())) {
+	if (m_UpdateUINum >= static_cast<int>(m_pCSurpriseDegreeBase.size())) {
 		m_bAllDispFlag = true;
 	}
 }
@@ -42,7 +42,7 @@ void CSurpriseDegreeManager::Update()
 //=============================================.
 void CSurpriseDegreeManager::Render()
 {
-	for (int UI = 0; UI <= m_UpdateUINum; UI++) {
+	for (unsigned int UI = 0; UI < m_pCSurpriseDegreeBase.size(); UI++) {
 		m_pCSurpriseDegreeBase[UI]->Render();
 	}
 }
