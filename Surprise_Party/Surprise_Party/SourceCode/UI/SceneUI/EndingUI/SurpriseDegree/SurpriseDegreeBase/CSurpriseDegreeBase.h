@@ -15,6 +15,7 @@ public:
 
 	//===================定数====================//.
 	const D3DXVECTOR3	EATCH_SCALE_MAX = D3DXVECTOR3(1.0f, 1.0f, 1.0f);	//それぞれの大きさ最大値.
+	const D3DXVECTOR3	EATCH_SCALE_MIN = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//それぞれの大きさ最小値.
 	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
 
 	//===================関数====================//.
@@ -28,6 +29,8 @@ public:
 	//=============情報置換処理関数==============//.
 	//一気に表示フラグ.
 	void SetDisplayAllAtOnce(const bool& bFlag) { m_bDisplayAllAtOnce = bFlag; }
+	//表示番号.
+	void SetDipslayNum(const int& Num) { m_DipslayNum = Num; }
 
 protected:
 
@@ -36,6 +39,7 @@ protected:
 	D3DXVECTOR3 m_vEatchSizeScale;	//それぞれの大きさ.
 	bool		m_bDispFlag;		//表示フラグ.
 	bool		m_bDisplayAllAtOnce;//一気に表示フラグ.
+	int			m_DipslayNum;		//表示番号.
 
 private:
 };

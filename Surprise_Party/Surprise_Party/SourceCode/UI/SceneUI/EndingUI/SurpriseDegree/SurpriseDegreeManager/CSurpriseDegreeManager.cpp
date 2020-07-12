@@ -1,5 +1,6 @@
 #include "CSurpriseDegreeManager.h"
 #include "..\SurpriseDegreeString\CSurpriesDegreeString.h"
+#include "..\Shout\CShout.h"
 
 /*********************************************
 *		驚かし度の管理クラス.
@@ -31,6 +32,7 @@ void CSurpriseDegreeManager::Update()
 
 	if (m_bDisplayAllAtOnce == true) {
 		for (unsigned int UI = 0; UI < m_pCSurpriseDegreeBase.size(); UI++) {
+			m_pCSurpriseDegreeBase[UI]->SetDipslayNum(UI);
 			m_pCSurpriseDegreeBase[UI]->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
 			m_pCSurpriseDegreeBase[UI]->Update();
 			m_bAllDispFlag = true;
@@ -39,6 +41,7 @@ void CSurpriseDegreeManager::Update()
 	}
 
 	//更新処理関数.
+	m_pCSurpriseDegreeBase[m_UpdateUINum]->SetDipslayNum(m_UpdateUINum);
 	m_pCSurpriseDegreeBase[m_UpdateUINum]->Update();
 
 	//次の処理へ.
@@ -68,4 +71,9 @@ void CSurpriseDegreeManager::Init()
 {
 	//驚かし度の文章UI構築.
 	m_pCSurpriseDegreeBase.emplace_back(std::make_unique<CSurpriseDegreeString>());
+
+	//叫びのUI構築.
+	for (int sprite = 0; sprite < 3; sprite++) {
+		m_pCSurpriseDegreeBase.emplace_back(std::make_unique<CShout>());
+	}
 }

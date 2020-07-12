@@ -592,10 +592,10 @@ void CResourceManager::SpriteUIStateSetting()
 
 	//‹©‚Ñ.
 	const int ShoutNum = static_cast<int>(enSpriteUI::Shout);
-	m_pstSpriteUIState[ShoutNum].Base.w = 375.0f;
-	m_pstSpriteUIState[ShoutNum].Base.h = 294.0f;
-	m_pstSpriteUIState[ShoutNum].Disp.w = m_pstSpriteUIState[ShoutNum].Base.w;
-	m_pstSpriteUIState[ShoutNum].Disp.h = m_pstSpriteUIState[ShoutNum].Base.h;
+	m_pstSpriteUIState[ShoutNum].Base.w = 294.0f;
+	m_pstSpriteUIState[ShoutNum].Base.h = 375.0f;
+	m_pstSpriteUIState[ShoutNum].Disp.w = m_pstSpriteUIState[ShoutNum].Base.w / 3.0f;
+	m_pstSpriteUIState[ShoutNum].Disp.h = m_pstSpriteUIState[ShoutNum].Base.h / 3.0f;
 
 	//‹Á‚©‚µ“x.
 	const int SurprsieDegreeNum = static_cast<int>(enSpriteUI::SurpriseDegree);
