@@ -24,26 +24,20 @@ CHightEvaluationString::~CHightEvaluationString()
 //=========================================.
 void CHightEvaluationString::Update()
 {
-	if (m_bFinishedAllDispFlag == true) {
-		return;
-	}
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		for (unsigned int string = 0; string < m_pCEvaluationUI.size(); string++) {
-			m_vEvaluationPos[string].y += 0.5f;
-		}
-	}
-
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		for (unsigned int string = 0; string < m_pCEvaluationUI.size(); string++) {
-			m_vEvaluationPos[string].y -= 0.5f;
-		}
-	}
+	//表示処理関数.
+	Disp();
 
 	//移動処理関数.
 	Move();
 
-	//ジャンプ処理関数.
-	Jump();
+	if (m_BoundFlag == 0) {
+		//ジャンプ処理関数.
+		Jump();
+		return;
+	}
+
+	//バウンド処理関数.
+	Bound();
 }
 
 //=========================================.
@@ -62,9 +56,9 @@ void CHightEvaluationString::Init()
 	for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
 		m_vEvaluationPos[sprite] = INIT_POS;
 		m_vEvaluationUV[sprite] = D3DXVECTOR2(1.0f * sprite, 0.0f);
+		m_vEvaluationScale[sprite] = EATCH_SCALE_MIN;
 	}
 
-	//m_fAcc = 10.0f;
 }
 
 //=========================================.
@@ -73,6 +67,23 @@ void CHightEvaluationString::Init()
 void CHightEvaluationString::Release()
 {
 
+}
+
+//=========================================.
+//		表示処理関数.
+//=========================================.
+void CHightEvaluationString::Disp()
+{
+	m_vEvaluationScale[m_UpdateNum].x += DISP_SPEED;
+	if (m_vEvaluationScale[m_UpdateNum].x >= EATCH_SCALE_MAX.x) {
+		m_vEvaluationScale[m_UpdateNum].x = EATCH_SCALE_MAX.x;
+		return;
+	}
+
+	m_vEvaluationScale[m_UpdateNum].y += DISP_SPEED;
+	if (m_vEvaluationScale[m_UpdateNum].y >= EATCH_SCALE_MAX.y) {
+		m_vEvaluationScale[m_UpdateNum].y = EATCH_SCALE_MAX.y;
+	}
 }
 
 //=========================================.
@@ -132,5 +143,25 @@ void CHightEvaluationString::Jump()
 //=========================================.
 void CHightEvaluationString::Bound()
 {
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::HightEvaluationString);
+
+	//下がる処理.
+	if (m_BoundFlag & BOUND_DOWN_FLAG) {
+		m_vEvaluationScale[m_UpdateNum].y -= BOUND_SPEED;
+		m_vEvaluationPos[m_UpdateNum].y = FINISH_BASE_POS.y + (SpriteState.Disp.h * (EATCH_SCALE_MAX.y - m_vEvaluationScale[m_UpdateNum].y));
+		if (m_vEvaluationScale[m_UpdateNum].y <= EATCH_SCALE_MIN.y) {
+			m_vEvaluationScale[m_UpdateNum].y = EATCH_SCALE_MIN.y;
+			m_BoundFlag = BOUND_UP_FALG;
+		}
+		return;
+	}
+
+	//上がる処理.
+	m_vEvaluationScale[m_UpdateNum].y += BOUND_SPEED;
+	m_vEvaluationPos[m_UpdateNum].y = FINISH_BASE_POS.y + (SpriteState.Disp.h * (EATCH_SCALE_MAX.y - m_vEvaluationScale[m_UpdateNum].y));
+	if (m_vEvaluationScale[m_UpdateNum].y >= EATCH_SCALE_MAX.y) {
+		m_vEvaluationScale[m_UpdateNum].y = EATCH_SCALE_MAX.y;
+		m_BoundFlag = 0;
+	}
 
 }

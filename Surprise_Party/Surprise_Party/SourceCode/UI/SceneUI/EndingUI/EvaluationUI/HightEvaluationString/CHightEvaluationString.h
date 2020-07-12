@@ -22,6 +22,8 @@ public:
 	const float			ADD_ACC_SPEED	= 2.0f;								//加速度加算速度.
 	const float			GRAVITY			= 20.0f;							//重力.
 	const float			JUMP_CNT_MAX	= 2;								//ジャンプカウント最大値.
+	const float			BOUND_SPEED		= 0.1f;								//バウンド速度.
+	const float			DISP_SPEED		= 0.3f;								//表示速度.
 
 	//=====================関数======================//.
 	void Update();		//更新処理関数.
@@ -30,6 +32,7 @@ protected:
 	//=====================関数======================//.
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
+	void Disp();		//表示処理関数.
 	void Move();		//移動処理関数.
 	void Jump();		//ジャンプ処理関数.
 	void Bound();		//バウンド処理関数.
