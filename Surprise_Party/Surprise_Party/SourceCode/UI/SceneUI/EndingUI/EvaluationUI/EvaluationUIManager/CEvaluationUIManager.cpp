@@ -1,5 +1,6 @@
 #include "CEvaluationUIManager.h"
 #include "..\HightEvaluationString\CHightEvaluationString.h"
+#include "..\IntermediateEvaluationString\CIntermediateEvaluationString.h"
 
 /*********************************************
 *		ï]âøUIÇÃä«óùÉNÉâÉX.
@@ -53,6 +54,9 @@ void CEvaluationUIManager::Init()
 //==========================================.
 std::unique_ptr<CEvaluationUIBase> CEvaluationUIManager::DecideEvaluationUIType()
 {
+	if (m_EvaluationNum == 1) {
+		return std::make_unique<CIntermediateEvaluationString>();
+	}
 
 	return std::make_unique<CHightEvaluationString>();
 }
