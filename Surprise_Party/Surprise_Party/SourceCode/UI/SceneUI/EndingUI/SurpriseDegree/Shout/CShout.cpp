@@ -23,6 +23,12 @@ CShout::~CShout()
 //=========================================.
 void CShout::Update()
 {
+	if (m_bDisplayAllAtOnce == true) {
+		//一気に表示する処理関数.
+		DisplayAllAtOnce();
+		return;
+	}
+
 	//移動処理関数.
 	Move();
 
@@ -121,6 +127,7 @@ void CShout::Disp()
 		m_vEatchSizeScale.x = EATCH_SCALE_MAX.x;
 		return;
 	}
+
 	m_vEatchSizeScale.y += DISP_SPEED;
 	if (m_vEatchSizeScale.y > EATCH_SCALE_MAX.y) {
 		m_vEatchSizeScale.y = EATCH_SCALE_MAX.y;
@@ -139,8 +146,22 @@ void CShout::Jump()
 		m_vPos.y = FINISH_BASE_POS.y;
 		m_fAcc = 0.0f;
 		m_JumpCnt++;
+
+		//バウンド準備.
 		if (m_JumpCnt <= BOUND_MAX) {
 			m_BoundFlag = BOUND_DOWN_FLAG;
 		}
 	}
+}
+
+//============================================.
+//		一気に表示する処理関数.
+//============================================.
+void CShout::DisplayAllAtOnce()
+{
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::Shout);
+	m_vPos = FINISH_BASE_POS;
+	m_vPos.x += SpriteState.Disp.w * (m_DipslayNum - 1);
+	m_vEatchSizeScale = EATCH_SCALE_MAX;
+	m_bDispFlag = true;
 }

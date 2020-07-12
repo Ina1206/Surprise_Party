@@ -27,21 +27,22 @@ public:
 	const int			BOUND_MAX		= 1;									//バウンド最大数.
 
 	//====================関数=======================//.
-	void Update();		//更新処理関数.
+	void Update();					//更新処理関数.
 
 private:
 	//====================関数=======================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
-	void Move();		//移動処理関数.
-	void BoundSprite();	//スプライトのバウンド処理関数.
-	void Disp();		//表示処理関数.
-	void Jump();		//ジャンプ処理関数.
+	void Init();					//初期化処理関数.
+	void Release();					//解放処理関数.
+	void Move();					//移動処理関数.
+	void BoundSprite();				//スプライトのバウンド処理関数.
+	void Disp();					//表示処理関数.
+	void Jump();					//ジャンプ処理関数.
+	void DisplayAllAtOnce();		//一気に表示する処理関数.
 
 	//====================変数=======================//.
-	float			m_fAcc;				//加速度.
-	int				m_JumpCnt;			//ジャンプカウント.
-	unsigned int	m_BoundFlag;		//バウンドフラグ.
+	float			m_fAcc;			//加速度.
+	int				m_JumpCnt;		//ジャンプカウント.
+	unsigned int	m_BoundFlag;	//バウンドフラグ.
 };
 
 #endif	//#ifndef CSHOUT_H.

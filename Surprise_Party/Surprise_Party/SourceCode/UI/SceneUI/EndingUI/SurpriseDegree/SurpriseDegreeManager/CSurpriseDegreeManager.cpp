@@ -36,8 +36,8 @@ void CSurpriseDegreeManager::Update()
 			m_pCSurpriseDegreeBase[UI]->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
 			m_pCSurpriseDegreeBase[UI]->Update();
 			m_bAllDispFlag = true;
-			return;
 		}
+		return;
 	}
 
 	//XVˆ—ŠÖ”.
