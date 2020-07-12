@@ -25,6 +25,11 @@ void CSurpriseDegreeString::Update()
 
 	//ìßâﬂèàóùä÷êî.
 	Transparent();
+
+	if (m_bDisplayAllAtOnce == true) {
+		m_vPos = FINISH_POS;
+		m_fAlpha = ALPHA_MAX;
+	}
 }
 
 //==================================================.

@@ -64,6 +64,7 @@ protected:
 	bool										m_bChangeStage;				//ステージ変更フラグ.
 	D3DXVECTOR3									m_vObjLookPos;				//オブジェクトが見る場所.
 	unsigned int								m_UpdateFlag;				//更新フラグ.
+	bool										m_bDisplayAllAtOnce;		//一気に表示フラグ.
 
 private:
 	//===================定数======================//.

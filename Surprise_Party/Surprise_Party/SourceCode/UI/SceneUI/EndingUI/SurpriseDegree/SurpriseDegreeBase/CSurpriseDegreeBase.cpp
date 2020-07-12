@@ -4,9 +4,10 @@
 *		‹Á‚©‚µ“x‚ÌŠî’êƒNƒ‰ƒX.
 **********************/
 CSurpriseDegreeBase::CSurpriseDegreeBase()
-	: m_pCSpriteUI		(nullptr)
-	, m_vEatchSizeScale	(EATCH_SCALE_MAX)
-	, m_bDispFlag		(false)
+	: m_pCSpriteUI			(nullptr)
+	, m_vEatchSizeScale		(EATCH_SCALE_MAX)
+	, m_bDispFlag			(false)
+	, m_bDisplayAllAtOnce	(false)
 {
 
 }

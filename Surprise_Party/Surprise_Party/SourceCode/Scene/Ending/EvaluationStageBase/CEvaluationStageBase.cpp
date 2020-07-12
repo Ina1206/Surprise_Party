@@ -22,7 +22,18 @@ void CEvaluationStageBase::Update()
 	m_pCCameraEnding->Update();
 
 	if (m_UpdateFlag == 0) {
+		//フェード更新処理関数.
 		m_pCWhiteScreenFade->Update();
+
+		//フェード終了後に驚かし度UIの処理開始.
+		if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
+			m_UpdateFlag = SURPRISE_DEGREE_FLAG;
+		}
+		return;
+	}
+
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+		m_bDisplayAllAtOnce = true;
 	}
 
 	//共通のUIの更新処理関数.
@@ -35,11 +46,6 @@ void CEvaluationStageBase::Update()
 		}
 	}
 
-	//フェード終了後に驚かし度UIの処理開始.
-	if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
-		m_UpdateFlag = SURPRISE_DEGREE_FLAG;
-		return;
-	}
 
 }
 

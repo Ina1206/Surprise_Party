@@ -25,12 +25,17 @@ public:
 	//表示フラグ.
 	bool GetDispFlag() const { return m_bDispFlag; }
 
+	//=============情報置換処理関数==============//.
+	//一気に表示フラグ.
+	void SetDisplayAllAtOnce(const bool& bFlag) { m_bDisplayAllAtOnce = bFlag; }
+
 protected:
 
 	//===================変数====================//.
 	CSpriteUI*	m_pCSpriteUI;		//スプライトUI.
 	D3DXVECTOR3 m_vEatchSizeScale;	//それぞれの大きさ.
 	bool		m_bDispFlag;		//表示フラグ.
+	bool		m_bDisplayAllAtOnce;//一気に表示フラグ.
 
 private:
 };

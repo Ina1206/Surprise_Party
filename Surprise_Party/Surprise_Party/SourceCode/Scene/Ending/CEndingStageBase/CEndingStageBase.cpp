@@ -15,6 +15,7 @@ CEndingStageBase::CEndingStageBase()
 	, m_bChangeStage			(false)
 	, m_vObjLookPos				(0.0f, 0.0f, 0.0f)
 	, m_UpdateFlag				(0)
+	, m_bDisplayAllAtOnce		(false)
 	, m_pCFloor					(nullptr)
 	, m_pCPushEnterUI			(nullptr)
 	, m_fPushEnterUIAlpha		(0.0f)
@@ -48,6 +49,9 @@ void CEndingStageBase::RenderInitSetting( const D3DXMATRIX& mProj)
 void CEndingStageBase::UpdateCommonUI()
 {
 	if (m_UpdateFlag & SURPRISE_DEGREE_FLAG) {
+
+		m_pCSurpriseDegreeManager->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
+
 		//‹Á‚©‚µ“x‚ÌUIXVˆ—ŠÖ”.
 		m_pCSurpriseDegreeManager->Update();
 		
