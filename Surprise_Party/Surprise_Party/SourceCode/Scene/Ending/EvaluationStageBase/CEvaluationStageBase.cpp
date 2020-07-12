@@ -9,9 +9,11 @@ CEvaluationStageBase::CEvaluationStageBase()
 }
 
 CEvaluationStageBase::CEvaluationStageBase(const int& EvaluationNum)
-	: CEndingStageBase	(EvaluationNum)
+	: CEndingStageBase				(EvaluationNum)
+	, m_pCSurpriseDegreeManager		(nullptr)
 {
-
+	//UIの初期化処理関数.
+	InitUI();
 }
 
 CEvaluationStageBase::~CEvaluationStageBase()
@@ -19,9 +21,9 @@ CEvaluationStageBase::~CEvaluationStageBase()
 
 }
 
-//===============================================.
-//				更新処理関数.
-//===============================================.
+//========================================.
+//				更新処理関数.		  
+//========================================.
 void CEvaluationStageBase::Update()
 {
 	//カメラの更新処理関数.
@@ -55,9 +57,9 @@ void CEvaluationStageBase::Update()
 
 }
 
-//===============================================.
+//=========================================.
 //				描画処理関数.
-//===============================================.
+//=========================================.
 void CEvaluationStageBase::Render()
 {
 	//床の描画処理関数.
@@ -77,5 +79,88 @@ void CEvaluationStageBase::Render()
 
 	//PushEnter描画処理関数.
 	RenderPushEnter();
+
+}
+
+//=========================================.
+//		UIの初期化処理関数.
+//=========================================.
+void CEvaluationStageBase::InitUI()
+{
+	m_pCSurpriseDegreeManager = std::make_unique<CSurpriseDegreeManager>(m_Evaluation);
+}
+
+//=========================================.
+//		共通のUIの更新処理関数.
+//=========================================.
+void CEvaluationStageBase::UpdateCommonUI()
+{
+	if (m_UpdateFlag & SURPRISE_DEGREE_FLAG) {
+
+		m_pCSurpriseDegreeManager->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
+
+		//驚かし度のUI更新処理関数.
+		m_pCSurpriseDegreeManager->Update();
+
+		if (m_pCSurpriseDegreeManager->GetAllDispFlag() == true) {
+			//お化けと評価文字更新処理フラグ.
+			m_UpdateFlag = EVALUATION_STRING_FLAG | GHOST_FLAG;
+		}
+		return;
+	}
+
+	if (m_UpdateFlag & EVALUATION_STRING_FLAG) {
+
+	}
+}
+
+//=========================================.
+//		共通のUIの描画処理関数.
+//=========================================.
+void CEvaluationStageBase::RenderCommonUI()
+{
+	m_pCSurpriseDegreeManager->Render();
+}
+
+
+//=========================================.
+//		PushEnterの更新処理関数.
+//=========================================.
+void CEvaluationStageBase::UpdatePushEnter()
+{
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+		m_bChangeStage = true;
+	}
+
+	m_fPushEnterUIAlpha += 0.05f * m_AlphaAddDecDirect;
+
+	if (m_fPushEnterUIAlpha > ALPHA_MAX) {
+		m_fPushEnterUIAlpha = ALPHA_MAX;
+		m_AlphaAddDecDirect *= -1;
+		return;
+	}
+
+	if (m_fPushEnterUIAlpha < ALPHA_MIN) {
+		m_fPushEnterUIAlpha = ALPHA_MIN;
+		m_AlphaAddDecDirect *= -1;
+	}
+
+}
+
+//=========================================.
+//		PushEnterの描画処理関数.
+//=========================================.
+void CEvaluationStageBase::RenderPushEnter()
+{
+	CResourceManager* m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
+	m_pCPushEnterUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::PushEnterString);
+	m_pCPushEnterUI->SetAlpha(m_fPushEnterUIAlpha);
+	m_pCPushEnterUI->SetScale(PUSH_ENTER_SCALE_MAX);
+	m_pCPushEnterUI->SetPosition(PUSH_ENTER_POS);
+
+	CDepth_Stencil* m_pCDeptshStencil = CDepth_Stencil::GetDepthStencilInstance();
+	m_pCDeptshStencil->SetDepth(false);
+	m_pCPushEnterUI->Render();
+	m_pCDeptshStencil->SetDepth(true);
 
 }

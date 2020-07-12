@@ -23,9 +23,6 @@ CEndingStageBase::CEndingStageBase(const int& EvaluationNum)
 	, m_UpdateFlag				(0)
 	, m_bDisplayAllAtOnce		(false)
 	, m_pCFloor					(nullptr)
-	, m_pCPushEnterUI			(nullptr)
-	, m_fPushEnterUIAlpha		(0.0f)
-	, m_AlphaAddDecDirect		(1)
 {
 	//共通の値の初期化処理関数.
 	InitCommonValue();
@@ -47,30 +44,6 @@ void CEndingStageBase::RenderInitSetting( const D3DXMATRIX& mProj)
 	D3DXMatrixLookAtLH(
 		&m_mView,								//(out)ビュー計算結果.
 		&m_pCCameraEnding->GetPos(), &m_pCCameraEnding->GetLook(), &vUpVec);
-}
-
-//=========================================.
-//		共通のUIの更新処理関数.
-//=========================================.
-void CEndingStageBase::UpdateCommonUI()
-{
-	if (m_UpdateFlag & SURPRISE_DEGREE_FLAG) {
-
-		m_pCSurpriseDegreeManager->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
-
-		//驚かし度のUI更新処理関数.
-		m_pCSurpriseDegreeManager->Update();
-		
-		if (m_pCSurpriseDegreeManager->GetAllDispFlag() == true) {
-			//お化けと評価文字更新処理フラグ.
-			m_UpdateFlag = EVALUATION_STRING_FLAG | GHOST_FLAG;
-		}
-		return;
-	}
-
-	if (m_UpdateFlag & EVALUATION_STRING_FLAG) {
-		
-	}
 }
 
 //=========================================.
@@ -105,62 +78,11 @@ void CEndingStageBase::RenderGhost()
 }
 
 //=========================================.
-//		共通のUIの描画処理関数.
-//=========================================.
-void CEndingStageBase::RenderCommonUI()
-{
-	m_pCSurpriseDegreeManager->Render();
-}
-
-//=========================================.
-//		PushEnterの更新処理関数.
-//=========================================.
-void CEndingStageBase::UpdatePushEnter()
-{
-	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
-		m_bChangeStage = true;
-	}
-
-	m_fPushEnterUIAlpha += 0.05f * m_AlphaAddDecDirect;
-
-	if (m_fPushEnterUIAlpha > ALPHA_MAX) {
-		m_fPushEnterUIAlpha = ALPHA_MAX;
-		m_AlphaAddDecDirect *= -1;
-		return;
-	}
-
-	if (m_fPushEnterUIAlpha < ALPHA_MIN) {
-		m_fPushEnterUIAlpha = ALPHA_MIN;
-		m_AlphaAddDecDirect *= -1;
-	}
-	
-}
-
-//=========================================.
-//		PushEnterの描画処理関数.
-//=========================================.
-void CEndingStageBase::RenderPushEnter()
-{
-	CResourceManager* m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
-	m_pCPushEnterUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::PushEnterString);
-	m_pCPushEnterUI->SetAlpha(m_fPushEnterUIAlpha);
-	m_pCPushEnterUI->SetScale(PUSH_ENTER_SCALE_MAX);
-	m_pCPushEnterUI->SetPosition(PUSH_ENTER_POS);
-
-	CDepth_Stencil* m_pCDeptshStencil = CDepth_Stencil::GetDepthStencilInstance();
-	m_pCDeptshStencil->SetDepth(false);
-	m_pCPushEnterUI->Render();
-	m_pCDeptshStencil->SetDepth(true);
-	
-}
-
-//=========================================.
 //		共通値の初期化処理関数.
 //=========================================.
 void CEndingStageBase::InitCommonValue()
 {
 	//インスタンス化.
-	m_pCSurpriseDegreeManager = std::make_unique<CSurpriseDegreeManager>(m_Evaluation);
 	m_pCFloor.reset(new CFloor());
 	m_pCBackstageLight.reset(new CBackstageLight());
 	m_pCCameraEnding.reset(new CCameraEnding());

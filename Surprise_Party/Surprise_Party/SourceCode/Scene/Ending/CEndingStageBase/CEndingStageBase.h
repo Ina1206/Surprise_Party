@@ -46,12 +46,8 @@ protected:
 	virtual void Init() = 0;								//初期化処理関数.
 	virtual void Release() = 0;								//解放処理関数.
 
-	void UpdateCommonUI();									//共通のUIの更新処理関数.
 	void RenderFloor();										//床の描画処理関数.
 	void RenderGhost();										//お化け描画処理関数.
-	void RenderCommonUI();									//共通のUIの描画処理関数.
-	void UpdatePushEnter();									//PushEnterの更新処理関数.
-	void RenderPushEnter();									//PushEnterの描画処理関数.
 
 	//========================変数=============================//.
 	D3DXMATRIX									m_mView;					//ビュー行列.
@@ -68,22 +64,13 @@ protected:
 	bool										m_bDisplayAllAtOnce;		//一気に表示フラグ.
 
 private:
-	//===================定数======================//.
-	const D3DXVECTOR3	PUSH_ENTER_POS			= D3DXVECTOR3(800.0f, 600.0f, 0.0f);//PushEnterの座標.
-	const float			ALPHA_MAX				= 1.0f;								//透過値最大値.
-	const float			ALPHA_MIN				= 0.0f;								//透過値最小値.
-	const float			PUSH_ENTER_SCALE_MAX	= 2.0f;								//PushEnter大きさ.
 
 	//========================関数=============================//.
 	void InitCommonValue();												//共通値の初期化処理関数.
 	void CreateInstanceFronClass(const int& num);						//クラスからインスタンスを作成する処理関数.
 
 	//========================変数=============================//.
-	std::unique_ptr<CSurpriseDegreeManager> m_pCSurpriseDegreeManager;	//驚かし度の管理クラス.
 	std::unique_ptr<CFloor>					m_pCFloor;					//床クラス.
-	CSpriteUI*								m_pCPushEnterUI;			//SpriteUIクラス(PushEnterの文字).
-	float									m_fPushEnterUIAlpha;		//SpriteUIの透過値.
-	int										m_AlphaAddDecDirect;		//透過値の加算減算方向.
 };
 
 #endif	//#ifndef CENDING_STAGE_BASE_H.
