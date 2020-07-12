@@ -413,6 +413,12 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\Shout">
       <UniqueIdentifier>{c37d8dc0-f8e3-4806-a3f8-1563e1a49df8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI">
+      <UniqueIdentifier>{e6b9c03b-3f70-47f8-96d0-a35fdc7bf377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIBase">
+      <UniqueIdentifier>{f25d44d7-1aa7-484b-a1bf-18eccced76db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -829,6 +835,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\Shout\CShout.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\Shout</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIBase\CEvaluationUIBase.h">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1232,6 +1241,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\Shout\CShout.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI\SurpriseDegree\Shout</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIBase\CEvaluationUIBase.cpp">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\EvaluationUIBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

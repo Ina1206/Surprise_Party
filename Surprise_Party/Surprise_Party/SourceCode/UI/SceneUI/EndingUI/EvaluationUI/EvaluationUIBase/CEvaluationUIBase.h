@@ -1,0 +1,44 @@
+#ifndef CEVALUATION_UI_BASE_H
+#define CEVALUATION_UI_BASE_H
+
+#include "..\..\..\..\CUI.h"
+
+/****************************************
+*		評価UIの基底クラス.
+*******************/
+class CEvaluationUIBase
+	: public CUI
+{
+public:
+	CEvaluationUIBase();
+	virtual ~CEvaluationUIBase();
+	
+	//====================関数========================//.
+	virtual void Update() = 0;	//更新処理関数.
+	void Render();				//描画処理関数.
+
+	//==============情報取得処理関数===================//.
+	//全てを表示するフラグ.
+	bool GetFinishedAllDispFlag() const { return m_bFinishedAllDispFlag; }
+
+	//==============情報置換処理関数===================//.
+	//全て表示するフラグ.
+	void SetDisplayAllAtOnce(const bool& bFlag) { m_bDisplayAllAtOnce = bFlag; }
+
+protected:
+	//====================変数=========================//.
+	std::vector<CSpriteUI>		m_pCEvaluationUI;			//評価UI.
+	std::vector<D3DXVECTOR3>	m_vEvaluationPos;			//表示座標.
+	std::vector<D3DXVECTOR3>	m_vPrePos;					//中心軸を動かす座標.
+	std::vector<D3DXVECTOR3>	m_vEvaluationRot;			//角度.
+	std::vector<D3DXVECTOR3>	m_vEvaluationScale;			//大きさ.
+	std::vector<D3DXVECTOR2>	m_vEvaluationUV;			//UV座標.
+	std::vector<float>			m_fEvaluationAlpha;			//透過値.
+
+	bool						m_bFinishedAllDispFlag;		//全て表示するフラグ.
+	bool						m_bDisplayAllAtOnce;		//一気に表示するフラグ.
+	int							m_UpdateNum;				//更新する番号.
+
+};
+
+#endif	//#ifndef CEVALUATION_UI_BASE_H.

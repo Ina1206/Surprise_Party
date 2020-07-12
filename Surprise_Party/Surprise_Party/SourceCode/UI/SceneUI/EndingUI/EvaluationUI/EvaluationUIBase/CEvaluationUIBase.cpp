@@ -1,0 +1,32 @@
+#include "CEvaluationUIBase.h"
+
+/****************************************
+*		ï]âøUIÇÃäÓíÍÉNÉâÉX.
+*******************/
+CEvaluationUIBase::CEvaluationUIBase()
+	: m_pCEvaluationUI		()
+	, m_vEvaluationPos		()
+	, m_vPrePos				()
+	, m_vEvaluationRot		()
+	, m_vEvaluationScale	()
+	, m_vEvaluationUV		()
+	, m_fEvaluationAlpha	()
+	, m_bFinishedAllDispFlag(false)
+	, m_bDisplayAllAtOnce	(false)
+	, m_UpdateNum			(0)
+{
+
+}
+
+CEvaluationUIBase::~CEvaluationUIBase()
+{
+
+}
+
+//=======================================.
+//		ï`âÊèàóùä÷êî.
+//=======================================.
+void CEvaluationUIBase::Render()
+{
+
+}
