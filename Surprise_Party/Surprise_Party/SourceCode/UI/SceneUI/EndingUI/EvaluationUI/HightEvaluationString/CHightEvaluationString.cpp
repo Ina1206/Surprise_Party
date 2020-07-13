@@ -169,3 +169,17 @@ void CHightEvaluationString::Bound()
 	}
 
 }
+
+//===========================================.
+//		ˆê‹C‚É•\Ž¦‚·‚éˆ—ŠÖ”.
+//===========================================.
+void CHightEvaluationString::DisplayAllAtOnce()
+{
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::HightEvaluationString);
+	for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
+		m_vEvaluationPos[sprite] = FINISH_BASE_POS;
+		m_vEvaluationPos[sprite].x += SpriteState.Disp.w * sprite;
+		m_vEvaluationScale[sprite] = EATCH_SCALE_MAX;
+	}
+	m_bFinishedAllDispFlag = true;
+}

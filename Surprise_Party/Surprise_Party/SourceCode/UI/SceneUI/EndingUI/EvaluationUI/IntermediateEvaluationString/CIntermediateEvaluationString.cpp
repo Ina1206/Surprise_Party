@@ -25,36 +25,15 @@ void CIntermediateEvaluationString::Update()
 		return;
 	}
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
-			m_vEvaluationPos[sprite].x -= 0.5f;
-		}
-	}
-
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
-			m_vEvaluationPos[sprite].x += 0.5f;
-		}
-
-	}
-
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
-			m_vEvaluationPos[sprite].y += 0.5f;
-		}
-
-	}
-
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
-			m_vEvaluationPos[sprite].y -= 0.5f;
-		}
-
-	}
-
 	m_vEvaluationPos[m_UpdateNum] = BASE_POS;
 	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
 	m_vEvaluationPos[m_UpdateNum].x += SpriteState.Disp.w * m_UpdateNum;
+
+	if (m_bDisplayAllAtOnce == true) {
+		//一気に表示する処理関数.
+		DisplayAllAtOnce();
+		return;
+	}
 
 	//拡大処理関数.
 	Scale();
@@ -129,4 +108,17 @@ void CIntermediateEvaluationString::Rotation()
 			m_ActFinishFlag |= FINISH_ROTATION_FLAG;
 		}
 	}
+}
+
+//=============================================.
+//		一気に表示処理関数.
+//=============================================.
+void CIntermediateEvaluationString::DisplayAllAtOnce()
+{
+	for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
+		m_vEvaluationRot[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vEvaluationScale[sprite] = EATCH_SCALE_MAX;
+	}
+
+	m_bFinishedAllDispFlag = true;
 }
