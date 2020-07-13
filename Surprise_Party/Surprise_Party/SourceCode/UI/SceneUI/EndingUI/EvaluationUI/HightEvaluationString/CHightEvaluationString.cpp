@@ -28,6 +28,12 @@ void CHightEvaluationString::Update()
 		return;
 	}
 
+	if (m_bDisplayAllAtOnce == true) {
+		//ˆê‹C‚É•\¦‚·‚éˆ—ŠÖ”.
+		DisplayAllAtOnce();
+		return;
+	}
+
 	//•\¦ˆ—ŠÖ”.
 	Disp();
 

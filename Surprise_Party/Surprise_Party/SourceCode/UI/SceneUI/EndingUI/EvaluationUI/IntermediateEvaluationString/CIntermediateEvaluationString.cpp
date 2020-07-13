@@ -25,15 +25,15 @@ void CIntermediateEvaluationString::Update()
 		return;
 	}
 
-	m_vEvaluationPos[m_UpdateNum] = BASE_POS;
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
-	m_vEvaluationPos[m_UpdateNum].x += SpriteState.Disp.w * m_UpdateNum;
-
 	if (m_bDisplayAllAtOnce == true) {
 		//ˆê‹C‚É•\Ž¦‚·‚éˆ—ŠÖ”.
 		DisplayAllAtOnce();
 		return;
 	}
+
+	m_vEvaluationPos[m_UpdateNum] = BASE_POS;
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
+	m_vEvaluationPos[m_UpdateNum].x += SpriteState.Disp.w * m_UpdateNum;
 
 	//Šg‘åˆ—ŠÖ”.
 	Scale();
@@ -115,9 +115,12 @@ void CIntermediateEvaluationString::Rotation()
 //=============================================.
 void CIntermediateEvaluationString::DisplayAllAtOnce()
 {
+	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
 	for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
 		m_vEvaluationRot[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		m_vEvaluationScale[sprite] = EATCH_SCALE_MAX;
+		m_vEvaluationPos[sprite] = BASE_POS;
+		m_vEvaluationPos[sprite].x += sprite * SpriteState.Disp.w;
 	}
 
 	m_bFinishedAllDispFlag = true;
