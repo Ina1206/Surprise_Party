@@ -698,7 +698,7 @@ void CResourceManager::SpriteUIStateSetting()
 	m_pstSpriteUIState[LowEvaluationStringNum].Base.h = 180.0f;
 	m_pstSpriteUIState[LowEvaluationStringNum].Frame.w = 2.0f;
 	m_pstSpriteUIState[LowEvaluationStringNum].Frame.h = 1.0f;
-	m_pstSpriteUIState[LowEvaluationStringNum].Stride.w = m_pstSpriteUIState[LowEvaluationStringNum].Base.w / m_pstSpriteUIState[LowEvaluationStringNum].Stride.w;
+	m_pstSpriteUIState[LowEvaluationStringNum].Stride.w = m_pstSpriteUIState[LowEvaluationStringNum].Base.w / m_pstSpriteUIState[LowEvaluationStringNum].Frame.w;
 	m_pstSpriteUIState[LowEvaluationStringNum].Stride.h = m_pstSpriteUIState[LowEvaluationStringNum].Base.h;
 	m_pstSpriteUIState[LowEvaluationStringNum].Disp.w = m_pstSpriteUIState[LowEvaluationStringNum].Stride.w;
 	m_pstSpriteUIState[LowEvaluationStringNum].Disp.h = m_pstSpriteUIState[LowEvaluationStringNum].Base.h;

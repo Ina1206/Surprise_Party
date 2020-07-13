@@ -1,6 +1,7 @@
 #include "CEvaluationUIManager.h"
 #include "..\HightEvaluationString\CHightEvaluationString.h"
 #include "..\IntermediateEvaluationString\CIntermediateEvaluationString.h"
+#include "..\LowEvaluationString\CLowEvaluationString.h"
 
 /*********************************************
 *		•]‰¿UI‚ÌŠÇ—ƒNƒ‰ƒX.
@@ -30,6 +31,7 @@ CEvaluationUIManager::~CEvaluationUIManager()
 //==========================================.
 void CEvaluationUIManager::Update()
 {
+	m_pCEvaluationUIBase->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
 	m_pCEvaluationUIBase->Update();
 	m_bFinishedAllDispFlag = m_pCEvaluationUIBase->GetFinishedAllDispFlag();
 }
@@ -55,6 +57,10 @@ void CEvaluationUIManager::Init()
 //==========================================.
 std::unique_ptr<CEvaluationUIBase> CEvaluationUIManager::DecideEvaluationUIType()
 {
+	if (m_EvaluationNum == 0) {
+		return std::make_unique<CLowEvaluationString>();
+	}
+
 	if (m_EvaluationNum == 1) {
 		return std::make_unique<CIntermediateEvaluationString>();
 	}

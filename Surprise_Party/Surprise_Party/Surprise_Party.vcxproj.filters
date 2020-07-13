@@ -428,6 +428,9 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\IntermediateEvaluationString">
       <UniqueIdentifier>{8f6ba7ec-34e9-4ec3-af82-3f8cae45abc5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString">
+      <UniqueIdentifier>{22a94412-6b4f-4255-afbe-14e1d4dff617}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -856,6 +859,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\IntermediateEvaluationString\CIntermediateEvaluationString.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\IntermediateEvaluationString</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString\CLowEvaluationString.h">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1271,6 +1277,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\IntermediateEvaluationString\CIntermediateEvaluationString.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\IntermediateEvaluationString</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString\CLowEvaluationString.cpp">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
