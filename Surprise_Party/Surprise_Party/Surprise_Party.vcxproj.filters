@@ -431,6 +431,9 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString">
       <UniqueIdentifier>{22a94412-6b4f-4255-afbe-14e1d4dff617}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\UI\SceneUI\EndingUI\PushEnter">
+      <UniqueIdentifier>{b507be87-dd8f-445d-bf75-2aeec7f1fef0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -862,6 +865,9 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString\CLowEvaluationString.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\PushEnter\CPushEnter.h">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\PushEnter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1280,6 +1286,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString\CLowEvaluationString.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI\EvaluationUI\LowEvaluationString</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\PushEnter\CPushEnter.cpp">
+      <Filter>SourceCode\UI\SceneUI\EndingUI\PushEnter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
