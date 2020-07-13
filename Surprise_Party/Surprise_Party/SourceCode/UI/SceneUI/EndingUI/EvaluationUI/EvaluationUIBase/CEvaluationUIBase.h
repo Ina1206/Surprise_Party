@@ -43,6 +43,8 @@ protected:
 	std::vector<D3DXVECTOR2>	m_vEvaluationUV;			//UV座標.
 	std::vector<float>			m_fEvaluationAlpha;			//透過値.
 
+	SPRITE_STATE				m_stSpriteState;			//スプライト情報.
+
 	bool						m_bFinishedAllDispFlag;		//全て表示するフラグ.
 	bool						m_bDisplayAllAtOnce;		//一気に表示するフラグ.
 	int							m_UpdateNum;				//更新する番号.

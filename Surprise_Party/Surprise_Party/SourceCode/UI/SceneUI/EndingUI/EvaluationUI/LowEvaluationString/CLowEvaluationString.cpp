@@ -49,6 +49,7 @@ void CLowEvaluationString::Update()
 	if (m_ActFlag == 0) {
 		m_ActFlag = DISP_FLAG;
 		m_UpdateNum++;
+		//全ての文字を出し終わったら終了.
 		if (m_UpdateNum >= static_cast<int>(m_pCEvaluationUI.size())) {
 			m_bFinishedAllDispFlag = true;
 		}
@@ -60,7 +61,10 @@ void CLowEvaluationString::Update()
 //===========================================.
 void CLowEvaluationString::Init()
 {
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::LowEvaluationString);
+	//スプライト情報.
+	m_stSpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::LowEvaluationString);
+	
+	//スプライトUIの設定.
 	const int ELEMENT_MAX = static_cast<int>(m_pCResourceManager->GetSpriteUIState(enSpriteUI::LowEvaluationString).Frame.w);
 	for (int element = 0; element < ELEMENT_MAX; element++) {
 		m_pCEvaluationUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::LowEvaluationString));
@@ -71,12 +75,13 @@ void CLowEvaluationString::Init()
 
 	//初期値の設定.
 	for (int element = 0; element < ELEMENT_MAX; element++) {
-		m_fEvaluationAlpha[element] = ALPHA_MIN;
-		m_vEvaluationPos[element] = FINSH_BASE_POS;
-		m_vEvaluationPos[element].y -= SpriteState.Disp.h;
-		m_vEvaluationUV[element].x += element;
+		m_fEvaluationAlpha[element]	= ALPHA_MIN;
+		m_vEvaluationPos[element]	= FINSH_BASE_POS;
+		m_vEvaluationPos[element].y -= m_stSpriteState.Disp.h;
+		m_vEvaluationUV[element].x	+= element;
 	}
 
+	//表示フラグから開始.
 	m_ActFlag = DISP_FLAG;
 }
 
@@ -105,6 +110,7 @@ void CLowEvaluationString::Move()
 	m_fAngle += ANGLE_SPEED;
 	if (m_fAngle >= ANGLE_MAX) {
 		m_fAngle = 0.0f;
+
 		//縦移動が終了したら横移動も終了.
 		if (m_bVerticalMoveFinish == true) {
 			m_ActFlag &= ~MOVE_FLAG;
@@ -120,11 +126,10 @@ void CLowEvaluationString::Move()
 //===========================================.
 void CLowEvaluationString::Transparent()
 {
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::LowEvaluationString);
 	//移動距離.
-	const float MOVED_DISTANCE = fabsf(-SpriteState.Disp.h - m_vEvaluationPos[m_UpdateNum].y);
+	const float MOVED_DISTANCE = fabsf(-m_stSpriteState.Disp.h - m_vEvaluationPos[m_UpdateNum].y);
 	//最終座標の距離.
-	const float FINISH_MOVE_DINSTANCE = fabsf(-SpriteState.Disp.h - FINSH_BASE_POS.y);
+	const float FINISH_MOVE_DINSTANCE = fabsf(-m_stSpriteState.Disp.h - FINSH_BASE_POS.y);
 	
 	m_fEvaluationAlpha[m_UpdateNum] = ALPHA_MAX * (MOVED_DISTANCE / FINISH_MOVE_DINSTANCE);
 	
@@ -138,8 +143,9 @@ void CLowEvaluationString::Transparent()
 //===========================================.
 void CLowEvaluationString::MoveBeforePos()
 {
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::LowEvaluationString);
-	m_vEvaluationPos[m_UpdateNum].x += SpriteState.Disp.w * m_UpdateNum;
+	//x軸一文字ずつズラす.
+	m_vEvaluationPos[m_UpdateNum].x += m_stSpriteState.Disp.w * m_UpdateNum;
+	//移動と透過処理開始.
 	m_ActFlag = MOVE_FLAG | TRANSPARENT_FLAG;
 }
 
@@ -148,13 +154,15 @@ void CLowEvaluationString::MoveBeforePos()
 //============================================.
 void CLowEvaluationString::DisplayAllAtOnce()
 {
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::LowEvaluationString);
+	//一気に最終地点にまで変更.
 	for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
 		m_vEvaluationPos[sprite] = FINSH_BASE_POS;
-		m_vEvaluationPos[sprite].x += SpriteState.Disp.h * sprite;
+		//一文字ずつズラす.
+		m_vEvaluationPos[sprite].x += m_stSpriteState.Disp.h * sprite;
 		m_fEvaluationAlpha[sprite] = ALPHA_MAX;
 		m_vEvaluationScale[sprite] = EATCH_SCALE_MAX;
 	}
 
+	//全て表示終了.
 	m_bFinishedAllDispFlag = true;
 }

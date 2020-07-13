@@ -31,9 +31,9 @@ void CIntermediateEvaluationString::Update()
 		return;
 	}
 
+	//位置設定.
 	m_vEvaluationPos[m_UpdateNum] = BASE_POS;
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
-	m_vEvaluationPos[m_UpdateNum].x += SpriteState.Disp.w * m_UpdateNum;
+	m_vEvaluationPos[m_UpdateNum].x += m_stSpriteState.Disp.w * m_UpdateNum;
 
 	//拡大処理関数.
 	Scale();
@@ -41,13 +41,17 @@ void CIntermediateEvaluationString::Update()
 	//回転処理関数.
 	Rotation();
 
+	//次の文字へ変更処理.
 	const unsigned int ALL_ACT_FLAG = FINISH_ROTATION_FLAG | FINISH_SCALE_FLAG;
 	if (m_ActFinishFlag == ALL_ACT_FLAG) {
 		m_ActFinishFlag = 0;
 		m_UpdateNum++;
+
+		//全ての文字の処理を終了した処理.
 		if (m_UpdateNum >= static_cast<int>(m_pCEvaluationUI.size())) {
 			m_bFinishedAllDispFlag = true;
 		}
+
 	}
 }
 
@@ -56,8 +60,10 @@ void CIntermediateEvaluationString::Update()
 //============================================.
 void CIntermediateEvaluationString::Init()
 {
-	const SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
-	const float ELEMENT_COUNT_MAX = SpriteState.Frame.w;
+	m_stSpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
+
+	//スプライトUIの設定.
+	const float ELEMENT_COUNT_MAX = m_stSpriteState.Frame.w;
 	for (int element = 0; element < ELEMENT_COUNT_MAX; element++) {
 		m_pCEvaluationUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::IntermediateEvaluationString));
 	}
@@ -67,9 +73,9 @@ void CIntermediateEvaluationString::Init()
 	for (int sprite = 0; sprite < ELEMENT_COUNT_MAX; sprite++) {
 		m_vEvaluationPos[sprite] = BASE_POS;
 		//回転軸を中心にするための設定.
-		m_vPrePos = D3DXVECTOR3(-SpriteState.Disp.w / 2.0f, -SpriteState.Disp.h / 2.0f, 0.0f);
+		m_vPrePos = D3DXVECTOR3(-m_stSpriteState.Disp.w / 2.0f, -m_stSpriteState.Disp.h / 2.0f, 0.0f);
 		m_vEvaluationScale[sprite] = EATCH_SCALE_MIN;
-		m_vEvaluationUV[sprite].x += 1.0f * sprite;
+		m_vEvaluationUV[sprite].x += sprite;
 	}
 }
 
@@ -88,6 +94,7 @@ void CIntermediateEvaluationString::Scale()
 {
 	m_vEvaluationScale[m_UpdateNum] += SCALE_SPEED;
 	
+	//拡大終了処理.
 	if (m_vEvaluationScale[m_UpdateNum].x >= EATCH_SCALE_MAX.x) {
 		m_vEvaluationScale[m_UpdateNum] = EATCH_SCALE_MAX;
 		m_ActFinishFlag = FINISH_SCALE_FLAG;
@@ -101,9 +108,11 @@ void CIntermediateEvaluationString::Rotation()
 {
 	m_vEvaluationRot[m_UpdateNum].z += ROTATION_SPEED;
 
+	//回転限界処理.
 	if (m_vEvaluationRot[m_UpdateNum].z >= static_cast<float>(D3DXToRadian(ROT_MAX))) {
 		m_vEvaluationRot[m_UpdateNum].z = 0.0f;
 
+		//回転終了処理.
 		if (m_ActFinishFlag & FINISH_SCALE_FLAG) {
 			m_ActFinishFlag |= FINISH_ROTATION_FLAG;
 		}
@@ -115,12 +124,12 @@ void CIntermediateEvaluationString::Rotation()
 //=============================================.
 void CIntermediateEvaluationString::DisplayAllAtOnce()
 {
-	SPRITE_STATE SpriteState = m_pCResourceManager->GetSpriteUIState(enSpriteUI::IntermediateEvaluationString);
+	//一気に最終地点まで処理.
 	for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
-		m_vEvaluationRot[sprite] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		m_vEvaluationScale[sprite] = EATCH_SCALE_MAX;
-		m_vEvaluationPos[sprite] = BASE_POS;
-		m_vEvaluationPos[sprite].x += sprite * SpriteState.Disp.w;
+		m_vEvaluationRot[sprite]	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vEvaluationScale[sprite]	= EATCH_SCALE_MAX;
+		m_vEvaluationPos[sprite]	= BASE_POS;
+		m_vEvaluationPos[sprite].x += sprite * m_stSpriteState.Disp.w;
 	}
 
 	m_bFinishedAllDispFlag = true;
