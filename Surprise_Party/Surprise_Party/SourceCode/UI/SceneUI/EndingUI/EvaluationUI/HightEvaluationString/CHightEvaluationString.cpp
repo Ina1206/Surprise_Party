@@ -24,6 +24,10 @@ CHightEvaluationString::~CHightEvaluationString()
 //=========================================.
 void CHightEvaluationString::Update()
 {
+	if (m_bFinishedAllDispFlag == true) {
+		return;
+	}
+
 	//ï\é¶èàóùä÷êî.
 	Disp();
 

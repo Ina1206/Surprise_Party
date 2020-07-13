@@ -109,7 +109,7 @@ void CEvaluationStageBase::UpdateCommonUI()
 
 		if (m_pCSurpriseDegreeManager->GetAllDispFlag() == true) {
 			//お化けと評価文字更新処理フラグ.
-			m_UpdateFlag = EVALUATION_STRING_FLAG | GHOST_FLAG;
+			m_UpdateFlag = EVALUATION_STRING_FLAG;
 		}
 		return;
 	}

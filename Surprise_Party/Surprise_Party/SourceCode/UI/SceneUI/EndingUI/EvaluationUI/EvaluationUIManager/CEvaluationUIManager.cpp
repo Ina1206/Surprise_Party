@@ -31,6 +31,7 @@ CEvaluationUIManager::~CEvaluationUIManager()
 void CEvaluationUIManager::Update()
 {
 	m_pCEvaluationUIBase->Update();
+	m_bFinishedAllDispFlag = m_pCEvaluationUIBase->GetFinishedAllDispFlag();
 }
 
 //==========================================.
