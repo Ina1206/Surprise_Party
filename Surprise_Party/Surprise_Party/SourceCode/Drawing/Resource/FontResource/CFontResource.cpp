@@ -174,7 +174,7 @@ void CFontResource::Destroy()
 		return;
 	}
 	//—v‘f”‚Ì‰Šú‰».
-	m_pCFont.clear();
+ 	m_pCFont.clear();
 	m_pCFont.shrink_to_fit();
 }
 

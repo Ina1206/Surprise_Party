@@ -152,11 +152,10 @@ void CSceneManager::Load()
 
 
 	//シーン初期設定.
-	m_pCSceneBase.resize(2);
 	m_SceneType = static_cast<int>(enSceneType::Title);
-	m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CTitle());
+	m_pCSceneBase.emplace_back(std::make_unique<CTitle>());
 
-	m_pCSceneBase[PAUSE_SCENE_NUM].reset(new CPause());
+	m_pCSceneBase.emplace_back(std::make_unique<CPause>());
 
 	m_pCSceneFade->SetShutterFlag(m_pCSceneFade->OPEN_FLAG);
 
@@ -172,16 +171,20 @@ void CSceneManager::ChangeScene()
 		NextScene();
 	}
 
+
 	switch (static_cast<enSceneType>(m_SceneType)) {
 	case enSceneType::Title:
-		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CTitle());
+		m_pCSceneBase[NORMAL_SCENE_NUM].reset();
+		m_pCSceneBase[NORMAL_SCENE_NUM] = std::make_unique<CTitle>();
 		break;
 	case enSceneType::GameMain:
-		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CGameMain());
+		m_pCSceneBase[NORMAL_SCENE_NUM].reset();
+		m_pCSceneBase[NORMAL_SCENE_NUM] = std::make_unique<CGameMain>();
 		break;
 	case enSceneType::Ending:
 		const int Evaluation = m_pCSceneBase[NORMAL_SCENE_NUM]->GetEvaluation();
-		m_pCSceneBase[NORMAL_SCENE_NUM].reset(new CEnding());
+		m_pCSceneBase[NORMAL_SCENE_NUM].reset();
+		m_pCSceneBase[NORMAL_SCENE_NUM] = std::make_unique<CEnding>();
 		m_pCSceneBase[NORMAL_SCENE_NUM]->SetEvaluation(Evaluation);
 		if (m_bFlyToSceneFlag == true) {
 			m_pCSceneBase[NORMAL_SCENE_NUM]->SetEvaluation(m_FlyToSceneEvaluation);
@@ -242,6 +245,7 @@ void CSceneManager::Pause()
 //===========================================.
 void CSceneManager::FlyToScene()
 {
+	//シーンに飛ぶ処理開始.
 	if (GetAsyncKeyState(VK_F2) & 0x0001) {
 		if (m_bFlyToSceneFlag == true) {
 			m_bFlyToSceneFlag = false;
@@ -262,6 +266,7 @@ void CSceneManager::FlyToScene()
 		m_FlyToSceneNum++;
 	}
 
+	//上限設定.
 	if (m_FlyToSceneNum < 0) {
 		m_FlyToSceneNum = 0;
 	}
@@ -269,6 +274,7 @@ void CSceneManager::FlyToScene()
 		m_FlyToSceneNum = m_FlyToSceneMax - 1;
 	}
 
+	//飛ぶシーン決定処理.
 	if(GetAsyncKeyState(VK_RETURN) & 0x0001){
 		//シャッターを閉じるよう処理.
 		m_pCSceneFade->SetShutterFlag(m_pCSceneFade->CLOSE_FLAG);
