@@ -29,6 +29,9 @@ HRESULT CSoundResource::Init(HWND hWnd)
 	m_pCBGM.reserve(BGM_MAX);
 	InitSound(m_pCBGM, m_stBGMaliasName);
 
+	//作成するSEの総合計(種類ごとのSE数 * SEの補欠).
+	const int ALL_SE_MAX = SE_TYPE_MAX * SE_RESEVE;
+
 	//SEの初期設定処理関数.
 	m_pCSE.reserve(ALL_SE_MAX);
 	InitSound(m_pCSE, m_stSEaliasName);
@@ -101,20 +104,17 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Jump.mp3",
 	};
 
-	//エイリアス名の元.
 	const std::string m_Sound[] =
 	{
 		"Jump"
 	};
 
-	//エイリアス名の結合.
-	for (unsigned int name = 0; name < SE_MAX; name++) {
-		AddAliasName(m_Sound[name / SE_RESEVE], name);
-	}
-
-
-	//作成処理関数.
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {
+		
+		//エイリアス名の元.
+		AddAliasName(m_Sound[sound / SE_RESEVE], sound);
+		
+		//作成処理関数.
 		if (FAILED(Create(m_filename[sound / SE_RESEVE], m_pCSE[sound], m_stSEaliasName[sound]))) {
 			return E_FAIL;
 		}
@@ -172,6 +172,7 @@ HRESULT CSoundResource::LoadBGM()
 void CSoundResource::InitSound( std::vector<std::unique_ptr<clsSound>>& CSound,
 								std::vector<std::string>& stName)
 {
+	//領域まで作成する.
 	for (unsigned int sound = 0; sound < CSound.capacity(); sound++) {
 		CSound.emplace_back(std::make_unique<clsSound>());
 		stName.push_back("");

@@ -54,6 +54,8 @@ private:
 	int					m_PlaySound;		//Ä¶’†‚ÌBGM.
 	int					m_SoundVolume;		//‰¹—Ê.
 	int*				m_pSEVolume;		//SE‚Ì‰¹—Ê.
+
+	//std::unique_ptr<CSoundResource> m_
 };
 
 #endif	//#ifndef C_SE_PLAYMANAGER_H.

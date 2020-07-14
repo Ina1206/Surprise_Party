@@ -35,11 +35,8 @@ public:
 	};
 
 	//=============定数==============//.
+	const int SE_TYPE_MAX	= static_cast<int>(enSEType::Max);				//種類ごとのSEの最大数.
 	const int SE_RESEVE		= 10;											//SEの補欠.
-
-	const int ONE_SE_MAX	= static_cast<int>(enSEType::Max);				//単発SEの最大数.
-	const int LENGTH_MAX	= 256;											//文字数最大数.
-	const int ALL_SE_MAX	= ONE_SE_MAX * SE_RESEVE;						//補欠も合わせたすべての単発SEの最大数.
 	
 	const int BGM_MAX		= static_cast<int>(enBGMType::Max);				//BGMの最大数.
 
@@ -62,7 +59,7 @@ private:
 					const std::string& paliasname);							//作成処理関数.
 	
 	void	AddAliasName(const std::string& alias_name, 
-						 const int& name);						//エイリアス名の結合処理関数.												
+						 const int& name);									//エイリアス名の結合処理関数.												
 	HRESULT	LoadSE();														//SEの読み込み処理関数.
 	HRESULT LoadBGM();														//ループSEの読み込み処理関数.
 	
