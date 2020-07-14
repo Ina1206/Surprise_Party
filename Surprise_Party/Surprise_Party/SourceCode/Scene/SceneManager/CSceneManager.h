@@ -11,7 +11,7 @@
 
 #include "..\..\UI\Fade\SceneFade\CSceneFade.h"
 
-#include "..\..\Sound\SoundPlayManager\CPlaySoundManager.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*****************************************
 *		シーン管理クラス.

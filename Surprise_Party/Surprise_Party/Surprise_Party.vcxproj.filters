@@ -440,7 +440,7 @@
     <Filter Include="SourceCode\Sound\SoundResource">
       <UniqueIdentifier>{71a4ec96-6c6a-4c70-8134-c7e808a3c05b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SourceCode\Sound\SoundPlayManager">
+    <Filter Include="SourceCode\Sound\PlaySoundManager">
       <UniqueIdentifier>{7e8df25a-fe4e-4efb-9417-42385f95838c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -883,8 +883,8 @@
     <ClInclude Include="SourceCode\Sound\SoundResource\CSoundResource.h">
       <Filter>SourceCode\Sound\SoundResource</Filter>
     </ClInclude>
-    <ClInclude Include="SourceCode\Sound\SoundPlayManager\CPlaySoundManager.h">
-      <Filter>SourceCode\Sound\SoundPlayManager</Filter>
+    <ClInclude Include="SourceCode\Sound\PlaySoundManager\CPlaySoundManager.h">
+      <Filter>SourceCode\Sound\PlaySoundManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1314,8 +1314,8 @@
     <ClCompile Include="SourceCode\Sound\SoundResource\CSoundResource.cpp">
       <Filter>SourceCode\Sound\SoundResource</Filter>
     </ClCompile>
-    <ClCompile Include="SourceCode\Sound\SoundPlayManager\CPlaySoundManager.cpp">
-      <Filter>SourceCode\Sound\SoundPlayManager</Filter>
+    <ClCompile Include="SourceCode\Sound\PlaySoundManager\CPlaySoundManager.cpp">
+      <Filter>SourceCode\Sound\PlaySoundManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
