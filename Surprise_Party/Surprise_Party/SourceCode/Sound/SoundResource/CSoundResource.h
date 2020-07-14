@@ -16,9 +16,9 @@ public:
 	//============列挙体=============//.
 	//ループしない音.
 	enum class enSEType {
-		Jump,				//ジャンプ.
-		Max,				//最大数.
-		Start ,				//最初.
+		Jump,							//ジャンプ.
+		Max,							//最大数.
+		Start ,							//最初.
 	};
 	//ループする音.
 	enum class enBGMType {
@@ -46,29 +46,31 @@ public:
 	//=============関数==============//.
 	HRESULT Init(HWND hWnd);												//初期化処理関数.
 	HRESULT Load();															//読み込み処理関数.
-	HRESULT Release();														//解放処理関数.
 
 	//情報取得処理関数.
 	clsSound* GetSE(const int& SENum) { return m_pCSE[SENum].get(); }		//SEのサウンドクラス.
 	clsSound* GetBGM(const int& BGMNum) { return m_pCBGM[BGMNum].get(); }	//BGMのサウンドクラス.
+	int GetSEMax() const { return static_cast<int>(m_pCSE.size()); }		//SEの最大数.
+	int GetBGMMax() const { return static_cast<int>(m_pCBGM.size()); }		//BGMの最大数.
 private:
+	
 	//=============関数==============//.
-	HRESULT Create(const std::string& pfilename, 
+	HRESULT Release();														//解放処理関数.
+	
+	HRESULT Create( const std::string& pfilename, 
 					std::unique_ptr<clsSound>& pCSound,
 					const std::string& paliasname);							//作成処理関数.
-
-	HRESULT Check(int sound, 
-				  std::unique_ptr<clsSound>& pCSound);						//調べる処理関数.
 	
-	void	AddAliasName(char* alias_name, int name);						//エイリアス名の結合処理関数.												
-	HRESULT	LoadSE();														//単発SEの読み込み処理関数.
+	void	AddAliasName(const std::string& alias_name, 
+						 const int& name);						//エイリアス名の結合処理関数.												
+	HRESULT	LoadSE();														//SEの読み込み処理関数.
 	HRESULT LoadBGM();														//ループSEの読み込み処理関数.
 	
-	void	InitSound(	std::vector<std::unique_ptr<clsSound>>& CSound, 
-						std::vector<std::string>& stName);					//音の初期化処理関数.
+	void	InitSound( std::vector<std::unique_ptr<clsSound>>& CSound, 
+					   std::vector<std::string>& stName);					//音の初期化処理関数.
 
 	//=============変数==============//.
-	HWND		m_hWnd;				//ウィンドウハンドル.
+	HWND									m_hWnd;							//ウィンドウハンドル.
 
 	std::vector<std::unique_ptr<clsSound>>	m_pCSE;							//サウンドクラス（SE）.
 	std::vector<std::string>				m_stSEaliasName;				//SEの名前エイリアス名.

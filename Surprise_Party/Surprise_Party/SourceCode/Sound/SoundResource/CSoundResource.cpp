@@ -6,10 +6,6 @@
 ******/
 CSoundResource::CSoundResource()
 	: m_hWnd			(nullptr)
-	//, m_ppCOneSound	(nullptr)
-	//, m_ppOneSoundSE(nullptr)
-	//, m_ppCLoopSound	(nullptr)
-	//, m_ppLoopSoundSE(nullptr)
 	, m_pCSE			()
 	, m_stSEaliasName	()
 	, m_pCBGM			()
@@ -37,30 +33,6 @@ HRESULT CSoundResource::Init(HWND hWnd)
 	m_pCSE.reserve(ALL_SE_MAX);
 	InitSound(m_pCSE, m_stSEaliasName);
 
-#if 0
-	//動的確保.
-	//サウンドクラス.
-	m_ppCOneSound = new clsSound*[ALL_SE_MAX]();
-	//SEのエイリアス名.
-	m_ppOneSoundSE = new char*[ALL_SE_MAX]();
-	for (int sound = 0; sound < ALL_SE_MAX; sound++) {
-		m_ppOneSoundSE[sound] = new char[LENGTH_MAX]();
-	}
-
-	//初期化.
-	for (int sound = 0; sound < ALL_SE_MAX; sound++) {
-		m_ppCOneSound[sound] = nullptr;
-	}
-
-	//サウンドクラス.
-	m_ppCLoopSound = new clsSound*[LOOP_SE_MAX]();
-	//SEのエイリアス名.
-	m_ppLoopSoundSE = new char*[LOOP_SE_MAX]();
-	for (int sound = 0; sound < LOOP_SE_MAX; sound++) {
-		m_ppLoopSoundSE[sound] = new char[LENGTH_MAX]();
-		m_ppCLoopSound[sound] = nullptr;
-	}
-#endif	
 	return S_OK;
 }
 
@@ -69,15 +41,15 @@ HRESULT CSoundResource::Init(HWND hWnd)
 //==================================.
 HRESULT CSoundResource::Load()
 {
-#if 1
+	//SEの読み込み処理関数.
 	if (FAILED(LoadSE())) {
-		_ASSERT_EXPR(false, L"単発SEの読み込み失敗.");
+		_ASSERT_EXPR(false, L"SEの読み込み失敗.");
 		return E_FAIL;
 	}
-#endif
 
+	//BGMの読み込み処理関数.
 	if (FAILED(LoadBGM())) {
-		_ASSERT_EXPR(false, L"ループSEの読み込み失敗");
+		_ASSERT_EXPR(false, L"BGMの読み込み失敗");
 		return E_FAIL;
 	}
 
@@ -89,28 +61,6 @@ HRESULT CSoundResource::Load()
 //==================================.
 HRESULT CSoundResource::Release()
 {
-	//ループSE.
-	//for (int sound = 0; sound < LOOP_SE_MAX; sound++) {
-	//	//それぞれのエイリアス名配列解放.
-	//	SAFE_DELETE_ARRAY(m_ppLoopSoundSE[sound]);
-	//	//それぞれのサウンドクラス解放.
-	//	SAFE_DELETE(m_ppCLoopSound[sound]);
-	//}
-	////エイリアス名配列解放.
-	//SAFE_DELETE_ARRAY(m_ppLoopSoundSE);
-	////サウンドクラス解放.
-	//SAFE_DELETE_ARRAY(m_ppCLoopSound);
-
-	//for (int sound = 0; sound < ALL_SE_MAX; sound++) {
-	//	//それぞれのエイリアス名配列解放.
-	//	SAFE_DELETE_ARRAY(m_ppOneSoundSE[sound]);
-	//	//それぞれのサウンドクラス解放.
-	//	SAFE_DELETE(m_ppCOneSound[sound]);
-	//}
-	////エイリアス名配列解放.
-	//SAFE_DELETE_ARRAY(m_ppOneSoundSE);
-	////サウンドクラス配列解放.
-	//SAFE_DELETE_ARRAY(m_ppCOneSound);
 
 	return S_OK;
 }
@@ -118,9 +68,7 @@ HRESULT CSoundResource::Release()
 //==================================.
 //		作成処理関数.
 //==================================.
-HRESULT CSoundResource::Create(	const std::string& pfilename,
-								std::unique_ptr<clsSound>& pCSound,
-								const std::string& paliasname)
+HRESULT CSoundResource::Create(	const std::string& pfilename, std::unique_ptr<clsSound>& pCSound, const std::string& paliasname)
 {
 	//音の読み込み.
 	if (FAILED(pCSound->Open(pfilename.c_str(), paliasname, m_hWnd))) {
@@ -130,52 +78,23 @@ HRESULT CSoundResource::Create(	const std::string& pfilename,
 }
 
 //==================================.
-//		調べる処理関数.
-//==================================.
-HRESULT CSoundResource::Check(int sound, std::unique_ptr<clsSound>& pCSound)
-{
-	if (sound < static_cast<int>(enSoundSE::Start) || ONE_SE_MAX < sound) {
-		return E_FAIL;
-	}
-
-	if (pCSound != nullptr) {
-		return E_FAIL;
-	}
-
-	return S_OK;
-}
-
-//==================================.
 //		エイリアス名の結合.
 //==================================.
-void CSoundResource::AddAliasName(char* alias_name, int name)
+void CSoundResource::AddAliasName(const std::string& alias_name, const int& name)
 {
 	//エイリアス名と番号の結合.
-	char m_Addname[256];	//追加するもの.
-	char m_SoundName[256];	//追加前のエイリアス名.
-
-	//エイリアス名の元をコピー.
-	strcpy_s(m_SoundName, LENGTH_MAX, alias_name);
-
-	//エイリアス名の番号と元の名前追加.
-	sprintf_s(m_Addname, "%d", name % SE_RESEVE);
-	strcat_s(m_SoundName, m_Addname);
-
-	//エイリアス名コピー.
-	//strcpy_s(m_ppOneSoundSE[name], sizeof(m_SoundName), m_SoundName);
-
 	const std::string AddName = alias_name + std::to_string(name % SE_RESEVE);
-	m_stSEaliasName[name] += AddName;
+	m_stSEaliasName[name] = AddName;
 }
 
 //=================================================.
-//			単発SEの読み込み処理関数.
+//			SEの読み込み処理関数.
 //=================================================.
 HRESULT CSoundResource::LoadSE()
 {
 
 	const unsigned int SE_MAX = m_pCSE.size();
-#if 1
+
 	//ファイルパス.
 	const std::string m_filename[] =
 	{
@@ -183,7 +102,7 @@ HRESULT CSoundResource::LoadSE()
 	};
 
 	//エイリアス名の元.
-	char m_Sound[][256] =
+	const std::string m_Sound[] =
 	{
 		"Jump"
 	};
@@ -200,13 +119,12 @@ HRESULT CSoundResource::LoadSE()
 			return E_FAIL;
 		}
 	}
-#endif
 
 	return S_OK;
 }
 
 //===============================================.
-//		ループSEの読み込み処理関数.
+//		BGMの読み込み処理関数.
 //===============================================.
 HRESULT CSoundResource::LoadBGM()
 {

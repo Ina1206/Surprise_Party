@@ -32,11 +32,15 @@ HRESULT CSoundPlayManager::Init(HWND hWnd)
 	//読み込み処理関数.
 	m_pCSoundResource->Load();
 
+	//SEの最大数.
+	const int SE_MAX = m_pCSoundResource->GetSEMax();
+	//BGMの最大数.
+	const int BGM_MAX = m_pCSoundResource->GetBGMMax();
 	//サウンドクラス.
-	m_ppCOneCSound = new clsSound*[ALL_ONESE_MAX]();
+	m_ppCOneCSound = new clsSound*[SE_MAX]();
 	m_ppCLoopSound = new clsSound*[LOOP_SE_MAX]();
 	//それぞれのサウンド取得.
-	for (int sound = 0; sound < ALL_ONESE_MAX; sound++) {
+	for (int sound = 0; sound < SE_MAX; sound++) {
 		m_ppCOneCSound[sound] = m_pCSoundResource->GetSE(sound);
 	}
 	for (int sound = 0; sound < LOOP_SE_MAX; sound++) {
@@ -130,8 +134,6 @@ HRESULT CSoundPlayManager::Release()
 	SAFE_DELETE_ARRAY(m_pCnt);
 	SAFE_DELETE_ARRAY(m_pbPlayOneSE);
 
-	//解放処理関数.
-	m_pCSoundResource->Release();
 	//サウンド読み込みクラス解放.
 	SAFE_DELETE(m_pCSoundResource);
 
