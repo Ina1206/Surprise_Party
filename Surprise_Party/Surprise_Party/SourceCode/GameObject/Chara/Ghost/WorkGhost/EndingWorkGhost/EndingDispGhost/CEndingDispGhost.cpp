@@ -120,6 +120,7 @@ void CEndingDispGhost::ActRejoiceEmotion()
 void CEndingDispGhost::Rotation()
 {
 	m_vRot.z += ROTATION_SPEED * m_RotationDirect;
+	m_vRot.x += ROTATION_SPEED * m_RotationDirect;
 
 	if (m_vPos.y <= m_vChangeBeforePos.y) {
 		m_bChangeRotationDirect = false;
