@@ -29,8 +29,13 @@ HRESULT CSoundResource::Init(HWND hWnd)
 	//ウィンドウハンドル取得.
 	m_hWnd = hWnd;
 
+	//BGMの初期設定処理.
 	m_pCBGM.reserve(BGM_MAX);
 	InitSound(m_pCBGM, m_stBGMaliasName);
+
+	//SEの初期設定処理関数.
+	m_pCSE.reserve(ALL_SE_MAX);
+	InitSound(m_pCSE, m_stSEaliasName);
 
 #if 0
 	//動的確保.
@@ -64,8 +69,8 @@ HRESULT CSoundResource::Init(HWND hWnd)
 //==================================.
 HRESULT CSoundResource::Load()
 {
-#if 0
-	if (FAILED(OneceLoadSE())) {
+#if 1
+	if (FAILED(LoadSE())) {
 		_ASSERT_EXPR(false, L"単発SEの読み込み失敗.");
 		return E_FAIL;
 	}
@@ -127,7 +132,7 @@ HRESULT CSoundResource::Create(	const std::string& pfilename,
 //==================================.
 //		調べる処理関数.
 //==================================.
-HRESULT CSoundResource::Check(int sound, clsSound* pCSound)
+HRESULT CSoundResource::Check(int sound, std::unique_ptr<clsSound>& pCSound)
 {
 	if (sound < static_cast<int>(enSoundSE::Start) || ONE_SE_MAX < sound) {
 		return E_FAIL;
@@ -158,42 +163,40 @@ void CSoundResource::AddAliasName(char* alias_name, int name)
 
 	//エイリアス名コピー.
 	//strcpy_s(m_ppOneSoundSE[name], sizeof(m_SoundName), m_SoundName);
+
+	const std::string AddName = alias_name + std::to_string(name % SE_RESEVE);
+	m_stSEaliasName[name] += AddName;
 }
 
 //=================================================.
 //			単発SEの読み込み処理関数.
 //=================================================.
-HRESULT CSoundResource::OneceLoadSE()
+HRESULT CSoundResource::LoadSE()
 {
-#if 0
+
+	const unsigned int SE_MAX = m_pCSE.size();
+#if 1
 	//ファイルパス.
-	const char m_filename[][256] =
+	const std::string m_filename[] =
 	{
+		"Data\\Sound\\SE\\Jump.mp3",
 	};
 
 	//エイリアス名の元.
 	char m_Sound[][256] =
 	{
+		"Jump"
 	};
 
 	//エイリアス名の結合.
-	for (int name = 0; name < ALL_SE_MAX; name++) {
+	for (unsigned int name = 0; name < SE_MAX; name++) {
 		AddAliasName(m_Sound[name / SE_RESEVE], name);
 	}
 
 
 	//作成処理関数.
-	for (int sound = 0; sound < ALL_SE_MAX; sound++) {
-
-		//範囲外かチェック.
-		if (Check(sound / SE_RESEVE, m_ppCOneSound[sound])) {
-			return E_FAIL;
-		}
-
-		m_ppCOneSound[sound] = new clsSound();
-
-		if (FAILED(Create(sound, m_filename[sound / SE_RESEVE],
-				   m_ppCOneSound[sound], m_ppOneSoundSE[sound]))) {
+	for (unsigned int sound = 0; sound < SE_MAX; sound++) {
+		if (FAILED(Create(m_filename[sound / SE_RESEVE], m_pCSE[sound], m_stSEaliasName[sound]))) {
 			return E_FAIL;
 		}
 	}

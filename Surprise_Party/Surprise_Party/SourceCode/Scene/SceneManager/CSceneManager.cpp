@@ -41,8 +41,12 @@ void CSceneManager::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pD
 void CSceneManager::UpDate()
 {
 	CSoundPlayManager* m_pCSoundPlayManager = CSoundPlayManager::GetSEPlayManagerInstance();
-	m_pCSoundPlayManager->SetLoopSEPlay(CSoundResource::enBGM::Title, true);
+	m_pCSoundPlayManager->SetLoopSEPlay(CSoundResource::enBGMType::Title, true);
 	m_pCSoundPlayManager->Play();
+
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		m_pCSoundPlayManager->SetSEPlayFlag(CSoundResource::enSEType::Jump, true);
+	}
 
 	//シーンフェード更新処理関数.
 	m_pCSceneFade->Update();
