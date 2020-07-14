@@ -5,7 +5,7 @@
 *****************/
 CNextSpeakCursor::CNextSpeakCursor()
 	: m_pCSpriteUI	(nullptr)
-	, m_vStartPos	(0.0f, 0.0f, 0.0f)
+	, m_vDispPos	(0.0f, 0.0f, 0.0f)
 	, m_bDispFlag	(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
@@ -25,18 +25,23 @@ void CNextSpeakCursor::Update()
 {
 	//•`‰æ‚µ‚Ä‚¢‚È‚¢ê‡‚Íˆ—I—¹.
 	if (m_bDispFlag == false) {
-		m_vPos = m_vStartPos;
+		m_vPos = m_vDispPos;
+		m_fAcc = 0.0f;
 		return;
 	}
 
-	//ã‰ºˆÚ“®.
-	m_vPos.x = m_vStartPos.x;
-	m_fAcc -= ACC_SPEED;
-	if (m_vPos.y > m_vStartPos.y) {
-		m_fAcc = ACC_MAX;
+	if (m_fAcc < ACC_SPEED) {
+		m_vPos.y = m_vDispPos.y;
 	}
 
-	m_vPos.y -= m_fAcc - GRAVITY;
+	//ã‰ºˆÚ“®.
+	m_vPos.x = m_vDispPos.x;
+	m_fAcc += ACC_SPEED;
+	if (m_vPos.y > m_vDispPos.y) {
+		m_fAcc = 0.0f;
+	}
+
+	m_vPos.y += m_fAcc - GRAVITY;
 }
 
 //========================================.
@@ -64,7 +69,7 @@ void CNextSpeakCursor::Init()
 {
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::NextSpeakCursor);
 
-	m_fAcc = ACC_MAX;
+	m_fAcc = 0.0f;
 
 	m_fAlpha = ALPHA_MAX;
 	m_fScale = SCALE_MAX;

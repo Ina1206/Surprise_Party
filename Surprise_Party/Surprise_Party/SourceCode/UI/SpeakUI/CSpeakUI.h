@@ -36,10 +36,11 @@ public:
 	
 protected:
 	//===================関数======================//.
-	void RenderFont();							//文字描画処理関数.
-	void TransparentFont();						//文字透過処理関数.
-	bool DesicionChangeString();				//文章変更判定処理関数.
-	bool AutomaticReproducing();				//自動再生処理関数.
+	void RenderFont();											//文字描画処理関数.
+	void TransparentFont();										//文字透過処理関数.
+	bool DesicionChangeString();								//文章変更判定処理関数.
+	bool AutomaticReproducing();								//自動再生処理関数.
+	void FontAlpha();											//フォントの透過値処理関数.
 
 	//===================変数======================//.
 	CFileResource*				m_pCFileResource;				//ファイル読み込みクラス.

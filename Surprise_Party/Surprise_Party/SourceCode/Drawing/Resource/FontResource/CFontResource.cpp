@@ -104,6 +104,7 @@ void CFontResource::Load(std::string str, bool InputPictureFlag)
 
 		m_pCFont[size].reset(new CFont());
 
+		//ƒAƒCƒRƒ“‚ð“ü‚ê‚éê‡‚Í‚O`‚X‚ðŒ³‚É“ü‚ê‚é.
 		if (InputPictureFlag == true) {
 			if (cda >= "‚O" && cda <= "‚X") {
 				m_InputPictureNum.push_back(size);

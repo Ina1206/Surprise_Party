@@ -52,24 +52,6 @@ void CSpeakBigGhost::Update()
 
 		m_StringFlag &= ~TUTORIAL_FLAG;
 	}
-
-	//if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
-	//	//文章変更処理関数.
-	//	if (DesicionChangeString() == true && !(m_AutoFlag & AUTO_FLAG )) {
-	//		ChangeString();
-	//	}
-	//	//全ての自動再生フラグ.
-	//	const int AllAutoFlag = AUTO_FLAG | AUTO_SUSPEND_FLAG;
-	//	if (m_AutoFlag & AllAutoFlag) {
-	//		m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
-	//	}
-	//}
-	//
-	////自動再生処理関数.
-	//if (AutomaticReproducing() == true) {
-	//	//文章変更処理関数.
-	//	ChangeString();
-	//}
 	
 	//会話文更新処理関数.
 	UpdateSpeakString();
@@ -83,12 +65,15 @@ void CSpeakBigGhost::Update()
 	//文字透過処理関数.
 	TransparentFont();
 
+	//フォントの透過値処理関数.
+	FontAlpha();
+
 	//次の文章のカーソル更新処理.
 	m_pCNextSpeakCursor->SetDispFlag(m_bFinishAppearancedAllFont);
-	if (m_ChangingFontNum > 0) {
+	if (m_bFinishAppearancedAllFont == true) {
 		D3DXVECTOR3 vFontPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
 		vFontPos.x += FONT_SCALE;
-		m_pCNextSpeakCursor->SetStartPos(vFontPos);
+		m_pCNextSpeakCursor->SetDispPos(vFontPos);
 	}
 	m_pCNextSpeakCursor->Update();
 
@@ -344,7 +329,9 @@ void CSpeakBigGhost::DecisionSelectString()
 		if (IsDBCSLeadByte(m_stSpeakString[NextCharacterNum][FIRST_CHARACTER_NUM]) == 0) {
 			if (!(m_StringFlag & EVALUTION_FLAG)) {
 				m_StringFlag |= SELECT_FLAG;
-				m_AutoFlag |= AUTO_SUSPEND_FLAG;
+				if (m_AutoFlag != 0) {
+					m_AutoFlag |= AUTO_SUSPEND_FLAG;
+				}
 			}
 		}
 		//次の文章が評価内容の場合.

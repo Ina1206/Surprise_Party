@@ -44,10 +44,6 @@ void CSpeakTutorial::Update()
 	if (!(m_AutoFlag & AUTO_FLAG)) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 
-			if (m_bFinishAppearancedAllFont == false) {
-				m_bAppearanceAllFont = true;
-			}
-
 			//説明終了処理.
 			if (m_enStartLatestFlag & DescriptionEnd &&
 				m_bFinishAppearancedAllFont == true) {
@@ -71,12 +67,6 @@ void CSpeakTutorial::Update()
 		//コメントを一回進める処理関数.
 		AdvanceOnceComment();
 	}
-	//if (m_bAdvanceCommentFlag == false) {
-	//	m_AutoFlag |= AUTO_SUSPEND_FLAG;
-	//}
-	//else {
-	//	m_AutoFlag &= ~AUTO_SUSPEND_FLAG;
-	//}
 
 	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
 		m_DefinitiveTutorialFlag = m_TutorialFlag;
@@ -84,6 +74,9 @@ void CSpeakTutorial::Update()
 
 	//文字透過処理関数.
 	TransparentFont();
+
+	//フォントの透過値処理関数.
+	FontAlpha();
 
 	//次の文章カーソル更新処理.
 	bool bDispFlag = false;
@@ -94,7 +87,7 @@ void CSpeakTutorial::Update()
 	if (m_ChangingFontNum > 0) {
 		D3DXVECTOR3 vFontPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
 		vFontPos.x += 40.0f;
-		m_pCNextSpeakCursor->SetStartPos(vFontPos);
+		m_pCNextSpeakCursor->SetDispPos(vFontPos);
 	}
 	m_pCNextSpeakCursor->Update();
 }

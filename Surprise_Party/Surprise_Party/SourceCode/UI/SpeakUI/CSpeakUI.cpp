@@ -32,9 +32,6 @@ CSpeakUI::~CSpeakUI()
 void CSpeakUI::RenderFont()
 {
 	//文字の描画.
-	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
-		m_pCFontResource->SetAlpha(m_fFontAlpha, m_ChangingFontNum);
-	}
 	m_pCFontResource->String_Render();
 }
 
@@ -137,4 +134,25 @@ bool CSpeakUI::AutomaticReproducing()
 	m_AutoWaitCnt = 0;
 
 	return true;
+}
+
+//===========================================.
+//		フォントの透過値処理関数.
+//===========================================.
+void CSpeakUI::FontAlpha()
+{
+	//全てを表示する処理.
+	if (m_bAppearanceAllFont == true) {
+		for (int str = 0; str < m_pCFontResource->GetStrLength(); str++) {
+			m_pCFontResource->SetAlpha(ALPHA_MAX, str);
+		}
+		m_ChangingFontNum = m_pCFontResource->GetStrLength();
+		return;
+	}
+
+	//一文字ずつ表示する処理.
+	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
+		m_pCFontResource->SetAlpha(m_fFontAlpha, m_ChangingFontNum);
+	}
+
 }

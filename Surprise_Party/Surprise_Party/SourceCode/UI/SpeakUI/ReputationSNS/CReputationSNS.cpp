@@ -27,7 +27,7 @@ CReputationSNS::~CReputationSNS()
 //==========================================.
 void CReputationSNS::Update()
 {
-	if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		if (m_bAppearanceAllFont == false) {
 			m_bAppearanceAllFont = true;
 			return;
@@ -47,6 +47,9 @@ void CReputationSNS::Update()
 
 	//文字透過処理.
 	TransparentFont();
+
+	//フォントの透過値処理関数.
+	FontAlpha();
 
 	//カーソル更新処理関数.
 	UpdateCursor();
