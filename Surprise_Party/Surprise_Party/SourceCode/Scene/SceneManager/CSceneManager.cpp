@@ -1,19 +1,20 @@
 #include "CSceneManager.h"
 
 CSceneManager::CSceneManager()
-	: m_pDevice11		(nullptr)
-	, m_pContext11		(nullptr)
-	, m_pCDepthStencil	(nullptr)
-	, m_pCSceneBase		()
-	, m_Color			(0.0f, 0.0f, 0.0f, 0.0f)
-	, m_ChangeSceneCnt	(0)
-	, m_SceneType		(0)
-	, m_PausingFlag		(false)
-	, m_StartFlag		(0)
-	, m_pCDebugText		(nullptr)
-	, m_FlyToSceneNum	(0)
-	, m_FlyToSceneMax	(0)
-	, m_bFlyToSceneFlag	(false)
+	: m_pDevice11			(nullptr)
+	, m_pContext11			(nullptr)
+	, m_pCDepthStencil		(nullptr)
+	, m_pCSceneBase			()
+	, m_Color				(0.0f, 0.0f, 0.0f, 0.0f)
+	, m_ChangeSceneCnt		(0)
+	, m_SceneType			(0)
+	, m_PausingFlag			(false)
+	, m_StartFlag			(0)
+	, m_pCDebugText			(nullptr)
+	, m_FlyToSceneNum		(0)
+	, m_FlyToSceneMax		(0)
+	, m_bFlyToSceneFlag		(false)
+	, m_pCPlaySoundManager	(nullptr)
 {
 
 }
@@ -39,6 +40,9 @@ void CSceneManager::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pD
 //==========================================.
 void CSceneManager::UpDate()
 {
+	CSoundPlayManager* m_pCSoundPlayManager = CSoundPlayManager::GetSEPlayManagerInstance();
+	m_pCSoundPlayManager->SetLoopSEPlay(CSoundResource::enBGM::Title, true);
+	m_pCSoundPlayManager->Play();
 
 	//シーンフェード更新処理関数.
 	m_pCSceneFade->Update();
@@ -138,6 +142,9 @@ void CSceneManager::Load()
 	//ファイル用読み込み管理クラスの読み込み処理関数.
 	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
 	m_pCFileResource->Load();
+
+	CSoundPlayManager* m_pCPlaySoundManager = CSoundPlayManager::GetSEPlayManagerInstance();
+	m_pCPlaySoundManager->Init(m_hWnd);
 
 
 	//デプスステンシル.

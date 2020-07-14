@@ -11,6 +11,8 @@
 
 #include "..\..\UI\Fade\SceneFade\CSceneFade.h"
 
+#include "..\..\Sound\SoundPlayManager\CSoundPlayManager.h"
+
 /*****************************************
 *		シーン管理クラス.
 *********/
@@ -77,6 +79,8 @@ private:
 	bool										m_bFlyToSceneFlag;			//シーンに飛ぶフラグ.
 
 	int											m_FlyToSceneEvaluation;		//シーンに飛ぶ場合の評価.
+
+	std::unique_ptr<CSoundPlayManager>			m_pCPlaySoundManager;		//音を鳴らす管理クラス.
 };
 
 #endif	//#ifndef CSCENE_MANAGER_H.

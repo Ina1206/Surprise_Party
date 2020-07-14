@@ -434,6 +434,15 @@
     <Filter Include="SourceCode\UI\SceneUI\EndingUI\PushEnter">
       <UniqueIdentifier>{b507be87-dd8f-445d-bf75-2aeec7f1fef0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Sound">
+      <UniqueIdentifier>{e7df67d6-3d71-4c46-9ec2-742552fd0b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Sound\SoundResource">
+      <UniqueIdentifier>{71a4ec96-6c6a-4c70-8134-c7e808a3c05b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Sound\SoundPlayManager">
+      <UniqueIdentifier>{7e8df25a-fe4e-4efb-9417-42385f95838c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -868,6 +877,15 @@
     <ClInclude Include="SourceCode\UI\SceneUI\EndingUI\PushEnter\CPushEnter.h">
       <Filter>SourceCode\UI\SceneUI\EndingUI\PushEnter</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Sound\CSound.h">
+      <Filter>SourceCode\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Sound\SoundResource\CSoundResource.h">
+      <Filter>SourceCode\Sound\SoundResource</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Sound\SoundPlayManager\CSoundPlayManager.h">
+      <Filter>SourceCode\Sound\SoundPlayManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1289,6 +1307,15 @@
     </ClCompile>
     <ClCompile Include="SourceCode\UI\SceneUI\EndingUI\PushEnter\CPushEnter.cpp">
       <Filter>SourceCode\UI\SceneUI\EndingUI\PushEnter</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Sound\CSound.cpp">
+      <Filter>SourceCode\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Sound\SoundResource\CSoundResource.cpp">
+      <Filter>SourceCode\Sound\SoundResource</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Sound\SoundPlayManager\CSoundPlayManager.cpp">
+      <Filter>SourceCode\Sound\SoundPlayManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

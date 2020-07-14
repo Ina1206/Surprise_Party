@@ -100,6 +100,9 @@
     <ClInclude Include="SourceCode\Scene\SceneBase\CSceneBase.h" />
     <ClInclude Include="SourceCode\Scene\SceneManager\CSceneManager.h" />
     <ClInclude Include="SourceCode\Scene\Title\CTitle.h" />
+    <ClInclude Include="SourceCode\Sound\CSound.h" />
+    <ClInclude Include="SourceCode\Sound\SoundPlayManager\CSoundPlayManager.h" />
+    <ClInclude Include="SourceCode\Sound\SoundResource\CSoundResource.h" />
     <ClInclude Include="SourceCode\SpriteEffect\CSpriteEffectBase.h" />
     <ClInclude Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h" />
     <ClInclude Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h" />
@@ -242,6 +245,9 @@
     <ClCompile Include="SourceCode\Scene\SceneBase\CSceneBase.cpp" />
     <ClCompile Include="SourceCode\Scene\SceneManager\CSceneManager.cpp" />
     <ClCompile Include="SourceCode\Scene\Title\CTitle.cpp" />
+    <ClCompile Include="SourceCode\Sound\CSound.cpp" />
+    <ClCompile Include="SourceCode\Sound\SoundPlayManager\CSoundPlayManager.cpp" />
+    <ClCompile Include="SourceCode\Sound\SoundResource\CSoundResource.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\CSpriteEffectBase.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.cpp" />
     <ClCompile Include="SourceCode\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.cpp" />
