@@ -14,7 +14,6 @@ CSceneManager::CSceneManager()
 	, m_FlyToSceneNum		(0)
 	, m_FlyToSceneMax		(0)
 	, m_bFlyToSceneFlag		(false)
-	, m_pCPlaySoundManager	(nullptr)
 {
 
 }
@@ -40,12 +39,12 @@ void CSceneManager::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pD
 //==========================================.
 void CSceneManager::UpDate()
 {
-	CSoundPlayManager* m_pCSoundPlayManager = CSoundPlayManager::GetSEPlayManagerInstance();
-	m_pCSoundPlayManager->SetLoopSEPlay(CSoundResource::enBGMType::Title, true);
-	m_pCSoundPlayManager->Play();
+	CPlaySoundManager* m_pCSoundPlayManager = CPlaySoundManager::GetSEPlayManagerInstance();
+	m_pCSoundPlayManager->SetPlayingBGM(CSoundResource::enBGMType::Title, true);
+	m_pCSoundPlayManager->Update();
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		m_pCSoundPlayManager->SetSEPlayFlag(CSoundResource::enSEType::Jump, true);
+		m_pCSoundPlayManager->SetPlaySE(CSoundResource::enSEType::Jump);
 	}
 
 	//シーンフェード更新処理関数.
@@ -147,7 +146,7 @@ void CSceneManager::Load()
 	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
 	m_pCFileResource->Load();
 
-	CSoundPlayManager* m_pCPlaySoundManager = CSoundPlayManager::GetSEPlayManagerInstance();
+	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetSEPlayManagerInstance();
 	m_pCPlaySoundManager->Init(m_hWnd);
 
 

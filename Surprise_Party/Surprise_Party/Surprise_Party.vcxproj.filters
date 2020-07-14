@@ -883,7 +883,7 @@
     <ClInclude Include="SourceCode\Sound\SoundResource\CSoundResource.h">
       <Filter>SourceCode\Sound\SoundResource</Filter>
     </ClInclude>
-    <ClInclude Include="SourceCode\Sound\SoundPlayManager\CSoundPlayManager.h">
+    <ClInclude Include="SourceCode\Sound\SoundPlayManager\CPlaySoundManager.h">
       <Filter>SourceCode\Sound\SoundPlayManager</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1314,7 +1314,7 @@
     <ClCompile Include="SourceCode\Sound\SoundResource\CSoundResource.cpp">
       <Filter>SourceCode\Sound\SoundResource</Filter>
     </ClCompile>
-    <ClCompile Include="SourceCode\Sound\SoundPlayManager\CSoundPlayManager.cpp">
+    <ClCompile Include="SourceCode\Sound\SoundPlayManager\CPlaySoundManager.cpp">
       <Filter>SourceCode\Sound\SoundPlayManager</Filter>
     </ClCompile>
   </ItemGroup>
