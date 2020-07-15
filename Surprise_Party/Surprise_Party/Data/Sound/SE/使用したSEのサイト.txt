@@ -1,0 +1,35 @@
+効果音ラボ　		URL：https://soundeffect-lab.info/
+
+Jump.mp3
+CurtainMove.mp3
+MoveFinishString.mp3
+LimitMoveCursor.mp3
+MoveCursor.mp3
+ReturnSelect.mp3
+AppACtSelect.mp3
+Swet.mp3
+Shout.mp3
+FlowerSwing.mp3
+PushSwitchPlaySound.mp3
+PushSwitch.mp3
+
+無料効果音で遊ぼう！	URL：https://taira-komori.jpn.org/
+
+Shutter.mp3
+
+ニコニコ・コモンズ	URL：http://commons.nicovideo.jp/
+
+OpenBell.mp3
+
+
+DOVA-SYNDROME		URL:https://dova-s.jp/
+FallDownPicture.mp3
+
+OtoLogic		URL:https://otologic.jp/
+Question.mp3
+Rejoice.mp3
+GimmickSelct.mp3
+ReturnFromGimmickSelect.mp3
+
+On-Jin ～音人～		URL:https://on-jin.com/
+Font.mp3
