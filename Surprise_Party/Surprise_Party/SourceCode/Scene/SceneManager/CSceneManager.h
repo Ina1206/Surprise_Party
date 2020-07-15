@@ -79,6 +79,8 @@ private:
 	bool										m_bFlyToSceneFlag;			//シーンに飛ぶフラグ.
 
 	int											m_FlyToSceneEvaluation;		//シーンに飛ぶ場合の評価.
+
+	CPlaySoundManager*							m_pCPlaySoundManager;		//音再生管理クラス.
 };
 
 #endif	//#ifndef CSCENE_MANAGER_H.

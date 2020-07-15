@@ -2,6 +2,7 @@
 #define CSCENE_BASE_H
 
 #include "..\..\Global.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /************************************
 *		シーン基底クラス.
@@ -18,7 +19,6 @@ public:
 
 	//===================関数======================//.
 	void	RenderInitSetting(const D3DXMATRIX& mProj);						//描画初期設定.
-	void	DebugSceneChange();												//デバッグ用シーン変更処理関数.
 
 	virtual void UpDate()	= 0;											//更新処理関数.
 	virtual void Render()	= 0;											//描画処理関数.
@@ -36,20 +36,21 @@ public:
 
 protected:
 	//===================関数======================//.
-	virtual void Init()		= 0;		//初期化処理関数.
-	virtual void Release()	= 0;		//解放処理関数.
+	virtual void Init()		= 0;											//初期化処理関数.
+	virtual void Release()	= 0;											//解放処理関数.
+	void PlayBGM(const CSoundResource::enBGMType& enBGMType);				//BGM再生処理関数.
 
 	//===================変数======================//.
-	D3DXMATRIX		m_mView;				//ビュー行列.
-	D3DXMATRIX		m_mProj;				//プロジェクション行列.
-	bool			m_bChangeScene;			//シーン変更フラグ.
-	bool			m_bPauseFlag;			//一時停止フラグ.
-	int				m_Evaluation;			//評価.
-	bool			m_bTitle;				//タイトルへフラグ.
-
+	D3DXMATRIX		m_mView;												//ビュー行列.
+	D3DXMATRIX		m_mProj;												//プロジェクション行列.
+	bool			m_bChangeScene;											//シーン変更フラグ.
+	bool			m_bPauseFlag;											//一時停止フラグ.
+	int				m_Evaluation;											//評価.
+	bool			m_bTitle;												//タイトルへフラグ.
+	int				m_BGMVolume;											//BGMの音量.
 private:
 	//===================変数======================//.
-	D3DXVECTOR4 m_vBackColor;			//後ろの色.
+	D3DXVECTOR4 m_vBackColor;												//後ろの色.
 
 };
 

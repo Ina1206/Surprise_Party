@@ -8,6 +8,7 @@ CSceneBase::CSceneBase()
 	, m_bPauseFlag		(false)
 	, m_Evaluation		(0)
 	, m_bTitle			(false)
+	, m_BGMVolume		(1000)
 {
 
 }
@@ -29,11 +30,14 @@ void CSceneBase::RenderInitSetting(const D3DXMATRIX& mProj)
 }
 
 //===========================================.
-//		デバッグ用シーン変更処理関数.
+//		BGM再生処理関数.
 //===========================================.
-void CSceneBase::DebugSceneChange()
+void CSceneBase::PlayBGM(const CSoundResource::enBGMType& enBGMType)
 {
-	if (GetAsyncKeyState('A') & 0x8000) {
-		m_bChangeScene = true;
-	}
+	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetSEPlayManagerInstance();
+
+	//BGMの変更処理.
+	m_pCPlaySoundManager->ChangePlayingBGM(enBGMType);
+	//BGMの音量調整.
+	m_pCPlaySoundManager->SetPlayingBGMVolume(m_BGMVolume);
 }

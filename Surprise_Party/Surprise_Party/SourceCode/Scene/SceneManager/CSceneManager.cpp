@@ -14,6 +14,7 @@ CSceneManager::CSceneManager()
 	, m_FlyToSceneNum		(0)
 	, m_FlyToSceneMax		(0)
 	, m_bFlyToSceneFlag		(false)
+	, m_pCPlaySoundManager	(nullptr)
 {
 
 }
@@ -39,16 +40,7 @@ void CSceneManager::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pD
 //==========================================.
 void CSceneManager::UpDate()
 {
-	CPlaySoundManager* m_pCSoundPlayManager = CPlaySoundManager::GetSEPlayManagerInstance();
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		m_pCSoundPlayManager->ChangePlayingBGM(CSoundResource::enBGMType::Title);
-	}
-	m_pCSoundPlayManager->Update();
-
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		m_pCSoundPlayManager->SetPlaySE(CSoundResource::enSEType::Jump);
-		m_pCSoundPlayManager->ChangePlayingBGM(CSoundResource::enBGMType::GhostSpeakStage);
-	}
+	m_pCPlaySoundManager->Update();
 
 	//シーンフェード更新処理関数.
 	m_pCSceneFade->Update();
@@ -70,10 +62,6 @@ void CSceneManager::UpDate()
 		}
 		m_StartFlag = INIT_SETTED_FLAG;
 	}
-
-#ifdef _DEBUG
-	m_pCSceneBase[NORMAL_SCENE_NUM]->DebugSceneChange();
-#endif	//#ifdef _DEBUG.
 
 	//シーン変更時はシーン更新処理をさせない.
 	if (m_pCSceneBase[NORMAL_SCENE_NUM]->GetChangeSceneFlag() == true) {
@@ -149,7 +137,7 @@ void CSceneManager::Load()
 	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
 	m_pCFileResource->Load();
 
-	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetSEPlayManagerInstance();
+	m_pCPlaySoundManager = CPlaySoundManager::GetSEPlayManagerInstance();
 	m_pCPlaySoundManager->Init(m_hWnd);
 
 
