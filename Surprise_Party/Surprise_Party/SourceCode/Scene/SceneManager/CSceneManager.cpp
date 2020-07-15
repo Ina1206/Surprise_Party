@@ -40,11 +40,14 @@ void CSceneManager::Init(HWND hWnd, LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pD
 void CSceneManager::UpDate()
 {
 	CPlaySoundManager* m_pCSoundPlayManager = CPlaySoundManager::GetSEPlayManagerInstance();
-	m_pCSoundPlayManager->SetPlayingBGM(CSoundResource::enBGMType::Title, true);
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		m_pCSoundPlayManager->ChangePlayingBGM(CSoundResource::enBGMType::Title);
+	}
 	m_pCSoundPlayManager->Update();
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
 		m_pCSoundPlayManager->SetPlaySE(CSoundResource::enSEType::Jump);
+		m_pCSoundPlayManager->ChangePlayingBGM(CSoundResource::enBGMType::GhostSpeakStage);
 	}
 
 	//シーンフェード更新処理関数.

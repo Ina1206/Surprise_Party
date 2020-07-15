@@ -42,7 +42,7 @@ HRESULT CPlaySoundManager::Init(HWND hWnd)
 }
 
 //=======================================.
-//		Ä¶ˆ—ŠÖ”.
+//		XVˆ—ŠÖ”.
 //=======================================.
 void CPlaySoundManager::Update()
 {
@@ -59,6 +59,15 @@ void CPlaySoundManager::Update()
 	}
 	//Ä¶’†‚ÌBGM‚Ì‰¹—Ê’²®.
 	m_pCBGM[m_PlayingBGMNum]->VolumeConvert(m_PlayingBGMVolume);
+}
+
+//=======================================.
+//		Ä¶BGM‚Ì•ÏXˆ—ŠÖ”.
+//=======================================.
+void CPlaySoundManager::ChangePlayingBGM(const CSoundResource::enBGMType& enBGMType) 
+{
+	m_bPlayingBGM[m_PlayingBGMNum] = false;
+	m_bPlayingBGM[static_cast<int>(enBGMType)] = true;
 }
 
 //=======================================.

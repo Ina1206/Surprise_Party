@@ -36,7 +36,8 @@ public:
 	void SetPlayingBGMVolume(const int& volume) { m_PlayingBGMVolume = volume; }
 	//SE‚Ì‰¹—Ê’uŠ·ˆ—ŠÖ”.
 	void SetSEVolume(const CSoundResource::enSEType& SoundSE, const int& Volume) { m_PlayingSEVolume[static_cast<int>(SoundSE)] = Volume; }
-
+	//Ä¶BGM‚Ì•ÏXˆ—ŠÖ”.
+	void ChangePlayingBGM(const CSoundResource::enBGMType& BGMTYpe);
 private:
 	//==================ŠÖ”==================//.
 	void InitBGM();										//BGM‚Ì‰Šú‰»ˆ—ŠÖ”.
