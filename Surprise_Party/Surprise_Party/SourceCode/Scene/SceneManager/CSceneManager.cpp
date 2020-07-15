@@ -45,6 +45,12 @@ void CSceneManager::UpDate()
 	//シーンフェード更新処理関数.
 	m_pCSceneFade->Update();
 
+	//BGMの設定.
+	const int BGM_VOLUME = static_cast<int>(m_pCPlaySoundManager->VOLUME_MAX * m_pCSceneFade->GetFinishPoDistanceRatio());
+	if (m_pCSceneBase[NORMAL_SCENE_NUM]->GetChangeVolume() == true) {
+		m_pCSceneBase[NORMAL_SCENE_NUM]->SetBGMVolume(BGM_VOLUME);
+	}
+
 	m_Color = m_pCSceneBase[NORMAL_SCENE_NUM]->GetBackColor();
 
 	//シーンに飛ぶ処理関数.
@@ -137,7 +143,7 @@ void CSceneManager::Load()
 	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
 	m_pCFileResource->Load();
 
-	m_pCPlaySoundManager = CPlaySoundManager::GetSEPlayManagerInstance();
+	m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
 	m_pCPlaySoundManager->Init(m_hWnd);
 
 
@@ -155,6 +161,7 @@ void CSceneManager::Load()
 	//シーン初期設定.
 	m_SceneType = static_cast<int>(enSceneType::Title);
 	m_pCSceneBase.emplace_back(std::make_unique<CTitle>());
+	m_pCSceneBase[NORMAL_SCENE_NUM]->PlayBGM(enBGMType::Title);
 
 	m_pCSceneBase.emplace_back(std::make_unique<CPause>());
 
@@ -177,16 +184,19 @@ void CSceneManager::ChangeScene()
 	case enSceneType::Title:
 		m_pCSceneBase[NORMAL_SCENE_NUM].reset();
 		m_pCSceneBase[NORMAL_SCENE_NUM] = std::make_unique<CTitle>();
+		m_pCSceneBase[NORMAL_SCENE_NUM]->PlayBGM(enBGMType::Title);
 		break;
 	case enSceneType::GameMain:
 		m_pCSceneBase[NORMAL_SCENE_NUM].reset();
 		m_pCSceneBase[NORMAL_SCENE_NUM] = std::make_unique<CGameMain>();
+		m_pCSceneBase[NORMAL_SCENE_NUM]->PlayBGM(enBGMType::GhostSpeakStage);
 		break;
 	case enSceneType::Ending:
 		const int Evaluation = m_pCSceneBase[NORMAL_SCENE_NUM]->GetEvaluation();
 		m_pCSceneBase[NORMAL_SCENE_NUM].reset();
 		m_pCSceneBase[NORMAL_SCENE_NUM] = std::make_unique<CEnding>();
 		m_pCSceneBase[NORMAL_SCENE_NUM]->SetEvaluation(Evaluation);
+		m_pCSceneBase[NORMAL_SCENE_NUM]->PlayBGM(enBGMType::ResultBefore);
 		if (m_bFlyToSceneFlag == true) {
 			m_pCSceneBase[NORMAL_SCENE_NUM]->SetEvaluation(m_FlyToSceneEvaluation);
 		}

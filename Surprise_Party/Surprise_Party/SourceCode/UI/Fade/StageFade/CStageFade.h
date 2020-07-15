@@ -46,7 +46,8 @@ public:
 	//============情報獲得処理関数==============//.
 	//カーテン移動フラグ.
 	unsigned int GetCurtainMoveFlag() { return m_CurtainMoveFlag; }
-
+	//距離の割合.
+	float GetDistanceRatio() const { return m_fDistanceRatio; }
 
 private:
 	//=================関数=====================//.
@@ -71,6 +72,7 @@ private:
 	float						m_SwingRotMax;		//揺れの角度最大数.
 	float						m_fSwingSpeed;		//揺れの速度.
 	CSpriteUI*					m_pCOldSpriteUI;	//前のスプライトUIクラス.
+	float						m_fDistanceRatio;	//距離の割合.
 };
 
 #endif	//#ifndef CSTAGE_FADE_H.

@@ -64,7 +64,7 @@ void CPlaySoundManager::Update()
 //=======================================.
 //		Ä¶BGM‚Ì•ÏXˆ—ŠÖ”.
 //=======================================.
-void CPlaySoundManager::ChangePlayingBGM(const CSoundResource::enBGMType& enBGMType) 
+void CPlaySoundManager::ChangePlayingBGM(const enBGMType& enBGMType) 
 {
 	m_bPlayingBGM[m_PlayingBGMNum] = false;
 	m_bPlayingBGM[static_cast<int>(enBGMType)] = true;

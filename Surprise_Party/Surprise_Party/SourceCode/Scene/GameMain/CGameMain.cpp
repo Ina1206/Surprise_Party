@@ -18,6 +18,9 @@ CGameMain::~CGameMain()
 //========================================.
 void CGameMain::UpDate()
 {
+	//外部で音量を調整しないよう防止.
+	m_bChangeVolume = false;
+	
 	//シーン管理クラスの更新処理関数.
 	m_pCStageManager->UpDate();
 
@@ -28,6 +31,11 @@ void CGameMain::UpDate()
 	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_ENDING) {
 		m_Evaluation = m_pCStageManager->GetAverageEvaluation();
 		m_bChangeScene = true;
+	}
+
+	//外部で音量を調整できるように処理.
+	if (m_bChangeScene == true) {
+		m_bChangeVolume = true;
 	}
 }
 
@@ -50,7 +58,6 @@ void CGameMain::Init()
 	//シーン管理クラスの初期化.
 	m_pCStageManager.reset(new CStageManager());
 	m_pCStageManager->Init();
-
 
 }
 

@@ -11,6 +11,7 @@ CStageFade::CStageFade()
 	, m_SwingRotDirect	(1)
 	, m_SwingRotMax		(0.6f)
 	, m_fSwingSpeed		(0.04f)
+	, m_fDistanceRatio	(1.0f)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -168,7 +169,10 @@ bool CStageFade::CurtainMove()
 {
 	int MoveDirect = 1;
 	bool MoveFlag = false;
+
+	//‹——£‚ÌŠ„‡.
 	if (m_CurtainMoveFlag & CLOSE_CURTAIN_FLAG) {
+		m_fDistanceRatio = fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - 0.0f) / 1.6f;
 		if (m_vUIRot[LEFT_CURTAIN_NUM].y <= 0.0f) {
 			m_vUIRot[LEFT_CURTAIN_NUM].y = 0.0f;
 			m_vUIRot[RIHGT_CURTAIN_NUM].y = -3.1f;
@@ -186,6 +190,8 @@ bool CStageFade::CurtainMove()
 
 	if (m_CurtainMoveFlag & OPEN_CURTAIN_FLAG) {
 		MoveDirect = -1;
+
+		m_fDistanceRatio = 1.0f - fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - 1.6f) / 1.6f;
 
 		if (m_vUIRot[LEFT_CURTAIN_NUM].y >= 1.6f) {
 			m_vUIRot[LEFT_CURTAIN_NUM].y = 1.6f;

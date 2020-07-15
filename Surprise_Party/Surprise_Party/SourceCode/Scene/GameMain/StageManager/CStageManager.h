@@ -4,6 +4,7 @@
 #include "..\MainStage\CMainStage.h"
 #include "..\GhostSpeakStage\CGhostSpeakStage.h"	
 #include "..\..\..\UI\Fade\StageFade\CStageFade.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /**************************************************
 *		ステージ管理クラス.
@@ -46,6 +47,7 @@ private:
 	unsigned int								m_bOldTutorialFlag;		//チュートリアルフラグ.
 	int											m_AllEndingType;		//全てのエンディングタイプの合計.
 	bool										m_bPauseFlag;			//ポーズフラグ.
+	CPlaySoundManager*							m_pCPlaySoundManager;	//曲再生管理クラス.
 };
 
 #endif	//#ifndef CSTAGE_MANAGER_H.

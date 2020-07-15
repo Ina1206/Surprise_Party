@@ -36,6 +36,8 @@ public:
 	//==============情報取得処理関数==============//.
 	//シャッター動きフラグ.
 	unsigned int GetShutterFlag() { return m_ShutterFlag; }
+	//最終地点までの距離.
+	float GetFinishPoDistanceRatio() { return m_fFinishPoDistanceRatio; }
 
 private:
 	//==================関数======================//.
@@ -45,13 +47,13 @@ private:
 	void ShutterUp();	//シャッター上げる処理関数.
 
 	//==================変数======================//.
-	CSpriteUI*		m_pCSpriteUI;	//スプライトUI.
-	D3DXVECTOR3		m_vPos;			//座標.
-	float			m_fMoveSpeed;	//移動速度.
+	CSpriteUI*		m_pCSpriteUI;				//スプライトUI.
+	D3DXVECTOR3		m_vPos;						//座標.
+	float			m_fMoveSpeed;				//移動速度.
 
-	unsigned int	m_ShutterFlag;	//シャッター動きフラグ.
-	int				m_WaitChangeCnt;//変更待機カウント.
-
+	unsigned int	m_ShutterFlag;				//シャッター動きフラグ.
+	int				m_WaitChangeCnt;			//変更待機カウント.
+	float			m_fFinishPoDistanceRatio;	//最終地点までの距離.
 };
 
 #endif	//#ifndef CSCENE_FADE_H.

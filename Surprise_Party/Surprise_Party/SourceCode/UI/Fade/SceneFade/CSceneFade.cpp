@@ -1,11 +1,12 @@
 #include "CSceneFade.h"
 
 CSceneFade::CSceneFade()
-	: m_pCSpriteUI		(nullptr)
-	, m_vPos			(0.0f, 0.0f, 0.0f)
-	, m_ShutterFlag		(0)
-	, m_WaitChangeCnt	(0)
-	, m_fMoveSpeed		(0.0f)
+	: m_pCSpriteUI				(nullptr)
+	, m_vPos					(0.0f, 0.0f, 0.0f)
+	, m_ShutterFlag				(0)
+	, m_WaitChangeCnt			(0)
+	, m_fMoveSpeed				(0.0f)
+	, m_fFinishPoDistanceRatio	(0.0f)
 {
 	//初期化処理関数.
 	Init();
@@ -74,7 +75,9 @@ void CSceneFade::Release()
 void CSceneFade::ShutterDown()
 {
 	m_vPos.y += m_fMoveSpeed;
-	//m_vPos.y += SHUTTER_MOVE_SPEED;
+	//最終地点までの距離.
+	const float INIT_FINISH_POS_DISNTANCE = fabsf(SHUTTER_HEIGHT_MIN - SHUTTER_INIT_POS.y);
+	m_fFinishPoDistanceRatio = fabsf(m_vPos.y - SHUTTER_INIT_POS.y) / INIT_FINISH_POS_DISNTANCE;
 
 	if (m_vPos.y >= SHUTTER_INIT_POS.y) {
 		m_vPos.y = SHUTTER_INIT_POS.y;
@@ -96,7 +99,10 @@ void CSceneFade::ShutterDown()
 void CSceneFade::ShutterUp()
 {
 	m_vPos.y -= m_fMoveSpeed;
-	//m_vPos.y -= SHUTTER_MOVE_SPEED;
+
+	//最終地点までの距離.
+	const float INIT_FINISH_POS_DISTANCE = fabsf(SHUTTER_INIT_POS.y - SHUTTER_HEIGHT_MIN);
+	m_fFinishPoDistanceRatio = 1.0f - fabsf(m_vPos.y - SHUTTER_HEIGHT_MIN) / INIT_FINISH_POS_DISTANCE;
 
 	//上げる処理終了.
 	if (m_vPos.y <= SHUTTER_HEIGHT_MIN) {

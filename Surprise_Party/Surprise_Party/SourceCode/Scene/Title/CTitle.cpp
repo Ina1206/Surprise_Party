@@ -26,9 +26,6 @@ CTitle::~CTitle()
 //======================================.
 void CTitle::UpDate()
 {
-	//BGM再生処理関数.
-	PlayBGM(CSoundResource::enBGMType::Title);
-
 	//タイトル用カメラの更新処理関数.
 	m_pCCameraTitle->Update();
 	//カメラ座標.

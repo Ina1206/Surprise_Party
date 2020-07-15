@@ -22,6 +22,7 @@ public:
 
 	virtual void UpDate()	= 0;											//更新処理関数.
 	virtual void Render()	= 0;											//描画処理関数.
+	void PlayBGM(const enBGMType& enBGMType);								//BGM再生処理関数.
 
 	//=============情報獲得処理関数================//.
 	D3DXVECTOR4 GetBackColor()		{ return m_vBackColor; }				//後ろの色情報取得処理関数.
@@ -29,25 +30,28 @@ public:
 	bool		GetPauseFlag() const { return m_bPauseFlag; }				//一時停止フラグ.
 	int			GetEvaluation() const { return m_Evaluation; }				//評価.
 	bool		GetTitleFlag() const { return m_bTitle; }					//タイトルフラグ.
+	bool		GetChangeVolume() const { return m_bChangeVolume; }			//外部で音量変更フラグ.
 
 	//=============情報置換処理関数================//.
 	void SetPauseFlag(const bool& flag) { m_bPauseFlag = flag; }			//一時停止フラグ.
 	void SetEvaluation(const int& Num) { m_Evaluation = Num; }				//評価.
-
+	void SetPlayBGM(const enBGMType& enBGM) { m_enPlayBGMType = enBGM; }	//再生BGMの種類.
+	void SetBGMVolume(const int& Volume); 									//音量.
 protected:
 	//===================関数======================//.
 	virtual void Init()		= 0;											//初期化処理関数.
 	virtual void Release()	= 0;											//解放処理関数.
-	void PlayBGM(const CSoundResource::enBGMType& enBGMType);				//BGM再生処理関数.
 
 	//===================変数======================//.
-	D3DXMATRIX		m_mView;												//ビュー行列.
-	D3DXMATRIX		m_mProj;												//プロジェクション行列.
-	bool			m_bChangeScene;											//シーン変更フラグ.
-	bool			m_bPauseFlag;											//一時停止フラグ.
-	int				m_Evaluation;											//評価.
-	bool			m_bTitle;												//タイトルへフラグ.
-	int				m_BGMVolume;											//BGMの音量.
+	D3DXMATRIX	m_mView;													//ビュー行列.
+	D3DXMATRIX	m_mProj;													//プロジェクション行列.
+	bool		m_bChangeScene;												//シーン変更フラグ.
+	bool		m_bPauseFlag;												//一時停止フラグ.
+	int			m_Evaluation;												//評価.
+	bool		m_bTitle;													//タイトルへフラグ.
+	int			m_BGMVolume;												//BGMの音量.
+	enBGMType	m_enPlayBGMType;											//再生BGMの種類.
+	bool		m_bChangeVolume;											//外部で音量変更フラグ.
 private:
 	//===================変数======================//.
 	D3DXVECTOR4 m_vBackColor;												//後ろの色.

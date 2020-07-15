@@ -17,7 +17,7 @@ public:
 	const int VOLUME_STANDERD_MAX	= 1000;
 
 	//=============シングルトン化==============//.
-	static CPlaySoundManager* GetSEPlayManagerInstance()
+	static CPlaySoundManager* GetPlaySoundManager()
 	{
 		static CPlaySoundManager s_Instance;
 		return &s_Instance;
@@ -29,15 +29,15 @@ public:
 
 	//～情報置換処理関数～.
 	//SE再生フラグ.
-	void SetPlaySE(const CSoundResource::enSEType enSEType) { m_bPlayingSE[static_cast<int>(enSEType)] = true; }
+	void SetPlaySE(const enSEType enSEType) { m_bPlayingSE[static_cast<int>(enSEType)] = true; }
 	//BGM再生フラグ.
-	void SetPlayingBGM(const CSoundResource::enBGMType& LoopSE, const bool& flag) { m_bPlayingBGM[static_cast<int>(LoopSE)] = flag;}
+	void SetPlayingBGM(const enBGMType& LoopSE, const bool& flag) { m_bPlayingBGM[static_cast<int>(LoopSE)] = flag;}
 	//再生中のBGMの音量.
 	void SetPlayingBGMVolume(const int& volume) { m_PlayingBGMVolume = volume; }
 	//SEの音量置換処理関数.
-	void SetSEVolume(const CSoundResource::enSEType& SoundSE, const int& Volume) { m_PlayingSEVolume[static_cast<int>(SoundSE)] = Volume; }
+	void SetSEVolume(const enSEType& SoundSE, const int& Volume) { m_PlayingSEVolume[static_cast<int>(SoundSE)] = Volume; }
 	//再生BGMの変更処理関数.
-	void ChangePlayingBGM(const CSoundResource::enBGMType& BGMTYpe);
+	void ChangePlayingBGM(const enBGMType& BGMTYpe);
 private:
 	//==================関数==================//.
 	void InitBGM();										//BGMの初期化処理関数.

@@ -4,6 +4,27 @@
 #include "..\..\Global.h"
 #include "..\CSound.h"
 
+//============列挙体=============//.
+//ループしない音.
+enum class enSEType {
+	Jump,							//ジャンプ.
+	Max,							//最大数.
+	Start ,							//最初.
+};
+//ループする音.
+enum class enBGMType {
+	Title,							//タイトル.
+	GhostSpeakStage,				//お化け会話ステージ.
+	GameMain,						//ゲームメイン.
+	ResultBefore,					//リザルト前ステージ.
+	LowEvaluationStage,				//低評価ステージ.
+	IntermediateEvaluationStage,	//中間評価ステージ.
+	HightEvaluationStage,			//高評価ステージ.
+
+	Max,							//最大数.
+	Start = Title,					//最初.
+};
+
 /**********************************************
 *	サウンド読み込みクラス.
 ******/
@@ -12,27 +33,6 @@ class CSoundResource
 public:
 	CSoundResource();
 	~CSoundResource();
-
-	//============列挙体=============//.
-	//ループしない音.
-	enum class enSEType {
-		Jump,							//ジャンプ.
-		Max,							//最大数.
-		Start ,							//最初.
-	};
-	//ループする音.
-	enum class enBGMType {
-		Title,							//タイトル.
-		GhostSpeakStage,				//お化け会話ステージ.
-		GameMain,						//ゲームメイン.
-		ResultBefore,					//リザルト前ステージ.
-		LowEvaluationStage,				//低評価ステージ.
-		IntermediateEvaluationStage,	//中間評価ステージ.
-		HightEvaluationStage,			//高評価ステージ.
-
-		Max,							//最大数.
-		Start = Title,					//最初.
-	};
 
 	//=============定数==============//.
 	const int SE_TYPE_MAX	= static_cast<int>(enSEType::Max);				//種類ごとのSEの最大数.

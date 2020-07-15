@@ -10,6 +10,7 @@ CStageManager::CStageManager()
 	, m_bOldTutorialFlag	(false)
 	, m_AllEndingType		(0)
 	, m_bPauseFlag			(false)
+	, m_pCPlaySoundManager	(nullptr)
 {
 
 }
@@ -26,13 +27,14 @@ void CStageManager::Init()
 {
 	m_pCStageBase.resize(1);
 	//ステージ初期設定.
-	//m_StageType = static_cast<int>(CStageBase::enStageType::MainStage);
-	//m_pCStageBase[NORMAL_STAGE_NUM].reset(new CMainStage(m_StageNum, CStageBase::enStageType::MainStage, CStageBase::enBeforeStageEndigneType::Bad));
 	m_StageType = static_cast<int>(CStageBase::enStageType::GhostSpeakStage);
 	m_pCStageBase[NORMAL_STAGE_NUM].reset(new CGhostSpeakStage(m_StageNum, m_enBeforeEndingType));
 
 	//ステージフェードインスタンス化.
 	m_pCStageFade.reset(new CStageFade());
+
+	//曲.
+	m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
 }
 
 //====================================.
@@ -43,6 +45,12 @@ void CStageManager::UpDate()
 
 	//ステージフェード更新処理関数.
 	m_pCStageFade->Update();
+
+	//BGMの音量調整処理.
+	if (m_FinishFlag == 0) {
+		const int BGM_VOLUME = static_cast<int>(m_pCPlaySoundManager->VOLUME_MAX * m_pCStageFade->GetDistanceRatio());
+		m_pCPlaySoundManager->SetPlayingBGMVolume(BGM_VOLUME);
+	}
 
 	if (m_pCStageFade->GetCurtainMoveFlag() & m_pCStageFade->CHANGE_STAGE_FLAG) {
 		//ステージ変更処理関数.
@@ -124,6 +132,9 @@ void CStageManager::ChangeStage()
 		m_pCStageBase.emplace_back(new CMainStage(0, CStageBase::enStageType::Tutorial, m_enBeforeEndingType));
 		m_StageType = static_cast<int>(CStageBase::enStageType::Tutorial);
 		m_bOldTutorialFlag = m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_START;
+
+		//曲設定.
+		m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::GameMain);
 		return;
 	}
 
@@ -133,6 +144,9 @@ void CStageManager::ChangeStage()
 			m_bOldTutorialFlag = m_pCStageBase[0]->TUTORIAL_FINISH;
 			m_StageType = static_cast<int>(CStageBase::enStageType::GhostSpeakStage);
 			m_pCStageBase[0]->SetTutorialFlag(m_pCStageBase[0]->TUTORIAL_FINISH);
+
+			//曲設定.
+			m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::GhostSpeakStage);
 			return;
 		}
 	}
@@ -153,6 +167,8 @@ void CStageManager::ChangeStage()
 		m_AllEndingType = 3;
 		m_pCStageBase[STAGE_TYPE_NUM].reset(new CMainStage(m_AllEndingType, CStageBase::enStageType::GhostSpeakStage , m_enBeforeEndingType));
 		m_bOldTutorialFlag = 0;
+		//曲設定.
+		m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::GameMain);
 		break;
 	case CStageBase::enStageType::MainStage:
 		m_enBeforeEndingType = m_pCStageBase[STAGE_TYPE_NUM]->GetBeforeStageEndingType();
@@ -160,6 +176,8 @@ void CStageManager::ChangeStage()
 		m_AllEndingType += static_cast<int>(m_enBeforeEndingType);
 		m_StageNum++;
 		m_pCStageBase[STAGE_TYPE_NUM].reset(new CGhostSpeakStage(m_StageNum, m_enBeforeEndingType));
+		//曲設定.
+		m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::GhostSpeakStage);
 		break;
 	}
 

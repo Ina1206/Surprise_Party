@@ -8,7 +8,9 @@ CSceneBase::CSceneBase()
 	, m_bPauseFlag		(false)
 	, m_Evaluation		(0)
 	, m_bTitle			(false)
-	, m_BGMVolume		(1000)
+	, m_BGMVolume		(0)
+	, m_enPlayBGMType	()
+	, m_bChangeVolume	(true)
 {
 
 }
@@ -32,12 +34,21 @@ void CSceneBase::RenderInitSetting(const D3DXMATRIX& mProj)
 //===========================================.
 //		BGMÄ¶ˆ—ŠÖ”.
 //===========================================.
-void CSceneBase::PlayBGM(const CSoundResource::enBGMType& enBGMType)
+void CSceneBase::PlayBGM(const enBGMType& enBGMType)
 {
-	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetSEPlayManagerInstance();
+	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
 
 	//BGM‚Ì•ÏXˆ—.
-	m_pCPlaySoundManager->ChangePlayingBGM(enBGMType);
-	//BGM‚Ì‰¹—Ê’²®.
-	m_pCPlaySoundManager->SetPlayingBGMVolume(m_BGMVolume);
+	m_enPlayBGMType = enBGMType;
+	m_pCPlaySoundManager->ChangePlayingBGM(m_enPlayBGMType);
+}
+
+//===========================================.
+//		Ä¶BGM‚Ì‰¹—Ê’uŠ·ˆ—ŠÖ”.
+//===========================================.
+void CSceneBase::SetBGMVolume(const int& Volume)
+{
+	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
+	//BGM‚Ì‰¹—Ê.
+	m_pCPlaySoundManager->SetPlayingBGMVolume(Volume);
 }
