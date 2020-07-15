@@ -21,8 +21,11 @@ CTitleUI::~CTitleUI()
 //=====================================.
 void CTitleUI::Update()
 {
-	//•¶ÍˆÚ“®ˆ—ŠÖ”.
-	MoveString();
+	//‘€ìŽž‚Íˆ—‚µ‚È‚¢.
+	if (!(m_ControlFlag & CONTROL_FLAG)) {
+		//•¶ÍˆÚ“®ˆ—ŠÖ”.
+		MoveString();
+	}
 
 	//‘€ìˆ—ŠÖ”.
 	m_pCCursor->SetChangeWaitFlag(false);
