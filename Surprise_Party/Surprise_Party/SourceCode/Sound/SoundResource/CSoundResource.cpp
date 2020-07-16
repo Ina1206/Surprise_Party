@@ -139,6 +139,9 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\LowString.mp3",				//’á•]‰¿•¶š.
 		"Data\\Sound\\SE\\IntermediateString.mp3",		//’†ŠÔ•]‰¿•¶š.
 		"Data\\Sound\\SE\\HightString.mp3",				//‚•]‰¿•¶š.
+
+		"Data\\Sound\\SE\\Floating.mp3",				//•‚—V.
+		"Data\\Sound\\SE\\JumpSNS.mp3",					//SNS‚Ö”ò‚Ô.
 	};
 
 	const std::string m_Sound[] =
@@ -182,6 +185,8 @@ HRESULT CSoundResource::LoadSE()
 		"Intermediate",					//’†ŠÔ•]‰¿•¶š.
 		"HightString",					//‚•]‰¿•¶š.
 
+		"Floating",						//•‚—V.
+		"JumpSNS",						//SNS‚Ö”ò‚Ô.
 	};
 
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {

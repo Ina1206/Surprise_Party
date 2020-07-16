@@ -1,4 +1,5 @@
 #include "CEndingUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*******************************************
 *		エンディングUIクラス.
@@ -133,5 +134,7 @@ void CEndingUI::UpdatePushEnter()
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		m_bChangeSceneFlag = true;
+		CPlaySoundManager* m_pCPlaySound = CPlaySoundManager::GetPlaySoundManager();
+		m_pCPlaySound->SetPlaySE(enSEType::SelectDecide);
 	}
 }

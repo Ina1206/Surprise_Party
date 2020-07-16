@@ -4,6 +4,9 @@
 *		’á•]‰¿Žž‚ÌUI•¶ŽšƒNƒ‰ƒX.
 *****************/
 CLowEvaluationString::CLowEvaluationString()
+	: m_ActFlag				(0)
+	, m_fAngle				(0.0f)
+	, m_bPlayFloatingSound	(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -118,6 +121,18 @@ void CLowEvaluationString::Move()
 			m_ActFlag &= ~MOVE_FLAG;
 			m_ActFlag &= ~TRANSPARENT_FLAG;
 		}
+	}
+
+	if ((m_fAngle >= PLAY_SOUND_RANGE_MIN && m_fAngle <= PLAY_SOUND_RANGE_IN) ||
+		m_fAngle >= PLAY_SOUND_RANGE_MAX) {
+		if (m_bPlayFloatingSound == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::Floating);
+			m_pCPlaySoundManager->SetSEVolume(enSEType::Floating, FLOAT_SOUND_VOLUME_MAX);
+			m_bPlayFloatingSound = true;
+		}
+	}
+	else {
+		m_bPlayFloatingSound = false;
 	}
 
 	m_vEvaluationPos[m_UpdateNum].x += static_cast<float>(cos(D3DXToRadian(m_fAngle)) * MOVE_HORIZON_WIDTH);

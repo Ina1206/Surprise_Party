@@ -6,8 +6,10 @@
 *		結果発表前のステージクラス.
 ******************/
 CBeforeResultStage::CBeforeResultStage()
-	: m_pCReputationSNS	(nullptr)
-	, m_pCSmartPhone	(nullptr)
+	: m_pCReputationSNS		(nullptr)
+	, m_pCSmartPhone		(nullptr)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
+	, m_bPlaySE				(false)
 {
 	//初期化処理関数.
 	Init();
@@ -39,8 +41,14 @@ void CBeforeResultStage::Update()
 	m_pCSmartPhone->Update();
 	
 	if (m_pCCameraEnding->GetMoveFlag() & m_pCCameraEnding->CHANGE_STAGE_FLAG) {
-		
+		//飛ぶときのSE再生処理.
+		if (m_bPlaySE == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::JumpSNS);
+			m_bPlaySE = true;
+		}
+
 		if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
+			//SNS更新処理関数.
 			m_pCReputationSNS->Update();
 			
 			if (m_pCReputationSNS->GetChangeStage() & m_pCReputationSNS->CHANGE_STAGE_FLAG) {

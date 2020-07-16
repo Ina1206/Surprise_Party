@@ -46,6 +46,9 @@ enum class enSEType {
 	IntermediateString,				//’†•]‰¿•¶š.
 	HightString,					//‚•]‰¿•¶š.
 
+	Floating,						//•‚—V.
+	JumpSNS,						//SNS‚Ö”ò‚Ô.
+
 	Max,							//Å‘å”.
 	Start ,							//Å‰.
 };

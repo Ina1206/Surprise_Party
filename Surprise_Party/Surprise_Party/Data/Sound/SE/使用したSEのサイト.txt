@@ -25,6 +25,7 @@ LowString.mp3			低評価文字
 無料効果音で遊ぼう！		URL：https://taira-komori.jpn.org/
 
 Shutter.mp3			シャッター
+Floating.mp3			浮遊系.
 
 ニコニコ・コモンズ		URL：http://commons.nicovideo.jp/
 
