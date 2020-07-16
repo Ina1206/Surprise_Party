@@ -2,6 +2,7 @@
 #define CSURPRSEI_REGREE_BASE_H
 
 #include "..\..\..\..\CUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /****************************************
 *		驚かし度の基底クラス.
@@ -35,11 +36,12 @@ public:
 protected:
 
 	//===================変数====================//.
-	CSpriteUI*	m_pCSpriteUI;		//スプライトUI.
-	D3DXVECTOR3 m_vEatchSizeScale;	//それぞれの大きさ.
-	bool		m_bDispFlag;		//表示フラグ.
-	bool		m_bDisplayAllAtOnce;//一気に表示フラグ.
-	int			m_DipslayNum;		//表示番号.
+	CSpriteUI*			m_pCSpriteUI;			//スプライトUI.
+	D3DXVECTOR3			m_vEatchSizeScale;		//それぞれの大きさ.
+	bool				m_bDispFlag;			//表示フラグ.
+	bool				m_bDisplayAllAtOnce;	//一気に表示フラグ.
+	int					m_DipslayNum;			//表示番号.
+	CPlaySoundManager*	m_pCPlaySoundManager;	//音再生管理クラス.
 
 private:
 };

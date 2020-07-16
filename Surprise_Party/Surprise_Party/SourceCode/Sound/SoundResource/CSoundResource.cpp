@@ -134,6 +134,11 @@ HRESULT CSoundResource::LoadSE()
 
 		"Data\\Sound\\SE\\Extension.mp3",				//延長歓声.
 		"Data\\Sound\\SE\\Stump.mp3",					//スタンプ.
+
+		"Data\\Sound\\SE\\EmdingSurpriseString.mp3",	//エンディング文字.
+		"Data\\Sound\\SE\\LowString.mp3",				//低評価文字.
+		"Data\\Sound\\SE\\IntermediateString.mp3",		//中間評価文字.
+		"Data\\Sound\\SE\\HightString.mp3",				//高評価文字.
 	};
 
 	const std::string m_Sound[] =
@@ -171,6 +176,12 @@ HRESULT CSoundResource::LoadSE()
 
 		"Extension",					//歓声.
 		"Stump",						//スタンプ.
+
+		"EndingSurprise",				//エンディング文字.
+		"LowString",					//低評価文字.
+		"Intermediate",					//中間評価文字.
+		"HightString",					//高評価文字.
+
 	};
 
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {

@@ -19,6 +19,8 @@ Font.mp3			フォントカーソル
 EndingSurpriseString.mp3	エンディングの怖がり文章
 Extension.mp3			歓声の声
 Stump.mp3			満員御礼スタンプ
+HightString.mp3			高評価文字
+LowString.mp3			低評価文字
 
 無料効果音で遊ぼう！		URL：https://taira-komori.jpn.org/
 
@@ -39,8 +41,7 @@ GimmickDecide.mp3		ギミック選択
 ReturnFromGimmickSelect.mp3	ギミック選択解除
 GhostGimmickMove.mp3		お化けとギミックの移動
 GhostGimmickSelectLimit.mp3	お化けとギミック選択上限.
-
-On-Jin ～音人～			URL:https://on-jin.com/
+IntermediateString.mp3		中間の文字
 
 効果音素材：ポケットサウンド 	URL:https://pocket-se.info/
 Turn.mp3			回転

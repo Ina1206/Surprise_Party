@@ -49,6 +49,8 @@ void CLowEvaluationString::Update()
 	if (m_ActFlag == 0) {
 		m_ActFlag = DISP_FLAG;
 		m_UpdateNum++;
+		//文字のSEを再生.
+		m_pCPlaySoundManager->SetPlaySE(enSEType::LowString);
 		//全ての文字を出し終わったら終了.
 		if (m_UpdateNum >= static_cast<int>(m_pCEvaluationUI.size())) {
 			m_bFinishedAllDispFlag = true;

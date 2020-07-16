@@ -15,6 +15,7 @@ CEvaluationUIBase::CEvaluationUIBase()
 	, m_bFinishedAllDispFlag(false)
 	, m_bDisplayAllAtOnce	(false)
 	, m_UpdateNum			(0)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 
 }

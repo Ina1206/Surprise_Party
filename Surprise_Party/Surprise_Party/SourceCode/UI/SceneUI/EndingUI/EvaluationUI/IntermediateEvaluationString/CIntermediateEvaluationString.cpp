@@ -46,6 +46,8 @@ void CIntermediateEvaluationString::Update()
 	if (m_ActFinishFlag == ALL_ACT_FLAG) {
 		m_ActFinishFlag = 0;
 		m_UpdateNum++;
+		//’†ŠÔ•]‰¿•¶Žš.
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Jump);
 
 		//‘S‚Ä‚Ì•¶Žš‚Ìˆ—‚ðI—¹‚µ‚½ˆ—.
 		if (m_UpdateNum >= static_cast<int>(m_pCEvaluationUI.size())) {

@@ -9,6 +9,7 @@ CSurpriseDegreeBase::CSurpriseDegreeBase()
 	, m_bDispFlag			(false)
 	, m_bDisplayAllAtOnce	(false)
 	, m_DipslayNum			(0)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 
 }

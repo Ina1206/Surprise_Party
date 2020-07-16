@@ -167,6 +167,8 @@ void CHightEvaluationString::Bound()
 		if (m_vEvaluationScale[m_UpdateNum].y <= EATCH_SCALE_MIN.y) {
 			m_vEvaluationScale[m_UpdateNum].y = EATCH_SCALE_MIN.y;
 			m_BoundFlag = BOUND_UP_FALG;
+			//‚•]‰¿•¶Žš‚ÌSE.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::HightString);
 		}
 		return;
 	}

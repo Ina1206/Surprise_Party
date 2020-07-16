@@ -4,6 +4,7 @@
 *		驚かし度文章クラス.
 *******************/
 CSurpriseDegreeString::CSurpriseDegreeString()
+	: m_bPlaySoundFlag	(false)
 {
 	//初期化処理関数.
 	Init();
@@ -58,6 +59,11 @@ void CSurpriseDegreeString::Release()
 //==================================================.
 void CSurpriseDegreeString::Move()
 {
+	//エンディング文字表示SE.
+	if (m_bPlaySoundFlag == false) {
+		m_bPlaySoundFlag = true;
+		m_pCPlaySoundManager->SetPlaySE(enSEType::EndingString);
+	}
 	m_vPos.y += MOVE_SPEED;
 
 	if (m_vPos.y >= FINISH_POS.y) {

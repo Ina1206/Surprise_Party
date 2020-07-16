@@ -105,6 +105,8 @@ void CShout::BoundSprite()
 		if (m_vEatchSizeScale.y <= EATCH_SCALE_MIN.y) {
 			m_vEatchSizeScale.y = EATCH_SCALE_MIN.y;
 			m_BoundFlag = BOUND_UP_FALG;
+			//‹©‚Ñº‚ÌSE‚ð’Ç‰Á.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::WomanShout);
 		}
 		return;
 	}

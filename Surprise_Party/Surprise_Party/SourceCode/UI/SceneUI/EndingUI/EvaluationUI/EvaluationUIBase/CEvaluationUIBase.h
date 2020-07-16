@@ -2,6 +2,7 @@
 #define CEVALUATION_UI_BASE_H
 
 #include "..\..\..\..\CUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /****************************************
 *		評価UIの基底クラス.
@@ -49,6 +50,7 @@ protected:
 	bool						m_bDisplayAllAtOnce;		//一気に表示するフラグ.
 	int							m_UpdateNum;				//更新する番号.
 
+	CPlaySoundManager*			m_pCPlaySoundManager;		//音再生管理クラス.
 };
 
 #endif	//#ifndef CEVALUATION_UI_BASE_H.

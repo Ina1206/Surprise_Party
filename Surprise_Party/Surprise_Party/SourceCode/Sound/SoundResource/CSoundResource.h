@@ -41,6 +41,11 @@ enum class enSEType {
 	ExtensionCheers,				//延長歓声.
 	Stump,							//スタンプ.
 
+	EndingString,					//エンディング文字.
+	LowString,						//低評価文字.
+	IntermediateString,				//中評価文字.
+	HightString,					//高評価文字.
+
 	Max,							//最大数.
 	Start ,							//最初.
 };
