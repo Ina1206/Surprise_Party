@@ -16,6 +16,9 @@ SelectDecide.mp3		選択肢の決定
 NotSelect.mp3			選択肢を選べない音.
 Bubble.mp3			泡
 Font.mp3			フォントカーソル
+EndingSurpriseString.mp3	エンディングの怖がり文章
+Extension.mp3			歓声の声
+Stump.mp3			満員御礼スタンプ
 
 無料効果音で遊ぼう！		URL：https://taira-komori.jpn.org/
 

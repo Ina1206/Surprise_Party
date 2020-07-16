@@ -131,6 +131,9 @@ HRESULT CSoundResource::LoadSE()
 
 		"Data\\Sound\\SE\\ManShout.mp3",				//男性の叫び声.
 		"Data\\Sound\\SE\\WomanShout.mp3",				//女性の叫び声.
+
+		"Data\\Sound\\SE\\Extension.mp3",				//延長歓声.
+		"Data\\Sound\\SE\\Stump.mp3",					//スタンプ.
 	};
 
 	const std::string m_Sound[] =
@@ -165,6 +168,9 @@ HRESULT CSoundResource::LoadSE()
 
 		"ManShout",						//男性の叫び声.
 		"WomanShout",					//女性の叫び声.
+
+		"Extension",					//歓声.
+		"Stump",						//スタンプ.
 	};
 
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {

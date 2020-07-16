@@ -14,6 +14,9 @@ CSurpriseGage::CSurpriseGage(const int& StageNum)
 	, m_bBorusGetFlag		(false)
 	, m_EvalutionFlag		(0)
 	, m_StageNum			(StageNum)
+	, m_bStumpSE			(false)
+	, m_bExtensionSE		(false)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -110,6 +113,11 @@ void CSurpriseGage::Release()
 void CSurpriseGage::StampDisp()
 {
 	
+	if (m_bStumpSE == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Stump);
+		m_bStumpSE = true;
+	}
+
 	if (m_vUIScale[STAMP_NUM].x <= SCALE_MIN.x) {
 		m_vUIScale[STAMP_NUM] = SCALE_MAX;
 		return;
@@ -130,6 +138,11 @@ void CSurpriseGage::StampDisp()
 void CSurpriseGage::InfomMove()
 {
 	m_vUIPos[INFOM_NUM].y += INFOM_MOVE_SPEED;
+
+	if (m_bExtensionSE == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::ExtensionCheers);
+		m_bExtensionSE = true;
+	}
 
 	//“§‰ß’l‚ğã‚°‚éˆ—.
 	if (m_vUIPos[INFOM_NUM].y <= CHANGE_ALPHA_HEIGHT) {

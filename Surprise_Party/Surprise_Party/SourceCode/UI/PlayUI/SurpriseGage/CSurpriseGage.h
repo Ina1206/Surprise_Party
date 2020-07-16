@@ -3,6 +3,7 @@
 
 #include "..\CPlayUI.h"
 #include "..\..\FileLoad\FileResource\CFileResource.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 class CSurpriseGage
 	: public CPlayUI
@@ -61,20 +62,23 @@ public:
 
 private:
 	//===================関数======================//.
-	void Init();						//初期化処理関数.
-	void Release();						//解放処理関数.
-	void StampDisp();					//スタンプ表示処理関数.
-	void InfomMove();					//通知移動処理関数.
-	void EvalutionSurprisePoint();		//驚きポイント評価処理関数.
+	void Init();								//初期化処理関数.
+	void Release();								//解放処理関数.
+	void StampDisp();							//スタンプ表示処理関数.
+	void InfomMove();							//通知移動処理関数.
+	void EvalutionSurprisePoint();				//驚きポイント評価処理関数.
 
 	//===================変数======================//.
-	CFileResource*	m_pCFileResource;	//ファイル読み込みクラス.	
-	int				m_SurprisePoint;	//驚かしポイント.
-	int				m_SurprisePointMax;	//驚かしポイント最大数.
-	bool			m_bSurprisePointMax;//驚きポイント最大数になったフラグ.
-	bool			m_bBorusGetFlag;	//ボーナス取得フラグ.
-	unsigned int 	m_EvalutionFlag;	//評価フラグ.
-	int				m_StageNum;			//ステージ番号.
+	CFileResource*		m_pCFileResource;		//ファイル読み込みクラス.	
+	int					m_SurprisePoint;		//驚かしポイント.
+	int					m_SurprisePointMax;		//驚かしポイント最大数.
+	bool				m_bSurprisePointMax;	//驚きポイント最大数になったフラグ.
+	bool				m_bBorusGetFlag;		//ボーナス取得フラグ.
+	unsigned int 		m_EvalutionFlag;		//評価フラグ.
+	int					m_StageNum;				//ステージ番号.
+	bool				m_bStumpSE;				//スタンプ再生フラグ.
+	bool				m_bExtensionSE;			//延長SEフラグ.
+	CPlaySoundManager*	m_pCPlaySoundManager;	//音再生管理クラス.
 };
 
 

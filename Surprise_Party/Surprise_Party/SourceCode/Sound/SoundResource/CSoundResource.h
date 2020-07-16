@@ -38,6 +38,9 @@ enum class enSEType {
 	ManShout,						//男性の叫び声.
 	WomanShout,						//女性の叫び声.
 
+	ExtensionCheers,				//延長歓声.
+	Stump,							//スタンプ.
+
 	Max,							//最大数.
 	Start ,							//最初.
 };
