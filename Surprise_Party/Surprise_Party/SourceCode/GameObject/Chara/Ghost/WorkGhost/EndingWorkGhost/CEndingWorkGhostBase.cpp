@@ -15,6 +15,8 @@ CEndingWorkGhostBase::CEndingWorkGhostBase()
 	, m_vChangeBeforeRotation	(0.0f, 0.0f, 0.0f)
 	, m_OldEmotionNum			(static_cast<int>(enEmotionType::Nothing))
 	, m_MoveToOuterFlag			(0)
+	, m_pCPlaySoundManager		(CPlaySoundManager::GetPlaySoundManager())
+	, m_bPlayGoodHumorSound		(false)
 {
 
 }
@@ -106,17 +108,23 @@ void CEndingWorkGhostBase::PlayEffectManager()
 	const float m_Length = sqrtf(powf(m_vPos.x - m_vLookAtPos.x, Index) + powf(m_vPos.z - m_vLookAtPos.z, Index));
 	if (m_Length > PLAY_DISTANCE_MAX) {
 		m_pCSpriteEffect->SetPlayFlag(false);
+		m_bPlayGoodHumorSound = false;
 		return;
 	}
 
 	//Ä¶ƒtƒ‰ƒOÝ’è.
 	if (m_pCSpriteEffect->GetRenderFlag() == true) {
 		m_pCSpriteEffect->SetPlayFlag(false);
+		m_bPlayGoodHumorSound = false;
 		return;
 	}
 
 	m_pCSpriteEffect->SetPlayFlag(true);
 
+	if (m_bPlayGoodHumorSound == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::GoodHumor);
+		m_bPlayGoodHumorSound = true;
+	}
 }
 
 //============================================.

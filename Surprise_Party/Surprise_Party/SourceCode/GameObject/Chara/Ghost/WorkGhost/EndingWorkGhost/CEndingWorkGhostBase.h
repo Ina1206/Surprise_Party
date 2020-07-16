@@ -2,6 +2,7 @@
 #define CENDING_WORK_GHOST_BASE_H
 
 #include "..\CWorkGhostBase.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /**************************************************
 *		エンディング働くお化け基底クラス.
@@ -49,6 +50,7 @@ protected:
 	float								m_fAccMax;				//加速度最大値.
 	float								m_fGravity;				//重力.
 	D3DXVECTOR3							m_vChangeBeforeRotation;//変更前の角度.
+	CPlaySoundManager*					m_pCPlaySoundManager;	//音再生管理クラス.
 private:
 	//========================関数=============================//.
 	void MoveToOutside();										//外側に移動する処理関数.
@@ -57,6 +59,7 @@ private:
 	//========================変数=============================//.
 	int									m_OldEmotionNum;		//差分用の感情番号.
 	unsigned int						m_MoveToOuterFlag;		//外側を移動するフラグ.
+	bool								m_bPlayGoodHumorSound;	//上機嫌SEを再生フラグ.
 };
 
 #endif	//#ifndef CENDING_WORK_GHOST_BASE_H.
