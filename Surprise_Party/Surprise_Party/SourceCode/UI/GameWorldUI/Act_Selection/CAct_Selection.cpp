@@ -1,19 +1,21 @@
 #include "CAct_Selection.h"
 
 CAct_Selection::CAct_Selection()
-	: m_pCSprite		()
-	, m_vSpritePos		()
-	, m_vSpriteRot		()
-	, m_fSpriteAlpha	()
-	, m_fSpriteScale	()
-	, m_fMoveDistance	()
-	, m_Direction		()
-	, m_bSelectFlag		(false)
-	, m_MoveFlag		(0)
-	, m_SelectNum		(0)
-	, m_GhostActFlag	(0)
-	, m_bTutorialFlag	(false)
-	, m_bDecideFlag		(false)
+	: m_pCSprite			()
+	, m_vSpritePos			()
+	, m_vSpriteRot			()
+	, m_fSpriteAlpha		()
+	, m_fSpriteScale		()
+	, m_fMoveDistance		()
+	, m_Direction			()
+	, m_bSelectFlag			(false)
+	, m_MoveFlag			(0)
+	, m_SelectNum			(0)
+	, m_GhostActFlag		(0)
+	, m_bTutorialFlag		(false)
+	, m_bDecideFlag			(false)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
+	, m_bOpenSEFlag			(false)
 {
 	//初期化処理関数.
 	Init();
@@ -39,6 +41,7 @@ void CAct_Selection::UpDate()
 		m_bSelectFlag = true;
 		m_MoveFlag = OPEN_MOVE;
 		m_GhostActFlag = 0;
+		m_bOpenSEFlag = false;
 	}
 
 	if (m_MoveFlag & OPEN_MOVE) {
@@ -115,9 +118,6 @@ void CAct_Selection::Init()
 		m_Direction[choice] = RIGHT_DIRECTION;
 	}
 
-	//m_pCSprite[0]->SetPatternNo(D3DXVECTOR2(2, 1));
-	//m_pCSprite[1]->SetPatternNo(D3DXVECTOR2(2, 1));
-
 	m_pCSprite[2] = m_pCResourceManager->GetSprite(enSprite::ActMoveString);
 	m_pCSprite[3] = m_pCResourceManager->GetSprite(enSprite::ActRestString);
 }
@@ -153,6 +153,11 @@ void CAct_Selection::BeforeMove()
 //========================================.
 void CAct_Selection::OpenMove()
 {
+	if (m_bOpenSEFlag == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::OpenActSelect);
+		m_bOpenSEFlag = true;
+	}
+
 	for (unsigned int pos = 0; pos < m_vSpritePos.size(); pos++) {
 		//移動距離計算.
 		m_fMoveDistance[pos] += MOVE_SPEED;
@@ -200,6 +205,8 @@ void CAct_Selection::Control()
 	if (GetAsyncKeyState(VK_BACK) & 0x0001) {
 		if (m_bTutorialFlag == false) {
 			m_MoveFlag = CLOSE_MOVE;
+			//閉じるSE.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::ReturnSelect);
 		}
 	}
 
@@ -210,17 +217,34 @@ void CAct_Selection::Control()
 		}
 	}
 
+	bool bLimitFlag = false;
+
 	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
 		m_SelectNum++;
 		if (m_SelectNum >= static_cast<int>(enGhostActType::Max)) {
 			m_SelectNum = static_cast<int>(enGhostActType::Max) - 1;
+			//カーソル上限移動音.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::LimitMoveCursor);
+			bLimitFlag = true;
+		}
+		//カーソル移動音.
+		if (bLimitFlag == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
 		}
 	}
 
+	bLimitFlag = false;
 	if (GetAsyncKeyState(VK_LEFT) & 0x0001) {
 		m_SelectNum--;
 		if (m_SelectNum < static_cast<int>(enGhostActType::Start)) {
 			m_SelectNum = static_cast<int>(enGhostActType::Start);
+			//カーソル上限移動音.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::LimitMoveCursor);
+			bLimitFlag = true;
+		}
+		//カーソル移動音.
+		if (bLimitFlag == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
 		}
 	}
 
@@ -228,18 +252,23 @@ void CAct_Selection::Control()
 		//選択肢閉じる.
 		m_MoveFlag = CLOSE_MOVE;
 
+		//選択決定音.
 		if (m_SelectNum == static_cast<int>(enGhostActType::Move)) {
 			m_GhostActFlag = MOVE_FLAG;
+			m_pCPlaySoundManager->SetPlaySE(enSEType::SelectDecide);
 			return;
 		}
 
 		//チュートリアル例外処理.
 		if (m_bTutorialFlag == true) {
 			m_MoveFlag = 0;
-			//ブッブーみたいなSE入れる.
+			//選択できない音.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::NotSelect);
 			return;
 		}
 
 		m_GhostActFlag = REST_FLAG;
+		//選択決定音.
+		m_pCPlaySoundManager->SetPlaySE(enSEType::SelectDecide);
 	}
 }

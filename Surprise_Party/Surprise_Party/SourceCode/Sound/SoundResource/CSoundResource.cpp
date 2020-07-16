@@ -126,6 +126,8 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\NotSelect.mp3",				//選択肢を選べない.
 		"Data\\Sound\\SE\\GimmickDecide.mp3",			//ギミック決定.
 		"Data\\Sound\\SE\\ReturnFromGimmickSelect.mp3",	//ギミック選択解除.
+		"Data\\Sound\\SE\\GhostGimmickMove.mp3",		//お化けとギミック移動.
+		"Data\\Sound\\SE\\GhostGimmickSelectLimit.mp3",	//お化けとギミック選択上限.
 
 	};
 
@@ -156,6 +158,8 @@ HRESULT CSoundResource::LoadSE()
 		"NotSelect",					//選択肢を選べない.
 		"GimmickDecide",				//ギミック決定.
 		"ReturnFromGimmickSelect",		//ギミック選択解除.
+		"GhostGimmickMove",				//お化けとギミック移動.
+		"GhostGimmickSelectLimit",		//お化けとギミック選択上限.
 	};
 
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {

@@ -12,6 +12,7 @@ CMainStageWorkGhostManager::CMainStageWorkGhostManager()
 	, m_TutorialFlag		(0)
 	, m_SelectNum			(0)
 	, m_bPauseFlag			(false)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 }
 
@@ -159,11 +160,19 @@ bool CMainStageWorkGhostManager::DecisionSelectSurprise()
 //================================================.
 bool CMainStageWorkGhostManager::SelectGhost()
 {
+	bool bLimitFlag = false;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
 		m_SelectNum++;
 
 		if (m_SelectNum >= static_cast<int>(m_pCWorkGhost.size())) {
 			m_SelectNum = m_pCWorkGhost.size() - 1;
+			//ˆÚ“®ãŒÀ‰¹.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickSelectLimit);
+			bLimitFlag = true;
+		}
+		//ˆÚ“®‰¹.
+		if (bLimitFlag == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickMove);
 		}
 		return true;
 	}
@@ -173,6 +182,13 @@ bool CMainStageWorkGhostManager::SelectGhost()
 
 		if (m_SelectNum < 0) {
 			m_SelectNum = 0;
+			//ˆÚ“®ãŒÀ‰¹.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickSelectLimit);
+			bLimitFlag = true;
+		}
+		//ˆÚ“®‰¹.
+		if (bLimitFlag == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickMove);
 		}
 		return true;
 	}

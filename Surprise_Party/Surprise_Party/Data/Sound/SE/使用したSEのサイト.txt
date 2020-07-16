@@ -34,6 +34,8 @@ Question.mp3			はてな
 Rejoice.mp3			喜び
 GimmickDecide.mp3		ギミック選択
 ReturnFromGimmickSelect.mp3	ギミック選択解除
+GhostGimmickMove.mp3		お化けとギミックの移動
+GhostGimmickSelectLimit.mp3	お化けとギミック選択上限.
 
 On-Jin ～音人～			URL:https://on-jin.com/
 

@@ -32,6 +32,8 @@ enum class enSEType {
 	NotSelect,						//選択肢を選べない.
 	GimmickDecide,					//ギミック決定.
 	ReturnFromGimmickSelect,		//ギミック選択解除.
+	GhostGimmickMove,				//お化けとギミックに移動する音.
+	GhostGimmickSelectLimit,		//お化けとギミック選択上限.
 
 	Max,							//最大数.
 	Start ,							//最初.

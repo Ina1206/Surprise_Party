@@ -4,6 +4,7 @@
 #include "..\MainStageDispGhost\CMainStageDispGhost.h"
 #include "..\MainStageSwitchGhost\CMainStageSwitchGhost.h"
 #include <tuple>
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*************************************************
 *		メインステージの働くお化け管理クラス.
@@ -106,6 +107,8 @@ private:
 	int														m_SelectNum;			//お化けの選択番号.
 
 	bool													m_bPauseFlag;			//ポーズフラグ.
+
+	CPlaySoundManager*										m_pCPlaySoundManager;	//音再生管理クラス.
 };
 
 #endif	//#ifndef CMAINSTAGE_WORKGHOST_MANAGER_H.

@@ -2,6 +2,7 @@
 #define CACT_SELECTION_H
 
 #include "..\CGameWorldUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*************************************
 *		行動選択クラス.
@@ -71,19 +72,21 @@ private:
 	void Control();			//操作処理関数.
 
 	//====================変数=======================//.
-	std::vector<CSprite*>		m_pCSprite;		//スプライトクラス.
-	std::vector<D3DXVECTOR3>	m_vSpritePos;	//スプライト座標.
-	std::vector<D3DXVECTOR3>	m_vSpriteRot;	//角度.
-	std::vector<float>			m_fSpriteAlpha;	//透過値.
-	std::vector<float>			m_fSpriteScale;	//大きさ.
-	std::vector<float>			m_fMoveDistance;//移動速度.
-	std::vector<int>			m_Direction;	//方向.
-	bool						m_bSelectFlag;	//選択フラグ.
-	unsigned int				m_MoveFlag;		//移動フラグ.
-	int							m_SelectNum;	//選択番号.
-	int							m_GhostActFlag;	//お化け行動フラグ.
-	bool						m_bTutorialFlag;//チュートリアルフラグ.
-	bool						m_bDecideFlag;	//決定フラグ.
+	std::vector<CSprite*>		m_pCSprite;				//スプライトクラス.
+	std::vector<D3DXVECTOR3>	m_vSpritePos;			//スプライト座標.
+	std::vector<D3DXVECTOR3>	m_vSpriteRot;			//角度.
+	std::vector<float>			m_fSpriteAlpha;			//透過値.
+	std::vector<float>			m_fSpriteScale;			//大きさ.
+	std::vector<float>			m_fMoveDistance;		//移動速度.
+	std::vector<int>			m_Direction;			//方向.
+	bool						m_bSelectFlag;			//選択フラグ.
+	unsigned int				m_MoveFlag;				//移動フラグ.
+	int							m_SelectNum;			//選択番号.
+	int							m_GhostActFlag;			//お化け行動フラグ.
+	bool						m_bTutorialFlag;		//チュートリアルフラグ.
+	bool						m_bDecideFlag;			//決定フラグ.
+	CPlaySoundManager*			m_pCPlaySoundManager;	//音再生管理クラス.
+	bool						m_bOpenSEFlag;			//開くSEフラグ.
 };
 
 #endif //#ifndef CACT_SELECTION_H.
