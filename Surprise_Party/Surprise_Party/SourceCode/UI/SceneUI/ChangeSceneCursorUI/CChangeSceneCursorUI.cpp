@@ -195,23 +195,26 @@ void CChangeSceneCursorUI::Control()
 		if (m_SelectNum < 0) {
 			m_SelectNum = 0;
 			//SE.
-
+			m_pCPlaySoundManager->SetPlaySE(enSEType::LimitMoveCursor);
 			return;
 		}
+		m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
 		m_SelectNum++;
 		if (m_SelectNum >= SELECT_MAX) {
 			m_SelectNum = SELECT_MAX - 1;
 			//SE.
-
+			m_pCPlaySoundManager->SetPlaySE(enSEType::LimitMoveCursor);
 			return;
 		}
+		m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
 	}
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		m_vUV = ENTER_UV_POS;
 		//SE.
+		m_pCPlaySoundManager->SetPlaySE(enSEType::SelectDecide);
 		m_ChangeCnt++;
 	}
 
