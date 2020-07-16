@@ -73,6 +73,8 @@ private:
 	float						m_fSwingSpeed;		//揺れの速度.
 	CSpriteUI*					m_pCOldSpriteUI;	//前のスプライトUIクラス.
 	float						m_fDistanceRatio;	//距離の割合.
+	bool						m_bPlayCurtainSE;	//カーテン再生フラグ.
+	bool						m_bPlayOpneBell;	//開く音.
 };
 
 #endif	//#ifndef CSTAGE_FADE_H.

@@ -114,7 +114,7 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Rejoice.mp3",					//喜び.
 		"Data\\Sound\\SE\\Bubble.mp3",					//泡.
 
-		"Data\\Sound\\SE\\MoveCurtain.mp3",				//カーテン移動.
+		"Data\\Sound\\SE\\CurtainMove.mp3",				//カーテン移動.
 		"Data\\Sound\\SE\\OpenBell.mp3",				//看板回転.
 
 		"Data\\Sound\\SE\\ReturnSelect.mp3",			//選択肢閉じる.

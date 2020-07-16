@@ -12,6 +12,8 @@ CStageFade::CStageFade()
 	, m_SwingRotMax		(0.6f)
 	, m_fSwingSpeed		(0.04f)
 	, m_fDistanceRatio	(1.0f)
+	, m_bPlayCurtainSE	(false)
+	, m_bPlayOpneBell	(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -131,6 +133,7 @@ void CStageFade::OpeningCurtainMove()
 	if (m_CurtainMoveFlag & SIGN_BOARD_SWING_FLAG) {
 		if (SwingSignBoard() == true) {
 			m_CurtainMoveFlag |= OPEN_CURTAIN_FLAG;
+			m_bPlayCurtainSE = false;
 		}
 		return;
 	}
@@ -156,6 +159,7 @@ void CStageFade::CloseCurtainMove()
 	if (m_CurtainMoveFlag & SIGN_BOARD_SWING_FLAG) {
 		if (SwingSignBoard() == true) {
 			m_CurtainMoveFlag |= OPEN_CURTAIN_FLAG;
+			m_bPlayCurtainSE = false;
 		}
 		return;
 	}
@@ -169,6 +173,11 @@ bool CStageFade::CurtainMove()
 {
 	int MoveDirect = 1;
 	bool MoveFlag = false;
+
+	if (m_bPlayCurtainSE == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCurtain);
+		m_bPlayCurtainSE = true;
+	}
 
 	//‹——£‚ÌŠ„‡.
 	if (m_CurtainMoveFlag & CLOSE_CURTAIN_FLAG) {
