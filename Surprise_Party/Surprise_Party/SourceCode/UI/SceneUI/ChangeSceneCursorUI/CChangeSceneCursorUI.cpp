@@ -27,6 +27,9 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	, m_fCarryDisntace			(0.0f)
 	, m_MoveType				(0)
 	, m_OutSidePos				(false)
+	, m_pCPlaySoundManager		(CPlaySoundManager::GetPlaySoundManager())
+	, m_bPlayJumpSE				(false)
+	, m_bPlayTurnSE				(false)
 {
 	//初期化処理関数.
 	Init();
@@ -295,11 +298,19 @@ bool CChangeSceneCursorUI::Jump()
 		return false;
 	}
 
+	if (m_bPlayJumpSE == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Jump);
+		m_bPlayJumpSE = true;
+	}
+
 	m_fAcc += ADD_ACC_SPEED;
 
 	m_vPos.y += m_fAcc - GRAVITY;
+
 	if (m_vPos.y > m_vJumpBeforePos.y) {
 		m_vPos.y = m_vJumpBeforePos.y;
+
+		m_bPlayJumpSE = false;
 
 		//ジャンプ最大数.
 		m_JumpCnt++;
@@ -323,10 +334,17 @@ bool CChangeSceneCursorUI::ChangeMoveDirect()
 {
 	m_vRot.y -= ROTATION_SPEED * m_MoveDirect;
 	
+	if (m_bPlayTurnSE == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Turn);
+		m_bPlayTurnSE = true;
+	}
+
 	//右と左の方向の差分.
 	const float DIFFERENCE_LEFT_RIGHT_ROT = fabsf(RIGHT_CURSOR_ROT.y - LEFT_CURSOR_ROT.y);
 
 	if (fabsf(m_vRot.y - m_vChangeDirectBeforeRot.y) > DIFFERENCE_LEFT_RIGHT_ROT) {
+		m_bPlayTurnSE = false;
+
 		//移動方向変更.
 		m_MoveDirect *= CHANGE_DIRECT;
 		

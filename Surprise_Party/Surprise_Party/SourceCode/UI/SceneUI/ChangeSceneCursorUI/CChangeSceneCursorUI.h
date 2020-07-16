@@ -2,6 +2,7 @@
 #define CCHANGE_SCENE_CURSOR_H
 
 #include "..\..\CUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /****************************************
 *		シーン変更用カーソルUIクラス.
@@ -118,36 +119,40 @@ private:
 	void BecomeCursor();									//カーソルになる処理関数.
 
 	//===================変数======================//.
-	CSpriteUI*		m_pCSpriteUI;				//スプライトUI.
-	D3DXVECTOR2		m_vUV;						//UV座標.
-	D3DXVECTOR3		m_vPrePos;					//事前の座標.
-	bool			m_bChangeWaitFlag;			//変更待機フラグ.
-	bool			m_bSelectFinishFlag;		//選択終了フラグ.
-	bool			m_bControlFlag;				//操作フラグ.
-	int				m_ChangeCnt;				//変更カウント.
-	int				m_SelectNum;				//選択番号.
+	CSpriteUI*			m_pCSpriteUI;							//スプライトUI.
+	D3DXVECTOR2			m_vUV;									//UV座標.
+	D3DXVECTOR3			m_vPrePos;								//事前の座標.
+	bool				m_bChangeWaitFlag;						//変更待機フラグ.
+	bool				m_bSelectFinishFlag;					//選択終了フラグ.
+	bool				m_bControlFlag;							//操作フラグ.
+	int					m_ChangeCnt;							//変更カウント.
+	int					m_SelectNum;							//選択番号.
 	
-	float			m_fAngle;					//角度.
+	float				m_fAngle;								//角度.
 
-	float			m_fAcc;						//加速度.
-	D3DXVECTOR3		m_vJumpBeforePos;			//ジャンプ前の座標.
-	int				m_MaxJump;					//ジャンプ最大値.
-	int				m_JumpCnt;					//ジャンプカウント.
+	float				m_fAcc;									//加速度.
+	D3DXVECTOR3			m_vJumpBeforePos;						//ジャンプ前の座標.
+	int					m_MaxJump;								//ジャンプ最大値.
+	int					m_JumpCnt;								//ジャンプカウント.
 
-	int				m_MoveDirect;				//移動方向.
-	bool			m_bChangeDirect;			//方向変更フラグ.
-	D3DXVECTOR3		m_vChangeDirectBeforeRot;	//方向変更前の角度.
-	int				m_MoveWaitCnt;				//移動待機フラグ.
-	bool			m_bArrivalFlga;				//到着フラグ.
+	int					m_MoveDirect;							//移動方向.
+	bool				m_bChangeDirect;						//方向変更フラグ.
+	D3DXVECTOR3			m_vChangeDirectBeforeRot;				//方向変更前の角度.
+	int					m_MoveWaitCnt;							//移動待機フラグ.
+	bool				m_bArrivalFlga;							//到着フラグ.
 	
-	D3DXVECTOR3		m_vCarryStartPos;			//タイトル運びはじめの座標.
-	unsigned int	m_CarryFlag;				//運ぶフラグ.
-	unsigned int	m_FetchFlag;				//取りに行くフラグ.
-	float			m_fCarryDisntace;			//運ぶ距離.
+	D3DXVECTOR3			m_vCarryStartPos;						//タイトル運びはじめの座標.
+	unsigned int		m_CarryFlag;							//運ぶフラグ.
+	unsigned int		m_FetchFlag;							//取りに行くフラグ.
+	float				m_fCarryDisntace;						//運ぶ距離.
 	
-	int				m_MoveType;					//移動フラグ.
+	int					m_MoveType;								//移動フラグ.
 
-	float			m_OutSidePos;				//画面外のx座標.
+	float				m_OutSidePos;							//画面外のx座標.
+
+	CPlaySoundManager*	m_pCPlaySoundManager;					//音再生管理クラス.
+	bool				m_bPlayJumpSE;							//ジャンプ再生フラグ.
+	bool				m_bPlayTurnSE;							//回転再生フラグ.
 };
 
 #endif	//#ifndef CCHANGE_SCENE_CURSOR_H

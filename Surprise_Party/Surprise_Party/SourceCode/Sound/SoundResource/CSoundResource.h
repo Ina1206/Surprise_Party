@@ -12,6 +12,7 @@ enum class enSEType {
 	LimitMoveCursor,				//カーソル上限移動.
 	SelectDecide,					//選択肢決定.
 	Jump,							//ジャンプ.
+	Turn,							//回転.
 
 	Swet,							//汗.
 	Question,						//はてな.

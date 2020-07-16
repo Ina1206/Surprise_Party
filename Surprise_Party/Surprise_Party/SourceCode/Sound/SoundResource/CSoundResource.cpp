@@ -106,6 +106,7 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\LimitMoveCursor.mp3",			//カーソル上限移動.
 		"Data\\Sound\\SE\\SelectDecide.mp3",			//選択決定音.
 		"Data\\Sound\\SE\\Jump.mp3",					//ジャンプ.
+		"Data\\Sound\\SE\\Turn.mp3",					//回転.
 
 		"Data\\Sound\\SE\\Swet.mp3",					//汗.
 		"Data\\Sound\\SE\\Question.mp3",				//はてな.
@@ -134,6 +135,7 @@ HRESULT CSoundResource::LoadSE()
 		"LimitMoveCursor",				//カーソル上限移動.
 		"SelectDecide",					//選択決定音.
 		"Jump",							//ジャンプ.
+		"Turn",							//回転.
 
 		"Swet",							//汗.
 		"Question",						//はてな.

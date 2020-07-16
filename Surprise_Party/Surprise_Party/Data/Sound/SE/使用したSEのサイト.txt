@@ -1,4 +1,4 @@
-効果音ラボ　		URL：https://soundeffect-lab.info/
+効果音ラボ　			URL：https://soundeffect-lab.info/
 
 Jump.mp3			ジャンプ
 CurtainMove.mp3			カーテン移動
@@ -15,23 +15,25 @@ PushSwitch.mp3			ボタンを押す音
 SelectDecide.mp3		選択肢の決定
 NotSelect.mp3			選択肢を選べない音.
 
-無料効果音で遊ぼう！	URL：https://taira-komori.jpn.org/
+無料効果音で遊ぼう！		URL：https://taira-komori.jpn.org/
 
 Shutter.mp3			シャッター
 
-ニコニコ・コモンズ	URL：http://commons.nicovideo.jp/
+ニコニコ・コモンズ		URL：http://commons.nicovideo.jp/
 
 OpenBell.mp3			看板回転
 
 
-DOVA-SYNDROME		URL:https://dova-s.jp/
+DOVA-SYNDROME			URL:https://dova-s.jp/
 FallDownPicture.mp3		絵画落ちる
 
-OtoLogic		URL:https://otologic.jp/
+OtoLogic			URL:https://otologic.jp/
 Question.mp3			はてな
 Rejoice.mp3			喜び
 GimmickDecide.mp3		ギミック選択
 ReturnFromGimmickSelect.mp3	ギミック選択解除
 
-On-Jin ～音人～		URL:https://on-jin.com/
+On-Jin ～音人～			URL:https://on-jin.com/
 Font.mp3			フォントカーソル
+
+効果音素材：ポケットサウンド
