@@ -201,6 +201,7 @@ void CBigGhost::RejoiceEmotion()
 	if (fabsf(m_vRot.y) > REJOICE_ROT_MAX) {
 		m_LeanDirect	*= CHANGE_DIRECTION;
 		m_UpDownDirect	*= CHANGE_DIRECTION;
+		//Šì‚ÑSEÄ¶.
 		m_pCPlaySoundManager->SetPlaySE(enSEType::Redjuice);
 	}
 
