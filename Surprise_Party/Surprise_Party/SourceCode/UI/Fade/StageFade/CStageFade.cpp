@@ -31,6 +31,7 @@ CStageFade::~CStageFade()
 void CStageFade::Update()
 {
 	if (m_CurtainMoveFlag == 0) {
+		m_bPlayCurtainSE = false;
 		return;
 	}
 
@@ -258,6 +259,8 @@ bool CStageFade::RotationSignBoard(CSpriteUI*	ChangeStirngSpriteUI)
 		m_CurtainMoveFlag &= ~OPEN_CHANG_FLAG;
 
 		m_enSwingSignBoard = enSwingSignBoard::LeftSwing;
+
+		m_pCPlaySoundManager->SetPlaySE(enSEType::OpenBell);
 
 		return true;
 	}

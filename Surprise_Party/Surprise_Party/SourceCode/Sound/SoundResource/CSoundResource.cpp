@@ -115,7 +115,7 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Bubble.mp3",					//泡.
 
 		"Data\\Sound\\SE\\CurtainMove.mp3",				//カーテン移動.
-		"Data\\Sound\\SE\\OpenBell.mp3",				//看板回転.
+		"Data\\Sound\\SE\\OpenBell.wav",				//看板回転.
 
 		"Data\\Sound\\SE\\ReturnSelect.mp3",			//選択肢閉じる.
 		"Data\\Sound\\SE\\AppActSelect.mp3",			//選択肢を開く.
