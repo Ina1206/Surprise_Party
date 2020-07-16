@@ -4,6 +4,7 @@
 *		寝ているエフェクトクラス.
 ****************/
 CSleepEffect::CSleepEffect()
+	: m_bPlayBubbleSE	()
 {
 	//初期化処理関数.
 	Init();
@@ -33,6 +34,13 @@ void CSleepEffect::Update()
 				SettingDefaultValue(sprite);
 			}
 
+			if (m_fAlpha[sprite] >= BUBBLE_PLAY_ALPHA) {
+				if (m_bPlayBubbleSE[sprite] == false) {
+					m_pCPlaySoundManager->SetPlaySE(enSEType::Bubble);
+					m_bPlayBubbleSE[sprite] = true;
+				}
+			}
+
 			//移動処理.
 			Move(sprite);
 			continue;
@@ -54,6 +62,7 @@ void CSleepEffect::PlayStartInit(const int& num)
 	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {
 		SettingDefaultValue(sprite);
 		m_DispTime = APPEAR_TIME;
+		m_bPlayBubbleSE[sprite] = false;
 	}
 }
 
@@ -70,6 +79,7 @@ void CSleepEffect::Init()
 	for (int sprite = 0; sprite < ALL_SPRITE_MAX; sprite++) {
 		SettingDefaultValue(sprite);
 		m_DispTime = APPEAR_TIME;
+		m_bPlayBubbleSE.push_back(false);
 		//眠りの睡眠マーク.
 		if (sprite % LINE_MAX == SLEEP_Z_NUM) {
 			m_pCSprite[sprite] = m_pCResourceManager->GetSprite(enSprite::SleepZ);
@@ -109,6 +119,7 @@ void CSleepEffect::AppeartJudgement(const int& num)
 	}
 
 	m_bDispFlag[num] = true;
+	m_bPlayBubbleSE[num] = false;
 }
 
 //=======================================.

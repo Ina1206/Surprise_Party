@@ -30,6 +30,7 @@ public:
 	const float			ALPHA_SPEED			= 0.005f;							//透過速度.
 	const float			SCALE_SPEED			= 0.005f;							//拡縮速度.
 
+	const float			BUBBLE_PLAY_ALPHA	= 0.1f;								//泡の音再生時の透過値.
 
 	//===============関数=================//.
 	void Update();								//更新処理関数.
@@ -41,6 +42,9 @@ private:
 	void Release();								//解放処理関数.
 	void AppeartJudgement(const int& num);		//表示判断処理関数.
 	void Move(const int& num);					//移動処理関数.
+
+	//==============変数==================//.
+	std::vector<bool>	m_bPlayBubbleSE;		//泡の音再生フラグ.
 
 };
 

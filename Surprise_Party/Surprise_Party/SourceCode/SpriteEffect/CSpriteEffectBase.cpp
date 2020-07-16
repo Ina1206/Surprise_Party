@@ -22,6 +22,7 @@ CSpriteEffectBase::CSpriteEffectBase()
 	, m_bPlayFlag			(false)
 	, m_bRenderFlag			(false)
 	, m_fStartAngle			(0.0f)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
 	m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();

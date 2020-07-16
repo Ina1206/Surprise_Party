@@ -17,6 +17,7 @@ enum class enSEType {
 	Swet,							//汗.
 	Question,						//はてな.
 	Redjuice,						//喜び.
+	Bubble,							//泡.
 	Font,							//フォント.
 
 	MoveCurtain,					//カーテン移動.

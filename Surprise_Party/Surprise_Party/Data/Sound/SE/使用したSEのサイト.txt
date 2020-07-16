@@ -14,6 +14,7 @@ PushSwitchPlaySound.mp3		ボタン押したときに再生される音
 PushSwitch.mp3			ボタンを押す音
 SelectDecide.mp3		選択肢の決定
 NotSelect.mp3			選択肢を選べない音.
+Bubble.mp3			泡
 
 無料効果音で遊ぼう！		URL：https://taira-komori.jpn.org/
 
@@ -36,4 +37,5 @@ ReturnFromGimmickSelect.mp3	ギミック選択解除
 On-Jin ～音人～			URL:https://on-jin.com/
 Font.mp3			フォントカーソル
 
-効果音素材：ポケットサウンド
+効果音素材：ポケットサウンド 	URL:https://pocket-se.info/
+Turn.mp3			回転

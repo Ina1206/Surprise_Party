@@ -111,6 +111,7 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Swet.mp3",					//汗.
 		"Data\\Sound\\SE\\Question.mp3",				//はてな.
 		"Data\\Sound\\SE\\Redjuice.mp3",				//喜び.
+		"Data\\Sound\\SE\\Bubble.mp3",					//泡.
 		"Data\\Sound\\SE\\Font.mp3",					//フォント.
 
 		"Data\\Sound\\SE\\MoveCurtain.mp3",				//カーテン移動.
@@ -140,6 +141,7 @@ HRESULT CSoundResource::LoadSE()
 		"Swet",							//汗.
 		"Question",						//はてな.
 		"Redjuice",						//喜び.
+		"Bubble",						//泡.
 		"Font",							//フォント.
 		
 		"MoveCurtain",					//カーテン移動.

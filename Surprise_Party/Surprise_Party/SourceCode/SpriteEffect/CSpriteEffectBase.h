@@ -3,6 +3,7 @@
 
 #include "..\Drawing\Resource\CResourceManager.h"
 #include "..\..\Global.h"
+#include "..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*********************************************
 *		スプライトのエフェクト基底クラス.
@@ -51,28 +52,30 @@ protected:
 	bool ScalingTransparent(const int& num);			//透過処理関数.
 
 	//================変数====================//.
-	std::vector<CSprite*>		m_pCSprite;			//スプライトクラス.
-	std::vector<D3DXVECTOR3>	m_vPos;				//座標.
-	std::vector<D3DXVECTOR3>	m_vRot;				//角度.
-	std::vector<D3DXVECTOR3>	m_vScale;			//大きさ.
-	std::vector<float>			m_fAlpha;			//透過値.
-	std::vector<float>			m_fAngle;			//角度.
-	std::vector<float>			m_fDistance;		//距離.
-	std::vector<D3DXVECTOR2>	m_vPart;			//元画像の場所.
-	D3DXVECTOR3					m_vCenterPos;		//中央座標.
-	float						m_fAlphaSpeed;		//透過速度.
-	float						m_fScalingSpeed;	//大きさ速度.
-	CResourceManager*			m_pCResourceManager;//読み込み管理クラス.
-	CDepth_Stencil*				m_pCDepthStencil;	//デプスステンシル.
+	std::vector<CSprite*>		m_pCSprite;				//スプライトクラス.
+	std::vector<D3DXVECTOR3>	m_vPos;					//座標.
+	std::vector<D3DXVECTOR3>	m_vRot;					//角度.
+	std::vector<D3DXVECTOR3>	m_vScale;				//大きさ.
+	std::vector<float>			m_fAlpha;				//透過値.
+	std::vector<float>			m_fAngle;				//角度.
+	std::vector<float>			m_fDistance;			//距離.
+	std::vector<D3DXVECTOR2>	m_vPart;				//元画像の場所.
+	D3DXVECTOR3					m_vCenterPos;			//中央座標.
+	float						m_fAlphaSpeed;			//透過速度.
+	float						m_fScalingSpeed;		//大きさ速度.
+	CResourceManager*			m_pCResourceManager;	//読み込み管理クラス.
+	CDepth_Stencil*				m_pCDepthStencil;		//デプスステンシル.
 	
-	std::vector<bool>			m_bDispFlag;		//表示フラグ.
-	int							m_DispTime;			//表示区切り時間.
-	std::vector<int>			m_ChangeAddSub;		//加算減算変更.
+	std::vector<bool>			m_bDispFlag;			//表示フラグ.
+	int							m_DispTime;				//表示区切り時間.
+	std::vector<int>			m_ChangeAddSub;			//加算減算変更.
 
-	bool						m_bPlayFlag;		//再生フラグ.
-	bool						m_bRenderFlag;		//描画フラグ.
+	bool						m_bPlayFlag;			//再生フラグ.
+	bool						m_bRenderFlag;			//描画フラグ.
 
-	float						m_fStartAngle;		//開始座標.
+	float						m_fStartAngle;			//開始座標.
+
+	CPlaySoundManager*			m_pCPlaySoundManager;	//音再生管理クラス.
 
 private:
 
