@@ -135,6 +135,9 @@ void CReputationSNS::UpdateCursor()
 	if (m_FlashingCursorCnt > FLASING_CNT_MAX) {
 		
 		m_FlashingCursorCnt = 0;
+		if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::Font);
+		}
 
 		if (m_fSpriteUIAlpha[CURSOR_NUM] >= ALPHA_MAX) {
 			m_fSpriteUIAlpha[CURSOR_NUM] = 0.0f;
