@@ -8,6 +8,7 @@
 #include "..\..\UI\MapUI\CharaUI\Icon\GimmickIcon\CGimmickIcon.h"
 #include "..\..\UI\MapUI\CharaUI\MapCursor\MapGimmickCursor\CMapGimmickCursor.h"
 #include "..\..\UI\GameWorldUI\GameWorldCursor\GameGimmickCursor\CGameGimmickCursor.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /**********************************
 *	移動オブジェクト管理クラス.
@@ -62,6 +63,8 @@ public:
 	const unsigned int	DOWN_FLAG					= (1 << 1);							//下がるフラグ.
 	const unsigned int	UP_FLAG						= (1 << 2);							//上がるフラグ.
 
+	const unsigned int	POSSIBLE_PLAY_SE_FLAG		= (1 << 0);							//SE鳴らすことが可能.
+	const unsigned int	PLAYED_SOUND				= (1 << 1);							//音を鳴らした後フラグ.
 
 	//=================関数===================//.
 	void UpDate();																				//更新処理関数.
@@ -144,7 +147,9 @@ private:
 	std::vector<bool>								m_bPlayEffectSound;			//エフェクトと音再生.
 	bool											m_bRenderUI;				//UI描画するかどうかのフラグ.
 	bool											m_bPauseFlag;				//ポーズフラグ.
-	std::vector<std::vector<int>>					m_GimmickNumByType;			//タイプ別ギミック番号.				
+	std::vector<std::vector<int>>					m_GimmickNumByType;			//タイプ別ギミック番号.			
+	CPlaySoundManager*								m_pCPlaySoundManager;		//曲再生管理クラス.
+	std::vector<unsigned int>						m_bPlaySurpriseActSE;		//驚かす行動SE再生フラグ.
 };
 
 #endif	//#ifndef CMVOE_OBJECT_MANAGER_H.

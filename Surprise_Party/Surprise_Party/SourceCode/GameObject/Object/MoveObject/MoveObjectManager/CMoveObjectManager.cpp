@@ -31,6 +31,8 @@ CMoveObjectManager::CMoveObjectManager(const int& FileNum, const int& StageNum)
 	, m_bRenderUI				(true)
 	, m_bPauseFlag				(false)
 	, m_GimmickNumByType		(0)
+	, m_pCPlaySoundManager		(CPlaySoundManager::GetPlaySoundManager())
+	, m_bPlaySurpriseActSE		(0)
 {
 	//初期化処理関数.
 	Init(FileNum, StageNum);
@@ -48,8 +50,14 @@ CMoveObjectManager::~CMoveObjectManager()
 void CMoveObjectManager::UpDate()
 {
 	//オブジェクト.
+	std::vector<bool> FoundFlag(m_vMoveObjectPos.size());
 	for (int obj = 0; obj < static_cast<int>(enMoveObjectType::Max); obj++) {
 		for (unsigned int allObj = 0; allObj < m_vMoveObjectPos.size(); allObj++) {
+			if (FoundFlag[allObj] == false) {
+				//再生させない.
+				m_bPlaySurpriseActSE[allObj] &= ~POSSIBLE_PLAY_SE_FLAG;
+			}
+
 			if (obj == m_enMoveObjectType[allObj]) {
 				if (m_vCameraPos.x + DISP_CAMERA_WIDHT > m_vMoveObjectPos[allObj].x &&
 					m_vCameraPos.x - DISP_CAMERA_WIDHT < m_vMoveObjectPos[allObj].x) {
@@ -59,6 +67,9 @@ void CMoveObjectManager::UpDate()
 					m_pCMoveObjectBase[obj]->SetCameraDispFlag();
 					//エフェクトと音再生フラグ.
 					m_pCMoveObjectBase[obj]->SetMoveObjectEffect(m_bPlayEffectSound[allObj]);
+					//SEを再生させる.
+					m_bPlaySurpriseActSE[allObj] |= POSSIBLE_PLAY_SE_FLAG;
+					FoundFlag[allObj] = true;
 					if (obj == static_cast<int>(enMoveObjectType::ObjectMoveSwitch)) {
 						for (int attach = 1; attach < 2; attach++) {
 							//座標.
@@ -279,6 +290,8 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 	m_FlowerSwingCnt.resize(m_pCGimmickIcon.size());
 	//エフェクトと音を再生させるフラグ.
 	m_bPlayEffectSound.resize(m_pCGimmickIcon.size());
+	//驚かす行動SE再生フラグ.
+	m_bPlaySurpriseActSE.resize(m_pCGimmickIcon.size());
 
 	//オブジェクトインスタンス化.
 	m_pCMoveObjectBase.resize(static_cast<int>(enMoveObjectType::Max));
@@ -364,12 +377,15 @@ void CMoveObjectManager::GimmickSort()
 void CMoveObjectManager::PaintingUpDown(int objNum)
 {
 	m_bPlayEffectSound[objNum] = false;
-
 	//下げる処理.
 	if (m_ObjeMoveFlag[objNum] & DOWN_FLAG) {
 		m_vMoveObjectPos[objNum].y -= PAINTING_MOVE_SPEED;
 		if (m_vMoveObjectPos[objNum].y <= PAINTING_DOWN_MAX) {
 			m_vMoveObjectPos[objNum].y = PAINTING_DOWN_MAX;
+			if (m_bPlaySurpriseActSE[objNum] == POSSIBLE_PLAY_SE_FLAG) {
+				m_pCPlaySoundManager->SetPlaySE(enSEType::FallDownPicture);
+				m_bPlaySurpriseActSE[objNum] |= PLAYED_SOUND;
+			}
 		}
 		return;
 	}
@@ -377,6 +393,7 @@ void CMoveObjectManager::PaintingUpDown(int objNum)
 	//上げる処理.
 	if (m_ObjeMoveFlag[objNum] & UP_FLAG) {
 		m_vMoveObjectPos[objNum].y += PAINTING_MOVE_SPEED;
+		m_bPlaySurpriseActSE[objNum] &= ~PLAYED_SOUND;
 	}
 
 	if (m_vMoveObjectPos[objNum].y < STANDERD_PAINTING_POS.y) {
@@ -413,6 +430,14 @@ void CMoveObjectManager::SwitchPush(int objNum, CGameObject::enSurpriseObjectTyp
 			else{
 				//SE鳴らす.
 				m_bPlayEffectSound[objNum] = true;
+				if (m_bPlaySurpriseActSE[objNum] == POSSIBLE_PLAY_SE_FLAG) {
+					m_pCPlaySoundManager->SetPlaySE(enSEType::PushSwitchPlaySound);
+				}
+			}
+
+			if (m_bPlaySurpriseActSE[objNum] == POSSIBLE_PLAY_SE_FLAG) {
+				m_pCPlaySoundManager->SetPlaySE(enSEType::PushSwitch);
+				m_bPlaySurpriseActSE[objNum] |= PLAYED_SOUND;
 			}
 		}
 		return;
@@ -423,6 +448,7 @@ void CMoveObjectManager::SwitchPush(int objNum, CGameObject::enSurpriseObjectTyp
 		m_vMoveObjectPos[objNum].y += SWITCH_UP_DOWN_SPEED;
 		if (m_vMoveObjectPos[objNum].y >= SWITCH_HIGHT_MAX) {
 			m_vMoveObjectPos[objNum].y = SWITCH_HIGHT_MAX;
+			m_bPlaySurpriseActSE[objNum] &= ~PLAYED_SOUND;
 		}
 	}
 
@@ -468,6 +494,10 @@ void CMoveObjectManager::Table_VaseFlowerMove(int objNum)
 			if (m_vAttachRot[objNum].z >= VASE_ROT_MAX) {
 				m_vAttachRot[objNum].z = VASE_ROT_MAX;
 				m_AttachedObjMoveFlag[objNum] &= ~ATTACHED_MOVE_LEFT_FLAG;
+				//揺れる音を再生.
+				if (m_bPlaySurpriseActSE[objNum] & POSSIBLE_PLAY_SE_FLAG) {
+					m_pCPlaySoundManager->SetPlaySE(enSEType::FlowerSwing);
+				}
 			}
 			return;
 		}
@@ -477,6 +507,10 @@ void CMoveObjectManager::Table_VaseFlowerMove(int objNum)
 		if (m_vAttachRot[objNum].z <= VASE_ROT_MIN) {
 			m_vAttachRot[objNum].z = VASE_ROT_MIN;
 			m_FlowerSwingCnt[objNum]++;
+			//揺れる音を再生.
+			if (m_bPlaySurpriseActSE[objNum] & POSSIBLE_PLAY_SE_FLAG) {
+				m_pCPlaySoundManager->SetPlaySE(enSEType::FlowerSwing);
+			}
 
 			m_AttachedObjMoveFlag[objNum] |= ATTACHED_MOVE_LEFT_FLAG;
 		}

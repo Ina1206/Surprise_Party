@@ -120,7 +120,7 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\ReturnSelect.mp3",			//選択肢閉じる.
 		"Data\\Sound\\SE\\AppActSelect.mp3",			//選択肢を開く.
 		"Data\\Sound\\SE\\FlowerSwing.mp3",				//花が揺れる.
-		"Data\\Sound\\SE\\PushSwitchPlaySound.mp3",		//ボタンを押し再生する音.
+		"Data\\Sound\\SE\\PushSwitchSound.mp3",			//ボタンを押し再生する音.
 		"Data\\Sound\\SE\\PushSwitch.mp3",				//ボタンを押す音.
 		"Data\\Sound\\SE\\FallDownPicture.mp3",			//絵画が落ちる.
 		"Data\\Sound\\SE\\NotSelect.mp3",				//選択肢を選べない.
