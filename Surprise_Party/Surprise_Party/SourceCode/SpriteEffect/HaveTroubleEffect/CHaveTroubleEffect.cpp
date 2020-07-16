@@ -41,6 +41,8 @@ void CHaveTroubleEffect::Update()
 			if (m_DispCnt >= LINE_MAX) {
 				m_DispCnt = 0;
 				m_DispTime = 0;
+				//Š¾‚ÌSEÄ¶.
+				m_pCPlaySoundManager->SetPlaySE(enSEType::Swet);
 			}
 		}
 	}
@@ -99,6 +101,7 @@ void CHaveTroubleEffect::AppeartJudgement(const int& num)
 
 	m_DispCnt++;
 	m_bDispFlag[num] = true;
+
 }
 
 //============================================.
