@@ -2,9 +2,12 @@
 
 CPeopleIcon::CPeopleIcon()
 	: m_bSurpriseFlag		(false)
+	, m_bShoutWoman			(false)
 	, m_fAcc				(0.0f)
 	, m_pCShockingEffect	(nullptr)
 	, m_bJumpFlag			(false)
+	, m_bShoutFlag			(false)
+	, m_pCSoundPlayManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	m_pCShockingEffect.reset(new CShockingEffect());
 }
@@ -70,10 +73,28 @@ bool CPeopleIcon::DecisionSurpriseJump()
 	if (m_bSurpriseFlag == false) {
 		if (m_bJumpFlag == false) {
 			m_fAcc = 0.0f;
+			m_bShoutFlag = false;
 			return false;
 		}
 	}
 	m_bJumpFlag = true;
+
+	if (m_bShoutPossibleFlag == false) {
+		return true;
+	}
+
+	if (m_bShoutFlag == false) {
+		m_bShoutFlag = true;
+		if (m_bShoutWoman == true) {
+			m_pCSoundPlayManager->SetPlaySE(enSEType::WomanShout);
+			m_pCSoundPlayManager->SetSEVolume(enSEType::WomanShout, 1000);
+			return true;
+		}
+
+		m_pCSoundPlayManager->SetPlaySE(enSEType::ManShout);
+		m_pCSoundPlayManager->SetSEVolume(enSEType::ManShout, 1000);
+	}
+
 	return true;
 
 }

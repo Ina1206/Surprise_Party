@@ -431,11 +431,14 @@ void CMoveObjectManager::SwitchPush(int objNum, CGameObject::enSurpriseObjectTyp
 				//SE–Â‚ç‚·.
 				m_bPlayEffectSound[objNum] = true;
 				if (m_bPlaySurpriseActSE[objNum] == POSSIBLE_PLAY_SE_FLAG) {
-					m_pCPlaySoundManager->SetPlaySE(enSEType::PushSwitchPlaySound);
 				}
 			}
 
 			if (m_bPlaySurpriseActSE[objNum] == POSSIBLE_PLAY_SE_FLAG) {
+				//Ä¶
+				if (m_bPlayEffectSound[objNum] == true) {
+					m_pCPlaySoundManager->SetPlaySE(enSEType::PushSwitchPlaySound);
+				}
 				m_pCPlaySoundManager->SetPlaySE(enSEType::PushSwitch);
 				m_bPlaySurpriseActSE[objNum] |= PLAYED_SOUND;
 			}

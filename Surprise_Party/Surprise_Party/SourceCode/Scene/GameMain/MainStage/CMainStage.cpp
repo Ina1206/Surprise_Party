@@ -122,6 +122,7 @@ void CMainStage::UpDate(const bool& ControlFlag)
 	}
 
 	//人の更新処理関数.
+	m_pCPeopleManager->SetCameraPos(m_vCameraPos);
 	m_pCPeopleManager->Update();
 
 	//閉店までの時間更新処理関数.

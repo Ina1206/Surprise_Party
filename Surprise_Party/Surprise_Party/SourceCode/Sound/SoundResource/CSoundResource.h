@@ -35,6 +35,9 @@ enum class enSEType {
 	GhostGimmickMove,				//お化けとギミックに移動する音.
 	GhostGimmickSelectLimit,		//お化けとギミック選択上限.
 
+	ManShout,						//男性の叫び声.
+	WomanShout,						//女性の叫び声.
+
 	Max,							//最大数.
 	Start ,							//最初.
 };

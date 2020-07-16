@@ -129,6 +129,8 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\GhostGimmickMove.mp3",		//お化けとギミック移動.
 		"Data\\Sound\\SE\\GhostGimmickSelectLimit.mp3",	//お化けとギミック選択上限.
 
+		"Data\\Sound\\SE\\ManShout.mp3",				//男性の叫び声.
+		"Data\\Sound\\SE\\WomanShout.mp3",				//女性の叫び声.
 	};
 
 	const std::string m_Sound[] =
@@ -160,6 +162,9 @@ HRESULT CSoundResource::LoadSE()
 		"ReturnFromGimmickSelect",		//ギミック選択解除.
 		"GhostGimmickMove",				//お化けとギミック移動.
 		"GhostGimmickSelectLimit",		//お化けとギミック選択上限.
+
+		"ManShout",						//男性の叫び声.
+		"WomanShout",					//女性の叫び声.
 	};
 
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {

@@ -38,6 +38,8 @@ public:
 	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
 	//アイコン描画しないフラグ.
 	void SetNotRenderIcon(const bool& bFlag) { m_bNotRenderIcon = bFlag; }
+	//カメラ座標.
+	void SetCameraPos(const D3DXVECTOR3& vPos) { m_vCameraPos = vPos; }
 
 	//===========情報獲得処理関数============//.
 	//人の座標取得.
@@ -74,6 +76,7 @@ private:
 
 	bool										m_bPauseFlag;			//ポーズフラグ.
 	bool										m_bNotRenderIcon;		//アイコン描画しないフラグ.
+	D3DXVECTOR3									m_vCameraPos;			//カメラ座標.
 };
 
 

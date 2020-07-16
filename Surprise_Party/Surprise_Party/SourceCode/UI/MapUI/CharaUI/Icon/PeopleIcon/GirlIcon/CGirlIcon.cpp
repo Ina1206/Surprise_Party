@@ -21,6 +21,8 @@ void CGirlIcon::Init()
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Girl_Icon);
 	//‰Šú‚ÌÀ•W.
 	m_vPos = START_POS;
+
+	m_bShoutWoman = true;
 }
 
 //=====================================.

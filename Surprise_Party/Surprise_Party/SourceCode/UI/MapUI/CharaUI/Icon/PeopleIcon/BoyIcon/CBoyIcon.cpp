@@ -22,6 +22,8 @@ void CBoyIcon::Init()
 
 	//À•W‰Šúİ’è.
 	m_vPos = START_POS;
+
+	m_bShoutWoman = false;
 }
 
 //=====================================.

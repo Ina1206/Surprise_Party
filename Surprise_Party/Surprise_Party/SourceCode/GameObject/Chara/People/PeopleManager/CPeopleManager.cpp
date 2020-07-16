@@ -217,6 +217,14 @@ void CPeopleManager::HumanMove()
 		m_bDispFlag[human] = m_pCPeopleBase[human]->GetDispFlag();
 		//l‚ÌÀ•WŽæ“¾.
 		m_vHumanPos[human] = m_pCPeopleBase[human]->GetPos();
+
+		bool ShoutFlag = false;
+		if (m_vCameraPos.x - 16.8f <= m_vHumanPos[human].x &&
+			m_vCameraPos.x + 16.8f >= m_vHumanPos[human].x) {
+			ShoutFlag = true;
+		}
+		m_pCPeopleIcon[human]->SetShoutPossibleFlag(ShoutFlag);
+		
 	}
 }
 
