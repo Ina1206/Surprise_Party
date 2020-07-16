@@ -19,7 +19,7 @@ CSpeakBigGhost::CSpeakBigGhost(const int& StageNum, const int& BeforeEndingTypeN
 	, m_fSelectScale		()
 	, m_EmotionNum			()
 	, m_StringFlag			(0)
-	, m_SelectNum			(0)
+	, m_SelectNum			(1)
 	, m_SelectCnt			(0)
 	, m_FinishFlag			(0)
 	, m_bTutorialFlag		(false)
@@ -393,23 +393,39 @@ void CSpeakBigGhost::FindNextString(const int& NextStringNum)
 //========================================.
 void CSpeakBigGhost::SelectingMove()
 {
+	bool bLimitFlag = false;
 	int SelectNum = m_SelectNum % SELECT_MAX;
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+	if (GetAsyncKeyState(VK_UP) & 0x0001) {
 		SelectNum++;
 
 		if (SelectNum >= SELECT_MAX) {
 			SelectNum = 1;
-			//SE入れる.
+			//上限移動SE再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::LimitMoveCursor);
+			bLimitFlag = true;
 		}
+		if (bLimitFlag == false) {
+			//カーソル移動SE再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
+		}
+
 	}
 
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	bLimitFlag = false;
+	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
 		SelectNum--;
 
 		if (SelectNum < 0) {
 			SelectNum = 0;
-			//SE入れる.
+			//上限移動SE再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::LimitMoveCursor);
+			bLimitFlag = true;
 		}
+		if (bLimitFlag == false) {
+			//カーソル移動SE再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
+		}
+
 	}
 	m_SelectNum = SelectNum + (m_SelectCnt * SELECT_MAX);
 

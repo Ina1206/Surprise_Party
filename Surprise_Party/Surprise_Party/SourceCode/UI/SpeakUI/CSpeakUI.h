@@ -55,11 +55,11 @@ protected:
 	float						m_fFontAlpha;					//文字透過値.
 	std::unique_ptr<CAutoUI>	m_pCAutoUI;						//自動再生時のUI.
 	unsigned int				m_AutoFlag;						//自動再生フラグ.
+	CPlaySoundManager*			m_pCPlaySoundManager;			//音再生管理クラス.
 private:
 
 	//===================変数======================//.
 	int							m_AutoWaitCnt;					//自動再生待機カウント.
-	CPlaySoundManager*			m_pCPlaySoundManager;			//音再生管理クラス.
 };
 
 
