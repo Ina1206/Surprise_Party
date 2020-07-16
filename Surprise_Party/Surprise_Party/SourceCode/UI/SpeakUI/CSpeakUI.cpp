@@ -13,6 +13,7 @@ CSpeakUI::CSpeakUI()
 	, m_pCAutoUI					(nullptr)
 	, m_AutoFlag					(0)
 	, m_AutoWaitCnt					(0)
+	, m_pCPlaySoundManager			(CPlaySoundManager::GetPlaySoundManager())
 {
 	m_pCFontResource = CResourceManager::GetResourceManagerInstance()->GetFont();
 	//前のデータを削除.
@@ -50,6 +51,7 @@ void CSpeakUI::TransparentFont()
 	if (m_fFontAlpha >= ALPHA_MAX) {
 		m_ChangingFontNum++;
 		m_fFontAlpha = ALPHA_MIN;
+
 	}
 
 	const int	FileNum			= static_cast<int>(CFileResource::enStatusCharaType::GhostSpeak);
@@ -68,6 +70,7 @@ void CSpeakUI::TransparentFont()
 		m_fFontAlpha = ALPHA_MAX;
 
 		//ここにSE入れる？.
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Font);
 	}
 }
 

@@ -5,6 +5,7 @@
 #include "..\..\Drawing\Resource\FontResource\CFontResource.h"
 #include "..\..\FileLoad\FileResource\CFileResource.h"
 #include "AutoUI\CAutoUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 class CSpeakUI
 	: public CUI
@@ -58,6 +59,7 @@ private:
 
 	//===================変数======================//.
 	int							m_AutoWaitCnt;					//自動再生待機カウント.
+	CPlaySoundManager*			m_pCPlaySoundManager;			//音再生管理クラス.
 };
 
 

@@ -108,11 +108,11 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Jump.mp3",					//ジャンプ.
 		"Data\\Sound\\SE\\Turn.mp3",					//回転.
 
+		"Data\\Sound\\SE\\Font.mp3",					//フォント.
 		"Data\\Sound\\SE\\Swet.mp3",					//汗.
 		"Data\\Sound\\SE\\Question.mp3",				//はてな.
 		"Data\\Sound\\SE\\Rejoice.mp3",					//喜び.
 		"Data\\Sound\\SE\\Bubble.mp3",					//泡.
-		"Data\\Sound\\SE\\Font.mp3",					//フォント.
 
 		"Data\\Sound\\SE\\MoveCurtain.mp3",				//カーテン移動.
 		"Data\\Sound\\SE\\OpenBell.mp3",				//看板回転.
@@ -138,11 +138,11 @@ HRESULT CSoundResource::LoadSE()
 		"Jump",							//ジャンプ.
 		"Turn",							//回転.
 
+		"Font",							//フォント.
 		"Swet",							//汗.
 		"Question",						//はてな.
 		"Redjuice",						//喜び.
 		"Bubble",						//泡.
-		"Font",							//フォント.
 		
 		"MoveCurtain",					//カーテン移動.
 		"OpenBell",						//看板回転.

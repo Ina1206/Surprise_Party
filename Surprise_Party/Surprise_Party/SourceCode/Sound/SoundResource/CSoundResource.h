@@ -14,11 +14,11 @@ enum class enSEType {
 	Jump,							//ジャンプ.
 	Turn,							//回転.
 
+	Font,							//フォント.
 	Swet,							//汗.
 	Question,						//はてな.
 	Redjuice,						//喜び.
 	Bubble,							//泡.
-	Font,							//フォント.
 
 	MoveCurtain,					//カーテン移動.
 	OpenBell,						//看板回転.
