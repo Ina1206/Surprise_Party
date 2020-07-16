@@ -217,8 +217,8 @@ void CAct_Selection::Control()
 		}
 	}
 
+	//ãŒÀƒtƒ‰ƒO.
 	bool bLimitFlag = false;
-
 	if (GetAsyncKeyState(VK_RIGHT) & 0x0001) {
 		m_SelectNum++;
 		if (m_SelectNum >= static_cast<int>(enGhostActType::Max)) {
