@@ -19,6 +19,7 @@ CBigGhost::CBigGhost()
 	, m_OldEmotionNum		(0)
 	, m_bSleepFlag			(true)
 	, m_bSkipFlag			(false)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -200,6 +201,7 @@ void CBigGhost::RejoiceEmotion()
 	if (fabsf(m_vRot.y) > REJOICE_ROT_MAX) {
 		m_LeanDirect	*= CHANGE_DIRECTION;
 		m_UpDownDirect	*= CHANGE_DIRECTION;
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Redjuice);
 	}
 
 	

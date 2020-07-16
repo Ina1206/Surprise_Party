@@ -110,7 +110,7 @@ HRESULT CSoundResource::LoadSE()
 
 		"Data\\Sound\\SE\\Swet.mp3",					//Š¾.
 		"Data\\Sound\\SE\\Question.mp3",				//‚Í‚Ä‚È.
-		"Data\\Sound\\SE\\Redjuice.mp3",				//Šì‚Ñ.
+		"Data\\Sound\\SE\\Rejoice.mp3",					//Šì‚Ñ.
 		"Data\\Sound\\SE\\Bubble.mp3",					//–A.
 		"Data\\Sound\\SE\\Font.mp3",					//ƒtƒHƒ“ƒg.
 

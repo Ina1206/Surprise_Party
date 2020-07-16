@@ -6,6 +6,7 @@
 #include "..\..\SpriteEffect\HaveTroubleEffect\CHaveTroubleEffect.h"
 #include "..\..\SpriteEffect\RejoiceEffect\CRejoiceEffect.h"
 #include "..\..\SpriteEffect\QuestionEffect\CQuestionEffect.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /******************************************
 *		大きいお化けクラス.
@@ -101,6 +102,8 @@ private:
 
 	bool											m_bSleepFlag;			//眠りフラグ.
 	bool											m_bSkipFlag;			//スキップフラグ.
+
+	CPlaySoundManager*								m_pCPlaySoundManager;	//曲再生管理クラス.
 };
 
 
