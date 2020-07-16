@@ -23,6 +23,7 @@ CEndingStageBase::CEndingStageBase(const int& EvaluationNum)
 	, m_UpdateFlag				(0)
 	, m_bDisplayAllAtOnce		(false)
 	, m_pCFloor					(nullptr)
+	, m_pCPlaySoundManager		(nullptr)
 {
 	//共通の値の初期化処理関数.
 	InitCommonValue();
@@ -78,6 +79,19 @@ void CEndingStageBase::RenderGhost()
 }
 
 //=========================================.
+//		BGMの音量を設定処理関数.
+//=========================================.
+void CEndingStageBase::SettingBGMVolume()
+{
+	m_BGMVolume = m_pCPlaySoundManager->VOLUME_MAX;
+	if (m_pCWhiteScreenFade->GetFadeFlag() != 0) {
+		m_BGMVolume = static_cast<int>(m_pCWhiteScreenFade->GetAlphaRatio() * m_pCPlaySoundManager->VOLUME_MAX);
+	}
+
+	m_pCPlaySoundManager->SetPlayingBGMVolume(m_BGMVolume);
+}
+
+//=========================================.
 //		共通値の初期化処理関数.
 //=========================================.
 void CEndingStageBase::InitCommonValue()
@@ -87,6 +101,9 @@ void CEndingStageBase::InitCommonValue()
 	m_pCBackstageLight.reset(new CBackstageLight());
 	m_pCCameraEnding.reset(new CCameraEnding());
 	m_pCWhiteScreenFade.reset(new CWhiteScreenFade());
+
+	//曲再生管理クラス.
+	m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
 
 	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 8.0f);
 

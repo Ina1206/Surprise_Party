@@ -24,6 +24,8 @@ CBeforeResultStage::~CBeforeResultStage()
 //=======================================.
 void CBeforeResultStage::Update()
 {
+	//BGM‚Ì‰¹—Ê‚ðÝ’èˆ—ŠÖ”.
+	SettingBGMVolume();
 
 	//ƒJƒƒ‰XVˆ—ŠÖ”.
 	m_pCCameraEnding->Update();

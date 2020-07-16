@@ -26,6 +26,9 @@ CEvaluationStageBase::~CEvaluationStageBase()
 //========================================.
 void CEvaluationStageBase::Update()
 {
+	//BGM‚Ì‰¹—ÊÝ’èˆ—ŠÖ”.
+	SettingBGMVolume();
+
 	//ƒJƒƒ‰‚ÌXVˆ—ŠÖ”.
 	m_pCCameraEnding->Update();
 

@@ -26,10 +26,14 @@ public:
 	void Render();		//描画処理関数.
 
 	//==================情報置換処理関数===================//.
+	//フェードフラグ.
 	void SetFadeFlag(const unsigned int& FadeFlag) { m_FadeFlag = FadeFlag; }
 
 	//==================情報取得処理関数===================//.
+	//フェードフラグ.
 	unsigned int GetFadeFlag() const { return m_FadeFlag; }
+	//透過値の割合.
+	float GetAlphaRatio() const { return m_fAlphaRatio; }
 
 private:
 	//========================関数=========================//.
@@ -45,6 +49,7 @@ private:
 	float			m_fAlpha;			//透過値.
 	unsigned int	m_FadeFlag;			//フェードフラグ.			
 	unsigned int	m_OldFadeFlag;		//差分用フェードフラグ.
+	float			m_fAlphaRatio;		//透過値の割合.
 };
 
 #endif	//#ifndef CWHITE_SCREEN_FADE_H.

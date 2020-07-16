@@ -2,6 +2,7 @@
 #include "HightEvaluationStage\CHightEvaluationStage.h"
 #include "IntermediateEvaluationStage\CIntermediateEvaluationStage.h"
 #include "LowEvaluationStage\CLowEvaluationStage.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 CEnding::CEnding()
 	: m_pCEndingStageBase	(nullptr)
@@ -80,16 +81,22 @@ void CEnding::ChangeStage()
 //==================================.
 CEndingStageBase*	CEnding::DecideStage()
 {
+	//音を流す管理クラス.
+	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
+
 	if (m_Evaluation == 0) {
 		//低評価クラス.
+		m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::LowEvaluationStage);
 		return new CLowEvaluationStage(m_Evaluation);
 	}
 
 	if (m_Evaluation == 1) {
 		//中間評価クラス.
+		m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::IntermediateEvaluationStage);
 		return new CIntermediateEvaluationStage(m_Evaluation);
 	}
 
 	//高評価クラス.
+	m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::HightEvaluationStage);
 	return new CHightEvaluationStage(m_Evaluation);
 }

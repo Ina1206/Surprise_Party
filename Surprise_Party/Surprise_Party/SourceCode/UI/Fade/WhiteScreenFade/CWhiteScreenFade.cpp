@@ -9,6 +9,7 @@ CWhiteScreenFade::CWhiteScreenFade()
 	, m_fAlpha		(ALPHA_MAX)
 	, m_FadeFlag	(0)
 	, m_OldFadeFlag	(0)
+	, m_fAlphaRatio	(0.0f)
 {
 	//èâä˙âªèàóùä÷êî.
 	Init();
@@ -82,6 +83,9 @@ void CWhiteScreenFade::Release()
 void CWhiteScreenFade::FadeIn()
 {
 	m_fAlpha += ALPHA_SPEED;
+	//ìßâﬂílÇÃäÑçá.
+	const float ALPHA_LENGTH = fabsf(ALPHA_MIN - ALPHA_MAX);
+	m_fAlphaRatio = fabsf(m_fAlpha - ALPHA_MAX) / ALPHA_LENGTH;
 
 	if (m_fAlpha > ALPHA_MAX) {
 		m_fAlpha = ALPHA_MAX;
@@ -95,7 +99,10 @@ void CWhiteScreenFade::FadeIn()
 void CWhiteScreenFade::FadeOut()
 {
 	m_fAlpha -= ALPHA_SPEED;
-	
+	//ìßâﬂílÇÃäÑçá.
+	const float ALPHA_LENGTH = fabsf(ALPHA_MIN - ALPHA_MAX);
+	m_fAlphaRatio = 1.0f - fabsf(m_fAlpha - ALPHA_MIN) / ALPHA_LENGTH;
+
 	if (m_fAlpha < ALPHA_MIN) {
 		m_fAlpha = ALPHA_MIN;
 		m_FadeFlag = FADE_FINISH_FLAG;
