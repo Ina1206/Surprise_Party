@@ -90,6 +90,8 @@ void CQuestionEffect::Move(const int& num)
 	m_fAcc -= ACC_SPEAD;
 	if (m_vPos[num].y < m_vStartPos.y) {
 		m_fAcc = 0.0f;
+		//‚Í‚Ä‚Èƒ}[ƒNŽž‚ÌSEÄ¶.
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Question);
 
 		if (m_MoveFinishFlag & FINISH_MOVE_HORIZONTAL) {
 			m_MoveFinishFlag |= FINISH_MOVE_VERTICAL;
