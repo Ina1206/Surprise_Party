@@ -1,35 +1,37 @@
 効果音ラボ　		URL：https://soundeffect-lab.info/
 
-Jump.mp3
-CurtainMove.mp3
-MoveFinishString.mp3
-LimitMoveCursor.mp3
-MoveCursor.mp3
-ReturnSelect.mp3
-AppACtSelect.mp3
-Swet.mp3
-Shout.mp3
-FlowerSwing.mp3
-PushSwitchPlaySound.mp3
-PushSwitch.mp3
+Jump.mp3			ジャンプ
+CurtainMove.mp3			カーテン移動
+MoveFinishString.mp3		タイトル移動終了
+LimitMoveCursor.mp3		カーソル移動上限
+MoveCursor.mp3			カーソル移動
+ReturnSelect.mp3		選択肢閉じる
+AppACtSelect.mp3		選択肢開く
+Swet.mp3			汗
+Shout.mp3			叫び声（エンディングアイコン）
+FlowerSwing.mp3			花瓶が揺れる音
+PushSwitchPlaySound.mp3		ボタン押したときに再生される音
+PushSwitch.mp3			ボタンを押す音
+SelectDecide.mp3		選択肢の決定
+NotSelect.mp3			選択肢を選べない音.
 
 無料効果音で遊ぼう！	URL：https://taira-komori.jpn.org/
 
-Shutter.mp3
+Shutter.mp3			シャッター
 
 ニコニコ・コモンズ	URL：http://commons.nicovideo.jp/
 
-OpenBell.mp3
+OpenBell.mp3			看板回転
 
 
 DOVA-SYNDROME		URL:https://dova-s.jp/
-FallDownPicture.mp3
+FallDownPicture.mp3		絵画落ちる
 
 OtoLogic		URL:https://otologic.jp/
-Question.mp3
-Rejoice.mp3
-GimmickSelct.mp3
-ReturnFromGimmickSelect.mp3
+Question.mp3			はてな
+Rejoice.mp3			喜び
+GimmickDecide.mp3		ギミック選択
+ReturnFromGimmickSelect.mp3	ギミック選択解除
 
 On-Jin ～音人～		URL:https://on-jin.com/
-Font.mp3
+Font.mp3			フォントカーソル

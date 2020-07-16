@@ -7,7 +7,30 @@
 //============列挙体=============//.
 //ループしない音.
 enum class enSEType {
+	Shutter,						//シャッター.
+	MoveCursor,						//カーソル移動.
+	LimitMoveCursor,				//カーソル上限移動.
+	SelectDecide,					//選択肢決定.
 	Jump,							//ジャンプ.
+
+	Swet,							//汗.
+	Question,						//はてな.
+	Redjuice,						//喜び.
+	Font,							//フォント.
+
+	MoveCurtain,					//カーテン移動.
+	OpenBell,						//看板回転.
+
+	ReturnSelect,					//選択肢閉じる.
+	OpenActSelect,					//選択し開く.
+	FlowerSwing,					//花の揺れる音.
+	PushSwitchPlaySound,			//ボタンを押し再生される音.
+	PushSwitch,						//ボタンを押す.
+	FallDownPicture,				//絵画落ちる.
+	NotSelect,						//選択肢を選べない.
+	GimmickDecide,					//ギミック決定.
+	ReturnFromGimmickSelect,		//ギミック選択解除.
+
 	Max,							//最大数.
 	Start ,							//最初.
 };

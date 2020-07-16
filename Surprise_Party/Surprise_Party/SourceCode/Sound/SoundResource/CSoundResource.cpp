@@ -101,12 +101,57 @@ HRESULT CSoundResource::LoadSE()
 	//ファイルパス.
 	const std::string m_filename[] =
 	{
-		"Data\\Sound\\SE\\Jump.mp3",
+		"Data\\Sound\\SE\\Shutter.mp3",					//シャッター.
+		"Data\\Sound\\SE\\MoveCursor.mp3",				//カーソル移動.
+		"Data\\Sound\\SE\\LimitMoveCursor.mp3",			//カーソル上限移動.
+		"Data\\Sound\\SE\\SelectDecide.mp3",			//選択決定音.
+		"Data\\Sound\\SE\\Jump.mp3",					//ジャンプ.
+
+		"Data\\Sound\\SE\\Swet.mp3",					//汗.
+		"Data\\Sound\\SE\\Question.mp3",				//はてな.
+		"Data\\Sound\\SE\\Redjuice.mp3",				//喜び.
+		"Data\\Sound\\SE\\Font.mp3",					//フォント.
+
+		"Data\\Sound\\SE\\MoveCurtain.mp3",				//カーテン移動.
+		"Data\\Sound\\SE\\OpenBell.mp3",				//看板回転.
+
+		"Data\\Sound\\SE\\ReturnSelect.mp3",			//選択肢閉じる.
+		"Data\\Sound\\SE\\AppActSelect.mp3",			//選択肢を開く.
+		"Data\\Sound\\SE\\FlowerSwing.mp3",				//花が揺れる.
+		"Data\\Sound\\SE\\PushSwitchPlaySound.mp3",		//ボタンを押し再生する音.
+		"Data\\Sound\\SE\\PushSwitch.mp3",				//ボタンを押す音.
+		"Data\\Sound\\SE\\FallDownPicture.mp3",			//絵画が落ちる.
+		"Data\\Sound\\SE\\NotSelect.mp3",				//選択肢を選べない.
+		"Data\\Sound\\SE\\GimmickDecide.mp3",			//ギミック決定.
+		"Data\\Sound\\SE\\ReturnFromGimmickSelect.mp3",	//ギミック選択解除.
+
 	};
 
 	const std::string m_Sound[] =
 	{
-		"Jump"
+		"Shutter",						//シャッター.
+		"MoveCurosor",					//カーソル移動.
+		"LimitMoveCursor",				//カーソル上限移動.
+		"SelectDecide",					//選択決定音.
+		"Jump",							//ジャンプ.
+
+		"Swet",							//汗.
+		"Question",						//はてな.
+		"Redjuice",						//喜び.
+		"Font",							//フォント.
+		
+		"MoveCurtain",					//カーテン移動.
+		"OpenBell",						//看板回転.
+
+		"ReturnSelect",					//選択肢を閉じる.
+		"OpenActSelect",				//行動選択を開く.
+		"FlowerSwing",					//花の揺れる音.
+		"PushSwitchPlaySound",			//ボタンを押し再生.
+		"PushSwitch",					//ボタンを押す.
+		"FallDownPicture",				//絵画を落とす.
+		"NotSelect",					//選択肢を選べない.
+		"GimmickDecide",				//ギミック決定.
+		"ReturnFromGimmickSelect",		//ギミック選択解除.
 	};
 
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {
