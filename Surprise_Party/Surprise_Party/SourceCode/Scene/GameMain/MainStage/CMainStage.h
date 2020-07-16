@@ -23,6 +23,8 @@
 
 #include "..\..\..\UI\PlayUI\DescriptionUIManager\CDescriptionUIManager.h"
 
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
+
 /************************************
 *		メインステージクラス.
 ********/
@@ -105,6 +107,8 @@ private:
 	D3DXVECTOR3												m_vSelectGhostPos;			//選択しているお化けの座標.
 
 	std::unique_ptr<CDescriptionUIManager>					m_pCDescriptionUIManager;	//説明UI管理クラス.
+
+	CPlaySoundManager*										m_pCPlaySoundManager;		//曲再生の管理クラス.
 };
 
 #endif	//#ifndef CMAIN_STAGE_H.

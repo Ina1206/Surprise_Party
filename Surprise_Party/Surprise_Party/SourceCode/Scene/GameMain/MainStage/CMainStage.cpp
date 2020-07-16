@@ -26,6 +26,7 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCSpeakWorkGhost		(nullptr)
 	, m_vSelectGhostPos			(0.0f, 0.0f, 0.0f)
 	, m_pCDescriptionUIManager	(nullptr)
+	, m_pCPlaySoundManager		(CPlaySoundManager::GetPlaySoundManager())
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -406,11 +407,14 @@ void CMainStage::Control()
 			m_pCWorkghostManager->SetChangeGimmickSelect(false);
 			//ギミックカーソル非表示フラグ設定.
 			m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
+			//ギミック選択解除SEの再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::ReturnFromGimmickSelect);
 		}
 
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			if (m_pCMoveObjectManager->GetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM]) == true) {
 				//ギミックが使用されていたら処理しない.
+				m_pCPlaySoundManager->SetPlaySE(enSEType::NotSelect);
 				return;
 			}
 
@@ -439,6 +443,9 @@ void CMainStage::Control()
 			m_pCWorkghostManager->SetChangeGimmickSelect(false);
 			//ギミックカーソル非表示フラグ設定.
 			m_pCMoveObjectManager->SetGimmickCurosrDispFlag(false);
+
+			//選択SE再生処理.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GimmickDecide);
 
 			if (m_ExplainFlag & EXPLAINING_FLAG) {
 				//ギミック説明終了.
@@ -508,6 +515,12 @@ void CMainStage::GimmickSelect()
 			ChangeSelectNum++;
 			m_SelectNum[GIMMICK_NUM] = m_pCMoveObjectManager->GetGimmickNumByType(GimmickType, ChangeSelectNum);
 			MoveSelectFlag = true;
+			//カーソル移動SEの再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickMove);
+		}
+		else {
+			//カーソル移動上限SEの再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickSelectLimit);
 		}
 	}
 
@@ -517,6 +530,12 @@ void CMainStage::GimmickSelect()
 			ChangeSelectNum--;
 			m_SelectNum[GIMMICK_NUM] = m_pCMoveObjectManager->GetGimmickNumByType(GimmickType, ChangeSelectNum);
 			MoveSelectFlag = true;
+			//カーソル移動SEの再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickMove);
+		}
+		else {
+			//カーソル移動上限SEの再生.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::GhostGimmickSelectLimit);
 		}
 	}
 
