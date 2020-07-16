@@ -2,6 +2,7 @@
 #define CFADE_H
 
 #include "..\CUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /******************************************
 *		フェードクラス.
@@ -25,6 +26,7 @@ protected:
 
 	//======================変数===========================//.
 	CResourceManager*	m_pCResourceManager;	//リソース管理クラス.
+	CPlaySoundManager*	m_pCPlaySoundManager;	//音管理クラス.
 
 };
 

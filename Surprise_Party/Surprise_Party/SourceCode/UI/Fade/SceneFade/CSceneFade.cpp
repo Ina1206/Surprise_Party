@@ -7,6 +7,7 @@ CSceneFade::CSceneFade()
 	, m_WaitChangeCnt			(0)
 	, m_fMoveSpeed				(0.0f)
 	, m_fFinishPoDistanceRatio	(0.0f)
+	, m_bPlaySound				(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -24,7 +25,14 @@ CSceneFade::~CSceneFade()
 void CSceneFade::Update()
 {
 	if (m_ShutterFlag == 0) {
+		m_bPlaySound = false;
 		return;
+	}
+
+	//‰¹Ä¶.
+	if (m_bPlaySound == false) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Shutter);
+		m_bPlaySound = true;
 	}
 
 	//ˆÚ“®‘¬“x‚Ì‰Á‘¬ˆ—.
@@ -90,6 +98,7 @@ void CSceneFade::ShutterDown()
 		m_ShutterFlag = CHANGE_SCENE_FLAG;
 		m_WaitChangeCnt = 0;
 		m_fMoveSpeed = 0.0f;
+		m_bPlaySound = false;
 	}
 }
 

@@ -18,7 +18,7 @@ public:
 	const unsigned int  OPEN_FLAG				= (1 << 1);							//フェードアウトフラグ.
 	const unsigned int	CHANGE_SCENE_FLAG		= (1 << 2);							//シーン変更フラグ.
 
-	const float			ADD_MOVE_SPEED			= 0.5f;								//加速移動速度.
+	const float			ADD_MOVE_SPEED			= 0.1f;								//加速移動速度.
 	const float			SHUTTER_MOVE_SPEED		= 8.0f;								//シャッター移動速度.
 	const float			SHUTTER_HEIGHT_MIN		= -850.0f;							//シャッター高さ最小値.
 	const D3DXVECTOR3	SHUTTER_INIT_POS		= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//シャッター初期値.
@@ -54,6 +54,7 @@ private:
 	unsigned int	m_ShutterFlag;				//シャッター動きフラグ.
 	int				m_WaitChangeCnt;			//変更待機カウント.
 	float			m_fFinishPoDistanceRatio;	//最終地点までの距離.
+	bool			m_bPlaySound;				//音再生フラグ.
 };
 
 #endif	//#ifndef CSCENE_FADE_H.
