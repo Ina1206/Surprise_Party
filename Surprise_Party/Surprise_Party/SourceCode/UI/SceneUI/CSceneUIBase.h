@@ -4,6 +4,7 @@
 #include "..\CUI.h"
 #include "ChangeSceneCursorUI\CChangeSceneCursorUI.h"
 #include "SelectStringUI\CSelectStringUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*****************************************
 *		シーンUIの基底クラス.
@@ -25,12 +26,13 @@ public:
 
 protected:
 	//===================関数========================//.
-	virtual void RenderSceneTitle() = 0;							//シーンタイトル描画処理関数.
+	virtual void RenderSceneTitle();								//シーンタイトル描画処理関数.
 
 	//===================変数========================//.
 	CSpriteUI*								m_pCSpriteUI;			//スプライトUI.
 	std::unique_ptr<CChangeSceneCursorUI>	m_pCCursor;				//カーソルクラス.
 	std::unique_ptr<CSelectStringUI>		m_pCSelectStringUI;		//選択文章UIクラス.
+	CPlaySoundManager*						m_pCPlaySoundManager;	//音再生管理クラス.
 
 private:
 	//===================関数========================//.

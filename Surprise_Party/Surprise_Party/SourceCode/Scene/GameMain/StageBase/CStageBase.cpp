@@ -1,15 +1,16 @@
 #include "CStageBase.h"
 
 CStageBase::CStageBase()
-	: m_mView			()
-	, m_mProj			()
-	, m_bChangeStageFlag(false)
-	, m_StageNum		(0)
-	, m_enBeforeStageEndingType()
-	, m_FinishFlag		(0)
-	, m_TutorialFlag	(false)
-	, m_pCCamera		(nullptr)
-	, m_bPauseFlag		(false)
+	: m_mView					()
+	, m_mProj					()
+	, m_bChangeStageFlag		(false)
+	, m_StageNum				(0)
+	, m_enBeforeStageEndingType	()
+	, m_FinishFlag				(0)
+	, m_TutorialFlag			(false)
+	, m_pCCamera				(nullptr)
+	, m_bPauseFlag				(false)
+	, m_pCPlaySoundManager		(CPlaySoundManager::GetPlaySoundManager())
 {
 
 }

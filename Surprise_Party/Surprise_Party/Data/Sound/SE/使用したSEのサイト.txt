@@ -43,6 +43,7 @@ ReturnFromGimmickSelect.mp3	ギミック選択解除
 GhostGimmickMove.mp3		お化けとギミックの移動
 GhostGimmickSelectLimit.mp3	お化けとギミック選択上限.
 IntermediateString.mp3		中間の文字
+JumpSNS.mp3			SNSへ飛ぶとき.
 
 効果音素材：ポケットサウンド 	URL:https://pocket-se.info/
 Turn.mp3			回転

@@ -7,6 +7,7 @@ CSceneUIBase::CSceneUIBase()
 	: m_pCSpriteUI			()
 	, m_pCCursor			(nullptr)
 	, m_pCSelectStringUI	(nullptr)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	m_pCCursor.reset(new CChangeSceneCursorUI());
 }
@@ -37,6 +38,14 @@ void CSceneUIBase::Render()
 //		解放処理関数.
 //===========================================.
 void CSceneUIBase::Release()
+{
+
+}
+
+//===========================================.
+//		シーンタイトル描画処理関数.
+//===========================================.
+void CSceneUIBase::RenderSceneTitle()
 {
 
 }

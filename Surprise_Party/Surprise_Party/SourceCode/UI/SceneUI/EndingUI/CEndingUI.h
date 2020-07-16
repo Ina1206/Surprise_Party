@@ -4,11 +4,13 @@
 #include "PushEnter\CPushEnter.h"
 #include "EvaluationUI\EvaluationUIManager\CEvaluationUIManager.h"
 #include "SurpriseDegree\SurpriseDegreeManager\CSurpriseDegreeManager.h"
+#include "..\CSceneUIBase.h"
 
 /*******************************************
 *		エンディングUIクラス.
 ********************/
 class CEndingUI
+	: public CSceneUIBase
 {
 public:
 	CEndingUI();
@@ -48,6 +50,7 @@ private:
 	int										m_EvaluationNum;			//評価番号.
 	bool									m_bDisplayAllAtOnce;		//一気に描画するフラグ.
 	bool									m_bChangeSceneFlag;			//シーン変更フラグ.
+
 };
 
 

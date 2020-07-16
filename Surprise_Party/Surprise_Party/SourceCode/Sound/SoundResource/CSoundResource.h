@@ -19,6 +19,7 @@ enum class enSEType {
 	Question,						//はてな.
 	Redjuice,						//喜び.
 	Bubble,							//泡.
+	GoodHumor,						//上機嫌.
 
 	MoveCurtain,					//カーテン移動.
 	OpenBell,						//看板回転.
@@ -48,6 +49,8 @@ enum class enSEType {
 
 	Floating,						//浮遊.
 	JumpSNS,						//SNSへ飛ぶ.
+
+	Skip,							//スキップ.
 
 	Max,							//最大数.
 	Start ,							//最初.

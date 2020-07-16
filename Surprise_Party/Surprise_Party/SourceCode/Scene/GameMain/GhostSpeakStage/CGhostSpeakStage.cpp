@@ -59,9 +59,10 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 			return;
 		}
 
-		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 			m_pCBigGhost->SetSkipFlag(true);
 			m_pCCamera->SetMoveFlag(m_pCCamera->SKIP_FLAG);
+			m_pCPlaySoundManager->SetPlaySE(enSEType::Skip);
 		}
 	}
 

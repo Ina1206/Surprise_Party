@@ -4,6 +4,7 @@
 #include "..\..\..\Global.h"
 #include "..\..\..\Drawing\Resource\CResourceManager.h"
 #include "..\..\Camera\CCameraBase.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*****************************************
 *		ステージ基底クラス.
@@ -84,6 +85,7 @@ protected:
 	std::unique_ptr<CCameraBase>	m_pCCamera;					//カメラクラス.
 
 	bool							m_bPauseFlag;				//ポーズフラグ.
+	CPlaySoundManager*				m_pCPlaySoundManager;		//曲再生の管理クラス.
 };
 
 #endif	//#ifndef CSTAGE_BASE_H.

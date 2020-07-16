@@ -33,6 +33,11 @@ void CTitleUI::Update()
 
 	if (m_ControlFlag & CONTROL_WAIT_FLAG) {
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
+			//スキップ音再生処理.
+			if (!(m_ControlFlag & CONTROL_FLAG)) {
+				m_pCPlaySoundManager->SetPlaySE(enSEType::Skip);
+			}
+
 			m_ControlFlag = CONTROL_FLAG;
 			m_pCCursor->SetControlFlag(true);
 

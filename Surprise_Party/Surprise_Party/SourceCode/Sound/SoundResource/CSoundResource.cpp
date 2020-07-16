@@ -113,6 +113,7 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Question.mp3",				//はてな.
 		"Data\\Sound\\SE\\Rejoice.mp3",					//喜び.
 		"Data\\Sound\\SE\\Bubble.mp3",					//泡.
+		"Data\\Sound\\SE\\GoodHumor.mp3",				//上機嫌.
 
 		"Data\\Sound\\SE\\CurtainMove.mp3",				//カーテン移動.
 		"Data\\Sound\\SE\\OpenBell.wav",				//看板回転.
@@ -142,6 +143,8 @@ HRESULT CSoundResource::LoadSE()
 
 		"Data\\Sound\\SE\\Floating.mp3",				//浮遊.
 		"Data\\Sound\\SE\\JumpSNS.mp3",					//SNSへ飛ぶ.
+
+		"Data\\Sound\\SE\\Skip.mp3",					//スキップ.
 	};
 
 	const std::string m_Sound[] =
@@ -158,6 +161,7 @@ HRESULT CSoundResource::LoadSE()
 		"Question",						//はてな.
 		"Redjuice",						//喜び.
 		"Bubble",						//泡.
+		"GoodHumor",					//上機嫌.
 		
 		"MoveCurtain",					//カーテン移動.
 		"OpenBell",						//看板回転.
@@ -187,6 +191,8 @@ HRESULT CSoundResource::LoadSE()
 
 		"Floating",						//浮遊.
 		"JumpSNS",						//SNSへ飛ぶ.
+
+		"Skip",							//スキップ.
 	};
 
 	for (unsigned int sound = 0; sound < SE_MAX; sound++) {

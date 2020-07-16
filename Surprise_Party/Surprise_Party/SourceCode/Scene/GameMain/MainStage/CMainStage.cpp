@@ -26,7 +26,6 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCSpeakWorkGhost		(nullptr)
 	, m_vSelectGhostPos			(0.0f, 0.0f, 0.0f)
 	, m_pCDescriptionUIManager	(nullptr)
-	, m_pCPlaySoundManager		(CPlaySoundManager::GetPlaySoundManager())
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;

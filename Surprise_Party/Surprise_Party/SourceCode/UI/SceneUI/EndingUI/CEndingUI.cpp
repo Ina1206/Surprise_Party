@@ -1,10 +1,10 @@
 #include "CEndingUI.h"
-#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*******************************************
 *		エンディングUIクラス.
 ********************/
 CEndingUI::CEndingUI()
+	: CEndingUI	(0)
 {
 
 }
@@ -42,6 +42,10 @@ void CEndingUI::Update()
 	if (m_bDisplayAllAtOnce == false) {
 		//一気に描画するフラグ処理.
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
+			//スキップ音再生.
+			if (m_bDisplayAllAtOnce == false) {
+				m_pCPlaySoundManager->SetPlaySE(enSEType::Skip);
+			}
 			m_bDisplayAllAtOnce = true;
 		}
 	}
@@ -134,7 +138,6 @@ void CEndingUI::UpdatePushEnter()
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		m_bChangeSceneFlag = true;
-		CPlaySoundManager* m_pCPlaySound = CPlaySoundManager::GetPlaySoundManager();
-		m_pCPlaySound->SetPlaySE(enSEType::SelectDecide);
+		m_pCPlaySoundManager->SetPlaySE(enSEType::SelectDecide);
 	}
 }
