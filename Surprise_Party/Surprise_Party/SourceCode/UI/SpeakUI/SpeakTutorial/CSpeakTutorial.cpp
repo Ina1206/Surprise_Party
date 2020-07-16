@@ -157,6 +157,8 @@ void CSpeakTutorial::AddSelectMoveCount()
 	}
 
 	m_SelectMoveCount++;
+	//ŽŸ‚Ì•¶Í‚Ö‚ÌSE.
+	m_pCPlaySoundManager->SetPlaySE(enSEType::NextString);
 
 	if (m_SelectMoveCount >= 2) {
 		//ˆê‰ñƒRƒƒ“ƒg‚ði‚ß‚éˆ—ŠÖ”.

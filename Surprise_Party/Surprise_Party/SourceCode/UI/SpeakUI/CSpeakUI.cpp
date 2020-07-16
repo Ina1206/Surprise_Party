@@ -80,6 +80,10 @@ void CSpeakUI::TransparentFont()
 bool CSpeakUI::DesicionChangeString()
 {
 	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
+		//フォントスキップ.
+		if (m_bAppearanceAllFont == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::FontSkip);
+		}
 		m_bAppearanceAllFont = true;
 		return false;
 	}

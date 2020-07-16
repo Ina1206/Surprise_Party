@@ -15,6 +15,9 @@ enum class enSEType {
 	Turn,							//回転.
 
 	Font,							//フォント.
+	FontSkip,						//フォントスキップ.
+	NextString,						//次の文章.
+
 	Swet,							//汗.
 	Question,						//はてな.
 	Redjuice,						//喜び.

@@ -109,6 +109,9 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Turn.mp3",					//回転.
 
 		"Data\\Sound\\SE\\Font.mp3",					//フォント.
+		"Data\\Sound\\SE\\FontSkip.mp3",				//フォントスキップ.
+		"Data\\Sound\\SE\\NextString.mp3",				//次の文章.
+
 		"Data\\Sound\\SE\\Swet.mp3",					//汗.
 		"Data\\Sound\\SE\\Question.mp3",				//はてな.
 		"Data\\Sound\\SE\\Rejoice.mp3",					//喜び.
@@ -157,6 +160,9 @@ HRESULT CSoundResource::LoadSE()
 		"Turn",							//回転.
 
 		"Font",							//フォント.
+		"FontSkip",						//フォントスキップ.
+		"NextStrign",					//次の文章.
+
 		"Swet",							//汗.
 		"Question",						//はてな.
 		"Redjuice",						//喜び.

@@ -29,6 +29,10 @@ void CReputationSNS::Update()
 {
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		if (m_bAppearanceAllFont == false) {
+			//文字スキップ.
+			if (m_bAppearanceAllFont == false) {
+				m_pCPlaySoundManager->SetPlaySE(enSEType::FontSkip);
+			}
 			m_bAppearanceAllFont = true;
 			return;
 		}
@@ -36,6 +40,8 @@ void CReputationSNS::Update()
 		if (m_bFinishAppearancedAllFont == true) {
 			//透過開始.
 			m_ChangeStageFlag = START_TRANSPARENT_FLAG;
+			//次のステージへ.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::NextString);
 		}
 	}
 

@@ -213,6 +213,8 @@ void CSpeakBigGhost::UpdateSpeakString()
 		//文章変更処理関数.
 		if (DesicionChangeString() == true) {
 			ChangeString();
+			//次のフォントへのSE.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::NextString);
 		}
 	}
 
