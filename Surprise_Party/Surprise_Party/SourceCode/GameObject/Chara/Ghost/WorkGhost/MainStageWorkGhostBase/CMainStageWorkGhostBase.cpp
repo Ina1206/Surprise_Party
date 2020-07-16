@@ -42,6 +42,7 @@ CMainStageWorkGhostBase::CMainStageWorkGhostBase()
 	, m_UseGimmickNum			(-1)
 	, m_bLimitationRest			(false)
 	, m_bTutorialCommentAddFlag	(false)
+	, m_bUpCursorFlag			(false)
 {
 	//読み込んだ球体アドレス取得.
 	for (unsigned int sphere = 0; sphere < m_pCHitSphere.size(); sphere++) {
@@ -579,9 +580,10 @@ void CMainStageWorkGhostBase::UpdateFutigueEffect()
 
 	//疲労エフェクト更新処理.
 	if ((m_pCGhostIcon->GetFaceType() == FutigueEffectFaceType) && !(m_ActType & REST_FLAG)) {
-		m_pCFatigue->SetCenterPos(m_vEffectCenterPos); {
-			if (m_pCFatigue->GetDispFlag() == false && !(m_SurpriseFlag & SURPRISE_ACT_FLAG))
-				m_pCFatigue->SetDispFlag(true);
+		m_pCFatigue->SetCenterPos(m_vEffectCenterPos); 
+		if (m_pCFatigue->GetDispFlag() == false && !(m_SurpriseFlag & SURPRISE_ACT_FLAG)){
+			m_pCFatigue->SetDispFlag(true);
+			m_pCFatigue->SetPlaySound(m_bUpCursorFlag);
 		}
 		m_pCFatigue->Update();
 		return;

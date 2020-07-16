@@ -98,6 +98,8 @@ public:
 	void SetDecideSelectFlag(const bool& Flag) { m_pCAct_Selection->SetDecideFlag(Flag); }
 	//使用ギミック番号.
 	void SetUseGimmickNum(const int& Num) { m_UseGimmickNum = Num; }
+	//カーソルが上にあるフラグ.
+	void SetUpCursorFlag(const bool& bFlag) { m_bUpCursorFlag = bFlag; }
 
 	//=========情報獲得処理関数===========//.
 	//選択フラグ.
@@ -190,6 +192,7 @@ private:
 	int									m_UseGimmickNum;			//使うギミック番号.
 	int									m_OldStrengthType;			//体力種類.
 	int									m_SurpriseRestTime;			//驚き休憩時間.
+	bool								m_bUpCursorFlag;			//カーソルが上にあるフラグ.
 
 	bool								m_bLimitationRest;			//限界休憩フラグ.
 	bool								m_bTutorialCommentAddFlag;	//チュートリアルコメント進めるフラグ.

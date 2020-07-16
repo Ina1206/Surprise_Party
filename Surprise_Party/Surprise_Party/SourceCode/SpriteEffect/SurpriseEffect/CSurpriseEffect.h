@@ -32,6 +32,7 @@ public:
 
 	//================情報置換処理関数=====================//.
 	void SetDispFlag(const bool& flag) { m_bAllDispFlag = flag; }
+	void SetPlaySound(const bool& flag) { m_bPlaySound = flag; }
 
 private:
 	//======================関数===========================//.
@@ -45,6 +46,7 @@ private:
 	bool				m_bAllDispFlag;		//全体表示フラグ.
 	int					m_Direct;			//方向.
 	D3DXVECTOR3			m_vOldCenterPos;	//前回の場所.
+	bool				m_bPlaySound;		//サウンド再生フラグ.
 
 };
 

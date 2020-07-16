@@ -63,6 +63,11 @@ void CMainStageWorkGhostManager::Update()
 {
 	//‚¨‰»‚¯.
 	for (unsigned int ghost = 0; ghost < m_pCWorkGhost.size(); ghost++) {
+		bool bCursorUpFlag = false;
+		if (m_SelectNum == ghost) {
+			bCursorUpFlag = true;
+		}
+		m_pCWorkGhost[ghost]->SetUpCursorFlag(bCursorUpFlag);
 
 		//‚¨‰»‚¯‚ÌÀ•WŽæ“¾.
 		m_vWorkGhostPos[ghost] = m_pCWorkGhost[ghost]->GetPos();

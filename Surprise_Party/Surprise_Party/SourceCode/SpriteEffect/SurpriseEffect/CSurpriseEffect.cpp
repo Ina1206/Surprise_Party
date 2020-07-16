@@ -8,6 +8,7 @@ CSurpriseEffect::CSurpriseEffect()
 	, m_bAllDispFlag	(false)
 	, m_Direct			(1)
 	, m_vOldCenterPos	(0.0f, 0.0f, 0.0f)
+	, m_bPlaySound	(false)
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -109,6 +110,10 @@ void CSurpriseEffect::AppeartJudgement(const int& num)
 
 	m_DispCnt++;
 	m_bDispFlag[num] = true;
+
+	if (m_bPlaySound == true) {
+		m_pCPlaySoundManager->SetPlaySE(enSEType::Swet);
+	}
 
 }
 
