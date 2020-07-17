@@ -29,7 +29,7 @@ void CMainStageWorkGhostManager::Init(const int& StageType, const int& StageNum,
 {
 	CFileResource* m_pCFileResource = CFileResource::GetResourceInstance();
 
-	for (int stage = 0; stage < m_pCFileResource->GetStageMax(StageType, 0); stage++) {
+	for (int stage = 0; stage < m_pCFileResource->GetStageMax(StageType, StageNum); stage++) {
 		const int CharaPosNum = m_pCFileResource->GetStageNum(StageType, StageNum, stage) - 1;
 		if (CharaPosNum < 0 || CharaPosNum > 1) {
 			continue;

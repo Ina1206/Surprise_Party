@@ -106,6 +106,7 @@ private:
 	D3DXVECTOR3												m_vSelectGhostPos;			//選択しているお化けの座標.
 
 	std::unique_ptr<CDescriptionUIManager>					m_pCDescriptionUIManager;	//説明UI管理クラス.
+	bool													m_bPlaySoundNotSelect;		//選択されない音再生フラグ.
 
 };
 

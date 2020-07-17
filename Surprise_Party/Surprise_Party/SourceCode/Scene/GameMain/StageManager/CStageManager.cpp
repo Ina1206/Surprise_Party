@@ -129,7 +129,9 @@ void CStageManager::ChangeStage()
 	const int STAGE_TYPE_NUM = m_pCStageBase.size() - 1;
 
 	if (m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() & m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_START) {
-		m_pCStageBase.emplace_back(new CMainStage(0, CStageBase::enStageType::Tutorial, m_enBeforeEndingType));
+		//チュートリアルステージ番号.
+		const int TUTORIAL_STAGE_NUM = 5;
+		m_pCStageBase.emplace_back(new CMainStage(TUTORIAL_STAGE_NUM, CStageBase::enStageType::Tutorial, m_enBeforeEndingType));
 		m_StageType = static_cast<int>(CStageBase::enStageType::Tutorial);
 		m_bOldTutorialFlag = m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_START;
 
@@ -164,7 +166,6 @@ void CStageManager::ChangeStage()
 	switch (static_cast<CStageBase::enStageType>(m_StageType)) {
 	case CStageBase::enStageType::GhostSpeakStage:
 		//次のステージへ.
-		m_AllEndingType = 1;
 		m_pCStageBase[STAGE_TYPE_NUM].reset(new CMainStage(m_AllEndingType, CStageBase::enStageType::GhostSpeakStage , m_enBeforeEndingType));
 		m_bOldTutorialFlag = 0;
 		//曲設定.

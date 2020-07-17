@@ -26,6 +26,7 @@ CMainStage::CMainStage(int stageNum, enStageType enStage, enBeforeStageEndigneTy
 	, m_pCSpeakWorkGhost		(nullptr)
 	, m_vSelectGhostPos			(0.0f, 0.0f, 0.0f)
 	, m_pCDescriptionUIManager	(nullptr)
+	, m_bPlaySoundNotSelect		(false)
 {
 	m_StageNum = stageNum;
 	m_enBeforeStageEndingType = enType;
@@ -413,8 +414,11 @@ void CMainStage::Control()
 
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
 			if (m_pCMoveObjectManager->GetUsedGimmickFlag(m_SelectNum[GIMMICK_NUM]) == true) {
-				//ギミックが使用されていたら処理しない.
-				m_pCPlaySoundManager->SetPlaySE(enSEType::NotSelect);
+				if (m_bPlaySoundNotSelect == false) {
+					//ギミックが使用されていたら処理しない.
+					m_pCPlaySoundManager->SetPlaySE(enSEType::NotSelect);
+					m_bPlaySoundNotSelect = true;
+				}
 				return;
 			}
 
@@ -451,7 +455,9 @@ void CMainStage::Control()
 				//ギミック説明終了.
 				m_ExplainFlag |= EXPLAINED_GIMMICK_FLAG;
 			}
+			return;
 		}
+		m_bPlaySoundNotSelect = false;
 	}
 
 
