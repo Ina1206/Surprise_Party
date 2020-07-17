@@ -49,6 +49,7 @@ public:
 
 	const float			QUESTION_LEAN_SPEED = 0.02f;							//ã^ñ‚åXÇ≠ë¨ìx.
 	const float			QUESTION_LEAN_MIN	= -30.0f;							//ã^ñ‚åXÇ≠ç≈è¨íl.
+	const D3DXVECTOR3	QUESTION_POS		= D3DXVECTOR3(2.0f, 3.0f, 0.0f);	//ÇÕÇƒÇ»ÇÃà íu.
 
 	const float			VIEW_PRE_POS_Y		= 10.0f;							//å©ÇÈÇ∆Ç´ÇÃçÇÇ≥.
 
@@ -107,4 +108,4 @@ private:
 };
 
 
-#endif	//#ifndef CBIG_GHOST_H.
+#endif	//#ifndef CBIG_GHOST_H.	

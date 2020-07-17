@@ -332,6 +332,7 @@ void CBigGhost::ChangeEffect()
 		m_vChangeBeforePos = WAKE_UP_POS;
 	}
 
+	D3DXVECTOR3 vCenterPos;	//エフェクト出す中心座標.
 	switch (static_cast<enEmotionType>(m_EmotionNum)) {
 	case enEmotionType::Sleep:
 	case enEmotionType::WakeUp:
@@ -347,6 +348,9 @@ void CBigGhost::ChangeEffect()
 		break;
 	case enEmotionType::Question:
 		m_UsingEffectNum = static_cast<int>(enEmotionType::Question);
+		//エフェクト中心座標設定.
+		vCenterPos = WAKE_UP_POS + QUESTION_POS;
+		m_pCSpriteEffect[m_UsingEffectNum]->SetCenterPos(vCenterPos);
 		break;
 	case enEmotionType::ViewSmartphone:
 		//移動角度処理関数.
