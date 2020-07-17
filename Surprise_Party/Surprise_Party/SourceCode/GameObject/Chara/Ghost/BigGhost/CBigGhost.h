@@ -60,51 +60,51 @@ public:
 	const unsigned int	SWING_FLAG			= (1 << 2);							//揺れるフラグ.
 
 	//=================関数====================//.
-	void Update();		//更新処理関数.
-	void Render();		//描画処理科数.
+	void Update();																//更新処理関数.
+	void Render();																//描画処理科数.
 
 	//===========情報取得処理関数==============//.
-	bool GetSleepFlag() const { return m_bSleepFlag; }				//眠りフラグ.
-	bool GetSkipFlag() const { return m_bSkipFlag; }				//スキップフラグ.
+	bool GetSleepFlag() const { return m_bSleepFlag; }							//眠りフラグ.
+	bool GetSkipFlag() const { return m_bSkipFlag; }							//スキップフラグ.
 
 	//===========情報置換処理関数==============//.
-	void SetSkipFlag(const bool& bFlag) { m_bSkipFlag = bFlag; }	//スキップフラグ.
+	void SetSkipFlag(const bool& bFlag) { m_bSkipFlag = bFlag; }				//スキップフラグ.
 
 private:
 	//=================関数====================//.
-	void Init();							//初期化処理関数.
-	void Release();							//解放処理関数.
-	void WakeUp();							//起床処理関数.
-	void HaveTroubleEmotion();				//困る感情処理関数.
-	void RejoiceEmotion();					//喜ぶ感情処理関数.
-	void QuestionEmotion();					//疑問感情処理関数.
-	void Sleep();							//寝る処理関数.
-	void Lean(const int& Direction);		//傾く処理関数.
-	void FallDown(const int& Direction);	//倒れる処理関数.
-	void ChangeEffect();					//エフェクト変更処理関数.
-	void EmotionMove();						//感情移動処理関数.
+	void Init();																//初期化処理関数.
+	void Release();																//解放処理関数.
+	void WakeUp();																//起床処理関数.
+	void HaveTroubleEmotion();													//困る感情処理関数.
+	void RejoiceEmotion();														//喜ぶ感情処理関数.
+	void QuestionEmotion();														//疑問感情処理関数.
+	void Sleep();																//寝る処理関数.
+	void Lean(const int& Direction);											//傾く処理関数.
+	void FallDown(const int& Direction);										//倒れる処理関数.
+	void ChangeEffect();														//エフェクト変更処理関数.
+	void EmotionMove();															//感情移動処理関数.
 
 	//==================変数====================//.
-	CDX9SkinMesh*									m_pCSkinMesh;			//スキンメッシュ.
-	double											m_dCntAnimSpeed;		//アニメーション速度カウント.
-	float											m_fAnimSpeed;			//アニメーション速度.
-	int												m_AnimNum;				//アニメーション番号.
+	CDX9SkinMesh*									m_pCSkinMesh;				//スキンメッシュ.
+	double											m_dCntAnimSpeed;			//アニメーション速度カウント.
+	float											m_fAnimSpeed;				//アニメーション速度.
+	int												m_AnimNum;					//アニメーション番号.
 
-	D3DXVECTOR3										m_vPreRot;				//角度初期設定.
+	D3DXVECTOR3										m_vPreRot;					//角度初期設定.
 
-	int												m_WakeUpCnt;			//起きるカウント.
-	int												m_LeanDirect;			//傾く方向.
-	int												m_UpDownDirect;			//上下方向.
-	unsigned int									m_HaveTroubleActFlag;	//困る感情行動フラグ.
-	bool											m_ChangeEmotionFlag;	//感情変更フラグ.
-	std::vector<std::unique_ptr<CSpriteEffectBase>>	m_pCSpriteEffect;		//スプライトエフェクト.
-	int												m_UsingEffectNum;		//使っているエフェクト番号.
-	int												m_OldEmotionNum;		//前の感情番号.
+	int												m_WakeUpCnt;				//起きるカウント.
+	int												m_LeanDirect;				//傾く方向.
+	int												m_UpDownDirect;				//上下方向.
+	unsigned int									m_HaveTroubleActFlag;		//困る感情行動フラグ.
+	bool											m_ChangeEmotionFlag;		//感情変更フラグ.
+	std::vector<std::unique_ptr<CSpriteEffectBase>>	m_pCSpriteEffect;			//スプライトエフェクト.
+	int												m_UsingEffectNum;			//使っているエフェクト番号.
+	int												m_OldEmotionNum;			//前の感情番号.
 
-	bool											m_bSleepFlag;			//眠りフラグ.
-	bool											m_bSkipFlag;			//スキップフラグ.
+	bool											m_bSleepFlag;				//眠りフラグ.
+	bool											m_bSkipFlag;				//スキップフラグ.
 
-	CPlaySoundManager*								m_pCPlaySoundManager;	//曲再生管理クラス.
+	CPlaySoundManager*								m_pCPlaySoundManager;		//曲再生管理クラス.
 };
 
 

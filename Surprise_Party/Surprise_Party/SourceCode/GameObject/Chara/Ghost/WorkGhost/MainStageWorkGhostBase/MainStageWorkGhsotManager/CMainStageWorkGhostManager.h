@@ -16,13 +16,15 @@ public:
 	~CMainStageWorkGhostManager();
 
 	//====================定数=========================//.
-	const unsigned int OBJ_DOWN_FLAG		= (1 << 0);	//オブジェクトを下げるフラグ.
-	const unsigned int OBJ_UP_FLAG			= (1 << 1);	//オブジェクトを上げるフラグ.
+	const unsigned int	OBJ_DOWN_FLAG		= (1 << 0);	//オブジェクトを下げるフラグ.
+	const unsigned int	OBJ_UP_FLAG			= (1 << 1);	//オブジェクトを上げるフラグ.
 
-	const unsigned int TUTORIAL_STAGE_FLAG	= (1 << 0);	//チュートリアルステージフラグ.
-	const unsigned int EXPLAINING_FLAG		= (1 << 1);	//説明しているフラグ.
-	const unsigned int GHOST_DECIDE_FLAG	= (1 << 2);	//お化けを決めるフラグ.
-	const unsigned int SELECT_WAIT_FLAG		= (1 << 3);	//選択を待機するフラグ.
+	const unsigned int	TUTORIAL_STAGE_FLAG	= (1 << 0);	//チュートリアルステージフラグ.
+	const unsigned int	EXPLAINING_FLAG		= (1 << 1);	//説明しているフラグ.
+	const unsigned int	GHOST_DECIDE_FLAG	= (1 << 2);	//お化けを決めるフラグ.
+	const unsigned int	SELECT_WAIT_FLAG	= (1 << 3);	//選択を待機するフラグ.
+
+	const D3DXVECTOR3	DISP_GHOST_INIT_POS = D3DXVECTOR3(0.0f, 0.0f, 4.0f);
 
 	//=======================関数======================//.
 	void Init(const int& StageType, const int& StageNum, const float& PosWidth);																										//初期化処理関数.

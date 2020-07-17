@@ -14,21 +14,24 @@ public:
 	~CMainStageDispGhost();
 
 	//===============定数===================//.
-	const unsigned int	APPEAR_FLAG					= (1 << 0);	//現れるフラグ.
-	const unsigned int  APPEAR_SURPRISE_FLAG		= (1 << 1);	//現れて驚かすフラグ.
-	const unsigned int	RETURN_FLAG					= (1 << 2);	//戻るフラグ.
-	const float			WAIT_SURPRISE_ANIM_SPEED	= 0.0f;		//驚かし待ちのアニメーション速度.
-	const float			SURPRISE_ANIM_SPEED			= 0.008f;	//驚かすときのアニメーション速度.
-	const double		RETURN_ANIM_TIME			= 1.1;		//戻るアニメーション時間.
-	const double		WAIT_ANIM_TIME				= 1.5;		//待機アニメーション時間.
-	const float			APPEAR_SPEED				= 0.15f;	//現れる速度.
-	const float			APPEAR_POS_MAX				= -0.3f;	//現れる場所の最大値.
-	const float			RETURN_SPEED				= 0.2f;		//戻る速度.
-	const float			RETURN_POS_MAX				= 4.0f;		//戻る場所の最大値.
-	const float			GHOST_POS_Z					= 3.5f;		//お化けのｚ軸座標.
-	const float			OBJECT_DOWN_POS				= 3.4f;		//オブジェクト落とすお化けの座標.
-	const float			HIGHT_MIN					= 0.0f;		//高さの最小値.
-	const float			EFFECT_DISP_HIGHT			= 4.5f;		//エフェクト描画高さ.
+	const unsigned int	APPEAR_FLAG					= (1 << 0);								//現れるフラグ.
+	const unsigned int  APPEAR_SURPRISE_FLAG		= (1 << 1);								//現れて驚かすフラグ.
+	const unsigned int	RETURN_FLAG					= (1 << 2);								//戻るフラグ.
+	const float			WAIT_SURPRISE_ANIM_SPEED	= 0.0f;									//驚かし待ちのアニメーション速度.
+	const float			SURPRISE_ANIM_SPEED			= 0.008f;								//驚かすときのアニメーション速度.
+	const double		RETURN_ANIM_TIME			= 1.1;									//戻るアニメーション時間.
+	const double		WAIT_ANIM_TIME				= 1.5;									//待機アニメーション時間.
+	const float			APPEAR_SPEED				= 0.15f;								//現れる速度.
+	const float			APPEAR_POS_MAX				= -0.3f;								//現れる場所の最大値.
+	const float			RETURN_SPEED				= 0.2f;									//戻る速度.
+	const float			RETURN_POS_MAX				= 4.0f;									//戻る場所の最大値.
+	const float			GHOST_POS_Z					= 3.5f;									//お化けのｚ軸座標.
+	const float			OBJECT_DOWN_POS				= 3.4f;									//オブジェクト落とすお化けの座標.
+	const float			HIGHT_MIN					= 0.0f;									//高さの最小値.
+	const float			EFFECT_DISP_HIGHT			= 4.5f;									//エフェクト描画高さ.
+
+	const D3DXVECTOR3	GHOST_ICON_COLOR			= D3DXVECTOR3(255.0f, 195.0f, 201.0f);	//お化けアイコン色.
+	const D3DXVECTOR3	COLOR_BASE					= D3DXVECTOR3(255.0f, 255.0f, 255.0f);	//基準色.
 
 	//===============関数===================//.
 	void Update();									//更新処理関数.

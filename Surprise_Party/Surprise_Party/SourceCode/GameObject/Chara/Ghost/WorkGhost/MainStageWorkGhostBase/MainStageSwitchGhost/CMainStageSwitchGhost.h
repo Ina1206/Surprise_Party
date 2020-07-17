@@ -33,6 +33,7 @@ public:
 	const int			CHANGE_DIRECTION		= -1;									//方向変更.
 	const float			PUSH_END_ROT_SPEED		= 0.1f;									//押し終わって回転速度.
 	const float			CHANGE_UP_DOWN_FLAG_H	= 0.7f;									//上下移動フラグ変更高さ.
+	const float			EFFECT_DISP_HIGHT		= 0.5f;									//エフェクト表示高さ.
 
 	//=================関数====================//.
 	void Update();							//更新処理関数.

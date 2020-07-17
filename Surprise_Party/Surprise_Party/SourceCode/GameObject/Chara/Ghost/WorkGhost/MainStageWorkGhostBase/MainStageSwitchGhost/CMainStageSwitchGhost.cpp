@@ -1,5 +1,8 @@
 #include "CMainStageSwitchGhost.h"
 
+/**********************************************
+*	メインステージのスイッチを押すお化けクラス.
+*****************/
 CMainStageSwitchGhost::CMainStageSwitchGhost()
 	: m_PushSwitchActFlag	(0)
 	, m_fGravity			(0.0f)
@@ -71,7 +74,7 @@ void CMainStageSwitchGhost::Update()
 				//初期化.
 				m_PushSwitchActFlag = 0;
 				m_fGravity = 0.0f;
-				m_UpDownDirection = -1;
+				m_UpDownDirection = DOWN_DIRECTION;
 				//角度.
 				m_vRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 			}
@@ -80,7 +83,7 @@ void CMainStageSwitchGhost::Update()
 
 
 	//疲労エフェクト更新処理関数.
-	m_vEffectCenterPos = m_vMovePos + D3DXVECTOR3(0.0f, 0.5f, 0.0f);
+	m_vEffectCenterPos = m_vMovePos + D3DXVECTOR3(0.0f, EFFECT_DISP_HIGHT, 0.0f);
 	UpdateFutigueEffect();
 
 	m_vOldPos = m_vMovePos;

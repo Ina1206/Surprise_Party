@@ -94,6 +94,7 @@ void CMainStageDispGhost::Render()
 				m_pCSkinMesh->ChangeAnimSet_StartPos(0, WAIT_ANIM_START_POS, m_pAnimCtrl);
 			}
 
+			//現れるお化け描画処理関数.
 			RenderDispGhost(m_vMovePos);
 		}
 	}
@@ -141,7 +142,8 @@ void CMainStageDispGhost::Init()
 
 	//お化けアイコンインスタンス化.
 	m_pCGhostIcon.reset(new CGhostIcon());
-	m_pCGhostIcon->SetColor(D3DXVECTOR3(1.0f, 195.0f / 255.0f, 201.0f / 255.0f));
+	const D3DXVECTOR3 ICON_COLOR = D3DXVECTOR3(GHOST_ICON_COLOR.x / COLOR_BASE.x, GHOST_ICON_COLOR.y / COLOR_BASE.y, GHOST_ICON_COLOR.z / COLOR_BASE.z);
+	m_pCGhostIcon->SetColor(ICON_COLOR);
 	m_pCGhostIcon->SetStrengthMax(m_fStrengthMax);
 
 	//驚かすオブジェクト種類設定.

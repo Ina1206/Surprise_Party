@@ -38,28 +38,28 @@ public:
 	
 protected:
 	//========================関数=============================//.
-	void Jump();												//ジャンプ処理関数.
-	void ChangeEffect();										//エフェクト変更処理関数.
-	void ActGoodFeeling();										//ご機嫌時の行動処理関数.
-	void PlayEffectManager();									//エフェクト再生管理処理関数.
+	void Jump();																//ジャンプ処理関数.
+	void ChangeEffect();														//エフェクト変更処理関数.
+	void ActGoodFeeling();														//ご機嫌時の行動処理関数.
+	void PlayEffectManager();													//エフェクト再生管理処理関数.
 
 	//========================変数=============================//.
-	std::unique_ptr<CSpriteEffectBase>	m_pCSpriteEffect;		//スプライトエフェクト.
-	float								m_fAcc;					//加速度.
-	float								m_fAccSpeed;			//加速度加算速度.
-	float								m_fAccMax;				//加速度最大値.
-	float								m_fGravity;				//重力.
-	D3DXVECTOR3							m_vChangeBeforeRotation;//変更前の角度.
-	CPlaySoundManager*					m_pCPlaySoundManager;	//音再生管理クラス.
+	std::unique_ptr<CSpriteEffectBase>	m_pCSpriteEffect;						//スプライトエフェクト.
+	float								m_fAcc;									//加速度.
+	float								m_fAccSpeed;							//加速度加算速度.
+	float								m_fAccMax;								//加速度最大値.
+	float								m_fGravity;								//重力.
+	D3DXVECTOR3							m_vChangeBeforeRotation;				//変更前の角度.
+	CPlaySoundManager*					m_pCPlaySoundManager;					//音再生管理クラス.
 private:
 	//========================関数=============================//.
-	void MoveToOutside();										//外側に移動する処理関数.
-	void FaceOutside();											//外側を向く処理関数.
+	void MoveToOutside();														//外側に移動する処理関数.
+	void FaceOutside();															//外側を向く処理関数.
 
 	//========================変数=============================//.
-	int									m_OldEmotionNum;		//差分用の感情番号.
-	unsigned int						m_MoveToOuterFlag;		//外側を移動するフラグ.
-	bool								m_bPlayGoodHumorSound;	//上機嫌SEを再生フラグ.
+	int									m_OldEmotionNum;						//差分用の感情番号.
+	unsigned int						m_MoveToOuterFlag;						//外側を移動するフラグ.
+	bool								m_bPlayGoodHumorSound;					//上機嫌SEを再生フラグ.
 };
 
 #endif	//#ifndef CENDING_WORK_GHOST_BASE_H.
