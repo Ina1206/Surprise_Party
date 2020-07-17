@@ -68,8 +68,8 @@ void CMainStageDispGhost::Update()
 	}
 
 	//疲労エフェクト更新処理関数.
-	m_pCSkinMesh->GetPosFromBone("gost_b_joint4", &m_vEffectCenterPos);
-	m_vEffectCenterPos.y += 1.5f;
+	m_vEffectCenterPos = m_vPos;
+	m_vEffectCenterPos.y += EFFECT_DISP_HIGHT;
 	UpdateFutigueEffect();
 
 	//選択スプライト表示座標設定.
