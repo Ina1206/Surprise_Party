@@ -10,14 +10,15 @@ CSelectStringUI::CSelectStringUI()
 }
 
 CSelectStringUI::CSelectStringUI(const bool& bStartFlag)
-	: m_pCSpriteUI		()
-	, m_vStringPos		()
-	, m_vBeforeMovePos	()
-	, m_vLastPos		()
-	, m_vGhostCursorPos	(0.0f, 0.0f, 0.0f)
-	, m_bStartFlag		(bStartFlag)
-	, m_bMoveStopFlag	(false)
-	, m_MoveFlag		(0)
+	: m_pCSpriteUI			()
+	, m_vStringPos			()
+	, m_vBeforeMovePos		()
+	, m_vLastPos			()
+	, m_vGhostCursorPos		(0.0f, 0.0f, 0.0f)
+	, m_bStartFlag			(bStartFlag)
+	, m_bMoveStopFlag		(false)
+	, m_MoveFlag			(0)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	//èâä˙âªèàóùä÷êî.
 	Init();
@@ -130,6 +131,11 @@ void CSelectStringUI::Move()
 		m_vStringPos[select].x = m_vBeforeMovePos[select].x + m_fMoveDistance;
 
 		if (fabsf(m_vStringPos[select].x - m_vLastPos[select].x) <= m_fErrorRange) {
+			//ëIëï∂éöÇÃìûíÖSE.
+			if (m_bMoveStopFlag == true) {
+				m_pCPlaySoundManager->SetPlaySE(enSEType::EndingString);
+			}
+
 			m_vStringPos[select].x = m_vLastPos[select].x;
 			m_bMoveStopFlag = true;
 		}

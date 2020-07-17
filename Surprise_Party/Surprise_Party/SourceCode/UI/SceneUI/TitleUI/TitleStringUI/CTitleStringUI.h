@@ -2,6 +2,7 @@
 #define CTITLE_STRING_UI_H
 
 #include "..\..\..\CUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /*********************************************
 *		タイトル文章UIクラス.
@@ -50,17 +51,19 @@ private:
 	void Move();		//移動処理関数.
 
 	//====================変数==========================//.
-	std::vector<CSpriteUI*>		m_pCSpriteUI;		//スプライトUI.
-	std::vector<D3DXVECTOR3>	m_vTitlePos;		//座標.
-	std::vector<D3DXVECTOR2>	m_vTitleUV;			//UV.
-	std::vector<D3DXVECTOR3>	m_vBeforeMovePos;	//移動前の座標.
-	std::vector<D3DXVECTOR3>	m_vLastPos;			//最終的な座標.
-	D3DXVECTOR3					m_vFetchGhostPos;	//取りに行くお化けの座標.
-	int							m_FetchStringNum;	//取りに行く文章番号.
-	float						m_fMoveDistance;	//移動距離.
-	std::vector<bool>			m_bStopFlag;		//停止フラグ.
-	float						m_fErrorRange;		//誤差範囲.
-	unsigned int				m_MoveFlag;			//移動フラグ.
+	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.
+	std::vector<D3DXVECTOR3>	m_vTitlePos;			//座標.
+	std::vector<D3DXVECTOR2>	m_vTitleUV;				//UV.
+	std::vector<D3DXVECTOR3>	m_vBeforeMovePos;		//移動前の座標.
+	std::vector<D3DXVECTOR3>	m_vLastPos;				//最終的な座標.
+	D3DXVECTOR3					m_vFetchGhostPos;		//取りに行くお化けの座標.
+	int							m_FetchStringNum;		//取りに行く文章番号.
+	float						m_fMoveDistance;		//移動距離.
+	std::vector<bool>			m_bStopFlag;			//停止フラグ.
+	float						m_fErrorRange;			//誤差範囲.
+	unsigned int				m_MoveFlag;				//移動フラグ.
+
+	CPlaySoundManager*			m_pCPlaySoundManager;	//音再生管理クラス.
 };
 
 #endif	//#ifndef CTITLE_STRING_UI_H.

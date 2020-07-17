@@ -2,6 +2,7 @@
 #define CSELECT_STRING_UI_H
 
 #include "..\..\CUI.h"
+#include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
 /***************************************
 *		選択肢UIクラス.
@@ -51,20 +52,22 @@ private:
 	void ControlPos();	//操作時の座標処理関数.
 
 	//====================変数======================//.
-	std::vector<CSpriteUI*>		m_pCSpriteUI;		//スプライトUI.
-	std::vector<D3DXVECTOR3>	m_vStringPos;		//座標.
-	std::vector<D3DXVECTOR3>	m_vBeforeMovePos;	//移動前の座標.
-	std::vector<D3DXVECTOR3>	m_vLastPos;			//最終座標.
+	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.
+	std::vector<D3DXVECTOR3>	m_vStringPos;			//座標.
+	std::vector<D3DXVECTOR3>	m_vBeforeMovePos;		//移動前の座標.
+	std::vector<D3DXVECTOR3>	m_vLastPos;				//最終座標.
 
-	D3DXVECTOR3					m_vGhostCursorPos;	//お化けのカーソル座標.
+	D3DXVECTOR3					m_vGhostCursorPos;		//お化けのカーソル座標.
 
-	bool						m_bStartFlag;		//ゲーム開始フラグ.
-	bool						m_bMoveStopFlag;	//移動停止フラグ.
+	bool						m_bStartFlag;			//ゲーム開始フラグ.
+	bool						m_bMoveStopFlag;		//移動停止フラグ.
 
-	unsigned int				m_MoveFlag;			//移動フラグ.
+	unsigned int				m_MoveFlag;				//移動フラグ.
 
-	float						m_fMoveDistance;	//移動距離.
-	float						m_fErrorRange;		//誤差範囲.
+	float						m_fMoveDistance;		//移動距離.
+	float						m_fErrorRange;			//誤差範囲.
+
+	CPlaySoundManager*			m_pCPlaySoundManager;	//音再生管理クラス.
 };
 
 #endif	//#ifndef CSELECT_STRING_UI_H.

@@ -15,6 +15,7 @@ CTitleStringUI::CTitleStringUI()
 	, m_bStopFlag			()
 	, m_fErrorRange			(0.0f)
 	, m_MoveFlag			(0)
+	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	//‰Šú‰»ˆ—ŠÖ”.
 	Init();
@@ -137,6 +138,9 @@ void CTitleStringUI::Move()
 	//ˆÚ“®I—¹.
 	if (fabsf(m_vTitlePos[m_FetchStringNum].x - m_vLastPos[m_FetchStringNum].x) < m_fErrorRange) {
 		m_vTitlePos[m_FetchStringNum] = m_vLastPos[m_FetchStringNum];
+		if (m_bStopFlag[m_FetchStringNum] == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::EndingString);
+		}
 		m_bStopFlag[m_FetchStringNum] = true;
 	}
 }
