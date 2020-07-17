@@ -129,7 +129,6 @@ protected:
 	void	GhostIconUpdate();									//お化けアイコン更新処理関数.
 	void	SurpriseActDecide();								//驚かす行動を決める処理関数.
 	HRESULT SurpriseHit();										//驚かす当たり判定処理関数.
-	void	DebugHitSphereRender();								//デバッグ用球体描画処理関数.
 	void	StrengthIconUpdate();								//体力アイコン更新処理関数.
 	void	MoveSpeedChange();									//移動速度変更処理関数.
 	void	MovePosReference();									//移動更新処理関数.

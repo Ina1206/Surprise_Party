@@ -98,10 +98,6 @@ void CMainStageSwitchGhost::Render()
 
 	//お化けアイコン描画.
 	m_pCGhostIcon->Render();
-
-	//デバッグ用球体描画処理関数.
-	DebugHitSphereRender();
-
 	
 	//疲労エフェクト描画処理.
 	if (m_pCFatigue->GetDispFlag() == true) {

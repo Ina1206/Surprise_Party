@@ -494,28 +494,6 @@ void CMainStageWorkGhostBase::MoveGimmick()
 	m_fStrength -= MOVE_REDUCE_SPEED;
 }
 
-//=============================================.
-//		デバッグ用球体描画処理関数.
-//=============================================.
-void CMainStageWorkGhostBase::DebugHitSphereRender()
-{
-#ifdef _DEBUG
-	if (m_NearHumanNum.size() > 0) {
-		std::vector<D3DXVECTOR3> SpherePos;
-		SpherePos.push_back(m_vHumanPos[m_NearHumanNum[0]]);
-		SpherePos.push_back(D3DXVECTOR3(m_vPos.x - SURPRISE_POS_ADJUST, m_vHumanPos[m_NearHumanNum[0]].y, m_vHumanPos[m_NearHumanNum[0]].z));
-		std::vector<float> SphereScale;
-		SphereScale.push_back(HUMAN_HIT_SCALE);
-		SphereScale.push_back(SURPRISE_HIT_SCALE);
-		for (unsigned int sphere = 0; sphere < m_pCHitSphere.size(); sphere++) {
-			m_pCHitSphere[sphere]->SetScale(SphereScale[sphere]);
-			m_pCHitSphere[sphere]->SetPosition(SpherePos[sphere]);
-			m_pCHitSphere[sphere]->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
-		}
-	}
-#endif	//#ifdef _DEBUG.
-}
-
 //===========================================.
 //		休憩移動処理関数.
 //===========================================.
