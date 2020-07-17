@@ -21,9 +21,10 @@ public:
 	};
 
 	//====================関数========================//.
-	HRESULT Init(const char*	pFileName);										//初期化処理関数.
+	HRESULT Init(const char*	pFileName);									//初期化処理関数.
 
 	//================情報獲得処理関数================//.
+	//ファイルのデータ.
 	std::string GetData(const int& column, const enStringType& line) const { return m_veclineData[column][static_cast<int>(line)]; }
 
 private:

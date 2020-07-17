@@ -47,11 +47,11 @@ private:
 	STDATA *stData;
 
 	//==========変数==========//.
-	std::ifstream ifs;						//ファイル.
-	std::string m_line;						//読み取った全てのデータ.
-	std::vector<std::string> strvec;		//コンマで区切った後のそれぞれのデータ.
+	std::ifstream ifs;										//ファイル.
+	std::string m_line;										//読み取った全てのデータ.
+	std::vector<std::string> strvec;						//コンマで区切った後のそれぞれのデータ.
 
-	int line_max;							//データの行の最大数.
-	int column_max ;						//データの列の最大数.
+	int line_max;											//データの行の最大数.
+	int column_max ;										//データの列の最大数.
 };
 #endif //ifndef FILELOAD.

@@ -18,7 +18,6 @@ public:
 	//==============情報取得処理関数==================//.
 	float GetDataNum(int column, int line) { return m_veclineData[column][line]; }
 	int GetLineMax(const int& column) { return static_cast<int>(m_veclineData[column].size()); }
-	//int GetLineMax(const int& column) { return m_lineMax[column]; }
 private:
 	HRESULT DataArrage();												//行と列に分けて整理処理関数.
 	HRESULT DataSplita(std::string input, char delimiter);				//データ分解処理関数.

@@ -19,29 +19,29 @@ public:
 	//==================列挙体======================//.
 	//ステージ種類.
 	enum class enStageType {
-		ObjectPos,			//オブジェクト座標.
-		PeopleComeOder,		//人が入る順番.
-		GhostPos,			//お化けの位置1日目.
+		ObjectPos,				//オブジェクト座標.
+		PeopleComeOder,			//人が入る順番.
+		GhostPos,				//お化けの位置1日目.
 
-		Max,				//最大値.
+		Max,					//最大値.
 		Start = ObjectPos,
 	};
 	//ステータス必要キャラ.
 	enum class enStatusCharaType {
-		Ghost = 0,		//お化け.
-		People,			//人.
-		Stage,			//ステージ.
-		GhostSpeak,		//お化け会話.
+		Ghost = 0,				//お化け.
+		People,					//人.
+		Stage,					//ステージ.
+		GhostSpeak,				//お化け会話.
 
-		Max,			//最大値.
+		Max,					//最大値.
 		Start = Ghost,
 	};
 	//会話ファイル種類.
 	enum class enSpeakFileType {
-		GhostSpeakFirstStage,
-		GhostSpeakStage,
-		SpeakTutorialBigGhost,
-		EndingSpeak,
+		GhostSpeakFirstStage,	//初めのステージ.
+		GhostSpeakStage,		//次のお化けの会話ステージ.
+		SpeakTutorialBigGhost,	//チュートリアル時のお化けの会話.
+		EndingSpeak,			//エンディング.
 	};
 
 	//===================関数=======================//.
