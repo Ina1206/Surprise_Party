@@ -21,6 +21,9 @@ CGirl::~CGirl()
 //========================================.
 void CGirl::Update()
 {
+	//z²‚Ìİ’è.
+	m_vPos.z = DEPTH_POS;
+
 	//•\¦”»’èˆ—ŠÖ”.
 	DispDecision();
 

@@ -17,6 +17,9 @@ CBoy::~CBoy()
 //===================================.
 void CBoy::Update()
 {
+	//ZŽ²‚Ìˆ—.
+	m_vPos.z = DEPTH_POS;
+
 	//•\Ž¦”»’èˆ—ŠÖ”.
 	DispDecision();
 

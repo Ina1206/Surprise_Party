@@ -43,7 +43,7 @@ void CPeopleManager::Init(int FileNum, int StageNum, float StageMax)
 	}
 
 	//人を作成処理関数.
-	for (int people = 0; people < 10; people++) {
+	for (int people = 0; people < INIT_CREATE_MAX; people++) {
 		CreatHuman(people);
 	}
 
@@ -218,9 +218,10 @@ void CPeopleManager::HumanMove()
 		//人の座標取得.
 		m_vHumanPos[human] = m_pCPeopleBase[human]->GetPos();
 
+		//叫び声を出すかどうかの判定処理.
 		bool ShoutFlag = false;
-		if (m_vCameraPos.x - 16.8f <= m_vHumanPos[human].x &&
-			m_vCameraPos.x + 16.8f >= m_vHumanPos[human].x) {
+		if (m_vCameraPos.x - CAMERA_REFLECT_DISTANCE <= m_vHumanPos[human].x &&
+			m_vCameraPos.x + CAMERA_REFLECT_DISTANCE >= m_vHumanPos[human].x) {
 			ShoutFlag = true;
 		}
 		m_pCPeopleIcon[human]->SetShoutPossibleFlag(ShoutFlag);
