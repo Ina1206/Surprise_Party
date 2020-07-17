@@ -39,7 +39,7 @@ void CMainStageWorkGhostManager::Init(const int& StageType, const int& StageNum,
 		case 0:
 			//èâä˙ê›íË.
 			m_pCWorkGhost.emplace_back(new CMainStageDispGhost());
-			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 0.0f, 3.5f));
+			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 0.0f, 4.0f));
 			break;
 		case 1:
 			m_pCWorkGhost.emplace_back(new CMainStageSwitchGhost());

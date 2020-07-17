@@ -24,7 +24,7 @@ public:
 	const float			APPEAR_SPEED				= 0.15f;	//現れる速度.
 	const float			APPEAR_POS_MAX				= -0.3f;	//現れる場所の最大値.
 	const float			RETURN_SPEED				= 0.2f;		//戻る速度.
-	const float			RETURN_POS_MAX				= 3.5f;		//戻る場所の最大値.
+	const float			RETURN_POS_MAX				= 4.0f;		//戻る場所の最大値.
 	const float			GHOST_POS_Z					= 3.5f;		//お化けのｚ軸座標.
 	const float			OBJECT_DOWN_POS				= 3.4f;		//オブジェクト落とすお化けの座標.
 	const float			HIGHT_MIN					= 0.0f;		//高さの最小値.
