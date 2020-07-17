@@ -30,6 +30,7 @@ CChangeSceneCursorUI::CChangeSceneCursorUI()
 	, m_pCPlaySoundManager		(CPlaySoundManager::GetPlaySoundManager())
 	, m_bPlayJumpSE				(false)
 	, m_bPlayTurnSE				(false)
+	, m_bPlayFloationSE			(false)
 {
 	//初期化処理関数.
 	Init();
@@ -278,8 +279,22 @@ void CChangeSceneCursorUI::UpDownFloat()
 	m_fAngle+= FLOATING_SPEED;
 	if (m_fAngle > static_cast<float>(D3DXToRadian(ANGLE_MAX))) {
 		m_fAngle = 0.0f;
+		m_bPlayFloationSE = false;
 	}
 	m_vPos.y += sin(m_fAngle) * FLOATING_DISTANCE;
+
+	//画面外へ出た場合は処理を終了.
+	if (m_vPos.x < 0.0f || m_vPos.x > WND_W) {
+		return;
+	}
+
+	//浮遊用のSE再生処理.
+	if (m_fAngle >= static_cast<float>(D3DXToRadian(90.0f))) {
+		if (m_bPlayFloationSE == false) {
+			m_pCPlaySoundManager->SetPlaySE(enSEType::Floating);
+			m_bPlayFloationSE = true;
+		}
+	}
 }
 
 //=======================================.

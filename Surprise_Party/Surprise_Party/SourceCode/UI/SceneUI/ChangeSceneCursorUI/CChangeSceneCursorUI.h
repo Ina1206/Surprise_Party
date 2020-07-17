@@ -153,6 +153,7 @@ private:
 	CPlaySoundManager*	m_pCPlaySoundManager;					//音再生管理クラス.
 	bool				m_bPlayJumpSE;							//ジャンプ再生フラグ.
 	bool				m_bPlayTurnSE;							//回転再生フラグ.
+	bool				m_bPlayFloationSE;						//浮遊SE再生フラグ.
 };
 
 #endif	//#ifndef CCHANGE_SCENE_CURSOR_H
