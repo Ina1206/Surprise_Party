@@ -39,7 +39,7 @@ private:
 	int		m_SuspendTime;		//一時停止するカウント.
 	double	m_dAnimTime;		//アニメーションタイム.
 	int		m_SuspendInterval;	//一時停止間隔.
-
+	float	m_fOldPosX;			//X座標の前の座標.
 };
 
 #endif	//#ifndef CGIRL_H.

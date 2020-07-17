@@ -39,8 +39,10 @@ CPeopleBase::~CPeopleBase()
 void CPeopleBase::Render()
 {
 	if (m_bTutorialFlag == true) {
-		m_pCSkinMesh->ChangeAnimSet(TUTORIAL_ANIM_NO, m_pAnimCtrl);
-		m_bTutorialFlag = false;
+		if (m_AnimNo != TUTORIAL_ANIM_NO) {
+			m_pCSkinMesh->ChangeAnimSet(TUTORIAL_ANIM_NO, m_pAnimCtrl);
+			m_AnimNo = TUTORIAL_ANIM_NO;
+		}
 	}
 
 	//座標.
@@ -70,6 +72,19 @@ void CPeopleBase::Render()
 	//エフェクトの描画.
 	m_pCSurpriseEffect->SetCenterPos(m_vEffectCenterPos);
 	m_pCSurpriseEffect->Render(m_mView, m_mProj, m_vCameraPos);
+}
+
+//======================================.
+//		歩行アニメーション変更処理関数.
+//======================================.
+void CPeopleBase::SetWalkAnim()
+{
+	if (m_bTutorialFlag == true) {
+		//アニメーション変更処理.
+		m_pCSkinMesh->ChangeAnimSet(m_WalkAnimNo, m_pAnimCtrl);
+		m_AnimNo = m_WalkAnimNo;
+		m_bTutorialFlag = false;
+	}
 }
 
 //======================================.

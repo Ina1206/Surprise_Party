@@ -101,16 +101,17 @@ void CMainStage::UpDate(const bool& ControlFlag)
 
 		//説明中例外処理.
 		if (m_ExplainFlag & EXPLAINING_FLAG ){
-			m_pCPeopleManager->SetTutorialFlag(true);
 
 			if(!(m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople)) {
 				//お化けに視点を戻す.
 				if (m_pCCamera->GetMoveFlag() & m_pCCamera->PEOPLE_LOOK_FLAG) {
 					m_pCCamera->SetMoveFlag(m_pCCamera->GHOST_LOOK_FLAG);
+					m_pCPeopleManager->ChangeWalkAnim();
 				}
 				return;
 			}
 			if (m_pCDescriptionUIManager->GetStartLatestFlag() & SeePeople) {
+				m_pCPeopleManager->SetTutorialFlag(true);
 				//人に視点を移動.
 				m_pCCamera->SetMoveFlag(m_pCCamera->PEOPLE_LOOK_FLAG);
 				//差分取得処理関数.

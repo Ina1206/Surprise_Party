@@ -63,6 +63,8 @@ public:
 	void SetPauseFlag(const bool& bFlag) { m_bPauseFlag = bFlag; }
 	//驚き行動フラグ初期化処理.
 	void SetInitSurpriseActFlag() { m_SurpriseActFlag = 0; }
+	//歩行アニメーション変更処理関数.
+	void SetWalkAnim();
 
 	//=============情報獲得処理関数==============//.
 	//追加ポイント量.
@@ -95,7 +97,6 @@ protected:
 	unsigned int						m_SurpriseActFlag;	//驚く行動フラグ.
 	std::unique_ptr<CSurpriseEffect>	m_pCSurpriseEffect;	//エフェクトクラス.
 	D3DXVECTOR3							m_vEffectCenterPos;	//エフェクト中心座標.
-
 private:
 	//=================関数======================//.
 	void SpeedAcceleration();						//速度加速処理関数.

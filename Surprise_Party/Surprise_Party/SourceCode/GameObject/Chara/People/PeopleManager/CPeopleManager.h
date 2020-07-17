@@ -42,6 +42,8 @@ public:
 	void SetNotRenderIcon(const bool& bFlag) { m_bNotRenderIcon = bFlag; }
 	//カメラ座標.
 	void SetCameraPos(const D3DXVECTOR3& vPos) { m_vCameraPos = vPos; }
+	//歩きアニメーション変更処理関数.
+	void ChangeWalkAnim() { m_pCPeopleBase[0]->SetWalkAnim(); }
 
 	//===========情報獲得処理関数============//.
 	//人の座標取得.

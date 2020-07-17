@@ -5,6 +5,7 @@ CGirl::CGirl()
 	: m_SuspendTime		(0)
 	, m_dAnimTime		(0.0)
 	, m_SuspendInterval	(0)
+	, m_fOldPosX		(0.0f)
 {
 	//初期化処理関数.
 	Init();
@@ -79,6 +80,9 @@ void CGirl::Init()
 	
 	//驚きエフェクトクラスインスタンス化.
 	m_pCSurpriseEffect.reset(new CSurpriseEffect());
+
+	//前回の座標設定.
+	m_fOldPosX = m_vPos.x;
 }
 
 //========================================.
