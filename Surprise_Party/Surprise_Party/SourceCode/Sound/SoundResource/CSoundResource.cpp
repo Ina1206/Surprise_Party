@@ -147,6 +147,8 @@ HRESULT CSoundResource::LoadSE()
 		"Data\\Sound\\SE\\Floating.mp3",				//浮遊.
 		"Data\\Sound\\SE\\JumpSNS.mp3",					//SNSへ飛ぶ.
 
+		"Data\\Sound\\SE\\PauseButton.mp3",				//ポーズボタン.
+
 		"Data\\Sound\\SE\\Skip.mp3",					//スキップ.
 	};
 
@@ -197,6 +199,8 @@ HRESULT CSoundResource::LoadSE()
 
 		"Floating",						//浮遊.
 		"JumpSNS",						//SNSへ飛ぶ.
+
+		"PauseButton",					//ポーズボタン.
 
 		"Skip",							//スキップ.
 	};

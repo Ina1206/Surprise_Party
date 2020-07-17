@@ -243,9 +243,13 @@ void CSceneManager::Pause()
 	if (GetAsyncKeyState(VK_F1) & 0x0001) {
 		if (m_PausingFlag == true) {
 			m_PausingFlag = false;
+			//ポーズ.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::Pause);
 		}
 		else {
 			m_PausingFlag = true;
+			//ポーズ.
+			m_pCPlaySoundManager->SetPlaySE(enSEType::Pause);
 		}
 	}
 

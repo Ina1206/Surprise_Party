@@ -53,6 +53,8 @@ enum class enSEType {
 	Floating,						//浮遊.
 	JumpSNS,						//SNSへ飛ぶ.
 
+	Pause,							//ポーズ.
+
 	Skip,							//スキップ.
 
 	Max,							//最大数.
