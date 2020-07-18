@@ -3,6 +3,9 @@
 
 #include "..\CCharaBase.h"
 
+/******************************************************
+*				‚¨‰»‚¯Šî’êƒNƒ‰ƒX.
+*******************/
 class CGhostBase
 	: public CCharaBase
 {

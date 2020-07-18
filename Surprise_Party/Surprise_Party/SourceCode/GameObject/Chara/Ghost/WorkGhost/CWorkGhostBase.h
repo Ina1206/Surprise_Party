@@ -18,7 +18,8 @@ public:
 	virtual ~CWorkGhostBase();
 
 	//=============================定数======================================//.
-	const float			WAIT_ANIM_START_POS = 0.95f;	//待機時のアニメーション座標.
+	const float			WAIT_ANIM_START_POS		= 0.95f;							//待機時のアニメーション座標.
+	const D3DXVECTOR3	SWITCH_GHOST_PRE_POS	= D3DXVECTOR3(0.0f, -23.0f, 0.0f);	//スイッチお化け座標.
 
 	//=============列挙体================//.
 	//お化けの種類.

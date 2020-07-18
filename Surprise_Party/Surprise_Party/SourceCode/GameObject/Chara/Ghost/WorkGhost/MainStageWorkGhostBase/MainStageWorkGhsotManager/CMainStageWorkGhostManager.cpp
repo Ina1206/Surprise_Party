@@ -34,20 +34,23 @@ void CMainStageWorkGhostManager::Init(const int& StageType, const int& StageNum,
 		if (CharaPosNum < 0 || CharaPosNum > 1) {
 			continue;
 		}
-
-		switch (CharaPosNum) {
-		case 0:
+		//オブジェクトごとにお化けを決める.
+		switch (static_cast<CGhostBase::enSurpriseObjectType>(CharaPosNum)) {
+		case CGhostBase::enSurpriseObjectType::Disp:
 			//初期設定.
 			m_pCWorkGhost.emplace_back(new CMainStageDispGhost());
-			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 0.0f, 4.0f));
+			m_vWorkGhostPos.push_back(DISP_GHOST_INIT_POS);
 			break;
-		case 1:
+		case CGhostBase::enSurpriseObjectType::Switch:
 			m_pCWorkGhost.emplace_back(new CMainStageSwitchGhost());
-			m_vWorkGhostPos.push_back(D3DXVECTOR3(stage * PosWidth, 3.5f, 3.5f));
+			m_vWorkGhostPos.push_back(SWITCH_GHOST_INIT_POS);
 			break;
 		}
 		//要素数.
 		const int ElementNum = static_cast<int>(m_pCWorkGhost.size() - 1);
+		//x座標の設定.
+		m_vWorkGhostPos[ElementNum].x = stage * PosWidth;
+		//座標の設定.
 		m_pCWorkGhost[ElementNum]->SetPos(m_vWorkGhostPos[ElementNum]);
 		m_pCWorkGhost[ElementNum]->SetInitMovePos();
 	}

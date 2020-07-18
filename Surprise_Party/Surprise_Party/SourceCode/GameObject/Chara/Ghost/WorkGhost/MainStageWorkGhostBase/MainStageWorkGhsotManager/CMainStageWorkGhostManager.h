@@ -15,16 +15,26 @@ public:
 	CMainStageWorkGhostManager();
 	~CMainStageWorkGhostManager();
 
+	//===================列挙体========================//.
+	enum class enGhostType {
+		Disp,
+		Switch,
+	};
+
 	//====================定数=========================//.
-	const unsigned int	OBJ_DOWN_FLAG		= (1 << 0);	//オブジェクトを下げるフラグ.
-	const unsigned int	OBJ_UP_FLAG			= (1 << 1);	//オブジェクトを上げるフラグ.
+	const unsigned int	OBJ_DOWN_FLAG			= (1 << 0);							//オブジェクトを下げるフラグ.
+	const unsigned int	OBJ_UP_FLAG				= (1 << 1);							//オブジェクトを上げるフラグ.
 
-	const unsigned int	TUTORIAL_STAGE_FLAG	= (1 << 0);	//チュートリアルステージフラグ.
-	const unsigned int	EXPLAINING_FLAG		= (1 << 1);	//説明しているフラグ.
-	const unsigned int	GHOST_DECIDE_FLAG	= (1 << 2);	//お化けを決めるフラグ.
-	const unsigned int	SELECT_WAIT_FLAG	= (1 << 3);	//選択を待機するフラグ.
+	const unsigned int	TUTORIAL_STAGE_FLAG		= (1 << 0);							//チュートリアルステージフラグ.
+	const unsigned int	EXPLAINING_FLAG			= (1 << 1);							//説明しているフラグ.
+	const unsigned int	GHOST_DECIDE_FLAG		= (1 << 2);							//お化けを決めるフラグ.
+	const unsigned int	SELECT_WAIT_FLAG		= (1 << 3);							//選択を待機するフラグ.
 
-	const D3DXVECTOR3	DISP_GHOST_INIT_POS = D3DXVECTOR3(0.0f, 0.0f, 4.0f);
+	const D3DXVECTOR3	DISP_GHOST_INIT_POS		= D3DXVECTOR3(0.0f, 0.0f, 4.0f);	//表示お化けの初期座標.
+	const D3DXVECTOR3	SWITCH_GHOST_INIT_POS	= D3DXVECTOR3(0.0f, 3.5f, 3.5f);	//スイッチお化けの初期座標.
+
+	const int			DISP_GHOST_NUM			= 0;								//表示お化け番号.
+	const int			SWITCH_GHOST_NUM		= 1;								//スイッチお化け番号.
 
 	//=======================関数======================//.
 	void Init(const int& StageType, const int& StageNum, const float& PosWidth);																										//初期化処理関数.

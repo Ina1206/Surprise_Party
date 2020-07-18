@@ -1,5 +1,8 @@
 #include "CWorkGhostBase.h"
 
+/*************************************
+*		“­‚­‚¨‰»‚¯Šî’êƒNƒ‰ƒX.
+******/
 CWorkGhostBase::CWorkGhostBase()
 	: m_pCSkinMesh	(nullptr)
 	, m_pAnimCtrl	(nullptr)
@@ -72,7 +75,7 @@ void CWorkGhostBase::RenderSwitchGhost(const D3DXVECTOR3& vPos)
 	m_pCMesh->SetPosition(vPos);
 	m_pCMesh->SetRotation(m_vRot);
 	m_pCMesh->SetScale(m_fScale);
-	m_pCMesh->SetPrePos(D3DXVECTOR3(0.0f, -23.0f, 0.0f));
+	m_pCMesh->SetPrePos(SWITCH_GHOST_PRE_POS);
 	m_pCMesh->Render(m_mView, m_mProj, m_vCameraPos, m_stLight);
 
 }

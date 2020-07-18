@@ -116,6 +116,7 @@ void CMainStageWorkGhostBase::SelectUpdate()
 		}
 	}
 
+	//休憩行動処理関数.
 	if (m_MoveFlag & REST_FLAG && m_bLimitationRest == true) {
 		RestAct();
 	}
@@ -193,7 +194,8 @@ void CMainStageWorkGhostBase::SurpriseActDecide()
 	//驚かし休憩処理.
 	if (m_SurpriseFlag & SURPRISE_REST_FLAG) {
 		const int FileNum			= static_cast<int>(CFileResource::enStatusCharaType::Ghost);							//ファイル番号.
-		const int StrengthType		= m_pCGhostIcon->GetFaceType() + 4;														//表情番号.
+		const int LINE_START_NUM	= 4;																					//列の開始番号.
+		const int StrengthType		= m_pCGhostIcon->GetFaceType() + LINE_START_NUM;										//表情番号.
 		const int SurpriseRestMax	= static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_GhostType, StrengthType));	//驚く休憩時間最大値.
 
 		if (m_SurpriseRestTime <= SurpriseRestMax) {
@@ -224,7 +226,7 @@ void CMainStageWorkGhostBase::SurpriseActDecide()
 
 		//人がお化けの近くにいるかどうか.
 		for (unsigned int human = 0; human < m_vHumanPos.size(); human++) {
-			if (fabsf((m_vPos.x - 5.0f) - m_vHumanPos[human].x) < NEAR_SENTER_ADJUST) {
+			if (fabsf((m_vPos.x - NEAR_SENTER_ADJUST) - m_vHumanPos[human].x) < NEAR_SENTER_ADJUST) {
 				m_SurpriseFlag |= HUMAN_NEAR_FLAG;
 			}
 		}

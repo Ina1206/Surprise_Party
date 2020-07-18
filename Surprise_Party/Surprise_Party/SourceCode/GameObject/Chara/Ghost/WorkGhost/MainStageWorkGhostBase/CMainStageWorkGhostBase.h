@@ -37,7 +37,6 @@ public:
 	const float			COLOR_MAX			= 255.0f;							//色の最大値.
 	const float			ADJUSTMENT_WIDTH	= 0.2f;								//幅調整.
 	const float			NEAR_SENTER_ADJUST	= 5.0f;								//近づく判定中央差分.
-	//const float			GIMMICK_UP_DECISION = 0.1f;								//ギミックの上に乗っているかの判定差分.
 	const float			SURPRISE_POS_ADJUST = 2.5f;								//驚く場所の差分.
 	const int			NOT_SURPRISE_NUM	= -1;								//誰も驚いていないときの番号.
 	const float			HUMAN_HIT_SCALE		= 1.0f;								//人が驚く当たり判定大きさ.
