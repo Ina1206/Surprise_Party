@@ -1,6 +1,9 @@
 #include "CGirl.h"
 #include <random>
 
+/*******************************************************
+*			—‚ÌqƒNƒ‰ƒX.
+************************/
 CGirl::CGirl()
 	: m_SuspendTime		(0)
 	, m_dAnimTime		(0.0)

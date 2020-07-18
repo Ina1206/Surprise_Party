@@ -1,6 +1,9 @@
 #include "CPeopleManager.h"
 #include <random>
 
+/***************************************
+*		人々の管理クラス.
+********/
 CPeopleManager::CPeopleManager()
 	: m_pCFileResource		(nullptr)
 	, m_HumanAppOrder		()

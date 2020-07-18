@@ -1,5 +1,8 @@
 #include "CPeopleBase.h"
 
+/******************************************************
+*		人々の基底クラス.
+****************************/
 CPeopleBase::CPeopleBase()
 	: m_pCSkinMesh		(nullptr)
 	, m_fAnimSpeed		(0.0f)

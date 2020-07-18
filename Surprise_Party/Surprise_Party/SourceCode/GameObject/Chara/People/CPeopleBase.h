@@ -4,6 +4,9 @@
 #include "..\CCharaBase.h"
 #include "..\..\SpriteEffect\SurpriseEffect\CSurpriseEffect.h"
 
+/******************************************************
+*		人々の基底クラス.
+****************************/
 class CPeopleBase
 	: public CCharaBase
 {
