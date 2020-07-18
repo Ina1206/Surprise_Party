@@ -59,7 +59,8 @@ public:
 	enum class enStatus {
 		Strength,			//体力.
 		MoveSpeed,			//移動速度.
-		RecoverySpeed,		//回復速度.
+		RecoveryTime,		//回復時間.
+		LimitRecoveryTime,	//上限回復時間.
 		SurprisePoint,		//驚きポイント.
 	};
 
@@ -153,6 +154,7 @@ protected:
 	float								m_fMoveSpeed;			//移動速度.
 	float								m_fMoveSpeedMax;		//移動速度最大数.
 	float								m_fRecoverySpeed;		//休憩時間.
+	float								m_fLimitRecoverySpeed;	//上限休憩時間.
 	unsigned int						m_SurpriseFlag;			//驚かしているフラグ.
 	unsigned int						m_RestFlag;				//休憩フラグ.
 	float								m_fScaleMax;			//大きさ最大数.

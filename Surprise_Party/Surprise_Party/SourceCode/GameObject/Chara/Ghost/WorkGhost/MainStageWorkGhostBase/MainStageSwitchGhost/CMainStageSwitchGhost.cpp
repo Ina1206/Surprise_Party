@@ -135,7 +135,8 @@ void CMainStageSwitchGhost::Init()
 	m_fMoveSpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::MoveSpeed));
 	m_fMoveSpeedMax = m_fMoveSpeed;
 	//回復速度.
-	m_fRecoverySpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::RecoverySpeed));
+	m_fRecoverySpeed = m_fStrengthMax / m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::RecoveryTime));
+	m_fLimitRecoverySpeed = m_fStrengthMax / m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::LimitRecoveryTime));
 
 	//マップ上でのお化けアイコンインスタンス化.
 	m_pCGhostIcon.reset(new CGhostIcon());

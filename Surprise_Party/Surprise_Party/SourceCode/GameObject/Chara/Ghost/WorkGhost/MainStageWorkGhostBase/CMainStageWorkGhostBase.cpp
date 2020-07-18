@@ -19,6 +19,7 @@ CMainStageWorkGhostBase::CMainStageWorkGhostBase()
 	, m_fMoveSpeed				(0.0f)
 	, m_fMoveSpeedMax			(0.0f)
 	, m_fRecoverySpeed			(0.0f)
+	, m_fLimitRecoverySpeed		(0.0f)
 	, m_SurpriseFlag			(0)
 	, m_fScaleMax				(0.0f)
 	, m_pCGhostStrengthIcon		(nullptr)
@@ -417,11 +418,11 @@ void CMainStageWorkGhostBase::RestAct()
 	//‰ñ•œ’†ˆ—.
 	if (m_RestFlag & IN_REST_FLAG) {
 		//”æ˜J‰ñ•œ‘¬“x‚Ì’²®.
-		float RecoverySpeed = 1.0f;
+		float RecoverySpeed = m_fRecoverySpeed;
 		if (m_bLimitationRest == true) {
-			RecoverySpeed = 4.0f;
+			RecoverySpeed = m_fLimitRecoverySpeed;
 		}
-		m_fStrength += m_fRecoverySpeed / RecoverySpeed;
+		m_fStrength += RecoverySpeed / 60;
 
 		//•œŠˆ.
 		if (m_fStrength >= m_fStrengthMax) {

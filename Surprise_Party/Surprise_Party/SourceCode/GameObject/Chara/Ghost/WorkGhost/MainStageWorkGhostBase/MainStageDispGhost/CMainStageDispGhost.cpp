@@ -135,7 +135,8 @@ void CMainStageDispGhost::Init()
 	m_fMoveSpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::MoveSpeed));
 	m_fMoveSpeedMax = m_fMoveSpeed;
 	//回復速度.
-	m_fRecoverySpeed = m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::RecoverySpeed));
+	m_fRecoverySpeed = m_fStrengthMax / m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::RecoveryTime));
+	m_fLimitRecoverySpeed = m_fStrengthMax / m_pCFileResource->GetStatusNum(FileNum, m_GhostType, static_cast<int>(enStatus::LimitRecoveryTime));
 
 	//行動選択クラスインスタンス化.
 	m_pCAct_Selection.reset(new CAct_Selection());
