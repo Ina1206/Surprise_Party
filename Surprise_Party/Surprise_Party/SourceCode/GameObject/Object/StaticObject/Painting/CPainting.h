@@ -13,6 +13,9 @@ public:
 	CPainting();
 	~CPainting();
 
+	//============’è”==============//.
+	const float	SCALE = 0.3f;	//‘å‚«‚³.
+
 	//============ŠÖ”==============//.
 	void Update();		//XVˆ—ŠÖ”.
 private:

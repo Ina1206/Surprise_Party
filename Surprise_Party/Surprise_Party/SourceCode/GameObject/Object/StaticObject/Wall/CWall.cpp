@@ -1,5 +1,8 @@
 #include "CWall.h"
 
+/*****************************************
+*		壁オブジェクトクラス.
+*******/
 CWall::CWall()
 {
 	//初期化処理関数.
@@ -29,7 +32,7 @@ void CWall::Update()
 //====================================.
 void CWall::Init()
 {
-	m_fScale = 0.1f;
+	m_fScale = SCALE;
 	m_vRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::Wall);
 }

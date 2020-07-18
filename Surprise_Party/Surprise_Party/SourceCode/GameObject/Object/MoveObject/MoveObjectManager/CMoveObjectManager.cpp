@@ -1,6 +1,9 @@
 #include "CMoveObjectManager.h"
 
-CMoveObjectManager::CMoveObjectManager() 
+/**********************************
+*	移動オブジェクト管理クラス.
+*****/
+CMoveObjectManager::CMoveObjectManager()
 	: CMoveObjectManager	(0, 0)
 {
 
@@ -258,14 +261,15 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 			//移動オブジェクト番号設定.
 			m_enMoveObjectType.push_back(objNum);
 			//ギミッククラスインスタンス化.
+			const int ELEMENT_NUM = m_pCGimmickIcon.size() - 1;
 			m_pCGimmickIcon.push_back(nullptr);
-			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1].reset(new CGimmickIcon(objNum));
+			m_pCGimmickIcon[ELEMENT_NUM].reset(new CGimmickIcon(objNum));
 			//ステージの距離最大値取得.
-			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1]->SetStageMax(m_pCFileResource->GetStageMax(FileNum, StageNum) * OBJECT_WIDTH);
+			m_pCGimmickIcon[ELEMENT_NUM]->SetStageMax(m_pCFileResource->GetStageMax(FileNum, StageNum) * OBJECT_WIDTH);
 			//ギミックアイコン座標取得.
-			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1]->SetCharaPos(m_vMoveObjectPos[m_pCGimmickIcon.size() - 1]);
+			m_pCGimmickIcon[ELEMENT_NUM]->SetCharaPos(m_vMoveObjectPos[ELEMENT_NUM]);
 			//ギミックアイコン1回だけ更新させる.
-			m_pCGimmickIcon[m_pCGimmickIcon.size() - 1]->UpDate();
+			m_pCGimmickIcon[ELEMENT_NUM]->UpDate();
 
 		}
 		//次の動くオブジェクトへ.
@@ -277,21 +281,24 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 			stageMax += m_pCFileResource->GetStageMax(FileNum, StageNum);
 		}
 	}
+
+	//サイズ.
+	const int Size = m_pCGimmickIcon.size();
 	//上下フラグ要素数設定.
-	m_ObjeMoveFlag.resize(m_pCGimmickIcon.size());
+	m_ObjeMoveFlag.resize(Size);
 	//使われているかフラグ.
-	m_bUsedGimmickFlag.resize(m_pCGimmickIcon.size());
+	m_bUsedGimmickFlag.resize(Size);
 	//付属オブジェクト.
 	//移動フラグ.
-	m_AttachedObjMoveFlag.resize(m_pCGimmickIcon.size());
+	m_AttachedObjMoveFlag.resize(Size);
 	//角度.
-	m_vAttachRot.resize(m_pCGimmickIcon.size(), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_vAttachRot.resize(Size, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	//花瓶が揺れるカウント.
-	m_FlowerSwingCnt.resize(m_pCGimmickIcon.size());
+	m_FlowerSwingCnt.resize(Size);
 	//エフェクトと音を再生させるフラグ.
-	m_bPlayEffectSound.resize(m_pCGimmickIcon.size());
+	m_bPlayEffectSound.resize(Size);
 	//驚かす行動SE再生フラグ.
-	m_bPlaySurpriseActSE.resize(m_pCGimmickIcon.size());
+	m_bPlaySurpriseActSE.resize(Size);
 
 	//オブジェクトインスタンス化.
 	m_pCMoveObjectBase.resize(static_cast<int>(enMoveObjectType::Max));

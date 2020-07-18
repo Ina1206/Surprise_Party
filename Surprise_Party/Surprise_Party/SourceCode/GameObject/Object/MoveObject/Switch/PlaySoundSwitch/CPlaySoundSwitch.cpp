@@ -1,5 +1,8 @@
 #include "CPlaySoundSwitch.h"
 
+/*********************************************
+*		音再生スイッチクラス.
+**************/
 CPlaySoundSwitch::CPlaySoundSwitch()
 {
 	//初期化処理関数.

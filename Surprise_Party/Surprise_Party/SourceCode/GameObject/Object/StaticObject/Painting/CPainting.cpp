@@ -1,5 +1,8 @@
 #include "CPainting.h"
 
+/************************************
+*	ŠG‰æƒNƒ‰ƒX.
+****************/
 CPainting::CPainting()
 {
 	//‰Šú‰»ˆ—ŠÖ”.
@@ -27,7 +30,7 @@ void CPainting::Update()
 void CPainting::Init()
 {
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::Painting);
-	m_fScale = 0.3f;
+	m_fScale = SCALE;
 }
 
 //==============================.

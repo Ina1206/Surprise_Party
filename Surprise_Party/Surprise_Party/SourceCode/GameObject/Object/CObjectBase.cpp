@@ -1,5 +1,8 @@
 #include "CObjectBase.h"
 
+/********************************************
+*		オブジェクト基底クラス.
+******************/
 CObjectBase::CObjectBase()
 	: m_pCMesh				(nullptr)
 	, m_pCDepthStenceil		(nullptr)

@@ -4,6 +4,9 @@
 #include "..\CGameObject.h"
 #include "..\..\Drawing\Sprite\CDepth_Stencil.h"
 
+/********************************************
+*		オブジェクト基底クラス.
+******************/
 class CObjectBase
 	: public CGameObject
 {

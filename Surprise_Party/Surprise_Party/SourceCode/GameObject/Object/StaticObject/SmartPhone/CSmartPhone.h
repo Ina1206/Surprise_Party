@@ -13,6 +13,12 @@ public:
 	CSmartPhone();
 	~CSmartPhone();
 
+	//=========================定数==============================//.
+	const float			SCROLL_SPEED	= 0.05f;								//スクロール速度.
+	const float			SCROLL_MAX		= 1.0f;									//スクロール最大値.
+	const float			SCALE			= 0.05f;								//大きさ.
+	const D3DXVECTOR3	ROT				= D3DXVECTOR3(-30.0f, 170.0f, -5.0f);	//傾き.
+
 	//========================列挙体=============================//.
 	//行動種類.
 	enum class enMoveType {

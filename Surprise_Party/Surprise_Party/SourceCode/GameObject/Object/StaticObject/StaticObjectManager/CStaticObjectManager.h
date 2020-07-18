@@ -40,6 +40,7 @@ public:
 	const D3DXVECTOR3	FLOOR_START_POS			= D3DXVECTOR3(-1.25f, -1.1f, -1.4f);	//床の開始位置.
 	const int			OTHER_CREATION_MAX		= 6;									//他の作成するオブジェクトの最大数.
 	const D3DXVECTOR3	STANDERD_PAINTING_POS	= D3DXVECTOR3(0.0f, 5.0f, 1.0f);		//基本の絵画の座標.
+	const D3DXVECTOR3	STANDERD_BOOKSHELF_POS	= D3DXVECTOR3(0.0f, 0.0f, 0.5f);		//基本の本棚の座標.
 
 	//=================関数====================//.
 	void Updata();																										//更新処理関数.

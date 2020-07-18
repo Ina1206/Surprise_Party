@@ -23,8 +23,8 @@ CFrontstageLight::~CFrontstageLight()
 void CFrontstageLight::Update()
 {
 	for (unsigned int light = 0; light < m_vLightPos.size(); light++) {
-		if (m_vCameraPos.x + 16.0f > m_vLightPos[light].x &&
-			m_vCameraPos.x - 16.0f < m_vLightPos[light].x) {
+		if (m_vCameraPos.x + REFLECTION_RANGE > m_vLightPos[light].x &&
+			m_vCameraPos.x - REFLECTION_RANGE < m_vLightPos[light].x) {
 			m_stLight.vPos = m_vLightPos[light];
 			break;
 		}
@@ -52,12 +52,12 @@ void CFrontstageLight::SettingAllLightPos(const float& fDistance)
 void CFrontstageLight::Init()
 {
 	//ƒ‰ƒCƒgî•ñ‰ŠúÝ’è.
-	m_stLight.vPos				= D3DXVECTOR3(0.0f, 21.7f, -0.5f);
-	m_stLight.fIntensity		= 119.0f;
-	m_stLight.m_fLightWidth		= 10.9f;
-	m_stLight.fLightPosWidth	= 20.0f;
-	m_stLight.vLightColor		= D3DXVECTOR3(0.5f, 0.5f, 1.0f);
-	m_stLight.m_fLightMax		= 3.0f;
+	m_stLight.vPos				= LIGHT_POS;
+	m_stLight.fIntensity		= LIGHT_INTENSITY;
+	m_stLight.m_fLightWidth		= LIGHT_WIDTH;
+	m_stLight.fLightPosWidth	= LIGHT_POS_WIDHT;
+	m_stLight.vLightColor		= LIGHT_COLOR;
+	m_stLight.m_fLightMax		= LIGHT_MAX;
 	D3DXMatrixIdentity(&m_stLight.mRot);
 
 	D3DXMATRIX mYaw, mPich, mRoll;

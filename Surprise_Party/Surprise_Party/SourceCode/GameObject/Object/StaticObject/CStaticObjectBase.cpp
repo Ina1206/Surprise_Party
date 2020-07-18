@@ -1,5 +1,8 @@
 #include "CStaticObjectBase.h"
 
+/***********************************************
+*		静的オブジェクトクラス.
+***********/
 CStaticObjectBase::CStaticObjectBase()
 {
 

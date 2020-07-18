@@ -1,5 +1,8 @@
 #include "CMoveObjectBase.h"
 
+/***************************************************
+*		動くオブジェクト基底クラス.
+***********/
 CMoveObjectBase::CMoveObjectBase()
 	: m_pCEffect			(nullptr)
 	, m_EffectHandle		(EFFECT_HANDLE_DEFAULT_VALUE)

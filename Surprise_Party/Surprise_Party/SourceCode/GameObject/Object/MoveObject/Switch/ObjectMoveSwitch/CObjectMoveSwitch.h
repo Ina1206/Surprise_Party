@@ -3,6 +3,9 @@
 
 #include "..\CSwitchBase.h"
 
+/*****************************************
+*		スイッチの移動オブジェクトクラス.
+*****************/
 class CObjectMoveSwitch
 	: public CSwitchBase
 {

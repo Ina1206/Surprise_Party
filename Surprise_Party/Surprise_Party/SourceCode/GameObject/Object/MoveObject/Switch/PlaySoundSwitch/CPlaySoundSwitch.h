@@ -4,6 +4,9 @@
 #include "..\CSwitchBase.h"
 #include "..\..\SpriteEffect\MoveNoteEffect\CMoveNoteEffect.h"
 
+/*********************************************
+*		音再生スイッチクラス.
+**************/
 class CPlaySoundSwitch
 	: public CSwitchBase
 {

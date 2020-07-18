@@ -1,5 +1,8 @@
 #include "CObjectMoveSwitch.h"
 
+/*****************************************
+*		スイッチの移動オブジェクトクラス.
+*****************/
 CObjectMoveSwitch::CObjectMoveSwitch()
 	: m_vAttachedOldPos	(0.0f, 0.0f, 0.0f)
 {

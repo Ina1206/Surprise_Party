@@ -1,5 +1,8 @@
 #include "CGameObject.h"
 
+/************************************
+*	ゲームオブジェクトクラス.
+*******/
 CGameObject::CGameObject()
 	: m_mView		()
 	, m_mProj		()

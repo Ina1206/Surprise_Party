@@ -1,6 +1,9 @@
 #include "CStaticObjectManager.h"
 #include <random>
 
+/********************************************
+*		静的オブジェクト管理クラス.
+*********/
 CStaticObjectManager::CStaticObjectManager()
 	: CStaticObjectManager(0, 0)
 {
@@ -198,10 +201,12 @@ void CStaticObjectManager::OtherObjectSetting()
 			//オブジェクト番号ごとに設定.
 			switch (objNum) {
 			case static_cast<int>(enStaticObjectType::Painting):
-				m_vOtherObjectPos.push_back(D3DXVECTOR3(stagenum * OBJECT_WIDTH, 5.0f, 1.0f));
+				m_vOtherObjectPos.push_back(STANDERD_PAINTING_POS);
+				m_vOtherObjectPos[m_vOtherObjectPos.size() - 1].x = stagenum * OBJECT_WIDTH;
 				break;
 			case static_cast<int>(enStaticObjectType::BookShelf):
-				m_vOtherObjectPos.push_back(D3DXVECTOR3(stagenum * OBJECT_WIDTH, 0.0f, 0.5f));
+				m_vOtherObjectPos.push_back(STANDERD_BOOKSHELF_POS);
+				m_vOtherObjectPos[m_vOtherObjectPos.size() - 1].x = stagenum * OBJECT_WIDTH;
 				break;
 
 			}

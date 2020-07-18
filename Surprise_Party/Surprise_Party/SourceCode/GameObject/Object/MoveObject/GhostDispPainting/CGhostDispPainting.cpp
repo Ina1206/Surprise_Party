@@ -40,7 +40,7 @@ void CGhostDispPainting::Init()
 	//絵画オブジェクトの読み込みアドレス取得.
 	m_pCMesh = nullptr;
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::Painting);
-	m_fScale = 0.4f;
+	m_fScale = SCALE;
 
 	//エフェクトの読み込みアドレス取得.
 	m_pCEffect = m_pCResourceManager->GetEffect(CResourceEffect::enEffect::DispGhost_Area_Effect);
