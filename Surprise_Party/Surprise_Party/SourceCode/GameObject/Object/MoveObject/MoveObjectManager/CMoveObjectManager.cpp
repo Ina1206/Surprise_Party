@@ -260,9 +260,9 @@ void CMoveObjectManager::Init(const int& FileNum, const int& StageNum)
 			}
 			//移動オブジェクト番号設定.
 			m_enMoveObjectType.push_back(objNum);
+			m_pCGimmickIcon.push_back(nullptr);
 			//ギミッククラスインスタンス化.
 			const int ELEMENT_NUM = m_pCGimmickIcon.size() - 1;
-			m_pCGimmickIcon.push_back(nullptr);
 			m_pCGimmickIcon[ELEMENT_NUM].reset(new CGimmickIcon(objNum));
 			//ステージの距離最大値取得.
 			m_pCGimmickIcon[ELEMENT_NUM]->SetStageMax(m_pCFileResource->GetStageMax(FileNum, StageNum) * OBJECT_WIDTH);
