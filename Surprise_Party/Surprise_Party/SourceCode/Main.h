@@ -16,6 +16,7 @@
 
 #include <memory>
 #include "Scene/SceneManager/CSceneManager.h"
+#include "Scene/Load/CLoad.h"
 
 //ライブラリ読み込み.
 #pragma comment( lib, "winmm.lib")
@@ -126,13 +127,8 @@ private:
 	D3DXMATRIX				m_mProj;		//プロジェクション行列.
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
 
-	//CFontResource*			m_pCFontResource;
-	//CStaticObjectManager*	m_pCStaticObjectManager;
-	//CMoveObjectManager*		m_pCMoveObjectManager;
-	//std::vector<CWorkGhostBase*>	m_pCWorkGhost;
-	//CPeopleManager*				m_pCPeopleManager;
-	//std::vector<CObjectBase*> m_pCObjectBase;
-	std::unique_ptr<CSceneManager> m_pCSceneManager;
+	std::unique_ptr<CSceneManager>	m_pCSceneManager;//シーン管理クラス.
+	std::unique_ptr<CLoad>			m_pCLoad;		//読み込みクラス.
 	
 };
 

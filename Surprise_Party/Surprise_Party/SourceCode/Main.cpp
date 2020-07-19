@@ -188,6 +188,14 @@ LRESULT CMain::MsgProc(
 //メッセージループ.
 void CMain::Loop()
 {
+	//読み込みクラス.
+	m_pCLoad = std::make_unique<CLoad>();
+	m_pCLoad->Init(m_hWnd, m_pDevice11, m_pContext11);
+	//レンダリングされたイメージを表示.
+	ClearBackBuffer();
+	m_pCLoad->Render();
+	m_pSwapChain->Present(0, 0);
+
 	//シーン管理クラスインスタンス化.
 	m_pCSceneManager.reset(new CSceneManager());
 	m_pCSceneManager->Init(m_hWnd, m_pDevice9 ,m_pDevice11, m_pContext11);
@@ -542,7 +550,10 @@ HRESULT CMain::LoadMesh()
 void CMain::ClearBackBuffer()
 {
 	//画面のクリア.
-	D3DXVECTOR4 vClearColor = m_pCSceneManager->GetBackColor();
+	D3DXVECTOR4 vClearColor = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 0.0f);
+	if (m_pCSceneManager != nullptr) {
+		vClearColor = m_pCSceneManager->GetBackColor();
+	}
 	float ClearColor[4] = {vClearColor.x , vClearColor.y, vClearColor.z, vClearColor.w};		//クリア色(RGBAの順).
 	
 	//カラーバックバッファ.

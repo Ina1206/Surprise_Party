@@ -443,6 +443,9 @@
     <Filter Include="SourceCode\Sound\PlaySoundManager">
       <UniqueIdentifier>{7e8df25a-fe4e-4efb-9417-42385f95838c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\Scene\Load">
+      <UniqueIdentifier>{05d0afbf-3b5a-4eea-8a94-7a0ccea9bbc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceCode\Main.h">
@@ -886,6 +889,9 @@
     <ClInclude Include="SourceCode\Sound\PlaySoundManager\CPlaySoundManager.h">
       <Filter>SourceCode\Sound\PlaySoundManager</Filter>
     </ClInclude>
+    <ClInclude Include="SourceCode\Scene\Load\CLoad.h">
+      <Filter>SourceCode\Scene\Load</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SourceCode\Main.cpp">
@@ -1316,6 +1322,9 @@
     </ClCompile>
     <ClCompile Include="SourceCode\Sound\PlaySoundManager\CPlaySoundManager.cpp">
       <Filter>SourceCode\Sound\PlaySoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Scene\Load\CLoad.cpp">
+      <Filter>SourceCode\Scene\Load</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
