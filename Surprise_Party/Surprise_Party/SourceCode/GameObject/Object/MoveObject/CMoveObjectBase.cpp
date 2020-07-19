@@ -72,7 +72,7 @@ void CMoveObjectBase::EffectUpdate()
 	}
 
 	//エフェクト停止処理関数.
-	EffectStop();
+	//EffectStop();
 
 }
 
