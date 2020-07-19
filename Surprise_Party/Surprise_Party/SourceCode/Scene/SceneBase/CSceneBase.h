@@ -37,6 +37,7 @@ public:
 	void SetEvaluation(const int& Num) { m_Evaluation = Num; }				//評価.
 	void SetPlayBGM(const enBGMType& enBGM) { m_enPlayBGMType = enBGM; }	//再生BGMの種類.
 	void SetBGMVolume(const int& Volume); 									//音量.
+	void SetTitleFlag(const bool& bFlag) { m_bTitle = bFlag; }				//タイトルフラグ.
 protected:
 	//===================関数======================//.
 	virtual void Init()		= 0;											//初期化処理関数.

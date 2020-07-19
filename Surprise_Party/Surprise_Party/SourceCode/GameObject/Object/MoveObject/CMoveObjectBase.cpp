@@ -30,8 +30,6 @@ CMoveObjectBase::~CMoveObjectBase()
 void CMoveObjectBase::EffectRender()
 {
 	if (m_EffectHandle != EFFECT_HANDLE_DEFAULT_VALUE) {
-		//ƒ|[ƒY.
-		m_pCEffect->Pause(m_EffectHandle, m_bPauseFlag);
 		//‘å‚«‚³.
 		D3DXVECTOR3 vEffectScale = D3DXVECTOR3(m_fEffectScale, m_fEffectScale, m_fEffectScale);
 		m_pCEffect->SetScale(m_EffectHandle, vEffectScale);

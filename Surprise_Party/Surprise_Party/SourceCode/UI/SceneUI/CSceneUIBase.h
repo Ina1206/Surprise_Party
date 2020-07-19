@@ -23,7 +23,8 @@ public:
 	//=============情報取得処理関数==================//.
 	//選択終了フラグ.
 	bool GetSelectFinishFlag() const { return m_pCCursor->GetSelectFinishFlag(); }
-
+	//選択番号.
+	int GetSelectNum() const { return m_pCCursor->GetSelectNum(); }
 protected:
 	//===================関数========================//.
 	virtual void RenderSceneTitle();								//シーンタイトル描画処理関数.

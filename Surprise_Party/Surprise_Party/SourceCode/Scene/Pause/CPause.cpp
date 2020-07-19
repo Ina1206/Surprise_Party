@@ -24,7 +24,11 @@ void CPause::UpDate()
 	//XVˆ—ŠÖ”.
 	m_pCPauseUI->Update();
 
+	m_bTitle = false;
 	if (m_pCPauseUI->GetSelectFinishFlag() == true) {
+		if (m_pCPauseUI->GetSelectNum() == 1) {
+			m_bTitle = true;
+		}
 		m_bPauseFlag = false;
 	}
 }

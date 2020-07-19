@@ -87,6 +87,11 @@ void CSceneManager::UpDate()
 		m_UsingSceneNum = PAUSE_SCENE_NUM;
 	}
 	m_pCSceneBase[m_UsingSceneNum]->UpDate();
+
+	if (m_pCSceneBase[PAUSE_SCENE_NUM]->GetTitleFlag() == true) {
+		m_pCSceneFade->SetShutterFlag(m_pCSceneFade->CLOSE_FLAG);
+	}
+
 	m_PausingFlag = m_pCSceneBase[m_UsingSceneNum]->GetPauseFlag();
 }
 
@@ -225,8 +230,10 @@ void CSceneManager::NextScene()
 	}
 
 	//ƒ^ƒCƒgƒ‹‚ÉˆÚ“®.
-	if (m_pCSceneBase[NORMAL_SCENE_NUM]->GetTitleFlag() == true) {
+	if (m_pCSceneBase[NORMAL_SCENE_NUM]->GetTitleFlag() == true ||
+		m_pCSceneBase[PAUSE_SCENE_NUM]->GetTitleFlag() == true) {
 		m_SceneType = static_cast<int>(enSceneType::Title);
+		m_pCSceneBase[PAUSE_SCENE_NUM]->SetTitleFlag(false);
 	}
 }
 
