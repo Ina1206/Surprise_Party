@@ -139,10 +139,10 @@ void CSpeakBigGhost::Init()
 {
 	//テキストボックス初期設定.
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::TextBox);
-	m_vPos = D3DXVECTOR3(50.0f, 450.0f, 0.0f);
+	m_vPos = TEXT_BOX_POS;
 
 	//選択スプライト初期設定.
-	m_pCSprite.resize(4);
+	m_pCSprite.resize(SPRITE_MAX);
 	m_vSelectPos.resize(m_pCSprite.size());
 	m_vSelectRot.resize(m_pCSprite.size());
 	m_fSelectAlpha.resize(m_pCSprite.size());
@@ -255,37 +255,6 @@ void CSpeakBigGhost::LoadSpeakString()
 	m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 }
 
-////======================================.
-////		文字透過処理関数.
-////======================================.
-//void CSpeakBigGhost::TransparentFont()
-//{
-//	//例外処理.
-//	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
-//		return;
-//	}
-//
-//	//次の文字に変更.
-//	if (m_fFontAlpha == ALPHA_MAX) {
-//		m_ChangingFontNum++;
-//		m_fFontAlpha = ALPHA_MIN;
-//	}
-//	
-//	//一気に透過値最大値へ.
-//	if (m_StringFlag & TRANSPARENTING_FLAG) {
-//		m_fFontAlpha = ALPHA_MAX;
-//	}
-//
-//	m_fFontAlpha += ALPHA_SPEED;
-//
-//	//上限処理.
-//	if (m_fFontAlpha > ALPHA_MAX) {
-//		m_fFontAlpha = ALPHA_MAX;
-//
-//		//ここにSE入れる？.
-//	}
-//}
-
 //======================================.
 //		選択文章処理関数.
 //======================================.
@@ -347,10 +316,6 @@ void CSpeakBigGhost::DecisionSelectString()
 
 
 	m_pCFontResource->Load(m_stSelectString[m_SpeakNum]);
-
-	//if (std::any_of(m_stSpeakString[m_SpeakNum].cbegin(), m_stSpeakString[m_SpeakNum].cend(), isalpha)) {
-	//	return;
-	//}
 
 	//次の文字番号.
 	NextCharacterNum = m_SpeakNum + 1;
@@ -491,9 +456,6 @@ void CSpeakBigGhost::ChangeString()
 		m_pCFontResource->Load(m_stSpeakString[m_SpeakNum]);
 	}
 
-	//m_ChangingFontNum = 0;
-	//m_fFontAlpha = 0.0f;
-	//m_StringFlag &= ~TRANSPARENTING_FLAG;
 }
 
 //===========================================.

@@ -23,16 +23,16 @@ public:
 	const float			ALPHA_MIN		= 0;									//透過値最小値.
 
 	//=======================関数==========================//.
-	void Update();		//更新処理関数.
-	void Render();		//描画処理関数.
+	void Update();							//更新処理関数.
+	void Render();							//描画処理関数.
 
 	//=================情報置換処理関数====================//.
 	void SetTutorialFlag(const bool& bTutorialFlag) { m_bTutorialFlag = bTutorialFlag; }
 
 private:
 	//=======================関数==========================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
+	void Init();							//初期化処理関数.
+	void Release();							//解放処理関数.
 
 	//=======================変数==========================//.
 	CSpriteUI*		m_pCSpriteUI;			//スプライトUI.

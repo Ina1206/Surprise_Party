@@ -44,12 +44,12 @@ public:
 
 private:
 	//====================関数======================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
-	void Fetch();		//取りに行く処理関数.
-	void Move();		//移動処理関数.
+	void Init();										//初期化処理関数.
+	void Release();										//解放処理関数.
+	void Fetch();										//取りに行く処理関数.
+	void Move();										//移動処理関数.
 
-	void ControlPos();	//操作時の座標処理関数.
+	void ControlPos();									//操作時の座標処理関数.
 
 	//====================変数======================//.
 	std::vector<CSpriteUI*>		m_pCSpriteUI;			//スプライトUI.

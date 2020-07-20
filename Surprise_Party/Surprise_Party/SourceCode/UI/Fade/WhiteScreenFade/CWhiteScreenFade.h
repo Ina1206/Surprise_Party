@@ -18,8 +18,8 @@ public:
 	const unsigned int FADE_OUT_FLAG	= (1 << 1);		//フェードアウトフラグ.
 	const unsigned int FADE_FINISH_FLAG = (1 << 2);		//フェード終了フラグ.
 
-	const float			ALPHA_MIN	= 0;			//透過値最小値.
-	const float			ALPHA_SPEED = 0.009f;		//透過速度.
+	const float			ALPHA_MIN		= 0;			//透過値最小値.
+	const float			ALPHA_SPEED		= 0.009f;		//透過速度.
 
 	//========================関数=========================//.
 	void Update();		//更新処理関数.
@@ -37,11 +37,11 @@ public:
 
 private:
 	//========================関数=========================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
-	void FadeIn();		//フェードイン処理関数.
-	void FadeOut();		//フェードアウト処理関数.
-	void InitFade();	//フェード前の初期化処理関数.
+	void Init();						//初期化処理関数.
+	void Release();						//解放処理関数.
+	void FadeIn();						//フェードイン処理関数.
+	void FadeOut();						//フェードアウト処理関数.
+	void InitFade();					//フェード前の初期化処理関数.
 
 	//========================変数=========================//.
 	CSpriteUI*		m_pCSpriteUI;		//スプライトUIクラス.

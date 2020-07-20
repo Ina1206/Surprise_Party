@@ -8,7 +8,7 @@ CPlaySoundManager::CPlaySoundManager()
 	, m_pCBGM			()
 	, m_bPlayingBGM		()
 	, m_PlayingBGMNum	(0)
-	, m_PlayingBGMVolume(VOLUME_STANDERD_MAX)
+	, m_PlayingBGMVolume(VOLUME_MAX)
 	, m_pCSE			()
 	, m_bPlayingSE		()
 	, m_PlaySECnt		()
@@ -101,7 +101,7 @@ void CPlaySoundManager::InitSE()
 		//SEéÌóﬁÇ≤Ç∆ÇÃêîílÇÃê›íË.
 		m_bPlayingSE.push_back(false);
 		m_PlaySECnt.push_back(0);
-		m_PlayingSEVolume.push_back(VOLUME_STANDERD_MAX);
+		m_PlayingSEVolume.push_back(VOLUME_MAX);
 	}
 }
 

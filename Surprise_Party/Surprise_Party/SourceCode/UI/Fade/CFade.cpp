@@ -1,5 +1,8 @@
 #include "CFade.h"
 
+/******************************************
+*		フェードクラス.
+***********/
 CFade::CFade()
 	: m_pCResourceManager	(nullptr)
 	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())

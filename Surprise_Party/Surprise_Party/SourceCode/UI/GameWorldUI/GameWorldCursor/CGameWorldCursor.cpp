@@ -1,5 +1,8 @@
 #include "CGameWorldCursor.h"
 
+/***********************************
+*		ゲーム内のカーソルクラス.
+***********/
 CGameWorldCursor::CGameWorldCursor()
 	: m_fUpDownDistance	(0.0f)
 	, m_enUpDownType	(enUpDownType::Down)

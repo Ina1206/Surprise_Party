@@ -1,5 +1,8 @@
 #include "CSurpriseGage.h"
 
+/*******************************************
+*		驚きゲージクラス.
+********************/
 CSurpriseGage::CSurpriseGage()
 	: CSurpriseGage(0)
 {
@@ -166,13 +169,16 @@ void CSurpriseGage::InfomMove()
 //==========================================.
 void CSurpriseGage::EvalutionSurprisePoint()
 {
+	//ファイル番号.
 	const int FileNum = static_cast<int>(CFileResource::enStatusCharaType::Stage);
+	//低い点数.
 	const int LowScore = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, static_cast<int>(enScoreType::LowScore)));
 	if (m_SurprisePoint < LowScore) {
 		m_EvalutionFlag = BAD_FLAG;
 		return;
 	}
 
+	//高い点数.
 	const int MediumScore = static_cast<int>(m_pCFileResource->GetStatusNum(FileNum, m_StageNum, static_cast<int>(enScoreType::MediumScore)));
 	if (m_SurprisePoint < MediumScore) {
 		m_EvalutionFlag = GOOD_FLAG;

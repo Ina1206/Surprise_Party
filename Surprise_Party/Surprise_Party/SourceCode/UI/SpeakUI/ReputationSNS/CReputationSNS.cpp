@@ -183,7 +183,7 @@ void CReputationSNS::DecidePicture(const int& EndingType)
 	const int SpriteNum = static_cast<int>(enSpriteUI::PictureSNSRest) + EndingType;
 
 	m_pCSpriteUI.emplace_back(m_pCResourceManager->GetSpriteUI(static_cast<enSpriteUI>(SpriteNum)));
-	m_vSpriteUIPos.push_back(D3DXVECTOR3(350.0f, 5.0f, 0.0f));
+	m_vSpriteUIPos.push_back(PICTURE_POS);
 	m_fSpriteUIAlpha.push_back(ALPHA_MAX);
 }
 
@@ -205,7 +205,7 @@ void CReputationSNS::RenderSpriteUI()
 void CReputationSNS::TransparentAll()
 {
 	//フォントの透過値処理.
-	m_fFontAlpha -= 0.01f;
+	m_fFontAlpha -= FONT_ALPHA_SPEED;
 	if (m_fFontAlpha < 0.0f) {
 		m_fFontAlpha = 0.0f;
 	}
@@ -216,7 +216,7 @@ void CReputationSNS::TransparentAll()
 
 	//スプライトUIの透過処理.
 	for (unsigned int SpriteUI = 0; SpriteUI < m_pCSpriteUI.size(); SpriteUI++) {
-		m_fSpriteUIAlpha[SpriteUI] -= 0.01f;
+		m_fSpriteUIAlpha[SpriteUI] -= PICTURE_ALPHA_SPEED;
 		m_pCSpriteUI[SpriteUI]->SetAlpha(m_fSpriteUIAlpha[SpriteUI]);
 
 		if (m_fSpriteUIAlpha[SpriteUI] < 0.0f) {

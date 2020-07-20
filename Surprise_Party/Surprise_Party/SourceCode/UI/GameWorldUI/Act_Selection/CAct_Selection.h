@@ -15,21 +15,25 @@ public:
 	~CAct_Selection();
 
 	//====================定数=======================//.
-	const int			CHOICE_MAX			= 2;					//選択肢の最大数.
-	const int			LEFT_DIRECTION		= -1;					//左方向数値.
-	const int			RIGHT_DIRECTION		= 1;					//右方向数値.
-	const unsigned int	OPEN_MOVE			= (1 << 0);				//開く移動.
-	const unsigned int	CLOSE_MOVE			= (1 << 1);				//閉じる移動.
-	const float			MOVE_SPEED			= 0.1f;					//移動速度.
-	const float			M0VE_DISTANCE_MAX	= 2.0f;					//移動距離最大.
-	const float			MOVE_DISTANCE_MIN	= 0.0f;					//移動距離最小.
-	const float			ROTATION_SPEED		= 0.02f;				//回転速度.
-	const float			SELECT_SCALE		= 1.3f;					//選択中の大きさ.
-	const float			NORMAL_SCALE		= 1.0f;					//通常の大きさ.
-	const float			SELECT_ALPHA		= 1.0f;					//選択中の透過値.
-	const float			NORMAL_ALPHA		= 0.7f;					//通常の透過値.
-	const unsigned int	MOVE_FLAG			= (1 << 0);				//移動フラグ.
-	const unsigned int	REST_FLAG			= (1 << 1);				//休憩フラグ.
+	const int			CHOICE_MAX			= 2;								//選択肢の最大数.
+	const int			LEFT_DIRECTION		= -1;								//左方向数値.
+	const int			RIGHT_DIRECTION		= 1;								//右方向数値.
+	const unsigned int	OPEN_MOVE			= (1 << 0);							//開く移動.
+	const unsigned int	CLOSE_MOVE			= (1 << 1);							//閉じる移動.
+	const float			MOVE_SPEED			= 0.1f;								//移動速度.
+	const float			M0VE_DISTANCE_MAX	= 2.0f;								//移動距離最大.
+	const float			MOVE_DISTANCE_MIN	= 0.0f;								//移動距離最小.
+	const float			ROTATION_SPEED		= 0.02f;							//回転速度.
+	const float			SELECT_SCALE		= 1.3f;								//選択中の大きさ.
+	const float			NORMAL_SCALE		= 1.0f;								//通常の大きさ.
+	const float			SELECT_ALPHA		= 1.0f;								//選択中の透過値.
+	const float			NORMAL_ALPHA		= 0.7f;								//通常の透過値.
+	const unsigned int	MOVE_FLAG			= (1 << 0);							//移動フラグ.
+	const unsigned int	REST_FLAG			= (1 << 1);							//休憩フラグ.
+	const float			SCAL_MAX			= 1.0f;								//大きさ最大値.
+	const D3DXVECTOR3	ADJUST_INIT_POS		= D3DXVECTOR3(0.0f, 2.0f, -5.0f);	//微調整の初期座標.
+	const int			ACT_MOVE_STRING_NUM	= 2;								//行動移動文章番号.
+	const int			ACT_REST_STRING_NUM = 3;								//行動休憩文章番号.
 
 	//===================列挙体======================//.
 	//お化け行動種類.

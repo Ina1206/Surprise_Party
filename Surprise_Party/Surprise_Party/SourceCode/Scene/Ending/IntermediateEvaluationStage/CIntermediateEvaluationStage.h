@@ -14,6 +14,9 @@ public:
 	CIntermediateEvaluationStage(const int& EvaluationNum);
 	~CIntermediateEvaluationStage();
 
+	//=========================定数==============================//.
+	const int BIG_GHOST_NUM = 2;	//ビッグゴースト番号.
+
 private:
 	//=========================関数==============================//.
 	void Init();		//初期化処理関数.

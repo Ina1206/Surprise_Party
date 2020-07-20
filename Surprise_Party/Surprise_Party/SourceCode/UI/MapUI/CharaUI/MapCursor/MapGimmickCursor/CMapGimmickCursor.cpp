@@ -1,5 +1,8 @@
 #include "CMapGimmickCursor.h"
 
+/****************************************
+*	マップ上のギミック用カーソルクラス.
+********/
 CMapGimmickCursor::CMapGimmickCursor()
 {
 	//初期化処理関数.
@@ -19,7 +22,7 @@ void CMapGimmickCursor::UpDate()
 {
 	//ゲーム内からマップ内に座標変換処理関数.
 	GameMapConversion();
-	m_vPos.y = 60.0f;
+	m_vPos.y = CURSOR_HEIGHT;
 	m_vPos -= CURSOR_UI_ADJUSTMENT;
 }
 
@@ -32,9 +35,9 @@ void CMapGimmickCursor::Init()
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::DispGimmick_Iccon);
 
 	//大きさ.
-	m_fScale = 1.3f;
+	m_fScale = SCALE;
 	//色.
-	m_vColor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	m_vColor = COLOR;
 }
 
 //============================================.

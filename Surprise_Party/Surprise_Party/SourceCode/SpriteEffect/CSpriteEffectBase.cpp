@@ -25,12 +25,12 @@ CSpriteEffectBase::CSpriteEffectBase()
 	, m_pCPlaySoundManager	(CPlaySoundManager::GetPlaySoundManager())
 {
 	m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
-	m_pCDepthStencil = CDepth_Stencil::GetDepthStencilInstance();
+	m_pCDepthStencil	= CDepth_Stencil::GetDepthStencilInstance();
 }
 
 CSpriteEffectBase::~CSpriteEffectBase()
 {
-	m_pCDepthStencil = nullptr;
+	m_pCDepthStencil	= nullptr;
 	m_pCResourceManager = nullptr;
 }
 
@@ -91,8 +91,8 @@ bool CSpriteEffectBase::ScalingTransparent(const int& num)
 	//“§‰ßˆ—.
 	m_fAlpha[num] += m_fAlphaSpeed * m_ChangeAddSub[num];
 	//Šgkˆ—.
-	const float fScale = m_vScale[num].x + m_fScalingSpeed * m_ChangeAddSub[num];
-	m_vScale[num] = D3DXVECTOR3(fScale, fScale, fScale);
+	const float fScale	= m_vScale[num].x + m_fScalingSpeed * m_ChangeAddSub[num];
+	m_vScale[num]		= D3DXVECTOR3(fScale, fScale, fScale);
 
 	//‰ÁŽZŒ¸­•ÏXˆ—.
 	if (m_fAlpha[num] >= ALPHA_MAX) {
@@ -116,14 +116,14 @@ bool CSpriteEffectBase::ScalingTransparent(const int& num)
 //===========================================.
 void CSpriteEffectBase::SettingDefaultValue(const int& num)
 {
-	m_bDispFlag[num] = false;
-	m_vPos[num] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vRot[num] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vScale[num] = SCALE_MIN;
-	m_fAlpha[num] = ALPHA_MIN;
-	m_fDistance[num] = 0.0f;
+	m_bDispFlag[num]	= false;
+	m_vPos[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vRot[num]			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vScale[num]		= SCALE_MIN;
+	m_fAlpha[num]		= ALPHA_MIN;
+	m_fDistance[num]	= 0.0f;
 	m_ChangeAddSub[num] = ADDITION_NUM;
-	m_vPart[num] = D3DXVECTOR2(0.0f, 0.0f);
+	m_vPart[num]		= D3DXVECTOR2(0.0f, 0.0f);
 }
 
 //=========================================.

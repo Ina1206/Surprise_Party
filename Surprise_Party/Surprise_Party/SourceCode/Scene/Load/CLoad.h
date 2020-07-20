@@ -12,6 +12,10 @@ public:
 	CLoad();
 	~CLoad();
 
+	//=======================’è”============================//.
+	const float			FRAME_MAX	= 1.0f;								//ƒtƒŒ[ƒ€Å‘å”.
+	const D3DXVECTOR3	POS			= D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//À•W.
+
 	//=======================ŠÖ”============================//.
 	void Init(HWND hWnd, ID3D11Device* pDevice11, ID3D11DeviceContext* pContext11);	//‰Šú‰»ˆ—ŠÖ”.
 	void Render();																	//•`‰æˆ—ŠÖ”.

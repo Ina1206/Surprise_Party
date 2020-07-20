@@ -13,6 +13,11 @@ public:
 	CMapGimmickCursor();
 	~CMapGimmickCursor();
 
+	//========================定数=============================//.
+	const float			CURSOR_HEIGHT	= 60.0f;							//カーソル高さ.
+	const float			SCALE			= 1.3f;								//大きさ.
+	const D3DXVECTOR3	COLOR			= D3DXVECTOR3(0.0f, 1.0f, 0.0f);	//色.
+
 	//========================関数=============================//.
 	void UpDate();		//更新処理関数.
 

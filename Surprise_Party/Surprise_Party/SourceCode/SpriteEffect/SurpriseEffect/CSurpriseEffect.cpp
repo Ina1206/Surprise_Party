@@ -28,6 +28,7 @@ void CSurpriseEffect::Update()
 
 	const float DIFFERENCE_CENTER_POS = m_vCenterPos.x - m_vOldCenterPos.x;
 	if (DIFFERENCE_CENTER_POS != 0.0f) {
+		//ï˚å¸.
 		m_Direct = static_cast<int>(DIFFERENCE_CENTER_POS / fabsf(DIFFERENCE_CENTER_POS));
 	}
 	m_vOldCenterPos = m_vCenterPos;
@@ -105,8 +106,6 @@ void CSurpriseEffect::AppeartJudgement(const int& num)
 {
 	//èâä˙à íu.
 	m_vPos[num] = m_vCenterPos;
-
-	//m_fDistance[num] = 0.0f;
 
 	m_DispCnt++;
 	m_bDispFlag[num] = true;

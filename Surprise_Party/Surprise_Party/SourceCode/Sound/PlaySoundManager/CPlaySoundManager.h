@@ -13,8 +13,7 @@ public:
 	~CPlaySoundManager();
 
 	//==================定数==================//.
-	const int VOLUME_MAX			= 1000;													//サウンドの最大音量.
-	const int VOLUME_STANDERD_MAX	= 1000;
+	const int VOLUME_MAX			= 1000;				//サウンドの最大音量.
 
 	//=============シングルトン化==============//.
 	static CPlaySoundManager* GetPlaySoundManager()

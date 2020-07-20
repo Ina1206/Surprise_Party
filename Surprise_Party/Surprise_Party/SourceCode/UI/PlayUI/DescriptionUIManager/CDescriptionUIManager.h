@@ -14,6 +14,10 @@ public:
 	CDescriptionUIManager();
 	~CDescriptionUIManager();
 
+	//======================定数=========================//.
+	const D3DXVECTOR3	GAGE_ARROW_POS	= D3DXVECTOR3(500.0f, -30.0f, 0.0f);	//ゲージの矢印座標.
+	const D3DXVECTOR3	CLOSE_ARROW_POS = D3DXVECTOR3(-100.0f, 0.0f, 0.0f);		//閉じる矢印座標.
+
 	//======================関数=========================//.
 	void Update();					//更新処理関数.
 	void Render();					//描画処理関数.

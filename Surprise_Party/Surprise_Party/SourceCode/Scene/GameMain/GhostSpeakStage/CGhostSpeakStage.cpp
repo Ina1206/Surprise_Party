@@ -1,6 +1,9 @@
 #include "CGhostSpeakStage.h"
 #include "..\..\Camera\CameraGhostSpeakStage\CCameraGhostSpeakStage.h"
 
+/*****************************************
+*	お化けとの会話ステージクラス.
+*********/
 CGhostSpeakStage::CGhostSpeakStage()
 	: CGhostSpeakStage	(0, enBeforeStageEndigneType::Nothing)
 {

@@ -13,6 +13,10 @@ public:
 	CEvaluationUIManager();
 	CEvaluationUIManager(const int& EvaluationNum);
 	~CEvaluationUIManager();
+	
+	//=====================’è”========================//.
+	const int LOW_EVALUATION_NUM			= 0;	//’á•]‰¿‚Ì”Ô†.
+	const int INTERMEDIATE_EVALUATION_NUM	= 1;	//’†ŠÔ•]‰¿‚Ì”Ô†.
 
 	//=====================ŠÖ”========================//.
 	void Update();												//XVˆ—ŠÖ”.

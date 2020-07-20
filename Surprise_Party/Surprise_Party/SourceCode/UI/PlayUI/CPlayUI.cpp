@@ -1,5 +1,8 @@
 #include "CPlayUI.h"
 
+/*************************************
+*	プレイ中のUIクラス.
+*****/
 CPlayUI::CPlayUI()
 	: m_pCSpriteUI	()
 	, m_vUIPos		()

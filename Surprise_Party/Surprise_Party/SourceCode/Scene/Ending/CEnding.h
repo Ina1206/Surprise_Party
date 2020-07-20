@@ -16,6 +16,10 @@ public:
 	CEnding();
 	~CEnding();
 
+	//========================’è”===========================//.
+	const int LOW_EVALUATION_NUM			= 0;	//’á•]‰¿‚Ì”Ô†.
+	const int INTERMEDIATE_EVALUATION_NUM	= 1;	//’†ŠÔ•]‰¿‚Ì”Ô†.
+
 	//========================ŠÖ”===========================//.
 	void UpDate();						//XVˆ—ŠÖ”.
 	void Render();						//•`‰æˆ—ŠÖ”.

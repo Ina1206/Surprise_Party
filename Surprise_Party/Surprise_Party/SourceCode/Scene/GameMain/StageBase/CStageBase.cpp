@@ -1,5 +1,8 @@
 #include "CStageBase.h"
 
+/*****************************************
+*		ステージ基底クラス.
+********/
 CStageBase::CStageBase()
 	: m_mView					()
 	, m_mProj					()
@@ -31,7 +34,7 @@ void CStageBase::RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mP
 	const D3DXVECTOR3 m_vCameraLook = m_pCCamera->GetLook();
 	const D3DXVECTOR3 m_vCameraPos = m_pCCamera->GetPos();
 
-	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
+	const D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
 	D3DXMatrixLookAtLH(
 		&m_mView,								//(out)ビュー計算結果.
 		&m_vCameraPos, &m_vCameraLook, &vUpVec);

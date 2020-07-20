@@ -1,5 +1,8 @@
 #include "CGameGhostCursor.h"
 
+/*********************************************
+*	ゲーム内のお化けのカーソルクラス.
+*************/
 CGameGhostCursor::CGameGhostCursor()
 	: m_bRestFlag	(false)
 {

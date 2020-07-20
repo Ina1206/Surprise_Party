@@ -33,13 +33,15 @@ void CIntermediateEvaluationStage::Init()
 
 	//‚¨‰»‚¯Š´îİ’è.
 	for (unsigned int ghost = 0; ghost < m_pCGhost.size(); ghost++) {
-		if (ghost == 2) {
+		if (ghost == BIG_GHOST_NUM) {
+			//Šì‚Ñ.
 			m_pCGhost[ghost]->SetEmotionNum(static_cast<int>(CGhostBase::enEmotionType::Rejoice));
 			continue;
 		}
+		//ã‹@Œ™.
 		m_pCGhost[ghost]->SetEmotionNum(static_cast<int>(CGhostBase::enEmotionType::GoodFeeling));
 	}
-
+	//ƒJƒƒ‰I—¹.
 	m_pCCameraEnding->SetMoveFlag(m_pCCameraEnding->STOP_FLAG);
 
 }

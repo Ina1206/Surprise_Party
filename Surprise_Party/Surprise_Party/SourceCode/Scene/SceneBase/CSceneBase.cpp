@@ -1,5 +1,8 @@
 #include "CSceneBase.h"
 
+/************************************
+*		シーン基底クラス.
+*****/
 CSceneBase::CSceneBase()
 	: m_mView			()
 	, m_mProj			()

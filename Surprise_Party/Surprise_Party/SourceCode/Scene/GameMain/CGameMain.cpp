@@ -1,5 +1,8 @@
 #include "CGameMain.h"
 
+/**************************************************
+*		ステージ管理クラス.
+********/
 CGameMain::CGameMain()
 	: m_pCStageManager	(nullptr)
 {
@@ -24,10 +27,12 @@ void CGameMain::UpDate()
 	//シーン管理クラスの更新処理関数.
 	m_pCStageManager->UpDate();
 
+	//シーン変更（タイトルへの処理).
 	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_TITLE) {
 		m_bChangeScene = true;
 		m_bTitle = true;
 	}
+	//平均評価.
 	if (m_pCStageManager->GetFinishFlag() & m_pCStageManager->FINISH_NEXT_ENDING) {
 		m_Evaluation = m_pCStageManager->GetAverageEvaluation();
 		m_bChangeScene = true;

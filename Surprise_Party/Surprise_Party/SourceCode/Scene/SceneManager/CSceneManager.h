@@ -34,10 +34,13 @@ public:
 	};
 
 	//===================定数======================//.
-	const unsigned int	INIT_SETTED_FLAG	= (1 << 0);	//初期設定後フラグ.
-	const unsigned int	START_GAME_FLAG		= (1 << 1);	//ゲーム開始フラグ.
-	const int			NORMAL_SCENE_NUM	= 0;		//通常シーン番号(タイトル、ゲームメイン、クリア画面).
-	const int			PAUSE_SCENE_NUM		= 1;		//一時停止シーン番号.
+	const unsigned int	INIT_SETTED_FLAG	= (1 << 0);						//初期設定後フラグ.
+	const unsigned int	START_GAME_FLAG		= (1 << 1);						//ゲーム開始フラグ.
+	const int			NORMAL_SCENE_NUM	= 0;							//通常シーン番号(タイトル、ゲームメイン、クリア画面).
+	const int			PAUSE_SCENE_NUM		= 1;							//一時停止シーン番号.
+	const D3DXVECTOR2	SCENE_NAME_POS		= D3DXVECTOR2(50.0f, 200.0f);	//シーン名座標.
+	const float			HIGHT_WIDTH			= 30.0f;						//高さ幅.
+	const D3DXVECTOR2	CURSOR_POS			= D3DXVECTOR2(20.0f, 200.0f);	//カーソル座標.
 
 	//===================関数======================//.
 	void Init(HWND hWnd,LPDIRECT3DDEVICE9 pDevice9, ID3D11Device* pDevice11, ID3D11DeviceContext*	pContext11);//初期化処理関数.

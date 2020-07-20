@@ -1,5 +1,8 @@
 #include "CGhostStrengthIcon.h"
 
+/************************************************
+*		お化けの体力アイコンクラス.
+***************/
 CGhostStrengthIcon::CGhostStrengthIcon()
 {
 	//初期化処理関数.

@@ -1,5 +1,8 @@
 #include "CCharaUI.h"
 
+/**********************************
+*		キャラクターUIクラス.
+*******/
 CCharaUI::CCharaUI()
 	: m_vCharaPos	(0.0f, 0.0f, 0.0f)
 	, m_fStageMax	(0.0f)

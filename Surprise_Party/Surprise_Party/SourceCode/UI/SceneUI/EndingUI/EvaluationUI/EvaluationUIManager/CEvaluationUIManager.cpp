@@ -31,7 +31,9 @@ CEvaluationUIManager::~CEvaluationUIManager()
 //==========================================.
 void CEvaluationUIManager::Update()
 {
+	//すべてを表示するクラス.
 	m_pCEvaluationUIBase->SetDisplayAllAtOnce(m_bDisplayAllAtOnce);
+	//更新処理関数.
 	m_pCEvaluationUIBase->Update();
 	m_bFinishedAllDispFlag = m_pCEvaluationUIBase->GetFinishedAllDispFlag();
 }
@@ -57,11 +59,11 @@ void CEvaluationUIManager::Init()
 //==========================================.
 std::unique_ptr<CEvaluationUIBase> CEvaluationUIManager::DecideEvaluationUIType()
 {
-	if (m_EvaluationNum == 0) {
+	if (m_EvaluationNum == LOW_EVALUATION_NUM) {
 		return std::make_unique<CLowEvaluationString>();
 	}
 
-	if (m_EvaluationNum == 1) {
+	if (m_EvaluationNum == INTERMEDIATE_EVALUATION_NUM) {
 		return std::make_unique<CIntermediateEvaluationString>();
 	}
 

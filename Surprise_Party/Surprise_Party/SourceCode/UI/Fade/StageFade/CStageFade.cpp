@@ -1,5 +1,8 @@
 #include "CStageFade.h"
 
+/******************************************
+*		ステージフェードクラス.
+**************/
 CStageFade::CStageFade()
 	: m_pCUI			()
 	, m_vUIPos			()
@@ -85,22 +88,24 @@ void CStageFade::Init()
 	m_pCUI[SIGN_BOARD_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::SignBoard);
 	m_pCUI[STRING_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::PreparingString);
 
+	SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::BlackCurtain);
+
 	for (unsigned int ui = 0; ui < m_pCUI.size(); ui++) {
-		m_fUIScale[ui] = 1.0f;
-		m_vUIRot[ui] = D3DXVECTOR3(0.0f,0.0f, 0.0f);
-		m_vPrePos[ui] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_fUIScale[ui]	= SCALE_MAX;
+		m_vUIRot[ui]	= D3DXVECTOR3(0.0f,0.0f, 0.0f);
+		m_vPrePos[ui]	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vUIPos[ui]	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	}
-	m_vUIPos[LEFT_CURTAIN_NUM] = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vUIRot[LEFT_CURTAIN_NUM] = D3DXVECTOR3(0.0f, 1.6f, 0.0f);
+	m_vUIRot[LEFT_CURTAIN_NUM].y	= HALF_ROT_ANGLE;
 
-	m_vUIPos[RIHGT_CURTAIN_NUM] = D3DXVECTOR3(1280.0f, 0.0f, 0.0f);
-	m_vUIRot[RIHGT_CURTAIN_NUM] = D3DXVECTOR3(0.0f, -1.5f, 0.0f);
+	m_vUIPos[RIHGT_CURTAIN_NUM].x	= WND_W;
+	m_vUIRot[RIHGT_CURTAIN_NUM].y	= -HALF_ROT_ANGLE;
 
-	m_vPrePos[SIGN_BOARD_NUM] = D3DXVECTOR3(-320.0f, -10.0f, 0.0f);
-	m_vUIPos[SIGN_BOARD_NUM] = D3DXVECTOR3(650.0, -500.0f, 0.0f);
+	m_vPrePos[SIGN_BOARD_NUM]		= BOARD_PRE_POS;
+	m_vUIPos[SIGN_BOARD_NUM]		= SIGN_BOARD_INIT_POS;
 
-	m_vPrePos[STRING_NUM] = D3DXVECTOR3(-150.0f, 300.0f, 0.0f);
-	m_vUIPos[STRING_NUM] = D3DXVECTOR3(650.0, -500.0f, 0.0f);
+	m_vPrePos[STRING_NUM]			= STRING_PRE_POS;
+	m_vUIPos[STRING_NUM]			= SIGN_BOARD_INIT_POS;
 }
 
 //=======================================.
@@ -116,15 +121,18 @@ void CStageFade::Release()
 //=======================================.
 void CStageFade::OpeningCurtainMove()
 {
+	//文字変更.
 	if (m_pCUI[STRING_NUM] == m_pCResourceManager->GetSpriteUI(enSpriteUI::CloseString)) {
 		m_pCUI[STRING_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::PreparingString);
 	}
 
+	//看板とカーテンの移動処理関数.
 	if (CurtainMove() == true) {
 		return;
 	}
 
 	if (m_CurtainMoveFlag & OPEN_CHANG_FLAG) {
+		//看板回転処理関数.
 		if (RotationSignBoard(m_pCResourceManager->GetSpriteUI(enSpriteUI::OpenString)) == true) {
 			m_CurtainMoveFlag |= SIGN_BOARD_SWING_FLAG;
 		}
@@ -132,6 +140,7 @@ void CStageFade::OpeningCurtainMove()
 	}
 
 	if (m_CurtainMoveFlag & SIGN_BOARD_SWING_FLAG) {
+		//看板揺れる処理関数.
 		if (SwingSignBoard() == true) {
 			m_CurtainMoveFlag |= OPEN_CURTAIN_FLAG;
 			m_bPlayCurtainSE = false;
@@ -146,11 +155,13 @@ void CStageFade::OpeningCurtainMove()
 //=======================================.
 void CStageFade::CloseCurtainMove()
 {
+	//看板とカーテンの移動処理関数.
 	if (CurtainMove() == true) {
 		return;
 	}
 
 	if (m_CurtainMoveFlag & OPEN_CHANG_FLAG) {
+		//看板回転処理関数.
 		if (RotationSignBoard(m_pCResourceManager->GetSpriteUI(enSpriteUI::CloseString)) == true) {
 			m_CurtainMoveFlag |= SIGN_BOARD_SWING_FLAG;
 		}
@@ -158,6 +169,7 @@ void CStageFade::CloseCurtainMove()
 	}
 
 	if (m_CurtainMoveFlag & SIGN_BOARD_SWING_FLAG) {
+		//看板が揺れる処理関数.
 		if (SwingSignBoard() == true) {
 			m_CurtainMoveFlag |= OPEN_CURTAIN_FLAG;
 			m_bPlayCurtainSE = false;
@@ -172,7 +184,7 @@ void CStageFade::CloseCurtainMove()
 //=======================================.
 bool CStageFade::CurtainMove()
 {
-	int MoveDirect = 1;
+	int MoveDirect = CLOSE_DIRECT;
 	bool MoveFlag = false;
 
 	if (m_bPlayCurtainSE == false) {
@@ -182,13 +194,13 @@ bool CStageFade::CurtainMove()
 
 	//距離の割合.
 	if (m_CurtainMoveFlag & CLOSE_CURTAIN_FLAG) {
-		m_fDistanceRatio = fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - 0.0f) / 1.6f;
+		m_fDistanceRatio = fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - 0.0f) / HALF_ROT_ANGLE;
 		if (m_vUIRot[LEFT_CURTAIN_NUM].y <= 0.0f) {
 			m_vUIRot[LEFT_CURTAIN_NUM].y = 0.0f;
-			m_vUIRot[RIHGT_CURTAIN_NUM].y = -3.1f;
+			m_vUIRot[RIHGT_CURTAIN_NUM].y = CURTAIN_ROT_MIN;
 		}
 
-		if (m_vUIPos[SIGN_BOARD_NUM].y >= 80.0f) {
+		if (m_vUIPos[SIGN_BOARD_NUM].y >= SIGN_BOARD_HEIGHT_MAX) {
 			m_pCOldSpriteUI = m_pCUI[STRING_NUM];
 
 			m_CurtainMoveFlag &= ~CLOSE_CURTAIN_FLAG;
@@ -199,16 +211,16 @@ bool CStageFade::CurtainMove()
 	}
 
 	if (m_CurtainMoveFlag & OPEN_CURTAIN_FLAG) {
-		MoveDirect = -1;
+		MoveDirect = OPEN_DIRECT;
 
-		m_fDistanceRatio = 1.0f - fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - 1.6f) / 1.6f;
+		m_fDistanceRatio = 1.0f - fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - HALF_ROT_ANGLE) / HALF_ROT_ANGLE;
 
-		if (m_vUIRot[LEFT_CURTAIN_NUM].y >= 1.6f) {
-			m_vUIRot[LEFT_CURTAIN_NUM].y = 1.6f;
-			m_vUIRot[RIHGT_CURTAIN_NUM].y = -1.6f;
+		if (m_vUIRot[LEFT_CURTAIN_NUM].y >= HALF_ROT_ANGLE) {
+			m_vUIRot[LEFT_CURTAIN_NUM].y = HALF_ROT_ANGLE;
+			m_vUIRot[RIHGT_CURTAIN_NUM].y = -HALF_ROT_ANGLE;
 		}
 
-		if (m_vUIPos[SIGN_BOARD_NUM].y <= -500.0f) {
+		if (m_vUIPos[SIGN_BOARD_NUM].y <= SIGN_BOARD_INIT_POS.y) {
 			m_CurtainMoveFlag = 0;
 
 			for (int sprite = SIGN_BOARD_NUM; sprite <= STRING_NUM; sprite++) {
@@ -219,12 +231,13 @@ bool CStageFade::CurtainMove()
 		MoveFlag = true;
 	}
 
+	//移動.
 	if (MoveFlag == true) {
 		for (int curtainNum = 0; curtainNum <= RIHGT_CURTAIN_NUM; curtainNum++) {
-			m_vUIRot[curtainNum].y -= 0.03f * MoveDirect;
+			m_vUIRot[curtainNum].y -= CURTAIN_ROT_SPEED * MoveDirect;
 		}
 		for (int sign_board = SIGN_BOARD_NUM; sign_board <= STRING_NUM; sign_board++) {
-			m_vUIPos[sign_board].y += 6.0f * MoveDirect;
+			m_vUIPos[sign_board].y += SIGN_BOARD_MOVE_SPEED * MoveDirect;
 		}
 		return true;
 	}
@@ -241,9 +254,9 @@ bool CStageFade::RotationSignBoard(CSpriteUI*	ChangeStirngSpriteUI)
 
 	int ScalingType = 1;	//拡縮の種類(1:拡大, -1:縮小).
 
-	if (m_vUIRot[SIGN_BOARD_NUM].y > 1.6f) {
+	if (m_vUIRot[SIGN_BOARD_NUM].y > HALF_ROT_ANGLE) {
 		if (m_pCUI[STRING_NUM] == m_pCOldSpriteUI) {
-			m_vUIRot[STRING_NUM].y *= -1.0f;
+			m_vUIRot[STRING_NUM].y *= CHANGE_DIRECT;
 			m_pCUI[STRING_NUM] = ChangeStirngSpriteUI;
 		}
 		//縮小に変更処理.
@@ -251,11 +264,11 @@ bool CStageFade::RotationSignBoard(CSpriteUI*	ChangeStirngSpriteUI)
 	}
 
 	for (int sign_board = SIGN_BOARD_NUM; sign_board <= STRING_NUM; sign_board++) {
-		m_vUIRot[sign_board].y += 0.1f;
-		m_fUIScale[sign_board] += 0.02f * ScalingType;
+		m_vUIRot[sign_board].y += SIGN_BOARD_ROT_SPEED;
+		m_fUIScale[sign_board] += SIGN_BOARD_SCALE_SPEED * ScalingType;
 	}
 
-	if (m_vUIRot[SIGN_BOARD_NUM].y > 3.1f) {
+	if (m_vUIRot[SIGN_BOARD_NUM].y > -CURTAIN_ROT_MIN) {
 		m_CurtainMoveFlag &= ~OPEN_CHANG_FLAG;
 
 		m_enSwingSignBoard = enSwingSignBoard::LeftSwing;
@@ -279,26 +292,26 @@ bool CStageFade::SwingSignBoard()
 	switch (m_enSwingSignBoard) {
 	case enSwingSignBoard::LeftSwing:
 		if (m_vUIRot[SIGN_BOARD_NUM].z >= m_SwingRotMax * m_SwingRotDirect) {
-			m_SwingRotDirect *= -1;
+			m_SwingRotDirect *= CHANGE_DIRECT;
 			m_enSwingSignBoard = enSwingSignBoard::RightSwing;
 		}
 		break;
 	case enSwingSignBoard::RightSwing:
 		if (m_vUIRot[SIGN_BOARD_NUM].z <= m_SwingRotMax * m_SwingRotDirect) {
-			m_SwingRotDirect *= -1;
-			m_SwingRotMax -= 0.3f;
-			m_fSwingSpeed -= 0.01f;
+			m_SwingRotDirect *= CHANGE_DIRECT;
+			m_SwingRotMax -= SWING_ROT_MAX_SPEED;
+			m_fSwingSpeed -= SWING_SPEED;
 			m_enSwingSignBoard = enSwingSignBoard::LeftSwing;
 		}
 		break;
 	}
 
-	if (m_SwingRotMax <= 0.1f && fabsf(m_vUIRot[SIGN_BOARD_NUM].z) <= 0.05f) {
+	if (m_SwingRotMax <= SWING_ROT_LIMIT_MIN && fabsf(m_vUIRot[SIGN_BOARD_NUM].z) <= SWING_ROT_MIN) {
 		m_CurtainMoveFlag &= ~SIGN_BOARD_SWING_FLAG;
 
 		m_SwingRotDirect = 1;
-		m_fSwingSpeed = 0.04f;
-		m_SwingRotMax = 0.6f;
+		m_fSwingSpeed = SWING_SPEED_MAX;
+		m_SwingRotMax = SWING_ROT_MAX;
 		return true;
 	}
 	return false;

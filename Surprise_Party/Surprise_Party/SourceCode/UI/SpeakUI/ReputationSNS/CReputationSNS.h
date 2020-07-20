@@ -24,6 +24,10 @@ public:
 	const int			FLASING_CNT_MAX			= 20;								//点滅カウント最大値.
 	const int			CURSOR_NUM				= 0;								//カーソル番号.
 	const int			PICTURE_NUM				= 1;								//写真番号.	
+	const float			FONT_ALPHA_SPEED		= 0.01f;							//文字の透過値速度.
+	const float			PICTURE_ALPHA_SPEED		= 0.01f;							//写真の透過値速度.
+
+	const D3DXVECTOR3	PICTURE_POS				= D3DXVECTOR3(350.0f, 5.0f, 0.0f);	//写真の座標.
 
 	//===========================関数=================================//.
 	void Update();									//更新処理関数.

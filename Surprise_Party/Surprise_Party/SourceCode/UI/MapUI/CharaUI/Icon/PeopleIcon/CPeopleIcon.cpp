@@ -1,5 +1,8 @@
 #include "CPeopleIcon.h"
 
+/*********************************
+*		人のアイコンクラス.
+*****/
 CPeopleIcon::CPeopleIcon()
 	: m_bSurpriseFlag		(false)
 	, m_bShoutWoman			(false)
@@ -86,13 +89,15 @@ bool CPeopleIcon::DecisionSurpriseJump()
 	if (m_bShoutFlag == false) {
 		m_bShoutFlag = true;
 		if (m_bShoutWoman == true) {
+			//男の子の叫び声.
 			m_pCSoundPlayManager->SetPlaySE(enSEType::WomanShout);
-			m_pCSoundPlayManager->SetSEVolume(enSEType::WomanShout, 1000);
+			m_pCSoundPlayManager->SetSEVolume(enSEType::WomanShout, m_pCSoundPlayManager->VOLUME_MAX);
 			return true;
 		}
 
+		//女の子の叫び声.
 		m_pCSoundPlayManager->SetPlaySE(enSEType::ManShout);
-		m_pCSoundPlayManager->SetSEVolume(enSEType::ManShout, 1000);
+		m_pCSoundPlayManager->SetSEVolume(enSEType::ManShout, m_pCSoundPlayManager->VOLUME_MAX);
 	}
 
 	return true;

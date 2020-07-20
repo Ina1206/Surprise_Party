@@ -1,5 +1,8 @@
 #include "CIcon.h"
 
+/**********************************
+*		アイコンクラス.
+*******/
 CIcon::CIcon()
 	: m_bSelectingFlag	(false)
 {

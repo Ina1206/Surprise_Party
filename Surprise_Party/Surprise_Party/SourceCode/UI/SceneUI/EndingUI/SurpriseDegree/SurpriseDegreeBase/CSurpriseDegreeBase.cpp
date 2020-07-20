@@ -24,9 +24,13 @@ CSurpriseDegreeBase::~CSurpriseDegreeBase()
 //========================================.
 void CSurpriseDegreeBase::Render()
 {
+	//“§‰ß’l.
 	m_pCSpriteUI->SetAlpha(m_fAlpha);
+	//‚»‚ê‚¼‚ê‚Ì‘å‚«‚³.
 	m_pCSpriteUI->SetEachSizeScale(m_vEatchSizeScale);
+	//À•WÝ’è.
 	m_pCSpriteUI->SetPosition(m_vPos);
+	//•`‰æ.
 	m_pCDepthStencil->SetDepth(false);
 	m_pCSpriteUI->Render();
 	m_pCDepthStencil->SetDepth(true);

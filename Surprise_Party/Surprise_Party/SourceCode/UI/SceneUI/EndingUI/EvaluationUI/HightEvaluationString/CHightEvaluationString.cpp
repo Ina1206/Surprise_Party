@@ -65,7 +65,7 @@ void CHightEvaluationString::Init()
 
 	for (unsigned int sprite = 0; sprite < m_pCEvaluationUI.size(); sprite++) {
 		m_vEvaluationPos[sprite] = INIT_POS;
-		m_vEvaluationUV[sprite] = D3DXVECTOR2(1.0f * sprite, 0.0f);
+		m_vEvaluationUV[sprite].x = sprite;
 		m_vEvaluationScale[sprite] = EATCH_SCALE_MIN;
 	}
 

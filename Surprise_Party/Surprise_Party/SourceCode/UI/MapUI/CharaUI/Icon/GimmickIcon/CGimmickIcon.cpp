@@ -1,5 +1,8 @@
 #include "CGimmickIcon.h"
 
+/******************************************
+*		ギミックアイコンクラス.
+*********/
 CGimmickIcon::CGimmickIcon()
 	: CGimmickIcon(0)
 {

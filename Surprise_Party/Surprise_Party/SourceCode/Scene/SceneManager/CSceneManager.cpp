@@ -1,5 +1,8 @@
 #include "CSceneManager.h"
 
+/*****************************************
+*		シーン管理クラス.
+*********/
 CSceneManager::CSceneManager()
 	: m_pDevice11			(nullptr)
 	, m_pContext11			(nullptr)
@@ -333,10 +336,12 @@ void CSceneManager::RenderDebugFont()
 	const int CursorNum = static_cast<int>(stSceneName.size()) - 1;
 	//描画処理.
 	m_pCDepthStencil->SetDepth(false);
+	//シーン名.
 	for (int Scene = 0; Scene < SceneMax; Scene++) {
-		m_pCDebugText->Render(stSceneName[Scene].c_str(), 50.0f, 200.0f + (30.0f * Scene));
+		m_pCDebugText->Render(stSceneName[Scene].c_str(), SCENE_NAME_POS.x, SCENE_NAME_POS.y + (HIGHT_WIDTH * Scene));
 	}
-	m_pCDebugText->Render(stSceneName[CursorNum].c_str(), 20.0f, 200.0f + (30.0f * m_FlyToSceneNum));
+	//カーソル.
+	m_pCDebugText->Render(stSceneName[CursorNum].c_str(), CURSOR_POS.x, CURSOR_POS.y + (HIGHT_WIDTH * m_FlyToSceneNum));
 	m_pCDepthStencil->SetDepth(true);
 
 	m_FlyToSceneMax = SceneMax;

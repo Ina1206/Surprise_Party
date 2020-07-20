@@ -19,6 +19,8 @@ public:
 	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//終了しエンディングへ移動.
 	const unsigned int	FINISH_NEXT_TITLE	= (1 << 1);		//終了しタイトルへ移動.
 	const int			NORMAL_STAGE_NUM	= 0;			//通常ステージ番号.
+	const int			ALL_STAGE_MAX		= 3;			//すべてのステージ最大数.
+	const unsigned int	NORMAL_STAGE_MAX	= 2;			//通常のステージの最大値.
 
 	//====================関数=========================//.
 	void Init();													//初期化処理関数.

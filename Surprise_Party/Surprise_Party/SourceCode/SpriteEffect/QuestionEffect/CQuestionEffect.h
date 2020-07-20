@@ -14,16 +14,18 @@ public:
 	~CQuestionEffect();
 
 	//====================定数========================//.
-	const unsigned int	FINISH_MOVE_HORIZONTAL	= (1 << 0);	//横移動終了フラグ.
-	const unsigned int	FINISH_MOVE_VERTICAL	= (1 << 1);	//縦移動終了フラグ.
+	const unsigned int	FINISH_MOVE_HORIZONTAL	= (1 << 0);							//横移動終了フラグ.
+	const unsigned int	FINISH_MOVE_VERTICAL	= (1 << 1);							//縦移動終了フラグ.
 
-	const float			ACC_SPEAD				= 0.004f;	//加速度の減少速度.
-	const float			GRAVITY					= 0.08f;	//重力.
-	const float			MOVE_SPEED				= 0.025f;	//移動速度.
-	const float			DISTANCE_MAX			= 1.5f;		//距離最大値.
+	const float			ACC_SPEAD				= 0.004f;							//加速度の減少速度.
+	const float			GRAVITY					= 0.08f;							//重力.
+	const float			MOVE_SPEED				= 0.025f;							//移動速度.
+	const float			DISTANCE_MAX			= 1.5f;								//距離最大値.
 
-	const float			SCALING_SPEED			= 0.1f;		//拡縮速度.
-	const float			SCALING_MIN				= 0.2f;		//拡縮最小値.
+	const float			SCALING_SPEED			= 0.1f;								//拡縮速度.
+	const float			SCALING_MIN				= 0.2f;								//拡縮最小値.
+
+	const D3DXVECTOR3	INIT_SCALE				= D3DXVECTOR3(1.0f, 0.0f, 1.0f);	//初期拡大値.
 
 	//====================関数========================//.
 	void Update();							//更新処理関数.

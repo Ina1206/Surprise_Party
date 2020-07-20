@@ -1,5 +1,8 @@
 #include "CGameWorldUI.h"
 
+/***************************************
+*		ÉQÅ[ÉÄì‡Ç≈ÇÃUIÉNÉâÉX.
+************/
 CGameWorldUI::CGameWorldUI()
 	: m_pCSprite	(nullptr)
 	, m_mView		()

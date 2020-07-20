@@ -78,7 +78,7 @@ void CTitleStringUI::Init()
 	//値を初期化処理.
 	for (int title = 0; title < TITLE_STRING_MAX; title++) {
 		m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Title));
-		m_vTitleUV.push_back(D3DXVECTOR2(0.0f, 1.0f * title));
+		m_vTitleUV.push_back(D3DXVECTOR2(0.0f, static_cast<float>(title)));
 		m_vTitlePos.push_back(TITLE_POS);
 
 		//画面外に配置する処理.

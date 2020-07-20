@@ -5,7 +5,7 @@
 #include "..\CSound.h"
 
 //============列挙体=============//.
-//ループしない音.
+//SE.
 enum class enSEType {
 	Shutter,						//シャッター.
 	MoveCursor,						//カーソル移動.
@@ -60,7 +60,8 @@ enum class enSEType {
 	Max,							//最大数.
 	Start ,							//最初.
 };
-//ループする音.
+
+//BGM.
 enum class enBGMType {
 	Title,							//タイトル.
 	GhostSpeakStage,				//お化け会話ステージ.

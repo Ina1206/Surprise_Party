@@ -49,6 +49,7 @@ void CEnding::Render()
 //==================================.
 void CEnding::Init()
 {
+	//結果発表クラス作成.
 	m_pCEndingStageBase.reset(new CBeforeResultStage());
 }
 
@@ -84,13 +85,13 @@ CEndingStageBase*	CEnding::DecideStage()
 	//音を流す管理クラス.
 	CPlaySoundManager* m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
 
-	if (m_Evaluation == 0) {
+	if (m_Evaluation == LOW_EVALUATION_NUM) {
 		//低評価クラス.
 		m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::LowEvaluationStage);
 		return new CLowEvaluationStage(m_Evaluation);
 	}
 
-	if (m_Evaluation == 1) {
+	if (m_Evaluation == INTERMEDIATE_EVALUATION_NUM) {
 		//中間評価クラス.
 		m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::IntermediateEvaluationStage);
 		return new CIntermediateEvaluationStage(m_Evaluation);

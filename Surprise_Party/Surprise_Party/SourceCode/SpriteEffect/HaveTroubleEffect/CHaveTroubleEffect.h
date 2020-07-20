@@ -41,7 +41,7 @@ private:
 	void Move(const int& num);				//移動処理関数.	
 
 	//=================変数===================//.
-	int					m_DispCnt;		//表示カウント.
+	int					m_DispCnt;			//表示カウント.
 };
 
 #endif	//#ifndef CHAVE_TROUBLE_EFFECT_H.

@@ -25,8 +25,10 @@ void CPause::UpDate()
 	m_pCPauseUI->Update();
 
 	m_bTitle = false;
+	//選択終了フラグ.
 	if (m_pCPauseUI->GetSelectFinishFlag() == true) {
-		if (m_pCPauseUI->GetSelectNum() == 1) {
+		//選択番号.
+		if (m_pCPauseUI->GetSelectNum() == SELECT_TITLE_NUM) {
 			m_bTitle = true;
 		}
 		m_bPauseFlag = false;

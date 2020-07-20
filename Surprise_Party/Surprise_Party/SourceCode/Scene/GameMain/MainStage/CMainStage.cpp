@@ -2,6 +2,9 @@
 #include <random>
 #include "..\..\Camera\CameraGameMainStage\CCameraGameMainStage.h"
 
+/************************************
+*		メインステージクラス.
+********/
 CMainStage::CMainStage()
 	: CMainStage	(0, enStageType::Start ,enBeforeStageEndigneType::Nothing)
 {
@@ -461,16 +464,6 @@ void CMainStage::Control()
 		m_bPlaySoundNotSelect = false;
 	}
 
-
-//#ifdef _DEBUG
-//	if (GetAsyncKeyState(VK_UP) & 0x0001) {
-//		m_ObjectSelectFlag = GHOST_SELECTION_FLAG;
-//	}
-//
-//	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
-//		m_ObjectSelectFlag = GIMMICK_SELECTION_FLAG;
-//	}
-//#endif	//#ifdef _DEBUG.
 }
 
 //========================================.

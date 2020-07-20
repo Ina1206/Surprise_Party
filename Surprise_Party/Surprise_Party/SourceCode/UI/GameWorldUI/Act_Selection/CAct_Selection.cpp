@@ -107,8 +107,8 @@ void CAct_Selection::Init()
 		m_pCSprite[choice]		= m_pCResourceManager->GetSprite(enSprite::ActSelection);
 		m_vSpritePos[choice]	= m_vPos;
 		m_vSpriteRot[choice]	= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		m_fSpriteAlpha[choice]	= 1.0f;
-		m_fSpriteScale[choice]	= 1.0f;
+		m_fSpriteAlpha[choice]	= ALPHA_MAX;
+		m_fSpriteScale[choice]	= SCAL_MAX;
 
 		//ãÙêîÅAäÔêîÇ≈ìÆÇ≠ï˚å¸ÇïœÇ¶ÇÈ.
 		if (choice % 2 == 0) {
@@ -137,9 +137,7 @@ void CAct_Selection::Release()
 //========================================.
 void CAct_Selection::BeforeMove()
 {
-	m_vPos = m_vCharacterPos;
-	m_vPos.y += 2.0f;
-	m_vPos.z -= 5.0f;
+	m_vPos = m_vCharacterPos + ADJUST_INIT_POS;
 
 	m_GhostActFlag = 0;
 

@@ -41,7 +41,7 @@ void CEndingStageBase::RenderInitSetting( const D3DXMATRIX& mProj)
 {
 	m_mProj = mProj;
 
-	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
+	const D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方(ベクトル).
 	D3DXMatrixLookAtLH(
 		&m_mView,								//(out)ビュー計算結果.
 		&m_pCCameraEnding->GetPos(), &m_pCCameraEnding->GetLook(), &vUpVec);
@@ -55,10 +55,10 @@ void CEndingStageBase::RenderFloor()
 	//ライト情報.
 	const LIGHT m_Light = m_pCBackstageLight->GetLight();
 
-	m_pCFloor->SetScale(0.5f);
+	m_pCFloor->SetScale(SCALE);
 	m_pCFloor->SetCameraPos(m_pCCameraEnding->GetPos());
 	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_Light);
-	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -6.0f, 0.0f));
+	m_pCFloor->SetPos(FLOOR_POS);
 	m_pCFloor->Render();
 
 }
@@ -84,6 +84,7 @@ void CEndingStageBase::RenderGhost()
 void CEndingStageBase::SettingBGMVolume()
 {
 	m_BGMVolume = m_pCPlaySoundManager->VOLUME_MAX;
+	//透過値でBGMを調整.
 	if (m_pCWhiteScreenFade->GetFadeFlag() != 0) {
 		m_BGMVolume = static_cast<int>(m_pCWhiteScreenFade->GetAlphaRatio() * m_pCPlaySoundManager->VOLUME_MAX);
 	}
@@ -105,14 +106,14 @@ void CEndingStageBase::InitCommonValue()
 	//曲再生管理クラス.
 	m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
 
-	m_vObjLookPos = D3DXVECTOR3(5.0f, 1.5f, 8.0f);
+	m_vObjLookPos = LOOK_POS;
 
-	for (int ghost = 0; ghost < 5; ghost++) {
+	for (int ghost = 0; ghost < GHOST_MAX; ghost++) {
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);
 
 		const float			RADIAN	= static_cast<float>(D3DXToRadian(-7.0f + (ghost * 55.0f)));
-		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * 2.5f) + D3DXVECTOR3(5.0f, 1.5f + ((ghost % 2) * 0.5f), 8.0f);
+		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * POS_WIDTH) + D3DXVECTOR3(ADD_POS.x, ADD_POS.y + ((ghost % 2) * ADD_HIGHT), ADD_POS.z);
 
 		m_pCGhost[ghost]->SetPos(vPos);
 		m_pCGhost[ghost]->SetChangeBeforePos(vPos);
@@ -133,12 +134,12 @@ void CEndingStageBase::InitCommonValue()
 //==========================================.
 void CEndingStageBase::CreateInstanceFronClass(const int& num)
 {
-	if (num == 2) {
+	if (num == BIG_GHOST_NUM) {
 		m_pCGhost.emplace_back(new CBigGhost());
 		return;
 	}
 
-	if (num % 2 == 0) {
+	if (num % WORK_GHOST_TYPE_MAX == 0) {
 		m_pCGhost.emplace_back(new CEndingDispGhost());
 		return;
 	}

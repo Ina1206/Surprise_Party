@@ -35,19 +35,19 @@ public:
 	};
 
 	//=====================定数=========================//.
-	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);		//次がタイトルでの終了.
-	const unsigned int	FINISH_NEXT_TITLE	= (1 << 1);		//次がゲームでの終了.
+	const unsigned int	FINISH_NEXT_ENDING	= (1 << 0);			//次がタイトルでの終了.
+	const unsigned int	FINISH_NEXT_TITLE	= (1 << 1);			//次がゲームでの終了.
 
-	const unsigned int TUTORIAL_START		= (1 << 0);		//チュートリアル開始.
-	const unsigned int TUTORIAL_FINISH		= (1 << 1);		//チュートリアル終了
+	const unsigned int TUTORIAL_START		= (1 << 0);			//チュートリアル開始.
+	const unsigned int TUTORIAL_FINISH		= (1 << 1);			//チュートリアル終了
 
 
 	//=====================関数=========================//.
 	void RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj);	//描画初期設定処理関数.
 	void DebugStageChange();													//デバッグ用ステージ変更処理関数.
 
-	virtual void UpDate(const bool& ControlFlag)	= 0;	//更新処理関数.
-	virtual void Render()							= 0;	//描画処理関数.
+	virtual void UpDate(const bool& ControlFlag)	= 0;		//更新処理関数.
+	virtual void Render()							= 0;		//描画処理関数.
 
 	//===============情報取得処理関数===================//.
 	//ステージ変更フラグ.
@@ -67,9 +67,9 @@ public:
 
 protected:
 	//=====================関数=========================//.
-	virtual void Init() = 0;		//初期化処理関数.
-	virtual void Release() = 0;		//解放処理関数.
-	virtual void Control() = 0;		//操作処理関数.
+	virtual void Init() = 0;									//初期化処理関数.
+	virtual void Release() = 0;									//解放処理関数.
+	virtual void Control() = 0;									//操作処理関数.
 
 	//=====================変数=========================//.
 	D3DXMATRIX						m_mView;					//ビュー行列.

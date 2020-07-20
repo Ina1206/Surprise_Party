@@ -1,5 +1,8 @@
 #include "CMapGhostCursor.h"
 
+/************************************
+*	マップ上のお化けカーソルクラス.
+**********/
 CMapGhostCursor::CMapGhostCursor()
 {
 	//初期化処理関数.
@@ -32,9 +35,9 @@ void CMapGhostCursor::Init()
 	m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Ghost_Icon);
 
 	//大きさ設定.
-	m_fScale = 1.3f;
+	m_fScale = SCALE;
 	//色設定.
-	m_vColor = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+	m_vColor = COLOR;
 }
 
 //=======================================.

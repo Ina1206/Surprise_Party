@@ -16,22 +16,24 @@ public:
 	~CSpeakBigGhost();
 
 	//======================定数=======================//.
-	const float		STRING_WIDTH_MAX	= 950.0f;		//文章の幅最大数.
-	const float		FONT_SCALE			= 50.0f;		//文字の大きさ.
-	const int		FIRST_CHARACTER_NUM = 0;			//一文字目の文章.
+	const float			STRING_WIDTH_MAX	= 950.0f;	//文章の幅最大数.
+	const float			FONT_SCALE			= 50.0f;	//文字の大きさ.
+	const int			FIRST_CHARACTER_NUM	= 0;		//一文字目の文章.
+	const int			SELECT_MAX			= 2;		//選択最大数.
 
+	const int			SPRITE_MAX			= 4;		//スプライト最大数.
 
-	const int		SELECT_MAX			= 2;			//選択最大数.
+	const D3DXVECTOR3	TEXT_BOX_POS		= D3DXVECTOR3(50.0f, 450.0f, 0.0f);	//テキストボックス座標.
 
-	const unsigned int TRANSPARENTING_FLAG	= (1 << 0);	//透過処理中フラグ.
-	const unsigned int SELECT_FLAG			= (1 << 1);	//選択フラグ.
-	const unsigned int IN_BRANCH_FLAG		= (1 << 2);	//分岐中フラグ.
-	const unsigned int EVALUTION_FLAG		= (1 << 3);	//評価フラグ.
-	const unsigned int IN_EVALUTION_FLAG	= (1 << 4);	//評価中フラグ.
-	const unsigned int TUTORIAL_FLAG		= (1 << 5);	//チュートリアルフラグ.
+	const unsigned int	TRANSPARENTING_FLAG	= (1 << 0);	//透過処理中フラグ.
+	const unsigned int	SELECT_FLAG			= (1 << 1);	//選択フラグ.
+	const unsigned int	IN_BRANCH_FLAG		= (1 << 2);	//分岐中フラグ.
+	const unsigned int	EVALUTION_FLAG		= (1 << 3);	//評価フラグ.
+	const unsigned int	IN_EVALUTION_FLAG	= (1 << 4);	//評価中フラグ.
+	const unsigned int	TUTORIAL_FLAG		= (1 << 5);	//チュートリアルフラグ.
 
-	const unsigned int FINISH_NEXT_TITLE	= (1 << 0);	//次がタイトルでの終了.
-	const unsigned int FINISH_NEXT_GAME		= (1 << 1);	//次がゲームでの終了.
+	const unsigned int	FINISH_NEXT_TITLE	= (1 << 0);	//次がタイトルでの終了.
+	const unsigned int	FINISH_NEXT_GAME	= (1 << 1);	//次がゲームでの終了.
 
 	//======================関数=======================//.
 	void Update();			//更新処理関数.

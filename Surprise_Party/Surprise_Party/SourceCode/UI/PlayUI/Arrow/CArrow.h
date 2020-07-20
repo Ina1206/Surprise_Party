@@ -31,7 +31,7 @@ public:
 	const unsigned int	USING_RIGHT_FLAG	= (1 << 1);								//右の矢印使用フラグ.
 
 	//===================関数====================//.
-	void Update();		//更新処理関数.
+	void Update();						//更新処理関数.
 
 	//=============情報置換処理関数==============//.
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }
@@ -42,17 +42,17 @@ public:
 
 private:
 	//===================関数====================//.
-	void Init();			//初期化処理関数.
-	void Release();			//解放処理関数.
-	void MoveArrow();		//矢印移動処理関数.
-	void SettingPos();		//座標設定処理関数.			
+	void Init();						//初期化処理関数.
+	void Release();						//解放処理関数.
+	void MoveArrow();					//矢印移動処理関数.
+	void SettingPos();					//座標設定処理関数.			
 
 	//===================変数====================//.
 	D3DXVECTOR3		m_vCenterPos;		//中心座標.
 	unsigned int	m_UsingArrowFlag;	//使用中の矢印フラグ.
 	float			m_fDistance;		//移動距離.
 	int				m_fDirect;			//方向.
-	float			m_fMoveSpeed;
+	float			m_fMoveSpeed;		//移動速度.
 };
 
 #endif	//#ifndef CARROW_H.

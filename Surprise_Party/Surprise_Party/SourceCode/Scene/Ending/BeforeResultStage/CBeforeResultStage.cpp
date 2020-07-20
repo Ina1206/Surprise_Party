@@ -50,13 +50,14 @@ void CBeforeResultStage::Update()
 		if (m_pCWhiteScreenFade->GetFadeFlag() & m_pCWhiteScreenFade->FADE_FINISH_FLAG) {
 			//SNS更新処理関数.
 			m_pCReputationSNS->Update();
-			
+			//シーン変更.
 			if (m_pCReputationSNS->GetChangeStage() & m_pCReputationSNS->CHANGE_STAGE_FLAG) {
 				m_bChangeStage = true;
 			}
 			return;
 		}
-
+		
+		//白フェード.
 		m_pCWhiteScreenFade->SetFadeFlag(m_pCWhiteScreenFade->FADE_IN_FLAG);
 		m_pCWhiteScreenFade->Update();
 	}
@@ -93,9 +94,11 @@ void CBeforeResultStage::Render()
 //=======================================.
 void CBeforeResultStage::Init()
 {
+	//インスタンス化.
 	m_pCReputationSNS.reset(new CReputationSNS());
 	m_pCSmartPhone.reset(new CSmartPhone());
 
+	//カメラエンディング.
 	m_pCCameraEnding->SetMoveFlag(m_pCCameraEnding->MOVE_FLAG);
 }
 

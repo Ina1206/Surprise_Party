@@ -72,18 +72,18 @@ void CMoveNoteEffect::Init()
 	m_pCSprite.push_back(m_pCResourceManager->GetSprite(enSprite::Wave));
 	//要素数設定処理関数.
 	SettingElementsCount();
-	m_ScalingFlag.resize(2);
+	m_ScalingFlag.resize(m_pCSprite.size());
 	for (unsigned int Effect = 0; Effect < m_pCSprite.size(); Effect++) {
 		//初期値設定処理関数.
 		SettingDefaultValue(Effect);
 		m_ScalingFlag[Effect] = SCALE_FLAG;
 
-		m_fAlpha[Effect] = 1.0f;
+		m_fAlpha[Effect] = ALPHA_MAX;
 	}
-	m_vPart[0] = D3DXVECTOR2(0.0f, 1.0f);
-	m_DispTime = 20;
-	m_fAlphaSpeed = 0.02f;
-	m_fScalingSpeed = 0.02f;
+	m_vPart[NOTE_NUM] = NOTE_UV_POS;
+	m_DispTime = TIME_MAX;
+	m_fAlphaSpeed = ALPHA_SPEED;
+	m_fScalingSpeed = SCALING_SPEED;
 }
 
 //========================================.
@@ -99,7 +99,7 @@ void CMoveNoteEffect::Release()
 //========================================.
 void CMoveNoteEffect::AppeartJudgement(const int& num)
 {
-	if (m_DispTime < 20) {
+	if (m_DispTime < TIME_MAX) {
 		return;
 	}
 
@@ -114,7 +114,7 @@ void CMoveNoteEffect::AppeartJudgement(const int& num)
 //========================================.
 void CMoveNoteEffect::Move(const int& num)
 {
-	m_fDistance[num] = 0.06f;
+	m_fDistance[num] = DISTANCE;
 
 	//ラジアン.
 	const float RADIAN = static_cast<float>(D3DXToRadian(m_fAngle[num]));

@@ -25,13 +25,15 @@ void CLoad::Init(HWND hWnd, ID3D11Device* pDevice11, ID3D11DeviceContext* pConte
 	ss.Base.h = WND_H;
 	ss.Stride.w = ss.Base.w;
 	ss.Stride.h = ss.Base.h;
-	ss.Frame.w = 1.0f;
-	ss.Frame.h = 1.0f;
+	ss.Frame.w = FRAME_MAX;
+	ss.Frame.h = FRAME_MAX;
 	ss.Disp.w = WND_W;
 	ss.Disp.h = WND_H;
 	
+	//ƒpƒX.
+	const std::string PATH = "Data\\Texture\\UI\\Game\\LoadShutter.png";
 	//‰Šú‰»ˆ—ŠÖ”.
-	m_pCSpriteUI->Init(pDevice11, pContext11, "Data\\Texture\\UI\\Game\\LoadShutter.png", &ss);
+	m_pCSpriteUI->Init(pDevice11, pContext11, PATH.c_str(), &ss);
 }
 
 //===================================.
@@ -39,7 +41,7 @@ void CLoad::Init(HWND hWnd, ID3D11Device* pDevice11, ID3D11DeviceContext* pConte
 //===================================.
 void CLoad::Render()
 {
-	m_pCSpriteUI->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pCSpriteUI->SetPosition(POS);
 	//•`‰æˆ—ŠÖ”.
 	m_pCSpriteUI->Render();
 }

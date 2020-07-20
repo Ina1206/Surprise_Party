@@ -44,8 +44,8 @@ void CQuestionEffect::PlayStartInit(const int& num)
 {
 	//‰Šú’lÝ’èˆ—ŠÖ”.
 	SettingDefaultValue(num);
-	m_fAlpha[num] = 1.0f;
-	m_vScale[num] = D3DXVECTOR3(1.0f, 0.0f, 1.0f);
+	m_fAlpha[num] = ALPHA_MAX;
+	m_vScale[num] = INIT_SCALE;
 
 	m_fAcc = 0.0f;
 	m_vPos[num] = m_vCenterPos;
@@ -118,6 +118,7 @@ void CQuestionEffect::Move(const int& num)
 //=======================================.
 void CQuestionEffect::Scaling(const int& num)
 {
+	//ˆÚ“®I—¹Œã‚ÌŠgk.
 	if (m_MoveFinishFlag & FINISH_MOVE_HORIZONTAL) {
 		m_vScale[num].y += SCALING_SPEED;
 		if (m_vScale[num].y >= SCALE_MAX.y) {
@@ -126,7 +127,7 @@ void CQuestionEffect::Scaling(const int& num)
 		return;
 	}
 
-	m_vScale[num].y = 1 - fabsf((m_fAcc + GRAVITY) / GRAVITY);
+	m_vScale[num].y = SCALE_MAX.y - fabsf((m_fAcc + GRAVITY) / GRAVITY);
 	if (m_vScale[num].y < SCALING_MIN) {
 		m_vScale[num].y = SCALING_MIN;
 	}

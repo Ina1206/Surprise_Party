@@ -1,5 +1,8 @@
 #include "CMapUI.h"
 
+/******************************************
+*		マップUIクラス.
+**********/
 CMapUI::CMapUI()
 	: m_pCSpriteUI	(nullptr)
 	, m_vColor		(1.0f, 1.0f, 1.0f)

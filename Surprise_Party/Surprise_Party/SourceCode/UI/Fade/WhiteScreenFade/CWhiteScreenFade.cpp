@@ -101,7 +101,7 @@ void CWhiteScreenFade::FadeOut()
 	m_fAlpha -= ALPHA_SPEED;
 	//ìßâﬂílÇÃäÑçá.
 	const float ALPHA_LENGTH = fabsf(ALPHA_MIN - ALPHA_MAX);
-	m_fAlphaRatio = 1.0f - fabsf(m_fAlpha - ALPHA_MIN) / ALPHA_LENGTH;
+	m_fAlphaRatio = ALPHA_MAX - fabsf(m_fAlpha - ALPHA_MIN) / ALPHA_LENGTH;
 
 	if (m_fAlpha < ALPHA_MIN) {
 		m_fAlpha = ALPHA_MIN;

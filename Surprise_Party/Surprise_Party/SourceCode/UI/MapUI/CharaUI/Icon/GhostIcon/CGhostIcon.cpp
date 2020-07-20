@@ -1,5 +1,8 @@
 #include "CGhostIcon.h"
 
+/*************************************
+*		お化け用アイコンクラス.
+*******/
 CGhostIcon::CGhostIcon()
 	: m_fStrength	(0.0f)
 	, m_fStrengthMax(0.0f)

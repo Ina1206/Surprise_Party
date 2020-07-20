@@ -21,11 +21,22 @@ public:
 	virtual ~CEndingStageBase();
 
 	//===================定数======================//.
-	const int			INIT_EVALUATION_NUM		= -1;					//初期評価番号.
-	const unsigned int	SURPRISE_DEGREE_FLAG	= (1 << 0);				//驚かし度フラグ.
-	const unsigned int	EVALUATION_STRING_FLAG	= (1 << 1);				//評価文字.
-	const unsigned int	GHOST_FLAG				= (1 << 2);				//お化けフラグ.
-	const unsigned int	PUSH_ENTER_FLAG			= (1 << 3);				//PushEnterフラグ.
+	const int			INIT_EVALUATION_NUM		= -1;								//初期評価番号.
+	const unsigned int	SURPRISE_DEGREE_FLAG	= (1 << 0);							//驚かし度フラグ.
+	const unsigned int	EVALUATION_STRING_FLAG	= (1 << 1);							//評価文字.
+	const unsigned int	GHOST_FLAG				= (1 << 2);							//お化けフラグ.
+	const unsigned int	PUSH_ENTER_FLAG			= (1 << 3);							//PushEnterフラグ.
+	const D3DXVECTOR3	FLOOR_POS				= D3DXVECTOR3(0.0f, -6.0f, 0.0f);	//床の座標.
+	const float			SCALE					= 0.5f;								//大きさ.
+	const D3DXVECTOR3	LOOK_POS				= D3DXVECTOR3(5.0f, 1.5f, 8.0f);	//見る場所.
+	const int			GHOST_MAX				= 5;								//お化けの最大数.
+	const float			START_RADIAN			= -7.0f;							//開始ラジアン.
+	const float			RADIAN_WIDTH			= 55.0f;							//ラジアン幅.
+	const float			POS_WIDTH				= 2.5f;								//位置の幅.
+	const D3DXVECTOR3	ADD_POS					= D3DXVECTOR3(5.0f, 1.5f, 8.0f);	//加算座標.
+	const float			ADD_HIGHT				= 0.5f;								//高さ加算.
+	const int			BIG_GHOST_NUM			= 2;								//ビッグゴースト番号.
+	const int			WORK_GHOST_TYPE_MAX		= 2;								//働くお化け種類最大数.
 
 	//========================関数=============================//.
 	virtual void Update() = 0;											//更新処理関数.

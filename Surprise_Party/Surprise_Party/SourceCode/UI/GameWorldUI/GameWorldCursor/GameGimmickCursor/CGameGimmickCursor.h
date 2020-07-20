@@ -13,6 +13,12 @@ public:
 	CGameGimmickCursor();
 	~CGameGimmickCursor();
 
+	//====================’è”======================//.
+	const float			ADJUST_HEIGHT	= -3.0f;						//‚‚³’²®.
+	const float			ADJUST_WIDTH	= 4.0f;							//•’²®.
+	const float			SCALE			= 2.5f;							//‘å‚«‚³.
+	const D3DXVECTOR3	COLOR			= D3DXVECTOR3(0.5f, 1.0f, 0.5f);//F.
+
 	//====================ŠÖ”======================//.
 	void UpDate();					//XVˆ—ŠÖ”.
 

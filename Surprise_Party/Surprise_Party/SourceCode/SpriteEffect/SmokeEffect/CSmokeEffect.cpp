@@ -30,6 +30,7 @@ void CSmokeEffect::Update()
 		}
 	}
 
+	//描画しないなら処理終了.
 	if (m_bRenderFlag == false) {
 		return;
 	}
@@ -55,7 +56,7 @@ void CSmokeEffect::PlayStartInit(const int& num)
 {
 	//初期値設定.
 	SettingDefaultValue(num);
-	m_fAngle[num] = 90.0f;
+	m_fAngle[num] = INIT_ANGLE;
 	//配置.
 	m_vPos[num] = m_vCenterPos;
 }
@@ -74,13 +75,13 @@ void CSmokeEffect::Init()
 	//初期値設定.
 	for (unsigned int SpriteNum = 0; SpriteNum < m_pCSprite.size(); SpriteNum++) {
 		SettingDefaultValue(SpriteNum);
-		m_fAngle[SpriteNum] = 90.0f;
+		m_fAngle[SpriteNum] = INIT_ANGLE;
 
 		//左右の方向の数値に分ける.
 		m_MoveDirection[SpriteNum] = -1 + (2 * SpriteNum);
 	}
-	m_fAlphaSpeed = 0.015f;
-	m_fScalingSpeed = 0.015f;
+	m_fAlphaSpeed = ALPHA_SPEED;
+	m_fScalingSpeed = SCALING_SPEED;
 }
 
 //======================================.
@@ -104,14 +105,14 @@ void CSmokeEffect::AppeartJudgement(const int& num)
 //======================================.
 void CSmokeEffect::Move(const int& num)
 {
-	m_fAngle[num] += 2.0f;
-	if (m_fAngle[num] > 360.0f) {
-		m_fAngle[num] = 90.0f;
+	m_fAngle[num] += ANGLE_SPEED;
+	if (m_fAngle[num] > ANGLE_MAX) {
+		m_fAngle[num] = INIT_ANGLE;
 	}
 	const float Angle = static_cast<float>(D3DXToRadian(m_fAngle[num]));
 
-	m_vPos[num].x += 0.04f * m_MoveDirection[num];
-	m_vPos[num].y += sinf(Angle) * 0.05f;
+	m_vPos[num].x += HORIZON_SPEED * m_MoveDirection[num];
+	m_vPos[num].y += sinf(Angle) * VERTICAL_SPEED;
 
 }
 
@@ -120,5 +121,5 @@ void CSmokeEffect::Move(const int& num)
 //========================================.
 void CSmokeEffect::Rotation(const int& num)
 {
-	m_vRot[num].z += 0.05f * m_MoveDirection[num];
+	m_vRot[num].z += ROT_SPEED * m_MoveDirection[num];
 }

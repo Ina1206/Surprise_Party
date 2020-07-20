@@ -1,5 +1,8 @@
 #include "CStageManager.h"
 
+/**************************************************
+*		ステージ管理クラス.
+********/
 CStageManager::CStageManager()
 	: m_pCStageBase			()
 	, m_StageType			(0)
@@ -141,11 +144,11 @@ void CStageManager::ChangeStage()
 	}
 
 	if (m_pCStageBase[STAGE_TYPE_NUM]->GetTutorialFlag() & m_pCStageBase[STAGE_TYPE_NUM]->TUTORIAL_FINISH) {
-		if (m_pCStageBase.size() >= 2) {
+		if (m_pCStageBase.size() >= NORMAL_STAGE_MAX) {
 			m_pCStageBase.pop_back();
-			m_bOldTutorialFlag = m_pCStageBase[0]->TUTORIAL_FINISH;
+			m_bOldTutorialFlag = m_pCStageBase[NORMAL_STAGE_NUM]->TUTORIAL_FINISH;
 			m_StageType = static_cast<int>(CStageBase::enStageType::GhostSpeakStage);
-			m_pCStageBase[0]->SetTutorialFlag(m_pCStageBase[0]->TUTORIAL_FINISH);
+			m_pCStageBase[NORMAL_STAGE_NUM]->SetTutorialFlag(m_pCStageBase[NORMAL_STAGE_NUM]->TUTORIAL_FINISH);
 
 			//曲設定.
 			m_pCPlaySoundManager->ChangePlayingBGM(enBGMType::GhostSpeakStage);
@@ -157,7 +160,7 @@ void CStageManager::ChangeStage()
 	}
 
 	//3ステージ以上の場合は終了処理.
-	if (m_StageNum >= 3) {
+	if (m_StageNum >= ALL_STAGE_MAX) {
 		m_FinishFlag = FINISH_NEXT_ENDING;
 		return;
 	}

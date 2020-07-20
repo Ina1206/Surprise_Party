@@ -1,5 +1,8 @@
 #include "CGameGimmickCursor.h"
 
+/***********************************
+*		ギミックカーソルクラス.
+********/
 CGameGimmickCursor::CGameGimmickCursor()
 	: m_bUnSelectableFlag	(false)
 {
@@ -22,8 +25,8 @@ void CGameGimmickCursor::UpDate()
 	CursorUpDown();
 
 	m_vPos = m_vCharacterPos;
-	m_vPos.z = -3.0f;
-	m_vPos.y = 4.0f + m_fUpDownDistance;
+	m_vPos.z = ADJUST_HEIGHT;
+	m_vPos.y = ADJUST_WIDTH + m_fUpDownDistance;
 
 	//透過値変更処理関数.
 	AlphaChange(m_bUnSelectableFlag);
@@ -35,8 +38,8 @@ void CGameGimmickCursor::UpDate()
 void CGameGimmickCursor::Init()
 {
 	m_pCSprite = m_pCResourceManager->GetSprite(enSprite::Cursol);
-	m_fScale = 2.5f;
-	m_vColor = D3DXVECTOR3(0.5f, 1.0f, 0.5f);
+	m_fScale = SCALE;
+	m_vColor = COLOR;
 }
 
 //======================================.

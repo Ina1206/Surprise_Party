@@ -13,6 +13,16 @@ public:
 	CSmokeEffect();
 	~CSmokeEffect();
 
+	//=====================定数=======================//.
+	const float	INIT_ANGLE		= 90.0f;	//初期角度.
+	const float ALPHA_SPEED		= 0.015f;	//透過速度.
+	const float	SCALING_SPEED	= 0.015f;	//拡縮速度.
+	const float	ANGLE_SPEED		= 2.0f;		//角度加算速度.
+	const float	ANGLE_MAX		= 360.0f;	//角度最大値.
+	const float	HORIZON_SPEED	= 0.04f;	//横移動速度.
+	const float	VERTICAL_SPEED	= 0.05f;	//縦移動速度.
+	const float	ROT_SPEED		= 0.05f;	//回転速度.
+
 	//=====================関数=======================//.
 	void Update();							//更新処理関数.
 	void PlayStartInit(const int& num);		//エフェクト開始初期化処理関数.
