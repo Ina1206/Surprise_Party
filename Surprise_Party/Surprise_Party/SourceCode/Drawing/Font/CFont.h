@@ -8,6 +8,9 @@
 #include <tchar.h>
 #define ALINGN16 _declspec(align(16))
 
+/**************************************************
+*			フォントクラス.
+******************/
 class CFont
 	: public CCommon
 {
@@ -91,6 +94,7 @@ private:
 	{
 		D3DXVECTOR3	Pos;		//頂点座標.
 		D3DXVECTOR2 Tex;		//テクスチャ座標.
+	
 	};
 
 	//↓モデルの種類ごとに用意.

@@ -283,9 +283,7 @@ void CMain::Render()
 //DirectX初期化.
 HRESULT CMain::InitD3D()
 {
-	//m_hWnd = hWnd;
-
-		//「Direct3D」オブジェクトの作成.
+	//「Direct3D」オブジェクトの作成.
 	m_pD3d9 = Direct3DCreate9(D3D_SDK_VERSION);
 	if (m_pD3d9 == nullptr) {
 		_ASSERT_EXPR(false, L"Dx9オブジェクト作成失敗");
@@ -296,11 +294,11 @@ HRESULT CMain::InitD3D()
 	D3DPRESENT_PARAMETERS d3dpp;
 	ZeroMemory(&d3dpp, sizeof(d3dpp));
 	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;			//バックバッファのフォーマット（デフォルト）.
-	d3dpp.BackBufferCount = 1;						//バックバッファの数.
-	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;	//スワップエフェクと(デフォルト).
-	d3dpp.Windowed = true;					//ウィンドウモード.
-	d3dpp.EnableAutoDepthStencil = true;					//ステンシル有効.
-	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;				//ステンシルのフォーマット(16bit).
+	d3dpp.BackBufferCount = 1;							//バックバッファの数.
+	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;			//スワップエフェクと(デフォルト).
+	d3dpp.Windowed = true;								//ウィンドウモード.
+	d3dpp.EnableAutoDepthStencil = true;				//ステンシル有効.
+	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;			//ステンシルのフォーマット(16bit).
 
 	//デバイス作成(HALモード:描画と頂点処理をGPUで行う).
 	if (FAILED(m_pD3d9->CreateDevice(

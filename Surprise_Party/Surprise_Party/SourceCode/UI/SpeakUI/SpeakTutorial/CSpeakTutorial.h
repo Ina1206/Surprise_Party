@@ -26,14 +26,24 @@ public:
 	~CSpeakTutorial();
 
 	//=================定数=======================//.
-	const unsigned int	MAP_DESCRIPTION_FLAG		= (1 << 0);	//地図の説明フラグ.
-	const unsigned int	GHOST_DESCRIPTION_FLAG		= (1 << 1);	//お化けの説明フラグ.
-	const unsigned int	GIMMICK_DESCRIPTION_FLAG	= (1 << 2);	//ギミックの説明フラグ.
-	const unsigned int	PEOPLE_DESCRIPTION_FLAG		= (1 << 3);	//人々の説明フラグ.
-	const unsigned int	GAGE_DESCRIPTION_FLAG		= (1 << 4);	//驚きゲージの説明フラグ.
-	const unsigned int	CLOSE_TIME_DESCRIPTION_FLAG	= (1 << 5);	//閉鎖時間の説明フラグ.
+	const unsigned int	MAP_DESCRIPTION_FLAG		= (1 << 0);							//地図の説明フラグ.
+	const unsigned int	GHOST_DESCRIPTION_FLAG		= (1 << 1);							//お化けの説明フラグ.
+	const unsigned int	GIMMICK_DESCRIPTION_FLAG	= (1 << 2);							//ギミックの説明フラグ.
+	const unsigned int	PEOPLE_DESCRIPTION_FLAG		= (1 << 3);							//人々の説明フラグ.
+	const unsigned int	GAGE_DESCRIPTION_FLAG		= (1 << 4);							//驚きゲージの説明フラグ.
+	const unsigned int	CLOSE_TIME_DESCRIPTION_FLAG	= (1 << 5);							//閉鎖時間の説明フラグ.
 
-	const float			DESCRIPTION_ICON_SCALE		= 0.9f;		//説明用アイコン大きさ.	
+	const float			DESCRIPTION_ICON_SCALE		= 0.9f;								//説明用アイコン大きさ.	
+
+	const float			DISP_CURSOR_POS_ADJUST		= 40.0f;							//表示カーソル座標微調整.
+
+	const D3DXVECTOR2	BALLOON_UV_POS				= D3DXVECTOR2(1.0f, 1.0f);			//吹き出しUV座標.
+	const float			BALLOON_SCALE				= 1.3f;								//吹き出し大きさ.
+
+	const D3DXVECTOR3	BIG_GHOST_ICON_POS			= D3DXVECTOR3(10.0f, 400.0f, 0.0f);	//吹き出しの座標.
+	const D3DXVECTOR3	BALLON_POS					= D3DXVECTOR3(20.0f, 150.0f, 0.0f);	//大きいお化けのアイコン座標.
+	const D3DXVECTOR3	FONT_START_POS				= D3DXVECTOR3(60.0f, 210.0f, 0.0f);	//フォント開始座標.
+
 
 	//=================関数=======================//.
 	void Update();				//更新処理関数.

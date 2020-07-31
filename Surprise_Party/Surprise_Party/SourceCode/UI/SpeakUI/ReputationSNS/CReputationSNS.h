@@ -29,6 +29,8 @@ public:
 
 	const D3DXVECTOR3	PICTURE_POS				= D3DXVECTOR3(350.0f, 5.0f, 0.0f);	//写真の座標.
 
+	const int			REPUTATION_STRING_NUM	= 0;								//評判文章番号.
+
 	//===========================関数=================================//.
 	void Update();									//更新処理関数.
 	void Render();									//描画処理関数.

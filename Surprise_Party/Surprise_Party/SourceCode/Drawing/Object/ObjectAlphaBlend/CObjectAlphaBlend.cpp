@@ -43,7 +43,6 @@ HRESULT CObjectAlphaBlend::InitAlpha(ID3D11Device* pDevice11, ID3D11DeviceContex
 		return E_FAIL;
 	}
 
-	//BlendDesc.AlphaToCoverageEnable = FALSE;
 	BlendDesc.RenderTarget[0].BlendEnable = false;
 
 	if (FAILED(m_pDevice11->CreateBlendState(&BlendDesc, &m_pNoBlendState))) {

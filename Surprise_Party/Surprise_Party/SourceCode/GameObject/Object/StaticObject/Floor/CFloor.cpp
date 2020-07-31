@@ -29,7 +29,7 @@ void CFloor::Update()
 void CFloor::Init()
 {
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::Floor);
-	m_fScale = 0.1f;
+	m_fScale = SCALE;
 }
 
 //=================================.

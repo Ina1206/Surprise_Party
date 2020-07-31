@@ -1,5 +1,8 @@
 #include "CResourceEffect.h"
 
+/*****************************************
+*		エフェクト読み込みクラス.
+*****************/
 CResourceEffect::CResourceEffect()
 	: m_hWnd		(nullptr)
 	, m_pDevice11	(nullptr)

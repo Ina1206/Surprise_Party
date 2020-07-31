@@ -112,7 +112,7 @@ void CEndingStageBase::InitCommonValue()
 		//クラスからインスタンスを作成する処理関数.
 		CreateInstanceFronClass(ghost);
 
-		const float			RADIAN	= static_cast<float>(D3DXToRadian(-7.0f + (ghost * 55.0f)));
+		const float			RADIAN	= static_cast<float>(D3DXToRadian(START_RADIAN + (ghost * RADIAN_WIDTH)));
 		const D3DXVECTOR3	vPos	= (D3DXVECTOR3(cos(RADIAN), 0.0f, sin(RADIAN)) * POS_WIDTH) + D3DXVECTOR3(ADD_POS.x, ADD_POS.y + ((ghost % 2) * ADD_HIGHT), ADD_POS.z);
 
 		m_pCGhost[ghost]->SetPos(vPos);

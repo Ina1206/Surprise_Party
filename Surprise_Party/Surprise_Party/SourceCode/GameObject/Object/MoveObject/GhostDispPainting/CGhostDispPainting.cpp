@@ -1,5 +1,8 @@
 #include "CGhostDispPainting.h"
 
+/***********************************************
+*		‚¨‰»‚¯‚ªŒ»‚ê‚éŠG‰æƒNƒ‰ƒX.
+***************/
 CGhostDispPainting::CGhostDispPainting()
 {
 	//‰Šú‰»ˆ—ŠÖ”.

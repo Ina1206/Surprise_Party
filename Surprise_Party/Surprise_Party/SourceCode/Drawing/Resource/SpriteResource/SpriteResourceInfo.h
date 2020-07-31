@@ -18,10 +18,10 @@ struct WHSIZE_FLOAT
 //スプライト毎の構造体.
 struct SPRITE_STATE
 {
-	WHSIZE_FLOAT	Disp;		//表示幅高さ.
-	WHSIZE_FLOAT	Base;		//元画像幅高さ.
-	WHSIZE_FLOAT	Stride;		//1コマ当たりの幅高さ.
-	WHSIZE_FLOAT	Frame;		//コマ数.
+	WHSIZE_FLOAT	Disp;			//表示幅高さ.
+	WHSIZE_FLOAT	Base;			//元画像幅高さ.
+	WHSIZE_FLOAT	Stride;			//1コマ当たりの幅高さ.
+	WHSIZE_FLOAT	Frame;			//コマ数.
 };
 
 //スプライト種類の列挙体.

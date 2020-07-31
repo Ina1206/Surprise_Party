@@ -60,8 +60,8 @@ void CCameraGameMainStage::Release()
 //================================================.
 void CCameraGameMainStage::LookAtPeople()
 {
-	if (m_Camera.vPos.x > 11.0f) {
-		m_Camera.vPos.x -= 0.6f;
+	if (m_Camera.vPos.x > SEE_PEOPLE_POS) {
+		m_Camera.vPos.x -= SEE_PEOPLE_MOVE_SPEED;
 		m_Camera.vLook.x = m_Camera.vPos.x;
 		return;
 	}
@@ -96,10 +96,12 @@ void CCameraGameMainStage::MovePosLookUp()
 {
 	const D3DXVECTOR3 vSeePeopleOldPos = D3DXVECTOR3(m_Camera.vPos.x, m_OldCamera.vPos.y, m_OldCamera.vPos.z);
 	const D3DXVECTOR3 vOldPos_Camera = vSeePeopleOldPos - CAMERA_PEOPLE_SEE_POS;
+	//‹——£.
 	const float	vLength = D3DXVec3Length(&(vOldPos_Camera));
+	//”ä—¦.
 	const D3DXVECTOR3 vRato = vOldPos_Camera / vLength;
 	
-	m_Camera.vPos -= 0.2f * vRato;
+	m_Camera.vPos -= LOOK_UP_SPEED * vRato;
 	
 	if (m_Camera.vPos.y < CAMERA_PEOPLE_SEE_POS.y) {
 		m_Camera.vPos = CAMERA_PEOPLE_SEE_POS;
@@ -113,10 +115,12 @@ void CCameraGameMainStage::MoveLookLookUp()
 {
 	const D3DXVECTOR3 vSeePeopleOldLook = D3DXVECTOR3(m_Camera.vLook.x, m_OldCamera.vLook.y, m_OldCamera.vLook.z);
 	const D3DXVECTOR3 vOldLook_SeeLook = m_OldCamera.vLook - CAMERA_PEOPLE_SEE_LOOK;
+	//‹——£.
 	const float	vLookLength = D3DXVec3Length(&vOldLook_SeeLook);
+	//”ä—¦.
 	const D3DXVECTOR3 vLookRaito = vOldLook_SeeLook / vLookLength;
 
-	m_Camera.vLook -= 0.2f * vLookRaito;
+	m_Camera.vLook -= LOOK_UP_SPEED * vLookRaito;
 
 	if (m_Camera.vPos.y < CAMERA_PEOPLE_SEE_LOOK.y) {
 		m_Camera.vLook = CAMERA_PEOPLE_SEE_LOOK;

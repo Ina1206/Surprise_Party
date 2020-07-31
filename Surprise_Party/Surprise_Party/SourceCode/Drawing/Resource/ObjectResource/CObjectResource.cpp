@@ -1,5 +1,8 @@
 #include "CObjectResource.h"
 
+/*************************************
+*	オブジェクト系の読み込みクラス.
+*************/
 template <class T1, class T2>
 CObjectResource<T1, T2>::CObjectResource()
 	: m_ppCObject	(nullptr)

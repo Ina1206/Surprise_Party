@@ -55,7 +55,7 @@ void CSceneFade::Update()
 void CSceneFade::Render()
 {
 	m_pCSpriteUI->SetPosition(m_vPos);
-	m_pCSpriteUI->SetScale(0.8f);
+	m_pCSpriteUI->SetScale(SCALE);
 	m_pCSpriteUI->Render();
 }
 

@@ -23,36 +23,40 @@ public:
 	const float	REVERSE_ROT_Y			= 3.1f;			//反転y軸角度.
 	const float	FADE_SPEED				= 0.05f;		//フェード速度.
 
-	const unsigned int FADE_IN_FLAG		= (1 << 0);	//フェードインフラグ.
-	const unsigned int FADE_OUT_FLAG	= (1 << 1);	//フェードアウトフラグ.
+	const unsigned int FADE_IN_FLAG		= (1 << 0);		//フェードインフラグ.
+	const unsigned int FADE_OUT_FLAG	= (1 << 1);		//フェードアウトフラグ.
 
 	//====================関数======================//.
-	void Update();		//更新処理関数.
+	void Update();										//更新処理関数.
 
 	//==============情報置換処理関数================//.
+	//中央座標.
 	void SetCenterPos(const D3DXVECTOR3& vPos) { m_vCenterPos = vPos; }
+	//説明フラグ.
 	void SetDescriptionFlag(const bool& Flag) { m_bDescriptionFlag = Flag; }
 
 	//==============情報取得処理関数================//.
+	//表示フラグ.
 	bool GetDispFlag() const { return m_bDispFlag; }
+	//フェードフラグ.
 	unsigned int GetFadeFlag() const { return m_FadeFlag; }
 
 private:
 	//====================関数======================//.
-	void Init();		//初期化処理関数.
-	void Release();		//解放処理関数.
-	void SettingPos();	//座標設定処理関数.
-	void FadeDecision();//フェード判定処理関数.
-	void FadeIn();		//フェードイン処理関数.
-	void FadeOut();		//フェードアウト処理関数.
+	void Init();										//初期化処理関数.
+	void Release();										//解放処理関数.
+	void SettingPos();									//座標設定処理関数.
+	void FadeDecision();								//フェード判定処理関数.
+	void FadeIn();										//フェードイン処理関数.
+	void FadeOut();										//フェードアウト処理関数.
 
 	//====================変数======================//.
-	D3DXVECTOR3		m_vCenterPos;			//中心座標.
-	D3DXVECTOR3		m_vOldCenterPos;		//前回の中心座標.
-	bool			m_bDispFlag;			//表示フラグ.
-	unsigned int	m_FadeFlag;				//フェードフラグ.
-	bool			m_bDescriptionFlag;		//説明フラグ.
-	bool			m_bOldDescriptionFlag;	//前回の説明フラグ.
+	D3DXVECTOR3		m_vCenterPos;						//中心座標.
+	D3DXVECTOR3		m_vOldCenterPos;					//前回の中心座標.
+	bool			m_bDispFlag;						//表示フラグ.
+	unsigned int	m_FadeFlag;							//フェードフラグ.
+	bool			m_bDescriptionFlag;					//説明フラグ.
+	bool			m_bOldDescriptionFlag;				//前回の説明フラグ.
 };
 
 #endif	//#ifndef CTUTORIAL_BLACK_SCREEN_H.

@@ -18,12 +18,12 @@ public:
 	~CSprite_Resource();
 
 	//===============関数==================//.
-	HRESULT Init(int max);								//初期化処理関数.
-	HRESULT Load(std::vector<std::string> vecFileName);	//読み込み処理関数.
-	HRESULT ReleaseCalling();							//解放呼び出し処理関数.
+	HRESULT Init(int max);										//初期化処理関数.
+	HRESULT Load(std::vector<std::string> vecFileName);			//読み込み処理関数.
+	HRESULT ReleaseCalling();									//解放呼び出し処理関数.
 
 	//==========情報獲得処理関数============//.
-	Sprite* GetSprite(SpriteType enSprite);		//スプライト系クラスのアドレス.
+	Sprite* GetSprite(SpriteType enSprite);						//スプライト系クラスのアドレス.
 
 	//==========情報置換処理関数============//.
 	void	SetSpriteState(SPRITE_STATE* stSpriteState) { m_pSpriteState = stSpriteState; }
@@ -35,8 +35,8 @@ private:
 	HRESULT Check_SpriteRange(SpriteType enSprite);				//スプライトの範囲を確認処理関数.
 
 	//===============変数=================//.
-	Sprite**		m_ppSprite;			//スプライト系クラス.
-	SPRITE_STATE*	m_pSpriteState;		//スプライト系のステータス構造体.
+	Sprite**		m_ppSprite;									//スプライト系クラス.
+	SPRITE_STATE*	m_pSpriteState;								//スプライト系のステータス構造体.
 
 };
 

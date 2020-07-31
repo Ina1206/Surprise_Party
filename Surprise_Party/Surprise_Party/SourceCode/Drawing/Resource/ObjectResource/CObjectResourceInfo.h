@@ -15,7 +15,7 @@ enum class enStaticMeshType {
 	Table,				//机.
 	Vase_Flower,		//花瓶.
 
-	Max,		//最大値.
+	Max,				//最大値.
 	Start = Wall,
 };
 
@@ -26,12 +26,6 @@ enum class enSkinMeshType {
 	DispGhost,			//現れるお化け.
 	BigGhost,			//大きいお化け.
 	Max,				//最大値.
-};
-
-//テクスチャ変更オブジェ.
-enum class enSkinTexChange {
-	Girl,	//女の子.
-	Max
 };
 
 #endif	//#ifndef COBJECT_RESOURCE_INFO_H.

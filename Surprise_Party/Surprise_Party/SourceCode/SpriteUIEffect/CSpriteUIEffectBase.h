@@ -21,8 +21,8 @@ public:
 	const float ALPHA_MIN = 0.0f;	//透過値最小値.
 
 	//====================関数========================//.
-	virtual void Update() = 0;
-	virtual void Render() = 0;
+	virtual void Update() = 0;		//更新処理関数.
+	virtual void Render() = 0;		//描画処理関数.
 
 protected:
 	//====================変数========================//.

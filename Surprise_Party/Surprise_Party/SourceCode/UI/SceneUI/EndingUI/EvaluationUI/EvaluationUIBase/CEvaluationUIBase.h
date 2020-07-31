@@ -20,8 +20,8 @@ public:
 	const float			ALPHA_MIN		= 0.0f;								//透過値最小値.
 
 	//====================関数========================//.
-	virtual void Update() = 0;	//更新処理関数.
-	void Render();				//描画処理関数.
+	virtual void Update() = 0;								//更新処理関数.
+	void Render();											//描画処理関数.
 
 	//==============情報取得処理関数===================//.
 	//全てを表示するフラグ.
@@ -33,7 +33,7 @@ public:
 
 protected:
 	//====================関数=========================//.
-	void InitElementCount();	//要素数と初期値の初期化処理関数.
+	void InitElementCount();								//要素数と初期値の初期化処理関数.
 
 	//====================変数=========================//.
 	std::vector<CSpriteUI*>		m_pCEvaluationUI;			//評価UI.

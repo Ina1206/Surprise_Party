@@ -1,5 +1,8 @@
 #include "CResourceManager.h"
 
+/*******************************************
+*		“Ç‚İ‚İŠÇ—ƒNƒ‰ƒX.
+************/
 CResourceManager::CResourceManager()
 	: m_pCSprite			(nullptr)
 	, m_pCSpriteUI			(nullptr)

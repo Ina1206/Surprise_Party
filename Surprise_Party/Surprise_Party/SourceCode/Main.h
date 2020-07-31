@@ -29,13 +29,8 @@
 //=================================================.
 //	定数.
 //=================================================.
-const char WND_TITLE[] = "Surprise_Party";
-const char APP_NAME[] = "Surprise_Party";
-
-//++++++++++++++++++++++++++++++++++++++++.
-const int ENEMY_MAX = 2;
-const int ITEMMAX = 3;
-//++++++++++++++++++++++++++++++++++++++++.
+const char WND_TITLE[] = "SurpriseParty";
+const char APP_NAME[] = "SurpriseParty";
 
 /********************************************
 *	メインクラス.
@@ -43,23 +38,6 @@ const int ITEMMAX = 3;
 class CMain
 {
 public:
-	//======================================.
-	//	列挙体.
-	//======================================.
-	//方向.
-	enum class enDirection
-	{
-		Stop = 0,	//停止.
-		Forward,		//全身.
-		Backward,		//後退.
-		Left,			//左.
-		Right,			//右.
-	};
-
-
-	//======================================.
-	//	構造体.
-	//======================================.
 
 	CMain();	//コンストラクタ.
 	~CMain();	//デストラクタ.
@@ -108,27 +86,20 @@ public:
 		m_hWnd = hWnd;
 	}
 private:
-	HWND m_hWnd;	//ウィンドウハンドル.
+	HWND							m_hWnd;					//ウィンドウハンドル.
+	ID3D11Device*					m_pDevice11;			//デバイスオブジェクト.
+	ID3D11DeviceContext*			m_pContext11;			//デバイスコンテキスト.
+	IDXGISwapChain*					m_pSwapChain;			//スワップチェーン.
+	ID3D11RenderTargetView*			m_pBackBuffer_TexRTV;	//レンダーターゲットビュー.
+	ID3D11Texture2D*				m_pBackBuffer_DSTex;	//デプスステンシル用テクスチャ.
+	ID3D11DepthStencilView*			m_pBackBuffer_DSTexDSV;	//デプスステンシルビュー.
+	LPDIRECT3D9						m_pD3d9;				//Dx9オブジェクト.
+	LPDIRECT3DDEVICE9				m_pDevice9;				//Dx9デバイス.
 
-//------------------------------.
-//	ここから３D関係.
+	D3DXMATRIX						m_mProj;				//プロジェクション行列.
 
-
-	//↓アプリにひとつ.
-	ID3D11Device*			m_pDevice11;			//デバイスオブジェクト.
-	ID3D11DeviceContext*	m_pContext11;			//デバイスコンテキスト.
-	IDXGISwapChain*			m_pSwapChain;			//スワップチェーン.
-	ID3D11RenderTargetView* m_pBackBuffer_TexRTV;	//レンダーターゲットビュー.
-	ID3D11Texture2D*		m_pBackBuffer_DSTex;	//デプスステンシル用テクスチャ.
-	ID3D11DepthStencilView*	m_pBackBuffer_DSTexDSV;	//デプスステンシルビュー.
-	LPDIRECT3D9				m_pD3d9;				//Dx9オブジェクト.
-	LPDIRECT3DDEVICE9		m_pDevice9;				//Dx9デバイス.
-
-	D3DXMATRIX				m_mProj;		//プロジェクション行列.
-	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
-
-	std::unique_ptr<CSceneManager>	m_pCSceneManager;//シーン管理クラス.
-	std::unique_ptr<CLoad>			m_pCLoad;		//読み込みクラス.
+	std::unique_ptr<CSceneManager>	m_pCSceneManager;		//シーン管理クラス.
+	std::unique_ptr<CLoad>			m_pCLoad;				//読み込みクラス.
 	
 };
 

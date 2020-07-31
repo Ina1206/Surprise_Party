@@ -7,6 +7,9 @@
 #include "AutoUI\CAutoUI.h"
 #include "..\..\Sound\PlaySoundManager\CPlaySoundManager.h"
 
+/****************************************************
+*		SpeakUIƒNƒ‰ƒX.
+***********************/
 class CSpeakUI
 	: public CUI
 {

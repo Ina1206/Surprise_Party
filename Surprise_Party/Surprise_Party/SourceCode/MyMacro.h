@@ -9,7 +9,6 @@
 
 //破棄.
 #define SAFE_DELETE(p) if(p!=nullptr){delete (p);(p)=nullptr;}
-//「\」はまだ続くという意味なので最後の行には付けない.
 #define SAFE_DELETE_ARRAY(p)	\
 {								\
 	if (p != nullptr) {			\

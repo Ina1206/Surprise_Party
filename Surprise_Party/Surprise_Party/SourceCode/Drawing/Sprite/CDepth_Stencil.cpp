@@ -1,5 +1,8 @@
 #include "CDepth_Stencil.h"
 
+/*******************************************
+*	デプスステンシルクラス.
+**/
 CDepth_Stencil::CDepth_Stencil()
 	: m_pDevice11				(nullptr)
 	, m_pContext11				(nullptr)

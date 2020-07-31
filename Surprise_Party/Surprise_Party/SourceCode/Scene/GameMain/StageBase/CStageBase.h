@@ -46,8 +46,8 @@ public:
 	void RenderInitSetting(const D3DXMATRIX& mView, const D3DXMATRIX& mProj);	//描画初期設定処理関数.
 	void DebugStageChange();													//デバッグ用ステージ変更処理関数.
 
-	virtual void UpDate(const bool& ControlFlag)	= 0;		//更新処理関数.
-	virtual void Render()							= 0;		//描画処理関数.
+	virtual void UpDate(const bool& ControlFlag)	= 0;						//更新処理関数.
+	virtual void Render()							= 0;						//描画処理関数.
 
 	//===============情報取得処理関数===================//.
 	//ステージ変更フラグ.

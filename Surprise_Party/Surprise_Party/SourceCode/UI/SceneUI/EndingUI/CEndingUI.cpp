@@ -136,6 +136,7 @@ void CEndingUI::UpdatePushEnter()
 	//XVˆ—ŠÖ”.
 	m_pCPushEnter->Update();
 
+	//Œˆ’èˆ—.
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		m_bChangeSceneFlag = true;
 		m_pCPlaySoundManager->SetPlaySE(enSEType::SelectDecide);

@@ -14,6 +14,12 @@ public:
 	CPlaySoundSwitch();
 	~CPlaySoundSwitch();
 
+	//=================’è”=================//.
+	const float SCALE			= 0.2f;		//‘å‚«‚³.
+	const int	MOVE_NOTE_NUM	= 0;		//‰¹•„‚Ì”Ô†.
+	const int	SMOKE_NUM		= 1;		//‰Œ‚Ì”Ô†.
+	const float	MOVE_NOTE_ANGLE = 225.0f;	//‰¹•„ˆÚ“®Šp“x.
+
 	//=================ŠÖ”=================//.
 	void Update();		//XVˆ—ŠÖ”.
 

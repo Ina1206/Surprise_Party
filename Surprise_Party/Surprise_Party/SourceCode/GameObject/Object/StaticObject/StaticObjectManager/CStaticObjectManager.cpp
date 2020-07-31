@@ -167,7 +167,7 @@ void CStaticObjectManager::WallAndFloorSetting()
 			//óÒî‘çÜ.
 			stagenum = stage / COLUMN_MAX;
 			//ï«ÇÃç¿ïW.
-			m_vObjectPos.push_back(D3DXVECTOR3(stagenum * OBJECT_WIDTH, 0.0f, 1.0f));
+			m_vObjectPos.push_back(D3DXVECTOR3(stagenum * OBJECT_WIDTH, 0.0f, WALL_POS_Z));
 			continue;
 		}
 		//è∞ÇÃç¿ïW.

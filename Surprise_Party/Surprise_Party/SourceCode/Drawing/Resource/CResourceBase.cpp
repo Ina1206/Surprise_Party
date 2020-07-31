@@ -1,5 +1,8 @@
 #include "CResourceBase.h"
 
+/*****************************************
+*	読み込みベースクラス.
+**/
 CResourceBase::CResourceBase()
 	: m_hWnd		(nullptr)
 	, m_pDevice11	(nullptr)

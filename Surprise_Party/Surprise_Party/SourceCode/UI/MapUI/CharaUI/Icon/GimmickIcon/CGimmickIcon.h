@@ -14,6 +14,9 @@ public:
 	CGimmickIcon(int GimmickNum);
 	~CGimmickIcon();
 
+	//==========================定数==============================//.
+	const D3DXVECTOR3	INIT_POS = D3DXVECTOR3(0.0f, 60.0f, 0.0f);	//初期座標.
+
 	//=========================列挙体=============================//.
 	//ギミックの種類.
 	enum class enGimmickType {

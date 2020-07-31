@@ -39,10 +39,10 @@ public:
 	const int			WORK_GHOST_TYPE_MAX		= 2;								//働くお化け種類最大数.
 
 	//========================関数=============================//.
-	virtual void Update() = 0;											//更新処理関数.
-	virtual void Render() = 0;											//描画処理関数.
-	
-	void RenderInitSetting(const D3DXMATRIX& mProj);					//描画初期設定処理関数.
+	virtual void Update() = 0;														//更新処理関数.
+	virtual void Render() = 0;														//描画処理関数.
+
+	void RenderInitSetting(const D3DXMATRIX& mProj);								//描画初期設定処理関数.
 
 	//==================情報置換処理関数=======================//.
 	//評価.
@@ -54,37 +54,37 @@ public:
 
 protected:
 	//========================関数=============================//.
-	virtual void Init() = 0;											//初期化処理関数.
-	virtual void Release() = 0;											//解放処理関数.
+	virtual void Init() = 0;														//初期化処理関数.
+	virtual void Release() = 0;														//解放処理関数.
 
-	void RenderFloor();													//床の描画処理関数.
-	void RenderGhost();													//お化け描画処理関数.
-	void SettingBGMVolume();											//BGMの音量を設定処理関数.
+	void RenderFloor();																//床の描画処理関数.
+	void RenderGhost();																//お化け描画処理関数.
+	void SettingBGMVolume();														//BGMの音量を設定処理関数.
 
 	//========================変数=============================//.
-	D3DXMATRIX									m_mView;				//ビュー行列.
-	D3DXMATRIX									m_mProj;				//プロジェクション行列.
-	std::unique_ptr<CBackstageLight>			m_pCBackstageLight;		//舞台裏ライトクラス.
-	std::vector<std::unique_ptr<CGhostBase>>	m_pCGhost;				//お化けクラス.
-	std::unique_ptr<CCameraEnding>				m_pCCameraEnding;		//エンディングカメラ.
-	std::unique_ptr<CWhiteScreenFade>			m_pCWhiteScreenFade;	//白画面のフェード.
-	int											m_Evaluation;			//評価.
-	int											m_OldEvaluation;		//差分用評価.
-	bool										m_bChangeStage;			//ステージ変更フラグ.
-	D3DXVECTOR3									m_vObjLookPos;			//オブジェクトが見る場所.
-	unsigned int								m_UpdateFlag;			//更新フラグ.
-	bool										m_bDisplayAllAtOnce;	//一気に表示フラグ.
+	D3DXMATRIX									m_mView;							//ビュー行列.
+	D3DXMATRIX									m_mProj;							//プロジェクション行列.
+	std::unique_ptr<CBackstageLight>			m_pCBackstageLight;					//舞台裏ライトクラス.
+	std::vector<std::unique_ptr<CGhostBase>>	m_pCGhost;							//お化けクラス.
+	std::unique_ptr<CCameraEnding>				m_pCCameraEnding;					//エンディングカメラ.
+	std::unique_ptr<CWhiteScreenFade>			m_pCWhiteScreenFade;				//白画面のフェード.
+	int											m_Evaluation;						//評価.
+	int											m_OldEvaluation;					//差分用評価.
+	bool										m_bChangeStage;						//ステージ変更フラグ.
+	D3DXVECTOR3									m_vObjLookPos;						//オブジェクトが見る場所.
+	unsigned int								m_UpdateFlag;						//更新フラグ.
+	bool										m_bDisplayAllAtOnce;				//一気に表示フラグ.
 
 private:
 
 	//========================関数=============================//.
-	void InitCommonValue();												//共通値の初期化処理関数.
-	void CreateInstanceFronClass(const int& num);						//クラスからインスタンスを作成する処理関数.
+	void InitCommonValue();															//共通値の初期化処理関数.
+	void CreateInstanceFronClass(const int& num);									//クラスからインスタンスを作成する処理関数.
 
 	//========================変数=============================//.
-	std::unique_ptr<CFloor>					m_pCFloor;					//床クラス.
-	CPlaySoundManager*						m_pCPlaySoundManager;		//曲再生管理クラス.
-	int										m_BGMVolume;				//BGMの音量.
+	std::unique_ptr<CFloor>					m_pCFloor;								//床クラス.
+	CPlaySoundManager*						m_pCPlaySoundManager;					//曲再生管理クラス.
+	int										m_BGMVolume;							//BGMの音量.
 };
 
 #endif	//#ifndef CENDING_STAGE_BASE_H.

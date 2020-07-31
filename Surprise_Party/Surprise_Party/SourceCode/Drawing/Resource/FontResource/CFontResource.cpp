@@ -1,5 +1,8 @@
 #include "CFontResource.h"
 
+/*********************************************
+*	フォント読み込みクラス.
+**********/
 CFontResource::CFontResource()
 	: m_pDevice11	(nullptr)
 	, m_pContext11	(nullptr)

@@ -27,11 +27,12 @@ void CPlaySoundSwitch::Update()
 	//エフェクト更新処理関数.
 	EffectUpdate();
 
+	//中心になるようにずらす.
 	const D3DXVECTOR3 vEffectCenterPos = m_vPos + D3DXVECTOR3(0.0f, 10.0f, 0.0f);
-	m_pCSpriteEffect[0]->SetCenterPos(vEffectCenterPos);
-	m_pCSpriteEffect[0]->SetAngle(225.0f);
+	m_pCSpriteEffect[MOVE_NOTE_NUM]->SetCenterPos(vEffectCenterPos);
+	m_pCSpriteEffect[MOVE_NOTE_NUM]->SetAngle(225.0f);
 
-	m_pCSpriteEffect[1]->SetCenterPos(m_vPos);
+	m_pCSpriteEffect[SMOKE_NUM]->SetCenterPos(m_vPos);
 
 	for (unsigned int Effect = 0; Effect < m_pCSpriteEffect.size(); Effect++) {
 		m_pCSpriteEffect[Effect]->SetPlayFlag(m_bMoveObjectEffect);
@@ -46,7 +47,7 @@ void CPlaySoundSwitch::Init()
 {
 	//メッシュアドレス取得処理.
 	m_pCMesh = m_pCResourceManager->GetStaticMesh(enStaticMeshType::PlaySoundSwitch);
-	m_fScale = 0.2f;
+	m_fScale = SCALE;
 
 	//エフェクトアドレス取得処理関数.
 	m_pCEffect = m_pCResourceManager->GetEffect(CResourceEffect::enEffect::PlaySound_Area_Effect);

@@ -48,7 +48,7 @@ void CGimmickIcon::Init()
 		m_pCSpriteUI = m_pCResourceManager->GetSpriteUI(enSpriteUI::Switch_Icon);
 		break;
 	}
-	m_vPos = D3DXVECTOR3(0.0f, 60.0f, 0.0f);
+	m_vPos = INIT_POS;
 }
 
 //======================================.

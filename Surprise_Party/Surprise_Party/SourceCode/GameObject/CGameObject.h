@@ -39,21 +39,21 @@ public:
 	D3DXVECTOR3 GetPos(){ return m_vPos; }				//座標取得.
 protected:
 	//================関数===================//.
-	virtual void Init() = 0;	//初期化処理関数.
-	virtual void Release() = 0;	//解放処理関数.
+	virtual void Init() = 0;							//初期化処理関数.
+	virtual void Release() = 0;							//解放処理関数.
 
 	//================変数===================//.
-	D3DXMATRIX	m_mView;		//ビュー行列.
-	D3DXMATRIX	m_mProj;		//プロジェクション行列.
-	LIGHT		m_stLight;		//ライト情報.
-	D3DXVECTOR3 m_vCameraPos;	//カメラ座標.
-	
-	D3DXVECTOR3	m_vPos;			//座標.
-	D3DXVECTOR3 m_vRot;			//角度.
-	float		m_fScale;		//大きさ.
-	bool		m_bDisp;		//表示フラグ.
-	
-	CResourceManager*	m_pCResourceManager;//読み込み管理クラス.
+	D3DXMATRIX			m_mView;						//ビュー行列.
+	D3DXMATRIX			m_mProj;						//プロジェクション行列.
+	LIGHT				m_stLight;						//ライト情報.
+	D3DXVECTOR3			m_vCameraPos;					//カメラ座標.
+
+	D3DXVECTOR3			m_vPos;							//座標.
+	D3DXVECTOR3			m_vRot;							//角度.
+	float				m_fScale;						//大きさ.
+	bool				m_bDisp;						//表示フラグ.
+
+	CResourceManager*	m_pCResourceManager;			//読み込み管理クラス.
 private:
 
 };

@@ -1,5 +1,8 @@
 #include "CSpeakUI.h"
 
+/****************************************************
+*		SpeakUIクラス.
+***********************/
 CSpeakUI::CSpeakUI()
 	: m_pCFileResource				(CFileResource::GetResourceInstance())
 	, m_pCFontResource				(nullptr)
@@ -79,6 +82,11 @@ void CSpeakUI::TransparentFont()
 //=======================================.
 bool CSpeakUI::DesicionChangeString()
 {
+	//一文字目表示時はスキップしない.
+	if (m_ChangingFontNum <= 0) {
+		return false;
+	}
+
 	if (m_ChangingFontNum < m_pCFontResource->GetStrLength()) {
 		//フォントスキップ.
 		if (m_bAppearanceAllFont == false) {

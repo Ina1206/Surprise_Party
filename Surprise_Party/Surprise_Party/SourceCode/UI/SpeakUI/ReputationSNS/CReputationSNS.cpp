@@ -51,6 +51,10 @@ void CReputationSNS::Update()
 		return;
 	}
 
+	if (m_ChangingFontNum >= m_pCFontResource->GetStrLength()) {
+		m_bAppearanceAllFont = true;
+	}
+
 	//•¶š“§‰ßˆ—.
 	TransparentFont();
 
@@ -96,7 +100,7 @@ void CReputationSNS::DecideString(const int& EndingNum)
 	m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(m_FileNum, m_EndingNum, MainStringNum));
 
 	//“Ç‚İ‚İˆ—ŠÖ”.
-	m_pCFontResource->Load(m_stSpeakString[0]);
+	m_pCFontResource->Load(m_stSpeakString[REPUTATION_STRING_NUM]);
 
 	//Ê^Œˆ’èˆ—ŠÖ”.
 	DecidePicture(m_EndingNum);

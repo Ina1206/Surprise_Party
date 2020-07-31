@@ -25,6 +25,8 @@ public:
 
 	const int			WAIT_CHANGE_SCENE_TIME	= 30;								//シーン変更待機時間.
 
+	const float			SCALE					= 0.8f;								//大きさ.
+
 	//==================関数======================//.
 	void Update();								//更新処理関数.
 	void Render();								//描画処理関数.

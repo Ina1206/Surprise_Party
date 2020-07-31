@@ -85,9 +85,9 @@ void CSpeakTutorial::Update()
 	}
 	m_pCNextSpeakCursor->SetDispFlag(bDispFlag);
 	if (m_ChangingFontNum > 0) {
-		D3DXVECTOR3 vFontPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
-		vFontPos.x += 40.0f;
-		m_pCNextSpeakCursor->SetDispPos(vFontPos);
+		D3DXVECTOR3 vDispPos = m_pCFontResource->GetFontPos(m_ChangingFontNum - 1);
+		vDispPos.x += DISP_CURSOR_POS_ADJUST;
+		m_pCNextSpeakCursor->SetDispPos(vDispPos);
 	}
 	m_pCNextSpeakCursor->Update();
 }
@@ -101,9 +101,9 @@ void CSpeakTutorial::Render()
 	for (unsigned int speak = 0; speak < m_pCSpriteUI.size(); speak++) {
 		//吹き出し種類設定.
 		if (m_pCSpriteUI[speak] == m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon)) {
-			m_pCSpriteUI[speak]->SetPattern(D3DXVECTOR2(1.0f, 1.0f));
+			m_pCSpriteUI[speak]->SetPattern(BALLOON_UV_POS);
 		}
-		m_pCSpriteUI[speak]->SetScale(1.3f);
+		m_pCSpriteUI[speak]->SetScale(BALLOON_SCALE);
 		m_pCSpriteUI[speak]->SetPosition(m_vPos[speak]);
 		m_pCDepthStencil->SetDepth(false);
 		m_pCSpriteUI[speak]->Render();
@@ -174,19 +174,17 @@ void CSpeakTutorial::AddSelectMoveCount()
 void CSpeakTutorial::Init()
 {
 	m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::BigGhostIcon));
+	m_vPos.push_back(BIG_GHOST_ICON_POS);
 	m_pCSpriteUI.push_back(m_pCResourceManager->GetSpriteUI(enSpriteUI::Balloon));
-	
-	for (unsigned int speak = 0; speak < m_pCSpriteUI.size(); speak++) {
-		m_vPos.push_back(D3DXVECTOR3(10.0f + (10.0f * speak), 400.0f - (250.0f * speak), 0.0f));
-	}
-	
+	m_vPos.push_back(BALLON_POS);
+
 	//読み込むファイル番号.
 	const int LoadFileNum = static_cast<int>(CFileResource::enSpeakFileType::SpeakTutorialBigGhost);
 	for (int file = 0; file < m_pCFileResource->GetSringMax(LoadFileNum); file++) {
 		m_stSpeakString.push_back(m_pCFileResource->GetSpeakString(LoadFileNum, file, CFileString::enStringType::MainString));
 		m_stSelectString.push_back(m_pCFileResource->GetSpeakString(LoadFileNum, file, CFileString::enStringType::SelectString));
 	}
-	m_vPos.push_back(D3DXVECTOR3(60.0f, 210.0f, 0.0f));
+	m_vPos.push_back(FONT_START_POS);
 
 	m_pCFontResource->SetFontScale(40.0f);
 	m_pCFontResource->SetWidthMax(200.0f);
@@ -303,6 +301,8 @@ void CSpeakTutorial::FindDescription()
 	}
 
 	if (m_stSelectString[m_SpeakNum] == "SeePeople") {
+		//入店ベル再生.
+		m_pCPlaySoundManager->SetPlaySE(enSEType::OpenBell);
 		m_enStartLatestFlag = SeePeople;
 		return;
 	}

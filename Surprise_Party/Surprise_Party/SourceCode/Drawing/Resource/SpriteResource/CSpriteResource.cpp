@@ -1,5 +1,8 @@
 #include "CSpriteResource.h"
 
+/***********************************************
+*		スプライト系クラス.
+**/
 template <class Sprite, class SpriteType>
 CSprite_Resource<Sprite, SpriteType>::CSprite_Resource()
 	: m_ppSprite	(nullptr)

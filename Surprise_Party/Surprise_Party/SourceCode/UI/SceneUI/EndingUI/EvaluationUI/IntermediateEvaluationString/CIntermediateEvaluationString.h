@@ -24,15 +24,15 @@ public:
 	const float			ROT_MAX					= 360.0f;							//角度最大値.
 
 	//==========================関数==========================//.
-	void Update();		//更新処理関数.
+	void Update();					//更新処理関数.
 
 private:
 	//==========================関数==========================//.
-	void Init();			//初期化処理関数.
-	void Release();			//解放処理関数.
-	void Scale();			//拡大処理関数.
-	void Rotation();		//回転処理関数.
-	void DisplayAllAtOnce();//一気に表示処理関数.
+	void Init();					//初期化処理関数.
+	void Release();					//解放処理関数.
+	void Scale();					//拡大処理関数.
+	void Rotation();				//回転処理関数.
+	void DisplayAllAtOnce();		//一気に表示処理関数.
 
 	//==========================変数==========================//.
 	unsigned int m_ActFinishFlag;	//行動終了フラグ.

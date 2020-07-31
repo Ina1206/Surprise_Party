@@ -1,5 +1,8 @@
 #include "CCommon.h"
 
+/*******************************************
+*	‹¤’ÊƒNƒ‰ƒX.
+**/
 CCommon::CCommon()
 	: m_pDevice11(nullptr)
 	, m_pContext11(nullptr)

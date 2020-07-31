@@ -22,6 +22,18 @@ public:
 	const int			SELECT_MAX			= 2;		//選択最大数.
 
 	const int			SPRITE_MAX			= 4;		//スプライト最大数.
+	const int			SELECT_BOX_MAX		= 2;		//選択ボックス最大数.
+	const D3DXVECTOR3	INIT_SELECT_BOX_POS	= D3DXVECTOR3(6.0f, 2.0f, 10.0f);
+	const float			SELECT_BOX_HEIGHT	= 1.5f;
+	const float			STANDERD_SCALE_SIZE = 1.0f;
+	const float			SELECT_SCALE_SIZE	= 1.2f;
+	const float			NOT_SELECT_ALPHA	= 0.5f;
+
+	const int			LAST_STAGE_NUM		= 3;
+	const int			LAST_SPEAK_NUM		= 8;
+	const int			NEXT_SPEAK_NUM		= 7;
+
+	const D3DXVECTOR3	START_FONT_POS		= D3DXVECTOR3(90.0f, 480.0f, 0.0f);
 
 	const D3DXVECTOR3	TEXT_BOX_POS		= D3DXVECTOR3(50.0f, 450.0f, 0.0f);	//テキストボックス座標.
 

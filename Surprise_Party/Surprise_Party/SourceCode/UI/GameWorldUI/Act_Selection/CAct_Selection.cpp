@@ -1,5 +1,8 @@
 #include "CAct_Selection.h"
 
+/*************************************
+*		行動選択クラス.
+********/
 CAct_Selection::CAct_Selection()
 	: m_pCSprite			()
 	, m_vSpritePos			()
@@ -58,7 +61,7 @@ void CAct_Selection::UpDate()
 	//大きさと透過値.
 	for (unsigned int sprite = 0; sprite < m_pCSprite.size(); sprite++) {
 		//選択中.
-		if (sprite % 2 == m_SelectNum) {
+		if (sprite % CHOICE_MAX == m_SelectNum) {
 			m_fSpriteAlpha[sprite] = SELECT_ALPHA;
 			m_fSpriteScale[sprite] = SELECT_SCALE;
 			continue;

@@ -50,10 +50,10 @@ protected:
 	//======================構造体=========================//.
 	struct CAMERA
 	{
-		D3DXVECTOR3	vPos;	//位置.
-		D3DXVECTOR3 vLook;	//注視位置.
-		float		fYaw;	//Y軸回転.
-		D3DXMATRIX	mRot;	//回転行列.
+		D3DXVECTOR3	vPos;			//位置.
+		D3DXVECTOR3 vLook;			//注視位置.
+		float		fYaw;			//Y軸回転.
+		D3DXMATRIX	mRot;			//回転行列.
 		
 		CAMERA()
 			: vPos	(0.0f, 0.0f, 0.0f)

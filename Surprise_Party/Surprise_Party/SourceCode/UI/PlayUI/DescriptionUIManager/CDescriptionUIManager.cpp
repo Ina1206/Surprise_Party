@@ -114,12 +114,10 @@ D3DXVECTOR3 CDescriptionUIManager::SettingArrowPos()
 
 	if (DESCIPTION_FLAG == m_pCSpeakTutorial->GAGE_DESCRIPTION_FLAG) {
 		return GAGE_ARROW_POS + m_vCenterPos;
-		//return D3DXVECTOR3(m_vCenterPos.x + 500.0f, m_vCenterPos.y - 30.0f, m_vCenterPos.z);
 	}
 
 	if (DESCIPTION_FLAG == m_pCSpeakTutorial->CLOSE_TIME_DESCRIPTION_FLAG) {
 		return CLOSE_ARROW_POS + m_vCenterPos;
-		//return D3DXVECTOR3(m_vCenterPos.x - 100.0f, m_vCenterPos.y, m_vCenterPos.z);
 	}
 
 	return D3DXVECTOR3(0.0f, 0.0f, 0.0f);

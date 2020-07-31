@@ -16,6 +16,7 @@ public:
 
 	//==============定数===============//.
 	const int	EFFECT_HANDLE_DEFAULT_VALUE = -1;		//エフェクトハンドル初期値.
+	const float	ATTACH_OBJECT_SCALE_SIZE	= 0.1f;		//付属オブジェクト大きさ.
 
 	//==============関数===============//.
 	void EffectRender();								//エフェクト描画処理関数.

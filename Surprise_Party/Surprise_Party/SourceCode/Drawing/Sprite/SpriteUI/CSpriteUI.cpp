@@ -4,6 +4,9 @@
 //シェーダーファイル名(ディレクトリも含む).
 const char SHADER_NAME[] = "Data\\Shader\\SpriteUI.hlsl";
 
+/********************************************
+*	スプライトUIクラス.
+**/
 //コンストラクタ.
 CSpriteUI::CSpriteUI()
 	: m_pVertexShader	(nullptr)

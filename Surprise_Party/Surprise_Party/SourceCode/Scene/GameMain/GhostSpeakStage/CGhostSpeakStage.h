@@ -20,6 +20,7 @@ public:
 	~CGhostSpeakStage();
 
 	//========================定数=============================//.
+	const D3DXVECTOR3	FLOOR_POS					= D3DXVECTOR3(0.0f, -6.0f, 0.0f);		//床の座標.
 	const D3DXVECTOR3	INIT_CAMERA_POS				= D3DXVECTOR3(5.0f, 2.5f, -3.5f);		//カメラ初期位置.
 	const D3DXVECTOR3	INIT_CAMERA_LOOK			= D3DXVECTOR3(5.0f, 2.5f, 5.0f);		//カメラ初期注視点.
 	const D3DXVECTOR3	SPEAK_START_POS				= D3DXVECTOR3(6.0f, 2.7f, 1.3f);		//会話開始時のカメラ座標.

@@ -151,10 +151,11 @@ void CSpeakBigGhost::Init()
 	//選択肢関連の画像初期設定.
 	for (unsigned int ui = 0; ui < m_pCSprite.size(); ui++) {
 		//初期位置.
-		m_vSelectPos[ui] = D3DXVECTOR3(6.0f, 2.0f + (1.5f * (ui % 2)), 10.0f);
+		m_vSelectPos[ui] = INIT_SELECT_BOX_POS;
+		m_vSelectPos[ui].y += SELECT_BOX_HEIGHT * (ui % 2);
 
 		//小さいテキストボックス.
-		if (ui < 2) {
+		if (ui < static_cast<unsigned int>(SELECT_BOX_MAX)) {
 			m_pCSprite[ui] = m_pCResourceManager->GetSprite(enSprite::TextBoxSmall);
 			continue;
 		}
@@ -167,8 +168,8 @@ void CSpeakBigGhost::Init()
 	m_pCNextSpeakCursor.reset(new CNextSpeakCursor());
 	
 	for (unsigned int ui = 0; ui < m_pCSprite.size(); ui++) {
-		m_fSelectScale[ui] = 1.0f;
-		m_fSelectAlpha[ui] = 1.0f;
+		m_fSelectScale[ui] = STANDERD_SCALE_SIZE;
+		m_fSelectAlpha[ui] = ALPHA_MAX;
 	}
 
 	//会話文章読み込み処理関数.
@@ -397,11 +398,12 @@ void CSpeakBigGhost::SelectingMove()
 	m_SelectNum = SelectNum + (m_SelectCnt * SELECT_MAX);
 
 	for (unsigned int select = 0; select < m_pCSprite.size(); select++ ) {
-		m_fSelectScale[select] = 1.0f;
-		m_fSelectAlpha[select] = 0.5f;
+		m_fSelectScale[select] = STANDERD_SCALE_SIZE;
+		m_fSelectAlpha[select] = NOT_SELECT_ALPHA;
+		//選択されている場合.
 		if (select % SELECT_MAX == m_SelectNum % SELECT_MAX) {
-			m_fSelectScale[select] = 1.2f;
-			m_fSelectAlpha[select] = 1.0f;
+			m_fSelectScale[select] = SELECT_SCALE_SIZE;
+			m_fSelectAlpha[select] = ALPHA_MAX;
 		}
 	}
 }
@@ -484,8 +486,8 @@ void CSpeakBigGhost::FindEvalutionString()
 			}
 
 			//3日目のみ違う文章にする.
-			if (m_StageNum >= 3) {
-				if (atoi(m_stSelectString[str].c_str()) == 8) {
+			if (m_StageNum >= LAST_STAGE_NUM) {
+				if (atoi(m_stSelectString[str].c_str()) == LAST_SPEAK_NUM) {
 					m_SpeakNum = str;
 					break;
 				}
@@ -493,14 +495,14 @@ void CSpeakBigGhost::FindEvalutionString()
 			}
 
 			//次のステージに向けてのコメント探索.
-			const int SELECT_NUM = m_EndingTypeNum + 1 + 3;
+			const int SELECT_NUM = m_EndingTypeNum + 1 + LAST_STAGE_NUM;
 			if (atoi(m_stSelectString[str].c_str()) == SELECT_NUM) {
 				m_SpeakNum = str;
 				break;
 			}
 
 			//評価し終わった時の処理.
-			if (atoi(m_stSelectString[str].c_str()) == 7) {
+			if (atoi(m_stSelectString[str].c_str()) == NEXT_SPEAK_NUM) {
 				m_SpeakNum = str;
 				m_StringFlag &=  ~IN_EVALUTION_FLAG;
 				break;
@@ -524,7 +526,7 @@ void CSpeakBigGhost::FindEvalutionString()
 void CSpeakBigGhost::SettingFontProperty()
 {
 	//表示開始位置.
-	m_pCFontResource->SetStartPos(D3DXVECTOR3(90.0f, 480.0f, 0.0f));
+	m_pCFontResource->SetStartPos(START_FONT_POS);
 	//大きさ.
 	m_pCFontResource->SetFontScale(FONT_SCALE);
 	//表示幅最大.

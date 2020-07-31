@@ -19,21 +19,6 @@ public:
 	const float		ALPHA_MAX	= 1.0f;		//透過値最大数.
 	const float		SCALE_MAX	= 1.0f;		//大きさ最大値.
 
-	////幅高さ構造体(float型).
-	//struct WHSIZE_FLOAT 
-	//{
-	//	float w;
-	//	float h;
-	//};
-
-	////スプライト構造体.
-	//struct SPRITE_STATE 
-	//{
-	//	WHSIZE_FLOAT	Disp;	//表示幅高さ.
-	//	WHSIZE_FLOAT	Base;	//元画像幅高さ.
-	//	WHSIZE_FLOAT	Stride;	//1コマ当たりの幅高さ.
-	//};
-
 	CSpriteUI();	//コンストラクタ.
 	~CSpriteUI();	//デストラクタ.
 

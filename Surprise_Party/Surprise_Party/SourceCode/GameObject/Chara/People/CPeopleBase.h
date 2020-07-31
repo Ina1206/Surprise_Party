@@ -79,11 +79,11 @@ public:
 
 protected:
 	//=================関数======================//.
-	void DispDecision();							//表示判定処理関数.
-	void AnimCtrlCreat();							//アニメーションコントローラ作成処理関数.
-	void HumanMove();								//人の移動処理関数.
-	void SurpriseAnimChange(int surpriseAnimNo);	//驚きアニメーション変更処理関数.
-	void SurpriseRest();							//驚き休憩処理関数.
+	void DispDecision();									//表示判定処理関数.
+	void AnimCtrlCreat();									//アニメーションコントローラ作成処理関数.
+	void HumanMove();										//人の移動処理関数.
+	void SurpriseAnimChange(int surpriseAnimNo);			//驚きアニメーション変更処理関数.
+	void SurpriseRest();									//驚き休憩処理関数.
 
 	//=================変数======================//.
 	CDX9SkinMesh*						m_pCSkinMesh;		//スキンメッシュ.
@@ -102,15 +102,15 @@ protected:
 	D3DXVECTOR3							m_vEffectCenterPos;	//エフェクト中心座標.
 private:
 	//=================関数======================//.
-	void SpeedAcceleration();						//速度加速処理関数.
+	void SpeedAcceleration();								//速度加速処理関数.
 
 	//=================変数======================//.
-	double						m_AnimTime;			//アニメーション時間.
-	int							m_HumanNearNum;		//近づいたときの人間番号.
-	int							m_SurpriseHumanMax;	//驚いた人最大数.
-	bool						m_bTutorialFlag;	//チュートリアルフラグ.
-	bool						m_bPauseFlag;		//ポーズフラグ.
-	int							m_RestCnt;			//休憩カウント.
+	double						m_AnimTime;					//アニメーション時間.
+	int							m_HumanNearNum;				//近づいたときの人間番号.
+	int							m_SurpriseHumanMax;			//驚いた人最大数.
+	bool						m_bTutorialFlag;			//チュートリアルフラグ.
+	bool						m_bPauseFlag;				//ポーズフラグ.
+	int							m_RestCnt;					//休憩カウント.
 };
 
 #endif	//#ifndef CPEOPLE_BASE_H.

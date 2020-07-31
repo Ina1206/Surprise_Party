@@ -1,6 +1,9 @@
 #include <Windows.h>
 #include "CFileLoad.h"
 
+/***********************************
+*		ファイル読み込みクラス.
+**/
 //コンストラクタ.
 CFile::CFile()
 	: stData		(nullptr)

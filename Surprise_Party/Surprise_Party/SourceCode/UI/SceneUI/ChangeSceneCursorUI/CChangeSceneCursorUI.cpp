@@ -191,6 +191,7 @@ void CChangeSceneCursorUI::Control()
 
 	m_vUV = NORMAL_UV_POS;
 
+	//è„Ç…è„Ç™ÇÈ.
 	if (GetAsyncKeyState(VK_UP) & 0x0001) {
 		m_SelectNum--;
 		if (m_SelectNum < 0) {
@@ -201,6 +202,7 @@ void CChangeSceneCursorUI::Control()
 		}
 		m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
 	}
+	//â∫Ç…â∫Ç™ÇÈ.
 	if (GetAsyncKeyState(VK_DOWN) & 0x0001) {
 		m_SelectNum++;
 		if (m_SelectNum >= SELECT_MAX) {
@@ -212,6 +214,7 @@ void CChangeSceneCursorUI::Control()
 		m_pCPlaySoundManager->SetPlaySE(enSEType::MoveCursor);
 	}
 
+	//åàíË.
 	if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 		m_vUV = ENTER_UV_POS;
 		//SE.

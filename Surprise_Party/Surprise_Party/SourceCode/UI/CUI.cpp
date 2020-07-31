@@ -1,5 +1,8 @@
 #include "CUI.h"
 
+/*************************************
+*		UIƒNƒ‰ƒX.
+*****/
 CUI::CUI()
 	: m_pCResourceManager	(nullptr)
 	, m_pCDepthStencil		(nullptr)

@@ -76,18 +76,21 @@ void CStageFade::Render()
 //=======================================.
 void CStageFade::Init()
 {
+	//サイズ変更.
 	m_pCUI.resize(UI_MAX);
 	m_vUIPos.resize(m_pCUI.size());
 	m_fUIScale.resize(m_pCUI.size());
 	m_vUIRot.resize(m_pCUI.size());
 	m_vPrePos.resize(m_pCUI.size());
 
+	//表示スプライトUI設定.
 	for (int curtainNum = 0; curtainNum <= RIHGT_CURTAIN_NUM; curtainNum++) {
 		m_pCUI[curtainNum] = m_pCResourceManager->GetSpriteUI(enSpriteUI::BlackCurtain);
 	}
 	m_pCUI[SIGN_BOARD_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::SignBoard);
 	m_pCUI[STRING_NUM] = m_pCResourceManager->GetSpriteUI(enSpriteUI::PreparingString);
 
+	//スプライトUI情報.
 	SPRITE_STATE ss = m_pCResourceManager->GetSpriteUIState(enSpriteUI::BlackCurtain);
 
 	for (unsigned int ui = 0; ui < m_pCUI.size(); ui++) {
@@ -192,14 +195,16 @@ bool CStageFade::CurtainMove()
 		m_bPlayCurtainSE = true;
 	}
 
-	//距離の割合.
+	//カーテンを閉じるフラグ.
 	if (m_CurtainMoveFlag & CLOSE_CURTAIN_FLAG) {
+		//割合.
 		m_fDistanceRatio = fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - 0.0f) / HALF_ROT_ANGLE;
 		if (m_vUIRot[LEFT_CURTAIN_NUM].y <= 0.0f) {
 			m_vUIRot[LEFT_CURTAIN_NUM].y = 0.0f;
 			m_vUIRot[RIHGT_CURTAIN_NUM].y = CURTAIN_ROT_MIN;
 		}
 
+		//看板の高さ上限処理.
 		if (m_vUIPos[SIGN_BOARD_NUM].y >= SIGN_BOARD_HEIGHT_MAX) {
 			m_pCOldSpriteUI = m_pCUI[STRING_NUM];
 
@@ -210,11 +215,14 @@ bool CStageFade::CurtainMove()
 		MoveFlag = true;
 	}
 
+	//カーテンを開ける処理.
 	if (m_CurtainMoveFlag & OPEN_CURTAIN_FLAG) {
 		MoveDirect = OPEN_DIRECT;
 
+		//割合.
 		m_fDistanceRatio = 1.0f - fabsf(m_vUIRot[LEFT_CURTAIN_NUM].y - HALF_ROT_ANGLE) / HALF_ROT_ANGLE;
 
+		//看板の回転上限処理.
 		if (m_vUIRot[LEFT_CURTAIN_NUM].y >= HALF_ROT_ANGLE) {
 			m_vUIRot[LEFT_CURTAIN_NUM].y = HALF_ROT_ANGLE;
 			m_vUIRot[RIHGT_CURTAIN_NUM].y = -HALF_ROT_ANGLE;

@@ -47,8 +47,8 @@ void CCameraGhostSpeakStage::Update()
 //===============================================.
 void CCameraGhostSpeakStage::Init()
 {
-	m_Camera.vPos = D3DXVECTOR3(5.0f, 2.5f, -3.5f);
-	m_Camera.vLook = D3DXVECTOR3(5.0f, 2.5f, 5.0f);
+	m_Camera.vPos = INIT_CAMERA_POS;
+	m_Camera.vLook = INIT_CAMERA_LOOK;
 
 	m_MoveCameraDirection = GET_CLOSER_CAMERA_DIRECT;
 }
@@ -85,12 +85,14 @@ void CCameraGhostSpeakStage::Move()
 //===============================================.
 void CCameraGhostSpeakStage::GetCloserUpperLimit()
 {
+	//スキップ処理.
 	if (m_MoveFlag & SKIP_FLAG) {
 		m_Camera.vPos	= SPEAK_START_POS;
 		m_Camera.vLook	= SPEAK_START_LOOK;
 		m_bCanSkip		= false;
 	}
 
+	//上限到達時の処理.
 	if (m_Camera.vPos.x >= SPEAK_START_POS.x ||
 		m_Camera.vLook.x >= SPEAK_START_LOOK.x) {
 
@@ -108,11 +110,13 @@ void CCameraGhostSpeakStage::GetCloserUpperLimit()
 //===============================================.
 void CCameraGhostSpeakStage::FarAwayUpperLimit()
 {
+	//スキップ処理.
 	if (m_MoveFlag & SKIP_FLAG) {
 		m_Camera.vPos	= INIT_CAMERA_POS;
 		m_Camera.vLook	= INIT_CAMERA_LOOK;
 	}
 
+	//上限到達時の処理.
 	if (m_Camera.vPos.x <= INIT_CAMERA_POS.x ||
 		m_Camera.vLook.x <= INIT_CAMERA_LOOK.x) {
 		m_Camera.vPos	= INIT_CAMERA_POS;

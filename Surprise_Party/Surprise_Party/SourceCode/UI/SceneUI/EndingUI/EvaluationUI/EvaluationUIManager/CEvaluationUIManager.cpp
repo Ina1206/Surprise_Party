@@ -51,6 +51,7 @@ void CEvaluationUIManager::Render()
 //==========================================.
 void CEvaluationUIManager::Init()
 {
+	//•]‰¿UI‚ÌŽí—ÞŒˆ’è.
 	m_pCEvaluationUIBase = DecideEvaluationUIType();
 }
 

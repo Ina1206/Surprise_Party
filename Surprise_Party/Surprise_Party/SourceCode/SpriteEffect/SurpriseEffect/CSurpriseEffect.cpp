@@ -53,7 +53,7 @@ void CSurpriseEffect::Update()
 		}
 
 		//•\¦”»’èˆ—
-		if (m_DispCnt <= 3) {
+		if (m_DispCnt <= SPRITE_MAX) {
 			AppeartJudgement(sprite);
 		}
 

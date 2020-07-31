@@ -3,6 +3,9 @@
 
 #include "..\..\Effect\CEffect.h"
 
+/*****************************************
+*		エフェクト読み込みクラス.
+*****************/
 class CResourceEffect
 {
 public:

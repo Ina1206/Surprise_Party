@@ -362,22 +362,12 @@ void CDebugText::Render(const char* text, float x, float y)
 	D3DXMatrixLookAtLH(
 		&m_mView, &vEye, &vLook, &vUp);
 
-#if 0
-	//プロジェクショントランスフォーム(固定).
-	D3DMATRIX mOtho = {
-		2.0f / static_cast<float>(m_dwWindowWidth), 0.0f, 0.0f, 0.0f,
-		0.0f, -2.0f / static_cast<float>(m_dwWindowHeight), 0.0f, 0.0f,
-		0.0f,  0.0f, 1.0f, 0.0f,
-		-1.0f, 1.0f, 0.0f, 1.0f
-	};
-#else
 	D3DXMATRIX mOtho;
 	D3DXMatrixIdentity(&mOtho);		//単位行列作成.
 	mOtho._11 =  2.0f / static_cast<float>(m_dwWindowWidth);
 	mOtho._22 = -2.0f / static_cast<float>(m_dwWindowHeight);
 	mOtho._41 = -1.0f;
 	mOtho._42 =  1.0f;
-#endif
 	m_mProj = mOtho;
 
 	//プリミティブ・トポロジー.

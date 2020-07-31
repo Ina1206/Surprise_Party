@@ -37,19 +37,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	//大きいお化け寝るフラグ.
 	const bool SLEEP_BIGGHOST_FLAG = m_pCBigGhost->GetSleepFlag();
 
-	//チュートリアルに進む処理.
-	if (GetAsyncKeyState('Q') & 0x8000) {
-		if (m_TutorialFlag != TUTORIAL_FINISH) {
-			m_TutorialFlag = TUTORIAL_START;
-			return;
-		}
-	}
-	//メインステージに進む処理.
-	if (GetAsyncKeyState('W') & 0x8000) {
-		m_bChangeStageFlag = true;
-		return;
-	}
-
+	//感情設定処理関数.
 	if (SLEEP_BIGGHOST_FLAG == false) {
 		SettingEmotion();
 	}
@@ -62,6 +50,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 			return;
 		}
 
+		//スキップ処理.
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001) {
 			m_pCBigGhost->SetSkipFlag(true);
 			m_pCCamera->SetMoveFlag(m_pCCamera->SKIP_FLAG);
@@ -101,7 +90,6 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	Control();
 
 	if (SLEEP_BIGGHOST_FLAG == true) {
-
 		return;
 	}
 	if (m_TutorialFlag & TUTORIAL_START) {
@@ -114,6 +102,7 @@ void CGhostSpeakStage::UpDate(const bool& ControlFlag)
 	//差分用.
 	m_bOldSleepBigGhost = SLEEP_BIGGHOST_FLAG;
 
+	//チュートリアル処理.
 	const bool OldTutorialFlag = m_pCSpeakBigGhost->GetTutorialFlag();
 	if (m_TutorialFlag != TUTORIAL_FINISH) {
 		if (OldTutorialFlag == true) {
@@ -137,7 +126,7 @@ void CGhostSpeakStage::Render()
 	//床の描画.
 	m_pCFloor->SetCameraPos(m_vCameraPos);
 	m_pCFloor->RenderInitSetting(m_mView, m_mProj, m_Light);
-	m_pCFloor->SetPos(D3DXVECTOR3(0.0f, -6.0f, 0.0f));
+	m_pCFloor->SetPos(FLOOR_POS);
 	m_pCFloor->Render();
 
 	//大きいお化け描画.

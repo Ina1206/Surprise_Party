@@ -5,6 +5,9 @@
 //シェーダーファイル名(ディレクトリも含む).
 const char SHADER_NAME[] = "Data\\Shader\\SpriteUI.hlsl";
 
+/**************************************************
+*			フォントクラス.
+******************/
 //コンストラクタ.
 CFont::CFont()
 	: m_pVertexShader	(nullptr)
@@ -16,10 +19,13 @@ CFont::CFont()
 	, m_pTexture		(nullptr)
 	, m_AnimCount		(0)
 	, m_UV				(0.0f, 0.0f)
-	, m_vPos			()
+	, m_vPos			(0.0f, 0.0f, 0.0f)
 	, m_Alpha			(ALPHA_MAX)
 	, m_fScale			(SCALE_MAX)
 	, m_vRot			(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
+	, TM				()
+	, GM				()
+	, ptr				(nullptr)
 {
 }
 
