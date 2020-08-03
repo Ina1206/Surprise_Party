@@ -17,6 +17,23 @@ public:
 	const int ONETYPE_STAGE_MAX = 3;	//1タイプのステージの最大数.
 
 	//==================列挙体======================//.
+	//画像読み込み.
+	enum class enSpriteInfo {
+		Sprite,		//スプライト.
+		SpriteUI,	//スプライトUI.
+	};
+
+	enum class enSpriteInformType {
+		OriginalSize_W = 0,
+		OriginalSize_H,
+		BreakSize_W,
+		BreakSize_H,
+		BreakCnt_W,
+		BreakCnt_H,
+		Disp_W,
+		Disp_H,
+	};
+
 	//ステージ種類.
 	enum class enStageType {
 		ObjectPos,				//オブジェクト座標.
@@ -53,6 +70,10 @@ public:
 		return &s_Instance;
 	}
 	//=============情報取得処理関数=================//.
+	//スプライト読み込み用数値取得.
+	std::string GetFileName(const int& fileNum, const int& column) { return m_pCSpriteLoad[fileNum]->GetFileName(column); }
+	float GetSpriteLoadNum(int fileNum, int column, int line) { return m_pCSpriteLoad[fileNum]->GetDataNum(column, line); }
+	int GetSpriteMax(int fileNum) { return m_pCSpriteLoad[fileNum]->GetFileNumColumnMax(); }
 	//ステージのマップチップの取得.
 	int GetStageNum(int fileNum, int column, int line) { return static_cast<int>(m_pCStageFileNumber[fileNum]->GetDataNum(column, line)); }
 	//ステータスのマップチップの取得.
@@ -67,11 +88,13 @@ private:
 	//===================関数=======================//.
 	void Init();		//初期化処理関数.
 	void Release();		//解放処理関数.
+	void SpriteLoad();	//スプライト読み込み処理関数.
 	void StageLoad();	//ステージ読み込み処理関数.
 	void StatusLoad();	//ステータス読み込み処理関数.
 	void SpeakLoad();	//会話文章読み込み処理関数.
 
 	//===================変数=======================//.
+	std::vector<std::unique_ptr<CFileNumber>>	m_pCSpriteLoad;			//スプライト読み込み.
 	std::vector<CFileNumber*>					m_pCStageFileNumber;	//マップチップのファイル読み込み.
 	std::vector<CFileNumber*>					m_pCStatusFileNumber;	//ステータスのファイル読み込み.
 	std::vector<std::unique_ptr<CFileString>>	m_pCSpeakFileString;	//会話文章読み込み.

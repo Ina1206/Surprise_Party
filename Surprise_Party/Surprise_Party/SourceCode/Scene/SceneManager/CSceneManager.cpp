@@ -143,13 +143,13 @@ void CSceneManager::Release()
 //============================================.
 void CSceneManager::Load()
 {
-	//描画用の読み込み管理クラスの読み込み処理関数.
-	CResourceManager* m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
-	m_pCResourceManager->Load(m_hWnd, m_pDevice9, m_pDevice11, m_pContext11);
-
 	//ファイル用読み込み管理クラスの読み込み処理関数.
 	CFileResource*	m_pCFileResource = CFileResource::GetResourceInstance();
 	m_pCFileResource->Load();
+
+	//描画用の読み込み管理クラスの読み込み処理関数.
+	CResourceManager* m_pCResourceManager = CResourceManager::GetResourceManagerInstance();
+	m_pCResourceManager->Load(m_hWnd, m_pDevice9, m_pDevice11, m_pContext11);
 
 	m_pCPlaySoundManager = CPlaySoundManager::GetPlaySoundManager();
 	m_pCPlaySoundManager->Init(m_hWnd);

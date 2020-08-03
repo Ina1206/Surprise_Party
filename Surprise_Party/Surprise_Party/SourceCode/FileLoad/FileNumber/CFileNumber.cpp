@@ -8,6 +8,7 @@ CFileNumber::CFileNumber()
 	, m_veclineData	()
 	, m_lineMax		(0)
 	, m_ColumneMax	(0)
+	, m_bLoadFlag	(false)
 {
 
 }
@@ -68,7 +69,14 @@ HRESULT CFileNumber::DataSplita(std::string input, char delimiter)
 		if (!(std::any_of(filed.cbegin(), filed.cend(), isalpha))) {
 			m_strvec.push_back(filed);
 			LineMax++;
+			continue;
 		}
+
+		//ファイル名読み込み用.
+		if (m_bLoadFlag == true) {
+			m_FileName.push_back(filed);
+		}
+
 	}
 
 	if (LineMax > 0) {

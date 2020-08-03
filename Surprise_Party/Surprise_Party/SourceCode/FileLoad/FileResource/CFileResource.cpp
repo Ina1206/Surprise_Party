@@ -4,8 +4,10 @@
 *		ファイル読み込みクラス.
 ********/
 CFileResource::CFileResource()
-	: m_pCStageFileNumber	()
+	: m_pCSpriteLoad		()
+	, m_pCStageFileNumber	()
 	, m_pCStatusFileNumber	()
+	, m_pCSpeakFileString	()
 {
 	//初期化処理関数.
 	Init();
@@ -22,6 +24,9 @@ CFileResource::~CFileResource()
 //=====================================.
 void CFileResource::Load()
 {
+	//スプライト読み込み処理.
+	SpriteLoad();
+
 	//ステージ読み込み処理関数.
 	StageLoad();
 
@@ -64,6 +69,25 @@ void CFileResource::Release()
 	//マップチップのファイル読み込みの解放処理.
 	for (int file = m_pCStageFileNumber.size() - 1; file >= 0; file--) {
 		SAFE_DELETE(m_pCStageFileNumber[file]);
+	}
+}
+
+//=================================.
+//	スプライト読み込み処理関数.
+//=================================.
+void CFileResource::SpriteLoad()
+{
+	//ファイルパス.
+	std::vector<std::string> m_FileName = {
+		"Data\\File\\SpriteInfo\\SpriteInform.csv",
+		"Data\\File\\SpriteInfo\\SpriteUIInform.csv",
+	};
+
+	//スプライト数値読み込み処理.
+	for (unsigned int file = 0; file < m_FileName.size(); file++) {
+		m_pCSpriteLoad.push_back(std::make_unique<CFileNumber>());
+		m_pCSpriteLoad[file]->SetLoadFlag(true);
+		m_pCSpriteLoad[file]->Init(m_FileName[file].c_str());
 	}
 }
 
